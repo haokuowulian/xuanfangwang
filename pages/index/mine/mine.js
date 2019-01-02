@@ -3,7 +3,7 @@ Page({
     role1:false,
     role2:true,
     userlogin:false,
-    username:'张三',
+    username:'',
     user:'',
     headimg:'',
   },
@@ -17,6 +17,7 @@ Page({
      this.setData({
       // username:user.data.info.certName,
       headimg:user.data.info.avatar,
+      username:user.data.info.nickName,
       userlogin:true,
     });
    }else{
@@ -52,7 +53,8 @@ Page({
                });
                this.setData({
                  userlogin:true,
-                 headimg:user.data.info.avatar,
+                 headimg:res.data.info.avatar,
+                 username:res.data.info.nickName,
                });
               //  onLoad();
               //  console.log(username);
