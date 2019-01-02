@@ -242,19 +242,19 @@ let houselist = [
     imgpath:'/image/icon/right.png',
     list:sharinghouse,
   },
-  // {
-  //   type:'无人酒店',
-  //   brief:'快捷方便的精品客房',
-  //   imgpath:'/image/icon/right.png',
-  //   list:hotels,
-  // },
+  {
+    type:'无人酒店',
+    brief:'快捷方便的精品客房',
+    imgpath:'/image/icon/right.png',
+    list:hotels,
+  },
 ]
 // const houselist = [
 //   {
 //     list:houses,
 //   },
 // ]
-
+const app = getApp()
 
 Page({
   data: {
@@ -268,7 +268,10 @@ Page({
     houselist,
   },
   onLoad(){
-    
+    this.getBanner();
+    this.getNearByHousing();
+    this.getWholeRentalHousing();
+    this.getSharedHousing();
   },
   handleInput(value) {
     this.setData({
@@ -322,5 +325,30 @@ Page({
     my.navigateTo({
       url: '/pages/index/houselist/houselist?tp='+tp,
     });
+  },
+
+  //获取banner图
+  getBanner(){
+    console.log("getBanner");
+  },
+
+  //获取附近房源
+  getNearByHousing(){
+    console.log("getNearByHousing");
+  },
+
+  //获取精品房源
+  getBoutiqueHousing(){
+    console.log("getBoutiqueHousing");
+  },
+
+  //获取整租房源
+  getWholeRentalHousing(){
+    console.log("getWholeRentalHousing");
+  },
+
+  //获取合租房源
+  getSharedHousing(){
+    console.log("getSharedHousing");
   },
 });
