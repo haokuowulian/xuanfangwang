@@ -1,4 +1,6 @@
 Page({
   data: {},
-  onLoad() {},
+  onLoad() {
+    console.log(11111111);
+  },
 });
