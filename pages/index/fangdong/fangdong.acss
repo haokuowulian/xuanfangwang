@@ -1,0 +1,104 @@
+.page-banner{
+  height: 500rpx;
+  width: 750rpx;
+  background-image: url('/image/fangdong/banner-fangdong.png');
+  background-size: 100%;
+}
+.page-btn{
+  height: 170rpx;
+  width: 750rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.btn-contact{
+  height: 90rpx;
+  width: 330rpx;
+  border: 1rpx solid #999999;
+  border-radius: 5rpx;
+  margin-right: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35rpx;
+  color: #666666;
+}
+.btn-tobeowner{
+  height: 90rpx;
+  width: 330rpx;
+  background-color: #ffa800;
+  border: 1rpx solid #ffa800;
+  border-radius: 5rpx;
+  margin-left: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35rpx;
+  color: #ffffff;
+}
+.page-step{
+  height: 696rpx;
+  width: 750rpx;
+}
+.step-title1{
+  font-size: 40rpx;
+  color: #010101;
+}
+.content1-img{
+  height: 80rpx;
+  width: 86rpx;
+}
+.right-img{
+  height: 24rpx;
+  width: 12rpx;
+}
+.step1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60rpx;
+  padding-bottom: 60rpx;
+}
+.step-content1{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  justify-content: space-between;
+  width: 600rpx;
+  padding-top: 55rpx;
+}
+.content1-p1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 120rpx;
+}
+.content1-text{
+  margin-top: 30rpx;
+  font-size: 20rpx;
+  color: #666666;
+}
+.content2-img{
+  height: 81rpx;
+  width: 71rpx;
+}
+.step-content2{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  justify-content: space-between;
+  width: 600rpx;
+  padding-top: 55rpx;
+}
+.content2-p1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 120rpx;
+}

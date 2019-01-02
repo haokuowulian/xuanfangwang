@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/index/map/map",
+    "pages/index/renting/renting",
+    "pages/index/fangdong/fangdong",
+    "pages/index/mine/mine",
+    "pages/search/search",
+    "pages/index/renting/renting",
+    "pages/index/findhouse/findhouse",
+    "pages/houseinfo/houseinfo01/houseinfo01",
+    "pages/index/houselist/houselist",
+    "pages/index/shoucang/shoucang",
+    "pages/index/plan/plan",
+    "pages/index/order/order",
+    "pages/index/order/houseorder/houseorder",
+    "pages/index/evaluate/evaluate",
+    "pages/index/contract/contract",
+    "pages/index/bill/bill",
+    "pages/index/onlinerepair/onlinerepair",
+    "pages/index/fangdongreg/fangdongreg",
+    "pages/index/setting/setting"
+  ],
+  "window": {
+    "defaultTitle": "My App"
+  },
+  "tabBar": {
+    "textColor": "#404040",
+    "selectedColor": "#108ee9",
+    "backgroundColor": "#F5F5F9",
+    "items": [
+      {
+        "icon": "image/icon/shouye.png",
+        "pagePath": "pages/index/index",
+        "activeIcon": "image/shouye.png",
+        "name": "首页"
+      },
+      {
+        "icon": "image/icon/sousuo.png",
+        "pagePath": "pages/index/findhouse/findhouse",
+        "activeIcon": "image/sousuo.png",
+        "name": "找房"
+      },
+      {
+        "icon": "image/icon/yaoshi.png",
+        "pagePath": "pages/index/fangdong/fangdong",
+        "activeIcon": "image/yaoshi.png",
+        "name": "房东"
+      },
+      {
+        "icon": "image/icon/geren.png",
+        "pagePath": "pages/index/mine/mine",
+        "activeIcon": "image/geren.png",
+        "name": "我的"
+      }
+    ]
+  }
+}

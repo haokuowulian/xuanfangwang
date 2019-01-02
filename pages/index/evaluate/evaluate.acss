@@ -1,0 +1,84 @@
+.page-eva{
+  width: 750rpx;
+  border-top: 1rpx solid #e6e6e6;
+  background-color: #ffffff;
+}
+.eva-b{
+  height: 490rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.eva{
+  height: 400rpx;
+  width: 680rpx;
+  padding-top: 45rpx;
+  padding-bottom: 45rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.page-title{
+  height: 100rpx;
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.title-left{
+  margin-right: 30rpx;
+}
+.user-img{
+  height: 100rpx;
+  width: 100rpx;
+}
+.title-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 550rpx;
+  height: 100rpx;
+}
+.title-right-text{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 550rpx;
+}
+.text-name{
+  font-size: 30rpx;
+  color: #333333;
+}
+.text-date{
+  font-size: 25rpx;
+  color: #666666;
+}
+.star-img{
+  height: 28rpx;
+  width: 29rpx;
+}
+.star-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 30rpx;
+  color: #ff9d09;
+  width: 550rpx;
+  margin-top: 20rpx;
+}
+.star-text{
+  margin-left: 15rpx;
+}
+.page-content{
+  font-size: 30rpx;
+  color: #333333;
+  margin-top: 30rpx;
+  line-height: 40rpx;
+}
+.page-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40rpx;
+  font-size: 25rpx;
+  color: #666666；
+}

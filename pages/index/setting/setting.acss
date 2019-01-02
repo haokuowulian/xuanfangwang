@@ -1,0 +1,39 @@
+.page-setting{
+  height: 300rpx;
+  width: 750rpx;
+  padding-top: 20rpx;
+}
+.setting-back{
+  background-color: #ffffff;
+  height: 300rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.setting-info{
+  background-color: #ffffff;
+  height: 100rpx;
+  width: 680rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #f7f7f7;
+}
+.page-logout{
+  height: 175rpx;
+  width: 750rpx;
+  padding-top: 75rpx;
+  
+}
+.logout{
+  height: 100rpx;
+  width: 750rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right-img{
+  height: 19rpx;
+  width: 10rpx;
+}

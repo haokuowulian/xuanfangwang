@@ -1,0 +1,41 @@
+<view class="page-eva">
+  <block a:for="{{evaluate}}" a:for-item="list">
+    <!-- 1 -->
+    <view class="eva-b">
+      <view class="eva">
+        <view class="page-title">
+          
+          <view class="title-left">
+            <image src="{{list.headimg}}" class="user-img" />
+          </view>
+          <view class="title-right">
+            <view class="title-right-text">
+              <view class="text-name">{{list.name}}</view>
+              <view class="text-date">{{list.date}}</view>
+            </view>
+
+            <view class="star-box">
+              <block a:for="{{stars}}" a:for-index="idx" a:for-item="star">
+                <image src="{{idx+1<=list.star?fullstar:nostar}}" class="star-img"/>
+              </block>
+              <view class="star-text">{{list.star}}.0分</view>
+            </view>
+            
+          </view>
+          
+        </view>
+
+        <!-- 2 -->
+        <view class="page-content">
+          {{list.content}}
+        </view>
+
+        <!-- 3 -->
+        <view class="page-footer">
+          <view>{{list.hotelinfo}}</view>
+          <view>{{list.usedate}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

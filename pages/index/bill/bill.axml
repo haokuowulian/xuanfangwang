@@ -1,0 +1,18 @@
+<view>
+  <block a:for="{{bill}}" a:for-item="list">
+    <view class="page-body">
+      <view class="body-back">
+        <view class="list-left">
+          <view class="list-title">{{list.billname}}</view>
+          <view class="list-address">{{list.address}}</view>
+          <view class="list-date">{{list.date}}</view>
+        </view>
+        <view class="list-right">
+          <view class="list-cost">{{list.cost}}</view>
+          <view a:if="{{list.billstatus == 1}}" class="status-text1">立即缴费</view>
+          <view a:if="{{list.billstatus == 2}}" class="status-text2">已缴费</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

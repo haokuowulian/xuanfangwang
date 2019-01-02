@@ -1,0 +1,16 @@
+page {
+  /* flex: 1;
+  display: flex; */
+  background-color: #F7F7F7;
+  box-sizing: border-box;
+}
+.page-section {
+  background: #ffffff;
+  margin-bottom: 15rpx;
+  /* width: 750rpx; */
+}
+.page-select {
+  background: #ffffff;
+  margin-bottom: 10rpx;
+  /* width: 750rpx; */
+}

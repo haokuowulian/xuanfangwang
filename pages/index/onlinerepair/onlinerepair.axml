@@ -1,0 +1,18 @@
+<view>
+  <view class="page-body">
+    <view class="page-content">
+      <textarea class="content-text" placeholder="请输入报修内容" maxlength="200"/>
+      <view class="content-addimg">
+        <block a:for="{{images}}" a:key="{{item}}" a:index="{{index}}" name="{{file}}" id="{{file}}">
+          <view class="imgBox">
+            <image src="{{item}}"></image>
+            <view data-index="{{index}}" onTap="delImg" class="delImg">
+                <icon type="cancel" color="red" size="18" />
+            </view>
+          </view>
+        </block>
+        <view a:if="{{canAddImg}}" class="img-box" onTap="addImg"><text>{{addImgText}}</text></view>
+      </view>
+    </view>
+  </view>
+</view>

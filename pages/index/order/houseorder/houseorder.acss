@@ -1,0 +1,74 @@
+.page-order{
+  height: 300rpx;
+  width: 750rpx;
+  padding-top: 10rpx;
+}
+.order{
+  width: 700rpx;
+  height: 300rpx;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+.order-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 35rps;
+  color: #333333;
+}
+.order-head{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+  width: 700rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.rightimg{
+  margin-left: 25rpx;
+}
+.right-img{
+  height: 19rpx;
+  width: 10rpx;
+}
+.order-status1{
+  font-size: 25rpx;
+  color: #ffaa06;
+}
+.order-status2{
+  font-size: 25rpx;
+  color: #999999;
+}
+.house-img{
+  height: 160rpx;
+  width: 220rpx;
+}
+.order-content{
+  height: 160rpx;
+  width: 700rpx;
+  display: flex;
+  flex-direction: row;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+}
+.content-left{
+  margin-right: 20rpx;
+}
+.content-right{
+  font-size: 25rpx;
+}
+.right-text{
+  margin-top: 20rpx;
+  color: #666666;
+}
+.right-firstpay{
+  color: #ffaa06;
+}
+.right-pay{
+  display: flex;
+  flex-direction: row;
+}

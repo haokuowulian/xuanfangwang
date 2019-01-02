@@ -1,0 +1,4 @@
+<view>
+  <button type="default" onTap="antLogin">Button1</button>
+  <button type="default" onTap="xfwLogin">Button2</button>
+</view> 

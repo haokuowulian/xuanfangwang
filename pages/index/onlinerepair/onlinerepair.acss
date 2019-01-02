@@ -1,0 +1,31 @@
+.page-body{
+  height: 525rpx;
+  width: 750rpx;
+  background-color: #ffffff;
+  border-top: 1rpx solid #e6e6e6;
+}
+.page-content{
+  height: 455rpx;
+  /* height: 525rpx; */
+  width: 680rpx;
+  padding: 35rpx;
+}
+.content-text{
+  width: 680rpx;
+  height: 245rpx;
+  background-color: #F7F7F7;
+}
+.content-addimg{
+  margin-top: 35rpx;
+  width: 680rpx;
+  height: 140rpx;
+}
+.img-box{
+  height: 140rpx;
+  width: 140rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid #e6e6e6;
+  background-color: #F7F7F7;
+}

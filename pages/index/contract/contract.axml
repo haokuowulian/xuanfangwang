@@ -1,0 +1,13 @@
+<view>
+  <block a:for="{{contract}}" a:for-item="list">
+    <view class="page-body">
+      <view class="body-back">
+        <view class="title">{{list.address}}</view>
+        <view class="info">{{list.date}}</view>
+        <view class="info">{{list.price}}</view>
+        <view a:if="{{list.status == 1}}" class="status-text status1">已签约</view>
+        <view a:if="{{list.status == 2}}" class="status-text status2">已过期</view>
+      </view>
+    </view>
+  </block>
+</view>

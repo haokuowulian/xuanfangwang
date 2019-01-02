@@ -1,0 +1,134 @@
+.title-bar{
+  height: 90rpx;
+  width: 750rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #ffffff;
+  border: 1rpx solid #F7F7F7;
+}
+.finish-bar{
+  width: 375rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1rpx solid #F7F7F7;
+}
+.unfinished-bar{
+  width: 375rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title-click{
+  color: #ff8800;
+  border-bottom: 2rpx solid #ff8800;
+}
+.plan-content{
+  height: 595rpx;
+  width: 750rpx;
+}
+.plan-time{
+  height: 235rpx;
+  width: 750rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+.plan-info{
+  height: 170rpx;
+  width:680rpx;
+  padding: 40rpx 35rpx 25rpx;
+}
+.info-user{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.user-name{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.infos{
+  margin-top: 15rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+.plan-house{
+  height: 200rpx;
+  width: 750rpx;
+  background-color: #F7F7F7;
+}
+.house{
+  height: 150rpx;
+  width: 680rpx;
+  padding: 25rpx 35rpx;
+  display: flex;
+  flex-direction: row;
+}
+.house-img{
+  height: 150rpx;
+  width: 200rpx;
+}
+.house-info{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+  width: 480rpx;
+  height: 150rpx;
+}
+.house-name{
+  font-size: 30rpx;
+  color: #333333;
+}
+.houseinfo{
+  font-size: 28rpx;
+  color: #055555;
+  margin-top: 15rpx;
+}
+.house-status{
+  font-size: 25rpx;
+  color: #999999;
+  text-align: right;
+}
+.plan-btn{
+  height: 160rpx;
+  width: 750rpx;
+}
+.btn{
+  height: 80rpx;
+  width: 680rpx;
+  padding: 30rpx 35rpx 50rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.head-img{
+  height: 60rpx;
+  width: 60rpx;
+}
+.name{
+  font-size: 30rpx;
+  color: #333333;
+  margin-left: 20rpx;
+}
+.status{
+  font-size: 25rpx;
+  color: #999999;
+}
+.btn-button{
+  height: 80rpx;
+  width: 320rpx;
+  border: 1rpx solid #333333;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333333;
+}

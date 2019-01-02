@@ -1,0 +1,26 @@
+.order{
+  height: 120rpx;
+  width: 750rpx;
+  padding-top: 20rpx;
+}
+.myorder{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  height: 120rpx;
+  width: 750rpx;
+}
+.order-title{
+  font-size: 30rpx;
+  color: #333333;
+  margin-left: 35rpx;
+}
+.order-right{
+  margin-right: 35rpx;
+}
+.right-img{
+  height: 19rpx;
+  width: 10rpx;
+}

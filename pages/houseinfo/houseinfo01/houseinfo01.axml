@@ -1,0 +1,98 @@
+<view class="page">
+  <view class="page-section houseinfo-p1">
+    <view class="house-banner">
+      <image src="{{bannerpath}}" class="banner-img"/>
+    </view>
+    <view class="house-price">
+      <view class="house-price-info">
+          <view class="house-price-pay">￥2000元/月(月付价)</view>
+          <view class="house-price-payway">付款方式<image src="/image/icon/right.png" class="icon-size"/></view>
+      </view>
+      <view class="house-price-room">相墅花园·5居室02卧</view>
+    </view>
+    <view class="house-info">
+      <view class="house-info-c1">
+        <block a:for="{{infoc1}}" a:for-item="list">
+          <view class="info-c1-list">{{list}}</view>
+        </block>
+        
+      </view>
+      <view class="house-info-c2">
+        <block a:for="{{infoc2}}" a:for-item="list">
+          <view class="info-c2-list">{{list}}</view>
+        </block>
+      </view>
+      <view class="house-info-c2">
+        <view class="info-c2-area"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>萧山-闻堰-相墅花园</view
+      </view>
+    </view>
+  </view>
+
+  <view class="page-section houseinfo-p2">
+    <view class="houseinfo-title">房源信息</view>
+    <view class="house-details">
+      <text>这是一间花园小区的朝南主卧,精装修,带独立卫生间,透明窗户,采光和舒适度极好.是您的首选目标。</text>
+    </view>
+  </view>
+
+  <view class="page-section houseinfo-p2">
+    <view class="houseinfo-title">配套设施</view>
+    <view class="house-support">
+      <block a:for="{{furniture}}" a:for-item="list">
+        <view class="furniture-list"><image src="{{list.imgpath}}" class="furniture-img"/><text class="furniture-text">{{list.name}}</text></view>
+      </block>
+    </view>
+  </view>
+
+  <view class="page-section houseinfo-p2">
+    <view class="houseinfo-title">房间信息</view>
+    <view class="house-roominfo">
+      <block a:for="{{roomInfo}}" a:for-item="list">
+        <view class="roomlist">
+          <view class="roomlist-info1">{{list.number}}</view>
+          <view class="roomlist-info1">{{list.status}}</view>
+          <view class="roomlist-info2">{{list.price}}</view>
+          <view class="roomlist-info2" data-roomid="{{list.id}}">{{list.houseinfo}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="page-section houseinfo-p2">
+    <view class="houseinfo-title">房源特色</view>
+    <view class="house-features">
+      <block a:for="{{features}}" a:for-item="list">
+        <view class="features-info">
+          <view class="features-title">{{list.title}}</view>
+          <view class="features-content">{{list.content}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="page-section houseinfo-p2">
+    <view class="houseinfo-title">小区信息</view>
+    <view class="house-village">
+      <block a:for="{{villageinfo}}" a:for-item="list">
+      <view><image src="{{list.imgpath}}" class="village-img"/></view>
+      <view class="villageinfo"><view>建筑年代</view><view>{{list.bulidingage}}</view></view>
+      <view class="villageinfo"><view>建筑类型</view><view>{{list.bulidingtype}}</view></view>
+      <view class="villageinfo"><view>绿化率</view><view>{{list.greeningrate}}</view></view>
+      <view class="villageinfo"><view>容积率</view><view>{{list.volumerate}}</view></view>
+      </block>
+    </view>
+  </view>
+
+  <view class="page-section houseinfo-p2">
+    <view class="houseinfo-title">周边交通</view>
+    <view class="house-traffic">
+      <image src="/image/jiaotong.png" class="traffic-img" />
+    </view>
+  </view>
+
+  <view class="operate">
+    <view class="operate-shoucang"><view><image src="/image/houseicon/aixin.png" class="aixin-img" /></view><view>收藏</view></view>
+    <view class="operate-yuyue">预约看房</view>
+    <view class="operate-qianyue">立即签约</view>
+  </view>
+</view>

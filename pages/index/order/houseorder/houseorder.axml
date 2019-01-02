@@ -1,0 +1,39 @@
+<view>
+  <block a:for="{{house}}" a:for-item="list">
+    <view class="page-order">
+
+      <view class="order">
+        <view class="order-head">
+          <view class="order-title">
+            <view>{{list.housename}}</view>
+            <view class="rightimg">
+              <image src="/image/icon/right.png" class="right-img" />
+            </view>
+          </view>
+
+          <view a:if="{{list.orderstatus == 1}}" class="order-status1">已付款</view>
+          <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view>
+        </view>
+
+        <view class="order-content">
+          <!-- <view class="content"> -->
+            <view class="content-left">
+              <image src="{{list.houseimg}}" class="house-img" />
+            </view>
+
+            <view class="content-right">
+              <view class="right-text">{{list.time}}</view>
+                <view class="right-pay right-text">首付款项：
+                  <view class="right-firstpay">{{list.firstpay}}</view>
+                </view>
+              <view class="right-text">{{list.payway}}</view>
+            </view>
+          <!-- </view> -->
+
+        </view>
+
+      </view>
+    </view>
+  </block>
+  
+</view>
