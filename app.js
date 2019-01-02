@@ -1,19 +1,15 @@
 App({
-  data:{
-    user:'',
-  },
+   globalData:{
+    baseUrl:'http://192.168.1.89:8080/LLGY/IFBaseAction/'
+   },
   onLanuch(){
     const {data} = my.getStorageSync({key: 'logs'});
     const logs = data && data.logs ? data.logs : [];
-  },
-  onShow(){
-    console.log(222333)
-    let u = my.getStorageSync({
-      key: 'userinfo', // 缓存数据的key
+    my.setStorageSync({
+      key: '', // 缓存数据的key
+      data: '', // 要缓存的数据
     });
-    console.log(u)
-    this.setData({
-      user:u,
-    });
+
+   
   }
 })
