@@ -23,7 +23,7 @@ Page({
       userlogin:false,
     });
    }
-   
+   console.log(app.globalData.token)
    console.log('success')
    console.log(user)
    console.log(user.data.info.certName)

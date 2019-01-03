@@ -41,9 +41,10 @@ const houseList = [
   },
 ]
 
+var app = getApp();
 Page({
   data: {
-    houseList,
+    houseList:[],
     click1:true,
     click2:false,
     btnshow:false,
@@ -52,7 +53,17 @@ Page({
     selected:[],
     selectid:[],
   },
-  onLoad() {},
+  onLoad() {
+    my.httpRequest({
+      url: 'xxxxxxx?token='+app.globalData.token, // 目标服务器url
+      success: (res) => {
+        var houses = res.house;
+        this.setData({
+          houseList:houses,
+        });
+      },
+    });
+  },
   management(){
     this.setData({
       btnshow:true,
@@ -152,7 +163,7 @@ Page({
     my.httpRequest({
       url: '删除url?ids='+ids, // 目标服务器url
       success: (res) => {
-        
+        console.log('删除成功')
       },
     });
     that.setData({

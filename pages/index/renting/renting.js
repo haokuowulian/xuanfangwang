@@ -232,7 +232,12 @@ Page({
     //   bg:true,
     // });
     // let that = this;
-
+    my.httpRequest({
+      url: 'xxxxxxxxxx', // 目标服务器url
+      success: (res) => {
+        
+      },
+    });
   },
   onShow(){
     // this.setData({bg1:true});

@@ -17,7 +17,7 @@
               <image src="{{list.headimg}}" class="head-img" />
               <view class="name">{{list.name}}</view>
             </view>
-            <view class="status">{{list.status}}</view>
+            <view a:if="{{list.status==0}}" class="status">待确认</view>
           </view>
           <view class="infos">约看时间：{{list.plantime}}</view>
           <view class="infos">约看地点：{{list.planplace}}</view>
@@ -35,7 +35,9 @@
               <view class="house-name">{{house.housename}}</view>
               <view class="houseinfo">{{house.houseinfo}}</view>
               <view class="houseinfo">{{house.price}}</view>
-              <view class="house-status">{{house.housestatus}}</view>
+              <view a:if="{{house.housestatus==0}}" class="house-status">待租中</view>
+              <view a:if="{{house.housestatus==1}}" class="house-status">已出租</view>
+              <view a:if="{{house.housestatus==2}}" class="house-status">已失效</view>
             </view>
 
           </view>
@@ -45,7 +47,7 @@
       <view class="plan-btn">
         <view class="btn">
           <view class="btn-button">联系房东</view>
-          <view class="btn-button">取消约看</view>
+          <view class="btn-button" onTap="deletePlan" data-pid="{{list.id}}">取消约看</view>
         </view>
       </view>
     </view>
@@ -72,10 +74,11 @@
               <image src="{{list.headimg}}" class="head-img" />
               <view class="name">{{list.name}}</view>
             </view>
-            <view class="status">{{list.status}}</view>
+            <view a:if="{{list.status==2}}" class="status">已取消</view>
+            <view a:if="{{list.status==1}}" class="status">已完成</view>
           </view>
           <view class="infos">约看时间：{{list.plantime}}</view>
-          <view class="infos">越看地点：{{list.planplace}}</view>
+          <view class="infos">约看地点：{{list.planplace}}</view>
         </view>
       </view>
 
@@ -90,7 +93,9 @@
               <view class="house-name">{{house.housename}}</view>
               <view class="houseinfo">{{house.houseinfo}}</view>
               <view class="houseinfo">{{house.price}}</view>
-              <view class="house-status">{{house.housestatus}}</view>
+              <view a:if="{{house.housestatus==0}}" class="house-status">待租中</view>
+              <view a:if="{{house.housestatus==1}}" class="house-status">已出租</view>
+              <view a:if="{{house.housestatus==2}}" class="house-status">已失效</view>
             </view>
 
           </view>

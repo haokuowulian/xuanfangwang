@@ -10,7 +10,7 @@
     <view a:if="{{management_house}}" class="manage-set" onTap="management_cancel">取消</view>
   </view>
     
-  <view class="list-page">
+  <view a:if="{{condition}}" class="list-page">
     
       <block a:for="{{houseList}}" a:for-item="item">
         <view class="list-check page-select">

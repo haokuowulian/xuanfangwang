@@ -1,0 +1,37 @@
+.page-reg{
+  height: 100%;
+  width: 750rpx;
+  background-color: #ffffff;
+  color: 
+}
+.form-name{
+  height: 100rpx;
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+}
+.reg-back{
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.input{
+  border: 1rpx solid #000000;
+}
+.btn{
+  height: 150rpx;
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+
+}
+.btn-submit{
+  height: 150rpx;
+  width: 320rpx;
+}
+.btn-reset{
+  height: 150rpx;
+  width: 320rpx;
+}
