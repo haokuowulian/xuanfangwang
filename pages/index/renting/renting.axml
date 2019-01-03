@@ -130,6 +130,7 @@
         <view class="screen-print1 {{screen2?'current2' : ''}}" onTap="screenPoint2">南</view>
         <view class="screen-print1 {{screen3?'current2' : ''}}" onTap="screenPoint3">西</view>
         <view class="screen-print1 {{screen4?'current2' : ''}}" onTap="screenPoint4">北</view>
+       
         </view>
       </view>
       <view class="screen-direction">

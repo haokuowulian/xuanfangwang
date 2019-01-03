@@ -39,8 +39,9 @@
   width: 140rpx;
 }
 .posion-img{
-  height: 84rpx;
-  width: 80rpx;
+    border-radius: 65rpx;
+  height: 140rpx;
+  width: 140rpx;
 }
 .user-name{
   font-size: 40rpx;
@@ -334,4 +335,22 @@
   height: 100rpx;
   width: 500rpx;
   margin-top: 100rpx;
+}
+
+.inputClass{
+  background: white;
+  margin-left: 24rpx;
+  margin-top: 24rpx;
+  width: 678rpx;
+  border-radius: 10rpx;
+  height: 88rpx;
+  font-size: 32rpx;
+}
+
+.submitButton{
+  font-size: 36rpx;
+  background-color: #248ff6;
+  color: white;
+  border-radius: 10rpx;
+  margin: 192rpx 24rpx 24rpx;
 }
