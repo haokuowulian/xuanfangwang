@@ -149,7 +149,7 @@
         <view class="screen-print2 {{screen11?'current2' : ''}}" onTap="screenPoint11">绿化率高</view>
         </view>
       </view>
-      <view class="screen-direction">
+      <!-- <view class="screen-direction">
         <view class="screen-point">签约时长</view>
         <view class="screen-house1">
         <view class="screen-print2 {{screen12?'current2' : ''}}" onTap="screenPoint12">年租</view>
@@ -162,7 +162,7 @@
         <view class="screen-print2 {{screen14?'current2' : ''}}" onTap="screenPoint14">可立即入住</view>
         <view class="screen-print2 {{screen15?'current2' : ''}}" onTap="screenPoint15">可预订</view>
         </view>
-      </view>
+      </view> -->
       <view class="bnt-screen">
           <button type="default" onTap="screenBtnReset" class="btu-reset">重置</button>
         <button type="default" onTap="screenBtnConfirm" class="btu-confirm">确定</button>
