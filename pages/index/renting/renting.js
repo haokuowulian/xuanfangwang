@@ -432,10 +432,6 @@ Page({
     }else{
       this.setData({
         screen5:true,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
       });
     }
   },
@@ -450,11 +446,7 @@ Page({
       });
     }else{
       this.setData({
-        screen5:false,
         screen6:true,
-        screen7:false,
-        screen8:false,
-        screen9:false,
       });
     }
   },
@@ -469,11 +461,7 @@ Page({
       });
     }else{
       this.setData({
-        screen5:false,
-        screen6:false,
         screen7:true,
-        screen8:false,
-        screen9:false,
       });
     }
   },
@@ -488,11 +476,7 @@ Page({
       });
     }else{
       this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
         screen8:true,
-        screen9:false,
       });
     }
   },
@@ -507,10 +491,6 @@ Page({
       });
     }else{
       this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
         screen9:true,
       });
     }
@@ -524,7 +504,6 @@ Page({
     }else{
       this.setData({
         screen10:true,
-        screen11:false,
       });
     }
   },
@@ -536,63 +515,62 @@ Page({
       });
     }else{
       this.setData({
-        screen10:false,
         screen11:true,
       });
     }
   },
-  screenPoint12(e){
-    if(this.screen12){
-      this.setData({
-        screen12:false,
-        screen13:false,
-      });
-    }else{
-      this.setData({
-        screen12:true,
-        screen13:false,
-      });
-    }
-  },
-  screenPoint13(e){
-    if(this.screen13){
-      this.setData({
-        screen12:false,
-        screen13:false,
-      });
-    }else{
-      this.setData({
-        screen12:false,
-        screen13:true,
-      });
-    }
-  },
-  screenPoint14(e){
-    if(this.screen14){
-      this.setData({
-        screen14:false,
-        screen15:false,
-      });
-    }else{
-      this.setData({
-        screen14:true,
-        screen15:false,
-      });
-    }
-  },
-  screenPoint15(e){
-    if(this.screen15){
-      this.setData({
-        screen14:false,
-        screen15:false,
-      });
-    }else{
-      this.setData({
-        screen14:false,
-        screen15:true,
-      });
-    }
-  },
+  // screenPoint12(e){
+  //   if(this.screen12){
+  //     this.setData({
+  //       screen12:false,
+  //       screen13:false,
+  //     });
+  //   }else{
+  //     this.setData({
+  //       screen12:true,
+  //       screen13:false,
+  //     });
+  //   }
+  // },
+  // screenPoint13(e){
+  //   if(this.screen13){
+  //     this.setData({
+  //       screen12:false,
+  //       screen13:false,
+  //     });
+  //   }else{
+  //     this.setData({
+  //       screen12:false,
+  //       screen13:true,
+  //     });
+  //   }
+  // },
+  // screenPoint14(e){
+  //   if(this.screen14){
+  //     this.setData({
+  //       screen14:false,
+  //       screen15:false,
+  //     });
+  //   }else{
+  //     this.setData({
+  //       screen14:true,
+  //       screen15:false,
+  //     });
+  //   }
+  // },
+  // screenPoint15(e){
+  //   if(this.screen15){
+  //     this.setData({
+  //       screen14:false,
+  //       screen15:false,
+  //     });
+  //   }else{
+  //     this.setData({
+  //       screen14:false,
+  //       screen15:true,
+  //     });
+  //   }
+  // },
   // 筛选重置按钮
   screenBtnReset(){
     this.setData({

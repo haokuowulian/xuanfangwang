@@ -34,6 +34,7 @@ page{
   margin-top: 20rpx;
   text-align: center;
   line-height: 60rpx;
+  font-size: 25rpx;
 }
 .info2{
   width: 135rpx;
@@ -44,6 +45,7 @@ page{
   margin-top: 20rpx;
   text-align: center;
   line-height: 60rpx;
+  font-size: 25rpx;
 }
 .b1{
   background-color: coral;
@@ -213,7 +215,7 @@ page{
 .quyu .qy {
   overflow-y: scroll;
   float: left;
-  width: 33%;
+  width: 50%;
   height: 945rpx;
   line-height: 80rpx;
   box-sizing: border-box;
@@ -309,7 +311,7 @@ page{
   background: #fff; 
 }
 .tempheight1 {
-  height: 1480rpx;
+  height: 980rpx;
   width: 750rpx;
   overflow-y: scroll;
   background: #fff; 

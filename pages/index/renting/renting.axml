@@ -47,11 +47,11 @@
         {{item.title}}
       </view>
     </view>
-    <view class="qy quyu-right">
+    <!-- <view class="qy quyu-right">
       <view class="{{select3 == item.id ? 'current2' : ''}}" a:for="{{dropDownMenuDataFirstCenter}}" onTap="selectright" data-model='{{item}}' a:key="unique">
         {{item.title}}
       </view>
-    </view>
+    </view> -->
   </view>
 
 
@@ -143,10 +143,10 @@
         </view>
       </view>
       <view class="screen-direction">
-        <view class="screen-point">房源周边</view>
+        <view class="screen-point">房源家具</view>
         <view class="screen-house1">
         <view class="screen-print2 {{screen10?'current2' : ''}}" onTap="screenPoint10">离地铁近</view>
-        <view class="screen-print2 {{screen11?'current2' : ''}}" onTap="screenPoint11">绿化率高</view>
+        <view class="screen-print2 {{screen11?'current2' : ''}}" onTap="screenPoint11">绿化率高</view> 
         </view>
       </view>
       <!-- <view class="screen-direction">

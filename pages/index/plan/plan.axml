@@ -20,7 +20,7 @@
             <view class="status">{{list.status}}</view>
           </view>
           <view class="infos">约看时间：{{list.plantime}}</view>
-          <view class="infos">越看地点：{{list.planplace}}</view>
+          <view class="infos">约看地点：{{list.planplace}}</view>
         </view>
       </view>
 

@@ -75,7 +75,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 120rpx;
+  width: 130rpx;
 }
 .content1-text{
   margin-top: 30rpx;
