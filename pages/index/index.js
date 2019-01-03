@@ -242,12 +242,12 @@ let houselist = [
     imgpath:'/image/icon/right.png',
     list:sharinghouse,
   },
-  {
-    type:'无人酒店',
-    brief:'快捷方便的精品客房',
-    imgpath:'/image/icon/right.png',
-    list:hotels,
-  },
+  // {
+  //   type:'无人酒店',
+  //   brief:'快捷方便的精品客房',
+  //   imgpath:'/image/icon/right.png',
+  //   list:hotels,
+  // },
 ]
 // const houselist = [
 //   {

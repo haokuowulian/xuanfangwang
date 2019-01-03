@@ -35,9 +35,9 @@
       <view class="choose1"  onTap="choose1OnTap" data-choose="3">
         <image src="/image/house003.png" class="img-house"/>合租
       </view>
-      <view class="choose1"  onTap="choose1OnTap" data-choose="4">
+      <!-- <view class="choose1"  onTap="choose1OnTap" data-choose="4">
         <image src="/image/house004.png" class="img-house"/>无人酒店
-      </view>
+      </view> -->
     </view>
   </view>
 
@@ -79,7 +79,7 @@
             <view class="b4-left-2">{{list.brief}}</view>
           </view>
           <view class="b4-right">
-            <navigator url="/pages/index/houselist/houselist" style="display: flex; align-items: center">
+            <navigator url="/pages/index/newHouseList/newHouseList" style="display: flex; align-items: center">
               <image src="{{list.imgpath}}" class="icon-size" />
             </navigator>
           </view>
