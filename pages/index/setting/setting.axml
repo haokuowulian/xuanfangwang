@@ -6,7 +6,7 @@
       <view class="setting-info">学历信息<image src="/image/icon/right.png" class="right-img"/></view>
     </view>
   </view>
-  <view class="page-logout">
+  <view class="page-logout" onTap="userLogout">
     <view class="logout">退出登录</view>
   </view>
 </view>

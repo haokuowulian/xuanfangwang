@@ -50,6 +50,7 @@ Page({
     management_house:false,
     selectAll:false,
     selected:[],
+    selectid:[],
   },
   onLoad() {},
   management(){
@@ -138,12 +139,22 @@ Page({
     var that = this;
     let arr = that.data.houseList;
     let arr2 = [];
+    let ids = [];
     console.log(arr);
     for(let i=0;i<arr.length;i++){
       if (arr[i].checked == false){
         arr2.push(arr[i]);
+      }else{
+        ids.push(arr[i].id);
       }
     }
+    console.log(ids);
+    my.httpRequest({
+      url: '删除url?ids='+ids, // 目标服务器url
+      success: (res) => {
+        
+      },
+    });
     that.setData({
       houseList:arr2,
       selected:[]

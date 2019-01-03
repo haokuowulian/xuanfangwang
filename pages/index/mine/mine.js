@@ -1,34 +1,46 @@
+var app = getApp();
 Page({
   data: {
     role1:false,
     role2:true,
     userlogin:false,
-    username:'张三',
+    username:'',
     user:'',
     headimg:'',
   },
   onLoad() {
-    // console.log(user);
-    // console.log(user.certName);
    let user = my.getStorageSync({
      key: 'userinfo', // 缓存数据的key
    });
    if(user!=null&&user!=''){
      this.setData({
-      // username:user.data.info.certName,
       headimg:user.data.info.avatar,
+      username:user.data.info.nickName,
       userlogin:true,
     });
    }else{
      this.setData({
       userlogin:false,
     });
-    // antLogin();
    }
    
    console.log('success')
    console.log(user)
    console.log(user.data.info.certName)
+  },
+  onShow(){
+    let user = my.getStorageSync({
+     key: 'userinfo', // 缓存数据的key
+   });
+   console.log(user)
+   if(user.data==null||user.data==''){
+     this.setData({
+      userlogin:false,
+    });
+   }else{
+     console.log('已登录状态')
+   }
+    console.log(444444)
   },
   antLogin(){
     my.getAuthCode({
@@ -38,22 +50,39 @@ Page({
         var myCode=res.authCode;
         if(res.authCode){
           my.httpRequest({
-            url: 'http://192.168.1.89:8080/LLGY/IFBaseAction/IFUser/appLogin.do?authCode='+myCode,            // 目标服务器url
+            url: app.globalData.baseUrl+'IF/user/appLogin.do?authCode='+myCode,            // 目标服务器url  http://192.168.1.89:8080/LLGY/IFBaseAction/IFUser/
+       // http://192.168.1.89:8080/LLGY/IF/user/appLogin.do
             method: 'POST',
             header:{
               'content-type': 'application/json'
             },
             dataType: 'json',
             success: (res) => {
+              console.log(11111111);
                console.log(res);
                my.setStorageSync({
                  key: 'userinfo', // 缓存数据的key
                  data: res.data, // 要缓存的数据
                });
-               this.setData({
+               if(res.data.info.roleId=8){
+                this.setData({
                  userlogin:true,
-                 headimg:user.data.info.avatar,
+                 headimg:res.data.info.avatar,
+                 username:res.data.info.nickName,
+                 role1:true,
+                 role2:false,
                });
+               }
+               if(res.data.info.roleId=7){
+                this.setData({
+                 userlogin:true,
+                 headimg:res.data.info.avatar,
+                 username:res.data.info.nickName,
+                 role1:false,
+                 role2:true,
+               });
+               }
+               
               //  onLoad();
               //  console.log(username);
             },
@@ -70,10 +99,13 @@ Page({
     });
   },
   changeRole2(){
-    this.setData({
-      role1:true,
-      role2:false,
+     my.navigateTo({
+      url: '/pages/index/fangdongreg/fangdongreg',
     });
+    // this.setData({
+    //   role1:true,
+    //   role2:false,
+    // });
   },
   toShoucang(){
     my.navigateTo({

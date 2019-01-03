@@ -112,7 +112,7 @@
   <view class="page-banner1">
     <view class="banner-title1 font-color2">
       <view class="title-change" onTap="changeRole2">
-        <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />切换房东</view>
+        <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />成为房东</view>
       <view class="title-set">
         <image src="/image/qipao.png" class="qipao-img" />
       </view>
