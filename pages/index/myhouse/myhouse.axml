@@ -1,0 +1,20 @@
+<view>
+  <block a:for="{{houseList}}" a:for-item="list">
+    <view class="page-my" onTap="toMyroominfo" data-roomid="{{list.id}}">
+      <view class="page-back">
+        <view class="page-left">
+          <view class="house-title">{{list.address}} {{list.id}}</view>
+          <view class="house-address">{{list.area}}</view>
+          <view class="house-status">
+            当前状态：<view a:if="{{list.status==0}}" class="status1">部分已租</view><view a:if="{{list.status==1}}" class="status1">全部已租</view><view a:if="{{list.status==2}}" class="status2">未租</view>
+          </view>
+        </view>
+        
+        <view class="page-right">
+          <image src="/image/icon/right.png" class="right-img" />
+        </view>
+      </view>
+    </view>
+  </block>
+  
+</view>

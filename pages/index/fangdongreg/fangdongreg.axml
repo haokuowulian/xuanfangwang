@@ -4,27 +4,49 @@
       <view class="reg-back">
         <view class="form-name">
           姓名：
-          <input name="name" placeholder="姓名" class="input"/>
+          <input type='text' name="name" placeholder="姓名" class="input"/>
         </view>
         <view class="form-name">
           <view class="section__title">性别：</view>
           <radio-group name="sex">
-            <label><radio value="1"/>男</label>
-            <label><radio value="0"/>女</label>
+            <label><radio value="男" checked="true"/>男</label>
+            <label><radio value="女"/>女</label>
           </radio-group>
         </view>
         <view class="form-name">
-          身份证号：
-          <input name="card_no" placeholder="身份证号" />
+          手机号码：
+          <input type='text' name="mobile" placeholder="手机号码" />
         </view>
         <view class="form-name">
-          手机号码：
-          <input name="mobile" placeholder="手机号码" />
+          身份证号：
+          <input type='text' name="cardNo" placeholder="身份证号" />
+        </view>
+
+        <view class="_heads">身份证正面：</view>
+        <view a:if="{{!upload1}}" class="card_heads" onTap="addImg" data-t="1">
+          国徽面
+        </view>
+        <view a:if="{{upload1}}" class="card_heads" onTap="addImg" >
+          <image src="{{img1}}" class="card-img" id='0' name="idcard_positive"/>
+        </view>
+        <view hidden="{{true}}">
+          <input  hidden name="cardUrl1" value="{{idcard_positive}}" />
+        </view>
+
+        <view class="_tails">身份证反面：</view>
+        <view a:if="{{!upload2}}" class="card_tails"  onTap="addImg" data-t="2">
+          人脸面
+        </view>
+        <view a:if="{{upload2}}" class="card_tails" onTap="addImg" >
+          <image src="{{img2}}" class="card-img" id='1' name="idcard_reverse"/>
+        </view>
+        <view hidden="{{true}}">
+          <input  hidden name="cardUrl2" value="{{idcard_reverse}}" />
         </view>
 
         <view class="btn">
           <button form-type="reset" class="btn-reset">重置</button>
-          <button form-type="submit" class="btn-submit">注册</button>
+          <button form-type="submit" class="btn-submit">提交审核</button>
         </view>
       </view>
     </form>

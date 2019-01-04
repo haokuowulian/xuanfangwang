@@ -1,0 +1,47 @@
+.page-info{
+  height: 180rpx;
+  width: 75rpx;
+  padding-top: 10rpx;
+}
+.page-back{
+  height: 130rpx;
+  width: 680rpx;
+  padding: 25rpx 35rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+
+}
+.romm-img{
+  height: 130rpx;
+  width: 200rpx;
+}
+.page-left{
+  margin-right: 25rpx;
+}
+.page-right{
+  width: 455rpx;
+  display: flex;
+  flex-direction: column;
+
+}
+.room{
+  font-size: 30rpx;
+  color: #333333;
+}
+.price{
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 22rpx;
+}
+.price-color{
+  color: #ff9900;
+}
+.info{
+  font-size: 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 22rpx;
+}

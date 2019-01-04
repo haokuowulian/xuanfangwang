@@ -20,7 +20,9 @@
     "pages/index/bill/bill",
     "pages/index/onlinerepair/onlinerepair",
     "pages/index/fangdongreg/fangdongreg",
-    "pages/index/setting/setting"
+    "pages/index/setting/setting",
+    "pages/index/myhouse/myhouse",
+    "pages/index/myroominfo/myroominfo"
   ],
   "window": {
     "defaultTitle": "My App"

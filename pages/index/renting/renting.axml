@@ -25,10 +25,10 @@
       <view class="icon"></view>
     </view>
     <view a:if="{{orderopen}}" class="nav-son" onTap="listorder" data-nav="5">
-      <image src="/image/paixu.png" class="paixu-img"/>
+       <view class="content"><image src="/image/paixu.png" class="paixu-img"/></view>
     </view>
     <view a:else class="nav-son" onTap="listorder" data-nav="5">
-      <image src="/image/icon/paixu.png" class="paixu-img"/>
+      <view class="content"><image src="/image/icon/paixu.png" class="paixu-img"/></view>
     </view>
   </view>
 

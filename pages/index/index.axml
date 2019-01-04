@@ -79,7 +79,7 @@
             <view class="b4-left-2">{{list.brief}}</view>
           </view>
           <view class="b4-right">
-            <navigator url="/pages/index/newHouseList/newHouseList" style="display: flex; align-items: center">
+            <navigator url="/pages/index/houselist/houselist" style="display: flex; align-items: center">
               <image src="{{list.imgpath}}" class="icon-size" />
             </navigator>
           </view>

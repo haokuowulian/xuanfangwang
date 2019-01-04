@@ -99,9 +99,11 @@ Page({
       url: 'http://192.168.1.89:8080/LLGY/IF/bespeak/getBespeakList.do?uid='+uid, // 目标服务器url
       success: (res) => {
         var list = res.data.data;
+        var l = [];
         console.log(list)
         for(let i = 0;i<list.length;i++){
-
+          l.push(list[i])
+          unfinishedplan.push(list[i])
         }
         console.log(res)
       },

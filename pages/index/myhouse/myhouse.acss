@@ -1,0 +1,51 @@
+.page-my{
+  height: 215rpx;
+  width: 750rpx;
+  padding-top: 10rpx;
+}
+.page-back{
+  height: 125rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  padding: 40rpx 35rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-left{
+  display: flex;
+  flex-direction: column;
+
+}
+.page-right{
+
+}
+.right-img{
+  height: 40rpx;
+  width: 30rpx;
+}
+.house-title{
+  font-size: 30rpx;
+  color: #333333;
+}
+.house-address{
+  font-size: 25rpx;
+  color: #666666;
+  margin-top: 25rpx;
+}
+.house-status{
+  font-size: 25rpx;
+  color: #666666;
+  margin-top: 22rpx;
+  display: flex;
+  flex-direction: row;
+}
+.status1{
+  color: #7CFBFB;
+}
+.status2{
+  color: #ff9966;
+}

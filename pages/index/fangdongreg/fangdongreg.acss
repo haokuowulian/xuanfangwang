@@ -1,8 +1,7 @@
 .page-reg{
-  height: 100%;
+  height: 100vh;;
   width: 750rpx;
   background-color: #ffffff;
-  color: 
 }
 .form-name{
   height: 100rpx;
@@ -18,7 +17,8 @@
   padding-right: 35rpx;
 }
 .input{
-  border: 1rpx solid #000000;
+  border: 1rpx solid #f7f7f7f7;
+
 }
 .btn{
   height: 150rpx;
@@ -28,10 +28,48 @@
 
 }
 .btn-submit{
-  height: 150rpx;
+  height: 100rpx;
   width: 320rpx;
+  margin-left: 40rpx;
+  border-radius: 8rpx;
+  background-color: #ff9900;
 }
 .btn-reset{
-  height: 150rpx;
+  height: 100rpx;
   width: 320rpx;
+  border-radius: 8rpx;
+}
+.card_heads{
+  width: 580rpx;
+  height: 280rpx;
+  border-radius: 8rpx;
+  border: 1rpx dashed #000000;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #CCCCCC;
+}
+.card_tails{
+  width: 580rpx;
+  height: 280rpx;
+  border-radius: 8rpx;
+  border: 1rpx dashed #000000;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #CCCCCC;
+}
+.card-img{
+  width: 580rpx;
+  height: 280rpx;
+}
+._heads{
+  font-size: 25rpx;
+}
+._tails{
+  font-size: 25rpx;
 }

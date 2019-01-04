@@ -93,7 +93,8 @@ Page({
                  data: res.data.info.nickName, // 要缓存的数据
                });
                app.globalData.userId=res.data.info.id;
-               if(res.data.info.roleId=8){//用户
+               if(res.data.info.roleId==8){//用户
+               console.log("2222222233333333333333333");
                  if(res.data.info.certNo){//已完善信息
                    this.setData({
                       certNo:res.data.info.certNo,
@@ -106,6 +107,7 @@ Page({
                    });
                     
                  }else{//未完善信息
+                 console.log("2222222233333334444444");
                    this.setData({
                       certNo:res.data.info.certNo,
                       userCompleted:false,
@@ -118,13 +120,15 @@ Page({
                  }
                 
                }
-               if(res.data.info.roleId=7){//房东
+               if(res.data.info.roleId==7){//房东
+               console.log("2222222233333333335555555");
                 this.setData({
                   userlogin:true,
                   headimg:res.data.info.avatar,
                   username:res.data.info.nickName,
                   roleUser:false,
                   roleOwner:true,
+                  userCompleted:true,
                });
                }
                
@@ -193,6 +197,11 @@ Page({
   toSetting(){
     my.navigateTo({
       url: '/pages/index/setting/setting',
+    });
+  },
+  toMyhouse(){
+    my.navigateTo({
+      url: '/pages/index/myhouse/myhouse',
     });
   },
   //输入身份证

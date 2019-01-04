@@ -1,0 +1,21 @@
+<view>
+  <block a:for="{{roomlist}}" a:for-item="list">
+    <view class="page-info">
+      <view class="page-back">
+        <view class="page-left">
+          <image src="{{list.imgurl}}" class="romm-img" />
+        </view>
+        <view class="page-right">
+          <view class="room">{{list.roomtitle}}</view>
+          <view class="price">
+            <view class="price-color">{{list.price}}</view>元/月
+          </view>
+          <view class="info">
+            <view>{{list.statusinfo}}</view>
+            <view>{{list.roomsize}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
