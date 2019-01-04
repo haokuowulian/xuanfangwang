@@ -1,77 +1,7 @@
-const houses = [
-  {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  
-]
-const houseList = [
-  {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  }, 
-  
-]
+const app = getApp();
 
-// const sliderleft='0';
-// const sliderright='10000';
 Page({
+    type:'',
     properties: {
     // 这里定义了innerText属性，属性值可以在组件使用时指定
     dropDownMenuTitle: {
@@ -101,6 +31,12 @@ Page({
     }
   },
   data: {
+    imgUrl:app.globalData.baseImgUrl_whj,
+    houseType:0,
+    pageIndex:1,
+    boutiqueHousing:[],
+    wholeRentalHousing:[],
+    sharedHousing:[],
     hyopen: false,
     sqopen: false,
     pxopen: false,
@@ -118,8 +54,6 @@ Page({
     selectedOrder: 1,
     bg1:true,
     bg2:false,
-    houses,
-    houseList,
     showView1:false,
     showView2:false,
     s1:false,
@@ -227,11 +161,27 @@ Page({
       { id: 1, title: '标签11' }, 
       { id: 2, title: '标签12' }]
   },
-  onLoad(options) {
-    console.log(options)
-    console.log(options.tp)
+  onLoad(query) {
+    this.setData({
+      houseType:query.type
+    });
+    switch(query.type){
+      case "1"://精选房源
+        this.getBoutiqueHousing();
+      break;
+
+      case "2"://整租房源
+        this.getWholeRentalHousing();
+      break;
+
+      case "3"://合租房源
+        this.getSharedHousing();
+      break;
+    }
+   
   },
   onShow(){
+   
     // this.setData({bg1:true});
     this.setData({showView1:true});
     this.setData({s1:true});
@@ -1226,6 +1176,152 @@ Page({
   //组件生命周期函数，在组件实例进入页面节点树时执行
   attached() {
     // 可以在这里发起网络请求获取插件的数据
+    
+  },
+  //获取精选房源
+  getBoutiqueHousing(){
+    console.log('--------'+this.data.pageIndex);
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        decorateType:-3,
+        rentType:1,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                that.data.boutiqueHousing=res.data.data;
+            }else if(that.data.boutiqueHousing.length<res.data.count){
+                that.data.boutiqueHousing.push(res.data.data[0]);
+            }
+           that.setData({
+            boutiqueHousing:that.data.boutiqueHousing
+          });
+            my.stopPullDownRefresh();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+
+  //获取整租房源
+  getWholeRentalHousing(){
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        rentType:1,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                that.data.boutiqueHousing=res.data.data;
+            }else if(that.data.boutiqueHousing.length<res.data.count){
+                that.data.boutiqueHousing.push(res.data.data[0]);
+            }
+           that.setData({
+            wholeRentalHousing:that.data.boutiqueHousing
+          });
+            my.stopPullDownRefresh();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+
+  //获取合租房源
+  getSharedHousing(){
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        rentType:2,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                that.data.boutiqueHousing=res.data.data;
+            }else if(that.data.boutiqueHousing.length<res.data.count){
+                that.data.boutiqueHousing.push(res.data.data[0]);
+            }
+           that.setData({
+            sharedHousing:that.data.boutiqueHousing
+          });
+            my.stopPullDownRefresh();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+
+  onPullDownRefresh() {
+    
+    this.setData({
+      pageIndex:1
+    });
+     switch(this.data.houseType){
+      case "1"://精选房源
+        this.getBoutiqueHousing();
+      break;
+
+      case "2"://整租房源
+        this.getWholeRentalHousing();
+      break;
+
+      case "3"://合租房源
+        this.getSharedHousing();
+      break;
+    }
+    
+  },
+  onReachBottom() {
+    this.setData({
+      pageIndex:this.data.pageIndex+1
+    });
+     switch(this.data.houseType){
+      case "1"://精选房源
+        this.getBoutiqueHousing();
+      break;
+
+      case "2"://整租房源
+        this.getWholeRentalHousing();
+      break;
+
+      case "3"://合租房源
+        this.getSharedHousing();
+      break;
+    }
     
   },
 });

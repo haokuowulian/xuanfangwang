@@ -3,5 +3,6 @@
   "usingComponents":{
     "search-bar": "mini-antui/es/search-bar/index",
     "tabs": "mini-antui/es/tabs/index"
-  }
+  },
+  "pullRefresh": true
 }

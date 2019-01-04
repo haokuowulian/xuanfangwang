@@ -33,6 +33,9 @@ Page({
    }).data;
    if(userId&&userId!=''){
         if(certNo&&certNo!=''){
+          my.setNavigationBar({
+            title:'个人中心'
+          });
           this.setData({
             headimg:avatar,
             username:nickName,
@@ -40,6 +43,9 @@ Page({
             userCompleted:true
           });
         }else {
+          my.setNavigationBar({
+            title:'完善信息'
+          });
           this.setData({
             headimg:avatar,
             username:nickName,
@@ -49,6 +55,9 @@ Page({
         }
      
    }else{
+     my.setNavigationBar({
+       title:'登录'
+     });
     this.setData({
       userlogin:false,
       userCompleted:false
@@ -96,6 +105,9 @@ Page({
                if(res.data.info.roleId==8){//用户
                console.log("2222222233333333333333333");
                  if(res.data.info.certNo){//已完善信息
+                   my.setNavigationBar({
+                    title:'个人中心'
+                   });
                    this.setData({
                       certNo:res.data.info.certNo,
                       userCompleted:true,
@@ -107,7 +119,9 @@ Page({
                    });
                     
                  }else{//未完善信息
-                 console.log("2222222233333334444444");
+                  my.setNavigationBar({
+                    title:'完善信息'
+                  });
                    this.setData({
                       certNo:res.data.info.certNo,
                       userCompleted:false,

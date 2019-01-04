@@ -74,6 +74,7 @@ page{
   
 }
 .house-img{
+  border-radius: 6rpx;
   height: 185rpx;
   width: 250rpx;
 }

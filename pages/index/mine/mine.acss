@@ -234,6 +234,7 @@
 
 }
 .service{
+  margin-top: 15rpx;
   width: 680rpx;
   padding: 50rpx 35rpx 55rpx;
 
@@ -294,15 +295,20 @@
 }
 
 .page-other{
+  margin-top: 15rpx;
   height: 230rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  background-color: #F7F7F7;
+  
 }
 .page-suggest{
+  margin-top: 2rpx;
+  background-color: white;
   height: 115rpx;
-  width: 670rpx;
+  width: 750rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -310,10 +316,12 @@
   
 }
 .right-img{
+  margin-right: 40rpx;
   height: 19rpx;
   width: 10rpx;
 }
 .other-title{
+  margin-left: 40rpx;
   font-size: 35rpx;
   color: #101010;
 }

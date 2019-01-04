@@ -16,10 +16,10 @@
     </view>
 
     <view class="page-b1-swiper">
-      <swiper style="height:370rpx" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" vertical="{{vertical}}" interval="{{interval}}" circular="{{circular}}">
-        <block a:for="{{imgUrls}}">
-          <swiper-item>
-            <image src="{{item}}" class="slide-image"/>
+      <swiper style="height:370rpx" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" vertical="{{vertical}}" interval="{{interval}}" circular="{{circular}}" class="swiperClass">
+        <block a:for="{{imgUrls}}" >
+          <swiper-item class="swiperClass">
+            <image src="{{imgUrl}}{{item.image}}" class="slide-image"/>
           </swiper-item>
         </block>
       </swiper>
@@ -35,69 +35,100 @@
       <view class="choose1"  onTap="choose1OnTap" data-choose="3">
         <image src="/image/house003.png" class="img-house"/>合租
       </view>
-      <!-- <view class="choose1"  onTap="choose1OnTap" data-choose="4">
+      <view class="choose1"  onTap="choose1OnTap" data-choose="4">
         <image src="/image/house004.png" class="img-house"/>无人酒店
-      </view> -->
+      </view>
     </view>
   </view>
-
-  <view class="page-section">
-    <view class="map-b3-nearhouse">
-      <view class="b3-nearhouse">
-        <view class="title-nearhouse">
-           <view>附近房源</view>
-          <view class="b3-map">
-            <navigator url="/pages/index/map/map" style="display: flex; align-items: center">
-              <image src="/image/icon/map.png" class="icon-size" />
-              <text class="text-map">地图</text>
-            </navigator>
-          </view>
+  <view class="map-b3-nearhouse">
+    <view class="b3-nearhouse">
+      <view class="title-nearhouse">
+        <view>附近房源</view>
+        <view class="b3-map">
+          <navigator url="/pages/index/map/map" style="display: flex; align-items: center">
+            <image src="/image/icon/map.png" class="icon-size" />
+            <text class="text-map">地图</text>
+          </navigator>
         </view>
       </view>
+    </view>
 
-      <view class="b3-map1">
-        <view class="b3-map2">
-          <view class="map2-count">
-            <view class="near-text">周边共有<text class="house-count">100+</text>个房源</view>
-            <navigator url="/pages/index/map/map" style="display: flex; align-items: center">
+    <view class="b3-map1">
+      <view class="b3-map2">
+        <view class="map2-count">
+          <view class="near-text">周边共有<text class="house-count">100+</text>个房源</view>
+          <navigator url="/pages/index/map/map" style="display: flex; align-items: center">
             <view class="search-map">查看地图</view>
             <image src="/image/icon/right.png" class="icon-right" />
-            </navigator>
-          </view>
-          <view class="map2-circle"></view>
+          </navigator>
         </view>
+        <view class="map2-circle"></view>
       </view>
     </view>
   </view>
 
-  <block a:for="{{houselist}}" a:for-item="list">
-    <view class="page-section">
-      <view class="page-b4-choosehouse">
+  <view class="page-b4-choosehouse">
+    <view class="b4-choosehouse">
+      <view class="b4-left">
+        <view class="b4-left-1">精选房源</view>
+        <view class="b4-left-2">高品质原装风格设计</view>
+      </view>
+      <view class="b4-right">
+        <navigator url="/pages/index/houselist/houselist?type=1" style="display: flex; align-items: center">
+          <image src="/image/icon/right.png" class="icon-size" />
+        </navigator>
+      </view>
+
+    </view>
+        
+    <scroll-view class="scroll-view-item" scroll-x="true">
+      <block a:for="{{boutiqueHousing}}" a:for-item="lists">
+        <view class="b4-housescroll" onTap="houseInfoTap" data-text="{{lists.id}}">
+          <view class="p1">
+            <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
+          </view>
+          <view class="p2">{{lists.buildingUnit}}              </view>
+          <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.template.entireArea}}m² | {{lists.toward}}             </view>
+          <view class="p4">{{lists.entireRents}}元/月              </view>
+          <view class="p5">
+            <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">
+                    
+              <view class="p5-1">{{point}}                  </view>
+              <view class="p5-2"></view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+ 
+  <view class="page-b4-choosehouse">
         <view class="b4-choosehouse">
           <view class="b4-left">
-            <view class="b4-left-1">{{list.type}}</view>
-            <view class="b4-left-2">{{list.brief}}</view>
+            <view class="b4-left-1">整租房源</view>
+            <view class="b4-left-2">成套出租的温馨设计</view>
           </view>
           <view class="b4-right">
-            <navigator url="/pages/index/houselist/houselist" style="display: flex; align-items: center">
-              <image src="{{list.imgpath}}" class="icon-size" />
+            <navigator url="/pages/index/houselist/houselist?type=2" style="display: flex; align-items: center">
+              <image src="/image/icon/right.png" class="icon-size" />
             </navigator>
           </view>
-
         </view>
-        <view class="b4-scroll">
+      
           <scroll-view class="scroll-view-item" scroll-x="true">
-            <block a:for="{{list.list}}" a:for-item="lists">
+            <block a:for="{{wholeRentalHousing}}" a:for-item="lists">
               <view class="b4-housescroll" onTap="houseInfoTap" data-text="{{lists.id}}">
                 <view class="p1">
-                  <image src="{{lists.imgpath}}" class="house-img"/>
+                  <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
-                <view class="p2">{{lists.housename}}              </view>
-                <view class="p3">{{lists.houseinfo}}              </view>
-                <view class="p4">{{lists.houseprice}}              </view>
+                <view class="p2">{{lists.buildingUnit}}              </view>
+                 <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.template.entireArea}}m² | {{lists.toward}}             </view>
+                <view class="p4">{{lists.entireRents}}元/月              </view>
                 <view class="p5">
-                  <block a:for="{{lists.points}}" a:for-item="point">
-                    <view class="p5-1">{{point.housepoint}}                  </view>
+                  <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">
+                    
+                    <view class="p5-1">{{point}}                  </view>
                     <view class="p5-2"></view>
                   </block>
                 </view>
@@ -105,7 +136,41 @@
             </block>
           </scroll-view>
       </view>
-    </view>
-  </block>
 
+       
+  <view class="page-b4-choosehouse">
+        <view class="b4-choosehouse">
+          <view class="b4-left">
+            <view class="b4-left-1">合租房源</view>
+            <view class="b4-left-2">温馨合租的悠闲静谧</view>
+          </view>
+          <view class="b4-right">
+            <navigator url="/pages/index/houselist/houselist?type=3" style="display: flex; align-items: center">
+              <image src="/image/icon/right.png" class="icon-size" />
+            </navigator>
+          </view>
+
+        </view>
+      
+          <scroll-view class="scroll-view-item" scroll-x="true">
+            <block a:for="{{sharedHousing}}" a:for-item="lists">
+              <view class="b4-housescroll" onTap="houseInfoTap" data-text="{{lists.id}}">
+                <view class="p1">
+                  <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
+                </view>
+                <view class="p2">{{lists.roomName}}              </view>
+                <view class="p3">{{lists.house.room}}室{{lists.house.hall}}厅 | {{lists.template.entireArea}}m² | {{lists.toward}}             </view>
+                 <view class="p4">{{lists.rents}}元/月              </view>
+                <view class="p5">
+                  <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">
+                    
+                    <view class="p5-1">{{point}}                  </view>
+                    <view class="p5-2"></view>
+                  </block>
+                </view>
+              </view>
+            </block>
+          </scroll-view>
+      </view>
+   
 </view>

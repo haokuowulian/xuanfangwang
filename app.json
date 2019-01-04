@@ -30,7 +30,7 @@
   "tabBar": {
     "textColor": "#404040",
     "selectedColor": "#108ee9",
-    "backgroundColor": "#F5F5F9",
+    "backgroundColor": "#ffffff",
     "items": [
       {
         "icon": "image/icon/shouye.png",
