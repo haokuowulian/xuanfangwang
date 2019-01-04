@@ -1,7 +1,7 @@
 <view class="page">
   <!-- 搜索框 -->
   <view class="page-search">
-    <search-bar focus="{{true}}" value="{{value}}" placeholder="输入你想住的区域或小区" onInput="onInput" onCancel="onCancel" onClear="onClear" onSubmit="onSubmit" showCancelButton="{{false}}" />
+    <search-bar  value="{{value}}" placeholder="输入你想住的区域或小区" onInput="onInput" onCancel="onCancel" onClear="onClear" onSubmit="onSubmit" showCancelButton="{{false}}" />
   </view>
   
   
@@ -185,60 +185,93 @@
 
 <!-- /test -->
 
-  <view class="page-choosetabs">
+  <!-- <view class="page-choosetabs">
     <view class="info1 {{bg1?'b1':'b2'}}" onTap="onChange1">      精品房源    
     </view>
     <view class="info2 {{bg2?'b1':'b2'}}" onTap="onChange2">      优质公寓    
     </view>
-  </view>
-  <block a:for="{{houses}}" a:for-item="list">
+  </view> -->
+  
+ <view a:if="{{houseType==1}}">
+   <block a:for="{{boutiqueHousing}}" a:for-item="list">
     <view a:if="{{showView1}}" class="page-house">
       <view class="house-info">
         <view class="p-img">
-          <image src="{{list.imgpath}}" class="house-img"/>
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
         </view>
         <view class="p0">
-          <view class="p1">      {{list.housename}}    
+          <view class="p1">      {{list.buildingUnit}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.houseinfo}}
+            <view class="p2-1">{{list.template.entireArea}}m² | {{list.room}}室{{list.hall}}厅
             </view>
-            <view class="p2-2">{{list.houseprice}}
+            <view class="p2-2">{{list.entireRents}}元/月
             </view>
           </view>
           <view class="p3"> 
-            <image src="/image/icon/weizhi-2.png" class="weizhi-img" />
-            {{list.distance}}    
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
           </view>
-          <view class="p4">      {{list.point}}    
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
           </view>
         </view>
       </view>
     </view>
   </block>
-  <block a:for="{{houseList}}" a:for-item="list">
-    <view a:if="{{showView2}}" class="page-house">
+  
+ </view>
+ <view a:elif="{{houseType==2}}">
+  <block a:for="{{wholeRentalHousing}}" a:for-item="list">
+    <view a:if="{{showView1}}" class="page-house">
       <view class="house-info">
         <view class="p-img">
-          <image src="{{list.imgpath}}" class="house-img"/>
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
         </view>
         <view class="p0">
-          <view class="p1">      {{list.housename}}    
+          <view class="p1">      {{list.buildingUnit}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.houseinfo}}
+            <view class="p2-1">{{list.template.entireArea}}m² | {{list.room}}室{{list.hall}}厅
             </view>
-            <view class="p2-2">{{list.houseprice}}
+            <view class="p2-2">{{list.entireRents}}元/月
             </view>
           </view>
           <view class="p3"> 
-            <image src="/image/icon/weizhi-2.png" class="weizhi-img" />
-            {{list.distance}}    
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
           </view>
-          <view class="p4">      {{list.point}}    
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
           </view>
         </view>
       </view>
     </view>
   </block>
+ </view>
+ <view a:elif="{{houseType==3}}">
+    <block a:for="{{sharedHousing}}" a:for-item="list">
+    <view a:if="{{showView1}}" class="page-house">
+      <view class="house-info">
+        <view class="p-img">
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
+        </view>
+        <view class="p0">
+          <view class="p1">      {{list.roomName}}    
+          </view>
+          <view class="p2">
+            <view class="p2-1">{{list.template.entireArea}}m² | {{list.house.room}}室{{list.house.hall}}厅
+            </view>
+            <view class="p2-2">{{list.rents}}元/月
+            </view>
+          </view>
+          <view class="p3"> 
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
+          </view>
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+ </view>
 </view>

@@ -16,10 +16,10 @@
     </view>
 
     <view class="page-b1-swiper">
-      <swiper style="height:370rpx" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" vertical="{{vertical}}" interval="{{interval}}" circular="{{circular}}">
-        <block a:for="{{imgUrls}}">
-          <swiper-item>
-            <image src="{{item}}" class="slide-image"/>
+      <swiper style="height:370rpx" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" vertical="{{vertical}}" interval="{{interval}}" circular="{{circular}}" class="swiperClass">
+        <block a:for="{{imgUrls}}" >
+          <swiper-item class="swiperClass">
+            <image src="{{imgUrl}}{{item.image}}" class="slide-image"/>
           </swiper-item>
         </block>
       </swiper>
@@ -74,7 +74,7 @@
         <view class="b4-left-2">高品质原装风格设计</view>
       </view>
       <view class="b4-right">
-        <navigator url="/pages/index/houselist/houselist" style="display: flex; align-items: center">
+        <navigator url="/pages/index/houselist/houselist?type=1" style="display: flex; align-items: center">
           <image src="/image/icon/right.png" class="icon-size" />
         </navigator>
       </view>
@@ -110,11 +110,10 @@
             <view class="b4-left-2">成套出租的温馨设计</view>
           </view>
           <view class="b4-right">
-            <navigator url="/pages/index/houselist/houselist" style="display: flex; align-items: center">
+            <navigator url="/pages/index/houselist/houselist?type=2" style="display: flex; align-items: center">
               <image src="/image/icon/right.png" class="icon-size" />
             </navigator>
           </view>
-
         </view>
       
           <scroll-view class="scroll-view-item" scroll-x="true">
@@ -146,7 +145,7 @@
             <view class="b4-left-2">温馨合租的悠闲静谧</view>
           </view>
           <view class="b4-right">
-            <navigator url="/pages/index/houselist/houselist" style="display: flex; align-items: center">
+            <navigator url="/pages/index/houselist/houselist?type=3" style="display: flex; align-items: center">
               <image src="/image/icon/right.png" class="icon-size" />
             </navigator>
           </view>
@@ -160,7 +159,7 @@
                   <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
                 <view class="p2">{{lists.roomName}}              </view>
-                <view class="p3">{{lists.template.entireArea}}m² | {{lists.toward}}             </view>
+                <view class="p3">{{lists.house.room}}室{{lists.house.hall}}厅 | {{lists.template.entireArea}}m² | {{lists.toward}}             </view>
                  <view class="p4">{{lists.rents}}元/月              </view>
                 <view class="p5">
                   <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">

@@ -1,18 +1,15 @@
 const app = getApp();
 
-
-
-
 Page({
   data: {
     value: '',
     imgUrl:app.globalData.baseImgUrl_whj,
-    imgUrls: ['../../image/banner01.png', '../../image/banner02.png', '../../image/banner03.png'],
+    imgUrls: [],
     indicatorDots: true,
-    autoplay: false,
+    autoplay: true,
     vertical: false,
-    interval: 1000,
-    circular: false,
+    interval: 3000,
+    circular: true,
     boutiqueHousing:[],
     wholeRentalHousing:[],
     sharedHousing:[]
@@ -81,7 +78,30 @@ Page({
 
   //获取banner图
   getBanner(){
-    console.log("getBanner");
+   var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/homePage/getHomeImageIF.do",
+      method: 'POST',
+      data: {
+        pageIndex: 0,
+        pageSize: 3,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+          that.setData({
+            imgUrls:res.data.data
+          });
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
   },
 
   //获取附近房源

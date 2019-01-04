@@ -5,7 +5,7 @@ page {
   box-sizing: border-box;
 }
 .page-section {
-  background: #F7F7F7;
+  background: white;
   /* width: 750rpx; */
 }
 .page-select {

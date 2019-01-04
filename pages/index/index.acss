@@ -14,6 +14,7 @@
 }
 
 .banner-search{
+  align-self: center;
   float: left;
   width: 500rpx;
   height: 80rpx;
@@ -50,9 +51,11 @@
 }
 .banner-news{
   float: left;
+  border-radius: 12rpx;
   padding: 32rpx 32rpx;
 }
 .qipao-img{
+
   height: 35rpx;
   width: 40rpx;
 }
@@ -60,8 +63,13 @@
   /* top: 120rpx; */
   padding: 20rpx 35rpx 35rpx 35rpx;
   background-color: white;
+  border-radius: 6rpx;
+}
+.swiperClass{
+  border-radius: 6rpx;
 }
 .slide-image{
+  border-radius: 6rpx;
   display: block;
   height: 370rpx;
   width: 680rpx;
@@ -303,6 +311,7 @@
   color: transparent;
 }
 .house-img{
+  border-radius: 6rpx;
   height: 250rpx;
   width: 330rpx;
 }
