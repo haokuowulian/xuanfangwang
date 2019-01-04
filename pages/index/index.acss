@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: 100vh;
+  background-color: #F7F7F7;
+  padding-bottom: 120rpx;
 }
 .page-banner{
+  background-color: white;
   padding-top: 15rpx;
   display: flex;
   flex-direction: row;
@@ -57,7 +59,7 @@
 .page-b1-swiper{
   /* top: 120rpx; */
   padding: 20rpx 35rpx 35rpx 35rpx;
-  margin-bottom: 35rpx;
+  background-color: white;
 }
 .slide-image{
   display: block;
@@ -82,11 +84,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 25rpx;
   /* margin-bottom: 35rpx; */
   height: 160rpx;
   width: 750rpx;
-  border-bottom: 2px solid #F7F7F7;
+  background-color: white;
+  border-top: 2rpx solid #F7F7F7;
 }
 .choose1{
   display: -webkit-flex;
@@ -105,9 +107,8 @@
   margin-bottom: 15rpx;
 }
 .map-b3-nearhouse{
-  height: 473rpx;
-  width: 750rpx;
-  border-bottom: 2px solid #F7F7F7;
+  margin-top: 15rpx;
+  background-color: white;
 }
 .b3-nearhouse{
   margin-left: 35rpx;
@@ -138,6 +139,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 35rpx;
 }
 .b3-map2{
   height: 225rpx;
@@ -194,10 +196,9 @@
 }
 .page-b4-choosehouse{
   /* margin-left: 35rpx; */
-  /* margin-top: 15rpx; */
-  height: 750rpx;
+  margin-top: 15rpx;
+  background-color: white;
   width: 750rpx;
-  border-bottom: 2px solid #F7F7F7;
 }
 .b4-choosehouse{
   margin-left: 35rpx;
@@ -271,7 +272,7 @@
 }
 .p5-1{
   float: left;
-  width: 125rpx;
+  padding: 0 12rpx;
   height: 50rpx;
   background-color: #E6E6E6;
   font-size: 25rpx;

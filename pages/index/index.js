@@ -1,275 +1,27 @@
-const choosehouse = [
-  {
-    id:'1',
-    imgpath: '/image/house2.png',
-    housename:'国风上观1居室',
-    houseinfo:'萧山 | 2室1厅 | 75m² | 西',
-    houseprice:'￥8231/月',
-    points:[
-  {
-    housepoint:'精品房源',
-  },
-  {
-    housepoint:'离地铁近',
-  },
-],
-  },
-  {
-    id:'2',
-    imgpath: '/image/house2.png',
-    housename:'国风上观1居室',
-    houseinfo:'萧山 | 2室1厅 | 75m² | 西',
-    houseprice:'￥8231/月',
-    points:[
-  {
-    housepoint:'精品房源',
-  },
-  {
-    housepoint:'离地铁近',
-  }, 
-],
-  },
-  {
-    id:'3',
-    imgpath: '/image/house2.png',
-    housename:'国风上观1居室',
-    houseinfo:'萧山 | 2室1厅 | 75m² | 西',
-    houseprice:'￥8231/月',
-    points:[
-  {
-    housepoint:'精品房源',
-  },
-  {
-    housepoint:'离地铁近',
-  },
-],
-  },
-  {
-    id:'4',
-    imgpath: '/image/house2.png',
-    housename:'国风上观1居室',
-    houseinfo:'萧山 | 2室1厅 | 75m² | 西',
-    houseprice:'￥8231/月',
-    points:[
-  {
-    housepoint:'精品房源',
-  },
-  {
-    housepoint:'离地铁近',
-  },
-],
-  },
-]
-const wholehouse = [
-  {
-    id:'5',
-    imgpath: '/image/house3.png',
-    housename:'复兴南苑3居室',
-    houseinfo:'萧山 | 3室1厅 | 60m² | 西',
-    houseprice:'￥5231/月',
-    points:[
-  {
-    housepoint:'离地铁近',
-  },
-],
-    
-  },
-  {
-    id:'6',
-    imgpath: '/image/house3.png',
-    housename:'复兴南苑3居室',
-    houseinfo:'萧山 | 3室1厅 | 60m² | 西',
-    houseprice:'￥5231/月',
-    points:[
-  {
-    housepoint:'离地铁近',
-  },
-],
-    
-  },
-  {
-    id:'7',
-    imgpath: '/image/house3.png',
-    housename:'复兴南苑3居室',
-    houseinfo:'萧山 | 3室1厅 | 60m² | 西',
-    houseprice:'￥5231/月',
-    points:[
-  {
-    housepoint:'离地铁近',
-  },
-],
-    
-  },
-  {
-    id:'8',
-    imgpath: '/image/house3.png',
-    housename:'复兴南苑3居室',
-    houseinfo:'萧山 | 3室1厅 | 60m² | 西',
-    houseprice:'￥5231/月',
-    points:[
-  {
-    housepoint:'离地铁近',
-  },
-],
-    
-  },
-]
-const sharinghouse = [
-  {
-    id:'9',
-    imgpath: '/image/house4.png',
-    housename:'大成国际1居室',
-    houseinfo:'萧山 | 3室1厅 | 18m² | 西',
-    houseprice:'￥1331/月',
-    points:[
-  {
-    housepoint:'独立阳台',
-  },
-],
-    
-  },
-  {
-    id:'10',
-    imgpath: '/image/house4.png',
-    housename:'大成国际1居室',
-    houseinfo:'萧山 | 3室1厅 | 18m² | 西',
-    houseprice:'￥1331/月',
-    points:[
-  {
-    housepoint:'独立阳台',
-  },
-],
-    
-  },
-  {
-    id:'11',
-    imgpath: '/image/house4.png',
-    housename:'大成国际1居室',
-    houseinfo:'萧山 | 3室1厅 | 18m² | 西',
-    houseprice:'￥1331/月',
-    points:[
-  {
-    housepoint:'独立阳台',
-  },
-],
-   
-  },
-  {
-    id:'12',
-    imgpath: '/image/house4.png',
-    housename:'大成国际1居室',
-    houseinfo:'萧山 | 3室1厅 | 18m² | 西',
-    houseprice:'￥1331/月',
-    points:[
-  {
-    housepoint:'独立阳台',
-  },
-],
-    
-  },
-]
-const hotels = [
-  {
-    id:'13',
-    imgpath: '/image/house5.png',
-    housename:'武林广场昊呐酒店',
-    houseinfo:'杭州西湖武林广场',
-    houseprice:'￥231起',
-    points:[
-  {
-    housepoint:'豪华型',
-  },
-],
-    
-  },
-  {
-    id:'14',
-    imgpath: '/image/house5.png',
-    housename:'武林广场昊呐酒店',
-    houseinfo:'杭州西湖武林广场',
-    houseprice:'￥231起',
-    points:[
-  {
-    housepoint:'豪华型',
-  },
-],
-    
-  },
-  {
-    id:'15',
-    imgpath: '/image/house5.png',
-    housename:'武林广场昊呐酒店',
-    houseinfo:'杭州西湖武林广场',
-    houseprice:'￥231起',
-    points:[
-  {
-    housepoint:'豪华型',
-  },
-],
-   
-  },
-  {
-    id:'16',
-    imgpath: '/image/house5.png',
-    housename:'武林广场昊呐酒店',
-    houseinfo:'杭州西湖武林广场',
-    houseprice:'￥231起',
-    points:[
-  {
-    housepoint:'豪华型',
-  },
-],
-    
-  },
-]
+const app = getApp();
 
-let houselist = [
-  {
-    type:'精选房源',
-    brief:'高品质原装风格设计',
-    imgpath:'/image/icon/right.png',
-    list:choosehouse,
-  },
-  {
-    type:'整租房源',
-    brief:'成套出租的温馨设计',
-    imgpath:'/image/icon/right.png',
-    list:wholehouse,
-  },
-  {
-    type:'合租房源',
-    brief:'温馨合租的悠闲静谧',
-    imgpath:'/image/icon/right.png',
-    list:sharinghouse,
-  },
-  // {
-  //   type:'无人酒店',
-  //   brief:'快捷方便的精品客房',
-  //   imgpath:'/image/icon/right.png',
-  //   list:hotels,
-  // },
-]
-// const houselist = [
-//   {
-//     list:houses,
-//   },
-// ]
-const app = getApp()
+
+
 
 Page({
   data: {
     value: '',
+    imgUrl:app.globalData.baseImgUrl_whj,
     imgUrls: ['../../image/banner01.png', '../../image/banner02.png', '../../image/banner03.png'],
     indicatorDots: true,
     autoplay: false,
     vertical: false,
     interval: 1000,
     circular: false,
-    houselist,
+    boutiqueHousing:[],
+    wholeRentalHousing:[],
+    sharedHousing:[]
+
   },
   onLoad(){
     this.getBanner();
     this.getNearByHousing();
+    this.getBoutiqueHousing();
     this.getWholeRentalHousing();
     this.getSharedHousing();
   },
@@ -337,18 +89,91 @@ Page({
     console.log("getNearByHousing");
   },
 
-  //获取精品房源
+  //获取精选房源
   getBoutiqueHousing(){
-    console.log("getBoutiqueHousing");
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        decorateType:-3,
+        rentType:1,
+        pageIndex: 0,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+          that.setData({
+            boutiqueHousing:res.data.data
+          });
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
   },
 
   //获取整租房源
   getWholeRentalHousing(){
-    console.log("getWholeRentalHousing");
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        rentType:1,
+        pageIndex: 0,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+          that.setData({
+            wholeRentalHousing:res.data.data
+          });
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
   },
 
   //获取合租房源
   getSharedHousing(){
-    console.log("getSharedHousing");
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        rentType:2,
+        pageIndex: 0,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+          that.setData({
+            sharedHousing:res.data.data
+          });
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
   },
 });
