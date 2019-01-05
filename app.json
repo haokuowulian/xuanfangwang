@@ -22,7 +22,8 @@
     "pages/index/fangdongreg/fangdongreg",
     "pages/index/setting/setting",
     "pages/index/myhouse/myhouse",
-    "pages/index/myroominfo/myroominfo"
+    "pages/index/myroominfo/myroominfo",
+    "pages/index/mysuggest/mysuggest"
   ],
   "window": {
     "defaultTitle": "My App"

@@ -1,5 +1,38 @@
 const app = getApp();
-
+const directionList = [
+  {
+    title:'朝东',
+    selected:false,
+  },
+  {
+    title:'朝南',
+    selected:false,
+  },
+  {
+    title:'朝西',
+    selected:false,
+  },
+  {
+    title:'朝北',
+    selected:false,
+  },
+  {
+    title:'东北',
+    selected:false,
+  },
+  {
+    title:'东南',
+    selected:false,
+  },
+  {
+    title:'西北',
+    selected:false,
+  },
+  {
+    title:'西南',
+    selected:false,
+  },
+]
 Page({
     type:'',
     properties: {
@@ -31,6 +64,12 @@ Page({
     }
   },
   data: {
+    featureList:[],
+    furnitureList:[],
+    featureCondition:[],
+    furnitureCondition:[],
+    directionList,
+    direction:[],
     imgUrl:app.globalData.baseImgUrl_whj,
     houseType:0,
     pageIndex:1,
@@ -76,21 +115,6 @@ Page({
     sliderright:'10000',
     rentslider1:true,
     rentslider2:false,
-    screen1:false,
-    screen2:false,
-    screen3:false,
-    screen4:false,
-    screen5:false,
-    screen6:false,
-    screen7:false,
-    screen8:false,
-    screen9:false,
-    screen10:false,
-    screen11:false,
-    screen12:false,
-    screen13:false,
-    screen14:false,
-    screen15:false,
     screen16:false,
     order1:false,
     order2:false,
@@ -178,7 +202,44 @@ Page({
         this.getSharedHousing();
       break;
     }
-   
+   this.getFeature();
+   this.getFurniture();
+  },
+  //获取筛选下拉框中房源特色
+  getFeature(){
+    var that = this;
+    my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/selectData/getFeatureListIF.do",
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        var li = res.data.data;
+      if(res.data.success){
+        that.setData({
+          featureList:li,
+        });
+      }
+      },
+    });
+  },
+  //获取筛选下拉框中房源家具
+  getFurniture(){
+    var that = this;
+    my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/selectData/getFurnitureListIF.do",
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        var li = res.data.data;
+        console.log(res.data)
+        console.log(li)
+      if(res.data.success){
+        that.setData({
+          furnitureList:li,
+        });
+      }
+      },
+    });
   },
   onShow(){
    
@@ -187,6 +248,7 @@ Page({
     this.setData({s1:true});
     this.setData({se1:true});
     this.setData({rent1:true});
+    
   },
 
   onChange1(){
@@ -299,270 +361,131 @@ Page({
     }
   },
   // 筛选下拉框
-  screenPoint1(e){
-    if(this.screen1){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+  //房源朝向
+  screenDirection(e){
+    var that = this;
+    let index = e.currentTarget.dataset.index;
+    var arr = that.data.directionList;
+    var condition = that.data.direction;
+    console.log(that.data.direction)
+    if(arr[index].selected){
+      arr[index].selected=false;
+      that.remove(condition,arr[index].title);
     }else{
-      this.setData({
-        screen1:true,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+      arr[index].selected=true;
+      condition.push(arr[index].title);
     }
+    
+    that.setData({
+      directionList:arr,
+      direction:condition,
+    });
+    console.log(that.data.direction)
   },
-  screenPoint2(e){
-    if(this.screen2){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+  //房源特色
+  screenPoint(e){
+    var that = this;
+    var id = e.target.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    console.log(id)
+    console.log('**************'+index)
+    var arr = that.data.featureList;
+    var condition = that.data.featureCondition
+     console.log(arr[index].deleted)
+    if(arr[index].deleted){
+      arr[index].deleted=false;
+      that.remove(condition,id);
     }else{
-      this.setData({
-        screen1:false,
-        screen2:true,
-        screen3:false,
-        screen4:false,
-      });
+      arr[index].deleted=true;
+      condition.push(id);
     }
+    console.log(arr[index].deleted)
+    console.log(condition)
+    that.setData({
+      featureList:arr,
+      featureCondition:condition,
+    });
+    console.log(that.data.featureCondition)
   },
-  screenPoint3(e){
-    if(this.screen3){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+  //房源家具
+  screenFurniture(e){
+    var that = this;
+    var id = e.target.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    console.log(id)
+    console.log('**************'+index)
+    var arr = that.data.furnitureList;
+    var condition = that.data.furnitureCondition
+     console.log(arr[index].deleted)
+    if(arr[index].deleted){
+      arr[index].deleted=false;
+      that.remove(condition,id);
     }else{
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:true,
-        screen4:false,
-      });
+      arr[index].deleted=true;
+      condition.push(id);
     }
+    console.log(arr[index].deleted)
+    console.log(condition)
+    that.setData({
+      furnitureList:arr,
+      furnitureCondition:condition,
+    });
+    console.log(that.data.furnitureCondition)
   },
-  screenPoint4(e){
-    if(this.screen4){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
-    }else{
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:true,
-      });
+  //删除指定数组元素
+  remove(array,val){
+    for (var i = 0; i < array.length; i++) {
+      if(array[i] == val){
+        array.splice(i, 1);
+      }
     }
+    return -1; 
   },
-  screenPoint5(e){
-    if(this.screen5){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen5:true,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }
-  },
-  screenPoint6(e){
-    if(this.screen6){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen5:false,
-        screen6:true,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }
-  },
-  screenPoint7(e){
-    if(this.screen7){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:true,
-        screen8:false,
-        screen9:false,
-      });
-    }
-  },
-  screenPoint8(e){
-    if(this.screen8){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:true,
-        screen9:false,
-      });
-    }
-  },
-  screenPoint9(e){
-    if(this.screen9){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:true,
-      });
-    }
-  },
-  screenPoint10(e){
-    if(this.screen10){
-      this.setData({
-        screen10:false,
-        screen11:false,
-      });
-    }else{
-      this.setData({
-        screen10:true,
-        screen11:false,
-      });
-    }
-  },
-  screenPoint11(e){
-    if(this.screen11){
-      this.setData({
-        screen10:false,
-        screen11:false,
-      });
-    }else{
-      this.setData({
-        screen10:false,
-        screen11:true,
-      });
-    }
-  },
-  screenPoint12(e){
-    if(this.screen12){
-      this.setData({
-        screen12:false,
-        screen13:false,
-      });
-    }else{
-      this.setData({
-        screen12:true,
-        screen13:false,
-      });
-    }
-  },
-  screenPoint13(e){
-    if(this.screen13){
-      this.setData({
-        screen12:false,
-        screen13:false,
-      });
-    }else{
-      this.setData({
-        screen12:false,
-        screen13:true,
-      });
-    }
-  },
-  screenPoint14(e){
-    if(this.screen14){
-      this.setData({
-        screen14:false,
-        screen15:false,
-      });
-    }else{
-      this.setData({
-        screen14:true,
-        screen15:false,
-      });
-    }
-  },
-  screenPoint15(e){
-    if(this.screen15){
-      this.setData({
-        screen14:false,
-        screen15:false,
-      });
-    }else{
-      this.setData({
-        screen14:false,
-        screen15:true,
-      });
-    }
-  },
+ 
   // 筛选重置按钮
   screenBtnReset(){
-    this.setData({
-      screen1:false,
-      screen2:false,
-      screen3:false,
-      screen4:false,
-      screen5:false,
-      screen6:false,
-      screen7:false,
-      screen8:false,
-      screen9:false,
-      screen10:false,
-      screen11:false,
-      screen12:false,
-      screen13:false,
-      screen14:false,
-      screen15:false,
+    var that = this;
+    
+    var arr1 = that.data.furnitureList;
+    for(let i = 0;i<arr1.length;i++){
+      arr1[i].deleted=false;
+    }
+    var arr2 = that.data.featureList;
+    for(let i = 0;i<arr2.length;i++){
+      arr2[i].deleted=false;
+    }
+    var arr3 = that.data.directionList;
+    for(let i =0;i<arr3.length;i++){
+      arr3[i].selected=false;
+    }
+    that.setData({
+      directionList:arr3,
+      featureList:arr2,
+      furnitureList:arr1,
+      direction:[],
+      featureCondition:[],
+      furnitureCondition:[],
     });
   },
   // 筛选确认按钮
   screenBtnConfirm(){
-    
+    var that = this;
+    var a = that.data.featureCondition;
+    var b = that.data.furnitureCondition;
+    var c = that.data.direction;
+    var featureCondition = a.join(",");
+    var furnitureCondition = b.join(",");
+    var directionCondition = c.join(",");
+    console.log(featureCondition)
+    console.log(furnitureCondition)
+    console.log(directionCondition)
+    my.httpRequest({
+      url: '', // 目标服务器url
+      data:'',
+      success: (res) => {
+        
+      },
+    });
   },
   // 租金下拉框
   rentChoose1(e){

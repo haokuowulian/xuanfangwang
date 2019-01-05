@@ -47,7 +47,7 @@ Page({
             },
             fail: function(res) {
               console.log(res);
-              my.alert({ title: '上传失败' });
+              // my.alert({ title: '上传失败' });
             },
           });
         }
@@ -78,7 +78,7 @@ Page({
             },
             fail: function(res) {
               console.log(res);
-              my.alert({ title: '上传失败' });
+              // my.alert({ title: '上传失败' });
             },
           });
         }
@@ -88,29 +88,29 @@ Page({
   formSubmit(e){
     var that=this;
     form_data=e.detail.value;
-    if(e.detail.value.name!=''&&e.detail.value.mobile!=''&&e.detail.value.card_no!=''){
+    if(e.detail.value.name!=''&&e.detail.value.mobile!=''&&e.detail.value.card_no!=''&&e.detail.value.cardUrl1!=''&&e.detail.value.cardUrl2!=''){
       for(let a=0;a<that.data.images.length;a++){
         if(that.data.images[a] === null){
           console.log('请填上传身份证照片')
-        }else{
-          break;
         }
       }
+      var landlord=form_data;
+      my.httpRequest({
+        url: 'http://192.168.1.89:8080/LLGY/IF/landlord/saveLandlord.do', // 目标服务器url
+        data:{name:e.detail.value.name,sex:e.detail.value.sex,mobile:e.detail.value.mobile,cardNo:e.detail.value.cardNo,cardUrl1:e.detail.value.cardUrl1,cardUrl2:e.detail.value.cardUrl2},
+        success: (res) => {
+          console.log('表单提交成功')
+        },
+        fail:(res) =>{
+          console.log('表单提交失败')
+        },
+      });
     }else{
       console.log('请填写完整')
+      alert('请填写完整')
     }
     console.log(form_data);
-    var landlord=form_data;
-    my.httpRequest({
-      url: 'http://192.168.1.89:8080/LLGY/IF/landlord/saveLandlord.do', // 目标服务器url
-      data:{name:e.detail.value.name,sex:e.detail.value.sex,mobile:e.detail.value.mobile,cardNo:e.detail.value.cardNo,cardUrl1:e.detail.value.cardUrl1,cardUrl2:e.detail.value.cardUrl2},
-      success: (res) => {
-        console.log('表单提交成功')
-      },
-      fail:(res) =>{
-        console.log('表单提交失败')
-      },
-    });
+   
     that.setData({
       images:[],
     });
