@@ -1,0 +1,24 @@
+<view>
+  <view class="page-title">
+    <view class="title">
+      <view class="title-left">
+        <image src="{{imgpath}}" class="house-img" />
+      </view>
+      <view class="title-right">
+        <view class="right-p0">{{address}}</view>
+        <view class="right">
+          <view class="right-p1"><view class="p1-text">{{price}}</view>元/月</view>
+          <view class="right-p2">{{areasize}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="content-title">签约主体</view>
+  <view class="page-content">
+    <view class="content">姓名<view>{{name}}</view></view>
+    <view class="content">性别<view>{{sex}}</view></view>
+    <view class="content">身份证<view>{{cardNo}}</view></view>
+    <view class="content">手机号<view>{{phone}}</view></view>
+  </view>
+  <view class="page-btn">确认信息</view>
+</view>

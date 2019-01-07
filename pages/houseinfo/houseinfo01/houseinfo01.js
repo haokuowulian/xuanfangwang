@@ -147,4 +147,9 @@ Page({
     villageinfo,
   },
   onLoad() {},
+  toConfirmpage(){
+    my.navigateTo({
+      url: '/pages/index/confirmpage/confirmpage',
+    });
+  },
 });

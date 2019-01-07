@@ -1,3 +1,32 @@
 <view>
-  New Page
+  <view class="page-suggest">
+    <view class="suggest-left">
+      <image src="/image/mine/tousu.png" class="suggest-img" />
+      <view class="suggest-text">我要投诉</view>
+    </view>
+    <view class="suggest-right">
+      <image src="/image/mine/jianyi.png" class="suggest-img" />
+      <view class="suggest-text">我要建议</view>
+    </view>
+  </view>
+  <view class="page-mine">我的投诉</view>
+  <block a:for="{{myList}}" a:for-item="list">
+    <view class="page-content">
+      <view class="page-mylist">
+        <view class="mylist">
+          <view class="left-avatar">
+            <image src="{{list.avatar}}" class="avatar-img" />
+          </view>
+          <view class="right-info">
+            <view class="info-user">
+              <view class="info-name">{{list.name}}</view>
+              <view class="info-date">{{list.createDate}}</view>
+            </view>
+            <view class="info-location">{{list.location}}</view>
+          </view>
+        </view>
+        <view class="content-text">{{list.content}}</view>
+      </view>
+    </view>
+  </block>
 </view>

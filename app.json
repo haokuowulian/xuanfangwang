@@ -23,7 +23,9 @@
     "pages/index/setting/setting",
     "pages/index/myhouse/myhouse",
     "pages/index/myroominfo/myroominfo",
-    "pages/index/mysuggest/mysuggest"
+    "pages/index/mysuggest/mysuggest",
+    "pages/index/neworder/neworder",
+    "pages/index/confirmpage/confirmpage"
   ],
   "window": {
     "defaultTitle": "My App"

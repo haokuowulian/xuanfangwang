@@ -213,6 +213,11 @@ Page({
       url: '/pages/index/setting/setting',
     });
   },
+  toSuggest(){
+    my.navigateTo({
+      url: '/pages/index/mysuggest/mysuggest',
+    });
+  },
   toMyhouse(){
     my.navigateTo({
       url: '/pages/index/myhouse/myhouse',
