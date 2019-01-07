@@ -135,6 +135,7 @@
   display: flex;
   float: right;
   height: 33rpx;
+
   
 }
 .b3-map1{
@@ -187,6 +188,7 @@
 .icon-size{
   height: 25px;
   width: 25px;
+  bottom: 0;
 }
 .icon-right{
   height: 19rpx;
@@ -195,7 +197,7 @@
 .text-map{
   font-size: 30rpx;
   color: #888888;
-  
+  margin-top: 7rpx;
 }
 .b3-map1{
   height: 315rpx;

@@ -1,16 +1,4 @@
-const infoc1 = [
-  '首次出租',
-  '精品房源',
-  'WiFi覆盖',
-  '免物业费',
-]
-const infoc2 = [
-  '16m²',
-  '5室一厅',
-  '7 / 5层',
-  '精装修',
-  '南',
-]
+const app = getApp();
 const furniture = [
   {
     name:'床',
@@ -65,65 +53,7 @@ const furniture = [
     imgpath: '/image/houseicon/tianranqi.png'
   },
 ]
-const roomInfo = [
-  {
-    id:'1',
-    number:'01卧',
-    status:'待入住',
-    price:'￥2000元/月',
-    houseinfo:'当前房源',
-  },
-  {
-    id: '2',
-    number: '02卧',
-    status: '待入住',
-    price: '￥2000元/月',
-    houseinfo: '查看房间',
-  },
-  {
-    id: '3',
-    number: '03卧',
-    status: '已入住',
-    price: '男',
-    houseinfo: '27岁',
-  },
-  {
-    id: '4',
-    number: '04卧',
-    status: '待入住',
-    price: '￥2000元/月',
-    houseinfo: '查看房间',
-  },
-  {
-    id: '5',
-    number: '05卧',
-    status: '待入住',
-    price: '￥2000元/月',
-    houseinfo: '查看房间',
-  },
-]
-const features = [
-  {
-    title:'房源亮点',
-    content:'全新装修，配置齐全',
-  },
-  {
-    title: '户型介绍',
-    content: '此房为南北向5室一厅一卫，104.5平米，精装，户型方正，性价比高，整体清爽宽敞明亮，家电齐全。。',
-  },
-  {
-    title: '交通出行',
-    content: '距离地铁湘湖站直线距离9125米，公交线路：126路，178路，222路等各路公交直达。',
-  },
-  {
-    title: '周边配套',
-    content: '商场、学校、景区配套',
-  },
-  {
-    title: '小区信息',
-    content: '沿江湿地，毗邻湘湖，环境好',
-  },
-]
+
 const villageinfo = [
   {
     imgpath:'/image/xiaoqu.png',
@@ -139,12 +69,61 @@ Page({
     infohouse:'',
     housedetails:'',
     housesupport:'',
-    infoc1,
-    infoc2,
     furniture,
-    roomInfo,
-    features,
     villageinfo,
+    imgUrl:app.globalData.baseImgUrl_whj,
+    rentType:0,//房源类型，1：整租；2：分租
+    id:0,//房源Id
+    interval:3000,//滚动切换时间
+    houseDetail:null,//详情
+    
   },
-  onLoad() {},
+   
+  onLoad(option) {
+    this.setData({
+      id:option.id,
+      rentType:option.rentType
+    });
+    console.log(this.data.id);
+    console.log(this.data.rentType);
+    this.getHouseDetail();
+  
+  },
+
+  //获取房源详情
+  getHouseDetail(){
+    var that=this;
+     my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHousingDetailIF.do",
+      method: 'POST',
+      data: {
+        id: this.data.id,
+        rentType: this.data.rentType
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+       
+        if(res.data.success){
+          that.setData({
+            houseDetail:res.data.data
+          });
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+ 
+  //前往周边交通
+  goToNearBy(){
+    my.navigateTo({
+
+      url: '/pages/houseinfo/nearby/nearby?houseDetail='+JSON.stringify(this.data.houseDetail),
+    })
+  }
 });

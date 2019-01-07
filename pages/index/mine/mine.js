@@ -3,10 +3,11 @@ var userId='';
 var certNo='';
 var avatar='';
 var nickName='';
+var roleId='';
 Page({
   data: {
     roleUser:false,
-    roleOwner:true,
+    roleOwner:false,
     userlogin:false,
     userCompleted:false,
     username:'',
@@ -31,17 +32,34 @@ Page({
    nickName = my.getStorageSync({
      key: 'nickName', // 缓存数据的key
    }).data;
+   roleId = my.getStorageSync({
+     key: 'roleId', // 缓存数据的key
+   }).data;
    if(userId&&userId!=''){
         if(certNo&&certNo!=''){
           my.setNavigationBar({
             title:'个人中心'
           });
-          this.setData({
-            headimg:avatar,
-            username:nickName,
-            userlogin:true,
-            userCompleted:true
-          });
+          if(roleId&&roleId!=''&&roleId=='8'){
+            this.setData({
+                headimg:avatar,
+                username:nickName,
+                userlogin:true,
+                userCompleted:true,
+                roleUser:true,
+                roleOwner:false
+            });
+          }else{
+            this.setData({
+                headimg:avatar,
+                username:nickName,
+                userlogin:true,
+                userCompleted:true,
+                roleUser:false,
+                roleOwner:true
+            });
+          }
+         
         }else {
           my.setNavigationBar({
             title:'完善信息'
@@ -101,8 +119,13 @@ Page({
                  key: 'nickName', // 缓存数据的key
                  data: res.data.info.nickName, // 要缓存的数据
                });
+                my.setStorageSync({
+                 key: 'roleId', // 缓存数据的key
+                 data: res.data.info.roleId, // 要缓存的数据
+               });
                app.globalData.userId=res.data.info.id;
                if(res.data.info.roleId==8){//用户
+               
                console.log("2222222233333333333333333");
                  if(res.data.info.certNo){//已完善信息
                    my.setNavigationBar({
@@ -135,6 +158,10 @@ Page({
                 
                }
                if(res.data.info.roleId==7){//房东
+               my.setStorageSync({
+                 key: 'roleUser', // 缓存数据的key
+                 data: false, // 要缓存的数据
+               });
                console.log("2222222233333333335555555");
                 this.setData({
                   userlogin:true,
@@ -159,9 +186,10 @@ Page({
   },
   xfwLogin(){},
   changeRole1(){
+    
     this.setData({
-      roleUser:false,
-      roleOwner:true,
+      roleUser:true,
+      roleOwner:false,
     });
   },
   changeRole2(){

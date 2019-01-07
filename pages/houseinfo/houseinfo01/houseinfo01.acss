@@ -1,8 +1,11 @@
 .page{
   width: 750rpx;
 }
+.viewClass{
+  padding-bottom: 150rpx;
+}
 .houseinfo-p1{
-  height: 1175rpx;
+  /* height: 1175rpx; */
   width: 750rpx;
 }
 .house-banner{
@@ -76,7 +79,8 @@
 .info-c1-list{
   margin-left: 35rpx;
   height: 55rpx;
-  width: 140rpx;
+  padding-left:12rpx; 
+  padding-right:12rpx; 
   border-radius: 10rpx;
   display: flex;
   flex-direction: column;
@@ -109,6 +113,7 @@
   font-size: 35rpx;
   width: 680rpx;
   color: #222222;
+  margin-left: 35rpx;
   /* margin-top: 50rpx;
   margin-bottom: 25rpx; */
   height: 110rpx;
@@ -117,10 +122,13 @@
   /* padding-top: 50rpx;
   padding-bottom: 25rpx; */
 }
+.textClass{
+  padding-left: 35rpx;
+}
 .houseinfo-p2{
  /* padding-left:35rpx; */
- margin-left: 35rpx;
-  width: 715rpx;
+ /* margin-left: 35rpx; */
+  width: 750rpx;
 }
 .houseinfo-p3{
   /* height: 240rpx; */
@@ -143,7 +151,6 @@
   flex-wrap: wrap;
   justify-content: space-between;
   /* justify-content: center; */
-  align-items: ;
   margin: 20rpx 40rpx 20rpx 5rpx;
 }
 .furniture-list{
@@ -169,10 +176,11 @@
   margin-top: 20rpx;
 }
 .house-roominfo{
+  margin-left: 35rpx;
   margin-top: 20rpx;
   display: flex;
-  flex-direction: column;
   width: 680rpx;
+  flex-direction: column;
 }
 /* .house-support{
   display: flex;
@@ -248,10 +256,12 @@
   margin-bottom: 40rpx;
 }
 .village-img{
+  margin-left: 35rpx;
   height: 439rpx;
   width: 680rpx;
 }
 .villageinfo{
+  margin-left: 35rpx;
   height: 135rpx;
   width: 680rpx;
   display: flex;
@@ -265,11 +275,11 @@
   /* margin: 20rpx 35rpx 40rpx; */
   margin-top: 20rpx;
   margin-bottom: 150rpx;
-}
-.traffic-img{
-  height: 676rpx;
+  margin-left: 35rpx;
   width: 680rpx;
 }
+
+
 .operate{
   position: fixed;
   bottom: 0;

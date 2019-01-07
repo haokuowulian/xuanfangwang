@@ -40,15 +40,15 @@
       </view>
     </view>
   </view>
-  <view class="map-b3-nearhouse">
+  <view class="map-b3-nearhouse" onTap="goToMap">
     <view class="b3-nearhouse">
       <view class="title-nearhouse">
         <view>附近房源</view>
         <view class="b3-map">
-          <navigator url="/pages/index/map/map" style="display: flex; align-items: center">
+          
             <image src="/image/icon/map.png" class="icon-size" />
-            <text class="text-map">地图</text>
-          </navigator>
+            <text class="text-map">{{address}}</text>
+          
         </view>
       </view>
     </view>
@@ -56,7 +56,7 @@
     <view class="b3-map1">
       <view class="b3-map2">
         <view class="map2-count">
-          <view class="near-text">周边共有<text class="house-count">100+</text>个房源</view>
+          <view class="near-text">周边共有<text class="house-count">{{houseNum}}</text>个房源</view>
           <navigator url="/pages/index/map/map" style="display: flex; align-items: center">
             <view class="search-map">查看地图</view>
             <image src="/image/icon/right.png" class="icon-right" />
@@ -154,7 +154,7 @@
       
           <scroll-view class="scroll-view-item" scroll-x="true">
             <block a:for="{{sharedHousing}}" a:for-item="lists">
-              <view class="b4-housescroll" onTap="houseInfoTap" data-text="{{lists.id}}">
+              <view class="b4-housescroll" onTap="goToHouseDetail" data-text="{{lists.id}}" data-type='2'>
                 <view class="p1">
                   <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>

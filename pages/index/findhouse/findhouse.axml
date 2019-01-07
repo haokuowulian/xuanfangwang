@@ -21,10 +21,10 @@
         show-location="true" style="width: 100%; height: 100vh;"
         >
     </map>
-      <cover-view class="findhouse-title">
+      <!-- <cover-view class="findhouse-title">
         <cover-view class="title1 {{titleCss1?'title-click':''}}" onTap="titleClick1">租房</cover-view>
         <cover-view class="title2 {{titleCss2?'title-click':''}}" onTap="titleClick2">酒店</cover-view>
-      </cover-view>
+      </cover-view> -->
       <!-- 租房 -->
       <cover-view a:if="{{tabdisplay1}}" class="map-housecount">
         <cover-image src="/image/icon/santiaogang.png" class="dingwei-img" onTap="houseCountClick"/>
@@ -66,10 +66,10 @@
         show-location="true" style="width: 100%; height: 100vh;"
         >
     </map>
-    <cover-view class="findhouse-title">
+    <!-- <cover-view class="findhouse-title">
           <cover-view class="title1 {{titleCss1?'title-click':''}}" onTap="titleClick1">租房      </cover-view>
           <cover-view class="title2 {{titleCss2?'title-click':''}}" onTap="titleClick2">酒店</cover-view>
-    </cover-view>
+    </cover-view> -->
     
     <cover-view a:if="{{tabdisplay2}}" class="search-distance" onTap="searchHouse">
       <cover-view class="search-sousuo">
