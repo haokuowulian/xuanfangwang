@@ -20,5 +20,5 @@
     <view class="content">身份证<view>{{cardNo}}</view></view>
     <view class="content">手机号<view>{{phone}}</view></view>
   </view>
-  <view class="page-btn">确认信息</view>
+  <view class="page-btn" onTap="toConfirm">确认信息</view>
 </view>

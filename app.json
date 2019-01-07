@@ -25,7 +25,8 @@
     "pages/index/myroominfo/myroominfo",
     "pages/index/mysuggest/mysuggest",
     "pages/index/neworder/neworder",
-    "pages/index/confirmpage/confirmpage"
+    "pages/index/confirmpage/confirmpage",
+    "pages/index/submitresult/submitresult"
   ],
   "window": {
     "defaultTitle": "My App"

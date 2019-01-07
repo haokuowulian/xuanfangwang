@@ -10,4 +10,9 @@ Page({
     phone:'12345678901',
   },
   onLoad() {},
+  toConfirm(){
+    my.navigateTo({
+      url: '/pages/index/submitresult/submitresult',
+    });
+  },
 });
