@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="page-img">
+    <image src="/image/mine/success.png" class="success-img"/>
+  </view>
+  <view class="page-text1">您的约看已经成功提交！</view>
+  <view class="page-text2">我们将尽快联系您确认看房时间和地点</view>
+  <view class="page-btn">
+    <view class="btn-check" onTap="toPlan">查看约看</view>
+    <view class="btn-back">继续找房</view>
+  </view>
+</view>

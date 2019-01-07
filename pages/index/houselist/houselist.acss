@@ -578,9 +578,15 @@ page{
   color: #333333;
   margin-bottom: 10rpx;
 }
+/* .screen-house{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 50rpx;
+  color: #cccccc;
+} */
 .screen-house{
   display: flex;
-  /* margin-top: 25rpx; */
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -601,10 +607,25 @@ page{
   font-size: 35rpx;
   color: #333333;
 }
-.screen-print1{
+.screen-print0{
   margin-top: 25rpx;
   height: 65rpx;
-  width: 155rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  width: 120rpx;
+  font-size: 28rpx;
+  border: 1px solid;
+  text-align: center;
+  line-height: 65rpx;
+  border-radius: 10rpx;
+}
+.screen-print1{
+  margin-top: 25rpx;
+  margin-right: 25rpx;
+  height: 65rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  /* width: 155rpx; */
   font-size: 28rpx;
   border: 1px solid;
   text-align: center;

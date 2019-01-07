@@ -102,7 +102,7 @@
   <view class="operate">
     
     <view class="operate-shoucang"><view><image src="/image/houseicon/aixin.png" class="aixin-img" /></view><view>收藏</view></view>
-    <view class="operate-yuyue">预约看房</view>
+    <view class="operate-yuyue" onTap="toConfirmpage">预约看房</view>
     <view class="operate-qianyue">立即签约</view>
   </view>
 </view>

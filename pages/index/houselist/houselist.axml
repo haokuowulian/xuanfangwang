@@ -63,7 +63,7 @@
         <view class="r1">合租</view>
         <view class="r1-0">温馨合租的悠闲静谧</view>
         <view class="house-renting-condition">
-          <view class="r1-1 {{s1?'current2' : ''}}" onTap="onSelect1" data-s="0">不限</view>
+          <view class="r1-1 {{s1?'current2' : ''}}" onTap="onSelect1" data-="0">不限</view>
           <view class="r1-1 {{s2?'current2' : ''}}" onTap="onSelect2" data-s="1">1居</view>
           <view class="r1-1 {{s3?'current2' : ''}}" onTap="onSelect3" data-s="2">2居</view>
           <view class="r1-2 {{s4?'current2' : ''}}" onTap="onSelect4" data-s="3">3居+</view>
@@ -126,43 +126,37 @@
       <view class="screen-direction">
         <view class="direction">房源朝向</view>
         <view class="screen-house">
-        <view class="screen-print1 {{screen1?'current2' : ''}}" onTap="screenPoint1">东</view>
-        <view class="screen-print1 {{screen2?'current2' : ''}}" onTap="screenPoint2">南</view>
-        <view class="screen-print1 {{screen3?'current2' : ''}}" onTap="screenPoint3">西</view>
-        <view class="screen-print1 {{screen4?'current2' : ''}}" onTap="screenPoint4">北</view>
+          <block a:for="{{directionList}}" a:for-item="list" a:for-index="idx">
+            <view class="screen-print0 {{list.selected?'current2' : ''}}" onTap="screenDirection" data-index="{{idx}}">{{list.title}}</view>
+          </block>
+        <!-- <view class="screen-print0 {{screen1?'current2' : ''}}" onTap="screenPoint1">朝东</view>
+        <view class="screen-print0 {{screen2?'current2' : ''}}" onTap="screenPoint2">朝南</view>
+        <view class="screen-print0 {{screen3?'current2' : ''}}" onTap="screenPoint3">朝西</view>
+        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">朝北</view>
+        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">东北</view>
+        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">东南</view>
+        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">西北</view>
+        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">西南</view> -->
         </view>
       </view>
       <view class="screen-direction">
         <view class="screen-point">房源特色</view>
+          <view class="screen-house">
+            <block a:for="{{featureList}}" a:for-item="list" a:for-index="idx">
+              <view class="screen-print1 {{list.deleted?'current2' : ''}}" onTap="screenPoint" data-id="{{list.id}}"  data-index="{{idx}}">{{list.feature}}</view>
+            </block>
+          </view>
+        
+      </view>
+      <view class="screen-direction">
+        <view class="screen-point">房源家具</view>
         <view class="screen-house">
-        <view class="screen-print1 {{screen5?'current2' : ''}}" onTap="screenPoint5">首次出租</view>
-        <view class="screen-print1 {{screen6?'current2' : ''}}" onTap="screenPoint6">独立卫生间</view>
-        <view class="screen-print1 {{screen7?'current2' : ''}}" onTap="screenPoint7">独立阳台</view>
-        <view class="screen-print1 {{screen8?'current2' : ''}}" onTap="screenPoint8">独立供暖</view>
-        <view class="screen-print1 {{screen9?'current2' : ''}}" onTap="screenPoint9">有电梯</view>
+          <block a:for="{{furnitureList}}" a:for-item="list" a:for-index="idx">
+            <view class="screen-print1 {{list.deleted?'current2' : ''}}" onTap="screenFurniture" data-id="{{list.id}}"  data-index="{{idx}}">{{list.furniture}}</view>
+          </block>
         </view>
       </view>
-      <view class="screen-direction">
-        <view class="screen-point">房源周边</view>
-        <view class="screen-house1">
-        <view class="screen-print2 {{screen10?'current2' : ''}}" onTap="screenPoint10">离地铁近</view>
-        <view class="screen-print2 {{screen11?'current2' : ''}}" onTap="screenPoint11">绿化率高</view>
-        </view>
-      </view>
-      <view class="screen-direction">
-        <view class="screen-point">签约时长</view>
-        <view class="screen-house1">
-        <view class="screen-print2 {{screen12?'current2' : ''}}" onTap="screenPoint12">年租</view>
-        <view class="screen-print2 {{screen13?'current2' : ''}}" onTap="screenPoint13">短租</view>
-        </view>
-      </view>
-      <view class="screen-direction">
-        <view class="screen-point">房源状态</view>
-        <view class="screen-house1">
-        <view class="screen-print2 {{screen14?'current2' : ''}}" onTap="screenPoint14">可立即入住</view>
-        <view class="screen-print2 {{screen15?'current2' : ''}}" onTap="screenPoint15">可预订</view>
-        </view>
-      </view>
+      
       <view class="bnt-screen">
           <button type="default" onTap="screenBtnReset" class="btu-reset">重置</button>
         <button type="default" onTap="screenBtnConfirm" class="btu-confirm">确定</button>

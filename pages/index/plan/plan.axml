@@ -14,13 +14,13 @@
         <view class="plan-info">
           <view class="info-user">
             <view class="user-name">
-              <image src="{{list.headimg}}" class="head-img" />
-              <view class="name">{{list.name}}</view>
+              <image src="{{headimg}}" class="head-img" />
+              <view class="name">{{list.contacts}}</view>
             </view>
-            <view a:if="{{list.status==0}}" class="status">待确认</view>
+            <view a:if="{{list.state==1||list.state==2}}" class="status">待确认</view>
           </view>
-          <view class="infos">约看时间：{{list.plantime}}</view>
-          <view class="infos">约看地点：{{list.planplace}}</view>
+          <view class="infos">约看时间：{{list.expectedTime}}</view>
+          <view class="infos">约看备注：{{list.leaveWord}}</view>
         </view>
       </view>
 
@@ -47,7 +47,10 @@
       <view class="plan-btn">
         <view class="btn">
           <view class="btn-button">联系房东</view>
-          <view class="btn-button" onTap="deletePlan" data-pid="{{list.id}}">取消约看</view>
+          <view class="btn-button">
+          <view class="btn-button1 left-radius" onTap="deletePlan" data-pid="{{list.id}}">取消</view>
+          <view class="btn-button1 right-radius" onTap="confirmPlan" data-pid="{{list.id}}">确认</view>
+          </view>
         </view>
       </view>
     </view>
@@ -71,14 +74,14 @@
         <view class="plan-info">
           <view class="info-user">
             <view class="user-name">
-              <image src="{{list.headimg}}" class="head-img" />
-              <view class="name">{{list.name}}</view>
+              <image src="{{headimg}}" class="head-img" />
+              <view class="name">{{list.contacts}}</view>
             </view>
-            <view a:if="{{list.status==2}}" class="status">已取消</view>
-            <view a:if="{{list.status==1}}" class="status">已完成</view>
+            <view a:if="{{list.state==0||list.state==3}}" class="status">已取消</view>
+            <view a:if="{{list.state==4}}" class="status">已完成</view>
           </view>
-          <view class="infos">约看时间：{{list.plantime}}</view>
-          <view class="infos">约看地点：{{list.planplace}}</view>
+          <view class="infos">约看时间：{{list.expectedTime}}</view>
+          <view class="infos">约看备注：{{list.leaveWord}}</view>
         </view>
       </view>
 

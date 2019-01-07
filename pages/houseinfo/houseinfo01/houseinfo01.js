@@ -125,5 +125,13 @@ Page({
 
       url: '/pages/houseinfo/nearby/nearby?houseDetail='+JSON.stringify(this.data.houseDetail),
     })
-  }
+  },
+  toConfirmpage(){
+    my.navigateTo({
+      url: '/pages/index/confirmpage/confirmpage',
+    });
+  },
+  
+  
+  
 });
