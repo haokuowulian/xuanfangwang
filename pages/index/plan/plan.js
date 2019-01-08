@@ -155,7 +155,7 @@ Page({
   getBespeakList(){
     var that=this;
     var manageState=0;
-    if(this.data.complete){
+    if(!this.data.complete){
       manageState=0;
     }else{
       manageState=1;

@@ -1,4 +1,4 @@
-<view a:if="{{!complete}}">
+<view >
   <view class="title-bar page-select">
     <view class="finish-bar {{click1?'title-click':''}}" onTap="unfinished">
       未完成约看
@@ -35,9 +35,10 @@
             <view class="house-info">
               <view a:if="{{item.rentType==1}}" class="house-name">{{item.apartmentName}}·{{item.houseName}}</view>
               <view a:if="{{item.rentType==2}}" class="house-name">{{item.apartmentName}}·{{item.houseName}}·{{item.roomName}}</view>
-              <!-- <view class="houseinfo" a:if="{{item.rentType==1}}">{{item.house.room}}室{{item.house.hall}}厅 | {{item.room.area}}m² | {{lists.toward}} </view> -->
-              <view class="houseinfo" a:if="{{item.rentType==2}}">{{item.house.room}}室{{item.house.hall}}厅 | {{item.room.area}}m² | {{item.room.toward}} </view>
-              <view class="houseinfo">{{house.price}}</view>
+              <view a:if="{{item.rentType==1}}" class="houseinfo" >{{item.house.room}}室{{item.house.hall}}厅 | {{item.house.area}}m² | {{item.house.toward}} </view>
+              <view a:if="{{item.rentType==2}}" class="houseinfo" >{{item.house.room}}室{{item.house.hall}}厅 | {{item.room.area}}m² | {{item.room.toward}} </view>
+              <view a:if="{{item.rentType==1}}" class="houseinfo">￥{{item.house.entireRents}}元/月</view>
+              <view a:if="{{item.rentType==2}}" class="houseinfo">￥{{item.room.rents}}元/月</view>
               <view a:if="{{house.housestatus==0}}" class="house-status">待租中</view>
               <view a:if="{{house.housestatus==1}}" class="house-status">已出租</view>
               <view a:if="{{house.housestatus==2}}" class="house-status">已失效</view>
@@ -50,10 +51,8 @@
       <view class="plan-btn">
         <view class="btn">
           <view class="btn-button">联系房东</view>
-          <view class="btn-button">
-          <view class="btn-button1 left-radius" onTap="deletePlan" data-pid="{{list.id}}">取消</view>
-          <view class="btn-button1 right-radius" onTap="confirmPlan" data-pid="{{list.id}}">确认</view>
-          </view>
+          <view class="btn-button left-radius" onTap="Plan" data-pid="{{list.id}}">取消约看</view>
+   
         </view>
       </view>
     </view>

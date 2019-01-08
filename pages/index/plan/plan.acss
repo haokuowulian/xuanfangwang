@@ -125,7 +125,7 @@
 .btn-button{
   height: 80rpx;
   width: 320rpx;
-  border: 1rpx solid #333333;
+  border: 2rpx solid #333333;
   border-radius: 50rpx;
   display: flex;
   justify-content: center;
