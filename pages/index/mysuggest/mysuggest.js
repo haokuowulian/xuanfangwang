@@ -3,6 +3,7 @@ var userId='';
 Page({
   data: {
     myList:[],
+    show:false,
   },
   onLoad() {
     userId = my.getStorageSync({
@@ -28,6 +29,27 @@ Page({
           myList:res.data.data,
         });
       },
+    });
+  },
+  showClick(){
+    if(this.data.show){
+      this.setData({
+        show:false,
+      });
+    }else{
+      this.setData({
+        show:true,
+      });
+    }
+  },
+  toComplaint(){
+    my.navigateTo({
+      url: '/pages/index/complaint/complaint',
+    });
+  },
+  toProposal(){
+    my.navigateTo({
+      url: '/pages/index/proposal/proposal',
     });
   },
 });

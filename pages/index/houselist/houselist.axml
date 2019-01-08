@@ -60,22 +60,19 @@
   <view class="temp temp3 {{sqopen ? 'show' : 'disappear'}} ">
     <view class='tempheight'>
       <view class="house-renting">
-        <view class="r1">合租</view>
-        <view class="r1-0">温馨合租的悠闲静谧</view>
-        <view class="house-renting-condition">
-          <view class="r1-1 {{s1?'current2' : ''}}" onTap="onSelect1" data-="0">不限</view>
-          <view class="r1-1 {{s2?'current2' : ''}}" onTap="onSelect2" data-s="1">1居</view>
-          <view class="r1-1 {{s3?'current2' : ''}}" onTap="onSelect3" data-s="2">2居</view>
-          <view class="r1-2 {{s4?'current2' : ''}}" onTap="onSelect4" data-s="3">3居+</view>
+        <view class="renting-r1">
+          <view class="r1 {{r1?'current2' : ''}}" onTap="selectRent1" data-r="1">整租</view>
+          <view class="r2 {{r2?'current2' : ''}}" onTap="selectRent2" data-r="2">合租</view>
         </view>
-        <view class="r2">整租</view>
-        <view class="r1-0">成套出租的温馨设计</view>
+        <view a:if="{{r2}}" class="r1-0">温馨合租的悠闲静谧</view>
+        <view a:if="{{r1}}" class="r1-0">成套出租的温馨设计</view>
+
         <view class="house-renting-condition">
-          <view class="r1-1 {{se1?'current2' : ''}}" onTap="onSelec1" data-se="0">不限</view>
-          <view class="r1-1 {{se2?'current2' : ''}}" onTap="onSelec2" data-se="1">1居</view>
-          <view class="r1-1 {{se3?'current2' : ''}}" onTap="onSelec3" data-se="2">2居</view>
-          <view class="r1-2 {{se4?'current2' : ''}}" onTap="onSelec4" data-se="3">3居+</view>
+          <block a:for="{{rentList}}" a:for-item="list" a:for-index="idx">
+            <view class="r1-1 {{list.selected?'current2' : ''}}" onTap="onSelect" data-index="{{idx}}" data-s="{{list.id}}">{{list.title}}</view>
+          </block>
         </view>
+        
         <view class="r3">
         <button type="default" onTap="onBtnReset" class="btu-reset">重置</button>
         <button type="default" onTap="onBtnConfirm" class="btu-confirm">确定</button>
@@ -88,12 +85,17 @@
     <view class='tempheight'>
       <view>
         <view class="rent-list">
-          <view class="rent-list-price {{rent1?'current2' : ''}}" onTap="rentChoose1">不限</view>
+
+          <block a:for="{{priceList}}" a:for-item="list" a:for-index="idx">
+            <view class="rent-list-price {{list.selected?'current2' : ''}}" data-index="{{idx}}" data-min="{{list.sliderleft1}}" data-max="{{list.sliderright1}}" onTap="rentChoose">{{list.title}}</view>
+          </block>
+
+          <!-- <view class="rent-list-price {{rent1?'current2' : ''}}" onTap="rentChoose1">不限</view>
           <view class="rent-list-price {{rent2?'current2' : ''}}" onTap="rentChoose2">1000元以下</view>
           <view class="rent-list-price {{rent3?'current2' : ''}}" onTap="rentChoose3">1000-1500元</view>
           <view class="rent-list-price {{rent4?'current2' : ''}}" onTap="rentChoose4">1500-2000元</view>
           <view class="rent-list-price {{rent5?'current2' : ''}}" onTap="rentChoose5">2000-2500元</view>
-          <view class="rent-list-price {{rent6?'current2' : ''}}" onTap="rentChoose6">2500-3000元</view>
+          <view class="rent-list-price {{rent6?'current2' : ''}}" onTap="rentChoose6">2500-3000元</view> -->
         </view>
         <view class="slider-rent">
           <view class="rentprice">
@@ -129,14 +131,7 @@
           <block a:for="{{directionList}}" a:for-item="list" a:for-index="idx">
             <view class="screen-print0 {{list.selected?'current2' : ''}}" onTap="screenDirection" data-index="{{idx}}">{{list.title}}</view>
           </block>
-        <!-- <view class="screen-print0 {{screen1?'current2' : ''}}" onTap="screenPoint1">朝东</view>
-        <view class="screen-print0 {{screen2?'current2' : ''}}" onTap="screenPoint2">朝南</view>
-        <view class="screen-print0 {{screen3?'current2' : ''}}" onTap="screenPoint3">朝西</view>
-        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">朝北</view>
-        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">东北</view>
-        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">东南</view>
-        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">西北</view>
-        <view class="screen-print0 {{screen4?'current2' : ''}}" onTap="screenPoint4">西南</view> -->
+        
         </view>
       </view>
       <view class="screen-direction">
@@ -167,11 +162,9 @@
   <view class="temp temp3 {{orderopen ? 'show' : 'disappear'}} ">
     <view class='tempheight2'>
       <view class="order">
-        <view class="order-d1 {{order1?'current2' : ''}}" onTap="orderChoose1">默认排序</view>
-        <view class="order-d1 {{order2?'current2' : ''}}" onTap="orderChoose2">价格从低到高</view>
-        <view class="order-d1 {{order3?'current2' : ''}}" onTap="orderChoose3">价格从高到低</view>
-        <view class="order-d1 {{order4?'current2' : ''}}" onTap="orderChoose4">面积从大到小</view>
-        <view class="order-d2 {{order5?'current2' : ''}}" onTap="orderChoose5">面积从小到大</view>
+        <block a:for="{{sortList}}" a:for-item="list" a:for-index="idx">
+          <view class="order-d1 {{list.selected?'current2' : ''}}" onTap="orderChoose" data-index="{{idx}}" data-s="{{list.id}}">{{list.title}}</view>
+        </block>
       </view>
     </view>
   </view>
