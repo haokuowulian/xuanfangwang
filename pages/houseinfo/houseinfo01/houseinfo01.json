@@ -1,3 +1,6 @@
 {
-  "defaultTitle": "房源信息"
+  "defaultTitle": "房源信息",
+   "usingComponents": {
+    "grid": "mini-antui/es/grid/index"
+  }
 }

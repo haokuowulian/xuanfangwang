@@ -83,12 +83,12 @@
         
     <scroll-view class="scroll-view-item" scroll-x="true">
       <block a:for="{{boutiqueHousing}}" a:for-item="lists">
-        <view class="b4-housescroll" onTap="houseInfoTap" data-text="{{lists.id}}">
+        <view class="b4-housescroll" onTap="goToHouseDetail" data-text="{{lists.id}}" data-type='1'>
           <view class="p1">
             <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
           </view>
           <view class="p2">{{lists.buildingUnit}}              </view>
-          <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.template.entireArea}}m² | {{lists.toward}}             </view>
+          <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
           <view class="p4">{{lists.entireRents}}元/月              </view>
           <view class="p5">
             <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">
@@ -118,12 +118,12 @@
       
           <scroll-view class="scroll-view-item" scroll-x="true">
             <block a:for="{{wholeRentalHousing}}" a:for-item="lists">
-              <view class="b4-housescroll" onTap="houseInfoTap" data-text="{{lists.id}}">
+              <view class="b4-housescroll" onTap="goToHouseDetail" data-text="{{lists.id}}" data-type='1'>
                 <view class="p1">
                   <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
                 <view class="p2">{{lists.buildingUnit}}              </view>
-                 <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.template.entireArea}}m² | {{lists.toward}}             </view>
+                 <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
                 <view class="p4">{{lists.entireRents}}元/月              </view>
                 <view class="p5">
                   <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">
@@ -159,7 +159,7 @@
                   <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
                 <view class="p2">{{lists.roomName}}              </view>
-                <view class="p3">{{lists.house.room}}室{{lists.house.hall}}厅 | {{lists.template.entireArea}}m² | {{lists.toward}}             </view>
+                <view class="p3">{{lists.house.room}}室{{lists.house.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
                  <view class="p4">{{lists.rents}}元/月              </view>
                 <view class="p5">
                   <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">

@@ -8,32 +8,35 @@
     </view>
   </view>
 
-  <block a:for="{{unfinishedplan}}" a:for-item="list">
+  <block a:for="{{planList}}" >
     <view class="plan-content page-select">
       <view class="plan-time">
         <view class="plan-info">
           <view class="info-user">
             <view class="user-name">
               <image src="{{headimg}}" class="head-img" />
-              <view class="name">{{list.contacts}}</view>
+              <view class="name">{{item.user.certName}}</view>
             </view>
             <view a:if="{{list.state==1||list.state==2}}" class="status">待确认</view>
           </view>
-          <view class="infos">约看时间：{{list.expectedTime}}</view>
-          <view class="infos">约看备注：{{list.leaveWord}}</view>
+          <view class="infos">约看时间：{{item.expectedTime}}</view>
+          <view class="infos">约看备注：{{item.leaveWord}}</view>
         </view>
       </view>
 
       <view class="plan-house">
-        <block a:for="{{list.house}}" a:for-item="house">
+       
           <view class="house">
             <view>
-              <image src="{{house.houseimg}}" class="house-img" />
+              <image a:if="{{item.rentType==1}}" src="{{imgUrl}}{{item.house.images.split(',')[0]}}" class="house-img" />
+             <image a:if="{{item.rentType==2}}" src="{{imgUrl}}{{item.room.images.split(',')[0]}}" class="house-img" />
             </view>
 
             <view class="house-info">
-              <view class="house-name">{{house.housename}}</view>
-              <view class="houseinfo">{{house.houseinfo}}</view>
+              <view a:if="{{item.rentType==1}}" class="house-name">{{item.apartmentName}}·{{item.houseName}}</view>
+              <view a:if="{{item.rentType==2}}" class="house-name">{{item.apartmentName}}·{{item.houseName}}·{{item.roomName}}</view>
+              <!-- <view class="houseinfo" a:if="{{item.rentType==1}}">{{item.house.room}}室{{item.house.hall}}厅 | {{item.room.area}}m² | {{lists.toward}} </view> -->
+              <view class="houseinfo" a:if="{{item.rentType==2}}">{{item.house.room}}室{{item.house.hall}}厅 | {{item.room.area}}m² | {{item.room.toward}} </view>
               <view class="houseinfo">{{house.price}}</view>
               <view a:if="{{house.housestatus==0}}" class="house-status">待租中</view>
               <view a:if="{{house.housestatus==1}}" class="house-status">已出租</view>
@@ -41,7 +44,7 @@
             </view>
 
           </view>
-        </block>
+      
       </view>
 
       <view class="plan-btn">
@@ -58,7 +61,7 @@
 </view>
 
 
-<view a:if="{{complete}}">
+<!-- <view a:if="{{complete}}">
   <view class="title-bar page-select">
     <view class="finish-bar {{click1?'title-click':''}}" onTap="unfinished">
       未完成约看
@@ -113,4 +116,4 @@
       </view>
     </view>
   </block>
-</view>
+</view> -->
