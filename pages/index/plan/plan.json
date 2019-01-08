@@ -1,3 +1,4 @@
 {
-  "defaultTitle": "我的约看"
+  "defaultTitle": "我的约看",
+  "pullRefresh": true
 }

@@ -32,7 +32,8 @@
      
       <view  class="house-info-c2">
           <view class="info-c2-list">{{houseDetail.area}}m² </view>
-          <view class="info-c2-list">{{houseDetail.house.room}}室{{houseDetail.house.hall}}厅</view>
+          <view class="info-c2-list" a:if="{{rentType==1}}">{{houseDetail.room}}室{{houseDetail.hall}}厅</view>
+          <view class="info-c2-list" a:if="{{rentType==2}}">{{houseDetail.house.room}}室{{houseDetail.house.hall}}厅</view>
           <view class="info-c2-list">{{houseDetail.toward}}</view>
       </view>
       <view  class="house-info-c2">
