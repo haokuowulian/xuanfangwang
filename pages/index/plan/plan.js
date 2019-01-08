@@ -1,3 +1,4 @@
+const app=getApp();
 const unfinishedplan = [
   {
     id:1,
@@ -75,7 +76,6 @@ const finishplan = [
   },
 ]
 
-var app = getApp();
 Page({
   data: {
     unfinishedplan:[],
@@ -84,55 +84,24 @@ Page({
     complete:false,
     click1:true,
     click2:false,
+    pageIndex:1,
+    pageSize:6,
+    planList:[],
+    imgUrl:app.globalData.baseImgUrl_whj
   },
   onLoad() {
     var that = this;
-    var uid;
     var avatar;
-     uid = my.getStorageSync({
-     key: 'userId', // 缓存数据的key
-   }).data;
+     
      avatar = my.getStorageSync({
      key: 'avatar', // 缓存数据的key
    }).data;
    that.setData({
      headimg:avatar,
    });
-    console.log(uid);
-    my.httpRequest({
-      url: 'http://192.168.1.89:8080/LLGY/IF/bespeak/getBespeakList.do?uid='+uid, // 目标服务器url
-      success: (res) => {
-        var list = res.data.data;
-        var l = [];
-        var m = [];
-        console.log(list)
-        for(let i = 0;i<list.length;i++){
-          // getRoomInfo(list[i].apartmentId,list[i].roomId,);
-
-          if(list[i].state==0||list[i].state==3||list[i].state==4){
-            l.push(list[i])
-
-            // console.log(l)
-          }
-          if(list[i].state==1||list[i].state==2){
-            m.push(list[i])
-            // console.log(m)
-          }
-          
-          // unfinishedplan.push(list[i])
-          // console.log(unfinishedplan)
-        }
-        that.setData({
-          unfinishedplan:m,
-          finishplan:l,
-        });
-        console.log('-------------分割线------------------')
-        console.log(that.data.unfinishedplan)
-        console.log(that.data.finishplan)
-        // console.log(res)
-      },
-    });
     
+   
+    this.getBespeakList();
   },
   onShow(){
     // console.log(app.globalData.userid+'111')
@@ -151,6 +120,7 @@ Page({
       click1:true,
       click2:false,
     });
+    this.getBespeakList();
   },
   finish(){
     this.setData({
@@ -158,6 +128,7 @@ Page({
       click1:false,
       click2:true,
     });
+     this.getBespeakList();
   },
   deletePlan(e){
     let id = e.target.dataset.pid;
@@ -179,4 +150,54 @@ Page({
       },
     });
   },
+
+  //获取预约列表
+  getBespeakList(){
+    var that=this;
+    var manageState=0;
+    if(this.data.complete){
+      manageState=0;
+    }else{
+      manageState=1;
+    }
+    var uid = my.getStorageSync({
+          key: 'userId', // 缓存数据的key
+        }).data;
+        console.log('--------'+this.data.pageIndex);
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/bespeak/getBespeakList.do',
+      method: 'POST',
+      data: {
+        uid:uid,
+        pageIndex:this.data.pageIndex,
+        pageSize: 6,
+        manageState:manageState
+      },
+      dataType: 'json',
+      success: function(res) {
+       console.log(res);
+            if(res.data.success){
+              if(that.data.pageIndex==1){
+                that.setData({
+                  planList:res.data.data
+                });
+            }else if(that.data.boutiqueHousing.length<res.data.count){
+                that.setData({
+                  planList:that.data.planList.concat(res.data.data)
+                });
+            }
+           
+            my.stopPullDownRefresh();
+            }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  }
+    
 });

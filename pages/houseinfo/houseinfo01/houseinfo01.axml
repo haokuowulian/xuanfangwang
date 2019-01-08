@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="viewClass">
+  <view class="viewClass" >
   <view class="page-section houseinfo-p1">
     <view class="house-banner">
       <swiper
@@ -15,10 +15,12 @@
     </view>
     <view class="house-price">
       <view class="house-price-info">
-          <view class="house-price-pay">￥{{houseDetail.rents}}元/月</view>
+          <view a:if="{{rentType==1}}" class="house-price-pay">￥{{houseDetail.entireRents}}元/月</view>
+          <view a:if="{{rentType==2}}" class="house-price-pay">￥{{houseDetail.rents}}元/月</view>
           <view class="house-price-payway">付款方式<image src="/image/icon/right.png" class="icon-size"/></view>
       </view>
-      <view class="house-price-room">{{houseDetail.house.apartment.apartmentName}}·{{houseDetail.house.buildingUnit}}·{{houseDetail.roomName}}</view>
+      <view a:if="{{rentType==1}}" class="house-price-room">{{houseDetail.apartment.apartmentName}}·{{houseDetail.buildingUnit}}·{{houseDetail.houseNo}}</view>
+      <view a:if="{{rentType==2}}" class="house-price-room">{{houseDetail.house.apartment.apartmentName}}·{{houseDetail.house.buildingUnit}}·{{houseDetail.roomName}}</view>
     </view>
     <view class="house-info">
       <view class="house-info-c1">
@@ -27,34 +29,41 @@
         </block>
         
       </view>
-      <view class="house-info-c2">
+     
+      <view  class="house-info-c2">
           <view class="info-c2-list">{{houseDetail.area}}m² </view>
           <view class="info-c2-list">{{houseDetail.house.room}}室{{houseDetail.house.hall}}厅</view>
           <view class="info-c2-list">{{houseDetail.toward}}</view>
       </view>
-      <view class="house-info-c2">
-        <view class="info-c2-area"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.house.apartment.address}}</view
-      </view>
+      <view  class="house-info-c2">
+        <view a:if="{{rentType==1}}" class="info-c2-area"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.apartment.address}}
+        </view>
+         <view a:if="{{rentType==2}}" class="info-c2-area"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.house.apartment.address}}
+        </view>
     </view>
   </view>
 
   <view class="page-section houseinfo-p2">
     <view class="houseinfo-title">房源信息</view>
     <view class="house-details">
-      <view class="textClass">这是一间花园小区的朝南主卧,精装修,带独立卫生间,透明窗户,采光和舒适度极好.是您的首选目标。</view>
+      <view class="textClass">{{houseDetail.description}}</view>
     </view>
   </view>
 
   <view class="page-section houseinfo-p2">
     <view class="houseinfo-title">配套设施</view>
-    <view class="house-support">
-      <block a:for="{{furniture}}" a:for-item="list">
-        <view class="furniture-list"><image src="{{list.imgpath}}" class="furniture-img"/><text class="furniture-text">{{list.name}}</text></view>
-      </block>
-    </view>
+    <!-- <view class="house-support"> -->
+      <grid  columnNum="{{4}}" list="{{furnitureList}}" />
+      <!-- <block a:for="{{furnitureList}}" >
+        <view  class="furniture-list">         
+          <image  src="{{imgUrl}}{{item.icon}}" class="furniture-img"/>
+          <text   class="furniture-text">{{item.furniture}}</text>
+        </view>
+      </block> -->
+    <!-- </view> -->
   </view>
 
-  <view class="page-section houseinfo-p2">
+  <view a:if="{{rentType==2}}" class="page-section houseinfo-p2">
     <view class="houseinfo-title">房间信息</view>
     <view class="house-roominfo">
       <block a:for="{{houseDetail.house.rooms}}" >
@@ -82,18 +91,27 @@
 
   <view class="page-section houseinfo-p2">
     <view class="houseinfo-title">小区信息</view>
-    <view class="house-village">
-      <block a:for="{{villageinfo}}" a:for-item="list">
-      <view><image src="{{list.imgpath}}" class="village-img"/></view>
-      <view class="villageinfo"><view>建筑年代</view><view>{{list.bulidingage}}</view></view>
-      <view class="villageinfo"><view>建筑类型</view><view>{{list.bulidingtype}}</view></view>
-      <view class="villageinfo"><view>绿化率</view><view>{{list.greeningrate}}</view></view>
-      <view class="villageinfo"><view>容积率</view><view>{{list.volumerate}}</view></view>
-      </block>
+    <view a:if="{{rentType==1}}" class="house-village" >
+      <!-- <block a:for="{{villageinfo}}" a:for-item="list"> -->
+      <view><image src="{{imgUrl}}{{houseDetail.apartment.images.split(',')[0]}}" class="village-img"/></view>
+      <view class="villageinfo"><view>建筑年代</view><view>{{houseDetail.apartment.age}}年建成</view></view>
+      <view class="villageinfo"><view>建筑类型</view><view>{{houseDetail.apartment.buildingType}}</view></view>
+      <view class="villageinfo"><view>绿化率</view><view>{{houseDetail.apartment.green}}%</view></view>
+      <view class="villageinfo"><view>容积率</view><view>{{houseDetail.apartment.plotRatio}}</view></view>
+      <!-- </block> -->
+    </view>
+    <view a:if="{{rentType==2}}" class="house-village" >
+      <!-- <block a:for="{{villageinfo}}" a:for-item="list"> -->
+      <view><image src="{{imgUrl}}{{houseDetail.house.apartment.images.split(',')[0]}}" class="village-img"/></view>
+      <view class="villageinfo"><view>建筑年代</view><view>{{houseDetail.house.apartment.age}}年建成</view></view>
+      <view class="villageinfo"><view>建筑类型</view><view>{{houseDetail.house.apartment.buildingType}}</view></view>
+      <view class="villageinfo"><view>绿化率</view><view>{{houseDetail.house.apartment.green}}%</view></view>
+      <view class="villageinfo"><view>容积率</view><view>{{houseDetail.house.apartment.plotRatio}}</view></view>
+      <!-- </block> -->
     </view>
   </view>
 
-  <view class=" villageinfo" onTap="goToNearBy">
+  <view class="villageinfo" onTap="goToNearBy">
     <view class="houseinfo-title" style="margin-left:0">周边交通</view>
     <image class="icon-size" src="/image/icon/right.png"   /> 
    

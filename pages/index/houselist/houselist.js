@@ -1247,4 +1247,10 @@ Page({
     }
     
   },
+  //前往房源详情
+  goToHouseDetail(e){
+    my.navigateTo({
+    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+    })
+  }
 });

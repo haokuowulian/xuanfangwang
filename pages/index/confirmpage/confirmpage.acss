@@ -61,7 +61,6 @@
   padding-bottom: 25rpx;
 }
 .page-content{
-  height: 400rpx;
   width: 680rpx;
   background-color: #ffffff;
   padding-left: 35rpx;
@@ -75,6 +74,18 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.inputClass{
+  font-size: 30rpx;
+  text-align: right;
+  color: #333333
+}
+.textAreaClass{
+  padding-top: 0rpx;
+  padding-left: 0rpx;
+  min-height: 120rpx;
+  font-size: 30rpx;
+  margin: 0
 }
 .page-btn{
   position:fixed;

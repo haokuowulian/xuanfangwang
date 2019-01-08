@@ -187,8 +187,8 @@
   </view> -->
   
  <view a:if="{{houseType==1}}">
-   <block a:for="{{boutiqueHousing}}" a:for-item="list">
-    <view a:if="{{showView1}}" class="page-house">
+   <block a:for="{{boutiqueHousing}}" a:for-item="list" >
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
       <view class="house-info">
         <view class="p-img">
           <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
@@ -197,7 +197,7 @@
           <view class="p1">      {{list.buildingUnit}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.template.entireArea}}m² | {{list.room}}室{{list.hall}}厅
+            <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
             </view>
             <view class="p2-2">{{list.entireRents}}元/月
             </view>
@@ -216,7 +216,7 @@
  </view>
  <view a:elif="{{houseType==2}}">
   <block a:for="{{wholeRentalHousing}}" a:for-item="list">
-    <view a:if="{{showView1}}" class="page-house">
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
       <view class="house-info">
         <view class="p-img">
           <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
@@ -225,7 +225,7 @@
           <view class="p1">      {{list.buildingUnit}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.template.entireArea}}m² | {{list.room}}室{{list.hall}}厅
+            <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
             </view>
             <view class="p2-2">{{list.entireRents}}元/月
             </view>
@@ -243,7 +243,7 @@
  </view>
  <view a:elif="{{houseType==3}}">
     <block a:for="{{sharedHousing}}" a:for-item="list">
-    <view a:if="{{showView1}}" class="page-house">
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='2' >
       <view class="house-info">
         <view class="p-img">
           <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
@@ -252,7 +252,7 @@
           <view class="p1">      {{list.roomName}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.template.entireArea}}m² | {{list.house.room}}室{{list.house.hall}}厅
+            <view class="p2-1">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
             </view>
             <view class="p2-2">{{list.rents}}元/月
             </view>

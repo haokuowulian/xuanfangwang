@@ -6,6 +6,6 @@
   <view class="page-text2">我们将尽快联系您确认看房时间和地点</view>
   <view class="page-btn">
     <view class="btn-check" onTap="toPlan">查看约看</view>
-    <view class="btn-back">继续找房</view>
+    <view class="btn-back" onTap="goBack">继续找房</view>
   </view>
 </view>

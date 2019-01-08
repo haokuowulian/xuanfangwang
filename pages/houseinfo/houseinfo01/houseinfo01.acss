@@ -56,7 +56,8 @@
 }
 .house-info-c1{
   /* margin-left: 35rpx; */
-  height: 140rpx;
+  /* height: 140rpx; */
+  padding-bottom: 24rpx;
   width: 750rpx;
   border: 1px solid #F7F7F7;
   display:flex;
@@ -79,6 +80,7 @@
 .info-c1-list{
   margin-left: 35rpx;
   height: 55rpx;
+  margin-top: 12rpx;
   padding-left:12rpx; 
   padding-right:12rpx; 
   border-radius: 10rpx;

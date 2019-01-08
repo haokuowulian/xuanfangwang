@@ -5,7 +5,8 @@ Page({
     circles:[],
     radius:1000,
     longitude:0,
-    latitude:0
+    latitude:0,
+    rentType:0
   },
   onReady ()
   {
@@ -14,21 +15,34 @@ Page({
 
   },
   onLoad(option) {
-    this.setData({
-      longitude: JSON.parse(option.houseDetail).house.apartment.longitude,
-      latitude: JSON.parse(option.houseDetail).house.apartment.latitude,
-    });
+     if(option.rentType==1){
+      this.setData({
+        longitude: JSON.parse(option.houseDetail).apartment.longitude,
+        latitude: JSON.parse(option.houseDetail).apartment.latitude,
+        rentType:option.rentType
+      });
+     }else if(option.rentType==2){
+      this.setData({
+        longitude: JSON.parse(option.houseDetail).house.apartment.longitude,
+        latitude: JSON.parse(option.houseDetail).house.apartment.latitude,
+        rentType:option.rentType
+      });
+     }
+    
     this.getNearBy(JSON.parse(option.houseDetail));
     
   },
   getNearBy(houseDetail){
     var that=this;
+    var longitude;
+    var latitude;
+    
      my.httpRequest({
       url: "https://restapi.amap.com/v3/place/around",
       method: 'POST',
       data: {
         key: '27ff363a4598f97538daaebf1d1f9c9f',
-        location: houseDetail.house.apartment.longitude+','+houseDetail.house.apartment.latitude,
+        location:this.data.longitude+','+this.data.latitude ,
         keywords:'公交站|地铁',
         radius:that.data.radius
       },
@@ -61,8 +75,8 @@ Page({
           markers:nearBy,
          
           circles: [ {
-            longitude: houseDetail.house.apartment.longitude,
-            latitude: houseDetail.house.apartment.latitude,
+            longitude: that.data.longitude,
+            latitude: that.data.latitude,
             fillColor: '#0099FF33',
             radius: that.data.radius,
             strokeWidth: 3,
