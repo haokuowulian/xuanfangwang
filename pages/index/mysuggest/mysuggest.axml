@@ -1,10 +1,10 @@
 <view>
   <view class="page-suggest">
-    <view class="suggest-left">
+    <view class="suggest-left" onTap="toComplaint">
       <image src="/image/mine/tousu.png" class="suggest-img" />
       <view class="suggest-text">我要投诉</view>
     </view>
-    <view class="suggest-right">
+    <view class="suggest-right" onTap="toProposal">
       <image src="/image/mine/jianyi.png" class="suggest-img" />
       <view class="suggest-text">我要建议</view>
     </view>
@@ -25,7 +25,11 @@
             <view class="info-location">{{list.location}}</view>
           </view>
         </view>
-        <view class="content-text">{{list.content}}</view>
+        <view a:if="{{!show}}" class="content-text inmanyline" onTap="showClick">{{list.content}}</view>
+        <view a:else class="content-text" onTap="showClick">
+          {{list.content}}
+          <view><image src="/image/house6.png" class="img" /></view>
+        </view>
       </view>
     </view>
   </block>

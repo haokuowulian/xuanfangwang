@@ -27,7 +27,9 @@
     "pages/index/mysuggest/mysuggest",
     "pages/index/neworder/neworder",
     "pages/index/confirmpage/confirmpage",
-    "pages/index/submitresult/submitresult"
+    "pages/index/submitresult/submitresult",
+    "pages/index/complaint/complaint",
+    "pages/index/proposal/proposal"
   ],
   "window": {
     "defaultTitle": "My App"

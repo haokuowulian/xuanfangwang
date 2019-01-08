@@ -103,3 +103,15 @@
   color: #333333;
   line-height: 50rpx;
 }
+.inmanyline{
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:3;
+}
+.img{
+  height: 60rpx;
+  width: 60rpx;
+}

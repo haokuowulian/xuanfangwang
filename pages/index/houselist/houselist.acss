@@ -460,7 +460,13 @@ page{
 .r1{
   font-size: 30rpx;
   margin-top: 35rpx;
-  color: #010101;
+  height: 65rpx;
+  width: 125rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  border: 1px solid;
 }
 .r1-0{
   font-size: 25rpx;
@@ -471,11 +477,11 @@ page{
   height: 65rpx;
   width: 135rpx;
   font-size: 25rpx;
-  border: 1px solid;
   text-align: center;
   line-height: 65rpx;
   margin-right: 20rpx;
   border-radius: 10rpx;
+  border: 1px solid;
 }
 .r1-2{
   height: 65rpx;
@@ -488,8 +494,14 @@ page{
 }
 .r2{
   font-size: 30rpx;
-  margin-top: 50rpx;
-  color: #010101;
+  margin-top: 35rpx;
+  height: 65rpx;
+  width: 125rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  border: 1px solid;
 }
 .btu-reset{
   width: 210rpx;
@@ -665,4 +677,11 @@ page{
   text-align: center;
   margin-top: 30rpx;
   margin-bottom: 35rpx;
+}
+.renting-r1{
+  width: 280rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 35rpx;
+  justify-content: space-between;
 }
