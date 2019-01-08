@@ -341,6 +341,7 @@ Page({
 
     this.onBtnReset();
     this.rentBtnReset();
+    this.onSortRest();
   },
 
   onChange1(){
@@ -368,7 +369,8 @@ Page({
     });
     console.log('******************')
     console.log(arr)
-    that.getBoutiqueHousing();
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
     that.closeHyFilter();
   },
   
@@ -484,7 +486,8 @@ Page({
     that.setData({
       pageIndex:1,
     });
-    that.getBoutiqueHousing();
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
     that.closeHyFilter();
   },
   
@@ -559,7 +562,8 @@ Page({
     that.setData({
       pageIndex:1,
     });
-    that.getBoutiqueHousing();
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
     that.closeHyFilter();
     if(that.data.pricetype){
       // 提交固定取值
@@ -634,6 +638,18 @@ Page({
     console.log(arr)
     
   },
+  onSortRest(){
+    var that = this;
+    var arr = that.data.sortList;
+    for(let i=0;i<arr.length;i++){
+      arr[i].selected=false;
+    }
+    arr[0].selected=true;
+    that.setData({
+      sortList:arr,
+      sort:'',
+    });
+  },
   onBtnReset(){
     var that = this;
     var arr = that.data.rentList;
@@ -653,7 +669,8 @@ Page({
       pageIndex:1,
     });
     console.log(that.data.condition1+'|'+that.data.condition2+'|'+that.data.rentType)
-    that.getBoutiqueHousing();
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
     that.closeHyFilter();
   },
   // 下拉框
@@ -952,12 +969,10 @@ Page({
           });
             }else if(that.data.boutiqueHousing.length<res.data.count){
                that.setData({
-            boutiqueHousing:that.data.boutiqueHousing.concat(res.data.data)
-          });
-               
+                boutiqueHousing:that.data.boutiqueHousing.concat(res.data.data)
+              });
             }
-          
-            my.stopPullDownRefresh();
+          my.stopPullDownRefresh();
         }
       },
       fail: function(res) {
@@ -972,10 +987,36 @@ Page({
   //获取整租房源
   getWholeRentalHousing(){
     var that=this;
+    console.log('--------'+this.data.pageIndex);
+    var minRent=0;
+    var maxRent=10000;
+    var condition = that.data.condition1;
+    var sort = that.data.sort;
+    if(that.data.pricetype){
+      minRent=that.data.sliderleft1;
+      maxRent=that.data.sliderright1;
+    }else{
+      minRent=that.data.sliderleft;
+      maxRent=that.data.sliderright;
+    }
+    var a = that.data.featureCondition;
+    var b = that.data.furnitureCondition;
+    var c = that.data.direction;
+    var featureCondition = a.join(",");
+    var furnitureCondition = b.join(",");
+    var directionCondition = c.join(",");
+    var rt = that.data.rentType;
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
       data: {
+        room:condition,//几室1/2/3
+        minRent:minRent,//最小租金
+        maxRent:maxRent,//最大租金
+        toward:directionCondition,//朝向directionCondition
+        feature:featureCondition,//特色
+        furniture:furnitureCondition,//家具
+        sortWay:sort,//排序方式
         rentType:1,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
@@ -985,14 +1026,15 @@ Page({
         console.log(res.data);
         if(res.data.success){
            if(that.data.pageIndex==1){
-                that.data.boutiqueHousing=res.data.data;
-            }else if(that.data.boutiqueHousing.length<res.data.count){
-                that.data.boutiqueHousing.push(res.data.data[0]);
-            }
-           that.setData({
-            wholeRentalHousing:that.data.boutiqueHousing
+                 that.setData({
+            wholeRentalHousing:res.data.data
           });
-            my.stopPullDownRefresh();
+            }else if(that.data.wholeRentalHousing.length<res.data.count){
+               that.setData({
+                wholeRentalHousing:that.data.wholeRentalHousing.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
         }
       },
       fail: function(res) {
@@ -1007,27 +1049,54 @@ Page({
   //获取合租房源
   getSharedHousing(){
     var that=this;
+    console.log('--------'+this.data.pageIndex);
+    var minRent=0;
+    var maxRent=10000;
+    var condition = that.data.condition1;
+    var sort = that.data.sort;
+    if(that.data.pricetype){
+      minRent=that.data.sliderleft1;
+      maxRent=that.data.sliderright1;
+    }else{
+      minRent=that.data.sliderleft;
+      maxRent=that.data.sliderright;
+    }
+    var a = that.data.featureCondition;
+    var b = that.data.furnitureCondition;
+    var c = that.data.direction;
+    var featureCondition = a.join(",");
+    var furnitureCondition = b.join(",");
+    var directionCondition = c.join(",");
+    var rt = that.data.rentType;
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
       data: {
+        room:condition,//几室1/2/3
+        minRent:minRent,//最小租金
+        maxRent:maxRent,//最大租金
+        toward:directionCondition,//朝向directionCondition
+        feature:featureCondition,//特色
+        furniture:furnitureCondition,//家具
+        sortWay:sort,//排序方式
         rentType:2,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
       },
       dataType: 'json',
       success: function(res) {
-        console.log(res.data);
+       console.log(res.data);
         if(res.data.success){
            if(that.data.pageIndex==1){
-                that.data.boutiqueHousing=res.data.data;
-            }else if(that.data.boutiqueHousing.length<res.data.count){
-                that.data.boutiqueHousing.push(res.data.data[0]);
-            }
-           that.setData({
-            sharedHousing:that.data.boutiqueHousing
+                 that.setData({
+            sharedHousing:res.data.data
           });
-            my.stopPullDownRefresh();
+            }else if(that.data.sharedHousing.length<res.data.count){
+               that.setData({
+                sharedHousing:that.data.sharedHousing.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
         }
       },
       fail: function(res) {

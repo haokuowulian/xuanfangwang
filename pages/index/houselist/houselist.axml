@@ -89,13 +89,6 @@
           <block a:for="{{priceList}}" a:for-item="list" a:for-index="idx">
             <view class="rent-list-price {{list.selected?'current2' : ''}}" data-index="{{idx}}" data-min="{{list.sliderleft1}}" data-max="{{list.sliderright1}}" onTap="rentChoose">{{list.title}}</view>
           </block>
-
-          <!-- <view class="rent-list-price {{rent1?'current2' : ''}}" onTap="rentChoose1">不限</view>
-          <view class="rent-list-price {{rent2?'current2' : ''}}" onTap="rentChoose2">1000元以下</view>
-          <view class="rent-list-price {{rent3?'current2' : ''}}" onTap="rentChoose3">1000-1500元</view>
-          <view class="rent-list-price {{rent4?'current2' : ''}}" onTap="rentChoose4">1500-2000元</view>
-          <view class="rent-list-price {{rent5?'current2' : ''}}" onTap="rentChoose5">2000-2500元</view>
-          <view class="rent-list-price {{rent6?'current2' : ''}}" onTap="rentChoose6">2500-3000元</view> -->
         </view>
         <view class="slider-rent">
           <view class="rentprice">
