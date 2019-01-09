@@ -82,9 +82,7 @@ Page({
         collectUrl:'/image/houseicon/uncollect.png',
         isColect:false
       });
-      my.alert({
-        title: '请先登录' 
-      });
+      
       
     }else{
       var that=this;
@@ -178,17 +176,32 @@ Page({
     })
   },
   toConfirmpage(){
-    my.navigateTo({
+    if(!this.data.userId||this.data.userId==''){
+      my.alert({
+        title: '请先登录' 
+      });
+    }else{
+      my.navigateTo({
       url: '/pages/index/confirmpage/confirmpage?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
     });
+    }
+    
   },
   //收藏或取消收藏
   collectOrUncollect(){
-    if(this.data.isColect){//已收藏
+    if(this.data.userId==''||!this.data.userId){
+      my.alert({
+        title: '请先登录' 
+      });
+    }else{
+      if(this.data.isColect){//已收藏
       this.unCollect();
     }else{//未收藏
       this.collect();
     }
+    }
+    
+  
   },
   
   //收藏
@@ -310,9 +323,16 @@ Page({
     });
   },
   toComplaint(){
-    my.navigateTo({
+    if(!this.data.userId||this.data.userId==''){
+      my.alert({
+        title: '请先登录' 
+      });
+    }else{
+      my.navigateTo({
       url:'/pages/index/complaint/complaint?houseId='+this.data.id+'&rentType='+this.data.rentType,
     });
+    }
+    
   },
   
   

@@ -349,8 +349,6 @@
   width: 150rpx;
   height: 110rpx;
   background-color: #00000000;
-  height: 36rpx;
-  width: 39rpx;
 }
 .tousu-img{
   height: 60rpx;
