@@ -71,5 +71,11 @@
   font-size: 25rpx;
 }
 ._tails{
-  font-size: 25rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radio-left{
+  margin-right: 25rpx;
 }

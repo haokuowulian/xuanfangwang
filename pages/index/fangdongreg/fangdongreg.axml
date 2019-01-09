@@ -9,7 +9,7 @@
         <view class="form-name">
           <view class="section__title">性别：</view>
           <radio-group name="sex">
-            <label><radio value="男" checked="true"/>男</label>
+            <label class="radio-left"><radio value="男" checked="true" />男</label>
             <label><radio value="女"/>女</label>
           </radio-group>
         </view>
@@ -23,6 +23,7 @@
         </view>
 
         <view class="_heads">身份证正面：</view>
+        <view class="_tails">
         <view a:if="{{!upload1}}" class="card_heads" onTap="addImg" data-t="1">
           国徽面
         </view>
@@ -32,8 +33,10 @@
         <view hidden="{{true}}">
           <input  hidden name="cardUrl1" value="{{idcard_positive}}" />
         </view>
+        </view>
 
-        <view class="_tails">身份证反面：</view>
+        <view class="_heads">身份证反面：</view>
+        <view class="_tails">
         <view a:if="{{!upload2}}" class="card_tails"  onTap="addImg" data-t="2">
           人脸面
         </view>
@@ -42,6 +45,20 @@
         </view>
         <view hidden="{{true}}">
           <input  hidden name="cardUrl2" value="{{idcard_reverse}}" />
+        </view>
+        </view>
+
+        <view class="_heads">房屋租赁许可：</view>
+        <view class="_tails">
+        <view a:if="{{!upload3}}" class="card_tails"  onTap="addImg" data-t="3">
+          许可证
+        </view>
+        <view a:if="{{upload3}}" class="card_tails" onTap="addImg" >
+          <image src="{{img3}}" class="card-img" id='2' name="licence"/>
+        </view>
+        <view hidden="{{true}}">
+          <input  hidden name="licenceUrl" value="{{licence}}" />
+        </view>
         </view>
 
         <view class="btn">

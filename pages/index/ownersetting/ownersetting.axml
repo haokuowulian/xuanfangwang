@@ -1,0 +1,21 @@
+<view class="page-body">
+  <view class="body">
+    <view class="body-title">账号信息管理</view>
+    <view class="body-info">
+      <view class="info-title">用户名</view>
+      <view class="info-content">胡海<image src="/image/icon/right.png" class="right-img"/></view>
+    </view>
+    <view class="body-info">
+      <view class="info-title">手机号</view>
+      <view class="info-content">12346578901<image src="/image/icon/right.png" class="right-img"/></view>
+    </view>
+    <view class="body-info">
+      <view class="info-title">邮箱</view>
+      <view class="info-content">未绑定<image src="/image/icon/right.png" class="right-img"/></view>
+    </view>
+    <view class="body-info">
+      <view class="info-title">修改密码</view>
+      <view class="info-content">去修改<image src="/image/icon/right.png" class="right-img"/></view>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,4 @@
-<view>
+<view a:if="{{roleId==8||roleId==''||roleId==null}}">
   <view class="page-banner"></view>
   <view class="page-btn page-section">
     <view class="btn-contact">联系我们</view>
@@ -32,6 +32,89 @@
               <image src="/image/fangdong/fangdong-p3.png" class="content1-img"/>
             </view>
           <view class="content1-text">上架房源</view>
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img"/>
+        </view>
+        <view class="content1-p1">
+          <view>
+            <image src="/image/fangdong/fangdong-p4.png" class="content1-img"/>
+          </view>
+          <view class="content1-text">赚取收益</view>
+        </view>
+
+        
+      </view>
+    </view>
+
+    <view class="step1">
+      <view class="step-title1">我们的营运支持</view>
+
+      <view class="step-content2">
+
+        <view class="content2-p1">
+          <view>
+            <image src="/image/fangdong/shuju.png" class="content1-img"/>
+          </view>
+          <view class="content1-text">营运指导技巧</view>
+        </view>
+
+        <view class="content2-p1">
+          <view>
+            <image src="/image/fangdong/qudao.png" class="content2-img"/>
+          </view>
+          <view class="content1-text">多渠道推广</view>
+        </view>
+
+        <view class="content2-p1">
+          <view>
+            <image src="/image/fangdong/kefu.png" class="content1-img"/>
+          </view>
+          <view class="content1-text">贴心客服</view>
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+</view>
+
+
+
+<view  a:if="{{roleId==7}}">
+  <view class="page-banner"></view>
+  <view class="page-btn page-section">
+    <view class="btn-contact">联系我们</view>
+    <view class="btn-tobeowner" onTap="toDelivery">发布房源</view>
+  </view>
+  <view class="page-step page-section">
+    <view class="step1">
+      <view class="step-title1">发布房源，您需要</view>
+      <view class="step-content1">
+
+        <view class="content1-p1">
+          <view>
+            <image src="/image/fangdong/fangdong-p1.png" class="content1-img"/>
+          </view>
+          <view class="content1-text">登记房产信息</view>
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img"/>
+        </view>
+        <view class="content1-p1">
+          <view>
+            <image src="/image/fangdong/fangdong-shenhe.png" class="content1-img"/>
+          </view>
+          <view class="content1-text">信息审核</view>
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img"/>
+        </view>
+        <view class="content1-p1">
+            <view>
+              <image src="/image/fangdong/fangdong-p3.png" class="content1-img"/>
+            </view>
+          <view class="content1-text">发布房源</view>
         </view>
         <view>
           <image src="/image/icon/right.png" class="right-img"/>

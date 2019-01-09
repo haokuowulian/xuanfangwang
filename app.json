@@ -29,7 +29,11 @@
     "pages/index/confirmpage/confirmpage",
     "pages/index/submitresult/submitresult",
     "pages/index/complaint/complaint",
-    "pages/index/proposal/proposal"
+    "pages/index/proposal/proposal",
+    "pages/index/signing/signing",
+    "pages/index/housedelivery/housedelivery",
+    "pages/index/more/more",
+    "pages/index/ownersetting/ownersetting"
   ],
   "window": {
     "defaultTitle": "My App"
