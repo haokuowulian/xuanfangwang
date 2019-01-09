@@ -152,12 +152,13 @@ Page({
         success: (res) => {
           console.log('表单提交成功')
           console.log(res)
-          if(res.data.data.result){
+          console.log(res.data)
+          if(res.data.success){
             my.alert({
             title:'提交成功！',
             content:'我们会尽快处理。',
             buttonText:'确认',
-            success: (result) => {
+            success: () => {
               my.navigateBack();
            },
           });
