@@ -3,6 +3,8 @@ Page({
     roleId:'',
   },
   onLoad() {
+  },
+  onShow(){
     var roleId = my.getStorageSync({
      key: 'roleId', // 缓存数据的key
    }).data;

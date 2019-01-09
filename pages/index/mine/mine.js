@@ -18,7 +18,17 @@ Page({
     roleId:'',
   },
   onLoad() {
-    userId = my.getStorageSync({
+    
+  },
+  onShow(){
+  //  if(userId==''||userId==null){
+  //    console.log('++++++++')
+  //    this.setData({
+  //      userlogin:false,
+  //      userCompleted:false
+  //    });
+  //  }
+  userId = my.getStorageSync({
      key: 'userId', // 缓存数据的key
    }).data;
    certNo = my.getStorageSync({
@@ -81,10 +91,6 @@ Page({
       userCompleted:false
     });
    }
-  },
-  onShow(){
-   
-  
   },
   //授权登录
   antLogin(){
