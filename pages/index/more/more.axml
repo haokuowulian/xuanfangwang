@@ -1,7 +1,7 @@
 <view>
   <view class="page-setting">
     <view class="setting-back">
-      <view class="setting-info">认证资料<image src="/image/icon/right.png" class="right-img"/></view>
+      <view class="setting-info">个人资料<image src="/image/icon/right.png" class="right-img"/></view>
       <view class="setting-info">认证信息<image src="/image/icon/right.png" class="right-img"/></view>
     </view>
   </view>
