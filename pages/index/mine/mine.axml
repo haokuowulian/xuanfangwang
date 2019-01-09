@@ -21,7 +21,7 @@
         <view class="title-change" onTap="changeRole1">
           <image src="/image/mine/qiehuan1.png" class="qiehuan-img" />切换房客
         </view>
-        <view class="title-set" onTap="toSetting">设置
+        <view class="title-set" onTap="toOwnerSetting">设置
         </view>
       </view>
       <view class="posion-bkgd">
@@ -32,7 +32,7 @@
     </view>
     <view class="page-option page-section">
       <view class="option">
-        <view class="option-content">
+        <view class="option-content" onTap="toContract">
           <view>
             <image src="/image/mine/hetong.png" class="option-img"/>
           </view>
@@ -60,7 +60,7 @@
           <view class="option-text">我的账户
           </view>
         </view>
-        <view class="option-content">
+        <view class="option-content" onTap="toMore">
           <view>
             <image src="/image/mine/gengduo.png" class="option-img"/>
           </view>
@@ -122,8 +122,11 @@
   <view a:if="{{roleUser}}">
     <view class="page-banner1">
       <view class="banner-title1 font-color2">
-        <view class="title-change" onTap="changeRole2">
+        <view a:if="{{roleId==8}}" class="title-change" onTap="changeRole2">
           <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />成为房东
+        </view>
+        <view a:if="{{roleId==7}}" class="title-change" onTap="changeRole2">
+          <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />切换房东
         </view>
         <view class="title-set">
           <image src="/image/qipao.png" class="qipao-img" />

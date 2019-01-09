@@ -15,12 +15,10 @@ Page({
     headimg:'',
     certNo:'',
     password:'',
+    roleId:'',
   },
   onLoad() {
-  
-  },
-  onShow(){
-   userId = my.getStorageSync({
+    userId = my.getStorageSync({
      key: 'userId', // 缓存数据的key
    }).data;
    certNo = my.getStorageSync({
@@ -47,7 +45,8 @@ Page({
                 userlogin:true,
                 userCompleted:true,
                 roleUser:true,
-                roleOwner:false
+                roleOwner:false,
+                roleId:roleId,
             });
           }else{
             this.setData({
@@ -56,7 +55,8 @@ Page({
                 userlogin:true,
                 userCompleted:true,
                 roleUser:false,
-                roleOwner:true
+                roleOwner:true,
+                roleId:roleId,
             });
           }
          
@@ -81,6 +81,9 @@ Page({
       userCompleted:false
     });
    }
+  },
+  onShow(){
+   
   
   },
   //授权登录
@@ -193,13 +196,17 @@ Page({
     });
   },
   changeRole2(){
-     my.navigateTo({
-      url: '/pages/index/fangdongreg/fangdongreg',
+    if(this.data.roleId==7){
+      this.setData({
+      roleUser:false,
+      roleOwner:true,
     });
-    // this.setData({
-    //   role1:true,
-    //   role2:false,
-    // });
+    }else{
+      my.navigateTo({
+        url: '/pages/index/fangdongreg/fangdongreg',
+      });
+    }
+     
   },
   toShoucang(){
     my.navigateTo({
@@ -221,11 +228,6 @@ Page({
       url: '/pages/index/evaluate/evaluate',
     });
   },
-  toContract(){
-    my.navigateTo({
-      url: '/pages/index/contract/contract',
-    });
-  },
   toBill(){
     my.navigateTo({
       url: '/pages/index/bill/bill',
@@ -241,6 +243,11 @@ Page({
       url: '/pages/index/setting/setting',
     });
   },
+  toOwnerSetting(){
+    my.navigateTo({
+      url: '/pages/index/ownersetting/ownersetting',
+    });
+  },
   toSuggest(){
     my.navigateTo({
       url: '/pages/index/mysuggest/mysuggest',
@@ -249,6 +256,28 @@ Page({
   toMyhouse(){
     my.navigateTo({
       url: '/pages/index/myhouse/myhouse',
+    });
+  },
+  toContract(){
+    if(roleId==7&&this.data.roleOwner){
+      my.navigateTo({
+        url: '/pages/index/contract/contract?roleType=1',
+      });
+    }
+    if(roleId==7&&this.data.roleUser){
+      my.navigateTo({
+        url: '/pages/index/contract/contract?roleType=2',
+      });
+    }
+    if(roleId==8){
+      my.navigateTo({
+        url: '/pages/index/contract/contract?roleType=2',
+      });
+    }
+  },
+  toMore(){
+    my.navigateTo({
+      url: '/pages/index/more/more',
     });
   },
   //输入身份证
