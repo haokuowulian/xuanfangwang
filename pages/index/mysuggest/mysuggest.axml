@@ -10,7 +10,8 @@
     </view>
   </view>
   <view class="page-mine">我的投诉</view>
-  <block a:for="{{myList}}" a:for-item="list">
+
+  <block a:for="{{myList}}" a:for-item="list" a:for-index="idx">
     <view class="page-content">
       <view class="page-mylist">
         <view class="mylist">
@@ -25,11 +26,11 @@
             <view class="info-location">{{list.location}}</view>
           </view>
         </view>
-        <view a:if="{{!show}}" class="content-text inmanyline" onTap="showClick">{{list.content}}</view>
-        <view a:else class="content-text" onTap="showClick">
+        <view a:if="{{!list.deleted}}" class="content-text inmanyline" data-index="{{idx}}" onTap="showClick">{{list.content}}</view>
+        <view a:if="{{list.deleted}}" class="content-text"  data-index="{{idx}}" onTap="showClick">
           {{list.content}}
-          <view><image src="/image/house6.png" class="img" /></view>
         </view>
+         <view a:if="{{list.images!=''}}" class="img-box"><image src="{{list.images}}" class="img" /></view>
       </view>
     </view>
   </block>

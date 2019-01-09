@@ -76,7 +76,11 @@ Page({
       url: '/pages/index/confirmpage/confirmpage?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
     });
   },
-  
+  toComplaint(){
+    my.navigateTo({
+      url:'/pages/index/complaint/complaint?houseId='+this.data.id+'&rentType='+this.data.rentType,
+    });
+  },
   
   
 });

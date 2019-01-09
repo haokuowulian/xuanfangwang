@@ -112,6 +112,12 @@
   -webkit-line-clamp:3;
 }
 .img{
-  height: 60rpx;
-  width: 60rpx;
+  height: 200rpx;
+  width: 200rpx;
+}
+.img-box{
+  margin-top: 35rpx;
+  font-size: 25rpx;
+  height: 200rpx;
+  width: 200rpx;
 }

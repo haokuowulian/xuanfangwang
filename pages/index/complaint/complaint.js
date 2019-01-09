@@ -1,3 +1,4 @@
+const app = getApp();
 var image1;
 Page({
   data: {
@@ -7,8 +8,72 @@ Page({
     upload1:false,
     img:'',
     img1:'',
+    id:0,
+    rentType:0,
+    address:'',
+    landlordId:0,
+    type:0,
+    uid:'',
+    content:'',
+    myText:'',
   },
-  onLoad() {},
+  onLoad(option) {
+    var userId = my.getStorageSync({
+     key: 'userId', // 缓存数据的key
+   }).data;
+    console.log(option.houseId+'++++++++++房子+++++++++++'+option.rentType)
+    this.setData({
+      uid:userId,
+      id:option.houseId,
+      rentType:option.rentType,
+    });
+    this.getHouseDetail();
+  },
+   //获取房源详情
+  getHouseDetail(){
+    
+    var that=this;
+     my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHousingDetailIF.do",
+      method: 'POST',
+      data: {
+        id: that.data.id,
+        rentType: that.data.rentType
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+          if(that.data.rentType==1){
+            that.setData({
+              address:res.data.data.apartment.address,
+              landlordId:res.data.data.landlordId,
+            });
+          }
+          if(that.data.rentType==2){
+            that.setData({
+              address:res.data.data.house.apartment.address,
+              landlordId:res.data.data.landlordId,
+            });
+          }
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  onWordLimit(e){
+    console.log(e.detail.value)
+    this.setData({
+      myText:e.detail.value,
+    });
+  },
+
+  //添加图片
   addImg(){
     var that = this;
     my.chooseImage({
@@ -23,37 +88,29 @@ Page({
             upload1:true,
             canAddImg:false,
           });
-          var image=tempFilePaths[0];
-          // //图片上传
-          //  my.uploadFile({
-          //   url: 'http://192.168.1.89:8080/LLGY/IF/upload/uploadSingleFile.do',
-          //   fileType: 'image',
-          //   fileName: 'file',
-          //   formData:{savePrefix:'landlord'},
-          //   filePath: image,
-          //   success: res => {
-          //     console.log('success');
-          //     console.log(res);
-
-          //     var json1 = JSON.parse(res.data);
-          //     that.setData({
-          //       img:json1['message'],
-          //     });
-          //   },
-          //   fail: function(res) {
-          //     console.log(res);
-          //     // my.alert({ title: '上传失败' });
-          //   },
-          // });
       },
     });
   },
-
-  uploadImg(image){
+  toCommit(e){
+    var that = this;
+    var image = that.data.img1;
+    var content = that.data.myText;
+    if(content!=''){
+      if(image!=''){
+        that.uploadImg(image,content);
+      }else{
+        that.commitData2(content);
+      }
+    }else{
+      alert('建议内容不能为空！')
+    }
+    
+  },
+  uploadImg(image,content){
     var that = this;
     //图片上传
       my.uploadFile({
-      url: 'http://192.168.1.89:8080/LLGY/IF/upload/uploadSingleFile.do',
+      url: app.globalData.baseUrl+'/IF/upload/uploadSingleFile.do',
       fileType: 'image',
       fileName: 'file',
       formData:{savePrefix:'complaintSuggest'},
@@ -63,46 +120,88 @@ Page({
         console.log(res.data);
 
         var json1 = JSON.parse(res.data);
-        // console.log('-----------分割线1------------');
-        // console.log(json1['message']);
-        // console.log('-----------分割线1------------');
-        // that.setData({
-        //   img:json1['message'],
-        // });
+        
         image1=json1['message'];
-        console.log('--------------分割线2-----------------')
+        
+        that.commitData1(image1,content);
         console.log(image1);
-        console.log('--------------分割线2-----------------')
-        // console.log(that.data.img+'************************');
-        that.commitData(image1);
+        my.hideLoading();
       },
       fail: function(res) {
         console.log(res);
         // my.alert({ title: '上传失败' });
-      },
+      }
     });
   },
-  toCommit(){
+  
+
+  commitData1(image,content){
+    my.showLoading();
     var that = this;
-    var image = that.data.img1;
-    that.uploadImg(image);
-    
-    console.log('--------------分割线-----------------')
-    // console.log(image)
-    // that.commitData();
-  },
-  commitData(image){
-    var that = this;
-    // var imgs = that.data.img;
-    console.log('-----------分割线1------------');
-    console.log(image)
-    console.log('-----------分割线1------------');
-    
+    var address = that.data.address;
+    var landlordId = that.data.landlordId;
+    var uid = that.data.uid;
+    var type = that.data.type;
+    console.log(content)
     my.httpRequest({
-      url: '', // 目标服务器url
-      success: (res) => {
-        
+      url: app.globalData.baseUrl+'/IF/complaintSuggest/saveComplaintSuggest.do', // 目标服务器url
+      data:{
+        uid:uid,
+        fdid:landlordId,
+        location:address,
+        content:content,
+        images:image,
+        type:type,
       },
+      success: (res) => {
+        console.log('success')
+        my.hideLoading();
+        my.navigateBack({ changed: true });
+      },
+      fail:(res) =>{
+        console.log('fail')
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  commitData2(content){
+    my.showLoading();
+    var that = this;
+    var address = that.data.address;
+    var landlordId = that.data.landlordId;
+    var uid = that.data.uid;
+    var type = that.data.type;
+    console.log(content)
+    my.httpRequest({
+      url: app.globalData.baseUrl+'/IF/complaintSuggest/saveComplaintSuggest.do', // 目标服务器url
+      data:{
+        uid:uid,
+        fdid:landlordId,
+        location:address,
+        content:content,
+        type:type,
+      },
+      success: (res) => {
+        console.log('success')
+        my.hideLoading();
+        my.navigateBack({ changed: true });
+      },
+      fail:(res) =>{
+        console.log('fail')
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  delImg(){
+    var that = this;
+    that.setData({
+      img1:'',
+      upload1:false,
+      canAddImg:true,
     });
   },
 });
