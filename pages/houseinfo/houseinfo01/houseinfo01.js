@@ -308,5 +308,12 @@ Page({
         my.hideLoading();
       }
     });
-  }
+  },
+  toComplaint(){
+    my.navigateTo({
+      url:'/pages/index/complaint/complaint?houseId='+this.data.id+'&rentType='+this.data.rentType,
+    });
+  },
+  
+  
 });

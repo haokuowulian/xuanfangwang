@@ -11,6 +11,7 @@
 .house-banner{
   height: 560rpx;
   width: 750rpx;
+  position: relative;
 }
 .banner-img{
   height: 560rpx;
@@ -347,6 +348,14 @@
   left: 0;
   width: 150rpx;
   height: 110rpx;
-  background-color: #00000000
-  
+  background-color: #00000000;
+  height: 36rpx;
+  width: 39rpx;
+}
+.tousu-img{
+  height: 60rpx;
+  width: 60rpx;
+}
+.tousu{
+  position: absolute; top: 15rpx; right: 15rpx; height: 60rpx; overflow: visible;
 }

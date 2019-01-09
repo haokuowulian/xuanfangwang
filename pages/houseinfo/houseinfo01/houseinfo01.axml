@@ -1,6 +1,7 @@
 <view class="page">
   <view class="viewClass" >
   <view class="page-section houseinfo-p1">
+    
     <view class="house-banner">
       <swiper
       autoplay=true
@@ -11,7 +12,9 @@
           </swiper-item>
         </block>
       </swiper>
-     
+     <view class="tousu" onTap="toComplaint">
+      <image src="/image/houseicon/tousu.png" class="tousu-img" />
+    </view>
     </view>
     <view class="house-price">
       <view class="house-price-info">

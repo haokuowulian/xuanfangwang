@@ -1,7 +1,7 @@
 <view>
   <view class="page-body">
     <view class="page-content">
-      <textarea class="content-text" placeholder="请输入您的投诉内容" maxlength="255"/>
+      <textarea onInput="onWordLimit" value="{{content}}" class="content-text" placeholder="请输入您的投诉内容" maxlength="255"/>
       <view class="content-addimg">
         
         <view a:if="{{!canAddImg}}" class="imgBox">
@@ -16,5 +16,6 @@
       </view>
     </view>
   </view>
-  <view class="page-btn" onTap="toCommit">提交</view>
+  <!-- <view class="page-btn" onTap="toCommit">提交</view> -->
+  <button class="page-btn" type="default" onTap="toCommit">提交</button>
 </view>

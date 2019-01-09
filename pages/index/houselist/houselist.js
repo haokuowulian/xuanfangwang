@@ -50,12 +50,12 @@ const sortList = [
     id:2,
   },
   {
-    title:'面积从大到小',
+    title:'面积从小到大',
     selected:false,
     id:3,
   },
   {
-    title:'面积从小到大',
+    title:'面积从大到小',
     selected:false,
     id:4,
   },
@@ -904,11 +904,6 @@ Page({
         })
       }
   },
-  //组件生命周期函数，在组件实例进入页面节点树时执行
-  attached() {
-    // 可以在这里发起网络请求获取插件的数据
-    
-  },
   //获取精选房源
   getBoutiqueHousing(){
     console.log('--------'+this.data.pageIndex);
@@ -931,16 +926,6 @@ Page({
     var furnitureCondition = b.join(",");
     var directionCondition = c.join(",");
     var rt = that.data.rentType;
-    // console.log('*************************************')
-    // console.log(featureCondition)
-    // console.log(furnitureCondition)
-    // console.log(directionCondition)
-    // console.log('*************************************')
-    // console.log('租金:'+minRent+'|'+maxRent+'---几室：'+condition+'---排序：'+sort+'---类型：'+rt)
-    // console.log('*************************************')
-    // that.setData({
-    //   boutiqueHousing:[],
-    // });
     console.log( this.data.pageIndex);
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
