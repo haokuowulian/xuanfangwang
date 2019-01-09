@@ -18,7 +18,7 @@ Page({
     nearByHouseList:[],
     lag:0,
     lng:0,
-    distance:12000
+    distance:28000
 
   },
   onLoad(){
@@ -78,7 +78,7 @@ Page({
     var tp = e.currentTarget.dataset.choose;
     console.log(tp);
     my.navigateTo({
-      url: '/pages/index/houselist/houselist?tp='+tp,
+      url: '/pages/index/houselist/houselist?type='+tp,
     });
   },
 
@@ -224,7 +224,7 @@ Page({
   getNearByHousing(l){
      var that=this;
      my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/homePage/getHomeHousingIF.do",
+      url: app.globalData.baseUrl_whj+"IF/homePage/getHomeHouseIF.do",
       method: 'POST',
       data: {
         lng: this.data.lng,

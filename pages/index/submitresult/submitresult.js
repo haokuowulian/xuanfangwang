@@ -6,10 +6,14 @@ Page({
       url: '/pages/index/plan/plan',
     });
   },
+  onUnload() {
+    my.navigateBack({
+      delta: 2
+    });
+  },
   goBack(){
     my.navigateBack({
       delta: 3
     });
-    my.na
   }
 });

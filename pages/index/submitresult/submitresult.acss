@@ -40,9 +40,10 @@
   font-size: 35rpx;
   color: #333333;
   border-radius: 5rpx;
-  border: 1rpx solid #333333;
+  border: 2rpx solid #333333;
   height: 80rpx;
   width: 250rpx;
+  margin-left: 150rpx;
 }
 .btn-back{
   display: flex;

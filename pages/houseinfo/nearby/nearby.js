@@ -17,14 +17,14 @@ Page({
   onLoad(option) {
      if(option.rentType==1){
       this.setData({
-        longitude: JSON.parse(option.houseDetail).apartment.longitude,
-        latitude: JSON.parse(option.houseDetail).apartment.latitude,
+        longitude: JSON.parse(option.houseDetail).longitude,
+        latitude: JSON.parse(option.houseDetail).latitude,
         rentType:option.rentType
       });
      }else if(option.rentType==2){
       this.setData({
-        longitude: JSON.parse(option.houseDetail).house.apartment.longitude,
-        latitude: JSON.parse(option.houseDetail).house.apartment.latitude,
+        longitude: JSON.parse(option.houseDetail).house.longitude,
+        latitude: JSON.parse(option.houseDetail).house.latitude,
         rentType:option.rentType
       });
      }

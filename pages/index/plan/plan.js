@@ -24,7 +24,6 @@ Page({
    var uid = my.getStorageSync({
           key: 'userId', // 缓存数据的key
         }).data;
-        console.log('--------'+this.data.pageIndex);
    that.setData({
      headimg:avatar,
      nickName:nickName,
