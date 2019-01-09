@@ -15,6 +15,7 @@ Page({
       rentType:option.rentType
     });
   },
+ 
   toConfirm(){
     if(this.data.contacts==''||this.data.contactWay==''||this.data.expectTime==''||this.data.leaveWord==''){
       my.alert({

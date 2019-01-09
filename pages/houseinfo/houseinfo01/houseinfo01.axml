@@ -121,10 +121,12 @@
    
   </view>
 </view>
+<view class="horiztalView"></view>
   <view class="operate">
     
-    <view class="operate-shoucang"><view><image src="/image/houseicon/aixin.png" class="aixin-img" /></view><view>收藏</view></view>
-    <view class="operate-yuyue" onTap="toConfirmpage">预约看房</view>
+    <view class="operate-shoucang" ><view><image src="{{collectUrl}}" class="aixin-img" /><button class="buttonClass" onTap="collectOrUncollect" disabled="{{canClick}}" hover-class="none"></button></view></view>
+    <view a:if="{{!isBespeak}}" class="operate-yuyue" onTap="toConfirmpage">预约看房</view>
+    <view a:if="{{isBespeak}}" class="operate-yuyue" onTap="alertPromt">已预约</view>
     <view class="operate-qianyue">立即签约</view>
   </view>
 </view>

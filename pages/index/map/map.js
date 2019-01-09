@@ -43,7 +43,7 @@ Page( {
         height: 1,
         // iconPath: '/image/mark_bs.png',
         "label": {
-          content: list[i].apartmentName,
+          content: list[i].apartment.apartmentName+list[i].buildingUnit+list[i].houseNo,
           color: "#ffffff",
           fontSize: 16,
           borderRadius: 5,

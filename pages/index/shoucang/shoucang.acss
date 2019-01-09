@@ -47,6 +47,11 @@
   color: #666666;
   margin-top: 25rpx;
 }
+.info-produce{
+  font-size: 28rpx;
+  color: #666666;
+  margin-top: 25rpx;
+}
 .info-status1{
   display: flex;
   flex-direction: row-reverse;
@@ -95,7 +100,7 @@
 }
 .manage{
   top:100rpx;
-  height: 60rpx;
+  height: 108rpx;
   width: 750rpx;
   display: flex;
   flex-direction: row;
@@ -107,6 +112,7 @@
   margin-left: 35rpx;
 }
 .manage-set{
+  color: #45abfc;
   font-size: 30rpx;
   margin-right: 35rpx;
 }

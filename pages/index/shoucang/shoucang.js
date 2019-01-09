@@ -1,50 +1,9 @@
-const houseList = [
-  {
-    id:1,
-    imgpath:'/image/house6.png',
-    name:'湘湖科创园1栋8楼',
-    price:'￥28000元/月',
-    status:'0',
-    checked: false,
-  },
-  {
-    id:2,
-    imgpath:'/image/house6.png',
-    name:'湘湖科创园1栋8楼',
-    price:'￥28000元/月',
-    status:'1',
-    checked: false,
-  },
-  {
-    id:3,
-    imgpath:'/image/house6.png',
-    name:'湘湖科创园1栋8楼',
-    price:'￥28000元/月',
-    status:'2',
-    checked: false,
-  },
-  {
-    id:4,
-    imgpath:'/image/house6.png',
-    name:'湘湖科创园1栋8楼',
-    price:'￥28000元/月',
-    status:'2',
-    checked: false,
-  },
-  {
-    id:5,
-    imgpath:'/image/house6.png',
-    name:'湘湖科创园1栋8楼',
-    price:'￥28000元/月',
-    status:'2',
-    checked: false,
-  },
-]
+const app = getApp();
 
-var app = getApp();
+
+
 Page({
   data: {
-    houseList:[],
     click1:true,
     click2:false,
     btnshow:false,
@@ -52,14 +11,25 @@ Page({
     selectAll:false,
     selected:[],
     selectid:[],
+    userId:'',
+    pageIndex:1,
+    imgUrl:app.globalData.baseImgUrl_whj,
+    collectList:[]
   },
   onLoad() {
+    var userId=my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    this.setData({
+      userId:userId
+    });
+    this.getMyCollect();
     my.httpRequest({
       url: 'xxxxxxx?token='+app.globalData.token, // 目标服务器url
       success: (res) => {
         var houses = res.house;
         this.setData({
-          houseList:houses,
+          collectList:houses,
         });
       },
     });
@@ -88,19 +58,19 @@ Page({
     if(that.data.management_house ==false){
       return;
     }else{
-      var arr1 = that.data.houseList;
+      var arr1 = that.data.collectList;
       var index = e.target.dataset.id;
       console.log(index);
-      arr1[index].checked = !arr1[index].checked;
+      arr1[index].deleted = !arr1[index].deleted;
       console.log(arr1[index]);
 
       for(let i=0;i<arr1.length;i++){
-         if(arr1[i].checked){
+         if(arr1[i].deleted){
            arr2.push(arr1[i])
          }
       };
       that.setData({
-        houseList: arr1,
+        collectList: arr1,
         selected:arr2
       })
     }
@@ -112,18 +82,18 @@ Page({
       selectAll:true,
     });
     if(that.data.selectAll){
-      let arr = that.data.houseList;
+      let arr = that.data.collectList;
       let arr2 = [];
       for (let i = 0; i < arr.length; i++) {
-        if (arr[i].checked == true) {
+        if (arr[i].deleted == true) {
           arr2.push(arr[i]);
         }else{
-          arr[i].checked = true;
+          arr[i].deleted = true;
           arr2.push(arr[i]);
         }
       }
       that.setData({
-        houseList:arr2,
+        collectList:arr2,
          selected:arr2,
       });
     }
@@ -134,41 +104,109 @@ Page({
     that.setData({
       selectAll:!that.data.selectAll,
     })
-    let arr = that.data.houseList;
+    let arr = that.data.collectList;
     let arr2 = [];
     for (let i = 0; i < arr.length; i++) {
-        arr[i].checked = false;
+        arr[i].deleted = false;
         arr2.push(arr[i]);
     }
     that.setData({
-      houseList: arr2,
+      collectList: arr2,
       selected:[]
     })
   },
   // 删除
    deleteitem(){
     var that = this;
-    let arr = that.data.houseList;
+    let arr = that.data.collectList;
     let arr2 = [];
     let ids = [];
     console.log(arr);
     for(let i=0;i<arr.length;i++){
-      if (arr[i].checked == false){
+      if (arr[i].deleted == false){
         arr2.push(arr[i]);
       }else{
         ids.push(arr[i].id);
       }
     }
-    console.log(ids);
-    my.httpRequest({
-      url: '删除url?ids='+ids, // 目标服务器url
-      success: (res) => {
-        console.log('删除成功')
+    var that=this;
+     my.showLoading();
+     my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/myFavorite/delMyFavoriteByIds.do",
+      method: 'POST',
+      data: {
+        userId:this.data.userId,
+        ids: ids.join(','),
       },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        
+        if(res.data.success){
+          my.hideLoading();
+          that.setData({
+            collectList:arr2,
+            selected:[]
+          });
+          
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
     });
-    that.setData({
-      houseList:arr2,
-      selected:[]
-    })
+    
+  },
+
+  //获取我的收藏列表
+  getMyCollect(){
+    var that=this;
+   
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/myFavorite/getMyFavoriteListIF.do",
+      method: 'POST',
+      data: {
+        userId:this.data.userId,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                 that.setData({
+            collectList:res.data.data
+          });
+            }else if(that.data.collectList.length<res.data.count){
+               that.setData({
+                collectList:that.data.collectList.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
+    });
+    this.getMyCollect();
+  },
+  onReachBottom() {
+    this.setData({
+      pageIndex:this.data.pageIndex+1
+    });
+     this.getMyCollect();
   },
 });

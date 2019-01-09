@@ -1,8 +1,5 @@
 <view>
-  <view class="title-bar">
-    <view class="house-bar {{click1?'title-click':''}}">租房</view>
-    <view class="hotel-bar">酒店</view>
-  </view>
+ 
   
   <view class="manage page-select">
     <view class="manage-title"></view>
@@ -10,15 +7,15 @@
     <view a:if="{{management_house}}" class="manage-set" onTap="management_cancel">取消</view>
   </view>
     
-  <view a:if="{{condition}}" class="list-page">
+  <view class="list-page">
     
-      <block a:for="{{houseList}}" a:for-item="item">
+      <block a:for="{{collectList}}" >
         <view class="list-check page-select">
-          <view a:if="{{management_house}}" class="check" onTap="select" data-id="{{index}}" data-check="{{item.checked}}">
-            <block a:if="{{!item.checked}}">
+          <view a:if="{{management_house}}" class="check" onTap="select" data-id="{{index}}" data-check="{{item.deleted}}">
+            <block a:if="{{!item.deleted}}">
               <view class='icon_none'></view>
             </block>
-            <block a:if="{{item.checked}}">
+            <block a:if="{{item.deleted}}">
               <view class="icon-bkgd">
                 <icon type="success" class="icon-check" color="#ff8800" />
               </view>
@@ -28,14 +25,15 @@
           <view class="{{management_house?'page-list1':'page-list'}} page-select">
             <view class="{{management_house?'list1':'list'}}">
               <view class="list-img">
-                <image src="{{item.imgpath}}" class="house-img" />
+                <image src="{{imgUrl}}{{item.images.split(',')[0]}}" class="house-img" />
               </view>
               <view class="list-info">
-                <view class="info-name">{{item.name}}</view>
-                <view class="info-price">{{item.price}}</view>
-                <view a:if="{{item.status==0}}" class="info-status1">可签约</view>
+                <view class="info-name">{{item.housingName}}</view>
+                <view class="info-price">￥{{item.rents}}元/月</view>
+                <view class="info-produce">{{item.doorModel}} | {{item.area}}m² | {{item.toward}}</view>
+                <!-- <view a:if="{{item.status==0}}" class="info-status1">可签约</view>
                 <view a:if="{{item.status==1}}" class="info-status1">已签约</view>
-                <view a:if="{{item.status==2}}" class="info-status2">已过期</view>
+                <view a:if="{{item.status==2}}" class="info-status2">已过期</view> -->
               </view>
             </view>
           </view>

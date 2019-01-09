@@ -27,14 +27,17 @@
 
     <view class="page-b2-house">
       <view class="choose1" onTap="choose1OnTap" data-choose="1">
-        <image src="/image/house001.png" class="img-house"/>精选
+        <image src="/image/house001.png" class="img-house"/>  精选
       </view>
+    
       <view class="choose1"  onTap="choose1OnTap" data-choose="2">
         <image src="/image/house002.png" class="img-house"/>整租
       </view>
+    
       <view class="choose1"  onTap="choose1OnTap" data-choose="3">
         <image src="/image/house003.png" class="img-house"/>合租
       </view>
+      
       <view class="choose1"  onTap="choose1OnTap" data-choose="4">
         <image src="/image/house004.png" class="img-house"/>无人酒店
       </view>
