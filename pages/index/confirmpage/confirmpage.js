@@ -90,7 +90,7 @@ Page({
         rentType:that.data.rentType,
         contacts:that.data.contacts,
         contactWay:that.data.contactWay,
-        expectedTime:that.data.expectedTime,
+        expectedTime:that.data.expectTime,
         leaveWord:that.data.leaveWord,
         fdid:fdid,
         uid:userId,

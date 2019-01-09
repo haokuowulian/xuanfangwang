@@ -1,124 +1,48 @@
 const app=getApp();
-const unfinishedplan = [
-  {
-    id:1,
-    headimg:'/image/mine/posion.png',
-    name:'胡海',
-    status:'0',
-    plantime:'-',
-    planplace:'-',
-    house:[
-      {
-        houseimg:'/image/house6.png',
-        housename:'湘湖科创园1栋8楼',
-        houseinfo:'153m² 5/8层',
-        price:'￥28000元/月',
-        housestatus:'0',
-      }
-    ],
-    ownerid:'100',
-  },
-  {
-    id:2,
-    headimg:'/image/mine/posion.png',
-    name:'胡海',
-    status:'0',
-    plantime:'2018-08-30 09:00',
-    planplace:'湘湖科创园',
-    house:[
-      {
-        houseimg:'/image/house6.png',
-        housename:'湘湖科创园1栋8楼',
-        houseinfo:'153m² 5/8层',
-        price:'￥28000元/月',
-        housestatus:'0',
-      }
-    ],
-    ownerid:'100',
-  },
-]
-const finishplan = [
-  {
-    id:3,
-    headimg:'/image/mine/posion.png',
-    name:'胡海',
-    status:'2',
-    plantime:'-',
-    planplace:'-',
-    house:[
-      {
-        houseimg:'/image/house6.png',
-        housename:'湘湖科创园1栋8楼',
-        houseinfo:'153m² 5/8层',
-        price:'￥28000元/月',
-        housestatus:'0',
-      }
-    ],
-    ownerid:'100',
-  },
-  {
-    id:4,
-    headimg:'/image/mine/posion.png',
-    name:'胡海',
-    status:'1',
-    plantime:'2018-08-30 09:00',
-    planplace:'湘湖科创园',
-    house:[
-      {
-        houseimg:'/image/house6.png',
-        housename:'湘湖科创园1栋8楼',
-        houseinfo:'153m² 5/8层',
-        price:'￥28000元/月',
-        housestatus:'0',
-      }
-    ],
-    ownerid:'100',
-  },
-]
+
 
 Page({
   data: {
-    unfinishedplan:[],
-    finishplan:[],
+    uid:'',
     headimg:'',
+    nickName:'',
     complete:false,
     click1:true,
     click2:false,
     pageIndex:1,
-    pageSize:6,
     planList:[],
     imgUrl:app.globalData.baseImgUrl_whj
   },
   onLoad() {
     var that = this;
-    var avatar;
-     
-     avatar = my.getStorageSync({
+    var avatar = my.getStorageSync({
      key: 'avatar', // 缓存数据的key
    }).data;
+    var nickName = my.getStorageSync({
+     key: 'nickName', // 缓存数据的key
+   }).data;
+   var uid = my.getStorageSync({
+          key: 'userId', // 缓存数据的key
+        }).data;
+        console.log('--------'+this.data.pageIndex);
    that.setData({
      headimg:avatar,
+     nickName:nickName,
+     uid:uid
    });
     
-   
-    this.getBespeakList();
+   this.getBespeakList();
   },
   onShow(){
     // console.log(app.globalData.userid+'111')
   },
-  getRoomInfo(apartmentId,roomId){
-    my.httpRequest({
-      url: 'xxx?apartmentId='+apartmentId+'&rooId='+roomId, // 目标服务器url
-      success: (res) => {
-        
-      },
-    });
-  },
+  
   unfinished(){
     this.setData({
       complete:false,
       click1:true,
       click2:false,
+      pageIndex:1
     });
     this.getBespeakList();
   },
@@ -127,62 +51,41 @@ Page({
       complete:true,
       click1:false,
       click2:true,
+      pageIndex:1
     });
      this.getBespeakList();
   },
-  deletePlan(e){
-    let id = e.target.dataset.pid;
-    console.log(id)
-    my.httpRequest({
-      url: 'zzzzzzzz?id='+id, // 目标服务器url
-      success: (res) => {
-        console.log("success")
-      },
-    });
-  },
-  confirmPlan(e){
-    let id = e.target.dataset.pid;
-    console.log(id)
-    my.httpRequest({
-      url: 'zzzzzzzz?id='+id, // 目标服务器url
-      success: (res) => {
-        console.log("success")
-      },
-    });
-  },
-
   //获取预约列表
   getBespeakList(){
+    // my.showLoading();
     var that=this;
     var manageState=0;
-    if(this.data.complete){
+    if(!this.data.complete){
       manageState=0;
     }else{
       manageState=1;
     }
-    var uid = my.getStorageSync({
-          key: 'userId', // 缓存数据的key
-        }).data;
-        console.log('--------'+this.data.pageIndex);
+    
     var that=this;
     my.httpRequest({
       url: app.globalData.baseUrl+'IF/bespeak/getBespeakList.do',
       method: 'POST',
       data: {
-        uid:uid,
+        uid:this.data.uid,
         pageIndex:this.data.pageIndex,
-        pageSize: 6,
+        pageSize: 3,
         manageState:manageState
       },
       dataType: 'json',
       success: function(res) {
        console.log(res);
+       my.hideLoading();
             if(res.data.success){
               if(that.data.pageIndex==1){
                 that.setData({
                   planList:res.data.data
                 });
-            }else if(that.data.boutiqueHousing.length<res.data.count){
+            }else if(that.data.planList.length<res.data.count){
                 that.setData({
                   planList:that.data.planList.concat(res.data.data)
                 });
@@ -198,6 +101,148 @@ Page({
         my.hideLoading();
       }
     });
+  },
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
+    });
+     this.getBespeakList();
+  },
+  onReachBottom() {
+    this.setData({
+      pageIndex:this.data.pageIndex+1
+    });
+    this.getBespeakList();
+  },
+  //联系房东
+  contact(e){
+    let number = e.target.dataset.number;
+     my.confirm({
+      title: '温馨提示',
+      content: '确定要联系该房东吗?',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      success: (result) => {
+       if(result.confirm){
+         my.makePhoneCall({ number: number });
+       }
+      },
+    });
+    
+  },
+  //提示取消约看
+  alertCancel(e){
+    let id = e.target.dataset.pid;
+     my.confirm({
+      title: '温馨提示',
+      content: '确定要取消约看该房源吗?',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      success: (result) => {
+       if(result.confirm){
+         this.cancel(id)
+       }
+      },
+    });
+  },
+  //取消约看
+  cancel(id){
+    var that=this;
+    my.showLoading();
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do',
+      method: 'POST',
+      data: {
+        uid:this.data.uid,
+        id:id,
+        state:3
+      },
+      dataType: 'json',
+      success: function(res) {
+       console.log(res);
+       my.hideLoading();
+       that.setData({
+         pageIndex:1
+       });
+       that.getBespeakList();
+      if(res.data.success){
+          my.showToast({
+            type: 'success',
+            content: '取消成功',
+            duration: 2000
+          });
+          }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  alertDelete(e){
+    let id = e.target.dataset.pid;
+     my.confirm({
+      title: '温馨提示',
+      content: '确定要删除该房源吗?',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      success: (result) => {
+       if(result.confirm){
+         this.delete(id)
+       }
+      },
+    });
+  },
+  //删除
+  delete(id){
+    var that=this;
+    my.showLoading();
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/bespeak/delBespeakById.do',
+      method: 'POST',
+      data: {
+        id:id
+      },
+      dataType: 'json',
+      success: function(res) {
+       console.log(res);
+       my.hideLoading();
+       that.setData({
+         pageIndex:1
+       });
+       that.getBespeakList();
+      if(res.data.success){
+          my.showToast({
+            type: 'success',
+            content: '删除成功',
+            duration: 2000
+          });
+          }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  //前往详情
+  goToDetail(e){
+      let houseId = e.target.dataset.houseId;
+      let roomId = e.target.dataset.roomId;
+      let rentType = e.target.dataset.rentType;
+      let id='0';
+      if(rentType==1){
+        id=houseId;
+      }else if(rentType==2){
+        id=roomId
+      }
+      my.navigateTo({
+        url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+id+'&rentType='+rentType,
+      })
   }
     
 });
