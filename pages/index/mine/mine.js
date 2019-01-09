@@ -191,15 +191,23 @@ Page({
       roleUser:true,
       roleOwner:false,
     });
+    my.setStorageSync({
+        key: 'roleId', // 缓存数据的key
+        data: 8, // 要缓存的数据
+    });
   },
   changeRole2(){
+    // this.setData({
+    //   roleUser:false,
+    //   roleOwner:false,
+    // });
      my.navigateTo({
       url: '/pages/index/fangdongreg/fangdongreg',
     });
-    // this.setData({
-    //   role1:true,
-    //   role2:false,
-    // });
+    my.setStorageSync({
+        key: 'roleId', // 缓存数据的key
+        data: 7, // 要缓存的数据
+    });
   },
   toShoucang(){
     my.navigateTo({
