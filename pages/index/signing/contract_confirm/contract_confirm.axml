@@ -1,0 +1,52 @@
+<view>
+  
+  <view class="page-body">
+    <view class="body">
+      <view class="body-back">
+        <view class="body-text1">签约人</view>
+        <view class="body-text2">胡海</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-body1">
+    <view class="body">
+      <view class="body-back">
+        <view class="body-text1">证件号</view>
+        <view class="body-text2">333333333333333333333</view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="page-body">
+    <view class="body">
+      <view class="body-back">
+        <view class="body-text1">物业地址</view>
+        <view class="body-text2">萧山宝龙城市广场轩南区1号楼1层102</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-body1">
+    <view class="body">
+      <view class="body-back">
+        <view class="body-text1">合同日期</view>
+        <view class="body-text2">2019-09-04到2020-09-04</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-body">
+    <view class="body">
+      <view class="body-back">
+        <view class="body-text1">付款方式</view>
+        <view class="body-text2">月付</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-end">您授权我们以您的本人信息（包括但不限于姓名和身份证件号码）对正在签署的合同进行数字签名</view>
+
+  <view  class="page-btn" onTap="toConfirm">我确认以上信息</view>
+</view>
