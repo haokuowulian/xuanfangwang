@@ -75,6 +75,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 25rpx;
+  color: #999999;
 }
 .content-info{
   width: 680rpx;
