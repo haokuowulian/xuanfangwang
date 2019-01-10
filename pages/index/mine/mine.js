@@ -139,7 +139,6 @@ Page({
                  key: 'roleId', // 缓存数据的key
                  data: res.data.info.roleId, // 要缓存的数据
                });
-               app.globalData.userId=res.data.info.id;
                if(res.data.info.roleId==8){//租客
                  if(res.data.info.certNo&&res.data.info.certNo!=''){//已完善信息
                    my.setNavigationBar({
@@ -152,6 +151,7 @@ Page({
                       headimg:res.data.info.avatar,
                       username:res.data.info.nickName,
                       isRoleUser:true,
+                      userId:res.data.info.id
                    });
                     
                  }else{//未完善信息
@@ -165,6 +165,7 @@ Page({
                       headimg:res.data.info.avatar,
                       username:res.data.info.nickName,
                       isRoleUser:true,
+                      userId:res.data.info.id
                    });
                  }
                 
@@ -179,6 +180,7 @@ Page({
                   username:res.data.info.nickName,
                   isRoleUser:false,
                   userCompleted:true,
+                  userId:res.data.info.id
                });
                }
             },
@@ -420,7 +422,7 @@ Page({
          areaName:this.data.area,
          certNo:this.data.certNo,
          password:this.data.password,
-         id:userId,
+         id:this.data.userId,
         },
         dataType: 'json',
         success: function(res) {
