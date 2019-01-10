@@ -200,6 +200,10 @@ Page({
       roleUser:true,
       roleOwner:false,
     });
+    my.setStorageSync({
+        key: 'roleId', // 缓存数据的key
+        data: 8, // 要缓存的数据
+    });
   },
   changeRole2(){
     if(this.data.roleId==7){
