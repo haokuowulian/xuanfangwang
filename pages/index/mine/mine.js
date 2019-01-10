@@ -4,31 +4,31 @@ var certNo='';
 var avatar='';
 var nickName='';
 var roleId='';
+var currentIdentityIsUser=true;
 Page({
   data: {
-    roleUser:false,
-    roleOwner:false,
-    userlogin:false,
-    userCompleted:false,
+    userlogin:false,//是否登录
+    userCompleted:false,//是否已完善信息
+    isRoleUser:true,//是否是租客
     username:'',
-    user:'',
     headimg:'',
     certNo:'',
     password:'',
     roleId:'',
+    sex:'',
+    sexCode:'',
+    city:'',
+    cityCode:'',
+    area:'',
+    showTop: false,
+    areaList:[],
+    areaId:''
   },
   onLoad() {
     
   },
   onShow(){
-  //  if(userId==''||userId==null){
-  //    console.log('++++++++')
-  //    this.setData({
-  //      userlogin:false,
-  //      userCompleted:false
-  //    });
-  //  }
-  userId = my.getStorageSync({
+    userId = my.getStorageSync({
      key: 'userId', // 缓存数据的key
    }).data;
    certNo = my.getStorageSync({
@@ -43,54 +43,61 @@ Page({
    roleId = my.getStorageSync({
      key: 'roleId', // 缓存数据的key
    }).data;
-   if(userId&&userId!=''){
-        if(certNo&&certNo!=''){
-          my.setNavigationBar({
+   currentIdentityIsUser = my.getStorageSync({
+     key: 'currentIdentityIsUser', // 缓存数据的key
+   }).data;
+  if(userId&&userId!=''){
+    if(certNo&&certNo!=''){
+      my.setNavigationBar({
             title:'个人中心'
           });
-          if(roleId&&roleId!=''&&roleId=='8'){
-            this.setData({
-                headimg:avatar,
-                username:nickName,
-                userlogin:true,
-                userCompleted:true,
-                roleUser:true,
-                roleOwner:false,
-                roleId:roleId,
-            });
-          }else{
-            this.setData({
-                headimg:avatar,
-                username:nickName,
-                userlogin:true,
-                userCompleted:true,
-                roleUser:false,
-                roleOwner:true,
-                roleId:roleId,
-            });
-          }
-         
-        }else {
-          my.setNavigationBar({
+      if(roleId==7&&!currentIdentityIsUser){//房东
+        this.setData({
+          userlogin:true,
+          userCompleted:true,
+          isRoleUser:false,
+          headimg:avatar,
+          username:nickName,
+        });
+      }else if(roleId==7&&currentIdentityIsUser){//房东&租客
+        this.setData({
+          userlogin:true,
+          userCompleted:true,
+          isRoleUser:true,
+          headimg:avatar,
+          username:nickName,
+        });
+      }else if(roleId==8){//租客
+        this.setData({
+          userlogin:true,
+          userCompleted:true,
+          isRoleUser:true,
+          headimg:avatar,
+          username:nickName,
+
+        });
+      }
+      
+    }else{
+      my.setNavigationBar({
             title:'完善信息'
           });
-          this.setData({
-            headimg:avatar,
-            username:nickName,
-            userlogin:true,
-            userCompleted:false
-          });
-        }
-     
-   }else{
-     my.setNavigationBar({
+      this.setData({
+        userlogin:true,
+        userCompleted:false,
+        headimg:avatar,
+        username:nickName,
+      });
+    }
+    
+  }else{
+    my.setNavigationBar({
        title:'登录'
      });
     this.setData({
-      userlogin:false,
-      userCompleted:false
+      userlogin:false
     });
-   }
+  }
   },
   //授权登录
   antLogin(){
@@ -133,21 +140,18 @@ Page({
                  data: res.data.info.roleId, // 要缓存的数据
                });
                app.globalData.userId=res.data.info.id;
-               if(res.data.info.roleId==8){//用户
-               
-               console.log("2222222233333333333333333");
-                 if(res.data.info.certNo){//已完善信息
+               if(res.data.info.roleId==8){//租客
+                 if(res.data.info.certNo&&res.data.info.certNo!=''){//已完善信息
                    my.setNavigationBar({
                     title:'个人中心'
                    });
                    this.setData({
                       certNo:res.data.info.certNo,
-                      userCompleted:true,
                       userlogin:true,
+                      userCompleted:true,
                       headimg:res.data.info.avatar,
                       username:res.data.info.nickName,
-                      roleUser:true,
-                      roleOwner:false,
+                      isRoleUser:true,
                    });
                     
                  }else{//未完善信息
@@ -156,34 +160,27 @@ Page({
                   });
                    this.setData({
                       certNo:res.data.info.certNo,
-                      userCompleted:false,
                       userlogin:true,
+                      userCompleted:false,
                       headimg:res.data.info.avatar,
                       username:res.data.info.nickName,
-                      roleUser:true,
-                      roleOwner:false,
+                      isRoleUser:true,
                    });
                  }
                 
-               }
-               if(res.data.info.roleId==7){//房东
+               }else if(res.data.info.roleId==7){//房东
                my.setStorageSync({
                  key: 'roleUser', // 缓存数据的key
                  data: false, // 要缓存的数据
                });
-               console.log("2222222233333333335555555");
                 this.setData({
                   userlogin:true,
                   headimg:res.data.info.avatar,
                   username:res.data.info.nickName,
-                  roleUser:false,
-                  roleOwner:true,
+                  isRoleUser:false,
                   userCompleted:true,
                });
                }
-               
-              //  onLoad();
-              //  console.log(username);
             },
             fail: function(res) {
                console.log(res);
@@ -193,24 +190,35 @@ Page({
       },
     });
   },
-  xfwLogin(){},
-  changeRole1(){
-    
-    this.setData({
-      roleUser:true,
-      roleOwner:false,
-    });
-    my.setStorageSync({
-        key: 'roleId', // 缓存数据的key
-        data: 8, // 要缓存的数据
-    });
+  xfwLogin(){
+
   },
-  changeRole2(){
-    if(this.data.roleId==7){
-      this.setData({
-      roleUser:false,
-      roleOwner:true,
+  changeRole1(){//切换为租客
+
+    this.setData({
+      isRoleUser:true
     });
+    my.setStorage({
+      key: 'currentIdentityIsUser', // 缓存数据的key
+      data: true, // 要缓存的数据
+      
+    });
+    
+  },
+  changeRole2(){//切换为房东或申请成为房东
+     roleId = my.getStorageSync({
+        key: 'roleId', // 缓存数据的key
+    }).data;
+    my.setStorage({
+      key: 'currentIdentityIsUser', // 缓存数据的key
+      data: false, // 要缓存的数据
+      
+    });
+    if(roleId==7){
+      this.setData({
+      isRoleUser:false
+    });
+    
     }else{
       my.navigateTo({
         url: '/pages/index/fangdongreg/fangdongreg',
@@ -269,12 +277,12 @@ Page({
     });
   },
   toContract(){
-    if(roleId==7&&this.data.roleOwner){
+    if(roleId==7&&!this.data.isRoleUser){
       my.navigateTo({
         url: '/pages/index/contract/contract?roleType=1',
       });
     }
-    if(roleId==7&&this.data.roleUser){
+    if(roleId==7&&this.data.isRoleUser){
       my.navigateTo({
         url: '/pages/index/contract/contract?roleType=2',
       });
@@ -289,6 +297,75 @@ Page({
     my.navigateTo({
       url: '/pages/index/more/more',
     });
+  },
+  //选择性别
+  selectSex(){
+    my.showActionSheet({
+      title: '性别选择',
+      items: ['男', '女'],
+      cancelButtonText: '取消',
+      success: (res) => {
+        if(res.index==0){
+          this.setData({
+            sexCode:0,
+            sex:'男'
+          });
+        }else if(res.index==1){
+          this.setData({
+            sexCode:1,
+            sex:'女'
+          });
+        }
+        console.log(res.index);
+      },
+    });
+  },
+  //选择城市
+  selectCity(){
+    my.chooseCity({
+      success: (res) => {
+        this.setData({
+          city:res.city,
+          cityCode:res.adCode
+        
+	      });
+      },
+    });
+  },
+  //选择区县
+  selectArea(){
+    if(this.data.cityCode==''){
+      my.alert({
+        title: '请先选择城市' 
+      });
+    }else{
+      var that=this;
+       my.httpRequest({
+      url: app.globalData.baseUrl+"IF/user/getAreaDist.do",
+      method: 'POST',
+      data: {
+        cityCode: this.data.cityCode,
+      },
+      dataType: 'json',
+      success: function(res) {
+       console.log(res.data);
+        if(res.data.success){
+          that.setData({
+            areaList:res.data.data,
+            showTop: true,
+          });
+          
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+    }
+    
   },
   //输入身份证
   bindIdCard(e){
@@ -321,6 +398,11 @@ Page({
   },
   //请求服务器完善信息
    complexUserInfo(){
+     if(this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
+       my.alert({
+         title: '请完善信息' 
+       });
+     }else{
      var that=this;
       my.httpRequest({
         url: app.globalData.baseUrl+'/IF/user/editUser.do',
@@ -331,6 +413,11 @@ Page({
         data: {
          userName:'13754327232',
          CertName:'张金飞',
+         sex:this.data.sexCode,
+         cityCode:this.data.cityCode,
+         cityName:this.data.city,
+         areaCode:this.data.areaId,
+         areaName:this.data.area,
          certNo:this.data.certNo,
          password:this.data.password,
          id:userId,
@@ -358,5 +445,20 @@ Page({
           my.hideLoading();
         }
       });
-   }
+     }
+   },
+   onPopupClose() {
+    this.setData({
+      showTop: false,
+    });
+  },
+  //获取选中地区
+  getIndex(e){
+    console.log(e.target.dataset.index);
+    this.setData({
+      area:this.data.areaList[e.target.dataset.index].distName,
+      areaId:this.data.areaList[e.target.dataset.index].distCode
+    });
+    this.onPopupClose();
+  }
 });

@@ -5,6 +5,7 @@ const app = getApp();
 Page({
   data: {
     userId:'',
+    certNo:'',//身份证信息，判断是否完善信息
     housedetails:'',
     housesupport:'',
     imgUrl:app.globalData.baseImgUrl_whj,
@@ -26,11 +27,14 @@ Page({
     var userId = my.getStorageSync({
           key: 'userId', // 缓存数据的key
         }).data;
-
+    var certNo = my.getStorageSync({
+          key: 'certNo', // 缓存数据的key
+        }).data;
     this.setData({
       id:option.id,
       rentType:option.rentType,
-      userId:userId
+      userId:userId,
+      certNo:certNo
     });
     console.log(this.data.id);
     console.log(this.data.rentType);
@@ -176,9 +180,9 @@ Page({
     })
   },
   toConfirmpage(){
-    if(!this.data.userId||this.data.userId==''){
+    if(!this.data.userId||this.data.userId==''||!this.data.certNo||this.data.certNo==''){
       my.alert({
-        title: '请先登录' 
+        title: '请先在个人主页登录或完善信息' 
       });
     }else{
       my.navigateTo({
@@ -189,9 +193,9 @@ Page({
   },
   //收藏或取消收藏
   collectOrUncollect(){
-    if(this.data.userId==''||!this.data.userId){
+    if(!this.data.userId||this.data.userId==''||!this.data.certNo||this.data.certNo==''){
       my.alert({
-        title: '请先登录' 
+        title: '请先在个人主页登录或完善信息' 
       });
     }else{
       if(this.data.isColect){//已收藏
@@ -323,9 +327,9 @@ Page({
     });
   },
   toComplaint(){
-    if(!this.data.userId||this.data.userId==''){
+    if(!this.data.userId||this.data.userId==''||!this.data.certNo||this.data.certNo==''){
       my.alert({
-        title: '请先登录' 
+        title: '请先在个人主页登录或完善信息' 
       });
     }else{
       my.navigateTo({

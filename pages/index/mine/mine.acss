@@ -353,6 +353,7 @@
   border-radius: 10rpx;
   height: 88rpx;
   font-size: 32rpx;
+  color: #333333;
 }
 
 .submitButton{
@@ -361,4 +362,20 @@
   color: white;
   border-radius: 10rpx;
   margin: 192rpx 24rpx 24rpx;
+}
+
+.areaItemClass{
+  border-bottom: #f6f6f6 2rpx; 
+  width: 750rpx;
+  text-align: center;
+  height: 88rpx;
+  background-color: white;
+  color: #333333;
+  font-size: 32rpx;
+  line-height: 88rpx;
+}
+
+/*不能更改，重写的样式*/
+.am-list-content {
+  text-align: center;
 }
