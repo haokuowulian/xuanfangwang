@@ -127,6 +127,6 @@
     <view class="operate-shoucang" ><view><image src="{{collectUrl}}" class="aixin-img" /><button class="buttonClass" onTap="collectOrUncollect" disabled="{{canClick}}" hover-class="none"></button></view></view>
     <view a:if="{{!isBespeak}}" class="operate-yuyue" onTap="toConfirmpage">预约看房</view>
     <view a:if="{{isBespeak}}" class="operate-yuyue" onTap="alertPromt">已预约</view>
-    <view class="operate-qianyue">立即签约</view>
+    <view class="operate-qianyue" onTap="toSigning">立即签约</view>
   </view>
 </view>

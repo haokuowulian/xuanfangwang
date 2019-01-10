@@ -18,20 +18,29 @@
       </view>
     </view>
   </view>
-  <view class="content-title">签约主体</view>
+  <view class="content-title">首次款项</view>
   <view class="page-content">
-    <view class="content">姓名<input class="inputClass" type="text" value="{{username}}" focus="false" onInput="bindNameInput"/></view>
-    <view class="content">性别
-      <picker onChange="bindPickerChange" value="{{index}}" range="{{sexarr}}">
-        <view class="row-extra">{{usersex}}</view>
-      </picker>
+
+    <view class="content1">
+      <view class="content-info">
+        <view>租金(月付2000.0元/月)</view>
+        <view class="content-info-p1">
+          <view>×1月</view>
+          <view>￥2000.0</view>
+        </view>
       </view>
-    <view class="content">身份证<input class="inputClass" type="number" value="{{cardId}}"  focus="false" onInput="bindCadeInput"/></view>
-    <view class="content" style="border:0">手机号<input class="inputClass" type="number" value="{{phone}}" focus="false" onInput="bindPhoneInput"/></view>
+      <view class="content-info1">
+        <view>押金</view>
+        <view>￥2000.0</view>
+      </view>
+    </view>
+
+    <view class="content">服务费<input class="inputClass" type="number" value="￥2000.0"  focus="false" onInput="bindCadeInput"/></view>
+    <view class="content" style="border:0">应付首次款项<input class="inputClass" type="number" value="￥6000.0" focus="false" onInput="bindPhoneInput"/></view>
  
    
   </view>
   
-  <view class="page-btn" onTap="toConfirm">确认信息</view>
+  <view class="page-btn" onTap="toConfirm">下一步</view>
 
 </view>

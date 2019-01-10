@@ -1,0 +1,88 @@
+.page{
+  width: 750rpx;
+  background-color: #ffffff;
+}
+.page-title{
+  height: 295rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.title-info{
+  height: 190rpx;
+  width: 680rpx;
+  padding-top: 55rpx;
+  padding-bottom: 50rpx;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.title-text{
+  font-size: 50rpx;
+  color: #333333;
+}
+.title-price{
+  font-size: 35rpx;
+  color: #ff8800;
+  margin-top: 55rpx;
+}
+.page-payway{
+  height: 220rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.payway-title{
+  height: 85rpx;
+  width: 680rpx;
+  padding-top: 75rpx;
+  padding-bottom: 60rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.payway-text1{
+  font-size: 35rpx;
+  color: #333333;
+}
+.payway-text2{
+  font-size: 25rpx;
+  color: #999999;
+  margin-top: 25rpx;
+}
+.payway-info{
+  height: 150rpx;
+  width: 680rpx;
+  background-color: #ffffff;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.info-box{
+  height: 150rpx;
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.info-select{
+  height: 40rpx;
+  width: 40rpx;
+  border-radius: 65rpx;
+  border: 1rpx solid #e6e6e6;
+  margin-right: 50rpx;
+}
+.payway-text{
+  font-size: 35rpx;
+  color: #333333;
+}
+.page-btn{
+  position:fixed;
+  bottom:0;
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

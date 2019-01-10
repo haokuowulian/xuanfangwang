@@ -33,7 +33,11 @@
     "pages/index/signing/signing",
     "pages/index/housedelivery/housedelivery",
     "pages/index/more/more",
-    "pages/index/ownersetting/ownersetting"
+    "pages/index/ownersetting/ownersetting",
+    "pages/index/signing/emergency_contact/emergency_contact",
+    "pages/index/signing/renting_date/renting_date",
+    "pages/index/signing/payway/payway",
+    "pages/index/signing/confirmagain/confirmagain"
   ],
   "window": {
     "defaultTitle": "My App"
