@@ -8,14 +8,18 @@
 </view>
 <view a:if="{{userlogin && !userCompleted}}">
   <view >
-    <input class="inputClass" type="idcard" placeholder="请输入本人身份证号" auto-focus onInput="bindIdCard" />
-    <input class="inputClass" type="text" placeholder="请输入密码" auto-focus  password onInput="bindPassword"/>
+    <view  onTap="selectSex"><input class="inputClass" placeholder="请选择性别"  value="{{sex}}" disabled="true"/></view>
+    <view  onTap="selectCity"><input class="inputClass" placeholder="请选择所在城市"  value="{{city}}" disabled="true"/></view>
+    <view  onTap="selectArea"><input class="inputClass" placeholder="请选择所在地区"  value="{{area}}" disabled="true"/></view>
+    <input class="inputClass" type="idcard" placeholder="请输入本人身份证号"  onInput="bindIdCard" />
+    <input class="inputClass" type="text" placeholder="请输入密码"   password onInput="bindPassword"/>
+    
     <button class="submitButton" type="default" onTap="submit">提交
     </button>
   </view>
 </view>
 <view a:if="{{userlogin && userCompleted}}">
-  <view a:if="{{roleOwner}}">
+  <view a:if="{{!isRoleUser}}">
     <view class="page-banner">
       <view class="banner-title font-color1">
         <view class="title-change" onTap="changeRole1">
@@ -119,7 +123,7 @@
       </view>
     </view>
   </view>
-  <view a:if="{{roleUser}}">
+  <view a:if="{{isRoleUser}}">
     <view class="page-banner1">
       <view class="banner-title1 font-color2">
         <!-- <view a:if="{{roleId==8}}" class="title-change" onTap="changeRole2">
@@ -228,4 +232,33 @@
       </view>
     </view>
   </view>
+</view>
+
+<view>
+  
+  <!-- <popup show="{{showTop}}" position="bottom" onClose="onPopupClose">
+    <view style="height: 200rpx; background: #fff; ">
+      <block a:for="{{areaList}}">
+      <list-item
+        align="middle"
+        index="{{index}}"
+        onClick="onItemClick"
+        key="items-{{index}}"
+        last="{{index === (items.length - 1)}}"
+      >
+      {{item.distName}}
+       
+      </list-item>
+    </block>
+     
+    </view>
+  </popup> -->
+<popup show="{{showTop}}" position="bottom" onClose="onPopupClose">
+    <scroll-view scroll-y="true" style="height: 400rpx;">
+       <block a:for="{{areaList}}" >
+         <button class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</button>
+       </block>
+      </scroll-view>
+  </popup>
+  
 </view>
