@@ -37,7 +37,8 @@
     "pages/index/signing/emergency_contact/emergency_contact",
     "pages/index/signing/renting_date/renting_date",
     "pages/index/signing/payway/payway",
-    "pages/index/signing/confirmagain/confirmagain"
+    "pages/index/signing/confirmagain/confirmagain",
+    "pages/index/signing/contract_confirm/contract_confirm"
   ],
   "window": {
     "defaultTitle": "My App"

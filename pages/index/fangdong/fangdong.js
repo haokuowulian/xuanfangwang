@@ -19,7 +19,9 @@ Page({
       url: '/pages/index/fangdongreg/fangdongreg',
     });
     }else{
-      alert('请先登录')
+      my.alert({
+        title: '请先登录' 
+      });
     }
   },
   toDelivery(){
