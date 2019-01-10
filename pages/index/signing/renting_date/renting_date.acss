@@ -1,0 +1,82 @@
+.page-date{
+  width: 750rpx;
+  height: 100vh;
+  background-color: #e7e7e7;
+  display: flex;
+  flex-direction: column;
+}
+.startDate{
+  height: 100rpx;
+}
+.startDate-text{
+  font-size: 25rpx;
+  color: #999999;
+  margin-top: 50rpx;
+  margin-left: 35rpx;
+}
+.begin-date{
+  height: 100rpx;
+  width: 750rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+.selected{
+  height: 34rpx;
+  width: 34rpx;
+  margin-left: 40rpx;
+  border-radius: 65rpx;
+  border: 1rpx solid #e6e6e6;
+}
+.selected1{
+  height: 34rpx;
+  width: 34rpx;
+  margin-left: 40rpx;
+  border-radius: 65rpx;
+  border: 1rpx solid #ffa800;
+}
+.date-text{
+  font-size: 30rpx;
+  color: #333333;
+  margin-left: 20rpx;
+}
+.startDate1{
+  height: 160rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 25rpx;
+}
+.startDate-text1{
+  margin-top: 30rpx;
+  margin-left: 35rpx;
+}
+.startDate-text2{
+  margin-top: 55rpx;
+  margin-left: 35rpx;
+  margin-bottom: 30rpx;
+}
+.choose{
+  height: 100rpx;
+  padding-bottom: 10rpx;
+}
+.choose-date{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100rpx;
+  /* padding-bottom: 10rpx; */
+  background-color: #ffffff;
+}
+.page-btn{
+  position:fixed;
+  bottom:0;
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

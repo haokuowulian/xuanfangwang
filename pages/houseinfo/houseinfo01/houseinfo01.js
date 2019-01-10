@@ -334,6 +334,17 @@ Page({
     }
     
   },
+  toSigning(){
+     if(!this.data.userId||this.data.userId==''){
+      my.alert({
+        title: '请先登录' 
+      });
+    }else{
+      my.navigateTo({
+      url: '/pages/index/signing/signing?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+    });
+    }
+  },
   
   
 });

@@ -66,6 +66,35 @@
   padding-left: 35rpx;
   padding-right: 35rpx;
 }
+.content1{
+  border-bottom: 1rpx solid #e6e6e6;
+  /* height: 180rpx; */
+  width: 680rpx;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content-info{
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.content-info1{
+  margin-top: 25rpx;
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.content-info-p1{
+  width: 200rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .content{
   border-bottom: 1rpx solid #e6e6e6;
   height: 100rpx;

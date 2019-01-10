@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="page-title">
+    <view class="title-info">
+      <view class="title-text">萧山宝龙城市广场轩南区5居室-01卧</view>
+      <view class="title-price">￥2563元每月</view>
+    </view>
+  </view>
+
+  <view class="page-payway">
+    <view class="payway-title">
+      <view class="payway-text1">支付方式</view>
+      <view class="payway-text2"> 请选择您支付房租的方式。</view>
+    </view>
+  </view>
+
+  <view class="payway-info">
+    <view class="info-box">
+      <view class="info-select"></view>
+      <view class="payway-text">押一付一</view>
+    </view>
+  </view>
+  <view class="payway-info">
+    <view class="info-box">
+      <view class="info-select"></view>
+      <view class="payway-text">押一付三</view>
+    </view>
+  </view>
+  <view class="payway-info">
+    <view class="info-box">
+      <view class="info-select"></view>
+      <view class="payway-text">押一付六</view>
+    </view>
+  </view>
+  <view class="payway-info">
+    <view class="info-box">
+      <view class="info-select"></view>
+      <view class="payway-text">押一付十二</view>
+    </view>
+  </view>
+  <view class="page-btn" onTap="toConfirm">确认付款方式</view>
+</view>

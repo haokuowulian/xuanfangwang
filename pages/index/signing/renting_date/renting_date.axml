@@ -1,0 +1,33 @@
+<view class="page-date">
+  <view class="startDate">
+    <view class="startDate-text">开始时间</view>
+  </view>
+  <view class="begin-date">
+    <view class="selected"></view>
+    <view class="date-text">20180903</view>
+  </view>
+  <view class="startDate1">
+    <view class="startDate-text1">*开始时间即起租日只能为今天</view>
+    <view class="startDate-text2">结束时间</view>
+  </view>
+  <!-- 结束时间：3、6、12 -->
+  <view class="choose">
+    <view class="choose-date">
+      <view class="selected1"></view>
+      <view class="date-text">20180903</view>
+    </view>
+  </view>
+  <view class="choose">
+    <view class="choose-date">
+      <view class="selected1"></view>
+      <view class="date-text">20180903</view>
+    </view>
+  </view>
+  <view class="choose">
+    <view class="choose-date">
+      <view class="selected1"></view>
+      <view class="date-text">20180903</view>
+    </view>
+  </view>
+  <view class="page-btn" onTap="toNext">下一步</view>
+</view>
