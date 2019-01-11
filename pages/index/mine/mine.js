@@ -300,11 +300,7 @@ Page({
       url: '/pages/index/more/more',
     });
   },
-  toTest(){
-    my.navigateTo({
-      url: '/pages/index/signing/renting_date/renting_date',
-    });
-  },
+ 
   //选择性别
   selectSex(){
     my.showActionSheet({

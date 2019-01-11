@@ -6,11 +6,17 @@ Page({
     date2:'',
     date3:'',
     endDate:'',
+    choose:1,
     choose1:false,
     choose2:false,
     choose3:false,
   },
-  onLoad() {},
+  onLoad() {
+    this.setData({
+      choose1:true,
+      choose:1,
+    });
+  },
   onShow(){
     this.getCurrentDate();
   },
@@ -23,6 +29,8 @@ Page({
           choose1:true,
           choose2:false,
           choose3:false,
+          choose:1,
+          endDate:that.data.date1,
         });
         break;
       case '2':
@@ -30,6 +38,8 @@ Page({
           choose1:false,
           choose2:true,
           choose3:false,
+          choose:2,
+          endDate:that.data.date2,
         });
         break;
       case '3':
@@ -37,18 +47,35 @@ Page({
           choose1:false,
           choose2:false,
           choose3:true,
+          choose:3,
+          endDate:that.data.date3,
         });
         break;
       default:
         that.setData({
-          choose1:false,
+          choose1:true,
           choose2:false,
           choose3:false,
+          choose:1,
+          endDate:that.data.date1,
         });
         break;
     }
   },
   toNext(){
+    var that=this;
+    my.setStorageSync({
+      key: 'udateType', // 缓存数据的key
+      data: that.data.choose, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'ustartDate', // 缓存数据的key
+      data: that.data.currentDate, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'uendtDate', // 缓存数据的key
+      data: that.data.endDate, // 要缓存的数据
+    });
     my.navigateTo({
      url: '/pages/index/signing/payway/payway',
     });

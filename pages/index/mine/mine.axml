@@ -178,7 +178,7 @@
           <view class="option-text">评价
           </view>
         </view>
-        <view class="option-content" onTap="toTest" >
+        <view class="option-content">
           <view>
             <image src="/image/mine/qianbao.png" class="option-img"/>
           </view>
