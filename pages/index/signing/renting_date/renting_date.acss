@@ -28,6 +28,14 @@
   margin-left: 40rpx;
   border-radius: 65rpx;
   border: 1rpx solid #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.selected-true{
+  height: 20rpx;
+  width: 20rpx;
+  background-color: #ff00ff;
 }
 .selected1{
   height: 34rpx;
@@ -35,6 +43,9 @@
   margin-left: 40rpx;
   border-radius: 65rpx;
   border: 1rpx solid #ffa800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .date-text{
   font-size: 30rpx;
@@ -79,4 +90,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.myselected{
+  height: 25rpx;
+  width: 25rpx;
+  background-color: #ff9900;
+  border-radius: 65rpx;
 }
