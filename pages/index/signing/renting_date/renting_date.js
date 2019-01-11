@@ -1,4 +1,8 @@
 const app = getApp();
+var date01;
+var date02;
+var date03;
+var startDate1;
 Page({
   data: {
     currentDate:'',
@@ -30,7 +34,7 @@ Page({
           choose2:false,
           choose3:false,
           choose:1,
-          endDate:that.data.date1,
+          endDate:date01,
         });
         break;
       case '2':
@@ -39,7 +43,7 @@ Page({
           choose2:true,
           choose3:false,
           choose:2,
-          endDate:that.data.date2,
+          endDate:date02,
         });
         break;
       case '3':
@@ -48,7 +52,7 @@ Page({
           choose2:false,
           choose3:true,
           choose:3,
-          endDate:that.data.date3,
+          endDate:date03,
         });
         break;
       default:
@@ -57,7 +61,7 @@ Page({
           choose2:false,
           choose3:false,
           choose:1,
-          endDate:that.data.date1,
+          endDate:date01,
         });
         break;
     }
@@ -70,7 +74,7 @@ Page({
     });
     my.setStorageSync({
       key: 'ustartDate', // 缓存数据的key
-      data: that.data.currentDate, // 要缓存的数据
+      data: startDate1, // 要缓存的数据
     });
     my.setStorageSync({
       key: 'uendtDate', // 缓存数据的key
@@ -83,10 +87,14 @@ Page({
   //获取当前日期
   getCurrentDate(){
     var startDate=app.getDate('yyyy年MM月dd日',0);
+    startDate1=app.getDate('yyyy-MM-dd',0);
     //获取三、六、十二个月后日期
-    var date1 = app.getFormateDate(0,3);
-    var date2 = app.getFormateDate(0,6);
-    var date3 = app.getFormateDate(0,12);
+    var date1 = app.getFormateDate('yyyy年MM月dd日',0,3);
+    date01 =app.getFormateDate('yyyy-MM-dd',0,3);
+    var date2 = app.getFormateDate('yyyy年MM月dd日',0,6);
+    date02 =app.getFormateDate('yyyy-MM-dd',0,6);
+    var date3 = app.getFormateDate('yyyy年MM月dd日',0,12);
+    date03 =app.getFormateDate('yyyy-MM-dd',0,12);
     this.setData({
       currentDate:startDate,
       date1:date1,

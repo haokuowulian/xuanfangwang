@@ -6,7 +6,7 @@ Page({
     rentType:0,
     username:'胡海',
     usersex:'男',
-    cardId:'34************23',
+    cardId:'333333333333333333',
     phone:'12345678921',
     sexarr:['男','女'],
     index:0,

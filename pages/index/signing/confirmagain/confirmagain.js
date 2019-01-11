@@ -18,6 +18,11 @@ Page({
     that.getMyData();
   },
   toConfirm(){
+    var that = this;
+    my.setStorageSync({
+      key: 'upayWay', // 缓存数据的key
+      data: that.data.payWay, // 要缓存的数据
+    });
     my.navigateTo({
      url: '/pages/index/signing/contract_confirm/contract_confirm',
     });
@@ -88,6 +93,7 @@ Page({
       pay:pay,
       allPay:allPay,
     });
+
   },
   bindChangeInput(e){
     var newfee = e.detail.value;

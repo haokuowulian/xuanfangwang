@@ -59,7 +59,7 @@ App({
       break;
     }
 },
- getFormateDate(y,m){
+ getFormateDate(dateFormate,y,m){
    var date=new Date();
     //年
     var Y = date.getFullYear()+y;
@@ -74,7 +74,17 @@ App({
     M = (M < 10 ? '0' + M : M);
     //日
     var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-    return Y+"年"+M+"月"+D+"日";
+    switch(dateFormate){
+      case "yyyy年MM月dd日":
+        return Y+"年"+M+"月"+D+'日';
+      break;
+      case "yyyy-MM-dd":
+        return Y+"-"+M+"-"+D;
+      break;
+      default:
+        return Y+"-"+M+"-"+D;;
+      break;
+    }
   },
    
 })

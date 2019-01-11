@@ -1,6 +1,15 @@
 Page({
-  data: {},
-  onLoad() {},
+  data: {
+    uname:'',
+    ucard:'',
+    startDate:'',
+    endDate:'',
+    houseInfo:'',
+    payway:'',
+  },
+  onLoad() {
+    this.getOrderInfo();
+  },
   toConfirm(){
     my.confirm({
       title: '确认合同',
@@ -20,5 +29,35 @@ Page({
         }
       },
     });
-  }
+  },
+  getOrderInfo(){
+    var that = this;
+    var ucard = my.getStorageSync({
+      key: 'ucard', // 缓存数据的key
+    }).data;
+    var uname= my.getStorageSync({
+      key: 'uname', // 缓存数据的key
+    }).data;
+    var startDate = my.getStorageSync({
+      key: 'ustartDate', // 缓存数据的key
+    }).data;
+    var endDate = my.getStorageSync({
+      key: 'uendtDate', // 缓存数据的key
+    }).data;
+    var houseInfo = my.getStorageSync({
+      key: 'uhouseInfo', // 缓存数据的key
+    }).data;
+    var payway = my.getStorageSync({
+      key: 'upayWay', // 缓存数据的key
+    }).data;
+
+    that.setData({
+      uname:uname,
+      ucard:ucard,
+      startDate:startDate,
+      endDate:endDate,
+      houseInfo:houseInfo,
+      payway:payway,
+    });
+  },
 });
