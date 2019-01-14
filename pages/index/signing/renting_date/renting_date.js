@@ -68,6 +68,7 @@ Page({
   },
   toNext(){
     var that=this;
+    console.log(that.data.endDate)
     my.setStorageSync({
       key: 'udateType', // 缓存数据的key
       data: that.data.choose, // 要缓存的数据
@@ -77,14 +78,14 @@ Page({
       data: startDate1, // 要缓存的数据
     });
     my.setStorageSync({
-      key: 'uendtDate', // 缓存数据的key
+      key: 'uendDate', // 缓存数据的key
       data: that.data.endDate, // 要缓存的数据
     });
     my.navigateTo({
      url: '/pages/index/signing/payway/payway',
     });
   },
-  //获取当前日期
+  //获取当前3、6、12个月后日期
   getCurrentDate(){
     var startDate=app.getDate('yyyy年MM月dd日',0);
     startDate1=app.getDate('yyyy-MM-dd',0);
@@ -95,11 +96,13 @@ Page({
     date02 =app.getFormateDate('yyyy-MM-dd',0,6);
     var date3 = app.getFormateDate('yyyy年MM月dd日',0,12);
     date03 =app.getFormateDate('yyyy-MM-dd',0,12);
+    console.log(date01+'-----------')
     this.setData({
       currentDate:startDate,
       date1:date1,
       date2:date2,
       date3:date3,
+      endDate:date01,
     });
     console.log(startDate)
   },

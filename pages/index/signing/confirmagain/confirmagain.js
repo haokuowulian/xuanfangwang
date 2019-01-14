@@ -23,6 +23,14 @@ Page({
       key: 'upayWay', // 缓存数据的key
       data: that.data.payWay, // 要缓存的数据
     });
+    my.setStorageSync({
+      key: 'ufee', // 缓存数据的key
+      data: that.data.fee, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'uallPay', // 缓存数据的key
+      data: that.data.allPay, // 要缓存的数据
+    });
     my.navigateTo({
      url: '/pages/index/signing/contract_confirm/contract_confirm',
     });

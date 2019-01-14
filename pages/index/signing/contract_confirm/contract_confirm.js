@@ -20,8 +20,26 @@ Page({
         console.log(res)
         if(res.confirm){
           my.alert({
-            title: '合同签订成功！' 
+            title: '合同签订成功！'
           });
+          // my.removeStorage({
+          //   key: 'ustartDate', // 缓存数据的key
+          //   success: (res) => {
+          //     console.log('remove success!')
+          //   },
+          // });
+          // my.removeStorage({
+          //   key: 'uendDate', // 缓存数据的key
+          //   success: (res) => {
+          //     console.log('remove success!')
+          //   },
+          // });
+          // my.removeStorage({
+          //   key: 'ustartDate', // 缓存数据的key
+          //   success: (res) => {
+          //     console.log('remove success!')
+          //   },
+          // });
         }else{
           my.alert({
             title: '合同取消签订！' 
