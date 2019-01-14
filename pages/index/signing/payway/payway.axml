@@ -1,8 +1,11 @@
 <view class="page">
   <view class="page-title">
     <view class="title-info">
-      <view class="title-text">萧山宝龙城市广场轩南区5居室-01卧</view>
-      <view class="title-price">￥2563元每月</view>
+      <view a:if="{{rentType==1}}" class="title-text">{{houseInfo.apartment.apartmentName}}{{houseInfo.buildingUnit}}{{houseInfo.houseNo}}</view>
+      <view a:if="{{rentType==2}}" class="title-text">{{houseInfo.house.apartment.apartmentName}}{{houseInfo.house.buildingUnit}}{{houseInfo.roomName}}</view>
+
+      <view a:if="{{rentType==1}}" class="title-price">￥{{houseInfo.entireRents}}元每月</view>
+      <view a:if="{{rentType==2}}" class="title-price">￥{{houseInfo.rents}}元每月</view>
     </view>
   </view>
 
@@ -14,28 +17,55 @@
   </view>
 
   <view class="payway-info">
-    <view class="info-box">
-      <view class="info-select"></view>
+    <view class="info-box" onTap="onChoose" id='1'>
+      <view class="info-select">
+        <view a:if="{{selected1}}" class="selected"></view>
+      </view>
       <view class="payway-text">押一付一</view>
     </view>
   </view>
   <view class="payway-info">
-    <view class="info-box">
-      <view class="info-select"></view>
+    <view class="info-box" onTap="onChoose" id='2'>
+      <view class="info-select">
+        <view a:if="{{selected2}}" class="selected"></view>
+      </view>
       <view class="payway-text">押一付三</view>
     </view>
   </view>
-  <view class="payway-info">
-    <view class="info-box">
-      <view class="info-select"></view>
+
+  <view a:if="{{dateType>=2}}" class="payway-info">
+    <view class="info-box" onTap="onChoose" id='3'>
+      <view class="info-select">
+        <view a:if="{{selected3}}" class="selected"></view>
+      </view>
       <view class="payway-text">押一付六</view>
     </view>
   </view>
-  <view class="payway-info">
+  <view a:else class="payway-info">
     <view class="info-box">
-      <view class="info-select"></view>
+      <view class="info-select">
+        <view a:if="{{true}}" class="unselected"></view>
+      </view>
+      <view class="payway-text0">押一付六</view>
+    </view>
+  </view>
+
+  <view a:if="{{dateType>=3}}" class="payway-info">
+    <view class="info-box" onTap="onChoose" id='4'>
+      <view class="info-select">
+        <view a:if="{{selected4}}" class="selected"></view>
+      </view>
       <view class="payway-text">押一付十二</view>
     </view>
   </view>
+  <view a:else class="payway-info">
+    <view class="info-box">
+      <view class="info-select">
+        <view a:if="{{true}}" class="unselected"></view>
+      </view>
+      <view class="payway-text0">押一付十二</view>
+    </view>
+  </view>
+
   <view class="page-btn" onTap="toConfirm">确认付款方式</view>
 </view>

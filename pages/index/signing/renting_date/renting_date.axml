@@ -3,8 +3,10 @@
     <view class="startDate-text">开始时间</view>
   </view>
   <view class="begin-date">
-    <view class="selected"></view>
-    <view class="date-text">20180903</view>
+    <view class="selected">
+      <view class="selected-true"></view>
+    </view>
+    <view class="date-text">{{currentDate}}</view>
   </view>
   <view class="startDate1">
     <view class="startDate-text1">*开始时间即起租日只能为今天</view>
@@ -12,21 +14,27 @@
   </view>
   <!-- 结束时间：3、6、12 -->
   <view class="choose">
-    <view class="choose-date">
-      <view class="selected1"></view>
-      <view class="date-text">20180903</view>
+    <view class="choose-date" onTap="onChoose" id='1'>
+      <view class="selected1">
+        <view a:if="{{choose1}}" class="myselected"></view>
+      </view>
+      <view class="date-text">{{date1}}</view>
     </view>
   </view>
   <view class="choose">
-    <view class="choose-date">
-      <view class="selected1"></view>
-      <view class="date-text">20180903</view>
+    <view class="choose-date" onTap="onChoose" id='2'>
+      <view class="selected1">
+        <view a:if="{{choose2}}" class="myselected"></view>
+      </view>
+      <view class="date-text">{{date2}}</view>
     </view>
   </view>
   <view class="choose">
-    <view class="choose-date">
-      <view class="selected1"></view>
-      <view class="date-text">20180903</view>
+    <view class="choose-date" onTap="onChoose" id='3'>
+      <view class="selected1">
+        <view a:if="{{choose3}}" class="myselected"></view>
+      </view>
+      <view class="date-text">{{date3}}</view>
     </view>
   </view>
   <view class="page-btn" onTap="toNext">下一步</view>

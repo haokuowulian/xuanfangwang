@@ -1,4 +1,5 @@
 var form_data;
+const app=getApp();
 Page({
   data: {
     upload1:false,
@@ -42,7 +43,7 @@ Page({
           var image=tempFilePaths[0];
           //图片上传
            my.uploadFile({
-            url: 'http://192.168.1.89:8080/LLGY/IF/upload/uploadSingleFile.do',
+            url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
             fileType: 'image',
             fileName: 'file',
             formData:{savePrefix:'landlord'},
@@ -73,7 +74,7 @@ Page({
           var image=tempFilePaths[0];
            //图片上传
            my.uploadFile({
-            url: 'http://192.168.1.89:8080/LLGY/IF/upload/uploadSingleFile.do',
+            url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
             fileType: 'image',
             fileName: 'file',
             formData:{savePrefix:'landlord'},
@@ -104,7 +105,7 @@ Page({
           var image=tempFilePaths[0];
            //图片上传
            my.uploadFile({
-            url: 'http://192.168.1.89:8080/LLGY/IF/upload/uploadSingleFile.do',
+            url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
             fileType: 'image',
             fileName: 'file',
             formData:{savePrefix:'landlord'},
@@ -137,8 +138,15 @@ Page({
         }
       }
       var landlord=form_data;
-      my.httpRequest({
-        url: 'http://192.168.1.89:8080/LLGY/IF/landlord/saveLandlord.do', // 目标服务器url
+      my.confirm({
+        title: '温馨提示',
+        content: '确认提交审核？',
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        success: (res) => {
+          if(res.confirm){
+            my.httpRequest({
+        url: app.globalData.baseUrl+'IF/landlord/saveLandlord.do', // 目标服务器url
         data:{
           userId:that.data.uid,
           name:e.detail.value.name,
@@ -178,6 +186,12 @@ Page({
           console.log('表单提交失败')
         },
       });
+          }else{
+
+          }
+        },
+      });
+      
     }else{
       console.log('请填写完整')
       alert('请填写完整')
@@ -194,7 +208,7 @@ Page({
     console.log('执行上传文件');
     var that = this;
     my.uploadFile({
-          url: 'http://192.168.1.89:8080/LLGY/IFBaseAction/landlord/saveLandlord.do',
+          url: app.globalData.baseUrl+'IFBaseAction/landlord/saveLandlord.do',
           fileType: 'image',
           fileName: 'file',
           formData:{form_data},
@@ -216,8 +230,10 @@ Page({
     this.setData({
       upload1:false,
       upload2:false,
+      upload3:false,
       img1:'',
       img2:'',
+      img3:'',
       images:[],
     });
   },

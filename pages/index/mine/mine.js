@@ -300,6 +300,7 @@ Page({
       url: '/pages/index/more/more',
     });
   },
+ 
   //选择性别
   selectSex(){
     my.showActionSheet({

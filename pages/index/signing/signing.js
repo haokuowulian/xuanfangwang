@@ -6,30 +6,35 @@ Page({
     rentType:0,
     username:'胡海',
     usersex:'男',
-    cardId:'34************23',
+    cardId:'333333333333333333',
     phone:'12345678921',
     sexarr:['男','女'],
     index:0,
-
   },
   onLoad(option) {
     this.setData({
       houseDetail:JSON.parse(option.houseDetail),
       rentType:option.rentType
     });
+    my.setStorageSync({
+      key: 'urentType', // 缓存数据的key
+      data: option.rentType, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'uhouseInfo', // 缓存数据的key
+      data: JSON.parse(option.houseDetail), // 要缓存的数据
+    });
     
   },
  
   toConfirm(){
-    if(this.data.contacts==''||this.data.contactWay==''||this.data.expectTime==''||this.data.leaveWord==''){
+    if(this.data.username==''||this.data.usersex==''||this.data.cardId==''||this.data.phone==''){
       my.alert({
         title: '请完善信息' 
       });
     }else{
       this.submit();
-   
     }
-    
   },
 
   //确认联系人
@@ -63,69 +68,32 @@ Page({
   
   //提交信息
   submit(){
+    var that=this;
     console.log('信息确认提交')
+    my.setStorageSync({
+      key: 'uname', // 缓存数据的key
+      data: that.data.username, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'usex', // 缓存数据的key
+      data: that.data.usersex, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'usex', // 缓存数据的key
+      data: that.data.usersex, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'ucard', // 缓存数据的key
+      data: that.data.cardId, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'uphone', // 缓存数据的key
+      data: that.data.phone, // 要缓存的数据
+    });
+
     my.navigateTo({
       url: '/pages/index/signing/emergency_contact/emergency_contact',
     });
-    // my.showLoading();
-    // var userId = my.getStorageSync({
-    //  key: 'userId', // 缓存数据的key
-    // }).data;
-    // var apartmentId='';
-    // var houseId='';
-    // var fdid='';
-    // var roomId='';
-    // if(this.data.rentType==1){
-    //   apartmentId=this.data.houseDetail.apartmentId;
-    //   houseId=this.data.houseDetail.id;
-    //   fdid=this.data.houseDetail.landlordId;
-    // }else if(this.data.rentType==2){
-    //   apartmentId=this.data.houseDetail.house.apartment.id;
-    //   houseId=this.data.houseDetail.houseId;
-    //   fdid=this.data.houseDetail.house.landlordId;
-    //   roomId=this.data.houseDetail.id
-    // }
-    //  var that=this;
-    //  my.httpRequest({
-    //   url: app.globalData.baseUrl+"IF/bespeak/saveBespeak.do",
-    //   method: 'POST',
-    //   data: {
-    //     apartmentId: apartmentId,
-    //     houseId: houseId,
-    //     rentType:that.data.rentType,
-    //     contacts:that.data.contacts,
-    //     contactWay:that.data.contactWay,
-    //     expectedTime:that.data.expectTime,
-    //     leaveWord:that.data.leaveWord,
-    //     fdid:fdid,
-    //     uid:userId,
-    //     roomId:roomId
-    //   },
-    //   dataType: 'json',
-    //   success: function(res) {
-    //     console.log(res.data);
-    //     if(res.data.success){
-    //       my.hideLoading();
-    //       my.navigateTo({
-    //         url: '/pages/index/submitresult/submitresult',
-    //     });
-    //     }else{
-    //       my.alert({
-    //         title: res.data.message 
-    //       });
-    //     }
-        
-    //   },
-    //   fail: function(res) {
-    //     console.log(res);
-    //     my.alert({
-    //         title: '预约失败'
-    //       });
-    //     my.hideLoading();
-    //   },
-    //   complete: function(res) {
-    //     my.hideLoading();
-    //   }
-    // });
+   
   }
 });

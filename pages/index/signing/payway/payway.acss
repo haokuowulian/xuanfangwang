@@ -69,10 +69,29 @@
   border-radius: 65rpx;
   border: 1rpx solid #e6e6e6;
   margin-right: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.selected{
+  height: 26rpx;
+  width: 26rpx;
+  border-radius: 65rpx;
+  background-color: #ff8800;
+}
+.unselected{
+  height: 26rpx;
+  width: 26rpx;
+  border-radius: 65rpx;
+  background-color: #DDDDDD;
 }
 .payway-text{
   font-size: 35rpx;
   color: #333333;
+}
+.payway-text0{
+  font-size: 35rpx;
+  color: #DDDDDD;
 }
 .page-btn{
   position:fixed;
