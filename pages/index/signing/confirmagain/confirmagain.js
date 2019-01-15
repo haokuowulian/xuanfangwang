@@ -29,7 +29,11 @@ Page({
     });
     my.setStorageSync({
       key: 'uallPay', // 缓存数据的key
-      data: that.data.allPay, // 要缓存的数据
+      data: that.data.allPay*1, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'upayment', // 缓存数据的key
+      data: that.data.month, // 要缓存的数据
     });
     my.navigateTo({
      url: '/pages/index/signing/contract_confirm/contract_confirm',
@@ -54,7 +58,10 @@ Page({
     if(rentType==2){
       var price = houseInfo.rents;
     }
-    
+    my.setStorageSync({
+      key: 'udeposit', // 缓存数据的key
+      data: price, // 要缓存的数据
+    });
     switch(payType){
       case 1:
         month=1;
