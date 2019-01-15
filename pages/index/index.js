@@ -18,7 +18,7 @@ Page({
     nearByHouseList:[],
     lag:0,
     lng:0,
-    distance:28000
+    distance:20000
 
   },
   onLoad(){

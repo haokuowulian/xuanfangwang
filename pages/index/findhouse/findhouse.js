@@ -1,181 +1,157 @@
-const housemarkers1 = [
-  {
-  id: 0,
-  latitude: 30.1188800000,
-  longitude: 120.1814500000,
-  width: 1,
-  height: 1,
-  // iconPath: '/image/mark_bs.png',
-  "label":{
-    content:"￥5500起",
-    color:"#ffffff",
-    fontSize:16,
-    borderRadius:5,
-    bgColor:"#FF9900",
-    padding:12,
-    display:'ALWAYS',
-  },
-  markerLevel: 2
-},
-  {
-  id: 1,
-  latitude: 30.1048400000,
-  longitude: 120.1902000000,
-  width: 1,
-  height: 1,
-  // iconPath: '/image/mark_bs.png',
-  "label":{
-    content:"￥1800起",
-	  color:"#ffffff",
-  	fontSize:16,
-	  borderRadius:5,
-  	bgColor:"#FF9900",
-  	padding:12,
-    display:'ALWAYS',
-  },
-  markerLevel: 2
-},
-{
-  id: 2,
-  latitude: 30.1124300000,
-  longitude: 120.1888300000,
-  width: 1,
-  height: 1,
-  // iconPath: '/image/mark_bs.png',
-  "label":{
-    content:"￥1980起",
-    color:"#ffffff",
-    fontSize:16,
-    borderRadius:5,
-    bgColor:"#FF9900",
-    padding:10,
-    display:'ALWAYS',
-  },
-  markerLevel: 2
-},
-];
+const app = getApp();
 
 
-const hotels = [
-  { 
-    id: 10001,
-    latitude: 30.1119500000,
-    longitude: 120.1863200000,
-    width: 1,
-    height: 1,
-    // iconPath: '/image/mark_bs.png',
-  "label":{
-    content:"￥1980起",
-    color:"#ffffff",
-    fontSize:16,
-    borderRadius:10,
-    bgColor:"#FF9900",
-    padding:10,
-    display:'ALWAYS',
-    
-  },
-  markerLevel: 2
-}
-]
-// const longitude = 120.186984;
-// const latitude = 30.112627;
 const includePoints = [{
   latitude: 30.266786,
   longitude: 120.10675,
 }];
 
-var circles=[]
+
 
 Page({
   data: {
-    scale: 15,
-    longitude:'',
-    latitude:'',
-    includePoints,
-    circles,
-    markers:'',
-    titleCss1:true,
-    titleCss2:false,
-    location:'杭州市萧山区湘湖科创园',
-    distance:'1km',
-    distance1:false,
-    distance2:false,
-    distance3:false,
-    distance4:false,
-    distance5:false,
+     scale: 11,
+    lng: '',
+    lat: '',
+    nearByHouseList:[],
+    circles:[],
+    markers: '',
+    titleCss1: true,
+    titleCss2: false,
+    distance: 20000,
+    distance1: false,
+    distance2: false,
+    distance3: false,
+    distance4: false,
+    distance5: false,
     hasLocation: false,
-    housemenu:false,
-    housecount:'3',
-    tabdisplay1:true,
-    tabdisplay2:false,
-    map1:true,
-    map2:false,
+    housemenu: false,
+    housecount: 0,
+    map1: true,
+    map2: false,
   },
   onReady() {
     // 使用 my.createMapContext 获取 map 上下文
     this.mapCtx = my.createMapContext('map');
     
   },
-  onLoad(){
-    
-    this.getLocation();
-    this.setData({
-      markers:housemarkers1,
-    });
+  onLoad ( )
+  {
+   this.getLocation();
+   
   },
-  getLocation() {
-    var that = this;
-    // my.showLoading();
+
+ 
+  //获取当前位置
+ getLocation(){
+    var that=this;
     my.getLocation({
+      type:2,
       success(res) {
-        // my.hideLoading();
-        console.log(res)
-        console.log(res.longitude)
-        console.log(res.latitude)
-        that.setData({
-          hasLocation: true,
-          scale: 15,
-          longitude:res.longitude,
-          latitude:res.latitude,
-          circles:[{
-            longitude:res.longitude,
-            latitude:res.latitude,
+        my.hideLoading();
+       that.setData({
+         lng:res.longitude,
+         lat:res.latitude,
+         circles: [ {
+            longitude: res.longitude,
+            latitude: res.latitude,
             fillColor: '#0099FF33',
-            radius: 1000,
-            strokeWidth:3,
-          }]
-        })
-        circles = [{
-            longitude:res.longitude,
-            latitude:res.latitude,
-            fillColor: '#0099FF33',
-            radius: 1000,
-            strokeWidth:3,
-          }]
-          console.log(circles)
+            radius: that.data.distance,
+            strokeWidth: 3,
+          } ]
+       });
+       
+        that.getNearByHousing();
+        
       },
       fail() {
         my.hideLoading();
         my.alert({ title: '定位失败' });
       },
     })
+ },
+  //获取附近房源
+  getNearByHousing(){
+     var that=this;
+     my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/homePage/getHomeHouseIF.do",
+      method: 'POST',
+      data: {
+        lng: this.data.lng,
+        lat: this.data.lat,
+        distance:this.data.distance
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+          that.setData({
+            // houseNum:res.data.count,
+            nearByHouseList:res.data.data,
+            housecount:res.data.data.length
+          });
+          that.setMarkers();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
   },
-  regionchange(e) {
-    console.log('regionchange', e);
+  setMarkers(){
+     var houseMarkers=[];
+    for(var i=0;i<this.data.nearByHouseList.length;i++){
+      var obj={
+        id:i+1,
+        latitude: this.data.nearByHouseList[i].latitude,
+        longitude: this.data.nearByHouseList[i].longitude,
+        width: 1,
+        height: 1,
+        // iconPath: '/image/mark_bs.png',
+        "label": {
+          content: this.data.nearByHouseList[i].apartment.apartmentName+this.data.nearByHouseList[i].buildingUnit+this.data.nearByHouseList[i].houseNo,
+          color: "#ffffff",
+          fontSize: 16,
+          borderRadius: 5,
+          bgColor: "#fd9f28",
+          padding: 10,
+          display: 'ALWAYS',
+        },
+        markerLevel: -1
+      }
+      houseMarkers.push(obj);
+    }
+   
+    this.setData( {
+      markers: houseMarkers,
+      distance:this.data.distance
+    } );
   },
-  markertap(e) {
-    console.log('marker tap', e);
+  regionchange ( e )
+  {
+    console.log( 'regionchange', e );
   },
-  controltap(e) {
-    console.log('control tap', e);
+  markertap ( e )
+  {
+    console.log( 'marker tap', e );
   },
-  tap() {
-    console.log('tap');
+  controltap ( e )
+  {
+    console.log( 'control tap', e );
   },
-  callouttap(e) {
-    console.log('callout tap', e);
+  tap ()
+  {
+    console.log( 'tap' );
   },
-  mapMoveToLocation() {
+  callouttap ( e )
+  {
+    console.log( 'callout tap', e );
+  },
+  mapMoveToLocation ()
+  {
     this.mapCtx.moveToLocation();
   },
 

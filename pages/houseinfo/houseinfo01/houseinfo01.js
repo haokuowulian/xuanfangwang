@@ -341,7 +341,7 @@ Page({
   toSigning(){
      if(!this.data.userId||this.data.userId==''){
       my.alert({
-        title: '请先登录' 
+        title: '请先在个人主页登录或完善信息' 
       });
     }else{
       my.navigateTo({

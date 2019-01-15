@@ -6,6 +6,13 @@
   flex-direction: column;
   align-items: center;
 }
+.imageClass{
+  margin-top: 27rpx;
+  margin-bottom: 150rpx;
+  margin-left: 27rpx;
+  width: 696rpx;
+  height: 568rpx;
+}
 .banner-title{
   height: 100rpx;
   width: 690rpx;
@@ -330,14 +337,15 @@
   background-color: #ffffff;
   width: 750rpx;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .btn-ant{
   height: 100rpx;
-  width: 500rpx;
+  line-height: 100rpx;
+  width: 650rpx;
+  margin-left: 50rpx;
+  background-color: #108ee9;
+  color: white;
+  border-radius: 12rpx;
 }
 .btn-xfw{
   height: 100rpx;

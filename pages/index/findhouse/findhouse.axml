@@ -2,11 +2,11 @@
   
   
    <!-- <cover-view></cover-view> a:if="{{map1}}"-->
-  <view class="view-map">
-    <map a:if="{{map1}}"
+ <view class="view-map">
+    <map 
         id="map" 
-        longitude="{{longitude}}"
-        latitude="{{latitude}}"
+        longitude="{{lng}}"
+        latitude="{{lat}}"
         scale="{{scale}}"
         controls="{{controls}}"
         onControlTap="controltap"
@@ -26,7 +26,7 @@
         <cover-view class="title2 {{titleCss2?'title-click':''}}" onTap="titleClick2">酒店</cover-view>
       </cover-view> -->
       <!-- 租房 -->
-      <cover-view a:if="{{tabdisplay1}}" class="map-housecount">
+      <cover-view  class="map-housecount">
         <cover-image src="/image/icon/santiaogang.png" class="dingwei-img" onTap="houseCountClick"/>
       </cover-view>
       <cover-view class="housecount {{housemenu?'show':'disappear'}}">
@@ -37,10 +37,10 @@
             <cover-view>当前共有</cover-view><cover-view class="housecount-number">{{housecount}}</cover-view><cover-view>套房源</cover-view>
           </cover-view>
       </cover-view>
-      <cover-view a:if="{{tabdisplay1}}" class="map-dinwei">
+      <cover-view  class="map-dinwei">
         <cover-image src="/image/icon/dingwei.png" class="dingwei-img" onTap="mapMoveToLocation"/>
       </cover-view>
-      <cover-view a:if="{{tabdisplay1}}" class="search-distance" onTap="searchHouse">
+      <cover-view  class="search-distance" onTap="searchHouse">
         <cover-view class="search-sousuo" onTap="searchHouse">
           <cover-image src="/image/icon/sousuo-hotel.png" class="sousuo-img"/>
         </cover-view>
@@ -48,7 +48,7 @@
       </cover-view>
      
     <!-- 酒店 -->
-    <map a:if="{{map2}}"
+    <!-- <map a:if="{{map2}}"
         id="map" 
         longitude="{{longitude}}"
         latitude="{{latitude}}"
@@ -76,7 +76,7 @@
         <cover-image src="/image/icon/sousuo-hotel.png" class="sousuo-img"/>
       </cover-view>
       <cover-view class="search-text">搜索或根据条件检索酒店</cover-view>
-    </cover-view>
+    </cover-view> -->
   </view>
 </view>
 

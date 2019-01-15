@@ -73,7 +73,8 @@
       <block a:for="{{houseDetail.house.rooms}}" >
         <view class="roomlist">
           <view class="roomlist-info1">{{item.roomName}}</view>
-          <view class="roomlist-info1">{{item.status}}</view>
+          <view a:if="{{item.status==1}}" class="roomlist-info1">待租</view>
+          <view a:if="{{item.status==100}}" class="roomlist-info1">已租</view>
           <view class="roomlist-info2">{{item.rents}}元/月</view>
           <!-- <view class="roomlist-info2" data-roomid="{{list.id}}">{{list.houseinfo}}</view> -->
         </view>

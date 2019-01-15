@@ -4,6 +4,7 @@
 .viewClass{
   padding-bottom: 150rpx;
 }
+
 .houseinfo-p1{
   /* height: 1175rpx; */
   width: 750rpx;
