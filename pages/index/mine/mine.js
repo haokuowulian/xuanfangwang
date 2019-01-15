@@ -450,7 +450,7 @@ Page({
             that.setData({
               userCompleted:true,
               userlogin:true,
-              headimg:avatar,
+              headimg:that.data.headimg,
               userName:nickName
             });
             
