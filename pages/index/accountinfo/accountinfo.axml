@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="page-title">
+    账号管理
+  </view>
+  <view class="info">
+    <view>用户名</view>
+    <view>胡海</view>
+  </view>
+  <view class="info">
+    <view>手机号</view>
+    <view>12345678901</view>
+  </view>
+  <view class="info">
+    <view>邮箱</view>
+    <view>未绑定</view>
+  </view>
+  <view class="info">
+    <view>修改密码</view>
+    <view>去修改</view>
+  </view>
+</view>

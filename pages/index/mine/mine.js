@@ -114,7 +114,9 @@ Page({
             },
             dataType: 'json',
             success: (res) => {
+              console.log('---------------------------');
                console.log(res);
+               console.log('---------------------------');
                my.setStorageSync({
                  key: 'userId', // 缓存数据的key
                  data: res.data.info.id, // 要缓存的数据
@@ -135,9 +137,21 @@ Page({
                  key: 'nickName', // 缓存数据的key
                  data: res.data.info.nickName, // 要缓存的数据
                });
-                my.setStorageSync({
+               my.setStorageSync({
                  key: 'roleId', // 缓存数据的key
                  data: res.data.info.roleId, // 要缓存的数据
+               });
+               my.setStorageSync({
+                 key: 'certName', // 缓存数据的key
+                 data: res.data.info.certName, // 要缓存的数据
+               });
+               my.setStorageSync({
+                 key: 'phone', // 缓存数据的key
+                 data: res.data.info.userName, // 要缓存的数据
+               });
+               my.setStorageSync({
+                 key: 'sex', // 缓存数据的key
+                 data: res.data.info.sex, // 要缓存的数据
                });
                if(res.data.info.roleId==8){//租客
                  if(res.data.info.certNo&&res.data.info.certNo!=''){//已完善信息
@@ -300,6 +314,11 @@ Page({
       url: '/pages/index/more/more',
     });
   },
+  toAccountInfo(){
+    my.navigateTo({
+      url: '/pages/index/accountinfo/accountinfo',
+    });
+  },
  
   //选择性别
   selectSex(){
@@ -414,8 +433,8 @@ Page({
               'content-type': 'application/json'
             },
         data: {
-         userName:'13754327232',
-         CertName:'张金飞',
+        //  userName:'13754327232',
+        //  CertName:'张金飞',
          sex:this.data.sexCode,
          cityCode:this.data.cityCode,
          cityName:this.data.city,
