@@ -349,6 +349,10 @@ Page({
     });
     }
   },
-  
+  onPaymentMethod(){
+    my.navigateTo({
+      url: '/pages/houseinfo/payment_method/payment_method?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+    });
+  },
   
 });

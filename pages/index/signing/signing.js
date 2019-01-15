@@ -4,10 +4,10 @@ Page({
     houseDetail:null,
     imgUrl:app.globalData.baseImgUrl_whj,
     rentType:0,
-    username:'胡海',
-    usersex:'男',
-    cardId:'333333333333333333',
-    phone:'12345678921',
+    username:'',
+    usersex:'',
+    cardId:'',
+    phone:'',
     sexarr:['男','女'],
     index:0,
   },
@@ -24,9 +24,36 @@ Page({
       key: 'uhouseInfo', // 缓存数据的key
       data: JSON.parse(option.houseDetail), // 要缓存的数据
     });
-    
+    this.getUserInfo();
   },
- 
+  
+  getUserInfo(){
+    var username = my.getStorageSync({
+     key: 'certName', // 缓存数据的key
+    }).data;
+    var sex = my.getStorageSync({
+     key: 'sex', // 缓存数据的key
+    }).data;
+    var cardId = my.getStorageSync({
+     key: 'certNo', // 缓存数据的key
+    }).data;
+    var usersex;
+    if(sex==0){
+      usersex='男';
+    }else{
+      usersex='女';
+    }
+    var phone = my.getStorageSync({
+     key: 'phone', // 缓存数据的key
+    }).data;
+    this.setData({
+      username:username,
+      usersex:usersex,
+      cardId:cardId,
+      phone:phone,
+    });
+  },
+
   toConfirm(){
     if(this.data.username==''||this.data.usersex==''||this.data.cardId==''||this.data.phone==''){
       my.alert({
@@ -78,10 +105,10 @@ Page({
       key: 'usex', // 缓存数据的key
       data: that.data.usersex, // 要缓存的数据
     });
-    my.setStorageSync({
-      key: 'usex', // 缓存数据的key
-      data: that.data.usersex, // 要缓存的数据
-    });
+    // my.setStorageSync({
+    //   key: 'usex', // 缓存数据的key
+    //   data: that.data.usersex, // 要缓存的数据
+    // });
     my.setStorageSync({
       key: 'ucard', // 缓存数据的key
       data: that.data.cardId, // 要缓存的数据
@@ -92,7 +119,8 @@ Page({
     });
 
     my.navigateTo({
-      url: '/pages/index/signing/emergency_contact/emergency_contact',
+      // url: '/pages/index/signing/emergency_contact/emergency_contact',
+      url: '/pages/index/signing/renting_date/renting_date',
     });
    
   }

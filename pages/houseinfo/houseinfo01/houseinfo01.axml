@@ -20,7 +20,7 @@
       <view class="house-price-info">
           <view a:if="{{rentType==1}}" class="house-price-pay">￥{{houseDetail.entireRents}}元/月</view>
           <view a:if="{{rentType==2}}" class="house-price-pay">￥{{houseDetail.rents}}元/月</view>
-          <view class="house-price-payway">付款方式<image src="/image/icon/right.png" class="icon-size"/></view>
+          <view class="house-price-payway" onTap="onPaymentMethod">付款方式<image src="/image/icon/right.png" class="icon-size"/></view>
       </view>
       <view a:if="{{rentType==1}}" class="house-price-room">{{houseDetail.apartment.apartmentName}}·{{houseDetail.buildingUnit}}·{{houseDetail.houseNo}}</view>
       <view a:if="{{rentType==2}}" class="house-price-room">{{houseDetail.house.apartment.apartmentName}}·{{houseDetail.house.buildingUnit}}·{{houseDetail.roomName}}</view>

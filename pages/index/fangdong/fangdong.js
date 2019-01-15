@@ -29,4 +29,12 @@ Page({
       url: '/pages/index/housedelivery/housedelivery',
     });
   },
+  onCall(){
+    my.makePhoneCall({
+      number: '18815026547', // 电话号码
+      success: (res) => {
+        console.log('拨打电话')
+      },
+    });
+  },
 });

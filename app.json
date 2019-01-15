@@ -39,7 +39,8 @@
     "pages/index/signing/payway/payway",
     "pages/index/signing/confirmagain/confirmagain",
     "pages/index/signing/contract_confirm/contract_confirm",
-    "pages/houseinfo/payment_method/payment_method"
+    "pages/houseinfo/payment_method/payment_method",
+    "pages/index/accountinfo/accountinfo"
   ],
   "window": {
     "defaultTitle": "My App"

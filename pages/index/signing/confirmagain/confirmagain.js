@@ -79,7 +79,7 @@ Page({
       case 3:
         payWay='季付';
         break;
-      case 4:
+      case 6:
         payWay='半年付';
         break;
       case 12:

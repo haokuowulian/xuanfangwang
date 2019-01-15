@@ -1,3 +1,36 @@
-<view>
-  New Page
+<view class="page">
+  <view class="page-title">
+    付款方式
+  </view>
+
+  <view class="page-pay">
+    <view class="pay-info">
+      <view class="way">月付</view><view class="pay">￥{{rent1}}元/月</view>
+    </view>
+    <view class="deposit">押金：￥{{deposit}}元</view>
+  </view>
+  <view class="page-pay">
+    <view class="pay-info">
+      <view class="way">季付</view><view class="pay">￥{{rent2}}元/月</view>
+    </view>
+    <view class="deposit">押金：￥{{deposit}}元</view>
+  </view>
+  <view class="page-pay">
+    <view class="pay-info">
+      <view class="way">半年付</view><view class="pay">￥{{rent3}}元/月</view>
+    </view>
+    <view class="deposit">押金：￥{{deposit}}元</view>
+  </view>
+  <view class="page-pay">
+    <view class="pay-info">
+      <view class="way">年付</view><view class="pay">￥{{rent4}}元/月</view>
+    </view>
+    <view class="deposit">押金：￥{{deposit}}元</view>
+  </view>
+  <view>
+    <view class="page-footer">说明</view>
+    <view class="footer">1.押金会在您办理解约时一并返还；</view>
+    <view class="footer">2.解约时，未发生的租金将按日结算。</view>
+  </view>
+ 
 </view>

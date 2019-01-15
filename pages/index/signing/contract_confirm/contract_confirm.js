@@ -60,7 +60,7 @@ Page({
       key: 'ustartDate', // 缓存数据的key
     }).data;
     var endDate = my.getStorageSync({
-      key: 'uendtDate', // 缓存数据的key
+      key: 'uendDate', // 缓存数据的key
     }).data;
     var houseInfo = my.getStorageSync({
       key: 'uhouseInfo', // 缓存数据的key
