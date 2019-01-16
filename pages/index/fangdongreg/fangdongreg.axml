@@ -31,7 +31,7 @@
           <image src="{{img1}}" class="card-img" id='0' name="idcard_positive"/>
         </view>
         <view hidden="{{true}}">
-          <input  hidden name="cardUrl1" value="{{idcard_positive}}" />
+          <input  hidden name="cardUrl1" value="{{img1}}" />
         </view>
         </view>
 
@@ -44,7 +44,7 @@
           <image src="{{img2}}" class="card-img" id='1' name="idcard_reverse"/>
         </view>
         <view hidden="{{true}}">
-          <input  hidden name="cardUrl2" value="{{idcard_reverse}}" />
+          <input  hidden name="cardUrl2" value="{{img2}}" />
         </view>
         </view>
 
@@ -57,7 +57,7 @@
           <image src="{{img3}}" class="card-img" id='2' name="licence"/>
         </view>
         <view hidden="{{true}}">
-          <input  hidden name="licenceUrl" value="{{licence}}" />
+          <input  hidden name="licenceUrl" value="{{img3}}" />
         </view>
         </view>
 

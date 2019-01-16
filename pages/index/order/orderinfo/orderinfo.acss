@@ -1,0 +1,49 @@
+.page-house{
+  height: 150rpx;
+  width: 750rpx;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  background-color: #ffffff;
+  border-top: 1rpx solid #f7f7f7;
+}
+.house-info{
+  height: 150rpx;
+  width: 725rpx;
+  margin-left: 25rpx;
+  display: flex;
+  flex-direction: row;
+}
+.house-left{
+  height: 150rpx;
+  width: 200rpx;
+
+}
+.house-right{
+  height: 150rpx;
+  width: 500rpx;
+  margin-left: 25rpx;
+}
+.house-address{
+  font-size: 35rpx;
+  color: #333333;
+}
+.house-point{
+  font-size: 25rpx;
+  color: #666666;
+  margin-top: 20rpx;
+}
+.house-paid{
+  font-size: 25rpx;
+  color: #ffaa06;
+  margin-top: 35rpx;
+}
+.page-time{
+  height: 80rpx;
+  width: 725rpx;
+
+}
+.page-times{
+  height: 190rpx;
+  width: 750rpx;
+  background-color: #ffffff;
+}

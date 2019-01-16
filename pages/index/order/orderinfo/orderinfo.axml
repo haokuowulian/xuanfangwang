@@ -1,17 +1,17 @@
 <view>
-  <view>
-    <view>
-      <view>img</view>
-      <view>
-        <view>萧山宝龙城市广场5居室-02室</view>
-        <view>大床|免费wifi|独立卫生间</view>
-        <view>未付款</view>
+  <view class="page-house">
+    <view class="house-info">
+      <view class="house-left">img</view>
+      <view class="house-right">
+        <view class="house-address">萧山宝龙城市广场5居室-02室</view>
+        <view class="house-point">大床|免费wifi|独立卫生间</view>
+        <view class="house-paid">未付款</view>
       </view>
     </view>
   </view>
 
-  <view>入住时间段</view>
-  <view>
+  <view class="page-time">入住时间段</view>
+  <view class="page-times">
     <view>
       <view>入住</view>
       <view>2018-01-01</view>

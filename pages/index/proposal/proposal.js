@@ -3,7 +3,7 @@ var image1;
 Page({
   data: {
     images:[],
-    addImgText: "拍照/相册",
+    addImgText: "照片",
     canAddImg: true,
     upload1:false,
     img:'',

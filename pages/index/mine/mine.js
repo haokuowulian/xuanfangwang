@@ -319,7 +319,12 @@ Page({
       url: '/pages/index/accountinfo/accountinfo',
     });
   },
- 
+  // toTest(){
+  //   my.navigateTo({
+  //     url: '/pages/index/order/orderinfo/orderinfo',
+  //   });
+  // },
+
   //选择性别
   selectSex(){
     my.showActionSheet({
