@@ -58,7 +58,7 @@
 
 <!-- 租房 -->
   <view class="temp temp3 {{sqopen ? 'show' : 'disappear'}} ">
-    <view class='tempheight'>
+    <view class='tempheight0'>
       <view class="house-renting">
         <view class="renting-r1">
           <view class="r1 {{r1?'current2' : ''}}" onTap="selectRent1" data-r="1">整租</view>
@@ -100,15 +100,15 @@
             </block>
             
             <view class="left-slider">
-            <slider class="slider-left" value="{{sliderleft}}" min="0" max="5000" step="10" trackSize="4" handleSize="15" backgroundColor="#ffa800" activeColor="#bbbbbb" onChanging="leftSchange"/>
+            <slider class="slider-left" value="{{sliderleft}}" min="0" max="5000" step="100" trackSize="4" handleSize="20" backgroundColor="#ffa800" activeColor="#bbbbbb" onChanging="leftSchange"/>
             </view>
             <view class="right-slider">
-            <slider class="slider-right" value="{{sliderright}}" min="5000" max="10000" step="10" trackSize="4" handleSize="15" backgroundColor="#bbbbbb" activeColor="#ffa800" onChanging="rightSchange"/>
+            <slider class="slider-right" value="{{sliderright}}" min="5000" max="10000" step="100" trackSize="4" handleSize="20" backgroundColor="#bbbbbb" activeColor="#ffa800" onChanging="rightSchange"/>
             </view>
             
           </view>
         </view>
-        <view class="bnt-rent">
+        <view class="btn-rent">
           <button type="default" onTap="rentBtnReset" class="btu-reset">重置</button>
         <button type="default" onTap="rentBtnConfirm" class="btu-confirm">确定</button>
         </view>

@@ -8,32 +8,32 @@ Page({
     endDate:'',
     houseInfo:null,
     payway:'',
+    rentType:0,
   },
   onLoad() {
     this.getOrderInfo();
   },
   toConfirm(){
     var that = this;
-    that.toUpload();
-    // my.confirm({
-    //   title: '确认合同',
-    //   content: '您确认签订此合同吗？',
-    //   confirmButtonText: '确定',
-    //   cancelButtonText: '取消',
-    //   success: (res) => {
-    //     console.log(res)
-    //     if(res.confirm){
-    //       // my.alert({
-    //       //   title: '合同签订成功！'
-    //       // });
-    //       that.toRequest();
-    //     }else{
-    //       my.alert({
-    //         title: '合同取消签订！' 
-    //       });
-    //     }
-    //   },
-    // });
+    my.confirm({
+      title: '确认合同',
+      content: '您确认签订此合同吗？',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      success: (res) => {
+        console.log(res)
+        if(res.confirm){
+          my.alert({
+            title: '合同签订成功！'
+          });
+          that.toUpload();
+        }else{
+          my.alert({
+            title: '合同取消签订！' 
+          });
+        }
+      },
+    });
   },
   getOrderInfo(){
     var that = this;
@@ -55,6 +55,9 @@ Page({
     var payway = my.getStorageSync({
       key: 'upayWay', // 缓存数据的key
     }).data;
+    var rentType = my.getStorageSync({
+      key: 'urentType', // 缓存数据的key
+    }).data;
 
     that.setData({
       uname:uname,
@@ -63,6 +66,7 @@ Page({
       endDate:endDate,
       houseInfo:houseInfo,
       payway:payway,
+      rentType:rentType,
     });
   },
   toUpload(){
@@ -124,9 +128,8 @@ Page({
     }
     // app.globalData.baseUrl_whj+
     my.httpRequest({
-      url:"http://192.168.1.193:8080/LLGY/IF/order/addOrder.do", // 目标服务器url
+      url: app.globalData.baseUrl_whj+"IF/order/addOrder.do", // 目标服务器url
       method: 'POST',
-      // header:{'Content-Type': 'application/x-www-form-urlencoded'},
       data:{
         userId:uid,
         totalMoney:totalMoney,

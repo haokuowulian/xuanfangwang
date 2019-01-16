@@ -23,7 +23,8 @@
     <view class="body">
       <view class="body-back">
         <view class="body-text1">物业地址</view>
-        <view class="body-text2">{{houseInfo.apartment.address}}</view>
+        <view a:if="{{rentType==1}}" class="body-text2">{{houseInfo.apartment.address}}</view>
+        <view a:if="{{rentType==2}}" class="body-text2">{{houseInfo.house.apartment.address}}</view>
       </view>
     </view>
   </view>

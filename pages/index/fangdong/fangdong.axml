@@ -1,7 +1,7 @@
 <view a:if="{{roleId==8||roleId==''||roleId==null}}">
   <view class="page-banner"></view>
-  <view class="page-btn page-section" onTap="onCall">
-    <view class="btn-contact">联系我们</view>
+  <view class="page-btn page-section">
+    <view class="btn-contact"  onTap="onCall">联系我们</view>
     <view class="btn-tobeowner" onTap="toBeOwner">立刻成为房东</view>
   </view>
   <view class="page-step page-section">
@@ -83,8 +83,8 @@
 
 <view  a:if="{{roleId==7}}">
   <view class="page-banner"></view>
-  <view class="page-btn page-section" onTap="onCall">
-    <view class="btn-contact">联系我们</view>
+  <view class="page-btn page-section">
+    <view class="btn-contact"  onTap="onCall">联系我们</view>
     <view class="btn-tobeowner" onTap="toDelivery">发布房源</view>
   </view>
   <view class="page-step page-section">

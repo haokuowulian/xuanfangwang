@@ -309,8 +309,13 @@ page{
   overflow-y: scroll;
   background: #fff; 
 }
+.tempheight0 {
+  height: 750rpx;
+  overflow-y: scroll;
+  background: #fff; 
+}
 .tempheight1 {
-  height: 1480rpx;
+  height: 1380rpx;
   width: 750rpx;
   overflow-y: scroll;
   background: #fff; 
@@ -532,7 +537,7 @@ page{
 }
 .r3{
   display: flex;
-  margin-top: 345rpx;
+  margin-top: 330rpx;
   margin-bottom: 35rpx;
 }
 .rent-list{
@@ -572,9 +577,9 @@ page{
   width: 320rpx;
   
 }
-.bnt-rent{
+.btn-rent{
   display: flex;
-  margin-top: 85rpx;
+  margin-top: 120rpx;
   margin-bottom: 35rpx;
 }
 .screen-direction{

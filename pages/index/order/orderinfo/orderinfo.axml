@@ -1,0 +1,48 @@
+<view>
+  <view>
+    <view>
+      <view>img</view>
+      <view>
+        <view>萧山宝龙城市广场5居室-02室</view>
+        <view>大床|免费wifi|独立卫生间</view>
+        <view>未付款</view>
+      </view>
+    </view>
+  </view>
+
+  <view>入住时间段</view>
+  <view>
+    <view>
+      <view>入住</view>
+      <view>2018-01-01</view>
+    </view>
+    <view>
+      <view>到期</view>
+      <view>2019-01-01</view>
+    </view>
+  </view>
+
+  <view>入住人信息</view>
+  <view>
+    <view>
+      <view>真实姓名</view>
+      <view>胡海</view>
+    </view>
+    <view>
+      <view>身份证号</view>
+      <view>333333333333333333</view>
+    </view>
+    <view>
+      <view>联系方式</view>
+      <view>12345678901</view>
+    </view>
+  </view>
+
+  <view>
+    <view>
+      <view>订单总金额：￥666</view>
+      <view>押金：￥111</view>
+    </view>
+    <view>立即支付</view>
+  </view>
+</view>
