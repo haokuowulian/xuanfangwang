@@ -1,4 +1,7 @@
 var form_data;
+var imgs1 = '';
+var imgs2 = '';
+var imgs3 = '';
 const app=getApp();
 Page({
   data: {
@@ -12,7 +15,6 @@ Page({
     idcard_reverse:'',
     licence:'',
     images:[],
-    imageurl:[],
     uid:'',
   },
   onLoad() {
@@ -31,99 +33,29 @@ Page({
       sourceType: ['album', 'camera'],
       success: (res) => {
         var tempFilePaths = res.apFilePaths
-        console.log(tempFilePaths)
         if(e.target.dataset.t==1){
-          // var images = [];
           that.data.images[0]=tempFilePaths[0];
-          console.log(that.data.images+"ccccccccccccccc1")
           this.setData({
             img1:tempFilePaths[0],
             upload1:true,
           });
-          var image=tempFilePaths[0];
-          //图片上传
-           my.uploadFile({
-            url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
-            fileType: 'image',
-            fileName: 'file',
-            formData:{savePrefix:'landlord'},
-            filePath: image,
-            success: res => {
-              console.log('success');
-              console.log(res);
-
-              var json1 = JSON.parse(res.data);
-              that.setData({
-                idcard_positive:json1['message'],
-              });
-            },
-            fail: function(res) {
-              console.log(res);
-              // my.alert({ title: '上传失败' });
-            },
-          });
+       
         }
         if(e.target.dataset.t==2){
-          // var images = [];
           that.data.images[1]=tempFilePaths[0];
-          console.log(that.data.images+"ccccccccccccccc2")
           this.setData({
             img2:tempFilePaths[0],
             upload2:true,
           });
-          var image=tempFilePaths[0];
-           //图片上传
-           my.uploadFile({
-            url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
-            fileType: 'image',
-            fileName: 'file',
-            formData:{savePrefix:'landlord'},
-            filePath: image,
-            success: res => {
-              console.log('success');
-              console.log(res);
-
-              var json1 = JSON.parse(res.data);
-              that.setData({
-                idcard_reverse:json1['message'],
-              });
-            },
-            fail: function(res) {
-              console.log(res);
-              // my.alert({ title: '上传失败' });
-            },
-          });
+        
         }
         if(e.target.dataset.t==3){
-          // var images = [];
           that.data.images[1]=tempFilePaths[0];
-          console.log(that.data.images+"ccccccccccccccc2")
           this.setData({
             img3:tempFilePaths[0],
             upload3:true,
           });
-          var image=tempFilePaths[0];
-           //图片上传
-           my.uploadFile({
-            url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
-            fileType: 'image',
-            fileName: 'file',
-            formData:{savePrefix:'landlord'},
-            filePath: image,
-            success: res => {
-              console.log('success');
-              console.log(res);
-
-              var json1 = JSON.parse(res.data);
-              that.setData({
-                licence:json1['message'],
-              });
-            },
-            fail: function(res) {
-              console.log(res);
-              // my.alert({ title: '上传失败' });
-            },
-          });
+       
         }
       },
     });
@@ -145,17 +77,78 @@ Page({
         cancelButtonText: '取消',
         success: (res) => {
           if(res.confirm){
-            my.httpRequest({
-        url: app.globalData.baseUrl+'IF/landlord/saveLandlord.do', // 目标服务器url
-        data:{
-          userId:that.data.uid,
-          name:e.detail.value.name,
-          sex:e.detail.value.sex,
-          mobile:e.detail.value.mobile,
-          cardNo:e.detail.value.cardNo,
-          cardUrl1:e.detail.value.cardUrl1,
-          cardUrl2:e.detail.value.cardUrl2,
-          permitUrl:e.detail.value.licenceUrl,
+            that.uploadImg(form_data);
+          }else{
+
+          }
+        },
+      });
+      
+    }else{
+      console.log('请填写完整')
+      alert('请填写完整')
+    }
+    console.log(form_data);
+   
+    that.setData({
+      images:[],
+    });
+  },
+  //上传图片
+  uploadImg(form_data){
+    console.log('执行上传文件');
+    var that = this;
+    //  图片上传
+    // var img = '';
+    var imgs = [];
+    var newimgs = [];
+    imgs[0]=that.data.img1;
+    imgs[1]=that.data.img2;
+    imgs[2]=that.data.img3;
+    for(let i=0;i<imgs.length;i++){
+      my.uploadFile({
+      url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+      fileType: 'image',
+      fileName: 'file',
+      formData:{savePrefix:'landlord'},
+      filePath: imgs[i],
+      success: res => {
+        console.log('success');
+        console.log(res);
+        var json1 = JSON.parse(res.data);
+        newimgs[i] = json1['message']
+        that.formUpload(newimgs[i],i,form_data);
+      },
+      fail: function(res) {
+        console.log(res);
+        // my.alert({ title: '上传失败' });
+      },
+    });
+    }
+
+  },
+  //提交表单数据
+  formUpload(image,i,form_data){
+    var that = this;
+    if(i==0){
+      imgs1=image;
+    }
+    if(i==1){
+      imgs2=image;
+    }
+    if(i==2){
+      imgs3=image;
+       my.httpRequest({
+          url: app.globalData.baseUrl+'IF/landlord/saveLandlord.do', // 目标服务器url
+          data:{
+            userId:that.data.uid,
+            name:form_data.name,
+            sex:form_data.sex,
+            mobile:form_data.mobile,
+            cardNo:form_data.cardNo,
+            cardUrl1:imgs1,
+            cardUrl2:imgs2,
+            permitUrl:imgs3,
           },
         success: (res) => {
           console.log('表单提交成功')
@@ -175,9 +168,6 @@ Page({
             title:'提交失败！',
             content:'该账号已在审核中，请耐心等待。',
             buttonText:'确认',
-          //   success: (result) => {
-          //     my.navigateBack();
-          //  },
           });
           }
           
@@ -186,46 +176,10 @@ Page({
           console.log('表单提交失败')
         },
       });
-          }else{
-
-          }
-        },
-      });
-      
-    }else{
-      console.log('请填写完整')
-      alert('请填写完整')
     }
-    console.log(form_data);
-   
-    that.setData({
-      images:[],
-    });
+       
   },
-
-
-  uploadImg(form_data){
-    console.log('执行上传文件');
-    var that = this;
-    my.uploadFile({
-          url: app.globalData.baseUrl+'IFBaseAction/landlord/saveLandlord.do',
-          fileType: 'image',
-          fileName: 'file',
-          formData:{form_data},
-          filePath: image,
-          success: res => {
-            console.log('success');
-            console.log(res);
-
-            var json1 = JSON.parse(res.data);
-            that.data.imageurl.push(json1['message']);
-          },
-          fail: function(res) {
-            console.log(res);
-            my.alert({ title: '上传失败' });
-          },
-        });
-  },
+  //重置
   formReset(){
     this.setData({
       upload1:false,
