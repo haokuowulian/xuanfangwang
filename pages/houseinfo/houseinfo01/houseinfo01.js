@@ -38,8 +38,10 @@ Page({
     });
     console.log(this.data.id);
     console.log(this.data.rentType);
-    this.getHouseDetail();
+
     this.getIsCollect();
+    this.getIsBespeak();
+    this.getHouseDetail();
   
   },
 
@@ -81,14 +83,15 @@ Page({
   },
   //获取是否收藏
   getIsCollect(){
+     console.log('-------');
     if(this.data.userId==''){
       this.setData({
         collectUrl:'/image/houseicon/uncollect.png',
         isColect:false
       });
       
-      
     }else{
+      console.log(this.data.rentType);
       var that=this;
      my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/myFavorite/isCollect.do",
@@ -115,7 +118,7 @@ Page({
               collectUrl:'/image/houseicon/uncollect.png'
             });
           }
-          
+          console.log(that.data.collectUrl);
           
         }
       },
@@ -129,7 +132,7 @@ Page({
     }
   },
  //获取是否预约
-  getIsCollect(){
+  getIsBespeak(){
     if(this.data.userId==''){
       this.setData({
         collectUrl:'/image/houseicon/uncollect.png',

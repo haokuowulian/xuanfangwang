@@ -99,6 +99,7 @@ Page({
           that.setData({
             imgUrls:res.data.data
           });
+           
         }
       },
       fail: function(res) {
