@@ -1,6 +1,6 @@
 .page-eva{
   width: 750rpx;
-  border-top: 1rpx solid #e6e6e6;
+  /* border-top: 1rpx solid #e6e6e6; */
   background-color: #ffffff;
 }
 .eva-b{
@@ -81,4 +81,10 @@
   margin-top: 40rpx;
   font-size: 25rpx;
   color: #666666；
+}
+.tips{
+  width: 750rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #999999;
 }

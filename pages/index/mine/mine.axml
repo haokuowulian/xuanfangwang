@@ -133,9 +133,9 @@
         <view class="title-change" onTap="changeRole2">
           <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />切换房东
         </view>
-        <view class="title-set">
+        <!-- <view class="title-set">
           <image src="/image/qipao.png" class="qipao-img" />
-        </view>
+        </view> -->
       </view>
       <view class="banner1-user">
         <view class="user-info">
@@ -145,8 +145,8 @@
           <view class="user-name1 font-color2">{{username}}
           </view>
         </view>
-        <view class="user-account" onTap="toAccountInfo">账号信息
-        </view>
+        <!-- <view class="user-account" onTap="toAccountInfo">账号信息
+        </view> -->
       </view>
     </view>
     <view class="page-option page-section">
@@ -179,13 +179,13 @@
           <view class="option-text">评价
           </view>
         </view>
-        <view class="option-content">
+        <!-- <view class="option-content">
           <view>
             <image src="/image/mine/qianbao.png" class="option-img"/>
           </view>
           <view class="option-text">钱包
           </view>
-        </view>
+        </view> -->
       </view>
     </view>
     <view class="page-service page-section">
@@ -198,12 +198,14 @@
             <view class="content-text1">我的合同
             </view>
           </view>
+
           <view class="content-box content-bkgd2" onTap="toBill">
             <image src="/image/mine/zhangdan.png" class="service-img" />
             <view class="content-text2">待缴账单
             </view>
           </view>
-          <view class="content-box content-bkgd3" onTap="toRepair">
+
+          <!-- <view class="content-box content-bkgd3" onTap="toRepair">
             <image src="/image/mine/xiuli.png" class="service-img" />
             <view class="content-text3">在线报修
             </view>
@@ -212,7 +214,8 @@
             <image src="/image/mine/menjin.png" class="service-img" />
             <view class="content-text4">智能门禁
             </view>
-          </view>
+          </view> -->
+
         </view>
       </view>
     </view>

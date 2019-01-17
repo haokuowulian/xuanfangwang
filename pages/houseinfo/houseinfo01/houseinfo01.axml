@@ -124,7 +124,6 @@
 </view>
 <view class="horiztalView"></view>
   <view class="operate">
-    
     <view class="operate-shoucang" ><view onTap="collectOrUncollect"><image src="{{collectUrl}}" class="aixin-img" /></view></view>
     <view a:if="{{!isBespeak}}" class="operate-yuyue" onTap="toConfirmpage">预约看房</view>
     <view a:if="{{isBespeak}}" class="operate-yuyue" onTap="alertPromt">已预约</view>

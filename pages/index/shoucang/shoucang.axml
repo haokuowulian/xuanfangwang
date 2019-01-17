@@ -8,7 +8,8 @@
   </view>
     
   <view class="list-page">
-    
+    <view a:if="{{collectList.length==0}}" class="tips">你还没有收藏的房源</view>
+    <view a:else>
       <block a:for="{{collectList}}" >
         <view class="list-check page-select">
           <view a:if="{{management_house}}" class="check" onTap="select" data-id="{{index}}" data-check="{{item.deleted}}">
@@ -40,7 +41,7 @@
         </view>
       
       </block>
-    
+    </view>
   </view>
   
   <view a:if="{{btnshow}}" class="option-btn">

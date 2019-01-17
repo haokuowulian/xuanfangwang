@@ -10,7 +10,8 @@
     </view>
   </view>
   <view class="page-mine">我的投诉</view>
-
+  <view a:if="{{myList.length==0}}" class="tips">暂无数据</view>
+  <view a:else>
   <block a:for="{{myList}}" a:for-item="list" a:for-index="idx">
     <view class="page-content">
       <view class="page-mylist">
@@ -34,4 +35,5 @@
       </view>
     </view>
   </block>
+  </view>
 </view>

@@ -34,7 +34,6 @@ page{
   margin-top: 20rpx;
   text-align: center;
   line-height: 60rpx;
-  font-size: 25rpx;
 }
 .info2{
   width: 135rpx;
@@ -45,7 +44,6 @@ page{
   margin-top: 20rpx;
   text-align: center;
   line-height: 60rpx;
-  font-size: 25rpx;
 }
 .b1{
   background-color: coral;
@@ -76,6 +74,7 @@ page{
   
 }
 .house-img{
+  border-radius: 6rpx;
   height: 185rpx;
   width: 250rpx;
 }
@@ -215,14 +214,12 @@ page{
 .quyu .qy {
   overflow-y: scroll;
   float: left;
-  width: 50%;
+  width: 33%;
   height: 945rpx;
   line-height: 80rpx;
   box-sizing: border-box;
   font-size: 14px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+  
 }
 
 
@@ -312,8 +309,13 @@ page{
   overflow-y: scroll;
   background: #fff; 
 }
+.tempheight0 {
+  height: 750rpx;
+  overflow-y: scroll;
+  background: #fff; 
+}
 .tempheight1 {
-  height: 980rpx;
+  height: 1380rpx;
   width: 750rpx;
   overflow-y: scroll;
   background: #fff; 
@@ -463,7 +465,13 @@ page{
 .r1{
   font-size: 30rpx;
   margin-top: 35rpx;
-  color: #010101;
+  height: 65rpx;
+  width: 125rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  border: 1px solid;
 }
 .r1-0{
   font-size: 25rpx;
@@ -474,11 +482,11 @@ page{
   height: 65rpx;
   width: 135rpx;
   font-size: 25rpx;
-  border: 1px solid;
   text-align: center;
   line-height: 65rpx;
   margin-right: 20rpx;
   border-radius: 10rpx;
+  border: 1px solid;
 }
 .r1-2{
   height: 65rpx;
@@ -491,8 +499,14 @@ page{
 }
 .r2{
   font-size: 30rpx;
-  margin-top: 50rpx;
-  color: #010101;
+  margin-top: 35rpx;
+  height: 65rpx;
+  width: 125rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  border: 1px solid;
 }
 .btu-reset{
   width: 210rpx;
@@ -523,7 +537,7 @@ page{
 }
 .r3{
   display: flex;
-  margin-top: 345rpx;
+  margin-top: 330rpx;
   margin-bottom: 35rpx;
 }
 .rent-list{
@@ -563,9 +577,9 @@ page{
   width: 320rpx;
   
 }
-.bnt-rent{
+.btn-rent{
   display: flex;
-  margin-top: 85rpx;
+  margin-top: 120rpx;
   margin-bottom: 35rpx;
 }
 .screen-direction{
@@ -581,9 +595,15 @@ page{
   color: #333333;
   margin-bottom: 10rpx;
 }
+/* .screen-house{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 50rpx;
+  color: #cccccc;
+} */
 .screen-house{
   display: flex;
-  /* margin-top: 25rpx; */
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -604,10 +624,25 @@ page{
   font-size: 35rpx;
   color: #333333;
 }
-.screen-print1{
+.screen-print0{
   margin-top: 25rpx;
   height: 65rpx;
-  width: 155rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  width: 120rpx;
+  font-size: 28rpx;
+  border: 1px solid;
+  text-align: center;
+  line-height: 65rpx;
+  border-radius: 10rpx;
+}
+.screen-print1{
+  margin-top: 25rpx;
+  margin-right: 25rpx;
+  height: 65rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  /* width: 155rpx; */
   font-size: 28rpx;
   border: 1px solid;
   text-align: center;
@@ -647,4 +682,11 @@ page{
   text-align: center;
   margin-top: 30rpx;
   margin-bottom: 35rpx;
+}
+.renting-r1{
+  width: 280rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 35rpx;
+  justify-content: space-between;
 }

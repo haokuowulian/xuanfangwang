@@ -41,7 +41,8 @@
     "pages/index/signing/contract_confirm/contract_confirm",
     "pages/houseinfo/payment_method/payment_method",
     "pages/index/accountinfo/accountinfo",
-    "pages/index/order/orderinfo/orderinfo"
+    "pages/index/order/orderinfo/orderinfo",
+    "pages/index/news/news"
   ],
   "window": {
     "defaultTitle": "My App"

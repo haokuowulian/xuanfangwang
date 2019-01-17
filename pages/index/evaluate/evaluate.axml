@@ -1,4 +1,7 @@
+<view a:if="{{evaluate.length==0}}" class="tips">你还没有评价</view>
 <view class="page-eva">
+  
+  <view a:if="{{evaluate.length>0}}">
   <block a:for="{{evaluate}}" a:for-item="list">
     <!-- 1 -->
     <view class="eva-b">
@@ -38,4 +41,5 @@
       </view>
     </view>
   </block>
+  </view>
 </view>

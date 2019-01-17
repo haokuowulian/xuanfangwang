@@ -107,7 +107,8 @@ Page({
         var myCode=res.authCode;
         if(res.authCode){
           my.httpRequest({
-            url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
+            // url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
+            url: app.globalData.baseUrl_whj+'/IF/user/appLogin.do?authCode='+myCode,
             method: 'POST',
             header:{
               'content-type': 'application/json'

@@ -1,4 +1,6 @@
 <view>
+  <view a:if="{{orderList.length==0}}" class="tips">你还没有订单</view>
+  <view a:else>
   <block a:for="{{orderList}}" a:for-item="list">
     <view class="page-order">
 
@@ -39,5 +41,6 @@
       </view>
     </view>
   </block>
-  
+  </view>
+
 </view>

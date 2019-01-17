@@ -14,7 +14,7 @@ Page({
       allpay = houseDetail.entireRents*1
     }
     if(rentType==2){
-      allpay = houseDetail.entireRents*1
+      allpay = houseDetail.rents*1
     }
     var rent1 = allpay*1;
     var rent2 = allpay*3;

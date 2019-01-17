@@ -8,6 +8,8 @@
     </view>
   </view>
 
+  <view a:if="{{planList.length==0}}" class="tips">暂无数据</view>
+  <view a:else>
   <block a:for="{{planList}}" >
     <view class="plan-content page-select" >
       <view class="plan-time" >
@@ -66,4 +68,5 @@
       </view>
     </view>
   </block>
+  </view>
 </view>

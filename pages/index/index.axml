@@ -10,7 +10,7 @@
         <icon type="search" size="14" color="#1D1D1D" />
         <text class="fake-placeholder">输入你想住的区域或小区</text>
       </view>
-      <view class="banner-news">
+      <view class="banner-news" onTap="toMyNews">
         <image src="/image/qipao.png" class="qipao-img" />
       </view>
     </view>

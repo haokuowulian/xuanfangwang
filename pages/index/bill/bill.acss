@@ -65,3 +65,9 @@
   font-size: 25rpx;
   color: #999999;
 }
+.tips{
+  width: 750rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #999999;
+}

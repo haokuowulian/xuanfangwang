@@ -266,5 +266,10 @@ Page({
     my.navigateTo({
     url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
-  }
+  },
+  toMyNews(){
+    my.navigateTo({
+      url: '/pages/index/news/news',
+    })
+  },
 });

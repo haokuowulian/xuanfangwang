@@ -13,6 +13,11 @@ Page({
   onLoad() {
     this.getOrderInfo();
   },
+  goBack(){
+    my.navigateBack({
+      delta: 6
+    });
+  },
   toConfirm(){
     var that = this;
     my.confirm({
@@ -24,7 +29,10 @@ Page({
         console.log(res)
         if(res.confirm){
           my.alert({
-            title: '合同签订成功！'
+            title: '合同签订成功！',
+            success: () => {
+              that.goBack();
+          },
           });
           that.toUpload();
         }else{

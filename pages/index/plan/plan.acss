@@ -151,3 +151,9 @@
   border-top-right-radius: 50rpx;
   border-bottom-right-radius: 50rpx;
 }
+.tips{
+  width: 750rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #999999;
+}

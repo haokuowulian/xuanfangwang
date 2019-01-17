@@ -1,4 +1,6 @@
 <view>
+  <view a:if="{{contract.length==0}}" class="tips">你还没有合同</view>
+  <view a:else>
   <block a:for="{{contract}}" a:for-item="list">
     <view class="page-body">
       <view class="body-back">
@@ -10,4 +12,5 @@
       </view>
     </view>
   </block>
+  </view>
 </view>

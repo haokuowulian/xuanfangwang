@@ -4,45 +4,51 @@
       <view class="house-left">img</view>
       <view class="house-right">
         <view class="house-address">萧山宝龙城市广场5居室-02室</view>
-        <view class="house-point">大床|免费wifi|独立卫生间</view>
+        <view class="house-point">大床 | 免费wifi | 独立卫生间</view>
         <view class="house-paid">未付款</view>
       </view>
     </view>
   </view>
 
-  <view class="page-time">入住时间段</view>
+  <view class="page-time">
+     入住时间段
+  </view>
   <view class="page-times">
-    <view>
-      <view>入住</view>
-      <view>2018-01-01</view>
+    <view class="times-back">
+      <view class="time-title">入住</view>
+      <view class="time-date">2018-01-01</view>
     </view>
-    <view>
-      <view>到期</view>
-      <view>2019-01-01</view>
-    </view>
-  </view>
-
-  <view>入住人信息</view>
-  <view>
-    <view>
-      <view>真实姓名</view>
-      <view>胡海</view>
-    </view>
-    <view>
-      <view>身份证号</view>
-      <view>333333333333333333</view>
-    </view>
-    <view>
-      <view>联系方式</view>
-      <view>12345678901</view>
+    <view class="times-back1">
+      <view class="time-title">到期</view>
+      <view class="time-date">2019-01-01</view>
     </view>
   </view>
 
-  <view>
-    <view>
-      <view>订单总金额：￥666</view>
-      <view>押金：￥111</view>
+  <view class="page-time">入住人信息</view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">真实姓名</view>
+      <view class="users-info">胡海</view>
     </view>
-    <view>立即支付</view>
+  </view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">身份证号</view>
+      <view class="users-info">333333333333333333</view>
+    </view>
+  </view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">联系方式</view>
+      <view class="users-info">12345678901</view>
+    </view>
+  </view>
+
+  <view class="operate">
+    <view class="operate-sum">
+      <view class="total ">订单总金额：<view class="sum">￥666</view></view>
+      <view class="deposit">押金：￥111</view>
+    </view>
+    <view class="operate-pay">立即支付</view>
   </view>
 </view>

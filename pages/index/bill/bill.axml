@@ -1,4 +1,6 @@
 <view>
+  <view a:if="{{bill.length==0}}" class="tips">你没有要缴的账单</view>
+  <view a:else>
   <block a:for="{{bill}}" a:for-item="list">
     <view class="page-body">
       <view class="body-back">
@@ -15,4 +17,5 @@
       </view>
     </view>
   </block>
+  </view>
 </view>

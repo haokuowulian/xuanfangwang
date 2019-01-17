@@ -1,7 +1,7 @@
 <view class="page">
   <!-- 搜索框 -->
   <view class="page-search">
-    <search-bar focus="{{true}}" value="{{value}}" placeholder="输入你想住的区域或小区" onInput="onInput" onCancel="onCancel" onClear="onClear" onSubmit="onSubmit" showCancelButton="{{false}}" />
+    <search-bar  value="{{value}}" placeholder="输入你想住的区域或小区" onInput="onInput" onCancel="onCancel" onClear="onClear" onSubmit="onSubmit" showCancelButton="{{false}}" />
   </view>
   
   
@@ -25,10 +25,10 @@
       <view class="icon"></view>
     </view>
     <view a:if="{{orderopen}}" class="nav-son" onTap="listorder" data-nav="5">
-       <view class="content"><image src="/image/paixu.png" class="paixu-img"/></view>
+      <image src="/image/paixu.png" class="paixu-img"/>
     </view>
     <view a:else class="nav-son" onTap="listorder" data-nav="5">
-      <view class="content"><image src="/image/icon/paixu.png" class="paixu-img"/></view>
+      <image src="/image/icon/paixu.png" class="paixu-img"/>
     </view>
   </view>
 
@@ -47,35 +47,32 @@
         {{item.title}}
       </view>
     </view>
-    <!-- <view class="qy quyu-right">
+    <view class="qy quyu-right">
       <view class="{{select3 == item.id ? 'current2' : ''}}" a:for="{{dropDownMenuDataFirstCenter}}" onTap="selectright" data-model='{{item}}' a:key="unique">
         {{item.title}}
       </view>
-    </view> -->
+    </view>
   </view>
 
 
 
 <!-- 租房 -->
   <view class="temp temp3 {{sqopen ? 'show' : 'disappear'}} ">
-    <view class='tempheight'>
+    <view class='tempheight0'>
       <view class="house-renting">
-        <view class="r1">合租</view>
-        <view class="r1-0">温馨合租的悠闲静谧</view>
-        <view class="house-renting-condition">
-          <view class="r1-1 {{s1?'current2' : ''}}" onTap="onSelect1" data-s="0">不限</view>
-          <view class="r1-1 {{s2?'current2' : ''}}" onTap="onSelect2" data-s="1">1居</view>
-          <view class="r1-1 {{s3?'current2' : ''}}" onTap="onSelect3" data-s="2">2居</view>
-          <view class="r1-2 {{s4?'current2' : ''}}" onTap="onSelect4" data-s="3">3居+</view>
+        <view class="renting-r1">
+          <view class="r1 {{r1?'current2' : ''}}" onTap="selectRent1" data-r="1">整租</view>
+          <view class="r2 {{r2?'current2' : ''}}" onTap="selectRent2" data-r="2">合租</view>
         </view>
-        <view class="r2">整租</view>
-        <view class="r1-0">成套出租的温馨设计</view>
+        <view a:if="{{r2}}" class="r1-0">温馨合租的悠闲静谧</view>
+        <view a:if="{{r1}}" class="r1-0">成套出租的温馨设计</view>
+
         <view class="house-renting-condition">
-          <view class="r1-1 {{se1?'current2' : ''}}" onTap="onSelec1" data-se="0">不限</view>
-          <view class="r1-1 {{se2?'current2' : ''}}" onTap="onSelec2" data-se="1">1居</view>
-          <view class="r1-1 {{se3?'current2' : ''}}" onTap="onSelec3" data-se="2">2居</view>
-          <view class="r1-2 {{se4?'current2' : ''}}" onTap="onSelec4" data-se="3">3居+</view>
+          <block a:for="{{rentList}}" a:for-item="list" a:for-index="idx">
+            <view class="r1-1 {{list.selected?'current2' : ''}}" onTap="onSelect" data-index="{{idx}}" data-s="{{list.id}}">{{list.title}}</view>
+          </block>
         </view>
+        
         <view class="r3">
         <button type="default" onTap="onBtnReset" class="btu-reset">重置</button>
         <button type="default" onTap="onBtnConfirm" class="btu-confirm">确定</button>
@@ -88,12 +85,10 @@
     <view class='tempheight'>
       <view>
         <view class="rent-list">
-          <view class="rent-list-price {{rent1?'current2' : ''}}" onTap="rentChoose1">不限</view>
-          <view class="rent-list-price {{rent2?'current2' : ''}}" onTap="rentChoose2">1000元以下</view>
-          <view class="rent-list-price {{rent3?'current2' : ''}}" onTap="rentChoose3">1000-1500元</view>
-          <view class="rent-list-price {{rent4?'current2' : ''}}" onTap="rentChoose4">1500-2000元</view>
-          <view class="rent-list-price {{rent5?'current2' : ''}}" onTap="rentChoose5">2000-2500元</view>
-          <view class="rent-list-price {{rent6?'current2' : ''}}" onTap="rentChoose6">2500-3000元</view>
+
+          <block a:for="{{priceList}}" a:for-item="list" a:for-index="idx">
+            <view class="rent-list-price {{list.selected?'current2' : ''}}" data-index="{{idx}}" data-min="{{list.sliderleft1}}" data-max="{{list.sliderright1}}" onTap="rentChoose">{{list.title}}</view>
+          </block>
         </view>
         <view class="slider-rent">
           <view class="rentprice">
@@ -105,15 +100,15 @@
             </block>
             
             <view class="left-slider">
-            <slider class="slider-left" value="{{sliderleft}}" min="0" max="5000" step="10" trackSize="4" handleSize="15" backgroundColor="#ffa800" activeColor="#bbbbbb" onChanging="leftSchange"/>
+            <slider class="slider-left" value="{{sliderleft}}" min="0" max="5000" step="100" trackSize="4" handleSize="20" backgroundColor="#ffa800" activeColor="#bbbbbb" onChanging="leftSchange"/>
             </view>
             <view class="right-slider">
-            <slider class="slider-right" value="{{sliderright}}" min="5000" max="10000" step="10" trackSize="4" handleSize="15" backgroundColor="#bbbbbb" activeColor="#ffa800" onChanging="rightSchange"/>
+            <slider class="slider-right" value="{{sliderright}}" min="5000" max="10000" step="100" trackSize="4" handleSize="20" backgroundColor="#bbbbbb" activeColor="#ffa800" onChanging="rightSchange"/>
             </view>
             
           </view>
         </view>
-        <view class="bnt-rent">
+        <view class="btn-rent">
           <button type="default" onTap="rentBtnReset" class="btu-reset">重置</button>
         <button type="default" onTap="rentBtnConfirm" class="btu-confirm">确定</button>
         </view>
@@ -126,44 +121,30 @@
       <view class="screen-direction">
         <view class="direction">房源朝向</view>
         <view class="screen-house">
-        <view class="screen-print1 {{screen1?'current2' : ''}}" onTap="screenPoint1">东</view>
-        <view class="screen-print1 {{screen2?'current2' : ''}}" onTap="screenPoint2">南</view>
-        <view class="screen-print1 {{screen3?'current2' : ''}}" onTap="screenPoint3">西</view>
-        <view class="screen-print1 {{screen4?'current2' : ''}}" onTap="screenPoint4">北</view>
-       
+          <block a:for="{{directionList}}" a:for-item="list" a:for-index="idx">
+            <view class="screen-print0 {{list.selected?'current2' : ''}}" onTap="screenDirection" data-index="{{idx}}">{{list.title}}</view>
+          </block>
+        
         </view>
       </view>
       <view class="screen-direction">
         <view class="screen-point">房源特色</view>
-        <view class="screen-house">
-        <view class="screen-print1 {{screen5?'current2' : ''}}" onTap="screenPoint5">首次出租</view>
-        <view class="screen-print1 {{screen6?'current2' : ''}}" onTap="screenPoint6">独立卫生间</view>
-        <view class="screen-print1 {{screen7?'current2' : ''}}" onTap="screenPoint7">独立阳台</view>
-        <view class="screen-print1 {{screen8?'current2' : ''}}" onTap="screenPoint8">独立供暖</view>
-        <view class="screen-print1 {{screen9?'current2' : ''}}" onTap="screenPoint9">有电梯</view>
-        </view>
+          <view class="screen-house">
+            <block a:for="{{featureList}}" a:for-item="list" a:for-index="idx">
+              <view class="screen-print1 {{list.deleted?'current2' : ''}}" onTap="screenPoint" data-id="{{list.id}}"  data-index="{{idx}}">{{list.feature}}</view>
+            </block>
+          </view>
+        
       </view>
       <view class="screen-direction">
         <view class="screen-point">房源家具</view>
-        <view class="screen-house1">
-        <view class="screen-print2 {{screen10?'current2' : ''}}" onTap="screenPoint10">离地铁近</view>
-        <view class="screen-print2 {{screen11?'current2' : ''}}" onTap="screenPoint11">绿化率高</view> 
+        <view class="screen-house">
+          <block a:for="{{furnitureList}}" a:for-item="list" a:for-index="idx">
+            <view class="screen-print1 {{list.deleted?'current2' : ''}}" onTap="screenFurniture" data-id="{{list.id}}"  data-index="{{idx}}">{{list.furniture}}</view>
+          </block>
         </view>
       </view>
-      <!-- <view class="screen-direction">
-        <view class="screen-point">签约时长</view>
-        <view class="screen-house1">
-        <view class="screen-print2 {{screen12?'current2' : ''}}" onTap="screenPoint12">年租</view>
-        <view class="screen-print2 {{screen13?'current2' : ''}}" onTap="screenPoint13">短租</view>
-        </view>
-      </view>
-      <view class="screen-direction">
-        <view class="screen-point">房源状态</view>
-        <view class="screen-house1">
-        <view class="screen-print2 {{screen14?'current2' : ''}}" onTap="screenPoint14">可立即入住</view>
-        <view class="screen-print2 {{screen15?'current2' : ''}}" onTap="screenPoint15">可预订</view>
-        </view>
-      </view> -->
+      
       <view class="bnt-screen">
           <button type="default" onTap="screenBtnReset" class="btu-reset">重置</button>
         <button type="default" onTap="screenBtnConfirm" class="btu-confirm">确定</button>
@@ -174,11 +155,9 @@
   <view class="temp temp3 {{orderopen ? 'show' : 'disappear'}} ">
     <view class='tempheight2'>
       <view class="order">
-        <view class="order-d1 {{order1?'current2' : ''}}" onTap="orderChoose1">默认排序</view>
-        <view class="order-d1 {{order2?'current2' : ''}}" onTap="orderChoose2">价格从低到高</view>
-        <view class="order-d1 {{order3?'current2' : ''}}" onTap="orderChoose3">价格从高到低</view>
-        <view class="order-d1 {{order4?'current2' : ''}}" onTap="orderChoose4">面积从大到小</view>
-        <view class="order-d2 {{order5?'current2' : ''}}" onTap="orderChoose5">面积从小到大</view>
+        <block a:for="{{sortList}}" a:for-item="list" a:for-index="idx">
+          <view class="order-d1 {{list.selected?'current2' : ''}}" onTap="orderChoose" data-index="{{idx}}" data-s="{{list.id}}">{{list.title}}</view>
+        </block>
       </view>
     </view>
   </view>
@@ -186,60 +165,93 @@
 
 <!-- /test -->
 
-  <view class="page-choosetabs">
+  <!-- <view class="page-choosetabs">
     <view class="info1 {{bg1?'b1':'b2'}}" onTap="onChange1">      精品房源    
     </view>
     <view class="info2 {{bg2?'b1':'b2'}}" onTap="onChange2">      优质公寓    
     </view>
-  </view>
-  <block a:for="{{houses}}" a:for-item="list">
-    <view a:if="{{showView1}}" class="page-house">
+  </view> -->
+  
+ <view a:if="{{houseType==1}}">
+   <block a:for="{{boutiqueHousing}}" a:for-item="list" >
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
       <view class="house-info">
         <view class="p-img">
-          <image src="{{list.imgpath}}" class="house-img"/>
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
         </view>
         <view class="p0">
-          <view class="p1">      {{list.housename}}    
+          <view class="p1">      {{list.buildingUnit}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.houseinfo}}
+            <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
             </view>
-            <view class="p2-2">{{list.houseprice}}
+            <view class="p2-2">{{list.entireRents}}元/月
             </view>
           </view>
           <view class="p3"> 
-            <image src="/image/icon/weizhi-2.png" class="weizhi-img" />
-            {{list.distance}}    
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
           </view>
-          <view class="p4">      {{list.point}}    
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
           </view>
         </view>
       </view>
     </view>
   </block>
-  <block a:for="{{houseList}}" a:for-item="list">
-    <view a:if="{{showView2}}" class="page-house">
+  
+ </view>
+ <view a:elif="{{houseType==2}}">
+  <block a:for="{{wholeRentalHousing}}" a:for-item="list">
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
       <view class="house-info">
         <view class="p-img">
-          <image src="{{list.imgpath}}" class="house-img"/>
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
         </view>
         <view class="p0">
-          <view class="p1">      {{list.housename}}    
+          <view class="p1">      {{list.buildingUnit}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.houseinfo}}
+            <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
             </view>
-            <view class="p2-2">{{list.houseprice}}
+            <view class="p2-2">{{list.entireRents}}元/月
             </view>
           </view>
           <view class="p3"> 
-            <image src="/image/icon/weizhi-2.png" class="weizhi-img" />
-            {{list.distance}}    
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
           </view>
-          <view class="p4">      {{list.point}}    
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
           </view>
         </view>
       </view>
     </view>
   </block>
+ </view>
+ <view a:elif="{{houseType==3}}">
+    <block a:for="{{sharedHousing}}" a:for-item="list">
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='2' >
+      <view class="house-info">
+        <view class="p-img">
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
+        </view>
+        <view class="p0">
+          <view class="p1">      {{list.roomName}}    
+          </view>
+          <view class="p2">
+            <view class="p2-1">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
+            </view>
+            <view class="p2-2">{{list.rents}}元/月
+            </view>
+          </view>
+          <view class="p3"> 
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
+          </view>
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+ </view>
 </view>

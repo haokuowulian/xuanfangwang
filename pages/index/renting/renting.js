@@ -1,77 +1,128 @@
-const houses = [
+const app = getApp();
+const directionList = [
   {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
+    title:'朝东',
+    selected:false,
   },
   {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
+    title:'朝南',
+    selected:false,
   },
   {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
+    title:'朝西',
+    selected:false,
   },
   {
-    imgpath: '/image/house6.png',
-    housename:'萧山宝龙城市广场1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
+    title:'朝北',
+    selected:false,
   },
-  
+  {
+    title:'东北',
+    selected:false,
+  },
+  {
+    title:'东南',
+    selected:false,
+  },
+  {
+    title:'西北',
+    selected:false,
+  },
+  {
+    title:'西南',
+    selected:false,
+  },
 ]
-const houseList = [
+const sortList = [
   {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
+    title:'默认排序',
+    selected:false,
+    id:'',
   },
   {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
+    title:'价格从低到高',
+    selected:false,
+    id:1,
   },
   {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
+    title:'价格从高到低',
+    selected:false,
+    id:2,
   },
   {
-    imgpath: '/image/house3.png',
-    housename:'萧山大成国际1居室',
-    houseinfo:'75m² | 2/8层',
-    houseprice:'￥8231/月',
-    distance:'距2号线建设一路1222米',
-    point: '离地铁近',
-  }, 
-  
+    title:'面积从小到大',
+    selected:false,
+    id:3,
+  },
+  {
+    title:'面积从大到小',
+    selected:false,
+    id:4,
+  },
+]
+const rentList =[
+  {
+    title:'不限',
+    selected:false,
+    id:'',
+  },
+  {
+    title:'1居',
+    selected:false,
+    id:1,
+  },
+  {
+    title:'2居',
+    selected:false,
+    id:2,
+  },
+  {
+    title:'3居+',
+    selected:false,
+    id:3,
+  },
+]
+const priceList = [
+  {
+    title:'不限',
+    sliderleft1:0,
+    sliderright1:10000,
+    selected:false,
+  },
+  {
+    title:'1000元以下',
+    sliderleft1:0,
+    sliderright1:1000,
+    selected:false,
+  },
+  {
+    title:'1000-2000元',
+    sliderleft1:1000,
+    sliderright1:2000,
+    selected:false,
+  },
+  {
+    title:'2000-3000元',
+    sliderleft1:2000,
+    sliderright1:3000,
+    selected:false,
+  },
+  {
+    title:'3000-4000元',
+    sliderleft1:3000,
+    sliderright1:4000,
+    selected:false,
+  },
+  {
+    title:'4000-5000元',
+    sliderleft1:4000,
+    sliderright1:5000,
+    selected:false,
+  },
 ]
 
-// const sliderleft='0';
-// const sliderright='10000';
 Page({
+    type:'',
     properties: {
     // 这里定义了innerText属性，属性值可以在组件使用时指定
     dropDownMenuTitle: {
@@ -101,6 +152,24 @@ Page({
     }
   },
   data: {
+    priceList,
+    rentList,
+    sortList,
+    r1:false,
+    r2:false,
+    rentType:0,
+    featureList:[],
+    furnitureList:[],
+    featureCondition:[],
+    furnitureCondition:[],
+    directionList,
+    direction:[],
+    imgUrl:app.globalData.baseImgUrl_whj,
+    houseType:0,
+    pageIndex:1,
+    boutiqueHousing:[],
+    wholeRentalHousing:[],
+    sharedHousing:[],
     hyopen: false,
     sqopen: false,
     pxopen: false,
@@ -118,51 +187,19 @@ Page({
     selectedOrder: 1,
     bg1:true,
     bg2:false,
-    houses,
-    houseList,
     showView1:false,
     showView2:false,
-    s1:false,
-    s2:false,
-    s3:false,
-    s4:false,
-    se1:false,
-    se2:false,
-    se3:false,
-    se4:false,
-    condition1:'',
-    condition2:'',
-    rent1:true,
-    rent2:false,
-    rent3:false,
-    rent4:false,
-    rent5:false,
+    condition1:'',//整租几室
+    // condition2:'',//合租几室
+    pricetype:false,
     rentprice:'不限',
-    sliderleft:'0',
-    sliderright:'10000',
+    sliderleft:0,//租金
+    sliderright:10000,
+    sliderleft1:0,//租金
+    sliderright1:10000,
     rentslider1:true,
     rentslider2:false,
-    screen1:false,
-    screen2:false,
-    screen3:false,
-    screen4:false,
-    screen5:false,
-    screen6:false,
-    screen7:false,
-    screen8:false,
-    screen9:false,
-    screen10:false,
-    screen11:false,
-    screen12:false,
-    screen13:false,
-    screen14:false,
-    screen15:false,
-    screen16:false,
-    order1:false,
-    order2:false,
-    order3:false,
-    order4:false,
-    order5:false,
+    sort:'',
     dropDownMenuFourthData: [{ id: 1, title: '智能排序' }, { id: 2, title: '发布时间' }, { id: 3, title: '距离优先' }],//排序数据
     dropDownMenuFirstData:[
         { id: 1, title: '附近', 
@@ -227,24 +264,84 @@ Page({
       { id: 1, title: '标签11' }, 
       { id: 2, title: '标签12' }]
   },
-  onLoad() {
-    // this.setDate({
-    //   bg:true,
-    // });
-    // let that = this;
+  onLoad(query) {
+    this.setData({
+      houseType:query.type,
+    });
+    if(query.type==3){
+      console.log(query.type)
+      this.setData({
+        rentType:2,
+        r1:false,
+        r2:true,
+      });
+    }else{
+      console.log(query.type)
+      this.setData({
+        rentType:1,
+        r1:true,
+        r2:false,
+      });
+    }
+    switch(query.type){
+      case "1"://精选房源
+        this.getBoutiqueHousing();
+      break;
+
+      case "2"://整租房源
+        this.getWholeRentalHousing();
+      break;
+
+      case "3"://合租房源
+        this.getSharedHousing();
+      break;
+    }
+   this.getFeature();
+   this.getFurniture();
+  },
+  //获取筛选下拉框中房源特色
+  getFeature(){
+    var that = this;
     my.httpRequest({
-      url: 'xxxxxxxxxx', // 目标服务器url
+      url:app.globalData.baseUrl_whj+"IF/selectData/getFeatureListIF.do",
+      method: 'POST',
+      dataType: 'json',
       success: (res) => {
-        
+        var li = res.data.data;
+      if(res.data.success){
+        that.setData({
+          featureList:li,
+        });
+      }
+      },
+    });
+  },
+  //获取筛选下拉框中房源家具
+  getFurniture(){
+    var that = this;
+    my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/selectData/getFurnitureListIF.do",
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        var li = res.data.data;
+        console.log(res.data)
+        console.log(li)
+      if(res.data.success){
+        that.setData({
+          furnitureList:li,
+        });
+      }
       },
     });
   },
   onShow(){
-    // this.setData({bg1:true});
     this.setData({showView1:true});
-    this.setData({s1:true});
-    this.setData({se1:true});
     this.setData({rent1:true});
+
+    this.onBtnReset();
+    this.rentBtnReset();
+    this.onSortRest();
   },
 
   onChange1(){
@@ -256,727 +353,325 @@ Page({
     this.setData({showView2:true,showView1:false});
   },
   // 排序下拉框
-  orderChoose1(e){
-    if(this.order1){
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:false,
-        order4:false,
-        order5:false,
-      });
-    }else{
-      this.setData({
-        order1:true,
-        order2:false,
-        order3:false,
-        order4:false,
-        order5:false,
-      });
-      this.closeHyFilter();
+  orderChoose(e){
+    var that = this;
+    var sort = e.currentTarget.dataset.s;
+    var index = e.currentTarget.dataset.index;;
+    var arr = that.data.sortList;
+    for(let i=0;i<arr.length;i++){
+      arr[i].selected=false;
     }
+    arr[index].selected=true;
+    that.setData({
+      pageIndex:1,
+      sortList:arr,
+      sort:sort,
+    });
+    console.log('******************')
+    console.log(arr)
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
+    that.closeHyFilter();
   },
-  orderChoose2(e){
-    if(this.order2){
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:false,
-        order4:false,
-        order5:false,
-      });
-    }else{
-      this.setData({
-        order1:false,
-        order2:true,
-        order3:false,
-        order4:false,
-        order5:false,
-      });
-      this.closeHyFilter();
-    }
-  },
-  orderChoose3(e){
-    if(this.order3){
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:false,
-        order4:false,
-        order5:false,
-      });
-    }else{
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:true,
-        order4:false,
-        order5:false,
-      });
-      this.closeHyFilter();
-    }
-  },
-  orderChoose4(e){
-    if(this.order4){
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:false,
-        order4:false,
-        order5:false,
-      });
-    }else{
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:false,
-        order4:true,
-        order5:false,
-      });
-      this.closeHyFilter();
-    }
-  },
-  orderChoose5(e){
-    if(this.order5){
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:false,
-        order4:false,
-        order5:false,
-      });
-    }else{
-      this.setData({
-        order1:false,
-        order2:false,
-        order3:false,
-        order4:false,
-        order5:true,
-      });
-      this.closeHyFilter();
-    }
-  },
+  
   // 筛选下拉框
-  screenPoint1(e){
-    if(this.screen1){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+  //房源朝向
+  screenDirection(e){
+    var that = this;
+    let index = e.currentTarget.dataset.index;
+    var arr = that.data.directionList;
+    var condition = that.data.direction;
+    console.log(that.data.direction)
+    if(arr[index].selected){
+      arr[index].selected=false;
+      that.remove(condition,arr[index].title);
     }else{
-      this.setData({
-        screen1:true,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+      arr[index].selected=true;
+      condition.push(arr[index].title);
     }
+    
+    that.setData({
+      directionList:arr,
+      direction:condition,
+    });
+    console.log(that.data.direction)
   },
-  screenPoint2(e){
-    if(this.screen2){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+  //房源特色
+  screenPoint(e){
+    var that = this;
+    var id = e.target.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    console.log(id)
+    console.log('**************'+index)
+    var arr = that.data.featureList;
+    var condition = that.data.featureCondition
+     console.log(arr[index].deleted)
+    if(arr[index].deleted){
+      arr[index].deleted=false;
+      that.remove(condition,id);
     }else{
-      this.setData({
-        screen1:false,
-        screen2:true,
-        screen3:false,
-        screen4:false,
-      });
+      arr[index].deleted=true;
+      condition.push(id);
     }
+    console.log(arr[index].deleted)
+    console.log(condition)
+    that.setData({
+      featureList:arr,
+      featureCondition:condition,
+    });
+    console.log(that.data.featureCondition)
   },
-  screenPoint3(e){
-    if(this.screen3){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
+  //房源家具
+  screenFurniture(e){
+    var that = this;
+    var id = e.target.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    console.log(id)
+    console.log('**************'+index)
+    var arr = that.data.furnitureList;
+    var condition = that.data.furnitureCondition
+     console.log(arr[index].deleted)
+    if(arr[index].deleted){
+      arr[index].deleted=false;
+      that.remove(condition,id);
     }else{
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:true,
-        screen4:false,
-      });
+      arr[index].deleted=true;
+      condition.push(id);
     }
+    console.log(arr[index].deleted)
+    console.log(condition)
+    that.setData({
+      furnitureList:arr,
+      furnitureCondition:condition,
+    });
+    console.log(that.data.furnitureCondition)
   },
-  screenPoint4(e){
-    if(this.screen4){
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:false,
-      });
-    }else{
-      this.setData({
-        screen1:false,
-        screen2:false,
-        screen3:false,
-        screen4:true,
-      });
+  //删除指定数组元素
+  remove(array,val){
+    for (var i = 0; i < array.length; i++) {
+      if(array[i] == val){
+        array.splice(i, 1);
+      }
     }
+    return -1; 
   },
-  screenPoint5(e){
-    if(this.screen5){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen5:true,
-      });
-    }
-  },
-  screenPoint6(e){
-    if(this.screen6){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen6:true,
-      });
-    }
-  },
-  screenPoint7(e){
-    if(this.screen7){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen7:true,
-      });
-    }
-  },
-  screenPoint8(e){
-    if(this.screen8){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen8:true,
-      });
-    }
-  },
-  screenPoint9(e){
-    if(this.screen9){
-      this.setData({
-        screen5:false,
-        screen6:false,
-        screen7:false,
-        screen8:false,
-        screen9:false,
-      });
-    }else{
-      this.setData({
-        screen9:true,
-      });
-    }
-  },
-  screenPoint10(e){
-    if(this.screen10){
-      this.setData({
-        screen10:false,
-        screen11:false,
-      });
-    }else{
-      this.setData({
-        screen10:true,
-      });
-    }
-  },
-  screenPoint11(e){
-    if(this.screen11){
-      this.setData({
-        screen10:false,
-        screen11:false,
-      });
-    }else{
-      this.setData({
-        screen11:true,
-      });
-    }
-  },
-  // screenPoint12(e){
-  //   if(this.screen12){
-  //     this.setData({
-  //       screen12:false,
-  //       screen13:false,
-  //     });
-  //   }else{
-  //     this.setData({
-  //       screen12:true,
-  //       screen13:false,
-  //     });
-  //   }
-  // },
-  // screenPoint13(e){
-  //   if(this.screen13){
-  //     this.setData({
-  //       screen12:false,
-  //       screen13:false,
-  //     });
-  //   }else{
-  //     this.setData({
-  //       screen12:false,
-  //       screen13:true,
-  //     });
-  //   }
-  // },
-  // screenPoint14(e){
-  //   if(this.screen14){
-  //     this.setData({
-  //       screen14:false,
-  //       screen15:false,
-  //     });
-  //   }else{
-  //     this.setData({
-  //       screen14:true,
-  //       screen15:false,
-  //     });
-  //   }
-  // },
-  // screenPoint15(e){
-  //   if(this.screen15){
-  //     this.setData({
-  //       screen14:false,
-  //       screen15:false,
-  //     });
-  //   }else{
-  //     this.setData({
-  //       screen14:false,
-  //       screen15:true,
-  //     });
-  //   }
-  // },
+ 
   // 筛选重置按钮
   screenBtnReset(){
-    this.setData({
-      screen1:false,
-      screen2:false,
-      screen3:false,
-      screen4:false,
-      screen5:false,
-      screen6:false,
-      screen7:false,
-      screen8:false,
-      screen9:false,
-      screen10:false,
-      screen11:false,
-      screen12:false,
-      screen13:false,
-      screen14:false,
-      screen15:false,
+    var that = this;
+    var arr1 = that.data.furnitureList;
+    for(let i = 0;i<arr1.length;i++){
+      arr1[i].deleted=false;
+    }
+    var arr2 = that.data.featureList;
+    for(let i = 0;i<arr2.length;i++){
+      arr2[i].deleted=false;
+    }
+    var arr3 = that.data.directionList;
+    for(let i =0;i<arr3.length;i++){
+      arr3[i].selected=false;
+    }
+    that.setData({
+      directionList:arr3,
+      featureList:arr2,
+      furnitureList:arr1,
+      direction:[],
+      featureCondition:[],
+      furnitureCondition:[],
     });
   },
   // 筛选确认按钮
   screenBtnConfirm(){
-    
+    var that = this;
+    that.setData({
+      pageIndex:1,
+    });
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
+    that.closeHyFilter();
   },
+  
   // 租金下拉框
-  rentChoose1(e){
-    if(this.rent1){
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-      });
-    }else{
-      this.setData({
-        rent1:true,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-        rentprice:'不限',
-        rentslider1:true,
-        rentslider2:false,
-        
-      });
+
+  //租金固定选择
+  rentChoose(e){
+    var that = this;
+    var min = e.currentTarget.dataset.min;
+    var max = e.currentTarget.dataset.max;
+    var index = e.currentTarget.dataset.index;
+    
+    var arr = that.data.priceList;
+    for(let i=0;i<arr.length;i++){
+      arr[i].selected=false;
     }
+    arr[index].selected=true;
+    that.setData({
+      pageIndex:1,
+      priceList:arr,
+      sliderleft1:min,
+      sliderright1:max,
+      pricetype:true,
+      rentprice:arr[index].title,
+    });
+    console.log('******************')
+    console.log(arr)
   },
-  rentChoose2(e){
-    if(this.rent2){
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-      });
-    }else{
-      this.setData({
-        rent1:false,
-        rent2:true,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-        rentprice:'1000元以下',
-        rentslider1:true,
-        rentslider2:false,
-        
-      });
-    }
-  },
-  rentChoose3(e){
-    if(this.rent3){
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-      });
-    }else{
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:true,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-        rentprice:'1000-1500元',
-        rentslider1:true,
-        rentslider2:false,
-        
-      });
-    }
-  },
-  rentChoose4(e){
-    if(this.rent4){
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-      });
-    }else{
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:true,
-        rent5:false,
-        rent6:false,
-        rentprice:'1500-2000元',
-        rentslider1:true,
-        rentslider2:false,
-        
-      });
-    }
-  },
-  rentChoose5(e){
-    if(this.rent5){
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-      });
-    }else{
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:true,
-        rent6:false,
-        rentprice:'2000-2500元',
-        rentslider1:true,
-        rentslider2:false,
-        
-      });
-    }
-  },
-  rentChoose6(e){
-    if(this.rent6){
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:false,
-      });
-    }else{
-      this.setData({
-        rent1:false,
-        rent2:false,
-        rent3:false,
-        rent4:false,
-        rent5:false,
-        rent6:true,
-        rentprice:'2500-3000元',
-        rentslider1:true,
-        rentslider2:false,
-        
-      });
-    }
-  },
+
   // 滑块拖动中触发
   leftSchange(e){
     let value = e.detail.value;
     this.setData({
+      pricetype:false,
       sliderleft:e.detail.value,
       rentslider2:true,
       rentslider1:false,
-      rent1:true,
-      rent2:false,
-      rent3:false,
-      rent4:false,
-      rent5:false,
-      rent6:false,
     });
   },
   rightSchange(e){
     let value =e.detail.value;
     this.setData({
+      pricetype:false,
       sliderright:e.detail.value,
       rentslider2:true,
       rentslider1:false,
-      rent1:true,
-      rent2:false,
-      rent3:false,
-      rent4:false,
-      rent5:false,
-      rent6:false,
     });
   },
   // 租金范围重置按钮
   rentBtnReset(){
-    this.setData({
-      rent1:true,
-      rent2:false,
-      rent3:false,
-      rent4:false,
-      rent5:false,
-      rent6:false,
+    var that = this;
+    var arr = that.data.priceList;
+    for(let i=0;i<arr.length;i++){
+      arr[i].selected=false;
+    }
+    arr[0].selected=true;
+    that.setData({
+      priceList:arr,
+      pricetype:true,
+      sliderleft1:0,
+      sliderright1:10000,
       rentprice:'不限',
-      sliderleft:'0',
-      sliderright:'10000',
       rentslider1:true,
       rentslider2:false,
     });
+    
   },
   // 租金范围确认按钮
   rentBtnConfirm(){
-    if(rentslider1){
+    var that = this;
+    var sort = that.data.sort;
+    that.setData({
+      pageIndex:1,
+    });
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
+    that.closeHyFilter();
+    if(that.data.pricetype){
       // 提交固定取值
+      console.log('固定'+that.data.sliderleft1+'|'+that.data.sliderright1)
+      
     }else{
       // 提交自选取值
+      console.log('自选：'+that.data.sliderleft+'|'+that.data.sliderright)
+      
     }
   },
   // 租房下拉框
-  onSelect1(e){
-    if(this.s1){
-      this.setData({
-        s1:false,
-        s2:false,
-        s3:false,
-        s4:false,
-        condition1:''
+  //整租
+  selectRent1(e){
+   if(this.r1){
+     this.setData({
+        r1:false,
+        r2:false,
+        rentType:1,
+        condition1:'',
       });
-    }else{
-      this.setData({
-        s1:true,
-        s2:false,
-        s3:false,
-        s4:false,
-        condition1:e.currentTarget.dataset.s
+   }else{
+     this.setData({
+        r1:true,
+        r2:false,
+        rentType:1,
+        condition1:'',
       });
+   }
+   console.log(this.data.rentType)
+   console.log('*************************')
+   console.log(this.data.rentType)
+  },
+  //合租
+  selectRent2(e){
+    if(this.r2){
+     this.setData({
+        r1:false,
+        r2:false,
+        rentType:2,
+        condition1:'',
+      });
+   }else{
+     this.setData({
+        r1:false,
+        r2:true,
+        rentType:2,
+        condition1:'',
+      });
+   }
+   console.log(this.data.rentType)
+   console.log('*************************')
+   console.log(this.data.rentType)
+  },
+  //几室选择
+   onSelect(e){
+     var that = this;
+     var s = e.currentTarget.dataset.s;
+     var index = e.currentTarget.dataset.index;
+    
+    var arr = that.data.rentList;
+    for(let i=0;i<arr.length;i++){
+      arr[i].selected=false;
     }
+    arr[index].selected=true;
+    that.setData({
+      pageIndex:1,
+      rentList:arr,
+      condition1:s,
+    });
+    console.log('******************')
+    console.log(arr)
     
   },
-  onSelect2(e){
-    if(this.s2){
-      this.setData({
-        s1:false,
-        s2:false,
-        s3:false,
-        s4:false,
-        condition1:''
-        
-      });
-    }else{
-      this.setData({
-        s1:false,
-        s2:true,
-        s3:false,
-        s4:false,
-        condition1:e.currentTarget.dataset.s
-      });
+  onSortRest(){
+    var that = this;
+    var arr = that.data.sortList;
+    for(let i=0;i<arr.length;i++){
+      arr[i].selected=false;
     }
-  },
-  onSelect3(e){
-    if(this.s3){
-      this.setData({
-        s1:false,
-        s2:false,
-        s3:false,
-        s4:false,
-        condition1:''
-      });
-    }else{
-      this.setData({
-        s1:false,
-        s2:false,
-        s3:true,
-        s4:false,
-        condition1:e.currentTarget.dataset.s
-      });
-    }
-  },
-  onSelect4(e){
-    if(this.s4){
-      this.setData({
-        s1:false,
-        s2:false,
-        s3:false,
-        s4:false,
-        condition1:''
-      });
-    }else{
-      this.setData({
-        s1:false,
-        s2:false,
-        s3:false,
-        s4:true,
-        condition1:e.currentTarget.dataset.s
-      });
-    }
-  },
-  onSelec1(e){
-    if(this.se1){
-      this.setData({
-        se1:false,
-        se2:false,
-        se3:false,
-        se4:false,
-        condition2:''
-      });
-    }else{
-      this.setData({
-        se1:true,
-        se2:false,
-        se3:false,
-        se4:false,
-        condition2:e.currentTarget.dataset.s
-      });
-    }
-  },
-  onSelec2(e){
-    if(this.se2){
-      this.setData({
-        se1:false,
-        se2:false,
-        se3:false,
-        se4:false,
-        condition2:''
-      });
-    }else{
-      this.setData({
-        se1:false,
-        se2:true,
-        se3:false,
-        se4:false,
-        condition2:e.currentTarget.dataset.s
-      });
-    }
-  },
-  onSelec3(e){
-    if(this.se3){
-      this.setData({
-        se1:false,
-        se2:false,
-        se3:false,
-        se4:false,
-        condition2:''
-      });
-    }else{
-      this.setData({
-        se1:false,
-        se2:false,
-        se3:true,
-        se4:false,
-        condition2:e.currentTarget.dataset.s
-      });
-    }
-  },
-  onSelec4(e){
-    if(this.se4){
-      this.setData({
-        se1:false,
-        se2:false,
-        se3:false,
-        se4:false,
-        condition2:''
-      });
-    }else{
-      this.setData({
-        se1:false,
-        se2:false,
-        se3:false,
-        se4:true,
-        condition2:e.currentTarget.dataset.s
-      });
-    }
+    arr[0].selected=true;
+    that.setData({
+      sortList:arr,
+      sort:'',
+    });
   },
   onBtnReset(){
-    this.setData({
-        s1:true,
-        s2:false,
-        s3:false,
-        s4:false,
-        condition1:''
-      });
-    this.setData({
-        se1:true,
-        se2:false,
-        se3:false,
-        se4:false,
-        condition2:''
-      });
+    var that = this;
+    var arr = that.data.rentList;
+    for(let i=0;i<arr.length;i++){
+      arr[i].selected=false;
+    }
+    arr[0].selected=true;
+    that.setData({
+      rentList:arr,
+      condition1:'',
+    });
   },
+  //租房条件确认按钮
   onBtnConfirm(){
-
+    var that = this;
+    that.setData({
+      pageIndex:1,
+    });
+    console.log(that.data.condition1+'|'+that.data.condition2+'|'+that.data.rentType)
+    that.onPullDownRefresh();
+    // that.getBoutiqueHousing();
+    that.closeHyFilter();
   },
   // 下拉框
   listqy(e){
@@ -987,7 +682,7 @@ Page({
           pxopen: false,
           sortopen: false,
           orderopen:false,
-          shownavindex: 0
+          shownavindex: 0,
         })
       } else {
         this.setData({
@@ -1209,9 +904,234 @@ Page({
         })
       }
   },
-  //组件生命周期函数，在组件实例进入页面节点树时执行
-  attached() {
-    // 可以在这里发起网络请求获取插件的数据
-    
+  //获取精选房源
+  getBoutiqueHousing(){
+    console.log('--------'+this.data.pageIndex);
+    var that=this;
+    var minRent=0;
+    var maxRent=10000;
+    var condition = that.data.condition1;
+    var sort = that.data.sort;
+    if(that.data.pricetype){
+      minRent=that.data.sliderleft1;
+      maxRent=that.data.sliderright1;
+    }else{
+      minRent=that.data.sliderleft;
+      maxRent=that.data.sliderright;
+    }
+    var a = that.data.featureCondition;
+    var b = that.data.furnitureCondition;
+    var c = that.data.direction;
+    var featureCondition = a.join(",");
+    var furnitureCondition = b.join(",");
+    var directionCondition = c.join(",");
+    var rt = that.data.rentType;
+    console.log( this.data.pageIndex);
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        // decorateType:-3,
+        room:condition,//几室1/2/3
+        minRent:minRent,//最小租金
+        maxRent:maxRent,//最大租金
+        toward:directionCondition,//朝向directionCondition
+        feature:featureCondition,//特色
+        furniture:furnitureCondition,//家具
+        sortWay:sort,//排序方式
+        decorateType:-3,
+        rentType:1,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                 that.setData({
+            boutiqueHousing:res.data.data
+          });
+            }else if(that.data.boutiqueHousing.length<res.data.count){
+               that.setData({
+                boutiqueHousing:that.data.boutiqueHousing.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
   },
+
+  //获取整租房源
+  getWholeRentalHousing(){
+    var that=this;
+    console.log('--------'+this.data.pageIndex);
+    var minRent=0;
+    var maxRent=10000;
+    var condition = that.data.condition1;
+    var sort = that.data.sort;
+    if(that.data.pricetype){
+      minRent=that.data.sliderleft1;
+      maxRent=that.data.sliderright1;
+    }else{
+      minRent=that.data.sliderleft;
+      maxRent=that.data.sliderright;
+    }
+    var a = that.data.featureCondition;
+    var b = that.data.furnitureCondition;
+    var c = that.data.direction;
+    var featureCondition = a.join(",");
+    var furnitureCondition = b.join(",");
+    var directionCondition = c.join(",");
+    var rt = that.data.rentType;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        room:condition,//几室1/2/3
+        minRent:minRent,//最小租金
+        maxRent:maxRent,//最大租金
+        toward:directionCondition,//朝向directionCondition
+        feature:featureCondition,//特色
+        furniture:furnitureCondition,//家具
+        sortWay:sort,//排序方式
+        rentType:1,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                 that.setData({
+            wholeRentalHousing:res.data.data
+          });
+            }else if(that.data.wholeRentalHousing.length<res.data.count){
+               that.setData({
+                wholeRentalHousing:that.data.wholeRentalHousing.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+
+  //获取合租房源
+  getSharedHousing(){
+    var that=this;
+    console.log('--------'+this.data.pageIndex);
+    var minRent=0;
+    var maxRent=10000;
+    var condition = that.data.condition1;
+    var sort = that.data.sort;
+    if(that.data.pricetype){
+      minRent=that.data.sliderleft1;
+      maxRent=that.data.sliderright1;
+    }else{
+      minRent=that.data.sliderleft;
+      maxRent=that.data.sliderright;
+    }
+    var a = that.data.featureCondition;
+    var b = that.data.furnitureCondition;
+    var c = that.data.direction;
+    var featureCondition = a.join(",");
+    var furnitureCondition = b.join(",");
+    var directionCondition = c.join(",");
+    var rt = that.data.rentType;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data: {
+        room:condition,//几室1/2/3
+        minRent:minRent,//最小租金
+        maxRent:maxRent,//最大租金
+        toward:directionCondition,//朝向directionCondition
+        feature:featureCondition,//特色
+        furniture:furnitureCondition,//家具
+        sortWay:sort,//排序方式
+        rentType:2,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+       console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                 that.setData({
+            sharedHousing:res.data.data
+          });
+            }else if(that.data.sharedHousing.length<res.data.count){
+               that.setData({
+                sharedHousing:that.data.sharedHousing.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
+    });
+     switch(this.data.houseType){
+      case "1"://精选房源
+        this.getBoutiqueHousing();
+      break;
+
+      case "2"://整租房源
+        this.getWholeRentalHousing();
+      break;
+
+      case "3"://合租房源
+        this.getSharedHousing();
+      break;
+    }
+  },
+  onReachBottom() {
+    this.setData({
+      pageIndex:this.data.pageIndex+1
+    });
+     switch(this.data.houseType){
+      case "1"://精选房源
+        this.getBoutiqueHousing();
+      break;
+
+      case "2"://整租房源
+        this.getWholeRentalHousing();
+      break;
+
+      case "3"://合租房源
+        this.getSharedHousing();
+      break;
+    }
+  },
+  //前往房源详情
+  goToHouseDetail(e){
+    my.navigateTo({
+    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+    })
+  }
 });
