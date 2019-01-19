@@ -239,30 +239,28 @@
 </view>
 
 <view>
+ 
+<!-- <popup show="{{showBottom}}" position="bottom" onClose="onPopupClose" >
   
-  <!-- <popup show="{{showTop}}" position="bottom" onClose="onPopupClose">
-    <view style="height: 200rpx; background: #fff; ">
-      <block a:for="{{areaList}}">
-      <list-item
-        align="middle"
-        index="{{index}}"
-        onClick="onItemClick"
-        key="items-{{index}}"
-        last="{{index === (items.length - 1)}}"
-      >
-      {{item.distName}}
-       
-      </list-item>
-    </block>
-     
-    </view>
-  </popup> -->
-<popup show="{{showTop}}" position="bottom" onClose="onPopupClose">
-    <scroll-view scroll-y="true" style="height: 400rpx;">
+    <scroll-view scroll-y="true" style="height: 200px;" >
        <block a:for="{{areaList}}" >
-         <button class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</button>
+         <view class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</view>
        </block>
-      </scroll-view>
-  </popup>
+      </scroll-view> 
+      
+  </popup> -->
   
+  <view class="modal-box" hidden="{{!showBottom}}" onTap="onPopupClose" >
+
+    <view class="modal-body">
+      <view class="modal-content">
+       <scroll-view scroll-y="true" style="height: 200px;" >
+       <block a:for="{{areaList}}" >
+         <view class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</view>
+       </block>
+      </scroll-view> 
+      </view>
+    </view>
+  </view>
+
 </view>

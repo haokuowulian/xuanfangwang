@@ -20,7 +20,7 @@ Page({
     city:'',
     cityCode:'',
     area:'',
-    showTop: false,
+    showBottom: false,
     areaList:[],
     areaId:''
   },
@@ -380,7 +380,7 @@ Page({
         if(res.data.success){
           that.setData({
             areaList:res.data.data,
-            showTop: true,
+            showBottom: true,
           });
           
         }
@@ -409,6 +409,12 @@ Page({
   },
   //完善信息
   submit(){
+    if(this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
+       my.alert({
+         title: '请完善信息' 
+       });
+     }else{
+      
     my.confirm({
       title: '温馨提示',
       content: '点击同意后即授权该应用获取您的手机号和真实姓名',
@@ -423,14 +429,11 @@ Page({
        }
       },
     });
+     }
   },
   //请求服务器完善信息
    complexUserInfo(){
-     if(this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
-       my.alert({
-         title: '请完善信息' 
-       });
-     }else{
+     
      var that=this;
       my.httpRequest({
         url: app.globalData.baseUrl+'/IF/user/editUser.do',
@@ -439,8 +442,6 @@ Page({
               'content-type': 'application/json'
             },
         data: {
-        //  userName:'13754327232',
-        //  CertName:'张金飞',
          sex:this.data.sexCode,
          cityCode:this.data.cityCode,
          cityName:this.data.city,
@@ -473,11 +474,11 @@ Page({
           my.hideLoading();
         }
       });
-     }
+     
    },
    onPopupClose() {
     this.setData({
-      showTop: false,
+      showBottom: false,
     });
   },
   //获取选中地区
