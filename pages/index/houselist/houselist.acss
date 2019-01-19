@@ -690,3 +690,9 @@ page{
   margin-top: 35rpx;
   justify-content: space-between;
 }
+.tips{
+  width: 750rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #999999;
+}

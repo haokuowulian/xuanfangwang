@@ -42,7 +42,9 @@
     "pages/houseinfo/payment_method/payment_method",
     "pages/index/accountinfo/accountinfo",
     "pages/index/order/orderinfo/orderinfo",
-    "pages/index/news/news"
+    "pages/index/news/news",
+    "pages/index/contractinfo/contractinfo",
+    "pages/index/signing/payment_result/payment_result"
   ],
   "window": {
     "defaultTitle": "My App"

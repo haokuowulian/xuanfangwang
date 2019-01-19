@@ -28,12 +28,27 @@ Page({
       success: (res) => {
         console.log(res)
         if(res.confirm){
-          my.alert({
-            title: '合同签订成功！',
-            success: () => {
-              that.goBack();
-          },
-          });
+
+          // my.tradePay({
+          //   tradeNO: '201711152100110410533667792', // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
+          //   success: (res) => {
+          //     my.alert({
+          //     content: JSON.stringify(res),
+          //   });
+          //   },
+          //   fail: (res) => {
+          //     my.alert({
+          //     content: JSON.stringify(res),
+          //   });
+          //   }
+          // });
+
+          // my.alert({
+          //   title: '合同签订成功！',
+          //   success: () => {
+          //     that.goBack();
+          // },
+          // });
           that.toUpload();
         }else{
           my.alert({
@@ -81,6 +96,9 @@ Page({
     var that = this;
     var ucard = my.getStorageSync({
       key: 'ucard', // 消费者身份证号
+    }).data;
+    var upayUserId = my.getStorageSync({
+      key: 'upayUserId', // 消费者身份证号
     }).data;
     var uname= my.getStorageSync({
       key: 'uname', // 消费者姓名
@@ -136,10 +154,12 @@ Page({
     }
     // app.globalData.baseUrl_whj+
     my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/order/addOrder.do", // 目标服务器url
+      // url: app.globalData.baseUrl_whj+"IF/order/addLocalOrder.do", // 目标服务器url
+      url: app.globalData.baseUrl_whj+"IF/order/addAlipayOrder.do", // 目标服务器url
       method: 'POST',
       data:{
-        userId:uid,
+        // userId:uid,
+        buyer_id:upayUserId,
         totalMoney:totalMoney,
         deposit:deposit,
         fee:fee,
@@ -159,8 +179,34 @@ Page({
       },
       dataType: 'json',
       success: (res) => {
+        console.log('---------------');
         console.log(res);
+        console.log(res.data.data.alipay_trade_create_response.trade_no);
         console.log('订单提交成功！！！')
+        my.tradePay({
+            tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
+            success: (res) => {
+              console.log('-------success--------');
+              console.log(res);
+              my.navigateTo({
+                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+              });
+            //   my.alert({
+            //   content: JSON.stringify(res),
+            // });
+            },
+            fail: (res) => {
+              console.log('-------fail--------');
+              console.log(res);
+              my.navigateTo({
+                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+              });
+            //   my.alert({
+            //   content: JSON.stringify(res),
+            // });
+            }
+          });
+
       },
       fail: (res) => {
        console.log(res);

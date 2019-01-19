@@ -1,37 +1,7 @@
 var app = getApp();
-// const house = [
-//       {
-//         orderid:1,
-//         houseimg:'/image/house6.png',
-//         housename:'萧山宝龙城市广场5居室-02室',
-//         time:'2018-10-04至2019-09-03',
-//         firstpay:'￥8031元',
-//         payway:'季付',
-//         orderstatus:1,
-//       },
-//       {
-//         orderid:2,
-//         houseimg:'/image/house6.png',
-//         housename:'萧山宝龙城市广场5居室-02室',
-//         time:'2018-03-04至2018-10-06',
-//         firstpay:'￥8031元',
-//         payway:'季付',
-//         orderstatus:2,
-//       },
-//       {
-//         orderid:3,
-//         houseimg:'/image/house6.png',
-//         housename:'萧山宝龙城市广场5居室-02室',
-//         time:'2017-03-04至2018-03-06',
-//         firstpay:'￥8031元',
-//         payway:'季付',
-//         orderstatus:2,
-//       },
-//     ]
 Page({
   data: {
     imgurl:app.globalData.baseImgUrl_whj,
-    // house,
     orderList:[],
     pageIndex:1,
   },
@@ -79,9 +49,15 @@ Page({
       },
     });
   },
-  toOrderInfo(){
+  toOrderInfo(e){
+    console.log(e.currentTarget.dataset.id)
+    var orderid = e.currentTarget.dataset.id
     my.navigateTo({
-      url: '/pages/index/order/orderinfo/orderinfo',
+      url: '/pages/index/order/orderinfo/orderinfo?orderid='+orderid,
     });
+  },
+  toHouseInfo(e){
+    console.log(e.currentTarget.dataset.id)
+    console.log(e.currentTarget.dataset.type)
   },
 });

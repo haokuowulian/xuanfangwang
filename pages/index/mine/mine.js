@@ -105,6 +105,10 @@ Page({
       scopes: 'auth_user',
       success: (res) => {
         var myCode=res.authCode;
+        console.log('-------------authCode--------------');
+        console.log(myCode)
+        console.log(res)
+        console.log('-------------authCode--------------');
         if(res.authCode){
           my.httpRequest({
             // url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
@@ -121,6 +125,10 @@ Page({
                my.setStorageSync({
                  key: 'userId', // 缓存数据的key
                  data: res.data.info.id, // 要缓存的数据
+               });
+               my.setStorageSync({
+                 key: 'upayUserId', // 缓存数据的key
+                 data: res.data.info.payUserId, // 要缓存的数据
                });
                my.setStorageSync({
                  key: 'token', // 缓存数据的key

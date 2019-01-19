@@ -52,4 +52,9 @@ Page({
      });
    }
   },
+  toContractinfo(){
+    my.navigateTo({
+      url:'/pages/index/contractinfo/contractinfo',
+    });
+  },
 });

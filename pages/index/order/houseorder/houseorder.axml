@@ -6,19 +6,19 @@
 
       <view class="order">
         <view class="order-head">
-          <view class="order-title">
+          <view class="order-title" onTap="toHouseInfo" data-id="{{list.housingId}}" data-type="{{list.housingType}}">
             <view>{{list.housingName}}</view>
             <view class="rightimg">
               <image src="/image/icon/right.png" class="right-img" />
             </view>
           </view>
 
-          <view a:if="{{list.paid}}" class="order-status1">待付款</view>
-          <view a:if="{{!list.paid}}" class="order-status1">已付款</view>
+          <view a:if="{{!list.paid}}" class="order-status1">待付款</view>
+          <view a:if="{{list.paid}}" class="order-status1">已付款</view>
           <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
         </view>
 
-        <view class="order-content" onTap="toOrderInfo">
+        <view class="order-content" onTap="toOrderInfo" data-id="{{list.id}}">
           <!-- <view class="content"> -->
             <view class="content-left">
               <image src="{{imgurl}}{{list.images}}" class="house-img" />

@@ -170,6 +170,7 @@ Page({
     boutiqueHousing:[],
     wholeRentalHousing:[],
     sharedHousing:[],
+    hotels:[],
     hyopen: false,
     sqopen: false,
     pxopen: false,
