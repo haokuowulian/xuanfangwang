@@ -1,7 +1,7 @@
 <view>
   <view class="order">
     <!-- <view class="myorder" onTap="toTest"> -->
-      <view class="myorder" onTap="toHouseOrderList">
+    <view class="myorder" onTap="toHouseOrderList">
       <view class="order-title">我的租房订单</view>
       <view class="order-right">
         <image src="/image/icon/right.png" class="right-img" />

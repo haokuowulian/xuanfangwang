@@ -1,0 +1,5 @@
+<view>
+  <view>{{content}}</view>
+  <view class="page-operate">返回首页</view>
+  <view class="page-operate">查看订单详情</view>
+</view>

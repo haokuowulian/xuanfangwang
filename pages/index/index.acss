@@ -13,10 +13,20 @@
   
 }
 
-.banner-search{
+/* .banner-search{
   align-self: center;
   float: left;
   width: 500rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7F7F7;
+} */
+.banner-search{
+  align-self: center;
+  float: left;
+  width: 610rpx;
   height: 80rpx;
   display: flex;
   justify-content: center;

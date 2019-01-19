@@ -1,10 +1,11 @@
 <view class="page-tools">
   <view class="page-section">
     <view class="page-banner">
-      <view class="banner-city" onTap="chooseCity">
-        <!-- {{array[index]}}城市 -->
-        <view class="content">杭州</view>
-        <view class="icon"></view>
+      <view class="banner-city">
+        <!-- {{array[index]}}城市onTap="chooseCity" -->
+        <!-- <view class="content">杭州</view>
+        <view class="icon"></view> -->
+        <!-- <view class="content">杭州</view> -->
       </view>
       <view class="banner-search" onTap="onSearchBarTap">
         <icon type="search" size="14" color="#1D1D1D" />
@@ -43,11 +44,11 @@
       </view>
     </view>
   </view>
-  <view class="map-b3-nearhouse" onTap="goToMap">
+  <view class="map-b3-nearhouse">
     <view class="b3-nearhouse">
       <view class="title-nearhouse">
         <view>附近房源</view>
-        <view class="b3-map">
+        <view class="b3-map" onTap="goToMap">
           
             <image src="/image/icon/map.png" class="icon-size" />
             <text class="text-map">{{address}}</text>
@@ -60,10 +61,12 @@
       <view class="b3-map2">
         <view class="map2-count">
           <view class="near-text">周边共有<text class="house-count">{{houseNum}}</text>个房源</view>
-          <navigator url="/pages/index/map/map" style="display: flex; align-items: center">
+         
+          <view style="display: flex; align-items: center" onTap="goToMap">
             <view class="search-map">查看地图</view>
             <image src="/image/icon/right.png" class="icon-right" />
-          </navigator>
+          </view>
+
         </view>
         <view class="map2-circle"></view>
       </view>

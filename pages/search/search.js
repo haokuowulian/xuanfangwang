@@ -141,7 +141,13 @@ Page({
       content:'确定删除相关历史',
       success: (res) => {
         if(res.confirm){
-          my.clearStorage();
+          my.removeStorage({
+            key: 'searchHistory', // 缓存数据的key
+            success: (res) => {
+              console.log('remove success!')
+            },
+          });
+          // my.clearStorage();
           this.setData({
             history:[],
           });

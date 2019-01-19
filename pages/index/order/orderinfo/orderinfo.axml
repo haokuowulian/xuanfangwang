@@ -34,7 +34,7 @@
   <view class="page-user">
     <view class="users">
       <view class="users-title">身份证号</view>
-      <view class="users-info">333333333333333333</view>
+      <view class="users-info">**************3333</view>
     </view>
   </view>
   <view class="page-user">
@@ -43,6 +43,7 @@
       <view class="users-info">12345678901</view>
     </view>
   </view>
+  <view class="page-time">操作</view>
 
   <view class="operate">
     <view class="operate-sum">

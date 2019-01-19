@@ -254,4 +254,33 @@
     </view>
   </block>
  </view>
+  <view a:elif="{{houseType==4}}">
+   <view a:if="{{hotels.length==0}}" class="tips">暂无房源</view>
+   <view a:else>
+    <block a:for="{{hotels}}" a:for-item="list">
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='2' >
+      <view class="house-info">
+        <view class="p-img">
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
+        </view>
+        <view class="p0">
+          <view class="p1">      {{list.roomName}}    
+          </view>
+          <view class="p2">
+            <view class="p2-1">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
+            </view>
+            <view class="p2-2">{{list.rents}}元/月
+            </view>
+          </view>
+          <view class="p3"> 
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
+          </view>
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  </view>
 </view>
