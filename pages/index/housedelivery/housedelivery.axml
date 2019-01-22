@@ -1,3 +1,66 @@
-<view>
-  New Page
+<view class="backgroundClass">
+  <view class="titleClass">房源信息与认证（1/2）</view>
+  <view class="subTitleClass">所在城市</view>
+  <view onTap="selectCity">
+    <input class="inputClass" type="text" placeholder="请选择房源所在城市" value="{{city}}" disabled="true"/>
+  </view>
+  <view class="lineClass"></view>
+
+   <view class="subTitleClass">所在区县</view>
+  <view onTap="selectArea">
+    <input class="inputClass" type="text" placeholder="请选择房源所在区县" value="{{area}}" disabled="true"/>
+  </view>
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">街道名称</view>
+
+   <input class="inputClass" type="text" placeholder="请详细填写街道名称，精确到路及编号"  />
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">小区/公寓名称</view>
+
+   <input class="inputClass" type="text" placeholder="建议填写，以方便定位"  />
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">小区/公寓电话</view>
+
+   <input class="inputClass" type="number" placeholder="请输入联系方式"  />
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">建筑年代</view>
+
+   <input class="inputClass" type="number" placeholder="请填写建筑年代"  />
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">绿化率</view>
+
+   <input class="inputClass" type="number" placeholder="请填写绿化率"  />
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">容积率</view>
+
+   <input class="inputClass" type="number" placeholder="请填写容积率"  />
+  
+
+
+  <button class="nextStepButtonClss" onTap="next">下一步</button>
+
+
+   <view class="modal-box" hidden="{{!showBottom}}" onTap="onPopupClose" >
+
+    <view class="modal-body">
+      <view class="modal-content">
+       <scroll-view scroll-y="true" style="height: 200px;" >
+       <block a:for="{{areaList}}" >
+         <view class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</view>
+       </block>
+      </scroll-view> 
+      </view>
+    </view>
+  </view>
 </view>

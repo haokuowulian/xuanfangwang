@@ -1,0 +1,31 @@
+<view class="backgroundClass">
+  <view class="titleClass">房源描述与价格（3/3）</view>
+  <view class="subTitleClass">租金</view>
+    <input class="inputClass" type="text" placeholder="请填写租金价格" />
+
+  <view class="lineClass"></view>
+
+   <view class="subTitleClass">付款方式</view>
+    <input class="inputClass" type="text" placeholder="请选择付款方式" />
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">水费</view>
+
+   <input class="inputClass" type="text" placeholder="请填写水费价格"  />
+  
+  <view class="lineClass"></view>
+ <view class="subTitleClass">电费</view>
+
+   <input class="inputClass" type="text" placeholder="请填写电费价格"  />
+  
+  <view class="lineClass"></view>
+  <view class="subTitleClass">物业费</view>
+
+   <input class="inputClass" type="text" placeholder="请填写物业费价格"  />
+  
+  <view class="lineClass"></view>
+
+ <button class="nextStepButtonClass" onTap="submit">发布</button>
+  
+</view>
