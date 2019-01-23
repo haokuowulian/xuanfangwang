@@ -24,7 +24,7 @@
   </view>
   <view class="info">
     <view class="info-title">水电费</view>
-    <view class="info-content1" onTap="toWERate">
+    <view class="info-content3" onTap="toWERate">
       <view a:if="{{waterfree}}"  class="text_input1">{{water}}</view>
       <view a:if="{{watersave}}"  class="text_input1">{{water}}</view>
       <view a:if="{{waterdefault}}"  class="text_input1">{{water}}</view>

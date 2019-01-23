@@ -25,13 +25,13 @@
 .text_input{
   width: 680rpx;
   color: #888888;
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
 .text_input1{
   width: 585rpx;
   padding-left: 15rpx;
   color: #919191;
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
 .info-title{
   font-size: 35rpx;
@@ -41,7 +41,17 @@
   margin-top: 20rpx;
 }
 .info-content1{
+  width: 680rpx;
   margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.info-content3{
+  width: 665rpx;
+  margin-top: 20rpx;
+  padding-right: 15rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -70,6 +80,7 @@
   width: 650rpx;
   padding-left: 15rpx;
   padding-right: 25rpx;
+  font-size: 25rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

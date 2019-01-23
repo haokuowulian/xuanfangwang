@@ -28,7 +28,7 @@
 .text_input{
   width: 680rpx;
   color: #888888;
-  font-size: 30rpx;
+  font-size: 25rpx;
 }
 .info-title{
   font-size: 35rpx;
@@ -41,6 +41,7 @@
 .row-extra{
   width: 665rpx;
   padding-left: 15rpx;
+  font-size: 25rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

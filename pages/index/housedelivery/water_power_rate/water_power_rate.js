@@ -41,6 +41,33 @@ Page({
   },
   switchChange(e){
     console.log('switchChange 事件，值:', e.detail.value)
+    if(e.detail.value){
+      my.removeStorage({
+        key: 'r_payway', // 缓存数据的key
+      });
+      my.removeStorage({
+        key: 'r_paymethod', // 缓存数据的key
+      });
+      my.removeStorage({
+        key: 'r_powerprice', // 缓存数据的key
+      });
+      my.removeStorage({
+        key: 'r_waterprice', // 缓存数据的key
+      });
+      my.removeStorage({
+        key: 'r_advanceprice', // 缓存数据的key
+      });
+      this.setData({
+      free:e.detail.value,
+      powerprice:'',
+      waterprice:'',
+      advanceprice:'',
+      payway:'月付',
+      index1:0,
+      charge:'预收',
+      index2:0,
+    });
+    }
     my.setStorageSync({
       key: 'waterfree', // 缓存数据的key
       data: e.detail.value, // 要缓存的数据
@@ -112,6 +139,9 @@ Page({
             data: advanceprice, // 要缓存的数据
           });
           console.log('保存成功')
+          my.navigateBack({
+            delta: 1
+          });
         }else{
           my.alert({
             title: '预收金额不能为空' 
@@ -225,7 +255,7 @@ Page({
       }
       if(rpaymethod==1){
         that.setData({
-          charge:'预收',
+          charge:'随租金',
         });
       }
     }
