@@ -10,6 +10,7 @@ Page({
     userlogin:false,//是否登录
     userCompleted:false,//是否已完善信息
     isRoleUser:true,//是否是租客
+    userId:'',
     username:'',
     headimg:'',
     certNo:'',
@@ -22,7 +23,8 @@ Page({
     area:'',
     showBottom: false,
     areaList:[],
-    areaId:''
+    areaId:'',
+    currentTime:''
   },
   onLoad() {
     
@@ -58,6 +60,7 @@ Page({
           isRoleUser:false,
           headimg:avatar,
           username:nickName,
+          userId:userId
         });
       }else if(roleId==7&&currentIdentityIsUser){//房东&租客
         this.setData({
@@ -66,6 +69,7 @@ Page({
           isRoleUser:true,
           headimg:avatar,
           username:nickName,
+          userId:userId
         });
       }else if(roleId==8){//租客
         this.setData({
@@ -74,7 +78,7 @@ Page({
           isRoleUser:true,
           headimg:avatar,
           username:nickName,
-
+          userId:userId
         });
       }
       
@@ -87,6 +91,7 @@ Page({
         userCompleted:false,
         headimg:avatar,
         username:nickName,
+        userId:userId
       });
     }
     
@@ -431,13 +436,47 @@ Page({
       success: (result) => {
        if(result.confirm){
           console.log('同意');
-          this.complexUserInfo();
+          this.faceVerify();
        }else{
           console.log('拒绝');
        }
       },
     });
      }
+  },
+getServerTime(){
+    my.getServerTime({
+      success: (res) => {
+        this.setData({
+          currentTime:res.time
+        });
+      },
+    });
+  },
+  //刷脸验证
+  faceVerify(){
+    this.getServerTime();
+    my.ap.faceVerify({
+    bizId: this.data.currentTime+''+this.data.userId, //业务请求的唯一标识，需要保证唯一性
+    bizType: '2', //业务场景参数，必须填写‘2’，代表刷脸认证  
+    success: (res) => {
+       
+       console.log(res);
+       if(res.faceRetCode==1000){
+         this.complexUserInfo();
+       }else{
+         my.alert({
+            content: res.retCode,
+        });
+       }
+        
+    },
+    fail: (res) => {
+        my.alert({
+            content: JSON.stringify(res),
+        });
+    }
+});
   },
   //请求服务器完善信息
    complexUserInfo(){

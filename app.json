@@ -45,7 +45,12 @@
     "pages/index/contractinfo/contractinfo",
     "pages/index/signing/payment_result/payment_result",
     "pages/index/housedelivery/roominfo/roominfo",
-    "pages/index/housedelivery/water_power_rate/water_power_rate"
+    "pages/index/housedelivery/water_power_rate/water_power_rate",
+    "pages/index/housedelivery/housedelivery2/housedelivery2",
+    "pages/index/housedelivery/housedelivery3/housedelivery3",
+    "pages/index/housedelivery/housedelivery4/housedelivery4",
+    "pages/index/housedelivery/housedelivery5/housedelivery5",
+    "pages/index/housedelivery/housedelivery6/housedelivery6"
   ],
   "window": {
     "defaultTitle": "My App"

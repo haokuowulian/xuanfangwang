@@ -32,45 +32,39 @@
   margin-top: 35rpx;
 }
 
-.nextStepButtonClss{
+.nextStepButtonClass{
   width: 300rpx;
   background-color: #dcdcdc;
   color: white;
   font-size: 35rpx;
   height: 70rpx;
   line-height: 70rpx;
-  margin-top: 70rpx;
+  margin-top: 100rpx;
   margin-bottom: 35rpx;
   margin-left:415rpx;
   border-radius: 35rpx;
 }
 
-.areaItemClass{
-  border-bottom: #f6f6f6 2rpx; 
-  width: 750rpx;
+.addViewMainClass{
+  /* margin-left: 35rpx;
+  width: 680rpx;
+  height: 180rpx; */
+}
+.addViewClass{
+  margin-top: 35rpx;
+  width: 216rpx;
+  height:235rpx;
   text-align: center;
-  height: 88rpx;
-  background-color: white;
-  color: #333333;
-  font-size: 32rpx;
-  line-height: 88rpx;
+  float: left;
 }
 
-.modal-box{
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:0px;
-  background:rgba(0,0,0,0.4);
-  overflow: hidden;
-  }
+.addImageViewClass{
+  width: 216rpx;
+  height: 140rpx;
+  margin-bottom: 24rpx;
+}
 
-.modal-body{
-  position:relative;
-  }
-
-.modal-content{
-   width: 100%; 
-   bottom: 0;
-   position: fixed;
-  }
+.textClass{
+  font-size: 25rpx;
+  color: #999999;
+}
