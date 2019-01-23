@@ -13,8 +13,8 @@ const contract1 = [
 //     price:'￥28000元/月（月付）',
 //     status:2,
 //   },
-// ]
-// const contract2 = [
+]
+const contract2 = [
 //   {
 //     id:'10001',
 //     address:'湘湖科创园1栋8楼',

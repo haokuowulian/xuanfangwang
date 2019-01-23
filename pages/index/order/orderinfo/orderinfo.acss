@@ -16,7 +16,10 @@
 .house-left{
   height: 150rpx;
   width: 200rpx;
-
+}
+.house-img{
+  height: 150rpx;
+  width: 200rpx;
 }
 .house-right{
   height: 150rpx;
@@ -31,6 +34,8 @@
   font-size: 25rpx;
   color: #666666;
   margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
 }
 .house-paid{
   font-size: 25rpx;
@@ -145,4 +150,17 @@
 .deposit{
   font-size: 30rpx;
   color: #101010;
+}
+.order-btn{
+  height: 45rpx;
+  width: 120rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #666666;
+  border-radius: 8rpx;
+  border: 1rpx solid #333333;
+ 
 }

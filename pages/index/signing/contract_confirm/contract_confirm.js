@@ -98,7 +98,7 @@ Page({
       key: 'ucard', // 消费者身份证号
     }).data;
     var upayUserId = my.getStorageSync({
-      key: 'upayUserId', // 消费者身份证号
+      key: 'upayUserId', // 支付宝订单交易号
     }).data;
     var uname= my.getStorageSync({
       key: 'uname', // 消费者姓名
@@ -181,36 +181,48 @@ Page({
       success: (res) => {
         console.log('---------------');
         console.log(res);
-        console.log(res.data.data.alipay_trade_create_response.trade_no);
         console.log('订单提交成功！！！')
-        my.tradePay({
-            tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
-            success: (res) => {
-              console.log('-------success--------');
-              console.log(res);
-              my.navigateTo({
-                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
-              });
-            //   my.alert({
-            //   content: JSON.stringify(res),
-            // });
-            },
-            fail: (res) => {
-              console.log('-------fail--------');
-              console.log(res);
-              my.navigateTo({
-                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
-              });
-            //   my.alert({
-            //   content: JSON.stringify(res),
-            // });
-            }
-          });
+        var orderId = res.data.orderId;
+        console.log(orderId);
+        // my.tradePay({
+        //     tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
+        //     success: (res) => {
+        //       console.log('-------success--------');
+        //       console.log(res);
+        //       that.uploadCode(uid,orderId,res.resultCode);
+        //       my.navigateTo({
+        //         url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+        //       });
+        //     },
+        //     fail: (res) => {
+        //       console.log('-------fail--------');
+        //       console.log(res);
+        //       that.uploadCode(uid,orderId,res.resultCode);
+        //       my.navigateTo({
+        //         url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+        //       });
+        //     }
+        //   });
 
       },
       fail: (res) => {
        console.log(res);
        console.log('请求失败~~');
+      },
+    });
+  },
+  uploadCode(uid,orderId,resultCode){
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:uid,
+        orderId:orderId,
+        resultCode:resultCode,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res+'状态码上传成功');
       },
     });
   },

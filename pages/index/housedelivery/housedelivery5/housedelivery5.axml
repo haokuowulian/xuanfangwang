@@ -13,18 +13,21 @@
   <view class="subTitleClass">可住人数</view>
 
    <input class="inputClass" type="text" placeholder="请选择可住人数"  />
-  
   <view class="lineClass"></view>
+
+  <view onTap="toRoominfo">
   <view class="subTitleClass">房间1</view>
 
-   <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息"  />
-  
+   <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" />
   <view class="lineClass"></view>
-  <view class="subTitleClass">房间2</view>
+  </view>
 
-   <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息"  />
-  
+  <view onTap="toRoominfo">
+  <view class="subTitleClass" onTap="toRoominfo">房间2</view>
+
+   <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" />
   <view class="lineClass"></view>
+  </view>
 
  <button class="nextStepButtonClass" onTap="next">下一步</button>
   

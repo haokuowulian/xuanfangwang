@@ -1,0 +1,89 @@
+<view class="page">
+  <view class="page-title">
+    房间信息
+  </view>
+  <view class="info">
+    <view class="info-title">房间名称</view>
+    <view class="info-content"><input type="text" placeholder="为您的房间起个名" class="text_input"/></view>
+  </view>
+  <view class="info">
+    <view class="info-title">面积</view>
+    <view class="info-content"><input type="text" placeholder="请填写房间的面积" class="text_input"/></view>
+  </view>
+  <view class="info">
+    <view class="info-title">租金</view>
+    <view class="info-content"><input type="text" placeholder="请填写租金价格" class="text_input"/></view>
+  </view>
+  <view class="info">
+    <view class="info-title">付款方式</view>
+    <view class="info-content1">
+      <picker onChange="bindPickerChange1" value="{{index1}}" range="{{payways}}">
+        <view class="row-extra">{{payway}}<image src="/image/icon/right.png" class="right-img"/></view>
+      </picker>
+    </view>  
+  </view>
+  <view class="info">
+    <view class="info-title">水电费</view>
+    <view class="info-content3" onTap="toWERate">
+      <view a:if="{{waterfree}}"  class="text_input1">{{water}}</view>
+      <view a:if="{{watersave}}"  class="text_input1">{{water}}</view>
+      <view a:if="{{waterdefault}}"  class="text_input1">{{water}}</view>
+    <image src="/image/icon/right.png" class="right-img"/></view>
+  </view>
+  <view class="info">
+    <view class="info-title">是否独卫</view>
+    <view class="info-content1">
+      <picker onChange="bindPickerChange2" value="{{index2}}" range="{{pBathroom}}">
+        <view class="row-extra">{{privatebath}}<image src="/image/icon/right.png" class="right-img"/></view>
+      </picker>
+    </view>
+  </view>
+  <view class="info">
+    <view class="info-title">可住人数</view>
+    <view class="info-content1">
+       <picker onChange="bindPickerChange3" value="{{index3}}" range="{{peoples}}">
+        <view class="row-extra">{{people}}<image src="/image/icon/right.png" class="right-img"/></view>
+      </picker>
+    </view>
+  </view>
+  <view class="info">
+    <view class="info-title">床位</view>
+    <view class="info-content1">
+      <picker onChange="bindPickerChange4" value="{{index4}}" range="{{beds}}">
+        <view class="row-extra">{{bed}}<image src="/image/icon/right.png" class="right-img"/></view>
+      </picker>
+    </view>
+  </view>
+  <view class="info info1">
+    <view class="info-title">房间照片</view>
+    <view a:if="{{!canAddImg1}}" class="info-content2">
+      <image src="{{img1}}" class="img"/>
+      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="1">
+          <icon type="cancel" color="red" size="18" />
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg1}}" class="info-content2" onTap="addImg" data-t="1">
+      addimg
+    </view>
+  </view>
+  <view class="info info1">
+    <view class="info-title">室内消防设备</view>
+    <view a:if="{{!canAddImg2}}" class="info-content2">
+      <image src="{{img2}}" class="img"/>
+      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+          <icon type="cancel" color="red" size="18" />
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
+      addimg
+    </view>
+  </view>
+  <view class="info">
+  
+  </view>
+
+  
+</view>
+<view class="page-btn" onTap="toSave">保存房间信息</view>
