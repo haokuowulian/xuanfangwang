@@ -1,12 +1,12 @@
 <view class="backgroundClass">
   <view class="titleClass">房源信息与认证（1/2）</view>
-  <view class="subTitleClass">所在城市</view>
-  <view onTap="selectCity">
-    <input class="inputClass" type="text" placeholder="请选择房源所在城市" value="{{city}}" disabled="true"/>
+  <view class="subTitleClass">地区</view>
+  <view onTap="open">
+    <input class="inputClass" type="text" placeholder="请选择房源所在地区信息" value="{{dist}}"  disabled="true"/>
   </view>
   <view class="lineClass"></view>
 
-   <view class="subTitleClass">所在区县</view>
+   <!-- <view class="subTitleClass">所在区县</view>
   <view onTap="selectArea">
     <input class="inputClass" type="text" placeholder="请选择房源所在区县" value="{{area}}" disabled="true"/>
   </view>
@@ -16,7 +16,7 @@
 
    <input class="inputClass" type="text" placeholder="请详细填写街道名称，精确到路及编号"  />
   
-  <view class="lineClass"></view>
+  <view class="lineClass"></view> -->
 
   <view class="subTitleClass">小区/公寓名称</view>
 
@@ -49,18 +49,28 @@
 
 
   <button class="nextStepButtonClss" onTap="next">下一步</button>
-
-
-   <view class="modal-box" hidden="{{!showBottom}}" onTap="onPopupClose" >
-
-    <view class="modal-body">
-      <view class="modal-content">
-       <scroll-view scroll-y="true" style="height: 200px;" >
-       <block a:for="{{areaList}}" >
-         <view class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</view>
-       </block>
-      </scroll-view> 
-      </view>
-    </view>
-  </view>
+  
 </view>
+ <!--弹出动画  -->
+<popup show="{{condition}}" position="bottom" onClose="onPopupClose">
+  
+ <view a:if="{{condition}}" class="citypicker">
+  <view class="cityheader">
+      <view onTap="open" class="city-cancel">取消</view>
+      <view onTap="confirm" class="city-true">确定</view>
+    </view>   
+  <picker-view indicatorStyle="height: 50px;" style="width: 100%; height: 300rpx;" value="{{value}}" onChange="onChange" class="citybody">
+
+ <picker-view-column>
+      <view a:for="{{provinces}}" a:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view a:for="{{citys}}" a:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view a:for="{{countys}}" a:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+ </view> 
+</popup>
+

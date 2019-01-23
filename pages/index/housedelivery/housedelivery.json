@@ -1,3 +1,6 @@
 {
-  "defaultTitle": "发布房源"
+  "defaultTitle": "发布房源",
+ "usingComponents": {
+    "popup": "mini-antui/es/popup/index"
+  }
 }

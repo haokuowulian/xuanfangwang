@@ -20,7 +20,7 @@ Page({
     collectId:'',
     isDisable:false,
     isBespeak:false,
-    bespeakId:''
+    bespeakId:'',
   },
    
   onLoad(option) {
