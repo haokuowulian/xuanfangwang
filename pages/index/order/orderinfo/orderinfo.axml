@@ -59,10 +59,11 @@
   <view class="page-user">
     <view class="users">
       <view class="users-title">订单操作</view>
-      <view class="order-btn" onTap="onCancel">取消订单</view>
+      <view a:if="{{status==0}}" class="order-btn" onTap="onCancel">取消订单</view>
+      <view a:if="{{status==1}}" class="order-btn" onTap="onRefund">申请退款</view>
     </view>
   </view>
-  
+  <view class="page-footer"></view>
 
 
 
@@ -71,6 +72,7 @@
       <view class="total ">订单总金额：<view class="sum">￥{{totalMoney}}</view></view>
       <view class="deposit">押金：￥{{deposit}}</view>
     </view>
-    <view class="operate-pay">立即支付</view>
+    <view a:if="{{status==0}}" class="operate-pay" onTap="toPay">立即支付</view>
+    <view a:if="{{status==1}}" class="operate-pay">已支付</view>
   </view>
 </view>

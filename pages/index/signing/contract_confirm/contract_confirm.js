@@ -184,25 +184,25 @@ Page({
         console.log('订单提交成功！！！')
         var orderId = res.data.orderId;
         console.log(orderId);
-        // my.tradePay({
-        //     tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
-        //     success: (res) => {
-        //       console.log('-------success--------');
-        //       console.log(res);
-        //       that.uploadCode(uid,orderId,res.resultCode);
-        //       my.navigateTo({
-        //         url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
-        //       });
-        //     },
-        //     fail: (res) => {
-        //       console.log('-------fail--------');
-        //       console.log(res);
-        //       that.uploadCode(uid,orderId,res.resultCode);
-        //       my.navigateTo({
-        //         url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
-        //       });
-        //     }
-        //   });
+        my.tradePay({
+            tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
+            success: (res) => {
+              console.log('-------success--------');
+              console.log(res);
+              that.uploadCode(uid,orderId,res.resultCode);
+              my.navigateTo({
+                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+              });
+            },
+            fail: (res) => {
+              console.log('-------fail--------');
+              console.log(res);
+              that.uploadCode(uid,orderId,res.resultCode);
+              my.navigateTo({
+                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+              });
+            }
+          });
 
       },
       fail: (res) => {

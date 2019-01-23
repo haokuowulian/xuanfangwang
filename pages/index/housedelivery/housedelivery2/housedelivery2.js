@@ -5,8 +5,16 @@ Page({
     huxingList:[],
     huxing:'',
     showToward:false,
+    chaoxiang:'',
+    zhuangxiu:'',
     towardsArray:towards,
-    decorationArray:decoration
+    decorationArray:decoration,
+    vaddress:'',
+    varea:'',
+    vowner:'',
+    vownerCard:'',
+    vrelation:'',
+
   },
   onLoad() {
     var aList=[];
@@ -72,14 +80,62 @@ Page({
     })
   },
   //选择朝向
-  selectToward(){
+  bindPickerChange1(e){
+    console.log(e)
+    var that = this;
+    var index = e.detail.value;
+    var arr = that.data.towardsArray;
     this.setData({
-      showToward:true
+      showToward:true,
+      chaoxiang:arr[index],
     });
   },
+   //选择装修类型
+  bindPickerChange2(e){
+    console.log(e)
+    var that = this;
+    var index = e.detail.value;
+    var arr = that.data.decorationArray;
+    this.setData({
+      showToward:true,
+      zhuangxiu:arr[index],
+    });
+  },
+  toInput(e){
+    console.log(e.detail.value)
+    var that = this;
+    if(e.target.dataset.t==1){
+      that.setData({
+        vaddress:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==2){
+      that.setData({
+        varea:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==3){
+      that.setData({
+        vowner:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==4){
+      that.setData({
+        vownerCard:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==5){
+      that.setData({
+        vrelation:e.detail.value,
+      });
+    }
+  },
   next(){
-     my.navigateTo({
-    url: '/pages/index/housedelivery/housedelivery3/housedelivery3',
+    
+  },
+  toNext(){
+    my.navigateTo({
+      url: '/pages/index/housedelivery/housedelivery3/housedelivery3',
     })
-  }
+  },
 });

@@ -20,7 +20,6 @@
   margin-left: 35rpx;
   width: 680rpx;
   height: 76rpx;
- 
 }
 .textClass{
   width: 580rpx;

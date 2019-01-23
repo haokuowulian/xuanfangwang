@@ -14,37 +14,37 @@
 
   <view class="subTitleClass">街道名称</view>
 
-   <input class="inputClass" type="text" placeholder="请详细填写街道名称，精确到路及编号"  />
+   <input class="inputClass" type="text" placeholder="请详细填写街道名称，精确到路及编号" value="{{street}}" onInput="toInput" data-t='1'/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">小区/公寓名称</view>
 
-   <input class="inputClass" type="text" placeholder="建议填写，以方便定位"  />
+   <input class="inputClass" type="text" placeholder="建议填写，以方便定位" value="{{village}}" onInput="toInput" data-t='2'/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">小区/公寓电话</view>
 
-   <input class="inputClass" type="number" placeholder="请输入联系方式"  />
+   <input class="inputClass" type="number" placeholder="请输入联系方式"  value="{{vphone}}" onInput="toInput" data-t='3'/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">建筑年代</view>
 
-   <input class="inputClass" type="number" placeholder="请填写建筑年代"  />
+   <input class="inputClass" type="number" placeholder="请填写建筑年代" value="{{vyear}}" onInput="toInput" data-t='4'/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">绿化率</view>
 
-   <input class="inputClass" type="number" placeholder="请填写绿化率"  />
+   <input class="inputClass" type="number" placeholder="请填写绿化率" value="{{vgreen}}" onInput="toInput" data-t='5'/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">容积率</view>
 
-   <input class="inputClass" type="number" placeholder="请填写容积率"  />
+   <input class="inputClass" type="number" placeholder="请填写容积率" value="{{vcubage}}" onInput="toInput" data-t='6'/>
   
 
 
