@@ -26,7 +26,7 @@
         <view class="title-change" onTap="changeRole1">
           <image src="/image/mine/qiehuan1.png" class="qiehuan-img" />切换房客
         </view>
-        <view class="title-set" onTap="toOwnerSetting">设置
+        <view class="title-set" onTap="toDelivery">发布房源
         </view>
       </view>
       <view class="posion-bkgd">
@@ -145,8 +145,8 @@
           <view class="user-name1 font-color2">{{username}}
           </view>
         </view>
-        <!-- <view class="user-account" onTap="toAccountInfo">账号信息
-        </view> -->
+        <view class="user-account" onTap="toAccountInfo">账号信息
+        </view>
       </view>
     </view>
     <view class="page-option page-section">

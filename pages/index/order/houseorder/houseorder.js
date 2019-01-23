@@ -13,6 +13,7 @@ Page({
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
+
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/order/getOrderByConsumer.do", // 目标服务器url
       method: 'POST',
@@ -47,6 +48,10 @@ Page({
           my.stopPullDownRefresh();
         }
       },
+      fail: (res) => {
+        console.log('-------fail--------');
+        console.log(res);
+      }
     });
   },
   toOrderInfo(e){
@@ -59,5 +64,8 @@ Page({
   toHouseInfo(e){
     console.log(e.currentTarget.dataset.id)
     console.log(e.currentTarget.dataset.type)
+    my.navigateTo({
+    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.currentTarget.dataset.id+'&rentType='+e.currentTarget.dataset.type,
+    })
   },
 });

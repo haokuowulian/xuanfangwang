@@ -26,7 +26,7 @@ Page({
   },
   toDelivery(){
     my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery',
+      url: '/pages/index/housedelivery/roominfo/roominfo',
     });
   },
   onCall(){

@@ -47,7 +47,6 @@ Page({
             img2:tempFilePaths[0],
             upload2:true,
           });
-        
         }
         if(e.target.dataset.t==3){
           that.data.images[1]=tempFilePaths[0];

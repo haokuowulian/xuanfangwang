@@ -1,3 +1,20 @@
-<view>
-  New Page
+<view class="page">
+  <view class="page-title">
+    资质认证
+  </view>
+  <view class="info">
+    <view>联系方式</view>
+    <view>已完成</view>
+  </view>
+  <view class="info">
+    <view>身份信息</view>
+    <view>未完成</view>
+  </view>
+  <view class="info">
+    <view>个人信息</view>
+    <view>未完成</view>
+  </view>
+  <view class="info">
+    发布房源
+  </view>
 </view>

@@ -13,8 +13,8 @@
             </view>
           </view>
 
-          <view a:if="{{!list.paid}}" class="order-status1">待付款</view>
-          <view a:if="{{list.paid}}" class="order-status1">已付款</view>
+          <view a:if="{{list.status==0}}" class="order-status1">待付款</view>
+          <view a:if="{{list.status==1}}" class="order-status1">已付款</view>
           <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
         </view>
 

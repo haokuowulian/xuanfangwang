@@ -111,8 +111,8 @@ Page({
         console.log('-------------authCode--------------');
         if(res.authCode){
           my.httpRequest({
-            // url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
-            url: app.globalData.baseUrl_whj+'/IF/user/appLogin.do?authCode='+myCode,
+            url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
+            // url: app.globalData.baseUrl_whj+'/IF/user/appLogin.do?authCode='+myCode,
             method: 'POST',
             header:{
               'content-type': 'application/json'
@@ -286,9 +286,9 @@ Page({
       url: '/pages/index/setting/setting',
     });
   },
-  toOwnerSetting(){
+  toDelivery(){
     my.navigateTo({
-      url: '/pages/index/ownersetting/ownersetting',
+      url: '/pages/index/housedelivery/housedelivery',
     });
   },
   toSuggest(){
