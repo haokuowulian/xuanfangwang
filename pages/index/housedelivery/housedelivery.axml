@@ -9,7 +9,7 @@
 
   <view class="subTitleClass">小区/公寓名称</view>
  <view onTap="selectPoi">
-   <input class="inputClass" type="text" placeholder="建议填写，以方便定位" value="{{village}}" onInput="toInput" data-t='2'/>
+   <input class="inputClass" type="text" placeholder="建议填写，以方便定位" value="{{village}}"/>
   </view>
   <view class="lineClass"></view>
 
