@@ -50,7 +50,9 @@
     "pages/index/housedelivery/housedelivery3/housedelivery3",
     "pages/index/housedelivery/housedelivery4/housedelivery4",
     "pages/index/housedelivery/housedelivery5/housedelivery5",
-    "pages/index/housedelivery/housedelivery6/housedelivery6"
+    "pages/index/housedelivery/housedelivery6/housedelivery6",
+    "pages/index/housedelivery/housedelivery5-1/housedelivery5-1",
+    "pages/index/housedelivery/housedelivery5-2/housedelivery5-2"
   ],
   "window": {
     "defaultTitle": "My App"

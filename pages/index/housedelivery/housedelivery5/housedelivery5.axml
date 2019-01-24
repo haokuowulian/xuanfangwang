@@ -1,13 +1,15 @@
 <view class="backgroundClass">
   <view class="titleClass">房源描述与价格（2/3）</view>
   <view class="subTitleClass">便利设施</view>
+   <view onTap="goTo1">
     <input class="inputClass" type="text" placeholder="请选择用户可以选择的便利设施" />
-
+   </view>
   <view class="lineClass"></view>
 
    <view class="subTitleClass">房屋特色</view>
+   <view onTap="goTo2">
     <input class="inputClass" type="text" placeholder="请选择房屋特色" />
-  
+  </view>
   <view class="lineClass"></view>
 
   <view a:if="{{rentType==1}}">

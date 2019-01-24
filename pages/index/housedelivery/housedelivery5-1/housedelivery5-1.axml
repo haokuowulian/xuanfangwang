@@ -1,0 +1,11 @@
+<view class="backgroundClass">
+  <view class="titleClass">便利设施</view>
+  <checkbox-group onChange="onChange" class="checkboxGroupClass">
+  <label class="checkboxClass" a:for="{{furnitureList}}">
+    <checkbox value="{{item.id}}" checked="{{item.deleted}}"  color="#fda729"/>
+    <text class="checkbox-text">{{item.furniture}}</text>
+  </label>
+</checkbox-group>
+
+<button class="confirmButtonClass" onTap="confirm">确定</button>
+</view>
