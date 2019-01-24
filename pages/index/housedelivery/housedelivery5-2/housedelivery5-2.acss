@@ -1,0 +1,38 @@
+.backgroundClass{
+  background-color: white;
+  width: 750rpx;
+  height: 100vh;
+}
+.titleClass{
+  font-size: 50rpx;
+  color: #101010;
+  margin-left: 35rpx;
+  padding-top: 85rpx;
+}
+
+
+.checkboxGroupClass{
+  margin-top: 24rpx;
+  height: 900rpx;
+  overflow: scroll;
+}
+.checkboxClass{
+  margin-top: 25rpx;
+  width: 680rpx;
+  margin-left: 35rpx;
+}
+.checkbox-text{
+  margin-left: 24rpx;
+  font-size: 35rpx;
+}
+.confirmButtonClass{
+  position: fixed;
+  bottom: 24rpx;
+  margin-left: 35rpx;
+  width: 680rpx;
+  font-size: 34prx;
+  height: 96rpx;
+  background-color: #fda729;
+  color: white;
+  border-radius: 10rpx;
+}
