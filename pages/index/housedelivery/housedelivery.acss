@@ -18,6 +18,7 @@
 }
 
 .inputClass{
+  width: 680rpx;
   font-size: 25rpx;
   margin-left: 20rpx;
   margin-top: 35rpx;

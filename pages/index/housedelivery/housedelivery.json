@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "发布房源",
+  "defaultTitle": "房源信息认证",
  "usingComponents": {
     "popup": "mini-antui/es/popup/index"
   }

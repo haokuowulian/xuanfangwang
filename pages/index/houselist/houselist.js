@@ -258,12 +258,6 @@ Page({
             ]},
         { id: 3, title: '地铁'},
       ],
-    dropDownMenuSecondData: [
-      { id: 1, title: '标签11' },
-      { id: 2, title: '标签12' }],
-    dropDownMenuThirdData: [
-      { id: 1, title: '标签11' }, 
-      { id: 2, title: '标签12' }]
   },
   onLoad(query) {
     this.setData({
