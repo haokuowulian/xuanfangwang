@@ -52,7 +52,8 @@
     "pages/index/housedelivery/housedelivery5/housedelivery5",
     "pages/index/housedelivery/housedelivery6/housedelivery6",
     "pages/index/housedelivery/housedelivery5-1/housedelivery5-1",
-    "pages/index/housedelivery/housedelivery5-2/housedelivery5-2"
+    "pages/index/housedelivery/housedelivery5-2/housedelivery5-2",
+    "pages/index/housedelivery/housedelivery-map/housedelivery-map"
   ],
   "window": {
     "defaultTitle": "My App"

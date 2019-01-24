@@ -245,4 +245,9 @@ Page({
       url: '/pages/index/housedelivery/housedelivery2/housedelivery2',
     })
   },
+  selectPoi(){
+     my.navigateTo({
+      url: '/pages/index/housedelivery/housedelivery-map/housedelivery-map',
+    })
+  }
 });

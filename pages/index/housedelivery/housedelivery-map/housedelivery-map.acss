@@ -1,0 +1,60 @@
+.page-tools{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100vh;
+}
+.view-map{
+  width: 100%;
+  max-height: 100vh;
+}
+.viewClass{
+  width: 750rpx;
+  height: 96rpx;
+  
+}
+
+.inputClass{
+  width: 520rpx;
+  margin-left: 35rpx;
+  margin-top: 16rpx;
+  height: 64rpx;
+  color: #999999;
+  font-size: 30rpx;
+  display: inline-block;
+  border-radius: 5rpx;
+}
+
+.confirmClass{
+  width: 125rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin-top: 16rpx;
+  margin-left: 35rpx;
+  display: inline-block;
+  font-size: 30rpx;
+  background-color: #f5a946;
+  border-radius: 5rpx;
+  color: white
+}
+
+.mapClass{
+  margin-top: 25rpx;
+}
+.scrollViewClass{
+  width: 750rpx;
+  max-height: 500rpx;
+  background-color: #f0f0f0;
+  overflow: scroll;
+}
+.resultClass{
+  background: white;
+  width: 750rpx;
+  height: 72rpx;
+  font-size: 32rpx;
+  color: #999999;
+  line-height: 72rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  margin-top: 2rpx;
+}

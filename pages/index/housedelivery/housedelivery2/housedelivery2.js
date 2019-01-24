@@ -14,7 +14,9 @@ Page({
     vowner:'',
     vownerCard:'',
     vrelation:'',
-
+    idCardImageSrc1:'/image/zpbj.png',
+    idCardImageSrc2:'/image/zpbj.png',
+    houseImageSrc1:'/image/zpbj.png',
   },
   onLoad() {
     var aList=[];
@@ -137,5 +139,45 @@ Page({
     my.navigateTo({
       url: '/pages/index/housedelivery/housedelivery3/housedelivery3',
     })
+  },
+  //身份证正面
+  selectImageView1(){
+    var that=this;
+    my.chooseImage({
+      count: 1,
+      success: (res) => {
+        // img.src = res.apFilePaths[0];
+        that.setData({
+          idCardImageSrc1:res.apFilePaths[0]
+        });
+      },
+    });
+  },
+
+   //身份证反面
+  selectImageView2(){
+    var that=this;
+    my.chooseImage({
+      count: 1,
+      success: (res) => {
+        // img.src = res.apFilePaths[0];
+        that.setData({
+          idCardImageSrc2:res.apFilePaths[0]
+        });
+      },
+    });
+  },
+   //房产证
+  selectImageView3(){
+    var that=this;
+    my.chooseImage({
+      count: 1,
+      success: (res) => {
+        // img.src = res.apFilePaths[0];
+        that.setData({
+          houseImageSrc1:res.apFilePaths[0]
+        });
+      },
+    });
   },
 });

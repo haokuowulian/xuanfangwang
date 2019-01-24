@@ -53,17 +53,17 @@
   <view class="subTitleClass">授权证书认证</view>
  
   <!-- <view style="addViewMainClass"> -->
-    <view class="addViewClass" style="margin-left:35rpx;"> 
+    <view class="addViewClass" style="margin-left:35rpx;" onTap="selectImageView1"> 
       <image class="addImageViewClass" src="/image/zpbj.png" />
       <text class="textClass">业主身份证正面</text>
     </view>
 
-    <view class="addViewClass" style="margin-left:16rpx;"> 
+    <view class="addViewClass" style="margin-left:16rpx;" onTap="selectImageView2"> 
       <image class="addImageViewClass" src="/image/zpbj.png" />
       <text class="textClass">业主身份证反面</text>
     </view>
 
-    <view class="addViewClass" style="margin-left:16rpx;"> 
+    <view class="addViewClass" style="margin-left:16rpx;" onTap="selectImageView3"> 
       <image class="addImageViewClass" src="/image/zpbj.png" />
       <text class="textClass">房产证</text>
     </view>

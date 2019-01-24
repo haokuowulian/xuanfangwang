@@ -6,24 +6,14 @@
   </view>
   <view class="lineClass"></view>
 
-   <!-- <view class="subTitleClass">所在区县</view>
-  <view onTap="selectArea">
-    <input class="inputClass" type="text" placeholder="请选择房源所在区县" value="{{area}}" disabled="true"/>
+
+  <view class="subTitleClass">小区/公寓名称</view>
+ <view onTap="selectPoi">
+   <input class="inputClass" type="text" placeholder="建议填写，以方便定位" value="{{village}}" onInput="toInput" data-t='2'/>
   </view>
   <view class="lineClass"></view>
 
-  <view class="subTitleClass">街道名称</view>
-
-   <input class="inputClass" type="text" placeholder="请详细填写街道名称，精确到路及编号" value="{{street}}" onInput="toInput" data-t='1'/>
   
-  <view class="lineClass"></view> -->
-
-  <view class="subTitleClass">小区/公寓名称</view>
-
-   <input class="inputClass" type="text" placeholder="建议填写，以方便定位" value="{{village}}" onInput="toInput" data-t='2'/>
-  
-  <view class="lineClass"></view>
-
   <view class="subTitleClass">小区/公寓电话</view>
 
    <input class="inputClass" type="number" placeholder="请输入联系方式"  value="{{vphone}}" onInput="toInput" data-t='3'/>
