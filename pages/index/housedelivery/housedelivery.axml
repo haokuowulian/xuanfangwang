@@ -1,9 +1,9 @@
 <view class="backgroundClass">
   <view class="titleClass">房源信息与认证（1/2）</view>
   <view class="subTitleClass">地区</view>
-  <view onTap="open">
-    <input class="inputClass" type="text" placeholder="请选择房源所在地区信息" value="{{dist}}"  disabled="true"/>
-  </view>
+  <!-- <view onTap="open"> -->
+    <input class="inputClass" type="text" placeholder="请选择房源所在地区信息" value="{{dist}}"  onFocus="open"/>
+  <!-- </view> -->
   <view class="lineClass"></view>
 
    <!-- <view class="subTitleClass">所在区县</view>

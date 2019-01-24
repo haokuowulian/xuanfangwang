@@ -4,12 +4,15 @@ Page({
     provinces: [],
     province: "",
     provinceId:'',
+    provinceCode:'',
     citys: [],
     city: "",
     cityId:'',
+    cityCode:'',
     countys: [],
     county: '',
     countyId:'',
+    countyCode: '',
     value: [0, 0, 0],
     values: [0, 0, 0],
     condition: false,
@@ -115,6 +118,7 @@ Page({
   },
   //打开城市选择
   open(){
+     my.hideKeyboard();
      this.setData({
       condition: !this.data.condition
     })
@@ -156,18 +160,21 @@ Page({
   confirm(){
     this.open();
     this.setData({
-      dist:this.data.province+this.data.city+this.data.county
+      dist:this.data.province+this.data.city+this.data.county,
+      provinceCode:this.data.provinceId,
+      cityCode:this.data.cityId,
+      countryCode:this.data.countyId,
     });
     console.log("provinceId==="+this.data.provinceId+"-----cityId==="+this.data.cityId+"----countryId==="+this.data.countyId);
   },
   toInput(e){
     console.log(e.detail.value)
     var that = this;
-    if(e.target.dataset.t==1){
-      that.setData({
-        street:e.detail.value,
-      });
-    }
+    // if(e.target.dataset.t==1){
+    //   that.setData({
+    //     street:e.detail.value,
+    //   });
+    // }
     if(e.target.dataset.t==2){
       that.setData({
         village:e.detail.value,
@@ -196,47 +203,67 @@ Page({
   },
   next(){
     var that = this;
+    var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;
-    var areaId = that.data.areaId;
-    var street = that.data.street;
+    var countryCode = that.data.countryCode;
     var village = that.data.village;
     var vphone = that.data.vphone;
     var vyear = that.data.vyear;
+    var vgreen = that.data.vgreen;
     var vcubage = that.data.vcubage;
-
-    if(cityCode!=''&&areaId!=''&&street!=''){
+    if(provinceCode!=''&&cityCode!=''&&countryCode!=''){
+      my.setStorage({
+        key: 'r_provinceCode', // 缓存数据的key
+        data: provinceCode, // 要缓存的数据
+      });
       my.setStorage({
         key: 'r_cityCode', // 缓存数据的key
         data: cityCode, // 要缓存的数据
       });
       my.setStorage({
-        key: 'r_areaId', // 缓存数据的key
-        data: areaId, // 要缓存的数据
+        key: 'r_countryCode', // 缓存数据的key
+        data: countryCode, // 要缓存的数据
       });
       my.setStorage({
-        key: 'r_street', // 缓存数据的key
-        data: street, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_village', // 缓存数据的key
+        key: 'r_village', // 小区
         data: village, // 要缓存的数据
       });
       my.setStorage({
-        key: 'r_vphone', // 缓存数据的key
+        key: 'r_vphone', // 小区联系号码
         data: vphone, // 要缓存的数据
       });
       my.setStorage({
-        key: 'r_vyear', // 缓存数据的key
+        key: 'r_vyear', // 小区年份
         data: vyear, // 要缓存的数据
       });
       my.setStorage({
-        key: 'r_vcubage', // 缓存数据的key
+        key: 'r_vgreen', // 容积率
+        data: vgreen, // 要缓存的数据
+      });
+      my.setStorage({
+        key: 'r_vcubage', // 容积率
         data: vcubage, // 要缓存的数据
       });
+      
+      // my.httpRequest({
+      //   url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do', // 目标服务器url
+      //   headers:{
+      //      "Content-Type":'application/json'
+      //   },
+      //   method: 'POST',
+      //   dataType: 'json',
+      //   data:{
+      //     apartmentName:"1",
+      //   },
+      //   success: (res) => {
+      //     console.log(res)
+      //   },
+      // });
       that.toNext();
+
     }else{
       my.alert({
-        title: '位置信息请填写完整' 
+        title: '区域信息请填写完整' 
       });
     }
   },
