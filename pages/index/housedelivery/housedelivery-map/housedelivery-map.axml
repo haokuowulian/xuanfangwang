@@ -1,7 +1,7 @@
 <view class="page-tools">
   <view class="view-map">
     <view class="viewClass">
-      <input class="inputClass"  type="text" id="keyword" name="keyword" placeholder="请输入关键字：(选定后搜索)" onInput="bindKeyInput"/>
+      <input class="inputClass"  type="text" id="keyword" name="keyword" placeholder="请输入公寓/小区名称" onInput="bindKeyInput" value="{{value}}"/>
     <button class="confirmClass"  onTap="confirm">确定</button>
     </view>
    <view a:if="{{isShow}}" class="scrollViewClass">

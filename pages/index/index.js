@@ -213,10 +213,7 @@ Page({
          lag:res.latitude
        });
         that.getNearByHousing();
-        my.setStorageSync({
-          key: 'city', // 缓存数据的key
-          data: res.city, // 要缓存的数据
-        });
+       
       },
       fail() {
         my.hideLoading();

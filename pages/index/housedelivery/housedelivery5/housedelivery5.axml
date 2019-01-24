@@ -12,25 +12,28 @@
   </view>
   <view class="lineClass"></view>
 
+  <view a:if="{{rentType==1}}">
   <view class="subTitleClass">可住人数</view>
 
    <input class="inputClass" type="text" placeholder="请选择可住人数"  />
   <view class="lineClass"></view>
-
-  <view onTap="toRoominfo">
-  <view class="subTitleClass">房间1</view>
-
-   <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" />
-  <view class="lineClass"></view>
   </view>
 
+  <block a:if="{{rentType==2}}" a:for="{{roomcount}}" a:for-index="idx">
   <view onTap="toRoominfo">
-  <view class="subTitleClass" onTap="toRoominfo">房间2</view>
+  <view class="subTitleClass">房间{{idx+1}}</view>
 
-   <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" />
+  <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" />
   <view class="lineClass"></view>
   </view>
+  </block>
 
- <button class="nextStepButtonClass" onTap="next">下一步</button>
+  <view class="subTitleClass">消防设备照片上传</view>
+  <view class="addViewClass" style="margin-left:35rpx;"> 
+    <image class="addImageViewClass" src="/image/zpbj.png" />
+  </view>
   
+
+ <view><button a:if="{{rentType==1}}" class="nextStepButtonClass" onTap="next">下一步</button></view>
+ <view><button a:if="{{rentType==2}}" class="nextStepButtonClass" >发布</button></view>
 </view>

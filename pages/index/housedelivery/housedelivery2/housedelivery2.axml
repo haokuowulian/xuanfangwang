@@ -7,14 +7,14 @@
 
    <view class="subTitleClass">户型</view>
   <view onTap="selectHuXing">
-    <input class="inputClass" type="text" placeholder="请选择房源的户型" value="{{huxing}}" />
+    <input class="inputClass" type="text" placeholder="请选择房源的户型" value="{{huxing}}" onFocus="open"/>
   </view>
   <view class="lineClass"></view>
 
   <view class="subTitleClass">朝向</view>
   <picker onChange="bindPickerChange1" value="{{index}}" range="{{towardsArray}}">
   <view >
-   <input class="inputClass" type="text" placeholder="请选择房源的朝向" value="{{chaoxiang}}"  disabled="true"/>
+   <input class="inputClass" type="text" placeholder="请选择房源的朝向" value="{{chaoxiang}}" onFocus="open"/>
   </view>
   </picker>
   <view class="lineClass"></view>
@@ -28,7 +28,7 @@
   <view class="subTitleClass">装修类型</view>
  <picker onChange="bindPickerChange2" value="{{index}}" range="{{decorationArray}}">
   <view >
-   <input class="inputClass" type="text" placeholder="请选择装修类型" value="{{zhuangxiu}}"/>
+   <input class="inputClass" type="text" placeholder="请选择装修类型" value="{{zhuangxiu}}" onFocus="open"/>
   </view>
   </picker>
   <view class="lineClass"></view>
@@ -53,20 +53,54 @@
   <view class="subTitleClass">授权证书认证</view>
  
   <!-- <view style="addViewMainClass"> -->
-    <view class="addViewClass" style="margin-left:35rpx;" onTap="selectImageView1"> 
-      <image class="addImageViewClass" src="/image/zpbj.png" />
+    <view a:if="{{!canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{img1}}" />
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="1">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
       <text class="textClass">业主身份证正面</text>
     </view>
 
-    <view class="addViewClass" style="margin-left:16rpx;" onTap="selectImageView2"> 
-      <image class="addImageViewClass" src="/image/zpbj.png" />
+    <view a:if="{{canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="1"/>
+      <text class="textClass">业主身份证正面</text>
+    </view>
+
+
+    <view a:if="{{!canAddImg2}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{img2}}" />
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
       <text class="textClass">业主身份证反面</text>
     </view>
 
-    <view class="addViewClass" style="margin-left:16rpx;" onTap="selectImageView3"> 
-      <image class="addImageViewClass" src="/image/zpbj.png" />
+    <view a:if="{{canAddImg2}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="2"/>
+      <text class="textClass">业主身份证反面</text>
+    </view>
+
+
+
+    <view a:if="{{!canAddImg3}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{img3}}" />
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="3">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
       <text class="textClass">房产证</text>
     </view>
+
+    <view a:if="{{canAddImg3}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="3"/>
+      <text class="textClass">房产证</text>
+    </view>
+
   <!-- </view> -->
   <button class="nextStepButtonClass" onTap="next">下一步</button>
 

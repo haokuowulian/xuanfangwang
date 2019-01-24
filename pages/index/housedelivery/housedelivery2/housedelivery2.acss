@@ -68,3 +68,9 @@
   font-size: 25rpx;
   color: #999999;
 }
+.content{
+  position: relative;
+}
+.delImg{
+  position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
+}

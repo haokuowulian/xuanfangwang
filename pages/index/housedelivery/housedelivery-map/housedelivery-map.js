@@ -6,14 +6,10 @@ Page({
     isShow:false,
     longitude:'',
     latitude:'',
-    scale:14
+    scale:14,
+    value:''
   },
-  onReady ()
-  {
-    // 使用 my.createMapContext 获取 map 上下文
-    this.mapCtx = my.createMapContext( 'map' );
-
-  },
+  
   onLoad() {
     this.getLocation();
   },
@@ -88,7 +84,13 @@ selectIt(event){
   var location=event.target.dataset.item.location;
   this.setData({
     longitude:location.split(',')[0],
-    latitude:location.split(',')[1]
+    latitude:location.split(',')[1],
+    keywords:event.target.dataset.item.name,
+    value:event.target.dataset.item.name,
   });
+},
+confirm(){
+  console.log(this.data.keywords);
+  my.navigateBack();
 }
 });
