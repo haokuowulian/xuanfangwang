@@ -139,6 +139,12 @@ Page({
             data: advanceprice, // 要缓存的数据
           });
           console.log('保存成功')
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.setData({
+            waterlist:1,
+          });
+          
           my.navigateBack({
             delta: 1
           });
@@ -154,6 +160,12 @@ Page({
       });
     }
     
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.data.roomList.push(obj);
+    my.navigateBack({
+      delta: 1,
+    });
     
   },
   toInput(e){

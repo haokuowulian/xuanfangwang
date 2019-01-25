@@ -133,6 +133,7 @@ Page({
     var houseInfo = my.getStorageSync({
       key: 'uhouseInfo', // 房源详情
     }).data;
+    var landlordId = houseInfo.landlordId;//房东id
     var housingId;
     var housingName;
     var rents;
@@ -176,6 +177,7 @@ Page({
         consumerName:uname,
         consumerIdCard:ucard,
         consumerTel:phone,
+        landlordId:landlordId,
       },
       dataType: 'json',
       success: (res) => {

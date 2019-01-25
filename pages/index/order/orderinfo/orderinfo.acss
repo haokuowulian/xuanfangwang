@@ -158,13 +158,14 @@
 .order-btn{
   height: 45rpx;
   width: 120rpx;
+  padding: 6rpx 24rpx;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 30rpx;
-  color: #666666;
+  color: #ff9900;
   border-radius: 8rpx;
-  border: 1rpx solid #333333;
+  border: 1rpx solid #ff9900;
  
 }

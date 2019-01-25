@@ -1,6 +1,12 @@
 const app=getApp();
+var imgs1 = '';
+var imgs2 = '';
 Page({
   data: {
+    roomname:'',
+    roomarea:'',
+    roomrent:'',
+
     images:[],
     img1:'',
     img2:'',
@@ -14,6 +20,7 @@ Page({
     watersave:false,
     waterdefault:true,
     water:'',
+    waterlist:[],
     payways:[
       '押一付一',
       '押一付三',
@@ -92,7 +99,27 @@ Page({
       });
     }
   },
-    //添加图片
+  toInput(e){
+    var that = this;
+    console.log(e.detail.value)
+    if(e.target.dataset.t==1){
+      that.setData({
+        roomname:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==2){
+      that.setData({
+        roomarea:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==3){
+      that.setData({
+        roomrent:e.detail.value,
+      });
+    }
+    
+  },
+  //添加图片
   addImg(e){
     var that = this;
     my.chooseImage({
@@ -182,43 +209,75 @@ Page({
   toSave(){
     var that = this;
     var img1 = that.data.img1;
-    var img2 = taht.data.img2;
+    var img2 = that.data.img2;
+    // var imgs = [];
+    // imgs[0]=img1;
+    // imgs[1]=img2;
     that.uploadImg(img1,1);
     that.uploadImg(img2,2);
+    
   },
-  uploadImg(img,num){
+  uploadImg(image,n){
     var that = this;
-    my.uploadFile({
-      url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do', // 开发者服务器地址
-      filePath: img, // 要上传文件资源的本地定位符
-      fileName: 'file', // 文件名，即对应的 key, 开发者在服务器端通过这个 key 可以获取到文件二进制内容
-      fileType: 'image', // 文件类型，image / video / audio
-      formData:{savePrefix:'landlord'},
-      success: (res) => {
-        var json1 = JSON.parse(res.data);
-        if(num==1){
-          that.setData({
-            img1url:json1['message'],
-          });
-          my.setStorageSync({
-            key: 'img1url', // 缓存数据的key
-            data: json1['message'], // 要缓存的数据
-          });
-        }
-        if(num==2){
-          that.setData({
-            img2url:json1['message'],
-          });
-          my.setStorageSync({
-            key: 'img1ur2', // 缓存数据的key
-            data: json1['message'], // 要缓存的数据
-          });
-        }
-      },
-      fail: function(res) {
-        console.log(res);
-        // my.alert({ title: '上传失败' });
-      },
-    });
+    
+    var newimgs = '';
+    // for(var n = 0;n<imgs.length;n++){
+      // console.log(n+'***********');
+      my.uploadFile({
+        url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+        fileName: 'file', 
+        fileType: 'image', 
+        formData:{savePrefix:'landlord'},
+        filePath: image,
+        success: (res) => {
+          var json1 = JSON.parse(res.data);
+          if(n==1){
+            newimgs=json1['message'];
+            that.toSaveData(newimgs,1);
+          }
+          if(n==2){
+            newimgs=json1['message'];
+            that.toSaveData(newimgs,2);
+          }
+          
+        },
+        fail: function(res) {
+          console.log(res);
+          my.alert({ title: '上传失败' });
+        },
+      });
+    // }
+    
+  },
+  toSaveData(url,n){
+    var that = this;
+    console.log(url+'----------'+n)
+    if(n==1){
+      imgs1=url;
+      console.log('---0-------'+n)
+    }
+    if(n==2){
+      console.log('---1-------'+n)
+      imgs2=url;
+      var obj = {
+        roomname:that.data.roomname,
+        roomarea:that.data.roomarea,
+        roomrent:that.data.roomrent,
+        payway:that.data.payway,
+        water:that.data.water,
+        privatebath:that.data.privatebath,
+        people:that.data.people,
+        bed:that.data.bed,
+        imgs1:imgs1,
+        imgs2:imgs2,
+      };
+      let pages = getCurrentPages();
+      let prevPage = pages[pages.length - 2];
+      prevPage.data.roomList.push(obj);
+      my.navigateBack({
+        delta: 1,
+      });
+    }
+    
   },
 });

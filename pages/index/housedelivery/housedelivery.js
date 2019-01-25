@@ -219,6 +219,7 @@ Page({
   },
   next(){
     var that = this;
+    that.toNext();
     var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;
     var countryCode = that.data.countryCode;

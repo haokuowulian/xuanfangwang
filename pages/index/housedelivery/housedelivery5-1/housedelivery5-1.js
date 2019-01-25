@@ -38,9 +38,18 @@ Page({
     
   },
   confirm(){
-    my.alert({
-      title: this.data.selectId,
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      furniture: this.data.selectId,
+      furniturelist:'已添加',
+    })
+    my.navigateBack({
+      delta: 1,
     });
+    // my.alert({
+    //   title: this.data.selectId,
+    // });
   }
 
 });

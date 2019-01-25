@@ -2,6 +2,12 @@ Page({
   data: {
     rentType:0,
     roomcount:0,
+    roomList:[],
+    furniture:'',
+    furniturelist:'',
+    feature:'',
+    featurelist:'',
+    
   },
   onLoad() {
     var that = this;
@@ -16,10 +22,22 @@ Page({
       roomcount:roomcount,
     });
   },
+  onShow(){
+    console.log(this.data.roomList)
+  },
   next(){
-    my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
-    })
+    var that = this;
+    var roomList = that.data.roomList;
+    if(roomList.length>0){
+      my.navigateTo({
+        url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
+      })
+    }else{
+      my.alert({
+        title: '至少需要出租一间房间' 
+      });
+    }
+    
   },
   toRoominfo(){
     my.navigateTo({
