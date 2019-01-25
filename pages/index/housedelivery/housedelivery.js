@@ -17,7 +17,9 @@ Page({
     values: [0, 0, 0],
     condition: false,
     dist:'',
-
+    village:'',
+    longitude:'',
+    latitude:'',
   },
   onChange: function (e) {
     //console.log(e);
@@ -94,6 +96,16 @@ Page({
   onLoad() {
       this.getCity();
 
+  },
+  onShow(){
+    // var village = my.getStorageSync({
+    //   key: 'r_village', // 缓存数据的key
+    // }).data;
+    // if(village!=''&&this.data.cityCode!=''){
+    //   this.setData({
+    //     village:village,
+    //   });
+    // }
   },
   getCity(){
     var that=this;
@@ -179,11 +191,11 @@ Page({
     //     street:e.detail.value,
     //   });
     // }
-    if(e.target.dataset.t==2){
-      that.setData({
-        village:e.detail.value,
-      });
-    }
+    // if(e.target.dataset.t==2){
+    //   that.setData({
+    //     village:e.detail.value,
+    //   });
+    // }
     if(e.target.dataset.t==3){
       that.setData({
         vphone:e.detail.value,
@@ -211,11 +223,14 @@ Page({
     var cityCode = that.data.cityCode;
     var countryCode = that.data.countryCode;
     var village = that.data.village;
+    var longitude = that.data.longitude;
+    var latitude = that.data.latitude;
     var vphone = that.data.vphone;
     var vyear = that.data.vyear;
     var vgreen = that.data.vgreen;
     var vcubage = that.data.vcubage;
     if(provinceCode!=''&&cityCode!=''&&countryCode!=''){
+      if(this.data.village!=''){
       my.setStorage({
         key: 'r_provinceCode', // 缓存数据的key
         data: provinceCode, // 要缓存的数据
@@ -227,6 +242,14 @@ Page({
       my.setStorage({
         key: 'r_countryCode', // 缓存数据的key
         data: countryCode, // 要缓存的数据
+      });
+      my.setStorage({
+        key: 'r_longitude', // 经度
+        data: longitude, // 要缓存的数据
+      });
+      my.setStorage({
+        key: 'r_latitude', // 纬度
+        data: latitude, // 要缓存的数据
       });
       my.setStorage({
         key: 'r_village', // 小区
@@ -264,7 +287,11 @@ Page({
       //   },
       // });
       that.toNext();
-
+      }else{
+        my.alert({
+          title: '请选择小区或公寓位置' 
+        });
+      }
     }else{
       my.alert({
         title: '区域信息请填写完整' 
@@ -278,10 +305,11 @@ Page({
   },
 
   selectPoi(){
-    if(this.data.city.length>0){
+    console.log(this.data.cityCode)
+    if(this.data.cityCode!=''){
       my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery-map/housedelivery-map',
-    })
+        url: '/pages/index/housedelivery/housedelivery-map/housedelivery-map',
+      })
     }else{
       my.alert({
         title: '请先选择地区' 

@@ -91,6 +91,15 @@ selectIt(event){
 },
 confirm(){
   console.log(this.data.keywords);
-  my.navigateBack();
+  let pages = getCurrentPages();
+  let prevPage = pages[pages.length - 2];
+  prevPage.setData({
+    village: this.data.value,
+    longitude:this.data.longitude,
+    latitude:this.data.latitude,
+  })
+  my.navigateBack({
+    delta: 1,
+  });
 }
 });

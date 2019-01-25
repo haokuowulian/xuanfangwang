@@ -28,9 +28,11 @@
   </view>
   </block>
 
+  <view>
   <view class="subTitleClass">消防设备照片上传</view>
   <view class="addViewClass" style="margin-left:35rpx;"> 
     <image class="addImageViewClass" src="/image/zpbj.png" />
+  </view>
   </view>
   
 

@@ -256,110 +256,115 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
-    // var img1 = that.data.img1;
-    // var img2 = that.data.img2;
-    // var img3 = that.data.img3;
-    // var vaddress = that.data.vaddress;
-    // var chaoxiang = that.data.chaoxiang;
-    // var zhuangxiu = that.data.zhuangxiu;
-    // var varea = that.data.varea;
-    // var vowner = that.data.vowner;
-    // var vownerCard = that.data.vownerCard;
-    // var vrelation = that.data.vrelation;
+    var img1 = that.data.img1;
+    var img2 = that.data.img2;
+    var img3 = that.data.img3;
+    var vaddress = that.data.vaddress;
+    var huxing = that.data.huxing;
+    var chaoxiang = that.data.chaoxiang;
+    var zhuangxiu = that.data.zhuangxiu;
+    var varea = that.data.varea;
+    var vowner = that.data.vowner;
+    var vownerCard = that.data.vownerCard;
+    var vrelation = that.data.vrelation;
     var roomcount = that.data.roomcount;
-    my.setStorageSync({
-      key: 'r_roomcount', // 缓存数据的key
-      data: roomcount, // 要缓存的数据
-    });
-    // if(vaddress!=''&&chaoxiang!=''&&zhuangxiu!=''&&varea!=''&&vowner!=''&&vownerCard!=''&&vrelation!=''){
-    //   if(img1!=''&&img2!=''&&img3!=''){
-    //     that.uploadImg(img1,1);
-    //     that.uploadImg(img2,2);
-    //     that.uploadImg(img3,3);
-    //     my.setStorageSync({
-    //       key: 'r_vaddress', // 缓存数据的key
-    //       data: vaddress, // 要缓存的数据
-    //     });
-    //     my.setStorageSync({
-    //       key: 'r_chaoxiang', // 缓存数据的key
-    //       data: chaoxiang, // 要缓存的数据
-    //     });
-    //     my.setStorageSync({
-    //       key: 'r_zhuangxiu', // 缓存数据的key
-    //       data: zhuangxiu, // 要缓存的数据
-    //     });
-    //     my.setStorageSync({
-    //       key: 'r_varea', // 缓存数据的key
-    //       data: varea, // 要缓存的数据
-    //     });
-    //     my.setStorageSync({
-    //       key: 'r_vowner', // 缓存数据的key
-    //       data: vowner, // 要缓存的数据
-    //     });
-    //     my.setStorageSync({
-    //       key: 'r_vownerCard', // 缓存数据的key
-    //       data: vownerCard, // 要缓存的数据
-    //     });
-    //     my.setStorageSync({
-    //       key: 'r_vrelation', // 缓存数据的key
-    //       data: vrelation, // 要缓存的数据
-    //     });
-    //     that.toNext();
-    //   }else{
-    //     my.alert({
-    //     title: '证件齐全方可进行下一步' 
-    //   });
-    //   }
-    // }else{
-    //   my.alert({
-    //     title: '请填写完整' 
-    //   });
-    // }
+   
+    if(vaddress!=''&&chaoxiang!=''&&zhuangxiu!=''&&varea!=''&&vowner!=''&&vownerCard!=''&&vrelation!=''&&huxing!=''){
+      if(img1!=''&&img2!=''&&img3!=''){
+        that.uploadImg(img1,1);
+        that.uploadImg(img2,2);
+        that.uploadImg(img3,3);
+        my.setStorageSync({
+          key: 'r_vaddress', // 缓存数据的key
+          data: vaddress, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_huxing', // 缓存数据的key
+          data: huxing, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_chaoxiang', // 缓存数据的key
+          data: chaoxiang, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_roomcount', // 缓存数据的key
+          data: roomcount, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_zhuangxiu', // 缓存数据的key
+          data: zhuangxiu, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_varea', // 缓存数据的key
+          data: varea, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_vowner', // 缓存数据的key
+          data: vowner, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_vownerCard', // 缓存数据的key
+          data: vownerCard, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_vrelation', // 缓存数据的key
+          data: vrelation, // 要缓存的数据
+        });
+        that.toNext();
+      }else{
+        my.alert({
+        title: '证件齐全方可进行下一步' 
+      });
+      }
+    }else{
+      my.alert({
+        title: '请填写完整' 
+      });
+    }
   },
   toNext(){
     my.navigateTo({
       url: '/pages/index/housedelivery/housedelivery3/housedelivery3',
     })
   },
-  //身份证正面
-  selectImageView1(){
-    var that=this;
-    my.chooseImage({
-      count: 1,
-      success: (res) => {
-        // img.src = res.apFilePaths[0];
-        that.setData({
-          idCardImageSrc1:res.apFilePaths[0]
-        });
-      },
-    });
-  },
+  // //身份证正面
+  // selectImageView1(){
+  //   var that=this;
+  //   my.chooseImage({
+  //     count: 1,
+  //     success: (res) => {
+  //       // img.src = res.apFilePaths[0];
+  //       that.setData({
+  //         idCardImageSrc1:res.apFilePaths[0]
+  //       });
+  //     },
+  //   });
+  // },
 
-   //身份证反面
-  selectImageView2(){
-    var that=this;
-    my.chooseImage({
-      count: 1,
-      success: (res) => {
-        // img.src = res.apFilePaths[0];
-        that.setData({
-          idCardImageSrc2:res.apFilePaths[0]
-        });
-      },
-    });
-  },
-   //房产证
-  selectImageView3(){
-    var that=this;
-    my.chooseImage({
-      count: 1,
-      success: (res) => {
-        // img.src = res.apFilePaths[0];
-        that.setData({
-          houseImageSrc1:res.apFilePaths[0]
-        });
-      },
-    });
-  },
+  //  //身份证反面
+  // selectImageView2(){
+  //   var that=this;
+  //   my.chooseImage({
+  //     count: 1,
+  //     success: (res) => {
+  //       // img.src = res.apFilePaths[0];
+  //       that.setData({
+  //         idCardImageSrc2:res.apFilePaths[0]
+  //       });
+  //     },
+  //   });
+  // },
+  //  //房产证
+  // selectImageView3(){
+  //   var that=this;
+  //   my.chooseImage({
+  //     count: 1,
+  //     success: (res) => {
+  //       // img.src = res.apFilePaths[0];
+  //       that.setData({
+  //         houseImageSrc1:res.apFilePaths[0]
+  //       });
+  //     },
+  //   });
+  // },
 });
