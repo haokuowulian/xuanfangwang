@@ -52,7 +52,7 @@
 }
 .user-name{
   font-size: 40rpx;
-  margin-top: 15rpx;
+  margin-top: 35rpx;
 }
 
 .page-option{
@@ -303,7 +303,7 @@
 
 .page-other{
   margin-top: 15rpx;
-  height: 230rpx;
+  /* height: 230rpx; */
   display: flex;
   flex-direction: column;
   align-items: center;

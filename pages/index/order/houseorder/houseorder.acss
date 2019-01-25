@@ -73,8 +73,10 @@
   flex-direction: row;
 }
 .tips{
+  padding-top: 600rpx;
   width: 750rpx;
   text-align: center;
-  font-size: 25rpx;
+  font-size: 32rpx;
   color: #999999;
+  height: 100vh;
 }
