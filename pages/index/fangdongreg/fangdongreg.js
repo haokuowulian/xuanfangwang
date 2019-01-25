@@ -121,8 +121,8 @@ Page({
       fail: function(res) {
         console.log(res);
         // my.alert({ title: '上传失败' });
-      },
-    });
+        },
+      });
     }
 
   },

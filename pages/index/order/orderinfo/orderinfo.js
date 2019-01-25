@@ -68,7 +68,8 @@ Page({
       confirmButtonText: '确定',
       cancelButtonText: '取消',
       success: (res) => {
-        my.httpRequest({
+        if(res.confirm){
+          my.httpRequest({
           url:app.globalData.baseUrl_whj+'IF/order/cancelLocalOrder.do', // 目标服务器url
           method: 'POST',
           data:{
@@ -79,7 +80,10 @@ Page({
           success: (res) => {
             console.log(res);
             my.alert({
-              title: '订单取消成功' 
+              title: '订单取消成功', 
+              success: (res) => {
+                my.navigateBack();
+              }
             });
           },
           fail: (res) => {
@@ -87,9 +91,48 @@ Page({
             my.alert({ title: '取消失败，请稍后再试' });
           },
         });
+        }
+        
       },
     });
     
+  },
+  onRefund(){
+    var id = this.data.orderid;
+    var uid = this.data.userId;
+    my.confirm({
+      title: '申请退款',
+      content: '您正在申请退款，稍后由工作人员联系，是否确定？',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      success: (res) => {
+        if(res.confirm){
+          my.httpRequest({
+          url:app.globalData.baseUrl_whj+'IF/order/refundAlipayOrder.do', // 目标服务器url
+          method: 'POST',
+          data:{
+            userId:uid,
+            orderId:id,
+          },
+          dataType: 'json',
+          success: (res) => {
+            console.log(res);
+            my.alert({
+              title: '订单退款申请中', 
+              success: (res) => {
+                console.log(res);
+              }
+            });
+          },
+          fail: (res) => {
+            console.log(res);
+            my.alert({ title: '申请退款失败，请稍后再试' });
+          },
+        });
+        }
+        
+      },
+    });
   },
   toPay(){
     var tradeNO=this.data.tradeNO;

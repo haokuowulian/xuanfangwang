@@ -61,6 +61,7 @@
       <view class="users-title">订单操作</view>
       <view a:if="{{status==0}}" class="order-btn" onTap="onCancel">取消订单</view>
       <view a:if="{{status==1}}" class="order-btn" onTap="onRefund">申请退款</view>
+    
     </view>
   </view>
   <view class="page-footer"></view>
