@@ -35,7 +35,7 @@
       <view class="user-name font-color1">{{username}}
       </view>
     </view>
-    <view class="page-option page-section">
+        <!-- <view class="page-option page-section">
       <view class="option">
         <view class="option-content" onTap="toContract">
           <view>
@@ -95,7 +95,6 @@
         <view class="purse-wallet">
           <view class="purse-text1">钱包
           </view>
-          <!-- <view class="purse-text2">房租</view> -->
           <view class="purse-text2">50000.00
           </view>
         </view>
@@ -121,7 +120,30 @@
           <view class="purse-text2">-200.00
           </view>
         </view>
+      </view> -->
+       <view class="page-other page-section">
+         <view class="page-suggest" onTap="toMyhouse">
+        <view class="other-title">我的房源
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img" />
+        </view>
       </view>
+      <view class="page-suggest" onTap="toMyOrder">
+        <view class="other-title">我的订单
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img" />
+        </view>
+      </view>
+      <view class="page-suggest" onTap="toSetting">
+        <view class="other-title">个人设置
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img" />
+        </view>
+      </view>
+    </view>
     </view>
   </view>
   <view a:if="{{isRoleUser}}">

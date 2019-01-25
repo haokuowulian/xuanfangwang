@@ -271,6 +271,12 @@ Page({
       url: '/pages/index/order/order',
     });
   },
+  //前往房东时我的订单
+  toMyOrder(){
+    my.navigateTo({
+      url: '/pages/index/order/houseorder/houseorder?type=2',//1:租客；2：房东
+    });
+  },
   toEvaluate(){
     my.navigateTo({
       url: '/pages/index/evaluate/evaluate',
