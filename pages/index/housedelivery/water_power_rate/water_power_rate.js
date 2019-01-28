@@ -20,8 +20,14 @@ Page({
     charge:'预收',
     index2:0,
   },
-  onLoad() {
-    this.getInfo();
+  onLoad(option) {
+    var arr = option.waterlist;
+    console.log(option)
+    this.getInfo(arr);
+    // var arr = option.waterlist;
+    // if(arr.length>0){
+      
+    // }
     var waterfree = my.getStorageSync({
       key: 'waterfree', // 缓存数据的key
     }).data;
@@ -118,31 +124,20 @@ Page({
             key: 'waterfree', // 缓存数据的key
             data: false, // 要缓存的数据
           });
-          my.setStorageSync({
-            key: 'r_payway', // 缓存数据的key
-            data: rpayway, // 要缓存的数据
-          });
-          my.setStorageSync({
-            key: 'r_paymethod', // 缓存数据的key
-            data: rpaymethod, // 要缓存的数据
-          });
-          my.setStorageSync({
-            key: 'r_powerprice', // 缓存数据的key
-            data: powerprice, // 要缓存的数据
-          });
-          my.setStorageSync({
-            key: 'r_waterprice', // 缓存数据的key
-            data: waterprice, // 要缓存的数据
-          });
-          my.setStorageSync({
-            key: 'r_advanceprice', // 缓存数据的key
-            data: advanceprice, // 要缓存的数据
-          });
+         
           console.log('保存成功')
+          var obj = {
+            rpayway:rpayway,
+            rpaymethod:rpaymethod,
+            powerprice:powerprice,
+            waterprice:waterprice,
+            advanceprice:advanceprice,
+          };
           let pages = getCurrentPages();
           let prevPage = pages[pages.length - 2];
           prevPage.setData({
-            waterlist:1,
+            waterlist:obj,
+
           });
           
           my.navigateBack({
@@ -159,13 +154,7 @@ Page({
         title: '请填写完整' 
       });
     }
-    
-    let pages = getCurrentPages();
-    let prevPage = pages[pages.length - 2];
-    prevPage.data.roomList.push(obj);
-    my.navigateBack({
-      delta: 1,
-    });
+  
     
   },
   toInput(e){
@@ -187,36 +176,19 @@ Page({
       });
     }
   },
-  getInfo(){
+  getInfo(arr){
     var that = this;
-    
-
     var watersave = my.getStorageSync({
       key: 'watersave', // 缓存数据的key
     }).data;
 
-    var rpayway = my.getStorageSync({
-      key: 'r_payway', // 缓存数据的key
-    }).data;
-
-    var rpaymethod = my.getStorageSync({
-      key: 'r_paymethod', // 缓存数据的key
-    }).data;
-
-    var rpowerprice = my.getStorageSync({
-      key: 'r_powerprice', // 缓存数据的key
-    }).data;
-
-    var rwaterprice = my.getStorageSync({
-      key: 'r_waterprice', // 缓存数据的key
-    }).data;
-
-    var radvanceprice = my.getStorageSync({
-      key: 'r_advanceprice', // 缓存数据的key
-    }).data;
-
-
-    if(watersave!=null&&watersave!=''){
+    if(arr!=''&&arr!=null){
+      var rpayway=arr.rpayway;
+      var rpaymethod=arr.rpaymethod;
+      var rpowerprice=arr.powerprice;
+      var rwaterprice=arr.waterprice;
+      var radvanceprice=arr.advanceprice;
+      if(watersave!=null&&watersave!=''){
       that.setData({
         watersave:watersave,
       });
@@ -286,5 +258,31 @@ Page({
         advanceprice:radvanceprice,
       });
     }
+    }
+
+    
+
+    // var rpayway = my.getStorageSync({
+    //   key: 'r_payway', // 缓存数据的key
+    // }).data;
+
+    // var rpaymethod = my.getStorageSync({
+    //   key: 'r_paymethod', // 缓存数据的key
+    // }).data;
+
+    // var rpowerprice = my.getStorageSync({
+    //   key: 'r_powerprice', // 缓存数据的key
+    // }).data;
+
+    // var rwaterprice = my.getStorageSync({
+    //   key: 'r_waterprice', // 缓存数据的key
+    // }).data;
+
+    // var radvanceprice = my.getStorageSync({
+    //   key: 'r_advanceprice', // 缓存数据的key
+    // }).data;
+
+
+    
   },
 });
