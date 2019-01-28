@@ -25,6 +25,7 @@ Page({
       data: JSON.parse(option.houseDetail), // 要缓存的数据
     });
     this.getUserInfo();
+    this.initialize();//初始化合同签约
   },
   
   getUserInfo(){
@@ -123,5 +124,23 @@ Page({
       url: '/pages/index/signing/renting_date/renting_date',
     });
    
+  },
+  //初始化合同
+  initialize(){
+     my.httpRequest({
+      url: app.globalData.baseUrl+"IF/initialize/initialize.do",
+      method: 'POST',
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
   }
 });

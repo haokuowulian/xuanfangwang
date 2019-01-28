@@ -92,6 +92,59 @@ Page({
       rentType:rentType,
     });
   },
+  //签订合同
+  sign(){
+     my.httpRequest({
+      url: app.globalData.baseUrl+"IF/landlordRenterServlet", // 目标服务器url
+      method: 'POST',
+      data:{
+        fdname:upayUserId,
+        fdidNo:totalMoney,
+        zkname:deposit,
+        zkidNo:fee,
+        apartmentId:payment,
+        houseId:startDate,
+        rentType:endDate,
+        roomId:housingId,
+        uid:urentType,
+        fdid:housingName,
+        startTime:rents,
+        endTime:area,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('---------------');
+        console.log(res);
+        console.log('订单提交成功！！！')
+        var orderId = res.data.orderId;
+        console.log(orderId);
+        my.tradePay({
+            tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
+            success: (res) => {
+              console.log('-------success--------');
+              console.log(res);
+              that.uploadCode(uid,orderId,res.resultCode);
+              my.navigateTo({
+                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+              });
+            },
+            fail: (res) => {
+              console.log('-------fail--------');
+              console.log(res);
+              that.uploadCode(uid,orderId,res.resultCode);
+              my.navigateTo({
+                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+              });
+            }
+          });
+
+      },
+      fail: (res) => {
+       console.log(res);
+       console.log('请求失败~~');
+      },
+    });
+  },
   toUpload(){
     var that = this;
     var ucard = my.getStorageSync({
