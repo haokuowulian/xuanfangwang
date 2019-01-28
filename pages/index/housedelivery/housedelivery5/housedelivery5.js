@@ -24,6 +24,10 @@ Page({
   },
   onShow(){
     console.log(this.data.roomList)
+     my.setStorageSync({
+      key: 'r_roomList', // 缓存数据的key
+      data: this.data.roomList, // 要缓存的数据
+    });
   },
   next(){
     var that = this;
@@ -39,9 +43,10 @@ Page({
     }
     
   },
-  toRoominfo(){
+  toRoominfo(e){
+    var tar = e.target.dataset.t;
     my.navigateTo({
-      url: '/pages/index/housedelivery/roominfo/roominfo',
+      url: '/pages/index/housedelivery/roominfo/roominfo?tar='+tar,
     })
   },
   //前往便利设施

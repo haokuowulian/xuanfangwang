@@ -1,12 +1,15 @@
 const app=getApp();
 var imgs1 = '';
 var imgs2 = '';
+var waterfree;
+var watersave;
 Page({
   data: {
+    imgurl:app.globalData.baseImgUrl_whj,
     roomname:'',
     roomarea:'',
     roomrent:'',
-
+    tar:null,
     images:[],
     img1:'',
     img2:'',
@@ -50,12 +53,40 @@ Page({
     bed:'请为房间添加床位',
     index4:0,
   },
-  onLoad() {},
+  onLoad(option) {
+    console.log(option)
+    console.log(option.tar)
+    var tar = option.tar*1;
+    this.setData({
+      tar:tar*1,
+    });
+    var imgurl = this.data.imgurl;
+    var roomList = my.getStorageSync({
+     key: 'r_roomList', // 缓存数据的key
+    }).data;
+    console.log(roomList)
+    if(roomList[tar]!=''&&roomList[tar]!=null){
+      this.setData({
+        roomname:roomList[tar].roomname,
+        roomarea:roomList[tar].roomarea,
+        roomrent:roomList[tar].roomrent,
+        payway:roomList[tar].payway,
+        water:roomList[tar].water,
+        privatebath:roomList[tar].privatebath,
+        people:roomList[tar].people,
+        bed:roomList[tar].bed,
+        img1:imgurl+roomList[tar].imgs1,
+        img2:imgurl+roomList[tar].imgs2,
+      });
+    }
+
+  },
   onShow(){
-    var waterfree = my.getStorageSync({
+    console.log(this.data.waterlist)
+    waterfree = my.getStorageSync({
      key: 'waterfree', // 缓存数据的key
     }).data;
-    var watersave = my.getStorageSync({
+    watersave = my.getStorageSync({
      key: 'watersave', // 缓存数据的key
     }).data;
     var waterdefault = my.getStorageSync({
@@ -203,7 +234,7 @@ Page({
   },
   toWERate(){
     my.navigateTo({
-      url: '/pages/index/housedelivery/water_power_rate/water_power_rate',
+      url: '/pages/index/housedelivery/water_power_rate/water_power_rate?waterlist='+this.data.waterlist,
     });
   },
   toSave(){
@@ -221,32 +252,31 @@ Page({
     var that = this;
     
     var newimgs = '';
-    // for(var n = 0;n<imgs.length;n++){
-      // console.log(n+'***********');
-      my.uploadFile({
-        url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
-        fileName: 'file', 
-        fileType: 'image', 
-        formData:{savePrefix:'landlord'},
-        filePath: image,
-        success: (res) => {
-          var json1 = JSON.parse(res.data);
-          if(n==1){
-            newimgs=json1['message'];
-            that.toSaveData(newimgs,1);
-          }
-          if(n==2){
-            newimgs=json1['message'];
-            that.toSaveData(newimgs,2);
-          }
-          
-        },
-        fail: function(res) {
-          console.log(res);
-          my.alert({ title: '上传失败' });
-        },
-      });
-    // }
+    
+    my.uploadFile({
+      url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+      fileName: 'file', 
+      fileType: 'image', 
+      formData:{savePrefix:'landlord'},
+      filePath: image,
+      success: (res) => {
+        var json1 = JSON.parse(res.data);
+        if(n==1){
+          newimgs=json1['message'];
+          that.toSaveData(newimgs,1);
+        }
+        if(n==2){
+          newimgs=json1['message'];
+          that.toSaveData(newimgs,2);
+        }
+        
+      },
+      fail: function(res) {
+        console.log(res);
+        my.alert({ title: '上传失败' });
+      },
+    });
+   
     
   },
   toSaveData(url,n){
@@ -259,12 +289,34 @@ Page({
     if(n==2){
       console.log('---1-------'+n)
       imgs2=url;
+      // var water;
+      // var waterfree = my.getStorageSync({
+      // key: 'waterfree', // 缓存数据的key
+      // }).data;
+      // var watersave = my.getStorageSync({
+      // key: 'watersave', // 缓存数据的key
+      // }).data;
+      // console.log('---3-------'+waterfreen)
+      // if(waterfree){
+      //   water=that.data.water;
+      // }
+      // if(watersave){
+      //   water=that.data.waterlist;
+      // }
+      // var waterfree;
+      // var watersave;
+      var tar = that.data.tar;
+      var water=that.data.water;
+      var waterlist = that.data.waterlist;
+      if(waterlist!=''&&waterlist!=null){
+        water=waterlist;
+      }
       var obj = {
         roomname:that.data.roomname,
         roomarea:that.data.roomarea,
         roomrent:that.data.roomrent,
         payway:that.data.payway,
-        water:that.data.water,
+        water:water,
         privatebath:that.data.privatebath,
         people:that.data.people,
         bed:that.data.bed,
@@ -273,7 +325,7 @@ Page({
       };
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];
-      prevPage.data.roomList.push(obj);
+      prevPage.data.roomList[tar]=obj;
       my.navigateBack({
         delta: 1,
       });

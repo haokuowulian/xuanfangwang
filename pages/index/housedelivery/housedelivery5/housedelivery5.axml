@@ -20,10 +20,10 @@
   </view> -->
 
   <block a:if="{{rentType==2}}" a:for="{{roomcount}}" a:for-index="idx">
-  <view onTap="toRoominfo">
+  <view onTap="toRoominfo" data-t='{{idx}}'>
   <view class="subTitleClass">房间{{idx+1}}</view>
 
-  <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" value="{{roomList[idx]!=null?'已添加':''}}"/>
+  <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" value="{{roomList[idx]!=''&&roomList[idx]!=null?'已添加':''}}"/>
   <view class="lineClass"></view>
   </view>
   </block>
