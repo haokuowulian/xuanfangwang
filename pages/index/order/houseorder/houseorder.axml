@@ -15,8 +15,8 @@
 
           <view a:if="{{list.status==0}}" class="order-status1">待付款</view>
           <view a:if="{{list.status==1}}" class="order-status1">已付款</view>
-          <view a:if="{{list.status==2&&type==1}} " class="order-status1">退款申请中</view>
-          <view a:if="{{list.status==2&&type==2}} " class="order-status1" onTap="dealOrder" data-orderId="{{list.id}}">退款处理</view>
+          <view a:if="{{list.status==2}} " class="order-status1">退款申请中</view>
+          <view a:if="{{list.status==3}} " class="order-status1">退款完成</view>
           <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
         </view>
 

@@ -49,7 +49,7 @@ Page({
           //     that.goBack();
           // },
           // });
-          that.toUpload();
+          that.sign();
         }else{
           my.alert({
             title: '合同取消签订！' 
@@ -94,49 +94,65 @@ Page({
   },
   //签订合同
   sign(){
+     var that = this;
+    var ucard = my.getStorageSync({
+      key: 'ucard', // 消费者身份证号
+    }).data;
+    
+    var uname= my.getStorageSync({
+      key: 'uname', // 消费者姓名
+    }).data;
+    var startDate = my.getStorageSync({
+      key: 'ustartDate', // 出租时间
+    }).data;
+    var endDate = my.getStorageSync({
+      key: 'uendDate', // 截止时间
+    }).data;
+    
+    var urentType = my.getStorageSync({
+      key: 'urentType', // 房源类型1/整租2/合租
+    }).data;
+    var houseInfo = my.getStorageSync({
+      key: 'uhouseInfo', // 房源详情
+    }).data;
+    var landlordId = houseInfo.landlordId;//房东id
+    var apartmentId='';
+    var houseId='';
+    var roomId='';
+    var landlordId='';
+    if(urentType==1){
+      apartmentId=houseInfo.apartment.id;
+      houseId=houseInfo.id;
+      landlordId = houseInfo.landlordId;//房东id
+    }else if(urentType==2){
+      apartmentId=houseInfo.house.apartment.id
+      houseId=houseInfo.houseId;
+      roomId=houseInfo.id;
+      landlordId = houseInfo.house.landlordId;//房东id
+    }
      my.httpRequest({
       url: app.globalData.baseUrl+"IF/landlordRenterServlet", // 目标服务器url
       method: 'POST',
       data:{
-        fdname:upayUserId,
-        fdidNo:totalMoney,
-        zkname:deposit,
-        zkidNo:fee,
-        apartmentId:payment,
-        houseId:startDate,
-        rentType:endDate,
-        roomId:housingId,
+        
+        zkname:uname,
+        zkidNo:ucard,
+        apartmentId:apartmentId,
+        houseId:houseId,
+        rentType:urentType,
+        roomId:roomId,
         uid:urentType,
-        fdid:housingName,
-        startTime:rents,
-        endTime:area,
+        fdid:landlordId,
+        startTime:startDate,
+        endTime:endDate,
       },
       dataType: 'json',
       success: (res) => {
         console.log('---------------');
         console.log(res);
-        console.log('订单提交成功！！！')
-        var orderId = res.data.orderId;
-        console.log(orderId);
-        my.tradePay({
-            tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
-            success: (res) => {
-              console.log('-------success--------');
-              console.log(res);
-              that.uploadCode(uid,orderId,res.resultCode);
-              my.navigateTo({
-                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
-              });
-            },
-            fail: (res) => {
-              console.log('-------fail--------');
-              console.log(res);
-              that.uploadCode(uid,orderId,res.resultCode);
-              my.navigateTo({
-                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
-              });
-            }
-          });
+        if(res.data.success){
+          that.toUpload(res.data.contractId);
+        }
 
       },
       fail: (res) => {
@@ -145,7 +161,7 @@ Page({
       },
     });
   },
-  toUpload(){
+  toUpload(contractId){
     var that = this;
     var ucard = my.getStorageSync({
       key: 'ucard', // 消费者身份证号
@@ -186,13 +202,14 @@ Page({
     var houseInfo = my.getStorageSync({
       key: 'uhouseInfo', // 房源详情
     }).data;
-    var landlordId = houseInfo.landlordId;//房东id
+    var landlordId ;//房东id
     var housingId;
     var housingName;
     var rents;
     var area;
     var images;
     if(urentType==1){
+      landlordId = houseInfo.landlordId;//房东id
       housingId = houseInfo.id;
       housingName = houseInfo.apartment.apartmentName+houseInfo.buildingUnit+houseInfo.houseNo;
       rents = houseInfo.entireRents;
@@ -200,6 +217,7 @@ Page({
       images = houseInfo.images.split(',')[0]
     }
     if(urentType==2){
+      landlordId = houseInfo.house.landlordId;//房东id
       housingId = houseInfo.id;
       housingName = houseInfo.house.apartment.apartmentName+houseInfo.house.buildingUnit+houseInfo.roomName;
       rents = houseInfo.rents;
@@ -231,6 +249,7 @@ Page({
         consumerIdCard:ucard,
         consumerTel:phone,
         landlordId:landlordId,
+        contractId:contractId
       },
       dataType: 'json',
       success: (res) => {
@@ -244,7 +263,7 @@ Page({
             success: (res) => {
               console.log('-------success--------');
               console.log(res);
-              that.uploadCode(uid,orderId,res.resultCode);
+              that.uploadCode(uid,orderId,res.resultCode,contractId);
               my.navigateTo({
                 url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
               });
@@ -252,7 +271,7 @@ Page({
             fail: (res) => {
               console.log('-------fail--------');
               console.log(res);
-              that.uploadCode(uid,orderId,res.resultCode);
+              that.uploadCode(uid,orderId,res.resultCode,contractId);
               my.navigateTo({
                 url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
               });
@@ -266,7 +285,7 @@ Page({
       },
     });
   },
-  uploadCode(uid,orderId,resultCode){
+  uploadCode(uid,orderId,resultCode,contractId){
     my.httpRequest({
       url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
       method: 'POST',
@@ -274,6 +293,7 @@ Page({
         userId:uid,
         orderId:orderId,
         resultCode:resultCode,
+        contractId:contractId
       },
       dataType: 'json',
       success: (res) => {
@@ -281,4 +301,5 @@ Page({
       },
     });
   },
+  
 });

@@ -27,6 +27,7 @@ Page({
     this.getWholeRentalHousing();
     this.getSharedHousing();
     this.getLocation();
+    this.initialize();
   },
   handleInput(value) {
     this.setData({
@@ -272,4 +273,22 @@ Page({
       url: '/pages/index/news/news',
     })
   },
+  //初始化合同
+  initialize(){
+     my.httpRequest({
+      url: app.globalData.baseUrl+"IF/initialize/initialize.do",
+      method: 'POST',
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  }
 });
