@@ -42,4 +42,10 @@ Page({
       });
     }
   },
+  onUnload() {
+    // 页面被关闭
+    my.navigateBack({
+      delta:5
+    });
+  },
 });

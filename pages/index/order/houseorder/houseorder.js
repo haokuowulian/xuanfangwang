@@ -67,7 +67,7 @@ Page({
     console.log(e.currentTarget.dataset.id)
     var orderid = e.currentTarget.dataset.id
     my.navigateTo({
-      url: '/pages/index/order/orderinfo/orderinfo?orderid='+orderid,
+      url: '/pages/index/order/orderinfo/orderinfo?orderid='+orderid+'&type='+this.data.type,
     });
   },
   toHouseInfo(e){
@@ -84,53 +84,5 @@ Page({
     });
     this.getOrder();
   },
-  //退款处理
-  dealOrder(){
-    var that=this;
-    my.confirm({
-      title: '提示',
-      content: '是否同意该退款申请',
-      confirmButtonText: '同意',
-      cancelButtonText: '拒绝',
-      success: (result) => {
-        if(result.confirm){//同意
-          that.confirm();
-        }else{//拒绝
-          that.refuse();
-        }
-      },
-    });
-  },
-  //同意退款
-  confirm(event){
-    var that=this;
-    my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/order/refundAlipayOrder.do", // 目标服务器url
-      method: 'POST',
-      data:{
-        userId:uid,
-        orderId:event.target.dataset.id
-      },
-      dataType: 'json',
-      success: function(res) {
-        console.log(res.data);
-        if(res.data.success){
-           my.showToast({
-            content: '退款处理成功',
-            duration: 2000
-          });
-          that.setData({
-            pageIndex:this.data.pageIndex+1
-          });
-          that.getOrder();
-        }
-      },
-      fail: function(res) {
-        console.log('-------fail--------'+res);
-      },
-      complete: function(res) {
-        my.hideLoading();
-      }
-    });
-  }
+
 });

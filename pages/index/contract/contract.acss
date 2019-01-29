@@ -35,6 +35,7 @@
 .tips{
   width: 750rpx;
   text-align: center;
-  font-size: 25rpx;
+  font-size: 32rpx;
   color: #999999;
+  padding-top: 500rpx;
 }

@@ -73,7 +73,7 @@
   flex-direction: row;
 }
 .tips{
-  padding-top: 600rpx;
+  padding-top: 500rpx;
   width: 750rpx;
   text-align: center;
   font-size: 32rpx;

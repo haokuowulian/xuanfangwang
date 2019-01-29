@@ -19,12 +19,14 @@ Page({
     userId:null,
     status:null,
     tradeNO:null,
+    type:0
   },
   onLoad(option) {
     var that = this;
     var id = option.orderid;
     that.setData({
       orderid:id,
+      type:option.type
     });
     console.log(id)
     my.httpRequest({
@@ -108,7 +110,7 @@ Page({
       success: (res) => {
         if(res.confirm){
           my.httpRequest({
-          url:app.globalData.baseUrl_whj+'IF/order/refundAlipayOrder.do', // 目标服务器url
+          url:app.globalData.baseUrl_whj+'IF/order/refundApplication.do', // 目标服务器url
           method: 'POST',
           data:{
             userId:uid,
@@ -172,4 +174,50 @@ Page({
       },
     });
   },
+    //退款处理
+  dealOrder(){
+    var that=this;
+    my.confirm({
+      title: '提示',
+      content: '是否同意该退款申请',
+      confirmButtonText: '同意',
+      cancelButtonText: '拒绝',
+      success: (result) => {
+        if(result.confirm){//同意
+          that.confirm();
+        }else{//拒绝
+          that.refuse();
+        }
+      },
+    });
+  },
+  //同意退款
+  confirm(){
+    var that=this;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/order/refundAlipayOrder.do", // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:this.data.userId,
+        orderId:this.data.orderid
+      },
+      dataType: 'json',
+      success: function(res) {
+        console.log(res.data);
+        if(res.data.success){
+           my.showToast({
+            content: '退款处理成功',
+            duration: 2000
+          });
+          that.navigateBack();
+        }
+      },
+      fail: function(res) {
+        console.log('-------fail--------'+res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  }
 });

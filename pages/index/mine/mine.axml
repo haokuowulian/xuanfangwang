@@ -167,8 +167,8 @@
           <view class="user-name1 font-color2">{{username}}
           </view>
         </view>
-        <view class="user-account" onTap="toAccountInfo">账号信息
-        </view>
+        <!-- <view class="user-account" onTap="toAccountInfo">账号信息
+        </view> -->
       </view>
     </view>
     <view class="page-option page-section">
