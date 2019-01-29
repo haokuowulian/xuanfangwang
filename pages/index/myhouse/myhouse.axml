@@ -1,20 +1,43 @@
-<view>
-  <block a:for="{{houseList}}" a:for-item="list">
-    <view class="page-my" onTap="toMyroominfo" data-roomid="{{list.id}}">
-      <view class="page-back">
-        <view class="page-left">
-          <view class="house-title">{{list.address}}</view>
-          <view class="house-address">{{list.area}}</view>
-          <view class="house-status">
-            当前状态：<view a:if="{{list.status==0}}" class="status1">部分已租</view><view a:if="{{list.status==1}}" class="status1">全部已租</view><view a:if="{{list.status==2}}" class="status2">未租</view>
-          </view>
+<view class="backgroundClass">
+ <view class="title-bar page-select">
+    <view class="finish-bar {{click1?'title-click':''}}" onTap="unfinished">
+      整租
+    </view>
+    <view class="unfinished-bar {{click2?'title-click':''}}" onTap="finish">
+      合租
+    </view>
+  </view>
+
+  <view a:if="{{houseList.length==0}}" class="tips">暂无数据</view>
+  <view  a:else >
+  <block a:for="{{houseList}}" a:for-item="list" >
+    <view  class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='{{rentType}}'>
+      <view class="house-info">
+        <view class="p-img">
+          <image src="{{imgUrl}}{{list.images.split(',')[0]}}" class="house-img"/>
         </view>
-        
-        <view class="page-right">
-          <image src="/image/icon/right.png" class="right-img" />
+        <view class="p0">
+          <view a:if="{{rentType==1}}" class="p1">      {{list.buildingUnit}}    
+          </view>
+           <view a:if="{{rentType==2}}" class="p1">      {{list.roomName}}    
+          </view>
+          <view class="p2">
+            <view class="p2-1" a:if="{{rentType==1}}">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
+            </view>
+            <view class="p2-1" a:if="{{rentType==2}}">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
+            </view>
+            <view class="p2-2">{{list.entireRents}}元/月
+            </view>
+          </view>
+          <view class="p3"> 
+            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+            {{list.toward}}    
+          </view>
+          <view class="p4">      {{list.template.feature.split(',')[0]}}    
+          </view>
         </view>
       </view>
     </view>
   </block>
-  
+  </view>
 </view>

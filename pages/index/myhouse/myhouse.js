@@ -1,23 +1,23 @@
+var app=getApp();
 Page({
   data: {
-    houseList:[{
-      id:1001,
-      address:'湘湖科创园1栋8楼',
-      area:'杭州市萧山区时代大道4887号湘湖科创园',
-      status:0,
-    },{
-      id:1002,
-      address:'湘湖科创园1栋8楼',
-      area:'杭州市萧山区时代大道4887号湘湖科创园',
-      status:1,
-    },{
-      id:1003,
-      address:'湘湖科创园1栋8楼',
-      area:'杭州市萧山区时代大道4887号湘湖科创园',
-      status:2,
-    },],
+    click1:true,
+    click2:false,
+    userId:'',
+    pageIndex:1,
+    rentType:1,
+    houseList:[],
+    imgUrl:app.globalData.baseImgUrl_whj
   },
-  onLoad() {},
+  onLoad() {
+    var userId=my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    });
+    this.setData({
+      userId:userId
+    });
+    this.getHouseList();
+  },
   onShow(){},
   toMyroominfo(e){
     var id = e.target.dataset.roomid;
@@ -27,4 +27,78 @@ Page({
       url: '/pages/index/myroominfo/myroominfo?id='+id,
     });
   },
+  unfinished(){
+    this.setData({
+      click1:true,
+      click2:false,
+      pageIndex:1,
+      rentType:1
+    });
+    this.getHouseList();
+  },
+  finish(){
+    this.setData({
+      click1:false,
+      click2:true,
+      pageIndex:1,
+      rentType:2
+    });
+     this.getHouseList();
+  },
+  //获取房源列表
+  getHouseList(){
+    var that=this;
+     my.httpRequest({
+      url: app.globalData.baseUrl_whj+"IF/housing/getHousingListIFByLandlord.do",
+      method: 'POST',
+      data: {
+        userId:this.data.userId,
+        rentType:this.data.rentType,
+        pageIndex: this.data.pageIndex,
+        pageSize: 6,
+      },
+      dataType: 'json',
+      success: function(res) {
+       console.log(res.data);
+        if(res.data.success){
+           if(that.data.pageIndex==1){
+                 that.setData({
+            houseList:res.data.data
+          });
+            }else if(that.data.houseList.length<res.data.count){
+               that.setData({
+                houseList:that.data.houseList.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
+          console.log(that.data.houseList);
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
+    });
+     
+    this.getHouseList();
+  },
+  onReachBottom() {
+    this.setData({
+      pageIndex:this.data.pageIndex+1
+    });
+     this.getHouseList();
+  },
+  //前往房源详情
+  goToHouseDetail(e){
+    my.navigateTo({
+    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type+'&isLandrord=true',
+    })
+  }
 });

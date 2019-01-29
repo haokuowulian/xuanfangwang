@@ -1,51 +1,103 @@
-.page-my{
-  height: 215rpx;
-  width: 750rpx;
-  padding-top: 10rpx;
+.backgroundClass{
+  background-color: white;
+  width: 100%;
+  height: 100vh;
 }
-.page-back{
-  height: 125rpx;
-  width: 680rpx;
-  padding-left: 35rpx;
-  padding-right: 35rpx;
-  padding: 40rpx 35rpx;
-  background-color: #ffffff;
+.title-bar{
+  height: 90rpx;
+  width: 750rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  background-color: #ffffff;
+  border: 1rpx solid #F7F7F7;
+}
+.finish-bar{
+  width: 375rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1rpx solid #F7F7F7;
+}
+.unfinished-bar{
+  width: 375rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
-.page-left{
+.title-click{
+  color: #ff8800;
+  border-bottom: 2rpx solid #ff8800;
+}
+
+.tips{
+  width: 750rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999999;
+  padding-top:500rpx; 
+}
+.page-house{
+  height: 235rpx;
+  width: 750rpx;
+  margin-left: 25rpx;
+}
+.house-info{
+  margin-top: 25rpx;
+}
+.p-img{
+  float: left;
+}
+.p0{
+  float: left;
+  margin-left: 25rpx;
+  width: 415rpx;
   display: flex;
   flex-direction: column;
-
+  
 }
-.page-right{
-
+.house-img{
+  border-radius: 6rpx;
+  height: 185rpx;
+  width: 250rpx;
 }
-.right-img{
-  height: 40rpx;
-  width: 30rpx;
-}
-.house-title{
+.p1{
   font-size: 30rpx;
   color: #333333;
 }
-.house-address{
+.p2{
+  margin-top: 15rpx;
+}
+.p2-1{
+  float: left;
   font-size: 25rpx;
-  color: #666666;
-  margin-top: 25rpx;
+  color: #999999;
 }
-.house-status{
+.p2-2{
+  float: right;
+  font-size: 30rpx;
+  color: #ff8800;
+}
+.p3{
+  float: left;
+  margin-top: 15rpx;
   font-size: 25rpx;
-  color: #666666;
-  margin-top: 22rpx;
-  display: flex;
-  flex-direction: row;
+  color: #999999;
 }
-.status1{
-  color: #7CFBFB;
+.weizhi-img{
+  height: 25rpx;
+  width: 21rpx;
 }
-.status2{
-  color: #ff9966;
+.p4{
+  margin-top: 20rpx;
+  font-size: 20rpx;
+  height: 40rpx;
+  width: 120rpx;
+  color: #999999;
+  text-align: center;
+  line-height: 40rpx;
+  background-color: #E6E6E6;
+  border-radius: 5rpx;
 }

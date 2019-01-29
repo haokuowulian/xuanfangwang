@@ -192,7 +192,7 @@
   align-items: center;
   padding-left: 30rpx;
   padding-right: 30rpx;
-  background:rgba(255,255,255,0.6);
+  /* background:rgba(255,255,255,0.6); */
 }
 .font-color2{
   color: #000000;

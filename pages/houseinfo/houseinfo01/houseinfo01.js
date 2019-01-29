@@ -21,6 +21,7 @@ Page({
     isDisable:false,
     isBespeak:false,
     bespeakId:'',
+    isLandrord:false
   },
    
   onLoad(option) {
@@ -33,6 +34,7 @@ Page({
     this.setData({
       id:option.id,
       rentType:option.rentType,
+      isLandrord:option.isLandrord,
       userId:userId,
       certNo:certNo
     });
