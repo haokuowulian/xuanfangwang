@@ -54,6 +54,9 @@ Page({
   },
   onShow(){
     console.log(this.data.roomList)
+    this.setData({
+      roomList:this.data.roomList
+    });
      my.setStorageSync({
       key: 'r_roomList', // 缓存数据的key
       data: this.data.roomList, // 要缓存的数据

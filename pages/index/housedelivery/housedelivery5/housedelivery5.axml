@@ -18,7 +18,7 @@
   <view onTap="toRoominfo" data-t='{{idx}}'>
   <view class="subTitleClass">房间{{idx+1}}</view>
 
-  <input class="inputClass" type="text" placeholder="添加房间信息" value="{{idx}}"/>
+  <input class="inputClass" type="text" placeholder="添加房间信息" value="{{roomList[idx].roomname}}"/>
   <view class="lineClass"></view>
   </view>
   </block>
