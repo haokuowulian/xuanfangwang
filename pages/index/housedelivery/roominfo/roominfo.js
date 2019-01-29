@@ -1,11 +1,34 @@
 const app=getApp();
 var imgs1 = '';
-var imgs2 = '';
-var waterfree;
-var watersave;
+// var waterfree;
+// var watersave;
+const fires = [
+  {
+    id:1,
+    name:'灭火器',
+    selected:false,
+  },
+  {
+    id:2,
+    name:'防烟面罩',
+    selected:false,
+  },
+  {
+    id:3,
+    name:'多功能手电筒',
+    selected:false,
+  },
+  {
+    id:4,
+    name:'逃生绳',
+    selected:false,
+  },
+]
 Page({
   data: {
     imgurl:app.globalData.baseImgUrl_whj,
+    fireList:fires,
+    selectId:'',
     roomname:'',
     roomarea:'',
     roomrent:'',
@@ -66,6 +89,15 @@ Page({
     }).data;
     console.log(roomList)
     if(roomList[tar]!=''&&roomList[tar]!=null){
+      var selectId=roomList[tar].fireid;
+      console.log(selectId)
+      var fireList = this.data.fireList;
+      for(let a=0;a<selectId.length;a++){
+        fireList[selectId[a]-1].selected=true;
+      }
+      if(roomList[tar].water!=''){
+
+      }
       this.setData({
         roomname:roomList[tar].roomname,
         roomarea:roomList[tar].roomarea,
@@ -76,59 +108,46 @@ Page({
         people:roomList[tar].people,
         bed:roomList[tar].bed,
         img1:imgurl+roomList[tar].imgs1,
-        img2:imgurl+roomList[tar].imgs2,
+        selectId:roomList[tar].fireid,
+        waterfree:roomList[tar].waterfree,
+        watersave:roomList[tar].watersave,
       });
+
     }
 
   },
   onShow(){
-    console.log(this.data.waterlist)
-    waterfree = my.getStorageSync({
-     key: 'waterfree', // 缓存数据的key
-    }).data;
-    watersave = my.getStorageSync({
-     key: 'watersave', // 缓存数据的key
-    }).data;
-    var waterdefault = my.getStorageSync({
-     key: 'waterdefault', // 缓存数据的key
-    }).data;
-
-    if(waterfree!=null&&waterfree!=''){
-      if(waterfree){
-        this.setData({
-          waterfree:waterfree,
-          waterdefault:false,
-          water:'免水电费',
-        });
-      }else{
-        this.setData({
-          waterfree:false,
-          waterdefault:true,
-          water:'请添加水电费价格',
-        });
-      }
-      
-    }else{
+    // console.log(this.data.waterlist)
+    // waterfree = my.getStorageSync({
+    //  key: 'waterfree', // 缓存数据的key
+    // }).data;
+    // watersave = my.getStorageSync({
+    //  key: 'watersave', // 缓存数据的key
+    // }).data;
+    // var waterdefault = my.getStorageSync({
+    //  key: 'waterdefault', // 缓存数据的key
+    // }).data;
+    var waterfree=this.data.waterfree;
+    var watersave=this.data.watersave;
+    if(waterfree==true){
       this.setData({
-        waterfree:false,
+        waterdefault:false,
+        water:'免水电费',
+      });
+    }
+    if(watersave==true){
+      this.setData({
+        waterdefault:false,
+        water:'已填写',
+      });
+    }
+    if(waterfree==false&&watersave==false){
+      this.setData({
         waterdefault:true,
         water:'请添加水电费价格',
       });
     }
-    if(watersave!=null&&watersave!=''){
-      if(watersave){
-          this.setData({
-          watersave:watersave,
-          waterdefault:false,
-          water:'已填写',
-        });
-      }
-      
-    }else{
-      this.setData({
-        watersave:false,
-      });
-    }
+    
   },
   toInput(e){
     var that = this;
@@ -232,7 +251,26 @@ Page({
         bed:arr[idx],
     });
   },
+  onChange(e) {
+     this.setData({
+       selectId:e.detail.value
+     });
+  },
+  //waterfree:false,
+  //watersave:false,
   toWERate(){
+    my.setStorage({
+      key: 't_waterfree', // 缓存数据的key
+      data: this.data.waterfree, // 要缓存的数据
+    });
+    my.setStorage({
+      key: 't_watersave', // 缓存数据的key
+      data: this.data.watersave, // 要缓存的数据
+    });
+    my.setStorage({
+      key: 't_waterlist', // 缓存数据的key
+      data: this.data.waterlist, // 要缓存的数据  +'&waterfree='+this.data.waterfree+'&watersave='+this.data.watersave
+    });
     my.navigateTo({
       url: '/pages/index/housedelivery/water_power_rate/water_power_rate?waterlist='+this.data.waterlist,
     });
@@ -240,15 +278,14 @@ Page({
   toSave(){
     var that = this;
     var img1 = that.data.img1;
-    var img2 = that.data.img2;
-    // var imgs = [];
-    // imgs[0]=img1;
-    // imgs[1]=img2;
-    that.uploadImg(img1,1);
-    that.uploadImg(img2,2);
+    // var selectId = that.data.selectId;
+    // my.alert({
+    //   title: selectId 
+    // });
+    that.uploadImg(img1);
     
   },
-  uploadImg(image,n){
+   uploadImg(image1){
     var that = this;
     
     var newimgs = '';
@@ -258,18 +295,13 @@ Page({
       fileName: 'file', 
       fileType: 'image', 
       formData:{savePrefix:'landlord'},
-      filePath: image,
+      filePath: image1,
       success: (res) => {
         var json1 = JSON.parse(res.data);
-        if(n==1){
-          newimgs=json1['message'];
-          that.toSaveData(newimgs,1);
-        }
-        if(n==2){
-          newimgs=json1['message'];
-          that.toSaveData(newimgs,2);
-        }
-        
+        console.log(res);
+        newimgs=json1['message'];
+        that.toSaveData(newimgs);
+
       },
       fail: function(res) {
         console.log(res);
@@ -279,32 +311,11 @@ Page({
    
     
   },
-  toSaveData(url,n){
+  
+  toSaveData(url){
     var that = this;
-    console.log(url+'----------'+n)
-    if(n==1){
-      imgs1=url;
-      console.log('---0-------'+n)
-    }
-    if(n==2){
-      console.log('---1-------'+n)
-      imgs2=url;
-      // var water;
-      // var waterfree = my.getStorageSync({
-      // key: 'waterfree', // 缓存数据的key
-      // }).data;
-      // var watersave = my.getStorageSync({
-      // key: 'watersave', // 缓存数据的key
-      // }).data;
-      // console.log('---3-------'+waterfreen)
-      // if(waterfree){
-      //   water=that.data.water;
-      // }
-      // if(watersave){
-      //   water=that.data.waterlist;
-      // }
-      // var waterfree;
-      // var watersave;
+      var imgs1=url;
+      var fireid = that.data.selectId;
       var tar = that.data.tar;
       var water=that.data.water;
       var waterlist = that.data.waterlist;
@@ -321,7 +332,9 @@ Page({
         people:that.data.people,
         bed:that.data.bed,
         imgs1:imgs1,
-        imgs2:imgs2,
+        fireid:fireid,
+        waterfree:that.data.waterfree,
+        watersave:that.data.watersave,
       };
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];
@@ -329,7 +342,7 @@ Page({
       my.navigateBack({
         delta: 1,
       });
-    }
+    
     
   },
 });

@@ -21,48 +21,57 @@ Page({
     index2:0,
   },
   onLoad(option) {
+    var that = this;
     var arr = option.waterlist;
     console.log(option)
-    this.getInfo(arr);
-    // var arr = option.waterlist;
-    // if(arr.length>0){
-      
-    // }
-    var waterfree = my.getStorageSync({
-      key: 'waterfree', // 缓存数据的key
-    }).data;
     
-    if(waterfree!=null&&waterfree!=''){
-      this.setData({
-        free:waterfree,
-      });
-    }else{
-      this.setData({
-        free:false,
-      });
-    }
+    var waterfree = option.waterfree;
+    var watersave =option.watersave;
+    if(waterfree==true){
+        that.setData({
+          free:true,
+        });
+      }else{
+        that.setData({
+          free:false,
+        });
+      }
+    that.getInfo(arr,watersave);
+    console.log(waterfree+'是否免费')
+    // if(waterfree!=null&&waterfree!=''){
+      
+    // }else{
+    //   that.setData({
+    //     free:false,
+    //   });
+    // }
   },
   onShow(){
-    this.getInfo();
+    
+    var that = this;
+    var waterfree = my.getStorageSync({
+      key: 't_waterfree', // 缓存数据的key
+    }).data;
+    var watersave = my.getStorageSync({
+      key: 't_watersave', // 缓存数据的key
+    }).data;
+    var waterlist = my.getStorageSync({
+      key: 't_waterlist', // 缓存数据的key
+    }).data;
+    if(waterfree==true){
+        that.setData({
+          free:true,
+        });
+      }else{
+        that.setData({
+          free:false,
+        });
+      }
+      that.getInfo(waterlist,watersave);
   },
   switchChange(e){
     console.log('switchChange 事件，值:', e.detail.value)
     if(e.detail.value){
-      my.removeStorage({
-        key: 'r_payway', // 缓存数据的key
-      });
-      my.removeStorage({
-        key: 'r_paymethod', // 缓存数据的key
-      });
-      my.removeStorage({
-        key: 'r_powerprice', // 缓存数据的key
-      });
-      my.removeStorage({
-        key: 'r_waterprice', // 缓存数据的key
-      });
-      my.removeStorage({
-        key: 'r_advanceprice', // 缓存数据的key
-      });
       this.setData({
       free:e.detail.value,
       powerprice:'',
@@ -73,18 +82,30 @@ Page({
       charge:'预收',
       index2:0,
     });
+    // this.setData({
+    //   free:e.detail.value,
+    // });
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      waterfree:true,
+      watersave:false,
+    });
+    }else{
+      this.setData({
+        free:false,
+      });
     }
-    my.setStorageSync({
-      key: 'waterfree', // 缓存数据的key
-      data: e.detail.value, // 要缓存的数据
-    });
-    my.setStorageSync({
-      key: 'watersave', // 缓存数据的key
-      data: false, // 要缓存的数据
-    });
-    this.setData({
-      free:e.detail.value,
-    });
+    // else{
+    //   let pages = getCurrentPages();
+    //   let prevPage = pages[pages.length - 2];
+    //   prevPage.setData({
+    //     waterfree:false,
+    //     watersave:false,
+    //   });
+    // }
+    
+    
   },
   bindPickerChange1(e){
     var that = this;
@@ -116,14 +137,6 @@ Page({
     if(powerprice!=''&&waterprice!=''){
       if(rpaymethod==0){
         if(advanceprice!=''){
-          my.setStorageSync({
-            key: 'watersave', // 缓存数据的key
-            data: true, // 要缓存的数据
-          });
-          my.setStorageSync({
-            key: 'waterfree', // 缓存数据的key
-            data: false, // 要缓存的数据
-          });
          
           console.log('保存成功')
           var obj = {
@@ -136,8 +149,10 @@ Page({
           let pages = getCurrentPages();
           let prevPage = pages[pages.length - 2];
           prevPage.setData({
+            waterfree:false,
+            watersave:true,
+            waterdefault:false,
             waterlist:obj,
-
           });
           
           my.navigateBack({
@@ -176,12 +191,8 @@ Page({
       });
     }
   },
-  getInfo(arr){
+  getInfo(arr,watersave){
     var that = this;
-    var watersave = my.getStorageSync({
-      key: 'watersave', // 缓存数据的key
-    }).data;
-
     if(arr!=''&&arr!=null){
       var rpayway=arr.rpayway;
       var rpaymethod=arr.rpaymethod;

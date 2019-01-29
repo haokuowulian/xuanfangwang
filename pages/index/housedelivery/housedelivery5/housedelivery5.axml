@@ -1,5 +1,6 @@
 <view class="backgroundClass">
-  <view class="titleClass">房源描述与价格（2/3）</view>
+  <view a:if="{{rentType==1}}" class="titleClass">房源描述与价格（2/3）</view>
+  <view a:if="{{rentType==2}}" class="titleClass">房源描述与价格（2/2）</view>
   <view class="subTitleClass">便利设施</view>
    <view onTap="goTo1">
     <input class="inputClass" type="text" placeholder="请选择用户可以选择的便利设施" value="{{furniturelist}}"/>
@@ -12,30 +13,31 @@
   </view>
   <view class="lineClass"></view>
 
-  <!-- <view a:if="{{rentType==1}}">
-  <view class="subTitleClass">可住人数</view>
-
-   <input class="inputClass" type="text" placeholder="请选择可住人数"  />
-  <view class="lineClass"></view>
-  </view> -->
 
   <block a:if="{{rentType==2}}" a:for="{{roomcount}}" a:for-index="idx">
   <view onTap="toRoominfo" data-t='{{idx}}'>
   <view class="subTitleClass">房间{{idx+1}}</view>
 
-  <input class="inputClass" type="text" placeholder="如果房间内有床，请添加床位信息" value="{{roomList[idx]!=''&&roomList[idx]!=null?'已添加':''}}"/>
+  <input class="inputClass" type="text" placeholder="添加房间信息" value="{{idx}}"/>
   <view class="lineClass"></view>
   </view>
   </block>
 
   <view a:if="{{rentType==1}}">
-    <view class="subTitleClass">消防设备照片上传</view>
-    <view class="addViewClass" style="margin-left:35rpx;"> 
-      <image class="addImageViewClass" src="/image/zpbj.png" />
-    </view>
+    
+      
+    <view class="subTitleClass">消防设备</view>
+    <checkbox-group onChange="onChange" class="checkboxGroupClass">
+      <label a:for="{{fireList}}" class="checkboxClass">
+        <checkbox value="{{item.id}}" checked="{{item.selected}}" color="#fda729"/>
+        <text class="checkbox-text">{{item.name}}</text>
+      </label>
+    </checkbox-group>
+    
+
   </view>
   
 
  <view><button a:if="{{rentType==1}}" class="nextStepButtonClass" onTap="next">下一步</button></view>
- <view><button a:if="{{rentType==2}}" class="nextStepButtonClass" >发布</button></view>
+ <view><button a:if="{{rentType==2}}" class="nextStepButtonClass" onTap="publish">发布</button></view>
 </view>
