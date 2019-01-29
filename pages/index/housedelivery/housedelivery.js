@@ -265,7 +265,7 @@ Page({
         data: vyear, // 要缓存的数据
       });
       my.setStorage({
-        key: 'r_vgreen', // 容积率
+        key: 'r_vgreen', // 绿化率
         data: vgreen, // 要缓存的数据
       });
       my.setStorage({

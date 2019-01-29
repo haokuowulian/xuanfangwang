@@ -65,3 +65,9 @@
   margin-left:415rpx;
   border-radius: 35rpx;
 }
+.content{
+  position: relative;
+}
+.delImg{
+  position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
+}

@@ -1,27 +1,37 @@
 <view class="backgroundClass">
-  <view class="titleClass">房源描述与价格（1/3）</view>
+  <view a:if="{{rentType==1}}" class="titleClass">房源描述与价格（1/3）</view>
+  <view a:if="{{rentType==2}}" class="titleClass">房源描述与价格（1/2）</view>
   <view class="subTitleClass">房源名称</view>
-    <input class="inputClass" type="text" placeholder="为您的房源起个名称" />
+    <input class="inputClass" type="text" placeholder="为您的房源起个名称" onInput="toInput" data-t='1' value="{{housename}}"/>
 
   <view class="lineClass"></view>
 
    <view class="subTitleClass">房源描述</view>
   <view onTap="selectArea">
-    <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="可介绍房源的大概地理位置、结构、基础设施、装修风格等" />
+    <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="可介绍房源的大概地理位置、结构、基础设施、装修风格等" onInput="toInput" data-t='2'  value="{{describe}}"/>
   </view>
   <view class="lineClass"></view>
 
   <view class="subTitleClass">周边情况</view>
 
-   <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="可介绍周边地标、商场、超市、公园、景点、交通工具等"  />
+   <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="可介绍周边地标、商场、超市、公园、景点、交通工具等"  onInput="toInput" data-t='3'  value="{{nearby}}"/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">房源照片上传</view>
  
 
-    <view class="addViewClass" style="margin-left:35rpx;"> 
-      <image class="addImageViewClass" src="/image/zpbj.png" />
+    <view a:if="{{!canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{img}}" />
+        <view onTap="delImg" class="delImg">
+          <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg"/>
     </view>
 
    

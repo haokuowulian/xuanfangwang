@@ -65,3 +65,24 @@
   margin-left:415rpx;
   border-radius: 35rpx;
 }
+.content{
+  position: relative;
+}
+.delImg{
+  position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
+}
+.checkboxGroupClass{
+  margin-top: 24rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.checkboxClass{
+  margin-top: 25rpx;
+  width: 300rpx;
+  margin-left: 35rpx;
+}
+.checkbox-text{
+  margin-left: 24rpx;
+  font-size: 35rpx;
+}

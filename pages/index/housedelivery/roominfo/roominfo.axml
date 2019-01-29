@@ -69,7 +69,13 @@
   </view>
   <view class="info info1">
     <view class="info-title">室内消防设备</view>
-    <view a:if="{{!canAddImg2}}" class="info-content2">
+    <checkbox-group onChange="onChange" class="checkboxGroupClass">
+      <label a:for="{{fireList}}" class="checkboxClass">
+        <checkbox value="{{item.id}}" checked="{{item.selected}}" color="#fda729"/>
+        <text class="checkbox-text">{{item.name}}</text>
+      </label>
+    </checkbox-group>
+    <!-- <view a:if="{{!canAddImg2}}" class="info-content2">
       <image src="{{img2}}" class="img"/>
       <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
           <icon type="cancel" color="red" size="18" />
@@ -78,7 +84,7 @@
 
     <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
       <image src="{{img2}}" class="img"/>
-    </view>
+    </view> -->
   </view>
   <view class="info">
   

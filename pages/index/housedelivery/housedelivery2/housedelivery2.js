@@ -221,27 +221,18 @@ Page({
       success: (res) => {
         var json1 = JSON.parse(res.data);
         if(num==1){
-          that.setData({
-            img1url:json1['message'],
-          });
           my.setStorageSync({
             key: 'r_img1url', // 缓存数据的key
             data: json1['message'], // 要缓存的数据
           });
         }
         if(num==2){
-          that.setData({
-            img2url:json1['message'],
-          });
           my.setStorageSync({
             key: 'r_img2url', // 缓存数据的key
             data: json1['message'], // 要缓存的数据
           });
         }
         if(num==3){
-          that.setData({
-            img3url:json1['message'],
-          });
           my.setStorageSync({
             key: 'r_img3url', // 缓存数据的key
             data: json1['message'], // 要缓存的数据
