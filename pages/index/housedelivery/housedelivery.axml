@@ -36,7 +36,21 @@
 
    <input class="inputClass" type="number" placeholder="请填写容积率" value="{{vcubage}}" onInput="toInput" data-t='6'/>
   
+  <view class="lineClass"></view>
+  <view class="subTitleClass">小区照片上传</view>
 
+    <view a:if="{{!canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{img}}" />
+        <view onTap="delImg" class="delImg">
+          <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg"/>
+    </view>
 
   <button class="nextStepButtonClss" onTap="next">下一步</button>
   

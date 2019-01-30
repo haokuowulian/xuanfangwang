@@ -66,7 +66,7 @@ Page({
   },
   next(){
     var that = this;
-    // that.toNext();
+    that.toNext();
     var housename = that.data.housename;
     var describe = that.data.describe;
     var nearby = that.data.nearby;

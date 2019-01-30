@@ -19,7 +19,6 @@
   <view class="lineClass"></view>
 
   <view class="subTitleClass">房源照片上传</view>
- 
 
     <view a:if="{{!canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
       <view class="content">
