@@ -329,6 +329,9 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
 
+    var villageimg = my.getStorageSync({
+      key: 'r_villageimg', // 缓存数据的key
+    }).data;
 
      var apartment = {
       provinceId:provinceCode,
@@ -341,6 +344,7 @@ Page({
       age:vyear,
       green:vgreen,
       plotRatio:vcubage,
+      images:villageimg,
     };
     var house = {
       buildingUnit:vaddress,

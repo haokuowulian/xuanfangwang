@@ -40,7 +40,7 @@
   font-size: 35rpx;
   height: 70rpx;
   line-height: 70rpx;
-  margin-top: 70rpx;
+  margin-top: 220rpx;
   margin-bottom: 35rpx;
   margin-left:415rpx;
   border-radius: 35rpx;
@@ -92,4 +92,22 @@
   border-bottom: 2px #cccccc solid;
   border-top: 2px #d9d9d9 solid;
   padding: 20rpx;
+}
+.addViewClass{
+  margin-top: 35rpx;
+  width: 216rpx;
+  height:235rpx;
+  text-align: center;
+  float: left;
+}
+.content{
+  position: relative;
+}
+.addImageViewClass{
+  width: 216rpx;
+  height: 140rpx;
+  margin-bottom: 24rpx;
+}
+.delImg{
+  position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
 }

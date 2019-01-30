@@ -207,6 +207,10 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
 
+    var villageimg = my.getStorageSync({
+      key: 'r_villageimg', // 缓存数据的key
+    }).data;
+
     console.log(that.data.extinguisher)
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
@@ -233,6 +237,7 @@ Page({
       age:vyear,
       green:vgreen,
       plotRatio:vcubage,
+      images:villageimg,
     };
     var house = {
       buildingUnit:vaddress,
