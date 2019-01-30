@@ -1,7 +1,12 @@
 <view class="backgroundClass">
   <view class="titleClass">房源信息与认证（2/2）</view>
-  <view class="subTitleClass">单元、楼号、楼层、门牌号</view>
-    <input class="inputClass" type="text" placeholder="请填写房源具体位置" onInput="toInput" data-t='1' value="{{vaddress}}"/>
+  <view class="subTitleClass">单元、楼号</view>
+    <input class="inputClass" type="text" placeholder="请填写房源具体单元" onInput="toInput" data-t='1' value="{{vaddress}}"/>
+
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">门牌号</view>
+    <input class="inputClass" type="number" placeholder="请填写房源门牌号" onInput="toInput" data-t='6' value="{{houseNo}}"/>
 
   <view class="lineClass"></view>
 

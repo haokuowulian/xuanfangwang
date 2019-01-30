@@ -128,7 +128,7 @@ Page({
   },
   toSave(){
     var that = this;
-    var rpayway = that.data.index1;
+    var rpayway = that.data.index1+1;
     var rpaymethod = that.data.index2;
     var powerprice = that.data.powerprice;
     var waterprice = that.data.waterprice;
@@ -270,29 +270,6 @@ Page({
       });
     }
     }
-
-    
-
-    // var rpayway = my.getStorageSync({
-    //   key: 'r_payway', // 缓存数据的key
-    // }).data;
-
-    // var rpaymethod = my.getStorageSync({
-    //   key: 'r_paymethod', // 缓存数据的key
-    // }).data;
-
-    // var rpowerprice = my.getStorageSync({
-    //   key: 'r_powerprice', // 缓存数据的key
-    // }).data;
-
-    // var rwaterprice = my.getStorageSync({
-    //   key: 'r_waterprice', // 缓存数据的key
-    // }).data;
-
-    // var radvanceprice = my.getStorageSync({
-    //   key: 'r_advanceprice', // 缓存数据的key
-    // }).data;
-
 
     
   },

@@ -27,7 +27,7 @@
     <view class="info-content3" onTap="toWERate">
       <view a:if="{{waterfree}}"  class="text_input1">{{water}}</view>
       <view a:if="{{watersave}}"  class="text_input1">{{water}}</view>
-      <view a:if="{{waterdefault}}"  class="text_input1">{{water}}</view>
+      <view a:if="{{waterdefault}}"  class="text_input1">{{watertext}}</view>
     <image src="/image/icon/right.png" class="right-img"/></view>
   </view>
   <view class="info">
@@ -75,16 +75,7 @@
         <text class="checkbox-text">{{item.name}}</text>
       </label>
     </checkbox-group>
-    <!-- <view a:if="{{!canAddImg2}}" class="info-content2">
-      <image src="{{img2}}" class="img"/>
-      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
-          <icon type="cancel" color="red" size="18" />
-      </view>
-    </view>
-
-    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
-      <image src="{{img2}}" class="img"/>
-    </view> -->
+   
   </view>
   <view class="info">
   

@@ -6,12 +6,15 @@ Page({
     huxingList:[],
     huxing:'',
     roomcount:0,
+    hallcount:0,
+    houseNo:'',
     showToward:false,
     towardsArray:towards,
     decorationArray:decoration,
     vaddress:'',
     chaoxiang:'',
     zhuangxiu:'',
+    decorateType:0,
     varea:'',
     vowner:'',
     vownerCard:'',
@@ -86,10 +89,13 @@ Page({
         console.log(str);
         var index = str.indexOf("室");
         var num =  str.substring(0,index);
-        console.log(num);
+        var index1 = str.indexOf("厅");
+        var num1 =  str.substring(2,index1);
+        console.log(num+'-------'+num1);
         that.setData({
           huxing:str,
           roomcount:num*1,
+          hallcount:num1*1
         });
       }
     })
@@ -117,6 +123,7 @@ Page({
     this.setData({
       showToward:true,
       zhuangxiu:arr[index],
+      decorateType:index*1+1
     });
   },
   toInput(e){
@@ -145,6 +152,11 @@ Page({
     if(e.target.dataset.t==5){
       that.setData({
         vrelation:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==6){
+      that.setData({
+        houseNo:e.detail.value,
       });
     }
   },
@@ -247,19 +259,22 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var img1 = that.data.img1;
     var img2 = that.data.img2;
     var img3 = that.data.img3;
     var vaddress = that.data.vaddress;
+    var houseNo = that.data.houseNo*1;
     var huxing = that.data.huxing;
     var chaoxiang = that.data.chaoxiang;
-    var zhuangxiu = that.data.zhuangxiu;
+    var zhuangxiu = that.data.zhuangxiu;//decorateType
+    var decorateType = that.data.decorateType;
     var varea = that.data.varea;
     var vowner = that.data.vowner;
     var vownerCard = that.data.vownerCard;
     var vrelation = that.data.vrelation;
     var roomcount = that.data.roomcount;
+    var hallcount = that.data.hallcount;
    
     if(vaddress!=''&&chaoxiang!=''&&zhuangxiu!=''&&varea!=''&&vowner!=''&&vownerCard!=''&&vrelation!=''&&huxing!=''){
       if(img1!=''&&img2!=''&&img3!=''){
@@ -269,6 +284,10 @@ Page({
         my.setStorageSync({
           key: 'r_vaddress', // 缓存数据的key
           data: vaddress, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_houseNo', // 缓存数据的key
+          data: houseNo, // 要缓存的数据
         });
         my.setStorageSync({
           key: 'r_huxing', // 缓存数据的key
@@ -283,8 +302,12 @@ Page({
           data: roomcount, // 要缓存的数据
         });
         my.setStorageSync({
-          key: 'r_zhuangxiu', // 缓存数据的key
-          data: zhuangxiu, // 要缓存的数据
+          key: 'r_hallcount', // 缓存数据的key
+          data: hallcount, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_decorateType', // 缓存数据的key
+          data: decorateType, // 要缓存的数据
         });
         my.setStorageSync({
           key: 'r_varea', // 缓存数据的key
