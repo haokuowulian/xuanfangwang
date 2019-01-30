@@ -10,12 +10,7 @@ Page({
     imgUrl:app.globalData.baseImgUrl_whj
   },
   onLoad() {
-    var userId=my.getStorageSync({
-      key: 'userId', // 缓存数据的key
-    });
-    this.setData({
-      userId:userId
-    });
+    
     this.getHouseList();
   },
   onShow(){},
@@ -47,12 +42,15 @@ Page({
   },
   //获取房源列表
   getHouseList(){
+    var userId=my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    });
     var that=this;
      my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHousingListIFByLandlord.do",
       method: 'POST',
       data: {
-        userId:this.data.userId,
+        userId:userId,
         rentType:this.data.rentType,
         pageIndex: this.data.pageIndex,
         pageSize: 6,

@@ -84,6 +84,30 @@ Page({
     my.navigateTo({
      url: '/pages/index/signing/payway/payway',
     });
+    // my.getAuthCode({
+    //   scopes: 'auth_zhima',
+    //   success: (res) => {
+    //     my.httpRequest({
+    //         url: app.globalData.baseUrl+'/IF/user/getZhiMa.do?authCode='+res.authCode, // 目标服务器url
+    //         method: 'POST',
+    //         header:{
+    //           'content-type': 'application/json'
+    //         },
+    //         dataType: 'json',
+    //         success: (res) => {
+    //            console.log(res);
+               
+    //            if(res.data.success){
+ 
+    //            }
+               
+    //         },
+    //       });
+       
+    //   },
+    // });
+   
+   
   },
   //获取当前3、6、12个月后日期
   getCurrentDate(){
