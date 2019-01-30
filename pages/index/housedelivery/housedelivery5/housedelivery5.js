@@ -38,6 +38,10 @@ Page({
     canAddImg:true,
     upload:false,
     selectId:'',
+    extinguisher:false,
+    smokeMask:false,
+    flashlight:false,
+    rope:false,
   },
   onLoad() {
     var that = this;
@@ -87,16 +91,66 @@ Page({
     });
   },
   onChange(e) {
-     this.setData({
+    var that = this;
+    console.log(e)
+    console.log(e.detail.value)
+    var list = e.detail.value;
+    var r1 = list.indexOf(1);
+    var r2 = list.indexOf(2);
+    var r3 = list.indexOf(3);
+    var r4 = list.indexOf(4);
+    if(r1==-1){
+      that.setData({
+        extinguisher:false,
+      });
+    }else{
+      that.setData({
+        extinguisher:true,
+      });
+    }
+    if(r2==-1){
+      that.setData({
+        smokeMask:false,
+      });
+    }else{
+      that.setData({
+        smokeMask:true,
+      });
+    }
+    if(r3==-1){
+      that.setData({
+        flashlight:false,
+      });
+    }else{
+      that.setData({
+        flashlight:true,
+      });
+    }
+    if(r4==-1){
+      that.setData({
+        rope:false,
+      });
+    }else{
+      that.setData({
+        rope:true,
+      });
+    }
+
+     that.setData({
        selectId:e.detail.value
      });
   },
   next(){
     var that = this;
+    console.log(that.data.extinguisher)
+    console.log(that.data.smokeMask)
+    console.log(that.data.flashlight)
+    console.log(that.data.rope)
+
     var furniture = that.data.furniture;
     var feature = that.data.feature;
-    var image = that.data.img;
-    if(furniture!=''&&feature!=''){
+    var fireid = that.data.selectId;
+    if(furniture!=''&&feature!=''&&fireid!=''){
       my.setStorageSync({
         key: 'r_furniture', // 缓存数据的key
         data: furniture, // 要缓存的数据
@@ -105,29 +159,25 @@ Page({
         key: 'r_feature', // 缓存数据的key
         data: feature, // 要缓存的数据
       });
-      my.uploadFile({
-        url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do', // 开发者服务器地址
-        filePath: image, // 要上传文件资源的本地定位符
-        fileName: 'file', 
-        fileType: 'image', // 文件类型，image / video / audio
-        formData:{savePrefix:'landlord'},
-        success: (res) => {
-          var json2 = JSON.parse(res.data);
-          console.log(res);
-          var newimgs=json2['message'];
-          my.setStorageSync({
-            key: 'r_fireimg', // 缓存数据的key
-            data: newimgs, // 要缓存的数据
-          });
-          my.navigateTo({
-            url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
-          })
-        },
-        fail: function(res) {
-          console.log(res);
-          my.alert({ title: '上传失败' });
-        },
+      my.setStorageSync({
+        key: 'r_extinguisher', // 缓存数据的key
+        data: that.data.extinguisher, // 要缓存的数据
       });
+       my.setStorageSync({
+        key: 'r_smokeMask', // 缓存数据的key
+        data: that.data.smokeMask, // 要缓存的数据
+      });
+       my.setStorageSync({
+        key: 'r_flashlight', // 缓存数据的key
+        data: that.data.flashlight, // 要缓存的数据
+      });
+       my.setStorageSync({
+        key: 'r_rope', // 缓存数据的key
+        data: that.data.rope, // 要缓存的数据
+      });
+      my.navigateTo({
+        url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
+      })
     }else{
       my.alert({ title: '请填写完整' });
     }
@@ -183,7 +233,7 @@ Page({
     })
   },
   getHouseInfo(roomList,furniture,feature){
-    var provinceCode = my.getStorageSync({
+     var provinceCode = my.getStorageSync({
       key: 'r_provinceCode', // 缓存数据的key
     }).data;
     var cityCode = my.getStorageSync({
@@ -216,14 +266,25 @@ Page({
     var vaddress = my.getStorageSync({
       key: 'r_vaddress', // 缓存数据的key
     }).data;
+    var houseNo = my.getStorageSync({
+      key: 'r_houseNo', // 缓存数据的key
+    }).data;
     var huxing = my.getStorageSync({
       key: 'r_huxing', // 缓存数据的key
     }).data;
+
+    var roomcount = my.getStorageSync({
+      key: 'r_roomcount', // 缓存数据的key
+    }).data;
+    var hallcount = my.getStorageSync({
+      key: 'r_hallcount', // 缓存数据的key
+    }).data;
+
     var chaoxiang = my.getStorageSync({
       key: 'r_chaoxiang', // 缓存数据的key
     }).data;
-    var zhuangxiu = my.getStorageSync({
-      key: 'r_zhuangxiu', // 缓存数据的key
+    var decorateType = my.getStorageSync({
+      key: 'r_decorateType', // 缓存数据的key
     }).data;
     var varea = my.getStorageSync({
       key: 'r_varea', // 缓存数据的key
@@ -247,21 +308,114 @@ Page({
       key: 'r_img3url', // 缓存数据的key
     }).data;
 
+
+    var housename = my.getStorageSync({
+      key: 'r_housename', // 缓存数据的key
+    }).data;
+    var describe = my.getStorageSync({
+      key: 'r_describe', // 缓存数据的key
+    }).data;
+    var nearby = my.getStorageSync({
+      key: 'r_nearby', // 缓存数据的key
+    }).data;
+    var houseimg = my.getStorageSync({
+      key: 'r_houseimg', // 缓存数据的key
+    }).data;
+
     var rentType = my.getStorageSync({
       key: 'r_rentType', // 缓存数据的key
     }).data;
+    var uid = my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+
+
+     var apartment = {
+      provinceId:provinceCode,
+      cityId:cityCode,
+      districtId:countryCode,
+      apartmentName:village,
+      tel:vphone,
+      longitude:longitude,
+      latitude:latitude,
+      age:vyear,
+      green:vgreen,
+      plotRatio:vcubage,
+    };
+    var house = {
+      buildingUnit:vaddress,
+      houseNo:houseNo,
+      room:roomcount,
+      hall:hallcount,
+      toward:chaoxiang,
+      // vowner:vowner,
+      // vownerCard:vownerCard,
+      // vrelation:vrelation,
+      // idcard_positive:img1url,
+      // idcard_reverse:img2url,
+      // licence:img3url,
+      rentType:rentType,
+      description:describe,
+      images:houseimg,
+    };
+
+    var template = {
+      userId:uid,
+      area:varea,
+      decorateType:decorateType,
+      furniture:furniture,
+      feature:feature,
+    };
+
+    var room = roomList;
+
+
+
+
+
+
+
+
     my.httpRequest({
-      url: '', // 目标服务器url
+      url: app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do',
       headers:{
         "Content-Type":'application/json'
       },
       method:'POST',
       dataType:'json',
       data:{
-        
+        apartment:apartment,
+        house:house,
+        room:room,
+        template:template,
+        // provinceCode:provinceCode,
+        // cityCode:cityCode,
+        // countryCode:countryCode,
+        // longitude:longitude,
+        // latitude:latitude,
+        // village:village,
+        // vphone:vphone,
+        // vyear:vyear,
+        // vgreen:vgreen,
+        // vcubage:vcubage,
+        // vaddress:vaddress,
+        // huxing:huxing,
+        // chaoxiang:chaoxiang,
+        // zhuangxiu:zhuangxiu,
+        // varea:varea,
+        // vowner:vowner,
+        // vownerCard:vownerCard,
+        // vrelation:vrelation,
+        // img1url:img1url,
+        // img2url:img2url,
+        // img3url:img3url,
+        // rentType:rentType,
+        // roomList:roomList,
+        // furniture:furniture,
+        // feature:feature,
       },
       success: (res) => {
-        
+        console.log('提交成功'+res)
       },
     });
   },

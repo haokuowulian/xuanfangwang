@@ -1,7 +1,5 @@
 const app=getApp();
 var imgs1 = '';
-// var waterfree;
-// var watersave;
 const fires = [
   {
     id:1,
@@ -35,17 +33,15 @@ Page({
     tar:null,
     images:[],
     img1:'',
-    img2:'',
     img1url:'',
-    img2url:'',
     canAddImg1:true,
-    canAddImg2:true,
     upload1:false,
     upload2:false,
     waterfree:false,
     watersave:false,
     waterdefault:true,
     water:'',
+    watertext:'',
     waterlist:[],
     payways:[
       '押一付一',
@@ -55,18 +51,21 @@ Page({
     ],
     payway:'押一付一',
     index1:0,
+    payment:1,
     pBathroom:[
       '是',
       '否',
     ],
     privatebath :'该房间是否有独立卫生间',
     index2:0,
+    bath:false,
     peoples:[
       '1人',
       '2人',
     ],
     people:'请选择可住人数',
     index3:0,
+    peopleNum:0,
     beds:[
       '无床位',
       '单人床',
@@ -75,6 +74,11 @@ Page({
     ],
     bed:'请为房间添加床位',
     index4:0,
+    bedNum:0,
+    extinguisher:false,
+    smokeMask:false,
+    flashlight:false,
+    rope:false,
   },
   onLoad(option) {
     console.log(option)
@@ -87,6 +91,7 @@ Page({
     var roomList = my.getStorageSync({
      key: 'r_roomList', // 缓存数据的key
     }).data;
+    console.log('****************')
     console.log(roomList)
     if(roomList[tar]!=''&&roomList[tar]!=null){
       var selectId=roomList[tar].fireid;
@@ -95,38 +100,37 @@ Page({
       for(let a=0;a<selectId.length;a++){
         fireList[selectId[a]-1].selected=true;
       }
-      if(roomList[tar].water!=''){
-
-      }
+     
       this.setData({
         roomname:roomList[tar].roomname,
         roomarea:roomList[tar].roomarea,
         roomrent:roomList[tar].roomrent,
         payway:roomList[tar].payway,
         water:roomList[tar].water,
+        waterlist:roomList[tar].water,
         privatebath:roomList[tar].privatebath,
+        bath:roomList[tar].bath,
         people:roomList[tar].people,
         bed:roomList[tar].bed,
+        bedNum:roomList[tar].bedNum,
         img1:imgurl+roomList[tar].imgs1,
+        img1url:roomList[tar].imgs1,
         selectId:roomList[tar].fireid,
         waterfree:roomList[tar].waterfree,
         watersave:roomList[tar].watersave,
+        extinguisher:roomList[tar].extinguisher,
+        smokeMask:roomList[tar].smokeMask,
+        flashlight:roomList[tar].flashlight,
+        rope:roomList[tar].rope,
+        payment:roomList[tar].payment,
+        peopleNum:roomList[tar].peopleNum,
       });
 
     }
 
   },
   onShow(){
-    // console.log(this.data.waterlist)
-    // waterfree = my.getStorageSync({
-    //  key: 'waterfree', // 缓存数据的key
-    // }).data;
-    // watersave = my.getStorageSync({
-    //  key: 'watersave', // 缓存数据的key
-    // }).data;
-    // var waterdefault = my.getStorageSync({
-    //  key: 'waterdefault', // 缓存数据的key
-    // }).data;
+   
     var waterfree=this.data.waterfree;
     var watersave=this.data.watersave;
     if(waterfree==true){
@@ -144,7 +148,7 @@ Page({
     if(waterfree==false&&watersave==false){
       this.setData({
         waterdefault:true,
-        water:'请添加水电费价格',
+        watertext:'请添加水电费信息',
       });
     }
     
@@ -185,14 +189,6 @@ Page({
             canAddImg1:false,
           });
         }
-        if(e.target.dataset.t==2){
-          that.data.images[1]=tempFilePaths[0];
-          that.setData({
-            img2:tempFilePaths[0],
-            upload2:true,
-            canAddImg2:false,
-          });
-        }
           
       },
     });
@@ -206,55 +202,164 @@ Page({
         canAddImg1:true,
       });
     }
-    if(e.target.dataset.t==2){
-        that.setData({
-        img2:'',
-        upload2:false,
-        canAddImg2:true,
-      });
-    }
+
     
   },
   bindPickerChange1(e){
     var that = this;
     var arr = that.data.payways;
     var idx = e.detail.value;
+    console.log(idx+'***********')
+    if(idx==0){
       that.setData({
         index1:e.detail.value,
         payway:arr[idx],
-    });
+        payment:1,
+      });
+    }
+    if(idx==1){
+      that.setData({
+        index1:e.detail.value,
+        payway:arr[idx],
+        payment:3,
+      });
+    }
+    if(idx==2){
+      that.setData({
+        index1:e.detail.value,
+        payway:arr[idx],
+        payment:6,
+      });
+    }
+    if(idx==3){
+      that.setData({
+        index1:e.detail.value,
+        payway:arr[idx],
+        payment:12,
+      });
+    }
   },
   bindPickerChange2(e){
     var that = this;
     var arr = that.data.pBathroom;
     var idx = e.detail.value;
+    if(idx==0){
       that.setData({
         index2:e.detail.value,
         privatebath:arr[idx],
-    });
+        bath:true,
+      });
+    }
+    if(idx==1){
+      that.setData({
+        index2:e.detail.value,
+        privatebath:arr[idx],
+        bath:false,
+      });
+    }
   },
   bindPickerChange3(e){
     var that = this;
     var arr = that.data.peoples;
     var idx = e.detail.value;
+    if(idx==0){
       that.setData({
         index3:e.detail.value,
         people:arr[idx],
-    });
+        peopleNum:1
+      });
+    }
+    if(idx==1){
+      that.setData({
+        index3:e.detail.value,
+        people:arr[idx],
+        peopleNum:2
+      });
+    }
   },
   bindPickerChange4(e){
     var that = this;
     var arr = that.data.beds;
     var idx = e.detail.value;
+    if(idx==0){
       that.setData({
         index4:e.detail.value,
         bed:arr[idx],
-    });
+        bedNum:0
+      });
+    }
+    if(idx==1){
+      that.setData({
+        index4:e.detail.value,
+        bed:arr[idx],
+        bedNum:1
+      });
+    }
+    if(idx==2){
+      that.setData({
+        index4:e.detail.value,
+        bed:arr[idx],
+        bedNum:2
+      });
+    }
+    if(idx==3){
+      that.setData({
+        index4:e.detail.value,
+        bed:arr[idx],
+        bedNum:3
+      });
+    }
+    
   },
   onChange(e) {
-     this.setData({
-       selectId:e.detail.value
-     });
+     var that = this;
+    console.log(e)
+    console.log(e.detail.value)
+    var list = e.detail.value;
+    var r1 = list.indexOf(1);
+    var r2 = list.indexOf(2);
+    var r3 = list.indexOf(3);
+    var r4 = list.indexOf(4);
+    if(r1==-1){
+      that.setData({
+        extinguisher:false,
+      });
+    }else{
+      that.setData({
+        extinguisher:true,
+      });
+    }
+    if(r2==-1){
+      that.setData({
+        smokeMask:false,
+      });
+    }else{
+      that.setData({
+        smokeMask:true,
+      });
+    }
+    if(r3==-1){
+      that.setData({
+        flashlight:false,
+      });
+    }else{
+      that.setData({
+        flashlight:true,
+      });
+    }
+    if(r4==-1){
+      that.setData({
+        rope:false,
+      });
+    }else{
+      that.setData({
+        rope:true,
+      });
+    }
+
+    that.setData({
+      selectId:e.detail.value
+    });
   },
   //waterfree:false,
   //watersave:false,
@@ -275,21 +380,42 @@ Page({
       url: '/pages/index/housedelivery/water_power_rate/water_power_rate?waterlist='+this.data.waterlist,
     });
   },
+
+
   toSave(){
     var that = this;
+    var canAddImg1 = that.data.canAddImg1;
+    var roomname = that.data.roomname;
+    var roomarea = that.data.roomarea;
+    var roomrent = that.data.roomrent;
+    var peopleNum = that.data.peopleNum;
     var img1 = that.data.img1;
-    // var selectId = that.data.selectId;
-    // my.alert({
-    //   title: selectId 
-    // });
-    that.uploadImg(img1);
+    var img1url = that.data.img1url;
+    var water=that.data.water;
+    var waterlist = that.data.waterlist;
+    if(waterlist!=''&&waterlist!=null){
+      water=waterlist;
+    }
+    
+    if(roomname!=''&&roomarea!=''&&roomrent!=''&&water!=''&&img1!=''&&peopleNum>0){
+      if(img1url!=null&&img1url!=''&&canAddImg1==true){
+        that.toSaveData(img1url,water);
+      }else{
+        that.uploadImg(img1,water);
+      }
+    }else{
+      my.alert({
+        title: '请填写完整' 
+      });
+    }
+
+
+    
     
   },
-   uploadImg(image1){
+   uploadImg(image1,water){
     var that = this;
-    
     var newimgs = '';
-    
     my.uploadFile({
       url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
       fileName: 'file', 
@@ -300,7 +426,7 @@ Page({
         var json1 = JSON.parse(res.data);
         console.log(res);
         newimgs=json1['message'];
-        that.toSaveData(newimgs);
+        that.toSaveData(newimgs,water);
 
       },
       fail: function(res) {
@@ -312,27 +438,45 @@ Page({
     
   },
   
-  toSaveData(url){
+  toSaveData(url,water){
     var that = this;
+    console.log(that.data.extinguisher)
+    console.log(that.data.smokeMask)
+    console.log(that.data.flashlight)
+    console.log(that.data.rope)
       var imgs1=url;
       var fireid = that.data.selectId;
+      var extinguisher = that.data.extinguisher;
+      var smokeMask = that.data.smokeMask;
+      var flashlight = that.data.flashlight;
+      var rope = that.data.rope;
+      var payment = that.data.payment;
+      var peopleNum = that.data.peopleNum;
       var tar = that.data.tar;
-      var water=that.data.water;
-      var waterlist = that.data.waterlist;
-      if(waterlist!=''&&waterlist!=null){
-        water=waterlist;
-      }
+      // var water=that.data.water;
+      // var waterlist = that.data.waterlist;
+      // if(waterlist!=''&&waterlist!=null){
+      //   water=waterlist;
+      // }
       var obj = {
         roomname:that.data.roomname,
         roomarea:that.data.roomarea,
         roomrent:that.data.roomrent,
         payway:that.data.payway,
+        payment:payment,
         water:water,
         privatebath:that.data.privatebath,
+        bath:that.data.bath,
         people:that.data.people,
+        peopleNum:peopleNum,
         bed:that.data.bed,
+        bedNum:that.data.bedNum,
         imgs1:imgs1,
         fireid:fireid,
+        extinguisher:extinguisher,
+        smokeMask:smokeMask,
+        flashlight:flashlight,
+        rope:rope,
         waterfree:that.data.waterfree,
         watersave:that.data.watersave,
       };

@@ -65,3 +65,28 @@
   margin-left:415rpx;
   border-radius: 35rpx;
 }
+.info-content1{
+  margin-top: 20rpx;
+  width: 680rpx;
+  height: 58rpx;
+  font-size: 25rpx;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.row-extra{
+  width: 665rpx;
+  padding-left: 15rpx;
+  font-size: 25rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #CCCCCC;
+}
+.right-img{
+  height: 19rpx;
+  width: 10rpx;
+}
