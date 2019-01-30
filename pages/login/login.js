@@ -1,3 +1,4 @@
+var app=getApp();
 Page({
   data: {
 
@@ -13,7 +14,7 @@ Page({
         var myCode=res.authCode;
         if(res.authCode){
           my.httpRequest({
-            url: 'http://192.168.1.89:8080/LLGY/IFBaseAction/IFUser/appLogin.do?authCode='+myCode, // 目标服务器url
+            url: app.globalData.baseUrl+'/IFBaseAction/IFUser/appLogin.do?authCode='+myCode, // 目标服务器url
             method: 'POST',
             header:{
               'content-type': 'application/json'

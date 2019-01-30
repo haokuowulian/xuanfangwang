@@ -115,8 +115,8 @@ Page({
   getCity(){
     var that=this;
      my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/selectData/getDistListIF.do",
-      method: 'POST',
+      url: app.globalData.baseUrl_whj+"json/dist.json",
+      method: 'GET',
       dataType: 'json',
       success: function(res) {
         console.log(res.data.data);
