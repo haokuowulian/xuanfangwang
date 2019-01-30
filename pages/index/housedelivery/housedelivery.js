@@ -70,10 +70,10 @@ Page({
 
       this.setData({
         city: this.data.citys[val[1]],
-        cityId:cityData[val[0]].citys[val[1]].id,
-        county: cityData[val[0]].subList[val[1]].subList[0].name,
+        cityId:cityData[val[0]].subList[val[1]].id,
+        county:cityData[val[0]].subList[val[1]].subList.length>0? cityData[val[0]].subList[val[1]].subList[0].name:'',
         countys: countys,
-        countyId: cityData[val[0]].subList[val[1]].subList[0].id,
+        countyId: cityData[val[0]].subList[val[1]].subList.length>0?cityData[val[0]].subList[val[1]].subList[0].id:0,
         values: val,
         value: [val[0], val[1], 0]
       })
