@@ -203,6 +203,20 @@ Page({
     var rope = my.getStorageSync({
       key: 'r_rope', // 缓存数据的key
     }).data;
+
+    var extinguisherimg = my.getStorageSync({
+      key: 'r_extinguisherimg', // 缓存数据的key
+    }).data;
+    var smokeMaskimg = my.getStorageSync({
+      key: 'r_smokeMaskimg', // 缓存数据的key
+    }).data;
+    var flashlightimg = my.getStorageSync({
+      key: 'r_flashlightimg', // 缓存数据的key
+    }).data;
+    var ropeimg = my.getStorageSync({
+      key: 'r_ropeimg', // 缓存数据的key
+    }).data;
+
     var uid = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
@@ -267,6 +281,11 @@ Page({
       payment:payment,
       furniture:furniture,
       feature:feature,
+
+      extinguisherimg:extinguisherimg,
+      smokeMaskimg:smokeMaskimg,
+      flashlightimg:flashlightimg,
+      ropeimg:ropeimg,
     };
 // console.log('uerId==='+uid)
     my.httpRequest({

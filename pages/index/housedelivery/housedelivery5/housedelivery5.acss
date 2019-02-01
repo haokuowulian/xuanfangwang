@@ -1,7 +1,7 @@
 .backgroundClass{
   background-color: white;
   width: 750rpx;
-  height: 100vh;
+  height: 100%;
 }
 .titleClass{
   font-size: 50rpx;
@@ -85,4 +85,28 @@
 .checkbox-text{
   margin-left: 24rpx;
   font-size: 35rpx;
+}
+.fire{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.info-content4{
+  width: 216rpx;
+  height: 140rpx;
+  margin-left: 80rpx;
+  margin-top: 25rpx;
+  background-color: #f7f7f7;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888888;
+}
+.img{
+  width: 216rpx;
+  height: 140rpx;
+}
+.delImg{
+  position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
 }

@@ -33,10 +33,25 @@ Page({
     tar:null,
     images:[],
     img1:'',
+    img2:'',
+    img3:'',
+    img4:'',
+    img5:'',
     img1url:'',
+    img2url:'',
+    img3url:'',
+    img4url:'',
+    img5url:'',
     canAddImg1:true,
+    canAddImg2:true,
+    canAddImg3:true,
+    canAddImg4:true,
+    canAddImg5:true,
     upload1:false,
     upload2:false,
+    upload3:false,
+    upload4:false,
+    upload5:false,
     waterfree:false,
     watersave:false,
     waterdefault:true,
@@ -123,6 +138,14 @@ Page({
         bedNum:roomList[tar].bedNum,
         img1:imgurl+roomList[tar].imgs1,
         img1url:roomList[tar].imgs1,
+        img2:imgurl+tempList[tar].extinguisherimg,
+        img2url:tempList[tar].extinguisherimg,
+        img3:imgurl+tempList[tar].smokeMaskimg,
+        img3url:tempList[tar].smokeMaskimg,
+        img4:imgurl+tempList[tar].flashlightimg,
+        img4url:tempList[tar].flashlightimg,
+        img5:imgurl+tempList[tar].ropeimg,
+        img5url:tempList[tar].ropeimg,
         selectId:roomList[tar].fireid,
         waterfree:roomList[tar].waterfree,
         watersave:roomList[tar].watersave,
@@ -183,13 +206,114 @@ Page({
     }
     
   },
+  //上传消防图片
+  addImg1(e){
+    var that = this;
+    var t = e.target.dataset.t;
+    var fireList = this.data.fireList;
+      // for(let a=0;a<selectId.length;a++){
+      //   fireList[selectId[a]-1].selected=true;
+      // }
+    console.log(t)
+    my.chooseImage({
+      chooseImage: 1,
+      success: (res) => {
+        var tempFilePaths = res.apFilePaths;
+        console.log(tempFilePaths)
+        var image = tempFilePaths[0];
+        if(e.target.dataset.t==2){
+          fireList[0].selected=true;
+          that.setData({
+            img2:tempFilePaths[0],
+            upload2:true,
+            canAddImg2:false,
+            extinguisher:true,
+            fireList:fireList,
+          });
+        }
+        if(e.target.dataset.t==3){
+          fireList[1].selected=true;
+          that.setData({
+            img3:tempFilePaths[0],
+            upload3:true,
+            canAddImg3:false,
+            smokeMask:true,
+            fireList:fireList,
+          });
+        }
+        if(e.target.dataset.t==4){
+          fireList[2].selected=true;
+          that.setData({
+            img4:tempFilePaths[0],
+            upload4:true,
+            canAddImg4:false,
+            flashlight:true,
+            fireList:fireList,
+          });
+        }
+        if(e.target.dataset.t==5){
+          fireList[3].selected=true;
+          that.setData({
+            img5:tempFilePaths[0],
+            upload5:true,
+            canAddImg5:false,
+            rope:true,
+            fireList:fireList,
+          });
+        }
+        that.uploadImgs(image,e.target.dataset.t);
+      },
+      
+    });
+  },
+  uploadImgs(image,t){
+    var that = this;
+    var newimgs = '';
+     my.uploadFile({
+          url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+          fileName: 'file', 
+          fileType: 'image', 
+          formData:{savePrefix:'landlord'},
+          filePath: image,
+          success: (res) => {
+            var json1 = JSON.parse(res.data);
+            console.log('************');
+            console.log(res);
+            newimgs=json1['message'];
+            if(t==2){
+              that.setData({
+                img2url:newimgs,
+              });
+            }
+            if(t==3){
+              that.setData({
+                img3url:newimgs,
+              });
+            }
+            if(t==4){
+              that.setData({
+                img4url:newimgs,
+              });
+            }
+            if(t==5){
+              that.setData({
+                img5url:newimgs,
+              });
+            }
+          },
+          fail: function(res) {
+            console.log(res);
+            my.alert({ title: '上传失败' });
+          },
+        });
+  },
   //添加图片
   addImg(e){
     var that = this;
     my.chooseImage({
       chooseImage: 1,
       success: (res) => {
-        var tempFilePaths = res.apFilePaths
+        var tempFilePaths = res.apFilePaths;
         console.log(tempFilePaths)
         that.data.images[0]=tempFilePaths[0];
         if(e.target.dataset.t==1){
@@ -197,6 +321,34 @@ Page({
             img1:tempFilePaths[0],
             upload1:true,
             canAddImg1:false,
+          });
+        }
+        if(e.target.dataset.t==2){
+          that.setData({
+            img2:tempFilePaths[0],
+            upload2:true,
+            canAddImg2:false,
+          });
+        }
+        if(e.target.dataset.t==3){
+          that.setData({
+            img3:tempFilePaths[0],
+            upload3:true,
+            canAddImg3:false,
+          });
+        }
+        if(e.target.dataset.t==4){
+          that.setData({
+            img4:tempFilePaths[0],
+            upload4:true,
+            canAddImg4:false,
+          });
+        }
+        if(e.target.dataset.t==5){
+          that.setData({
+            img5:tempFilePaths[0],
+            upload5:true,
+            canAddImg5:false,
           });
         }
           
@@ -210,6 +362,34 @@ Page({
         img1:'',
         upload1:false,
         canAddImg1:true,
+      });
+    }
+    if(e.target.dataset.t==2){
+        that.setData({
+        img2url:'',
+        upload2:false,
+        canAddImg2:true,
+      });
+    }
+    if(e.target.dataset.t==3){
+        that.setData({
+        img3url:'',
+        upload3:false,
+        canAddImg3:true,
+      });
+    }
+    if(e.target.dataset.t==4){
+        that.setData({
+        img4url:'',
+        upload4:false,
+        canAddImg4:true,
+      });
+    }
+    if(e.target.dataset.t==51){
+        that.setData({
+        img5url:'',
+        upload5:false,
+        canAddImg5:true,
       });
     }
 
@@ -421,6 +601,7 @@ Page({
     }
     
     if(roomname!=''&&roomarea!=''&&roomrent!=''&&water!=''&&img1!=''&&peopleNum>0){
+      
       if(img1url!=null&&img1url!=''&&canAddImg1==true){
         that.toSaveData(img1url,water);
       }else{
@@ -436,6 +617,7 @@ Page({
     
     
   },
+
    uploadImg(image1,water){
     var that = this;
     var newimgs = '';
@@ -460,6 +642,7 @@ Page({
    
     
   },
+
   
   toSaveData(url,water){
     var that = this;
@@ -468,6 +651,10 @@ Page({
     console.log(that.data.flashlight)
     console.log(that.data.rope)
       var imgs1=url;
+      var img2url = that.data.img2url;
+      var img3url = that.data.img3url;
+      var img4url = that.data.img4url;
+      var img5url = that.data.img5url;
       var fireid = that.data.selectId;
       var extinguisher = that.data.extinguisher;
       var smokeMask = that.data.smokeMask;
@@ -510,6 +697,10 @@ Page({
         smokeMask:smokeMask,
         flashlight:flashlight,
         rope:rope,
+        extinguisherimg:img2url,
+        smokeMaskimg:img3url,
+        flashlightimg:img4url,
+        ropeimg:img5url,
       };
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];

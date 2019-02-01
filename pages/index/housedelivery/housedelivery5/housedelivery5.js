@@ -43,6 +43,22 @@ Page({
     smokeMask:false,
     flashlight:false,
     rope:false,
+    img2:'',
+    img3:'',
+    img4:'',
+    img5:'',
+    img2url:'',
+    img3url:'',
+    img4url:'',
+    img5url:'',
+    canAddImg2:true,
+    canAddImg3:true,
+    canAddImg4:true,
+    canAddImg5:true,
+    upload2:false,
+    upload3:false,
+    upload4:false,
+    upload5:false,
   },
   onLoad() {
     var that = this;
@@ -72,6 +88,106 @@ Page({
       data: this.data.tempList, // 要缓存的数据
     });
   },
+  addImg1(e){
+    var that = this;
+    var t = e.target.dataset.t;
+    var fireList = this.data.fireList;
+      // for(let a=0;a<selectId.length;a++){
+      //   fireList[selectId[a]-1].selected=true;
+      // }
+    console.log(t)
+    my.chooseImage({
+      chooseImage: 1,
+      success: (res) => {
+        var tempFilePaths = res.apFilePaths;
+        console.log(tempFilePaths)
+        var image = tempFilePaths[0];
+        if(e.target.dataset.t==2){
+          fireList[0].selected=true;
+          that.setData({
+            img2:tempFilePaths[0],
+            upload2:true,
+            canAddImg2:false,
+            extinguisher:true,
+            fireList:fireList,
+          });
+        }
+        if(e.target.dataset.t==3){
+          fireList[1].selected=true;
+          that.setData({
+            img3:tempFilePaths[0],
+            upload3:true,
+            canAddImg3:false,
+            smokeMask:true,
+            fireList:fireList,
+          });
+        }
+        if(e.target.dataset.t==4){
+          fireList[2].selected=true;
+          that.setData({
+            img4:tempFilePaths[0],
+            upload4:true,
+            canAddImg4:false,
+            flashlight:true,
+            fireList:fireList,
+          });
+        }
+        if(e.target.dataset.t==5){
+          fireList[3].selected=true;
+          that.setData({
+            img5:tempFilePaths[0],
+            upload5:true,
+            canAddImg5:false,
+            rope:true,
+            fireList:fireList,
+          });
+        }
+        that.uploadImgs(image,e.target.dataset.t);
+      },
+      
+    });
+  },
+  uploadImgs(image,t){
+    var that = this;
+    var newimgs = '';
+     my.uploadFile({
+          url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+          fileName: 'file', 
+          fileType: 'image', 
+          formData:{savePrefix:'landlord'},
+          filePath: image,
+          success: (res) => {
+            var json1 = JSON.parse(res.data);
+            console.log('************');
+            console.log(res);
+            newimgs=json1['message'];
+            if(t==2){
+              that.setData({
+                img2url:newimgs,
+              });
+            }
+            if(t==3){
+              that.setData({
+                img3url:newimgs,
+              });
+            }
+            if(t==4){
+              that.setData({
+                img4url:newimgs,
+              });
+            }
+            if(t==5){
+              that.setData({
+                img5url:newimgs,
+              });
+            }
+          },
+          fail: function(res) {
+            console.log(res);
+            my.alert({ title: '上传失败' });
+          },
+        });
+  },
   addImg(){
     var that = this;
     my.chooseImage({
@@ -88,13 +204,39 @@ Page({
       },
     });
   },
-  delImg(){
+
+  delImg(e){
     var that = this;
-    that.setData({
-      img:'',
-      upload:false,
-      canAddImg:true,
-    });
+    if(e.target.dataset.t==2){
+        that.setData({
+        img2url:'',
+        upload2:false,
+        canAddImg2:true,
+      });
+    }
+    if(e.target.dataset.t==3){
+        that.setData({
+        img3url:'',
+        upload3:false,
+        canAddImg3:true,
+      });
+    }
+    if(e.target.dataset.t==4){
+        that.setData({
+        img4url:'',
+        upload4:false,
+        canAddImg4:true,
+      });
+    }
+    if(e.target.dataset.t==51){
+        that.setData({
+        img5url:'',
+        upload5:false,
+        canAddImg5:true,
+      });
+    }
+
+    
   },
   onChange(e) {
     var that = this;
@@ -155,8 +297,8 @@ Page({
 
     var furniture = that.data.furniture;
     var feature = that.data.feature;
-    var fireid = that.data.selectId;
-    if(furniture!=''&&feature!=''&&fireid!=''){
+    // var fireid = that.data.selectId;
+    if(furniture!=''&&feature!=''){
       my.setStorageSync({
         key: 'r_furniture', // 缓存数据的key
         data: furniture, // 要缓存的数据
@@ -180,6 +322,23 @@ Page({
        my.setStorageSync({
         key: 'r_rope', // 缓存数据的key
         data: that.data.rope, // 要缓存的数据
+      });
+      
+      my.setStorageSync({
+        key: 'r_extinguisherimg', // 缓存数据的key
+        data: that.data.extinguisherimg, // 要缓存的数据
+      });
+       my.setStorageSync({
+        key: 'r_smokeMaskimg', // 缓存数据的key
+        data: that.data.smokeMaskimg, // 要缓存的数据
+      });
+       my.setStorageSync({
+        key: 'r_flashlightimg', // 缓存数据的key
+        data: that.data.flashlightimg, // 要缓存的数据
+      });
+       my.setStorageSync({
+        key: 'r_ropeimg', // 缓存数据的key
+        data: that.data.ropeimg, // 要缓存的数据
       });
       my.navigateTo({
         url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
@@ -239,6 +398,7 @@ Page({
     })
   },
   getHouseInfo(roomList){
+    var that = this;
      var provinceCode = my.getStorageSync({
       key: 'r_provinceCode', // 缓存数据的key
     }).data;
@@ -338,7 +498,7 @@ Page({
     var villageimg = my.getStorageSync({
       key: 'r_villageimg', // 缓存数据的key
     }).data;
-
+    var tempList = that.data.tempList;
      var apartment = {
       provinceId:provinceCode,
       cityId:cityCode,

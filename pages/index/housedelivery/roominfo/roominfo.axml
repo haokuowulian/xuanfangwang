@@ -81,6 +81,7 @@
 
     <view a:if="{{canAddImg1}}" class="info-content2" onTap="addImg" data-t="1">
       <image src="{{img1}}" class="img"/>
+      <!-- 添加/相册 -->
     </view>
   </view>
   <view class="info info1">
@@ -96,57 +97,57 @@
 
 
 
-  <view class="info info1" a:if="{{extinguisher}}">
-    <view class="info-title">灭火器</view>
-    <view a:if="{{!canAddImg2}}" class="info-content2">
-      <image src="{{img2}}" class="img"/>
-      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
-          <icon type="cancel" color="red" size="18" />
-      </view>
-    </view>
+  <view class="fire">
 
-    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
-      addimg
-    </view>
-  </view>
-  <view class="info info1" a:if="{{extinguisher}}">
-    <view class="info-title">灭火器</view>
-    <view a:if="{{!canAddImg2}}" class="info-content2">
-      <image src="{{img2}}" class="img"/>
-      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
-          <icon type="cancel" color="red" size="18" />
+      <view a:if="{{!canAddImg2}}" class="info-content4">
+        <image src="{{img2}}" class="img"/>
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+            <icon type="cancel" color="red" size="18" />
+        </view>
       </view>
-    </view>
 
-    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
-      addimg
-    </view>
-  </view>
-  <view class="info info1" a:if="{{extinguisher}}">
-    <view class="info-title">灭火器</view>
-    <view a:if="{{!canAddImg2}}" class="info-content2">
-      <image src="{{img2}}" class="img"/>
-      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
-          <icon type="cancel" color="red" size="18" />
+      <view a:if="{{canAddImg2}}" class="info-content4" onTap="addImg1" data-t="2">
+        <image src="{{img2}}" class="img"/>
+        <!-- 灭火器 -->
       </view>
-    </view>
 
-    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
-      addimg
-    </view>
-  </view>
-  <view class="info info1" a:if="{{extinguisher}}">
-    <view class="info-title">灭火器</view>
-    <view a:if="{{!canAddImg2}}" class="info-content2">
-      <image src="{{img2}}" class="img"/>
-      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
-          <icon type="cancel" color="red" size="18" />
+      <view a:if="{{!canAddImg3}}" class="info-content4">
+        <image src="{{img3}}" class="img"/>
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="3">
+            <icon type="cancel" color="red" size="18" />
+        </view>
       </view>
-    </view>
 
-    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
-      addimg
-    </view>
+      <view a:if="{{canAddImg3}}" class="info-content4" onTap="addImg1" data-t="3">
+        <image src="{{img3}}" class="img"/>
+        <!-- 防烟面罩 -->
+      </view>
+
+
+      <view a:if="{{!canAddImg4}}" class="info-content4">
+        <image src="{{img4}}" class="img"/>
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="4">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+
+      <view a:if="{{canAddImg4}}" class="info-content4" onTap="addImg1" data-t="4">
+        <image src="{{img4}}" class="img"/>
+        <!-- 手电筒 -->
+      </view>
+
+
+      <view a:if="{{!canAddImg5}}" class="info-content4">
+        <image src="{{img5}}" class="img"/>
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="5">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+      <view a:if="{{canAddImg5}}" class="info-content4" onTap="addImg1" data-t="5">
+        <image src="{{img5}}" class="img"/>
+        <!-- 逃生绳 -->
+      </view>
+    
   </view>
 
   <view class="info">
