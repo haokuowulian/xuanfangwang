@@ -6,8 +6,6 @@ Page({
   userLogout(){
     my.clearStorage();
     console.log(11111111+'logout');
-    my.navigateBack({
-      url: '/pages/index/index',
-    });
+    my.navigateBack();
   },
 });

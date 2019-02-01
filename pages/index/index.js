@@ -268,10 +268,16 @@ Page({
     url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
   },
-  toMyNews(){
-    my.navigateTo({
-      url: '/pages/index/news/news',
-    })
+  scan(){
+    // my.navigateTo({
+    //   url: '/pages/index/news/news',
+    // })
+    my.scan({
+      type: 'qr',
+      success: (res) => {
+        my.alert({ title: res.code });
+      },
+    });
   },
   //初始化合同
   initialize(){

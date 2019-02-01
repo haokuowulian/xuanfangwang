@@ -9,6 +9,7 @@ Page({
     houseInfo:null,
     payway:'',
     rentType:0,
+    url:''
   },
   onLoad() {
     this.getOrderInfo();
@@ -28,7 +29,7 @@ Page({
       success: (res) => {
         console.log(res)
         if(res.confirm){
-
+that.sign();
           // my.tradePay({
           //   tradeNO: '201711152100110410533667792', // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
           //   success: (res) => {
@@ -49,7 +50,7 @@ Page({
           //     that.goBack();
           // },
           // });
-          that.sign();
+          
         }else{
           my.alert({
             title: '合同取消签订！' 
@@ -95,6 +96,9 @@ Page({
   //签订合同
   sign(){
      var that = this;
+      var userId = my.getStorageSync({
+      key: 'userId', // 消费者身份证号
+    }).data;
     var ucard = my.getStorageSync({
       key: 'ucard', // 消费者身份证号
     }).data;
@@ -141,7 +145,7 @@ Page({
         houseId:houseId,
         rentType:urentType,
         roomId:roomId,
-        uid:urentType,
+        uid:userId,
         fdid:landlordId,
         startTime:startDate,
         endTime:endDate,
@@ -151,6 +155,10 @@ Page({
         console.log('---------------');
         console.log(res);
         if(res.data.success){
+          that.setData({
+            url:res.data.url,
+          });
+          console.log('url:   '+that.data.url);
           that.toUpload(res.data.contractId);
         }
 
@@ -263,10 +271,12 @@ Page({
             success: (res) => {
               console.log('-------success--------');
               console.log(res);
+              console.log('url:   '+that.data.url);
               that.uploadCode(uid,orderId,res.resultCode,contractId);
               my.navigateTo({
-                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+                url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode+'&url='+that.data.url,
               });
+             
             },
             fail: (res) => {
               console.log('-------fail--------');
@@ -297,6 +307,7 @@ Page({
       },
       dataType: 'json',
       success: (res) => {
+         that.sign();
         console.log(res+'状态码上传成功');
       },
     });
