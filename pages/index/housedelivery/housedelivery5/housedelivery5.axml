@@ -1,6 +1,7 @@
 <view class="backgroundClass">
   <view a:if="{{rentType==1}}" class="titleClass">房源描述与价格（2/3）</view>
   <view a:if="{{rentType==2}}" class="titleClass">房源描述与价格（2/2）</view>
+  <view a:if="{{rentType==1}}">
   <view class="subTitleClass">便利设施</view>
    <view onTap="goTo1">
     <input class="inputClass" type="text" placeholder="请选择用户可以选择的便利设施" value="{{furniturelist}}"/>
@@ -12,7 +13,7 @@
     <input class="inputClass" type="text" placeholder="请选择房屋特色" value="{{featurelist}}"/>
   </view>
   <view class="lineClass"></view>
-
+</view>
 
   <block a:if="{{rentType==2}}" a:for="{{roomcount}}" a:for-index="idx">
   <view onTap="toRoominfo" data-t='{{idx}}'>

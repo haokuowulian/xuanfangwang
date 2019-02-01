@@ -2,6 +2,22 @@
   <view class="page-title">
     房间信息
   </view>
+
+  <view class="info">
+  <view class="info-title">便利设施</view>
+   <view onTap="goTo1" class="info-content">
+    <input class="text_input" type="text" placeholder="请选择用户可以选择的便利设施" value="{{furniturelist}}"/>
+   </view>
+ 
+
+   </view>
+  <view class="info">
+   <view class="info-title">房屋特色</view>
+   <view onTap="goTo2" class="info-content">
+    <input class="text_input" type="text" placeholder="请选择房屋特色" value="{{featurelist}}"/>
+  </view>
+  </view>
+
   <view class="info">
     <view class="info-title">房间名称</view>
     <view class="info-content"><input type="text" placeholder="为您的房间起个名" onInput="toInput" data-t='1' class="text_input" value="{{roomname}}"/></view>
@@ -77,6 +93,62 @@
     </checkbox-group>
    
   </view>
+
+
+
+  <view class="info info1" a:if="{{extinguisher}}">
+    <view class="info-title">灭火器</view>
+    <view a:if="{{!canAddImg2}}" class="info-content2">
+      <image src="{{img2}}" class="img"/>
+      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+          <icon type="cancel" color="red" size="18" />
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
+      addimg
+    </view>
+  </view>
+  <view class="info info1" a:if="{{extinguisher}}">
+    <view class="info-title">灭火器</view>
+    <view a:if="{{!canAddImg2}}" class="info-content2">
+      <image src="{{img2}}" class="img"/>
+      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+          <icon type="cancel" color="red" size="18" />
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
+      addimg
+    </view>
+  </view>
+  <view class="info info1" a:if="{{extinguisher}}">
+    <view class="info-title">灭火器</view>
+    <view a:if="{{!canAddImg2}}" class="info-content2">
+      <image src="{{img2}}" class="img"/>
+      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+          <icon type="cancel" color="red" size="18" />
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
+      addimg
+    </view>
+  </view>
+  <view class="info info1" a:if="{{extinguisher}}">
+    <view class="info-title">灭火器</view>
+    <view a:if="{{!canAddImg2}}" class="info-content2">
+      <image src="{{img2}}" class="img"/>
+      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+          <icon type="cancel" color="red" size="18" />
+      </view>
+    </view>
+
+    <view a:if="{{canAddImg2}}" class="info-content2" onTap="addImg" data-t="2">
+      addimg
+    </view>
+  </view>
+
   <view class="info">
   
   </view>

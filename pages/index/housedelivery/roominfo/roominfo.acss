@@ -114,3 +114,22 @@
   margin-left: 24rpx;
   font-size: 35rpx;
 }
+/* .subTitleClass{
+   font-size: 35rpx;
+   color: #333333;
+   margin-left: 35rpx;
+   margin-top: 45rpx;
+}
+.inputClass{
+  width: 680rpx;
+  font-size: 25rpx;
+  margin-left: 20rpx;
+  margin-top: 35rpx;
+  color: #999999;
+}
+.lineClass{
+  height: 2rpx;
+  width: 680rpx;
+  margin-left: 35rpx;
+  background-color: #f5f5f3;
+} */

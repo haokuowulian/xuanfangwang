@@ -1,3 +1,79 @@
 <view>
-  New Page
+  <view class="page-house">
+    <!-- <view class="house-info">
+      <view class="house-left">
+        房源地址：
+      </view>
+      <view class="house-right">
+        <view class="house-address">{{contract.apartmentName}}{{contract.houseName}}</view>
+        <view class="house-point">
+          <view>房源面积：</view>
+          <view>{{area}}m²</view>
+        </view>
+        <view a:if="{{status==0}}" class="house-paid">待付款</view>
+        <view a:if="{{status==1}}" class="house-paid">已付款</view>
+      </view>
+    </view> -->
+    <view class="page-user">
+      <view class="users">
+        <view class="users-title">合同编号：</view>
+        <view class="users-info">{{contract.id}}</view>
+      </view>
+    </view>
+    <view class="page-user">
+      <view class="users">
+        <view class="users-title">房源地址：</view>
+        <view class="users-info">{{contract.apartmentName}}{{contract.houseName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-time">
+     合同起始时间
+  </view>
+  <view class="page-times">
+    <view class="times-back">
+      <view class="time-title">开始时间</view>
+      <view class="time-date">{{contract.startTime}}</view>
+    </view>
+    <view class="times-back1">
+      <view class="time-title">到期时间</view>
+      <view class="time-date">{{contract.endTime}}</view>
+    </view>
+  </view>
+
+  <view class="page-time">房东信息</view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">房东姓名</view>
+      <view class="users-info">{{contract.user.certName}}</view>
+    </view>
+  </view>
+  <!-- <view class="page-user">
+    <view class="users">
+      <view class="users-title">身份证号</view>
+      <view class="users-info">{{uidCard}}</view>
+    </view>
+  </view> -->
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">联系方式</view>
+      <view class="users-info">{{contract.user.userName}}</view>
+    </view>
+  </view>
+  <view class="page-time">合同操作</view>
+ 
+  <view a:if="{{status!=3}}" class="page-user1">
+    <view class="users">
+      <view class="users-title"></view>
+      <view class="order-btn" onTap="onCancel">申请中止</view>
+    </view>
+     <view class="users">
+      <view class="users-title"></view>
+      <view class="order-btn" onTap="onCancel">申请续约</view>
+    </view>
+  </view>
+  <view class="page-footer"></view>
+
+
 </view>

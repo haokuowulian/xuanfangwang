@@ -41,6 +41,8 @@ Page({
     watersave:false,
     waterdefault:true,
     water:'',
+    waterRate:0,
+    electricRate:0,
     watertext:'',
     waterlist:[],
     payways:[
@@ -79,6 +81,10 @@ Page({
     smokeMask:false,
     flashlight:false,
     rope:false,
+    furniture:'',
+    furniturelist:'',
+    feature:'',
+    featurelist:'',
   },
   onLoad(option) {
     console.log(option)
@@ -91,6 +97,9 @@ Page({
     var roomList = my.getStorageSync({
      key: 'r_roomList', // 缓存数据的key
     }).data;
+    var tempList = my.getStorageSync({
+     key: 'r_tempList', // 缓存数据的key
+    }).data;
     console.log('****************')
     console.log(roomList)
     if(roomList[tar]!=''&&roomList[tar]!=null){
@@ -100,14 +109,13 @@ Page({
       for(let a=0;a<selectId.length;a++){
         fireList[selectId[a]-1].selected=true;
       }
-     
       this.setData({
         roomname:roomList[tar].roomname,
         roomarea:roomList[tar].roomarea,
         roomrent:roomList[tar].roomrent,
         payway:roomList[tar].payway,
-        water:roomList[tar].water,
-        waterlist:roomList[tar].water,
+        water:tempList[tar].water,
+        waterlist:tempList[tar].water,
         privatebath:roomList[tar].privatebath,
         bath:roomList[tar].bath,
         people:roomList[tar].people,
@@ -118,12 +126,14 @@ Page({
         selectId:roomList[tar].fireid,
         waterfree:roomList[tar].waterfree,
         watersave:roomList[tar].watersave,
-        extinguisher:roomList[tar].extinguisher,
-        smokeMask:roomList[tar].smokeMask,
-        flashlight:roomList[tar].flashlight,
-        rope:roomList[tar].rope,
+        extinguisher:tempList[tar].extinguisher,
+        smokeMask:tempList[tar].smokeMask,
+        flashlight:tempList[tar].flashlight,
+        rope:tempList[tar].rope,
         payment:roomList[tar].payment,
         peopleNum:roomList[tar].peopleNum,
+        featurelist:tempList[tar].featurelist,
+        furniturelist:tempList[tar].furniturelist,
       });
 
     }
@@ -204,6 +214,19 @@ Page({
     }
 
     
+  },
+    goTo1(){
+     my.hideKeyboard();
+     my.navigateTo({
+      url: '/pages/index/housedelivery/housedelivery5-1/housedelivery5-1',
+    })
+  },
+  //前往房屋特色
+  goTo2(){
+    my.hideKeyboard();
+    my.navigateTo({
+      url: '/pages/index/housedelivery/housedelivery5-2/housedelivery5-2',
+    })
   },
   bindPickerChange1(e){
     var that = this;
@@ -458,13 +481,13 @@ Page({
       // if(waterlist!=''&&waterlist!=null){
       //   water=waterlist;
       // }
-      var obj = {
+      var obj1 = {
         roomname:that.data.roomname,
         roomarea:that.data.roomarea,
         roomrent:that.data.roomrent,
         payway:that.data.payway,
         payment:payment,
-        water:water,
+        
         privatebath:that.data.privatebath,
         bath:that.data.bath,
         people:that.data.people,
@@ -473,16 +496,25 @@ Page({
         bedNum:that.data.bedNum,
         imgs1:imgs1,
         fireid:fireid,
+        
+        waterfree:that.data.waterfree,
+        watersave:that.data.watersave,
+      };
+      var obj2 = {
+        water:water,
+        waterRate:that.data.waterRate,
+        electricRate:that.data.electricRate,
+        featurelist:that.data.featurelist,
+        furniturelist:that.data.furniturelist,
         extinguisher:extinguisher,
         smokeMask:smokeMask,
         flashlight:flashlight,
         rope:rope,
-        waterfree:that.data.waterfree,
-        watersave:that.data.watersave,
       };
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];
-      prevPage.data.roomList[tar]=obj;
+      prevPage.data.roomList[tar]=obj1;
+      prevPage.data.tempList[tar]=obj2;
       my.navigateBack({
         delta: 1,
       });

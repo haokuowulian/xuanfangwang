@@ -1,0 +1,178 @@
+.page-house{
+  height: 200rpx;
+  width: 750rpx;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  background-color: #ffffff;
+  border-top: 1rpx solid #f7f7f7;
+}
+.house-info{
+  height: 150rpx;
+  width: 725rpx;
+  margin-left: 25rpx;
+  display: flex;
+  flex-direction: row;
+}
+.house-left{
+  height: 150rpx;
+  width: 200rpx;
+}
+.house-img{
+  height: 150rpx;
+  width: 200rpx;
+}
+.house-right{
+  height: 150rpx;
+  width: 500rpx;
+  margin-left: 25rpx;
+}
+.house-address{
+  font-size: 35rpx;
+  color: #333333;
+}
+.house-point{
+  font-size: 25rpx;
+  color: #666666;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+.house-paid{
+  font-size: 25rpx;
+  color: #ffaa06;
+  margin-top: 35rpx;
+}
+.page-footer{
+  height: 190rpx;
+  width: 750rpx;
+}
+.page-time{
+  height: 45rpx;
+  width: 725rpx;
+  padding-left: 25rpx;
+  padding-top: 35rpx;
+  font-size: 25rpx;
+  color: #999999;
+}
+.page-times{
+  height: 190rpx;
+  width: 750rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.times-back{
+  height: 90rpx;
+  width: 375rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1rpx solid #f7f7f7;
+}
+.times-back1{
+  height: 90rpx;
+  width: 375rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.time-title{
+  font-size: 45rpx;
+  color: #333333;
+}
+.time-date{
+  font-size: 35rpx;
+  color: #333333;
+}
+.page-user{
+  height: 100rpx;
+  width: 700rpx;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  background-color: #ffffff;
+}
+.page-user1{
+  height: 200rpx;
+  width: 700rpx;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  background-color: #ffffff;
+}
+.users{
+  height: 100rpx;
+  width: 700rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #f7f7f7;
+}
+.users-title{
+  font-size: 30rpx;
+  color: #101010;
+}
+.users-info{
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.operate{
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  height: 110rpx;
+  display: flex;
+  flex-direction: row;
+  background: white;
+}
+
+.operate-sum{
+  height: 110rpx;
+  width: 425rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  padding-left: 25rpx;
+}
+.operate-pay{
+  width: 300rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: white;
+}
+.total{
+  display: flex;
+  flex-direction: row;
+  font-size: 30rpx;
+  color: #101010;
+}
+.sum{
+  font-size: 35rpx;
+  color: #ff9900;
+}
+.deposit{
+  font-size: 30rpx;
+  color: #101010;
+}
+.order-btn{
+  height: 45rpx;
+  width: 120rpx;
+  padding: 6rpx 24rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #ff9900;
+  border-radius: 8rpx;
+  border: 1rpx solid #ff9900;
+ 
+}
