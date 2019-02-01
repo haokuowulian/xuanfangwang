@@ -259,7 +259,7 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var img1 = that.data.img1;
     var img2 = that.data.img2;
     var img3 = that.data.img3;

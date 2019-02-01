@@ -146,7 +146,7 @@
     </view>
     </view>
   </view>
-  <view a:if="{{isRoleUser}}">
+  <view a:if="{{userlogin&&isRoleUser&&userCompleted}}">
     <view class="page-banner1">
       <view class="banner-title1 font-color2">
         <!-- <view a:if="{{roleId==8}}" class="title-change" onTap="changeRole2">
