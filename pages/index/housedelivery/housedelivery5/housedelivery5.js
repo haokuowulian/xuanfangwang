@@ -29,6 +29,7 @@ Page({
     roomcount:0,
     roomList:[],
     nameList:[],
+    tempList:[],
     furniture:'',
     furniturelist:'',
     feature:'',
@@ -58,12 +59,17 @@ Page({
   },
   onShow(){
     console.log(this.data.roomList)
+    console.log(this.data.tempList)
     this.setData({
       roomList:this.data.roomList
     });
-     my.setStorageSync({
+    my.setStorageSync({
       key: 'r_roomList', // 缓存数据的key
       data: this.data.roomList, // 要缓存的数据
+    });
+    my.setStorageSync({
+      key: 'r_tempList', // 缓存数据的key
+      data: this.data.tempList, // 要缓存的数据
     });
   },
   addImg(){
@@ -189,27 +195,27 @@ Page({
   publish(){
     var that = this;
     var roomList = that.data.roomList;
-    var furniture = that.data.furniture;
-    var feature = that.data.feature;
-    if(furniture!=''&&feature!=''){
-      my.setStorageSync({
-        key: 'r_furniture', // 缓存数据的key
-        data: furniture, // 要缓存的数据
-      });
-      my.setStorageSync({
-        key: 'r_feature', // 缓存数据的key
-        data: feature, // 要缓存的数据
-      });
+    // var furniture = that.data.furniture;
+    // var feature = that.data.feature;
+    // if(furniture!=''&&feature!=''){
+    //   my.setStorageSync({
+    //     key: 'r_furniture', // 缓存数据的key
+    //     data: furniture, // 要缓存的数据
+    //   });
+    //   my.setStorageSync({
+    //     key: 'r_feature', // 缓存数据的key
+    //     data: feature, // 要缓存的数据
+    //   });
       if(roomList.length>0){
-        that.getHouseInfo(roomList,furniture,feature);
+        that.getHouseInfo(roomList);
       }else{
         my.alert({
           title: '至少需要出租一间房间' 
         });
       }
-    }else{
-      my.alert({ title: '请填写完整' });
-    }
+    // }else{
+    //   my.alert({ title: '请填写完整' });
+    // }
     
   },
   toRoominfo(e){
@@ -232,7 +238,7 @@ Page({
       url: '/pages/index/housedelivery/housedelivery5-2/housedelivery5-2',
     })
   },
-  getHouseInfo(roomList,furniture,feature){
+  getHouseInfo(roomList){
      var provinceCode = my.getStorageSync({
       key: 'r_provinceCode', // 缓存数据的key
     }).data;
@@ -367,9 +373,11 @@ Page({
       userId:uid,
       area:varea,
       decorateType:decorateType,
-      furniture:furniture,
-      feature:feature,
+      tempList:tempList,
+      // furniture:furniture,
+      // feature:feature,
     };
+    // var tempList = 
 
     var room = roomList;
 
@@ -392,31 +400,7 @@ Page({
         house:house,
         room:room,
         template:template,
-        // provinceCode:provinceCode,
-        // cityCode:cityCode,
-        // countryCode:countryCode,
-        // longitude:longitude,
-        // latitude:latitude,
-        // village:village,
-        // vphone:vphone,
-        // vyear:vyear,
-        // vgreen:vgreen,
-        // vcubage:vcubage,
-        // vaddress:vaddress,
-        // huxing:huxing,
-        // chaoxiang:chaoxiang,
-        // zhuangxiu:zhuangxiu,
-        // varea:varea,
-        // vowner:vowner,
-        // vownerCard:vownerCard,
-        // vrelation:vrelation,
-        // img1url:img1url,
-        // img2url:img2url,
-        // img3url:img3url,
-        // rentType:rentType,
-        // roomList:roomList,
-        // furniture:furniture,
-        // feature:feature,
+       
       },
       success: (res) => {
         console.log('提交成功'+res)

@@ -132,19 +132,19 @@ Page({
     var rpaymethod = that.data.index2;
     var powerprice = that.data.powerprice;
     var waterprice = that.data.waterprice;
-    var advanceprice = that.data.advanceprice;
+    // var advanceprice = that.data.advanceprice;
    
     if(powerprice!=''&&waterprice!=''){
-      if(rpaymethod==0){
-        if(advanceprice!=''){
+      // if(rpaymethod==0){
+        // if(advanceprice!=''){
          
           console.log('保存成功')
           var obj = {
-            rpayway:rpayway,
-            rpaymethod:rpaymethod,
+            // rpayway:rpayway,
+            // rpaymethod:rpaymethod,
             powerprice:powerprice,
             waterprice:waterprice,
-            advanceprice:advanceprice,
+            // advanceprice:advanceprice,
           };
           let pages = getCurrentPages();
           let prevPage = pages[pages.length - 2];
@@ -152,18 +152,20 @@ Page({
             waterfree:false,
             watersave:true,
             waterdefault:false,
-            waterlist:obj,
+            // waterlist:obj,
+            waterRate:0,
+            electricRate:0,
           });
           
           my.navigateBack({
             delta: 1
           });
-        }else{
-          my.alert({
-            title: '预收金额不能为空' 
-          });
-        }
-      }
+        // }else{
+        //   my.alert({
+        //     title: '预收金额不能为空' 
+        //   });
+        // }
+      // }
     }else{
       my.alert({
         title: '请填写完整' 

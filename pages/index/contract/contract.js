@@ -30,11 +30,15 @@ const contract2 = [
 //     status:2,
 //   },
 ]
+var app = getApp();
 Page({
   data: {
+    imgurl:app.globalData.baseImgUrl_whj,
     contract:[],
     roleId:'',
     roleType:'',
+    pageIndex:0,
+
   },
   onLoad(option) {
     var roleType = option.roleType;
@@ -42,19 +46,42 @@ Page({
       roleType:roleType,
     });
    if(roleType==1){
-     this.setData({
-       contract:contract2,
-     });
+     this.getContract();
    }
    if(roleType==2){
-     this.setData({
-       contract:contract1,
-     });
+     this.getContract();
    }
   },
+  getContract(){
+    var that = this;
+    var uid= my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    my.httpRequest({
+      url:app.globalData.baseUrl+ 'IF/contract/getContractList.do', // 目标服务器url
+      data:{
+        uid:59,
+        // uid:uid,
+        // pageIndex:that.data.pageIndex,
+        // pageSize:6,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res);
+        that.setData({
+          contract:res.data.data,
+        });
+      },
+      fail: function(res) {
+        console.log('-------fail--------');
+        console.log(res);
+      },
+    });
+  },
   toContractinfo(){
+    var id = this.data.contract.id;
     my.navigateTo({
-      url:'/pages/index/contractinfo/contractinfo',
+      url:'/pages/index/contractinfo/contractinfo?id='+id,
     });
   },
 });

@@ -27,6 +27,12 @@ Page({
     currentTime:''
   },
   onLoad() {
+    var userId = my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    if(userId!=''&&userId!=null){
+      this.antLogin();
+    }
     
   },
   onShow(){
@@ -106,6 +112,7 @@ Page({
   },
   //授权登录
   antLogin(){
+    console.log('验证登陆')
     my.getAuthCode({
       scopes: 'auth_user',
       success: (res) => {
