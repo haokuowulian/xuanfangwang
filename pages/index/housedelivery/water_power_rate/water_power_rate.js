@@ -128,44 +128,62 @@ Page({
   },
   toSave(){
     var that = this;
-    var rpayway = that.data.index1+1;
-    var rpaymethod = that.data.index2;
+    // var rpayway = that.data.index1+1;
+    // var rpaymethod = that.data.index2;
     var powerprice = that.data.powerprice;
     var waterprice = that.data.waterprice;
     // var advanceprice = that.data.advanceprice;
-   
+    var regNum=new RegExp('[0-9]','g');
     if(powerprice!=''&&waterprice!=''){
       // if(rpaymethod==0){
         // if(advanceprice!=''){
-         
-          console.log('保存成功')
-          var obj = {
-            // rpayway:rpayway,
-            // rpaymethod:rpaymethod,
-            powerprice:powerprice,
-            waterprice:waterprice,
-            // advanceprice:advanceprice,
-          };
-          let pages = getCurrentPages();
-          let prevPage = pages[pages.length - 2];
-          prevPage.setData({
-            waterfree:false,
-            watersave:true,
-            waterdefault:false,
-            // waterlist:obj,
-            waterRate:0,
-            electricRate:0,
+        var powerpriceNum = regNum.exec(powerprice);
+        var waterpriceNum = regNum.exec(waterprice);
+         if(powerpriceNum){
+           if(waterpriceNum){
+             console.log('保存成功')
+              var obj = {
+                // rpayway:rpayway,
+                // rpaymethod:rpaymethod,
+                powerprice:powerprice,
+                waterprice:waterprice,
+                // advanceprice:advanceprice,
+              };
+              let pages = getCurrentPages();
+              let prevPage = pages[pages.length - 2];
+              prevPage.setData({
+                waterfree:false,
+                watersave:true,
+                waterdefault:false,
+                // waterlist:obj,
+                waterRate:0,
+                electricRate:0,
+              });
+              
+              my.navigateBack({
+                delta: 1
+              });
+           }else{
+             my.alert({
+              title: '水费请输入数字',
+              success:() =>{
+                that.setData({
+                  houseNo:'',
+                });
+              },
+            });
+           }
+         }else{
+           my.alert({
+            title: '电费请输入数字',
+            success:() =>{
+              that.setData({
+                houseNo:'',
+              });
+            },
           });
-          
-          my.navigateBack({
-            delta: 1
-          });
-        // }else{
-        //   my.alert({
-        //     title: '预收金额不能为空' 
-        //   });
-        // }
-      // }
+         }
+    
     }else{
       my.alert({
         title: '请填写完整' 

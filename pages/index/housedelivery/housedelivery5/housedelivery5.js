@@ -43,10 +43,10 @@ Page({
     smokeMask:false,
     flashlight:false,
     rope:false,
-    img2:'',
-    img3:'',
-    img4:'',
-    img5:'',
+    img2:'/image/fangdong/miehuoqi.png',
+    img3:'/image/fangdong/fangdumianju.png',
+    img4:'/image/fangdong/shoudiantong.png',
+    img5:'/image/fangdong/shengzi.png',
     img2url:'',
     img3url:'',
     img4url:'',
@@ -192,6 +192,7 @@ Page({
     var that = this;
     my.chooseImage({
       chooseImage: 1,
+      sizeType:['compressed'],
       success: (res) => {
         var tempFilePaths = res.apFilePaths
         console.log(tempFilePaths)
@@ -207,32 +208,49 @@ Page({
 
   delImg(e){
     var that = this;
+    var fireList = that.data.fireList;
     if(e.target.dataset.t==2){
+      fireList[0].selected=false;
         that.setData({
         img2url:'',
+        img2:'/image/fangdong/miehuoqi.png',
         upload2:false,
         canAddImg2:true,
+        extinguisher:false,
+        fireList:fireList,
       });
     }
     if(e.target.dataset.t==3){
+      fireList[1].selected=false;
         that.setData({
         img3url:'',
+        img3:'/image/fangdong/fangdumianju.png',
         upload3:false,
         canAddImg3:true,
+        smokeMask:false,
+        fireList:fireList,
       });
     }
     if(e.target.dataset.t==4){
+      fireList[2].selected=false;
         that.setData({
         img4url:'',
+        img4:'/image/fangdong/shoudiantong.png',
         upload4:false,
         canAddImg4:true,
+        flashlight:false,
+        fireList:fireList,
       });
     }
     if(e.target.dataset.t==51){
+      fireList[3].selected=false;
         that.setData({
         img5url:'',
+        img5:'/image/fangdong/shengzi.png',
         upload5:false,
         canAddImg5:true,
+        rope:false,
+        fireList:fireList,
       });
     }
 
@@ -294,6 +312,11 @@ Page({
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
     console.log(that.data.rope)
+
+    //测试
+    my.navigateTo({
+      url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
+    })
 
     var furniture = that.data.furniture;
     var feature = that.data.feature;

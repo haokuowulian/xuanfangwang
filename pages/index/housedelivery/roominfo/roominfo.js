@@ -33,10 +33,11 @@ Page({
     tar:null,
     images:[],
     img1:'',
-    img2:'',
-    img3:'',
-    img4:'',
-    img5:'',
+    img11:'/image/zpbj.png',
+    img2:'/image/fangdong/miehuoqi.png',
+    img3:'/image/fangdong/fangdumianju.png',
+    img4:'/image/fangdong/shoudiantong.png',
+    img5:'/image/fangdong/shengzi.png',
     img1url:'',
     img2url:'',
     img3url:'',
@@ -137,6 +138,7 @@ Page({
         bed:roomList[tar].bed,
         bedNum:roomList[tar].bedNum,
         img1:imgurl+roomList[tar].imgs1,
+        img11:imgurl+roomList[tar].imgs1,
         img1url:roomList[tar].imgs1,
         img2:imgurl+tempList[tar].extinguisherimg,
         img2url:tempList[tar].extinguisherimg,
@@ -312,6 +314,7 @@ Page({
     var that = this;
     my.chooseImage({
       chooseImage: 1,
+      sizeType:['compressed'],
       success: (res) => {
         var tempFilePaths = res.apFilePaths;
         console.log(tempFilePaths)
@@ -357,39 +360,57 @@ Page({
   },
   delImg(e){
     var that = this;
+    var fireList = that.data.fireList;
     if(e.target.dataset.t==1){
         that.setData({
         img1:'',
+        img11:'/image/zpbj.png',
         upload1:false,
         canAddImg1:true,
       });
     }
     if(e.target.dataset.t==2){
+      fireList[0].selected=false;
         that.setData({
         img2url:'',
         upload2:false,
         canAddImg2:true,
+        img2:'/image/fangdong/miehuoqi.png',
+        extinguisher:false,
+        fireList:fireList,
       });
     }
     if(e.target.dataset.t==3){
+      fireList[1].selected=false;
         that.setData({
         img3url:'',
         upload3:false,
         canAddImg3:true,
+        img3:'/image/fangdong/fangdumianju.png',
+        smokeMask:false,
+        fireList:fireList,
       });
     }
     if(e.target.dataset.t==4){
+      fireList[2].selected=false;
         that.setData({
         img4url:'',
         upload4:false,
         canAddImg4:true,
+        img4:'/image/fangdong/shoudiantong.png',
+        flashlight:false,
+        fireList:fireList,
       });
     }
-    if(e.target.dataset.t==51){
+    if(e.target.dataset.t==5){
+      fireList[3].selected=false;
         that.setData({
         img5url:'',
         upload5:false,
         canAddImg5:true,
+        img5:'/image/fangdong/shengzi.png',
+        rope:false,
+        fireList:fireList,
       });
     }
 
@@ -596,26 +617,51 @@ Page({
     var img1url = that.data.img1url;
     var water=that.data.water;
     var waterlist = that.data.waterlist;
+    var regNum=new RegExp('[0-9]','g');
     if(waterlist!=''&&waterlist!=null){
       water=waterlist;
     }
     
     if(roomname!=''&&roomarea!=''&&roomrent!=''&&water!=''&&img1!=''&&peopleNum>0){
-      
-      if(img1url!=null&&img1url!=''&&canAddImg1==true){
-        that.toSaveData(img1url,water);
+      //数据类型验证
+      var roomareaNum = regNum.exec(roomarea);
+      var roomrentNum = regNum.exec(roomrent);
+      if(roomareaNum){
+        if(roomrentNum){
+          if(img1url!=null&&img1url!=''&&canAddImg1==true){
+            that.toSaveData(img1url,water);
+          }else{
+            that.uploadImg(img1,water);
+          }
+        }else{
+          my.alert({
+          title: '租金请输入数字',
+          success:() =>{
+            that.setData({
+              roomarea:'',
+            });
+          },
+        });
+        }
+        
       }else{
-        that.uploadImg(img1,water);
+        my.alert({
+          title: '面积请输入数字',
+          success:() =>{
+            that.setData({
+              roomarea:'',
+            });
+          },
+        });
       }
+      
+      
     }else{
       my.alert({
         title: '请填写完整' 
       });
     }
 
-
-    
-    
   },
 
    uploadImg(image1,water){

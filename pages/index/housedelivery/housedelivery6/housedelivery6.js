@@ -82,8 +82,46 @@ Page({
     var powerprice = that.data.powerprice;
     var property = that.data.property;
     var payway = that.data.payway;
+    var regNum=new RegExp('[0-9]','g');
     if(houserent!=''&&waterprice!=''&&powerprice!=''){
-      that.getHouseInfo(houserent,waterprice,powerprice);
+      var houserentNum = regNum.exec(houserent);
+      var waterpriceNum = regNum.exec(waterprice);
+      var powerpriceNum = regNum.exec(powerprice);
+      if(houserentNum){
+        if(waterpriceNum){
+          if(powerpriceNum){
+            that.getHouseInfo(houserent,waterprice,powerprice);
+          }else{
+            my.alert({
+            title: '电费请输入数字',
+            success:() =>{
+              that.setData({
+                houseNo:'',
+              });
+            },
+          });
+          }
+        }else{
+          my.alert({
+          title: '水费请输入数字',
+          success:() =>{
+            that.setData({
+              houseNo:'',
+            });
+          },
+        });
+        }
+      }else{
+        my.alert({
+          title: '租金请输入数字',
+          success:() =>{
+            that.setData({
+              houseNo:'',
+            });
+          },
+        });
+      }
+      
     }else{
       my.alert({
         title: '请填写完整' 
@@ -269,10 +307,7 @@ Page({
       entireRents:houserent,
       description:describe,
       images:houseimg,
-      extinguisher:extinguisher,
-      smokeMask:smokeMask,
-      flashlight:flashlight,
-      rope:rope,
+      
     };
     var template = {
       userId:uid,
@@ -282,6 +317,10 @@ Page({
       furniture:furniture,
       feature:feature,
 
+      extinguisher:extinguisher,
+      smokeMask:smokeMask,
+      flashlight:flashlight,
+      rope:rope,
       extinguisherimg:extinguisherimg,
       smokeMaskimg:smokeMaskimg,
       flashlightimg:flashlightimg,

@@ -80,7 +80,7 @@
     </view>
 
     <view a:if="{{canAddImg1}}" class="info-content2" onTap="addImg" data-t="1">
-      <image src="{{img1}}" class="img"/>
+      <image src="{{img11}}" class="img"/>
       <!-- 添加/相册 -->
     </view>
   </view>
