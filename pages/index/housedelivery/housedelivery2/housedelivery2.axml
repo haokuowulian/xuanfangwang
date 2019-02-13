@@ -6,7 +6,7 @@
   <view class="lineClass"></view>
 
   <view class="subTitleClass">门牌号</view>
-    <input class="inputClass" type="number" placeholder="请填写房源门牌号" onInput="toInput" data-t='6' value="{{houseNo}}"/>
+    <input class="inputClass" type="text" placeholder="请填写房源门牌号" onInput="toInput" data-t='6' value="{{houseNo}}"/>
 
   <view class="lineClass"></view>
 

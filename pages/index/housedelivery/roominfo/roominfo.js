@@ -27,9 +27,9 @@ Page({
     imgurl:app.globalData.baseImgUrl_whj,
     fireList:fires,
     selectId:'',
-    roomname:'',
-    roomarea:'',
-    roomrent:'',
+    roomName:'',
+    area:'',
+    rents:'',
     tar:null,
     images:[],
     img1:'',
@@ -101,8 +101,10 @@ Page({
     furniturelist:'',
     feature:'',
     featurelist:'',
+    templateName:'',
   },
   onLoad(option) {
+    var that = this;
     console.log(option)
     console.log(option.tar)
     var tar = option.tar*1;
@@ -116,8 +118,23 @@ Page({
     var tempList = my.getStorageSync({
      key: 'r_tempList', // 缓存数据的key
     }).data;
+    var vaddress = my.getStorageSync({
+    key: 'r_vaddress', // 缓存数据的key
+    }).data;
+    var v_address = my.getStorageSync({
+      key: 'r_address', // 缓存数据的key
+    }).data;
+    // var houseNo = my.getStorageSync({
+    //   key: 'r_houseNo', // 缓存数据的key
+    // }).data;
+    var address = v_address+vaddress;
+    // var templateName = address+houseNo;
+    this.setData({
+      templateName:address,
+    });
     console.log('****************')
     console.log(roomList)
+    // console.log('templateName='+templateName)
     if(roomList[tar]!=''&&roomList[tar]!=null){
       var selectId=roomList[tar].fireid;
       console.log(selectId)
@@ -125,10 +142,56 @@ Page({
       for(let a=0;a<selectId.length;a++){
         fireList[selectId[a]-1].selected=true;
       }
-      this.setData({
-        roomname:roomList[tar].roomname,
-        roomarea:roomList[tar].roomarea,
-        roomrent:roomList[tar].roomrent,
+      if(tempList[tar].extinguisherimg==''){
+        that.setData({
+          img2url:'',
+          img2:'/image/fangdong/miehuoqi.png',//imgurl+tempList[tar].extinguisherimg,
+        });
+      }else{
+        that.setData({
+          img2url:tempList[tar].extinguisherimg,
+          img2:imgurl+tempList[tar].extinguisherimg,
+        });
+      }
+      if(tempList[tar].smokeMaskimg==''){
+        that.setData({
+          img3url:'',
+          img3:'/image/fangdong/fangdumianju.png',
+        });
+      }else{
+        that.setData({
+          img3:imgurl+tempList[tar].smokeMaskimg,
+          img3url:tempList[tar].smokeMaskimg,
+        });
+      }
+      if(tempList[tar].flashlightimg==''){
+        that.setData({
+          img4url:'',
+          img4:'/image/fangdong/shoudiantong.png',
+        });
+      }else{
+        that.setData({
+          img4:imgurl+tempList[tar].flashlightimg,
+          img4url:tempList[tar].flashlightimg,
+        });
+      }
+      if(tempList[tar].ropeimg==''){
+        that.setData({
+          img5url:'',
+          img5:'/image/fangdong/shengzi.png',
+        });
+      }else{
+        that.setData({
+          img5:imgurl+tempList[tar].ropeimg,
+          img5url:tempList[tar].ropeimg,
+        });
+      }
+
+
+      that.setData({
+        roomName:roomList[tar].roomName,
+        area:roomList[tar].area,
+        rents:roomList[tar].rents,
         payway:roomList[tar].payway,
         water:tempList[tar].water,
         waterlist:tempList[tar].water,
@@ -140,14 +203,14 @@ Page({
         img1:imgurl+roomList[tar].imgs1,
         img11:imgurl+roomList[tar].imgs1,
         img1url:roomList[tar].imgs1,
-        img2:imgurl+tempList[tar].extinguisherimg,
-        img2url:tempList[tar].extinguisherimg,
-        img3:imgurl+tempList[tar].smokeMaskimg,
-        img3url:tempList[tar].smokeMaskimg,
-        img4:imgurl+tempList[tar].flashlightimg,
-        img4url:tempList[tar].flashlightimg,
-        img5:imgurl+tempList[tar].ropeimg,
-        img5url:tempList[tar].ropeimg,
+        // img2:imgurl+tempList[tar].extinguisherimg,
+        // img2url:tempList[tar].extinguisherimg,
+        // img3:imgurl+tempList[tar].smokeMaskimg,
+        // img3url:tempList[tar].smokeMaskimg,
+        // img4:imgurl+tempList[tar].flashlightimg,
+        // img4url:tempList[tar].flashlightimg,
+        // img5:imgurl+tempList[tar].ropeimg,
+        // img5url:tempList[tar].ropeimg,
         selectId:roomList[tar].fireid,
         waterfree:roomList[tar].waterfree,
         watersave:roomList[tar].watersave,
@@ -159,6 +222,8 @@ Page({
         peopleNum:roomList[tar].peopleNum,
         featurelist:tempList[tar].featurelist,
         furniturelist:tempList[tar].furniturelist,
+        waterRate:tempList[tar].waterRate,
+        electricRate:tempList[tar].electricRate,
       });
 
     }
@@ -193,17 +258,17 @@ Page({
     console.log(e.detail.value)
     if(e.target.dataset.t==1){
       that.setData({
-        roomname:e.detail.value,
+        roomName:e.detail.value,
       });
     }
     if(e.target.dataset.t==2){
       that.setData({
-        roomarea:e.detail.value,
+        area:e.detail.value,
       });
     }
     if(e.target.dataset.t==3){
       that.setData({
-        roomrent:e.detail.value,
+        rents:e.detail.value,
       });
     }
     
@@ -609,9 +674,9 @@ Page({
   toSave(){
     var that = this;
     var canAddImg1 = that.data.canAddImg1;
-    var roomname = that.data.roomname;
-    var roomarea = that.data.roomarea;
-    var roomrent = that.data.roomrent;
+    var roomname = that.data.roomName;
+    var roomarea = that.data.area;
+    var roomrent = that.data.rents;
     var peopleNum = that.data.peopleNum;
     var img1 = that.data.img1;
     var img1url = that.data.img1url;
@@ -675,6 +740,7 @@ Page({
       filePath: image1,
       success: (res) => {
         var json1 = JSON.parse(res.data);
+        console.log('----------------');
         console.log(res);
         newimgs=json1['message'];
         that.toSaveData(newimgs,water);
@@ -709,15 +775,28 @@ Page({
       var payment = that.data.payment;
       var peopleNum = that.data.peopleNum;
       var tar = that.data.tar;
+      var templateName=that.data.templateName+that.data.roomName;
       // var water=that.data.water;
       // var waterlist = that.data.waterlist;
       // if(waterlist!=''&&waterlist!=null){
       //   water=waterlist;
       // }
+      var featurelist = that.data.featurelist;
+      var featurelist = that.data.featurelist;
+      console.log('templateName=-------------->'+templateName)
+      // var vaddress = my.getStorageSync({
+      //   key: 'r_vaddress', // 缓存数据的key
+      // }).data;
+      // var v_address = my.getStorageSync({
+      //   key: 'r_address', // 缓存数据的key
+      // }).data;
+      // var address = v_address+vaddress;
+      // var templateName = address+houseNo;
+
       var obj1 = {
-        roomname:that.data.roomname,
-        roomarea:that.data.roomarea,
-        roomrent:that.data.roomrent,
+        roomName:that.data.roomName,
+        area:that.data.area,
+        rents:that.data.rents,
         payway:that.data.payway,
         payment:payment,
         
@@ -734,6 +813,9 @@ Page({
         watersave:that.data.watersave,
       };
       var obj2 = {
+        templateName:templateName,
+        payment:payment,
+        area:that.data.area,
         water:water,
         waterRate:that.data.waterRate,
         electricRate:that.data.electricRate,

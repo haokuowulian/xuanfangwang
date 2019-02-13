@@ -77,6 +77,26 @@ App({
     M = (M < 10 ? '0' + M : M);
     //日
     var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    // var cond1 = date.getFullYear() % 4 == 0;
+    // var cond2 = date.getFullYear() % 100 != 0;
+    // var cond3 = date.getFullYear() % 400 ==0;
+    // var cond = cond1 && cond2 || cond3;
+    if(Y % 4 == 0&&Y % 100 != 0||Y % 400 ==0){
+      console.log('是闰年')
+      if(M*1==2&date.getDate()>=29){
+        D=29;
+      }
+    }else{
+      if(M*1==2&&date.getDate()>=28){
+        D=28;
+      }
+    }
+    
+    if(M==4||M==6||M==9||M==11){
+      if(date.getDate()>=30){
+        D=30;
+      }
+    }
     switch(dateFormate){
       case "yyyy年MM月dd日":
         return Y+"年"+M+"月"+D+'日';

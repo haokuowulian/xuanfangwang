@@ -133,12 +133,13 @@ Page({
     var powerprice = that.data.powerprice;
     var waterprice = that.data.waterprice;
     // var advanceprice = that.data.advanceprice;
-    var regNum=new RegExp('[0-9]','g');
+    var regNum1=new RegExp('[0-9]','g');
+    var regNum2=new RegExp('[0-9]','g');
     if(powerprice!=''&&waterprice!=''){
       // if(rpaymethod==0){
         // if(advanceprice!=''){
-        var powerpriceNum = regNum.exec(powerprice);
-        var waterpriceNum = regNum.exec(waterprice);
+        var powerpriceNum = regNum1.exec(powerprice);
+        var waterpriceNum = regNum2.exec(waterprice);
          if(powerpriceNum){
            if(waterpriceNum){
              console.log('保存成功')
@@ -155,9 +156,9 @@ Page({
                 waterfree:false,
                 watersave:true,
                 waterdefault:false,
-                // waterlist:obj,
-                waterRate:0,
-                electricRate:0,
+                waterlist:obj,
+                waterRate:waterprice,
+                electricRate:powerprice,
               });
               
               my.navigateBack({
@@ -168,7 +169,7 @@ Page({
               title: '水费请输入数字',
               success:() =>{
                 that.setData({
-                  houseNo:'',
+                  waterprice:'',
                 });
               },
             });
@@ -178,7 +179,7 @@ Page({
             title: '电费请输入数字',
             success:() =>{
               that.setData({
-                houseNo:'',
+                powerprice:'',
               });
             },
           });

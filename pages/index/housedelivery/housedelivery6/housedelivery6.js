@@ -82,11 +82,16 @@ Page({
     var powerprice = that.data.powerprice;
     var property = that.data.property;
     var payway = that.data.payway;
-    var regNum=new RegExp('[0-9]','g');
+    var regNum1=new RegExp('[0-9]','g');
+    var regNum2=new RegExp('[0-9]','g');
+    var regNum3=new RegExp('[0-9]','g');
+    var houserentNum = regNum1.exec(houserent);
+    var waterpriceNum = regNum2.exec(waterprice);
+    var powerpriceNum = regNum3.exec(powerprice);
+    console.log(houserentNum)
+    console.log(waterpriceNum)
+    console.log(powerpriceNum)
     if(houserent!=''&&waterprice!=''&&powerprice!=''){
-      var houserentNum = regNum.exec(houserent);
-      var waterpriceNum = regNum.exec(waterprice);
-      var powerpriceNum = regNum.exec(powerprice);
       if(houserentNum){
         if(waterpriceNum){
           if(powerpriceNum){
@@ -96,7 +101,7 @@ Page({
             title: '电费请输入数字',
             success:() =>{
               that.setData({
-                houseNo:'',
+                powerprice:'',
               });
             },
           });
@@ -106,7 +111,7 @@ Page({
           title: '水费请输入数字',
           success:() =>{
             that.setData({
-              houseNo:'',
+              waterprice:'',
             });
           },
         });
@@ -228,7 +233,10 @@ Page({
     var feature = my.getStorageSync({
       key: 'r_feature', // 缓存数据的key
     }).data;
-
+    // var furniture = furnitures.join(",");
+    // var feature = features.join(",");
+    console.log(furniture)
+    console.log(feature)
     var extinguisher = my.getStorageSync({
       key: 'r_extinguisher', // 缓存数据的key
     }).data;
@@ -263,6 +271,14 @@ Page({
       key: 'r_villageimg', // 缓存数据的key
     }).data;
 
+    var v_address = my.getStorageSync({
+      key: 'r_address', // 缓存数据的key
+    }).data;
+
+    var buildingType = my.getStorageSync({
+      key: 'r_buildingType', // 缓存数据的key
+    }).data;
+
     console.log(that.data.extinguisher)
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
@@ -270,15 +286,18 @@ Page({
 
     var payment = this.data.payment;
    
-   
- 
+    var address = v_address+vaddress;
+    var templateName = address+houseNo;
 
-// private Boolean extinguisher;	//灭火器
-// 	private Boolean smokeMask;		//防烟面罩
-// 	private Boolean flashlight;		//手电筒
-// 	private Boolean rope;			//逃脱绳
-
+    var roomList = [];
+    for(var i=0;i<roomcount;i++){
+      var roomName ='房间'+(i+1);
+      roomList[i]={roomName:roomName}
+    };
+    console.log(roomList)
     var apartment = {
+      buildingType:buildingType,
+      address:address,
       provinceId:provinceCode,
       cityId:cityCode,
       districtId:countryCode,
@@ -297,6 +316,9 @@ Page({
       room:roomcount,
       hall:hallcount,
       toward:chaoxiang,
+      area:varea,
+      longitude:longitude,
+      latitude:latitude,
       // vowner:vowner,
       // vownerCard:vownerCard,
       // vrelation:vrelation,
@@ -309,13 +331,15 @@ Page({
       images:houseimg,
       
     };
-    var template = {
-      userId:uid,
+    var template = [{
+      templateName:templateName,
       area:varea,
       decorateType:decorateType,
       payment:payment,
       furniture:furniture,
       feature:feature,
+      waterRate:waterprice,
+      electricRate:powerprice,
 
       extinguisher:extinguisher,
       smokeMask:smokeMask,
@@ -325,19 +349,24 @@ Page({
       smokeMaskimg:smokeMaskimg,
       flashlightimg:flashlightimg,
       ropeimg:ropeimg,
-    };
-// console.log('uerId==='+uid)
+    }];
+console.log('uerId==='+uid)
+console.log(apartment)
+console.log(house)
+console.log(template)
     my.httpRequest({
-      url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do', // 目标服务器url
+      url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
       headers:{
         "Content-Type":'application/json'
       },
       method:'POST',
       dataType:'json',
       data:{
+        // userId:uid,
         apartment:apartment,
         house:house,
-        template:template,
+        rooms:roomList,
+        templates:template,
       },
       success: (res) => {
         console.log('提交成功'+res)

@@ -9,7 +9,7 @@
 
   <view class="subTitleClass">小区/公寓名称</view>
  <view onTap="selectPoi">
-   <input class="inputClass" type="text" placeholder="建议填写，以方便定位" value="{{village}}"/>
+   <input class="inputClass" type="text" placeholder="请填写，以方便定位" value="{{village}}"/>
   </view>
   <view class="lineClass"></view>
 
@@ -25,7 +25,13 @@
    <input class="inputClass" type="number" placeholder="请填写建筑年代" value="{{vyear}}" onInput="toInput" data-t='4'/>
   
   <view class="lineClass"></view>
-
+  <view class="subTitleClass">建筑类型率</view>
+  <picker onChange="bindPickerChange1" value="{{index}}" range="{{buildingTypes}}">
+    <view >
+   <input class="inputClass" type="number" placeholder="请填写建筑类型" value="{{buildingType}}" onInput="toInput" data-t='7'/>
+   </view>
+  </picker>
+  <view class="lineClass"></view>
   <view class="subTitleClass">绿化率</view>
 
    <input class="inputClass" type="number" placeholder="请填写绿化率" value="{{vgreen}}" onInput="toInput" data-t='5'/>
@@ -35,6 +41,8 @@
   <view class="subTitleClass">容积率</view>
 
    <input class="inputClass" type="number" placeholder="请填写容积率" value="{{vcubage}}" onInput="toInput" data-t='6'/>
+
+   
   
   <view class="lineClass"></view>
   <view class="subTitleClass">小区照片上传</view>

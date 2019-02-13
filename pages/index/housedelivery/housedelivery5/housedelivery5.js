@@ -313,13 +313,15 @@ Page({
     console.log(that.data.flashlight)
     console.log(that.data.rope)
 
-    //测试
+    //测试---------------------------------------测试
     my.navigateTo({
       url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
     })
 
-    var furniture = that.data.furniture;
-    var feature = that.data.feature;
+    var furnitures = that.data.furniture;
+    var features = that.data.feature;
+    var furniture = furnitures.join(",");
+    var feature = features.join(",");
     // var fireid = that.data.selectId;
     if(furniture!=''&&feature!=''){
       my.setStorageSync({
@@ -521,8 +523,22 @@ Page({
     var villageimg = my.getStorageSync({
       key: 'r_villageimg', // 缓存数据的key
     }).data;
+
+    var v_address = my.getStorageSync({
+      key: 'r_address', // 缓存数据的key
+    }).data;
+
+    var buildingType = my.getStorageSync({
+      key: 'r_buildingType', // 缓存数据的key
+    }).data;
+
+    var address = v_address+vaddress;
+    var templateName = address+houseNo;
+
     var tempList = that.data.tempList;
      var apartment = {
+      buildingType:buildingType,
+      address:address,
       provinceId:provinceCode,
       cityId:cityCode,
       districtId:countryCode,
@@ -541,6 +557,9 @@ Page({
       room:roomcount,
       hall:hallcount,
       toward:chaoxiang,
+      area:varea,
+      longitude:longitude,
+      latitude:latitude,
       // vowner:vowner,
       // vownerCard:vownerCard,
       // vrelation:vrelation,
@@ -552,14 +571,16 @@ Page({
       images:houseimg,
     };
 
-    var template = {
-      userId:uid,
-      area:varea,
-      decorateType:decorateType,
-      tempList:tempList,
-      // furniture:furniture,
-      // feature:feature,
-    };
+    var template = tempList;
+    // {
+    //   // userId:uid,
+    //   templateName:templateName,
+    //   // area:varea,
+    //   // decorateType:decorateType,
+    //   tempList:tempList,
+    //   // furniture:furniture,
+    //   // feature:feature,
+    // };
     // var tempList = 
 
     var room = roomList;
@@ -567,12 +588,14 @@ Page({
 
 
 
-
-
+    console.log(apartment)
+    console.log(house)
+    console.log(template)
+    console.log(room)
 
 
     my.httpRequest({
-      url: app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do',
+      url: app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid,
       headers:{
         "Content-Type":'application/json'
       },
@@ -581,12 +604,28 @@ Page({
       data:{
         apartment:apartment,
         house:house,
-        room:room,
-        template:template,
+        rooms:room,
+        templates:template,
        
       },
       success: (res) => {
         console.log('提交成功'+res)
+        my.confirm({
+          title: '温馨提示',
+          content:'确认发布后管理员将进行审核，审核通过则上架房源',
+          confirmButtonText: '确认提交',
+          cancelButtonText: '取消提交',
+          success: (res) => {
+            my.alert({
+              title: '提交成功！',
+              success: () => {
+              my.navigateBack({
+                delta: 5,
+              });
+            }, 
+            });
+          },
+        });
       },
     });
   },
