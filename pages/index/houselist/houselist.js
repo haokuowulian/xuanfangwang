@@ -152,6 +152,7 @@ Page({
     }
   },
   data: {
+    keyword:'',
     priceList,
     rentList,
     sortList,
@@ -938,6 +939,7 @@ Page({
         rentType:1,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
+        keyword:this.data.keyword,
       },
       dataType: 'json',
       success: function(res) {
@@ -1000,6 +1002,7 @@ Page({
         rentType:1,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
+        keyword:this.data.keyword,
       },
       dataType: 'json',
       success: function(res) {
@@ -1062,6 +1065,7 @@ Page({
         rentType:2,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
+        keyword:this.data.keyword,
       },
       dataType: 'json',
       success: function(res) {
@@ -1128,5 +1132,90 @@ Page({
     my.navigateTo({
     url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
-  }
+  },
+  //搜索框搜索
+  onInput(keyword){
+    var houseType = this.data.houseType;
+    this.setData({
+      keyword:keyword,
+    });
+    
+    const regExp = /[A-Za-z]/;
+    if(keyword ===''|| (regExp.test(keyword)&&keyword.length ===1)){
+      
+      this.setData({
+        areaList:[],
+     
+        placeList:[],
+      });
+      return;
+    }
+    console.log(keyword)
+    if(houseType==1){
+      my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data:{
+        keyword:keyword,
+        rentType:1,
+        pageIndex: this.data.pageIndex,
+        pageSize: 10,
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        this.setData({
+          // area: res.hotels,
+
+          boutiqueHousing: res.data.data,
+        });
+        this.addToHistory(keyword);
+      },
+    });
+    }
+
+    if(houseType==2){
+      my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data:{
+        keyword:keyword,
+        rentType:1,
+        pageIndex: this.data.pageIndex,
+        pageSize: 10,
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        this.setData({
+          // area: res.hotels,
+
+          wholeRentalHousing: res.data.data,
+        });
+        this.addToHistory(keyword);
+      },
+    });
+    }
+
+    if(houseType==3){
+      my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data:{
+        keyword:keyword,
+        rentType:2,
+        pageIndex: this.data.pageIndex,
+        pageSize: 10,
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        this.setData({
+          // area: res.hotels,
+
+          sharedHousing: res.data.data,
+        });
+        this.addToHistory(keyword);
+      },
+    });
+    }
+    
+  },
 });

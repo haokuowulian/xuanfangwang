@@ -228,7 +228,9 @@ Page({
     });
   },
   xfwLogin(){
-
+    my.navigateTo({
+      url: '/pages/login/login',
+    });
   },
   changeRole1(){//切换为租客
 

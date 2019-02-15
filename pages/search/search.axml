@@ -23,8 +23,8 @@
         <!-- <block-list listData="{{history}}" class="history-list" onItemTap="onItemTap" /> -->
         <view class="history-list">
         <block a:for="{{history}}" a:for-item="list">
-            <view class="list-title">{{list.name}}</view>
-            <view>{{list.area}}</view>
+            <view class="list-title" onTap="onSearch" data-history="{{list.name}}">{{list.name}}</view>
+            <!-- <view>{{list.area}}</view> -->
         </block>
          </view>
       </view>

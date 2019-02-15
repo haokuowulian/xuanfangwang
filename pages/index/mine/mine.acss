@@ -355,6 +355,7 @@
   background-color: #108ee9;
   color: white;
   border-radius: 12rpx;
+  margin-top: 35rpx;
 }
 
 .inputClass{

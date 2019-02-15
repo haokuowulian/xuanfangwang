@@ -157,6 +157,16 @@ Page({
       },
     });
   },
+  onSearch(e){
+    console.log(e)
+    var that = this;
+    var keyword = e.currentTarget.dataset.history;
+    console.log(keyword)
+    that.setData({
+      value:keyword,
+    });
+    that.onInput(keyword);
+  },
   onInput(keyword){
     this.setData({
       value:keyword,
@@ -176,7 +186,7 @@ Page({
     console.log(keyword)
 
     my.httpRequest({
-      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do", 
+      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
       data:{
         keyword:keyword,
@@ -194,28 +204,6 @@ Page({
         this.addToHistory(keyword);
       },
     });
-
-    // const areaList = [];
-  
-    // const placeList = [];
-    // for(let i = 0; i < area.length; i++){
-    //   if (area[i].name.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1 
-    //   || area[i].housename.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1
-    //   || area[i].area.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1){
-    //     areaList.push(area[i]);
-    //   }
-    // }
-
-  
-
-    // for(let i = 0; i < place.length; i++){
-    //   if(place[i].name.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase())!=-1
-    //     || place[i].housename.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1
-    //     || place[i].area.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1){
-    //      placeList.push(place[i]);
-    //   }
-    // }
-    // this.setData({placeList})
   },
   onClear(){
     this.setData({
