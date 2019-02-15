@@ -6,6 +6,13 @@
 
   <view class="lineClass"></view>
 
+   <view class="subTitleClass">预计房屋出租时长</view>
+   <view onTap="chooseDate">
+    <input class="inputClass" type="text" placeholder="选择预计截至"  data-t='4' value="{{endDates}}"/>
+    </view>
+
+  <view class="lineClass"></view>
+
    <view class="subTitleClass">房源描述</view>
   <view onTap="selectArea">
     <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="可介绍房源的大概地理位置、结构、基础设施、装修风格等" onInput="toInput" data-t='2'  value="{{describe}}"/>
@@ -33,6 +40,7 @@
       <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg"/>
     </view>
 
+  
    
 
    <view><button class="nextStepButtonClass" onTap="next">下一步</button></view>

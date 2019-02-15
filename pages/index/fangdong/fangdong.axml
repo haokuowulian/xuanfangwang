@@ -114,7 +114,7 @@
             <view>
               <image src="/image/fangdong/fangdong-p3.png" class="content1-img"/>
             </view>
-          <view class="content1-text">发布房源</view>
+          <view class="content1-text">上架房源</view>
         </view>
         <view>
           <image src="/image/icon/right.png" class="right-img"/>

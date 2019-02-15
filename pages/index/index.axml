@@ -170,7 +170,7 @@
                 <view class="p5">
                   <block a:for="{{lists.template.feature.split(',')}}" a:for-item="point" a:if="{{index<2}}">
                     
-                    <view class="p5-1">{{point}}                  </view>
+                    <view class="p5-1">{{point}}</view>
                     <view class="p5-2"></view>
                   </block>
                 </view>

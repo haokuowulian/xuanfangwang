@@ -8,11 +8,11 @@
       onCancel="onCancel" 
       onClear="onClear" 
       onSubmit="onSubmit" 
-      showCancelButton="{{false}}" />
+      showCancelButton="{{false}}"
+      maxLength=8 />
   </view>
 
-
-
+  <!-- 搜索前 -->
   <view class="search-container" a:if="{{areaList.length === 0 && placeList.length === 0}}">
     <view a:if="{{value.length ===0}}">
       <view a:if="{{history.length >0}}">
@@ -21,12 +21,12 @@
           </view>
         </view>
         <!-- <block-list listData="{{history}}" class="history-list" onItemTap="onItemTap" /> -->
+        <view class="history-list">
         <block a:for="{{history}}" a:for-item="list">
-          <view class="history-list">
             <view class="list-title">{{list.name}}</view>
             <view>{{list.area}}</view>
-          </view>
         </block>
+         </view>
       </view>
       <!-- 热门 -->
         <view class="hot">周边热搜
@@ -39,6 +39,8 @@
           </view>
         </block>
     </view>
+
+    <!-- 未搜索到结果 -->
     <view class="no-search-result" a:else>
       <image src="/image/icon/no_search_result.png"/>
       <text>未找到搜索结果    
@@ -47,102 +49,67 @@
   </view>
 
   <view class="search-results" a:else>
-    <!-- <view a:if="{{areaList.length > 0}}" class="component">
-      <list>
-        <view slot="header" class="list-header">区
-        </view>
 
-        <block a:for="{{areaList}}">
-          <list-item arrow="{{true}}" multipleLine="{{false}}" key="items-{{item.name}}" last="{{index === areaList.length - 1}}">
-            <view onTap="onListItemTap" data-url="{{item.path}}" data-name="{{item.name}}" style="display: flex; align-items: center">
-              <text class="component-name">{{item.name}}
-              </text>
-            </view>
-          </list-item>
-        </block>
-      </list>
-    </view> -->
 
-    <view a:if="{{placeList.length > 0}}" class="api">
+    <view a:if="{{placeList.length > 0||areaList.length > 0}}" class="api">
       <view class="page-choosetabs">
-        <view class="info1 {{bg1?'b1':'b2'}}" onTap="onChange1">      租房        </view>
-        <view class="info2 {{bg2?'b1':'b2'}}" onTap="onChange2">      酒店        </view>
+        <view class="info1 {{bg1?'b1':'b2'}}" onTap="onChange1">整租</view>
+        <view class="info2 {{bg2?'b1':'b2'}}" onTap="onChange2">合租</view>
       </view>
-      <block a:for="{{placeList}}" a:for-item="list" arrow="{{true}}" multipleLine="{{false}}" key="items-{{list.name}}" last="{{index === areaList.length - 1}}">
-        <view a:if="{{showView1}}" class="page-house">
-          <view class="house-info" onTap="onListItemTap" data-url="{{item.path}}" data-name="{{list.name}}">
-            <view class="p-img">
-              <image src="{{list.imgpath}}" class="house-img"/>
-            </view>
-            <view class="p0">
-              <view class="p1">      {{list.housename}}              </view>
-              <view class="p2">
-                <view class="p2-1">{{list.houseinfo}}            </view>
-                <view class="p2-2">{{list.houseprice}}            </view>
-              </view>
-              <view class="p3">
-                <image src="/image/icon/weizhi-2.png" class="weizhi-img" />            {{list.distance}}              
-              </view>
-              <view class="p4">      {{list.point}}              </view>
-            </view>
-          </view>
-        </view>
-      </block>
-      <block a:for="{{areaList}}" a:for-item="list" arrow="{{true}}" multipleLine="{{false}}" key="items-{{list.name}}" last="{{index === areaList.length - 1}}">
-        <view a:if="{{showView2}}" class="page-house">
-          <view class="house-info" onTap="onListItemTap" data-url="{{item.path}}" data-name="{{list.name}}">
-            <view class="p-img">
-              <image src="{{list.imgpath}}" class="house-img"/>
-            </view>
-            <view class="p0">
-              <view class="p1">      {{list.housename}}              </view>
-              <view class="p2">
-                <view class="p2-1">{{list.houseinfo}}            </view>
-                <view class="p2-2">{{list.houseprice}}            </view>
-              </view>
-              <view class="p3">
-                <image src="/image/icon/weizhi-2.png" class="weizhi-img" />            {{list.distance}}                            
-              </view>
-              <view class="p4">      {{list.point}}              </view>
-            </view>
-          </view>
-        </view>
-      </block>
-      <!-- <list>
-        <block a:for="{{placeList}}">
-          <list-item arrow="{{true}}" multipleLine="{{false}}" key="items-{{item.name}}" last="{{index === placeList.length - 1}}">
-            <view onTap="onListItemTap" data-url="{{item.path}}" data-name="{{item.name}}" style="display: flex; align-items: center">
-              <text class="component-name">{{item.name}}
-              </text>
-            </view>
 
-            <view a:if="{{showView1}}" class="page-house">
-              <view class="house-info">
-                <view class="p-img">
-                  <image src="{{item.imgpath}}" class="house-img"/>
+      <block a:for="{{placeList}}" a:for-item="list">
+        <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
+          <view class="house-info">
+            <view class="p-img">
+              <image src="{{imgurl}}{{list.images}}" class="house-img"/>
+            </view>
+            <view class="p0">
+              <view class="p1">      {{list.buildingUnit}}    
+              </view>
+              <view class="p2">
+                <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
                 </view>
-                <view class="p0">
-                  <view class="p1">      {{item.housename}}    
-                  </view>
-                  <view class="p2">
-                    <view class="p2-1">{{item.houseinfo}}
-                    </view>
-                    <view class="p2-2">{{item.houseprice}}
-                    </view>
-                  </view>
-                  <view class="p3"> 
-                    <image src="/image/icon/weizhi-2.png" class="weizhi-img" />
-                    {{item.distance}}    
-                  </view>
-                  <view class="p4">      {{item.point}}    
-                  </view>
+                <view class="p2-2">{{list.entireRents}}元/月
                 </view>
               </view>
+              <view class="p3"> 
+                <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+                {{list.toward}}    
+              </view>
+              <view class="p4">      {{list.template.feature.split(',')[0]}}    
+              </view>
             </view>
-          </list-item>
-        </block>
-        
-      </list> -->
+          </view>
+        </view>
+      </block>
+
+      <block a:for="{{areaList}}" a:for-item="list">
+        <view a:if="{{showView2}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='2'>
+          <view class="house-info">
+            <view class="p-img">
+              <image src="{{imgurl}}{{list.images.split(',')[0]}}" class="house-img"/>
+            </view>
+            <view class="p0">
+              <view class="p1">      {{list.roomName}}    
+              </view>
+              <view class="p2">
+                <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
+                </view>
+                <view class="p2-2">{{list.entireRents}}元/月
+                </view>
+              </view>
+              <view class="p3"> 
+                <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
+                {{list.toward}}    
+              </view>
+              <view class="p4">      {{list.template.feature.split(',')[0]}}    
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+
+
     </view>
 
   </view>

@@ -349,8 +349,12 @@
 }
 .btn-xfw{
   height: 100rpx;
-  width: 500rpx;
-  margin-top: 100rpx;
+  line-height: 100rpx;
+  width: 650rpx;
+  margin-left: 50rpx;
+  background-color: #108ee9;
+  color: white;
+  border-radius: 12rpx;
 }
 
 .inputClass{

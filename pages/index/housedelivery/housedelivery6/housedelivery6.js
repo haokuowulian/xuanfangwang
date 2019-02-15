@@ -286,7 +286,7 @@ Page({
 
     var payment = this.data.payment;
    
-    var address = v_address+vaddress;
+    var address = village+vaddress;
     var templateName = address+houseNo;
 
     var roomList = [];
@@ -369,7 +369,81 @@ console.log(template)
         templates:template,
       },
       success: (res) => {
-        console.log('提交成功'+res)
+
+        console.log(res)
+        that.sign(res.data.apartmentId,res.data.houseId);
+        my.confirm({
+          title: '温馨提示',
+          content:'确认发布后管理员将进行审核，审核通过则上架房源',
+          confirmButtonText: '确认提交',
+          cancelButtonText: '取消提交',
+          success: (res) => {
+            my.alert({
+              title: '提交成功！',
+              success: () => {
+              my.navigateBack({
+                delta: 6,
+              });
+            }, 
+            });
+            
+          },
+        });
+      },
+    });
+  },
+  //签订合同
+  sign(apartmentId,houseId){
+    var that = this;
+    var name = my.getStorageSync({
+      key: 'certName', // 缓存数据的key
+    }).data;
+    var idNo = my.getStorageSync({
+      key: 'certNo', // 缓存数据的key
+    }).data;
+    var uid = my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    var startDate = my.getStorageSync({
+      key: 'm_startDate', // 缓存数据的key
+    }).data;
+    var endDate = my.getStorageSync({
+      key: 'm_endDate', // 缓存数据的key
+    }).data;
+    // var houseInfo = my.getStorageSync({
+    //   key: 'uhouseInfo', // 房源详情
+    // }).data;
+    // var apartmentId=houseInfo.apartment.id;
+    // var houseId=houseInfo.id;
+    
+    my.httpRequest({
+      url: app.globalData.baseUrl+"IF/landlordCompanyServlet", // 目标服务器url
+      method: 'POST',
+      data:{
+        
+        name:name,
+        idNo:idNo,
+        apartmentId:apartmentId,
+        houseId:houseId,
+        uid:uid,
+        startTime:startDate,
+        endTime:endDate,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('---------------');
+        console.log(res);
+        if(res.data.success){
+          // that.setData({
+          //   url:res.data.url,
+          // });
+          console.log('url:   '+that.data.url);
+        }
+
+      },
+      fail: (res) => {
+       console.log(res);
+       console.log('请求失败~~');
       },
     });
   },

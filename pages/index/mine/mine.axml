@@ -5,6 +5,7 @@
     </button>
     <!-- <button class="btn-xfw" type="default" onTap="xfwLogin">选房网账号登陆
     </button> -->
+    
   </view>
 </view>
 <view a:if="{{userlogin && !userCompleted}}">

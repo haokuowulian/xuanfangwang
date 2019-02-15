@@ -102,8 +102,21 @@ Page({
 
   },
   onLoad() {
-      this.getCity();
-
+    this.getCity();
+    my.confirm({
+      title: '房源发布协议',
+      content: '在我平台发布房源将与我公司自动签订租房委托合同，上架期间的房屋在出租后，我公司将会收取一定的服务费，合同详情可以再房源信息成功提交审核后提供的链接查看。',
+      confirmButtonText: '同意',
+      cancelButtonText: '拒绝',
+      success: (res) => {
+        console.log(res)
+        if(res.confirm){
+          console.log('同意协议')
+        }else{
+          my.navigateBack();
+        }
+      },
+    });
   },
   onShow(){
     // var village = my.getStorageSync({
@@ -254,7 +267,7 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var image = that.data.img;
     var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;
