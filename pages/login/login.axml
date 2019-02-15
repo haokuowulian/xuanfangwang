@@ -1,8 +1,31 @@
-<view>
-  <view>
-    <input type="text" placeholder="请输入账号" />    
+<view class="page_login">
+  <view class="classLine"></view>
+  <view class="logo_box">
+    <image src="/image/logo.png" class="logo_img" />
   </view>
-  <view>
-    <input type="text" placeholder="请输入密码" password />    
+  <view class="classInput">
+    <input type="text" placeholder="用户名/手机号" class="classAccount" onInput="toInput" value="{{account}}" data-t='1'/>
+    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{account.length>0}}" onTap="toEmpty" data-t='1'/>
+  </view>
+  <view class="classLine"></view>
+
+  <view class="classInput" a:if="{{eyeclose}}">
+    <input type="text" placeholder="请输入密码" password class="classPassword" onInput="toInput" value="{{passwords}}" data-t='2'/>
+    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
+    <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen"/>
+  </view>
+
+  <view class="classInput" a:if="{{eyeopen}}">
+    <input type="text" placeholder="请输入密码" class="classPassword" onInput="toInput" value="{{passwords}}" data-t='2'/>
+    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
+    <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose"/>
+  </view>
+  <view class="classLine"></view>
+
+  <view class="btn_box">
+    <!-- <button class="btn_reset" type="default" onTap="reset">注册
+    </button> -->
+    <button class="btn_login" type="default" onTap="xfwLogin">立即登录
+    </button>
   </view>
 </view> 

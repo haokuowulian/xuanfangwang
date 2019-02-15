@@ -240,7 +240,6 @@ Page({
     my.setStorage({
       key: 'currentIdentityIsUser', // 缓存数据的key
       data: true, // 要缓存的数据
-      
     });
     
   },

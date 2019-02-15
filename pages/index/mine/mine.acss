@@ -8,10 +8,11 @@
 }
 .imageClass{
   margin-top: 27rpx;
-  margin-bottom: 150rpx;
+  margin-bottom: 50rpx;
   margin-left: 27rpx;
   width: 696rpx;
-  height: 568rpx;
+  /* height: 568rpx; */
+  height: 468rpx;
 }
 .banner-title{
   height: 100rpx;
@@ -64,8 +65,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 680rpx;
-  padding: 45rpx 35rpx 50rpx;
+  width: 600rpx;
+  padding: 45rpx 75rpx 50rpx;
 }
 .option-content{
   display: flex;
@@ -346,6 +347,7 @@
   background-color: #108ee9;
   color: white;
   border-radius: 12rpx;
+  margin-top: 35rpx;
 }
 .btn-xfw{
   height: 100rpx;
@@ -412,3 +414,24 @@
    bottom: 0;
    position: fixed;
   }
+.classAccount{
+  height: 100rpx;
+  width: 500rpx;
+  margin-left: 30rpx;
+  border-radius: 12rpx;
+  margin-top: 15rpx;
+}
+.classPassword{
+  height: 100rpx;
+  width: 500rpx;
+  margin-left: 30rpx;
+  border-radius: 12rpx;
+  margin-top: 15rpx;
+}
+.classInput{
+  width: 700rpx;
+  margin-left: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

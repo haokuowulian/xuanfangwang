@@ -1,13 +1,21 @@
 <view a:if="{{!userlogin}}">
   <view class="page-login">
-    <image class="imageClass" src="/image/icon/sqdl.png"  />
-    <button class="btn-ant" type="default" onTap="antLogin">支付宝授权登陆
-    </button>
+    <image class="imageClass" src="/image/icon/sqdl.png"/>
+    
     <button class="btn-xfw" type="default" onTap="xfwLogin">选房网账号登陆
     </button>
+    <button class="btn-ant" type="default" onTap="antLogin">支付宝授权登陆
+    </button>
+
 
   </view>
 </view>
+
+
+
+
+
+
 <view a:if="{{userlogin && !userCompleted}}">
   <view >
     <view  onTap="selectSex"><input class="inputClass" placeholder="请选择性别"  value="{{sex}}" disabled="true"/></view>
