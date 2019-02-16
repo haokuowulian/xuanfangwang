@@ -213,14 +213,15 @@ Page({
       console.log(res)
       console.log(res.data)
       if(res.data.success){
-        my.alert({
-        title:'提交成功！',
-        content:'我们会尽快处理。',
-        buttonText:'确认',
-        success: () => {
-          my.navigateBack();
-        },
-      });
+        that.getOrder();
+      //   my.alert({
+      //   title:'提交成功！',
+      //   content:'我们会尽快处理。',
+      //   buttonText:'确认',
+      //   success: () => {
+      //     my.navigateBack();
+      //   },
+      // });
       }else{
         my.alert({
         title:'提交失败！',
@@ -235,6 +236,9 @@ Page({
     },
   });
   
+  },
+  getOrder(){
+    
   },
   //重置
   formReset(){

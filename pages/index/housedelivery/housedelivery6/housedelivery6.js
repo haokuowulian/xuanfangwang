@@ -292,7 +292,7 @@ Page({
     var roomList = [];
     for(var i=0;i<roomcount;i++){
       var roomName ='房间'+(i+1);
-      roomList[i]={roomName:roomName}
+      roomList[i]={roomName:roomName,rents:0}
     };
     console.log(roomList)
     var apartment = {
@@ -319,6 +319,7 @@ Page({
       area:varea,
       longitude:longitude,
       latitude:latitude,
+      landlordId:uid,
       // vowner:vowner,
       // vownerCard:vownerCard,
       // vrelation:vrelation,
@@ -354,6 +355,7 @@ console.log('uerId==='+uid)
 console.log(apartment)
 console.log(house)
 console.log(template)
+console.log(roomList)
     my.httpRequest({
       url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
       headers:{
@@ -382,7 +384,7 @@ console.log(template)
               title: '提交成功！',
               success: () => {
               my.navigateBack({
-                delta: 6,
+                delta: 7,
               });
             }, 
             });

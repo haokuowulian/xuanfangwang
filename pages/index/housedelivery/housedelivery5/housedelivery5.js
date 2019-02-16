@@ -314,9 +314,9 @@ Page({
     console.log(that.data.rope)
 
     //测试---------------------------------------测试
-    my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
-    })
+    // my.navigateTo({
+    //   url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
+    // })
 
     var furnitures = that.data.furniture;
     var features = that.data.feature;
