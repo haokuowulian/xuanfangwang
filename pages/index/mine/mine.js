@@ -37,6 +37,18 @@ Page({
     // if(userId!=''&&userId!=null){
     //   this.antLogin();
     // }
+    var userlogin = my.getStorageSync({
+      key: 'userlogin', 
+    }).data;
+    if(userlogin!=''){
+      
+    }else{
+      my.setStorageSync({
+        key: 'userlogin', // 缓存数据的key
+        data: false, // 要缓存的数据
+      });
+    }
+    
     
   },
   onShow(){
@@ -183,6 +195,14 @@ Page({
                    my.setNavigationBar({
                     title:'个人中心'
                    });
+                   my.setStorageSync({
+                    key: 'userCompleted', // 缓存数据的key
+                    data: true, // 要缓存的数据
+                  });
+                  my.setStorageSync({
+                    key: 'userlogin', // 缓存数据的key
+                    data: true, // 要缓存的数据
+                  });
                    this.setData({
                       certNo:res.data.info.certNo,
                       userlogin:true,
@@ -196,6 +216,14 @@ Page({
                  }else{//未完善信息
                   my.setNavigationBar({
                     title:'完善信息'
+                  });
+                   my.setStorageSync({
+                    key: 'userCompleted', // 缓存数据的key
+                    data: false, // 要缓存的数据
+                  });
+                  my.setStorageSync({
+                    key: 'userlogin', // 缓存数据的key
+                    data: true, // 要缓存的数据
                   });
                    this.setData({
                       certNo:res.data.info.certNo,
@@ -350,6 +378,9 @@ Page({
     my.navigateTo({
       url: '/pages/index/accountinfo/accountinfo',
     });
+    //  my.navigateTo({
+    //   url: '/pages/index/account_completed/account_completed',
+    // });
   },
   // toTest(){
   //   my.navigateTo({

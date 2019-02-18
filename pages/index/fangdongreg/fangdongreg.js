@@ -213,15 +213,7 @@ Page({
       console.log(res)
       console.log(res.data)
       if(res.data.success){
-        that.getOrder();
-      //   my.alert({
-      //   title:'提交成功！',
-      //   content:'我们会尽快处理。',
-      //   buttonText:'确认',
-      //   success: () => {
-      //     my.navigateBack();
-      //   },
-      // });
+        that.getOrder(res.data.landlordId,form_data.name);
       }else{
         my.alert({
         title:'提交失败！',
@@ -237,8 +229,70 @@ Page({
   });
   
   },
-  getOrder(){
-    
+  getOrder(landlordId,landlordName){
+    var that = this;
+    var buyer_id = my.getStorageSync({
+      key: 'upayUserId', // 缓存数据的key
+    }).data;
+    // var landlordName = my.getStorageSync({
+    //   key: 'certName', // 缓存数据的key
+    // }).data;
+    console.log(buyer_id+'---'+landlordName+'***'+landlordId)
+    my.httpRequest({
+      url: app.globalData.baseUrl+ 'IF/landlord/addAlipayAuditing.do', 
+      method: 'POST',
+      data:{
+        buyer_id:buyer_id,
+        landlordId:landlordId,
+        landlordName:landlordName,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('-------success--------');
+        console.log(res)
+        console.log(res.data)
+        my.tradePay({
+          tradeNO: res.data.data.alipay_trade_create_response.trade_no,
+          success: (res) => {
+            console.log('-------success--------');
+            console.log(res);
+            that.uploadCode(landlordId,res.resultCode);
+          },
+          fail: (res) => {
+            console.log('-------fail--------');
+            console.log(res);
+            that.uploadCode(landlordId,res.resultCode);
+          }
+        });
+      },
+      fail: (res) => {
+        console.log('-------fail--------');
+        console.log(res);
+        
+      }
+    });
+  },
+  uploadCode(landlordId,resultCode){
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/landlord/payAlipayAuditing.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        landlordId:landlordId,
+        resultCode:resultCode,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res+'状态码上传成功');
+          my.alert({
+            title:'提交成功！',
+            content:'我们会尽快处理。',
+            buttonText:'确认',
+            success: () => {
+              my.navigateBack();
+            },
+        });
+      },
+    });
   },
   //重置
   formReset(){

@@ -1,0 +1,31 @@
+<view class="page">
+  <view class="page-title">
+    信息完善
+  </view>
+
+  <view>
+    <view >
+      <view  onTap="selectSex"><input class="inputClass" placeholder="请选择性别"  value="{{sex}}" disabled="true"/></view>
+      <view  onTap="selectCity"><input class="inputClass" placeholder="请选择所在城市"  value="{{city}}" disabled="true"/></view>
+      <view  onTap="selectArea"><input class="inputClass" placeholder="请选择所在地区"  value="{{area}}" disabled="true"/></view>
+      <input class="inputClass" type="idcard" placeholder="请输入本人身份证号"  onInput="bindIdCard" />
+      <input class="inputClass" type="text" placeholder="请输入密码"   password onInput="bindPassword"/>
+      
+      <button class="submitButton" type="default" onTap="submit">提交
+      </button>
+    </view>
+</view>
+
+
+</view>
+<view class="modal-box" hidden="{{!showBottom}}" onTap="onPopupClose" >
+    <view class="modal-body">
+      <view class="modal-content">
+       <scroll-view scroll-y="true" style="height: 200px;" >
+       <block a:for="{{areaList}}" >
+         <view class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</view>
+       </block>
+      </scroll-view> 
+      </view>
+    </view>
+  </view>

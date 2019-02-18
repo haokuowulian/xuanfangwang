@@ -60,8 +60,8 @@
 
 
 
-
-<view a:if="{{userlogin && !userCompleted}}">
+<!-- 用户完善信息 -->
+<!-- <view a:if="{{userlogin && !userCompleted}}">
   <view >
     <view  onTap="selectSex"><input class="inputClass" placeholder="请选择性别"  value="{{sex}}" disabled="true"/></view>
     <view  onTap="selectCity"><input class="inputClass" placeholder="请选择所在城市"  value="{{city}}" disabled="true"/></view>
@@ -72,8 +72,9 @@
     <button class="submitButton" type="default" onTap="submit">提交
     </button>
   </view>
-</view>
-<view a:if="{{userlogin && userCompleted}}">
+</view> -->
+<!-- <view a:if="{{userlogin && userCompleted}}"> -->
+<view a:if="{{userlogin}}">
   <view a:if="{{!isRoleUser}}">
     <view class="page-banner">
       <view class="banner-title font-color1">
@@ -190,6 +191,14 @@
           <image src="/image/icon/right.png" class="right-img" />
         </view>
       </view>
+      <!-- <view class="page-suggest" onTap="toMyOrder">
+        <view class="other-title">房源约看
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img" />
+        </view>
+      </view> -->
+
       <view class="page-suggest" onTap="toSetting">
         <view class="other-title">个人设置
         </view>
@@ -200,7 +209,8 @@
     </view>
     </view>
   </view>
-  <view a:if="{{userlogin&&isRoleUser&&userCompleted}}">
+  <!-- <view a:if="{{userlogin&&isRoleUser&&userCompleted}}"> -->
+  <view a:if="{{userlogin&&isRoleUser}}">
     <view class="page-banner1">
       <view class="banner-title1 font-color2">
         <!-- <view a:if="{{roleId==8}}" class="title-change" onTap="changeRole2">
