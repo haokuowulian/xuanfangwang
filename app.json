@@ -53,7 +53,8 @@
     "pages/index/housedelivery/housedelivery6/housedelivery6",
     "pages/index/housedelivery/housedelivery5-1/housedelivery5-1",
     "pages/index/housedelivery/housedelivery5-2/housedelivery5-2",
-    "pages/index/housedelivery/housedelivery-map/housedelivery-map"
+    "pages/index/housedelivery/housedelivery-map/housedelivery-map",
+    "pages/index/account_completed/account_completed"
   ],
   "window": {
     "defaultTitle": "My App"

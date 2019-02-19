@@ -137,8 +137,10 @@ Page({
     });
   },
   toPay(){
-    var tradeNO=this.data.tradeNO;
-    var uid = this.data.userId;
+    var that = this;
+    var tradeNO=that.data.tradeNO;
+    var uid = that.data.userId;
+    var orderId = that.data.orderid;
     my.tradePay({
       tradeNO: tradeNO, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
       success: (res) => {

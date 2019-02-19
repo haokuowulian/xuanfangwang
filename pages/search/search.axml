@@ -43,7 +43,7 @@
     <!-- 未搜索到结果 -->
     <view class="no-search-result" a:else>
       <image src="/image/icon/no_search_result.png"/>
-      <text>未找到搜索结果    
+      <text>未找到搜索结果
       </text>
     </view>
   </view>

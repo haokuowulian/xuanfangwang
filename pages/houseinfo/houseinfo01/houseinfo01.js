@@ -26,11 +26,17 @@ Page({
    
   onLoad(option) {
     var userId = my.getStorageSync({
-          key: 'userId', // 缓存数据的key
-        }).data;
+      key: 'userId', // 缓存数据的key
+    }).data;
     var certNo = my.getStorageSync({
-          key: 'certNo', // 缓存数据的key
-        }).data;
+      key: 'certNo', // 缓存数据的key
+    }).data;
+    var userlogin = my.getStorageSync({
+      key: 'userlogin', 
+    }).data;
+    if(userlogin){
+
+    }
     this.setData({
       id:option.id,
       rentType:option.rentType,
@@ -38,8 +44,8 @@ Page({
       userId:userId,
       certNo:certNo
     });
-    console.log(this.data.id);
-    console.log(this.data.rentType);
+    console.log('id:'+this.data.id);
+    console.log('type:'+this.data.rentType);
 
     this.getIsCollect();
     this.getIsBespeak();
@@ -141,17 +147,19 @@ Page({
         isColect:false
       });
     }else{
-      var that=this;
+     
      my.httpRequest({
       url: app.globalData.baseUrl+"IF/bespeak/isBespeak.do",
       method: 'POST',
       data: {
-        userId:this.data.userId,
-        housingId: this.data.id,
-        housingType: this.data.rentType
+        userId:that.data.userId,
+        housingId: that.data.id,
+        housingType: that.data.rentType
       },
       dataType: 'json',
       success: function(res) {
+        console.log('是否预约？');
+        console.log(that.data.userId+'*********'+that.data.id+'******'+that.data.rentType);
         console.log(res.data);
         
         if(res.data.success){
@@ -185,29 +193,58 @@ Page({
     })
   },
   toConfirmpage(){
-    if(!this.data.userId||this.data.userId==''||!this.data.certNo||this.data.certNo==''){
+    var userlogin = my.getStorageSync({
+      key: 'userlogin', 
+    }).data;
+    var userCompleted = my.getStorageSync({
+      key: 'userCompleted', 
+    }).data;
+    if(!userlogin){
       my.alert({
-        title: '请先在个人主页登录或完善信息' 
+        title: '请先登录' 
       });
     }else{
-      my.navigateTo({
-      url: '/pages/index/confirmpage/confirmpage?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
-    });
+      if(userCompleted){
+        my.navigateTo({
+          url: '/pages/index/confirmpage/confirmpage?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+        });
+      }else{
+        my.confirm({
+          title: '温馨提示',
+          content: '请先完善个人信息',
+          confirmButtonText: '确认',
+          cancelButtonText: '取消',
+          success: (res) => {
+            if(res.confirm){
+              my.navigateTo({
+                url: '/pages/index/account_completed/account_completed',
+              });
+            }
+            
+          },
+        });
+      }
+      
     }
     
   },
   //收藏或取消收藏
   collectOrUncollect(){
-    if(!this.data.userId||this.data.userId==''||!this.data.certNo||this.data.certNo==''){
+    var userlogin = my.getStorageSync({
+      key: 'userlogin', 
+    }).data;
+     
+    if(!userlogin){
       my.alert({
-        title: '请先在个人主页登录或完善信息' 
+        title: '请先登录' 
       });
     }else{
+      
       if(this.data.isColect){//已收藏
-      this.unCollect();
-    }else{//未收藏
-      this.collect();
-    }
+        this.unCollect();
+      }else{//未收藏
+        this.collect();
+      }
     }
     
   
@@ -332,9 +369,15 @@ Page({
     });
   },
   toComplaint(){
-    if(!this.data.userId||this.data.userId==''||!this.data.certNo||this.data.certNo==''){
+    var userCompleted = my.getStorageSync({
+      key: 'userCompleted', 
+    }).data;
+    var userlogin = my.getStorageSync({
+      key: 'userlogin', 
+    }).data;
+    if(!userlogin){
       my.alert({
-        title: '请先在个人主页登录或完善信息' 
+        title: '请先登录' 
       });
     }else{
       my.navigateTo({
@@ -344,14 +387,38 @@ Page({
     
   },
   toSigning(){
-     if(!this.data.userId||this.data.userId==''){
+    var userCompleted = my.getStorageSync({
+      key: 'userCompleted', 
+    }).data;
+    var userlogin = my.getStorageSync({
+      key: 'userlogin', 
+    }).data;
+    console.log(userCompleted)
+     if(!userlogin){
       my.alert({
-        title: '请先在个人主页登录或完善信息' 
+        title: '请先登录' 
       });
     }else{
-      my.navigateTo({
-      url: '/pages/index/signing/signing?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
-    });
+      if(userCompleted){
+        my.navigateTo({
+          url: '/pages/index/signing/signing?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+        });
+      }else{
+         my.confirm({
+          title: '温馨提示',
+          content: '请先完善个人信息',
+          confirmButtonText: '确认',
+          cancelButtonText: '取消',
+          success: (res) => {
+            if(res.confirm){
+              my.navigateTo({
+                url: '/pages/index/account_completed/account_completed',
+              });
+            }
+          },
+        });
+      }
+      
     }
   },
   onPaymentMethod(){

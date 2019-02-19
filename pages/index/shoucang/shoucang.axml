@@ -24,7 +24,7 @@
           </view>
           
           <view class="{{management_house?'page-list1':'page-list'}} page-select">
-            <view class="{{management_house?'list1':'list'}}">
+            <view class="{{management_house?'list1':'list'}}" onTap="toHouseInfo"  data-text="{{item.housingId}}" data-type="{{item.housingType}}">
               <view class="list-img">
                 <image src="{{imgUrl}}{{item.images.split(',')[0]}}" class="house-img" />
               </view>

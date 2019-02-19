@@ -207,6 +207,9 @@ Page({
     my.getLocation({
       type:2,
       success(res) {
+        console.log('***********')
+        console.log(res)
+        console.log('***********')
         my.hideLoading();
        that.setData({
          address:res.streetNumber.street+res.streetNumber.number,

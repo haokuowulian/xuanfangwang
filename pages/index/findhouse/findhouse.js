@@ -159,7 +159,8 @@ Page({
   searchHouse(){
     console.log('222222222222')
      my.navigateTo({
-      url: '/pages/index/renting/renting?type=1',
+      // url: '/pages/index/renting/renting?type=1',
+      url: '/pages/search/search',
     });
   },
 

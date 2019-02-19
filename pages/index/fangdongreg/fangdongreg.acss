@@ -10,16 +10,16 @@
   flex-direction: row;
   /* justify-content: center; */
   align-items: center;
+  border-bottom: 2rpx solid #f7f7f7f7;
 }
 .reg-back{
   width: 680rpx;
   padding-left: 35rpx;
   padding-right: 35rpx;
 }
-.input{
-  border: 1rpx solid #f7f7f7f7;
-
-}
+/* .input{
+  border-bottom: 2rpx solid #f7f7f7f7;
+} */
 .btn{
   height: 150rpx;
   width: 680rpx;

@@ -7,9 +7,12 @@ Page({
     type:0
   },
   onLoad(option) {
-   this.setData({
-     type:option.type
-   });
+    if(option.type!=''){
+      this.setData({
+        type:option.type
+      });
+    }
+   
    console.log(this.data.type);
   },
   onShow(){

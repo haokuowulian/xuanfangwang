@@ -6,8 +6,16 @@ Page({
     area:'',
     showBottom: false,
     areaList:[],
+    userId:'',
   },
-  onLoad() {},
+  onLoad() {
+    var userId = my.getStorageSync({
+      key: 'userId', 
+    }).data;
+    this.setData({
+      userId:userId,
+    });
+  },
   onPopupClose() {
     this.setData({
       showBottom: false,
@@ -113,7 +121,7 @@ Page({
       
     my.confirm({
       title: '温馨提示',
-      content: '点击同意后即授权该应用获取您的手机号和真实姓名',
+      content: '是否上传',
       confirmButtonText: '同意',
       cancelButtonText: '拒绝',
       success: (result) => {
@@ -137,29 +145,47 @@ Page({
               'content-type': 'application/json'
             },
         data: {
-         sex:this.data.sexCode,
-         cityCode:this.data.cityCode,
-         cityName:this.data.city,
-         areaCode:this.data.areaId,
-         areaName:this.data.area,
-         certNo:this.data.certNo,
-         password:this.data.password,
-         id:this.data.userId,
+         sex:that.data.sexCode,
+         cityCode:that.data.cityCode,
+         cityName:that.data.city,
+         areaCode:that.data.areaId,
+         areaName:that.data.area,
+         certNo:that.data.certNo,
+         password:that.data.password,
+         id:that.data.userId,
         },
         dataType: 'json',
         success: function(res) {
+          console.log(res)
           if(res.data.success){
-            that.setData({
-              userCompleted:true,
-              userlogin:true,
-              headimg:that.data.headimg,
-              userName:nickName
-            });
+            // that.setData({
+            //   userCompleted:true,
+            //   userlogin:true,
+            //   headimg:that.data.headimg,
+            //   userName:nickName
+            // });
             
-             my.setStorageSync({
-                 key: 'certNo', // 缓存数据的key
-                 data: that.data.certNo, // 要缓存的数据
-               });
+            my.setStorageSync({
+              key: 'certNo', // 缓存数据的key
+              data: that.data.certNo, // 要缓存的数据 
+            });
+            my.setStorageSync({
+              key: 'sex', // 缓存数据的key
+              data: that.data.sex, // 要缓存的数据 
+            });
+            my.setStorageSync({
+              key: 'userCompleted', // 缓存数据的key
+              data: true, // 要缓存的数据 
+            });
+            my.alert({
+              title: '修改成功！',
+              success: () => {
+                my.navigateBack({
+                  delta: 1,
+                });
+              }
+            });
+           
 
           }
         },
