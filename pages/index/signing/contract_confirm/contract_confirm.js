@@ -29,7 +29,7 @@ Page({
       success: (res) => {
         console.log(res)
         if(res.confirm){
-that.sign();
+          that.sign();
           // my.tradePay({
           //   tradeNO: '201711152100110410533667792', // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
           //   success: (res) => {
@@ -267,7 +267,7 @@ that.sign();
         var orderId = res.data.orderId;
         console.log(orderId);
         my.tradePay({
-            tradeNO: res.data.data.alipay_trade_create_response.trade_no, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
+            tradeNO: res.data.data.alipay_trade_create_response.trade_no,
             success: (res) => {
               console.log('-------success--------');
               console.log(res);

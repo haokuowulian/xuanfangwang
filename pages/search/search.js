@@ -1,121 +1,122 @@
 import debounce from '/util/debounce';
 
-const area = [
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '1',
-    imgpath: '/image/house5.png',
-    housename: '武林广场昊呐酒店',
-    houseinfo: '杭州西湖武林广场',
-    houseprice: '￥231起',
-    distance: '距2号线建设一路1222米',
-    point: '豪华型',
-  },
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '2',
-    imgpath: '/image/house5.png',
-    housename: '武林广场昊呐酒店',
-    houseinfo: '杭州西湖武林广场',
-    houseprice: '￥231起',
-    distance: '距2号线建设一路1222米',
-    point: '豪华型',
-  },
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '3',
-    imgpath: '/image/house5.png',
-    housename: '武林广场昊呐酒店',
-    houseinfo: '杭州西湖武林广场',
-    houseprice: '￥231起',
-    distance: '距2号线建设一路1222米',
-    point: '豪华型',
-  },
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '4',
-    imgpath: '/image/house5.png',
-    housename: '武林广场昊呐酒店',
-    houseinfo: '杭州西湖武林广场',
-    houseprice: '￥231起',
-    distance: '距2号线建设一路1222米',
-    point: '豪华型',
-  },
-]
-const place = [
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '1',
-    imgpath: '/image/house3.png',
-    housename: '萧山大成国际1居室',
-    houseinfo: '75m² | 2/8层',
-    houseprice: '￥8231/月',
-    distance: '距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '2',
-    imgpath: '/image/house3.png',
-    housename: '萧山大成国际1居室',
-    houseinfo: '75m² | 2/8层',
-    houseprice: '￥8231/月',
-    distance: '距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '3',
-    imgpath: '/image/house3.png',
-    housename: '萧山大成国际1居室',
-    houseinfo: '75m² | 2/8层',
-    houseprice: '￥8231/月',
-    distance: '距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-  {
-    name: '相墅花园',
-    area: '闻堰镇-萧山区',
-    id: '4',
-    imgpath: '/image/house3.png',
-    housename: '萧山大成国际1居室',
-    houseinfo: '75m² | 2/8层',
-    houseprice: '￥8231/月',
-    distance: '距2号线建设一路1222米',
-    point: '离地铁近',
-  },
-]
-
+// const area = [
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '1',
+//     imgpath: '/image/house5.png',
+//     housename: '武林广场昊呐酒店',
+//     houseinfo: '杭州西湖武林广场',
+//     houseprice: '￥231起',
+//     distance: '距2号线建设一路1222米',
+//     point: '豪华型',
+//   },
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '2',
+//     imgpath: '/image/house5.png',
+//     housename: '武林广场昊呐酒店',
+//     houseinfo: '杭州西湖武林广场',
+//     houseprice: '￥231起',
+//     distance: '距2号线建设一路1222米',
+//     point: '豪华型',
+//   },
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '3',
+//     imgpath: '/image/house5.png',
+//     housename: '武林广场昊呐酒店',
+//     houseinfo: '杭州西湖武林广场',
+//     houseprice: '￥231起',
+//     distance: '距2号线建设一路1222米',
+//     point: '豪华型',
+//   },
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '4',
+//     imgpath: '/image/house5.png',
+//     housename: '武林广场昊呐酒店',
+//     houseinfo: '杭州西湖武林广场',
+//     houseprice: '￥231起',
+//     distance: '距2号线建设一路1222米',
+//     point: '豪华型',
+//   },
+// ]
+// const place = [
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '1',
+//     imgpath: '/image/house3.png',
+//     housename: '萧山大成国际1居室',
+//     houseinfo: '75m² | 2/8层',
+//     houseprice: '￥8231/月',
+//     distance: '距2号线建设一路1222米',
+//     point: '离地铁近',
+//   },
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '2',
+//     imgpath: '/image/house3.png',
+//     housename: '萧山大成国际1居室',
+//     houseinfo: '75m² | 2/8层',
+//     houseprice: '￥8231/月',
+//     distance: '距2号线建设一路1222米',
+//     point: '离地铁近',
+//   },
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '3',
+//     imgpath: '/image/house3.png',
+//     housename: '萧山大成国际1居室',
+//     houseinfo: '75m² | 2/8层',
+//     houseprice: '￥8231/月',
+//     distance: '距2号线建设一路1222米',
+//     point: '离地铁近',
+//   },
+//   {
+//     name: '相墅花园',
+//     area: '闻堰镇-萧山区',
+//     id: '4',
+//     imgpath: '/image/house3.png',
+//     housename: '萧山大成国际1居室',
+//     houseinfo: '75m² | 2/8层',
+//     houseprice: '￥8231/月',
+//     distance: '距2号线建设一路1222米',
+//     point: '离地铁近',
+//   },
+// ]
+const app=getApp();
 Page({
   data: {
+    imgurl:app.globalData.baseImgUrl_whj,
     value:'',
     history: my.getStorageSync({ key: 'searchHistory' }).data || [],
     hot: [
-      { name: '湘湖科创园',
-        area: '科技园区-萧山区',
-        imgpath: '/image/house3.png',
-        housename: '萧山大成国际1居室',
-        houseinfo: '75m² | 2/8层',
-        houseprice: '￥8231/月',
-        distance: '距2号线建设一路1222米',
-        point: '离地铁近',
-         },
-      { name: '科技园区-萧山区',
-        area: '闻堰镇-萧山区',
-        imgpath: '/image/house3.png',
-        housename: '萧山大成国际1居室',
-        houseinfo: '75m² | 2/8层',
-        houseprice: '￥8231/月',
-        distance: '距2号线建设一路1222米',
-        point: '离地铁近',
-      },
+      // { name: '湘湖科创园',
+      //   area: '科技园区-萧山区',
+      //   imgpath: '/image/house3.png',
+      //   housename: '萧山大成国际1居室',
+      //   houseinfo: '75m² | 2/8层',
+      //   houseprice: '￥8231/月',
+      //   distance: '距2号线建设一路1222米',
+      //   point: '离地铁近',
+      //    },
+      // { name: '科技园区-萧山区',
+      //   area: '闻堰镇-萧山区',
+      //   imgpath: '/image/house3.png',
+      //   housename: '萧山大成国际1居室',
+      //   houseinfo: '75m² | 2/8层',
+      //   houseprice: '￥8231/月',
+      //   distance: '距2号线建设一路1222米',
+      //   point: '离地铁近',
+      // },
     ],
     areaList: [],
     placeList: [],
@@ -123,6 +124,7 @@ Page({
     bg2: false,
     showView1: false,
     showView2: false,
+    pageIndex:1,
   },
   
   onLoad() {
@@ -155,9 +157,20 @@ Page({
       },
     });
   },
+  onSearch(e){
+    console.log(e)
+    var that = this;
+    var keyword = e.currentTarget.dataset.history;
+    console.log(keyword)
+    that.setData({
+      value:keyword,
+    });
+    that.onInput(keyword);
+  },
   onInput(keyword){
     this.setData({
       value:keyword,
+
     });
     
     const regExp = /[A-Za-z]/;
@@ -170,38 +183,27 @@ Page({
       });
       return;
     }
-    // my.httpRequest({
-    //   url: '', // 目标服务器url  keyword作为参数
-    //   success: (res) => {
-    //     this.setData({
-    //       area: res.hotels,
+    console.log(keyword)
 
-    //       place: res.houses,
-    //     });
-    //   },
-    // });
+    my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      method: 'POST',
+      data:{
+        keyword:keyword,
+        rentType:1,
+        pageIndex: this.data.pageIndex,
+        pageSize: 10,
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        this.setData({
+          // area: res.hotels,
 
-    const areaList = [];
-  
-    const placeList = [];
-    for(let i = 0; i < area.length; i++){
-      if (area[i].name.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1 
-      || area[i].housename.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1
-      || area[i].area.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1){
-        areaList.push(area[i]);
-      }
-    }
-
-  
-
-    for(let i = 0; i < place.length; i++){
-      if(place[i].name.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase())!=-1
-        || place[i].housename.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1
-        || place[i].area.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) != -1){
-         placeList.push(place[i]);
-      }
-    }
-    this.setData({areaList,placeList})
+          placeList: res.data.data,
+        });
+        this.addToHistory(keyword);
+      },
+    });
   },
   onClear(){
     this.setData({
@@ -269,9 +271,55 @@ Page({
   onChange1() {
     this.setData({ bg1: true, bg2: false });
     this.setData({ showView1: true, showView2: false });
+    var keyword = this.data.value;
+    var rentType = 1;
+    my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do", 
+      method: 'POST',
+      data:{
+        keyword:keyword,
+        rentType:rentType,
+        pageIndex: this.data.pageIndex,
+        pageSize: 10,
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        this.setData({
+          placeList: res.data.data,
+          areaList:[],
+        });
+        this.addToHistory(keyword);
+      },
+    });
   },
   onChange2() {
     this.setData({ bg2: true, bg1: false });
     this.setData({ showView2: true, showView1: false });
+    var keyword = this.data.value;
+    var rentType = 2;
+    my.httpRequest({
+      url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do", 
+      method: 'POST',
+      data:{
+        keyword:keyword,
+        rentType:rentType,
+        pageIndex: this.data.pageIndex,
+        pageSize: 10,
+      },
+      success: (res) => {
+        console.log(res.data.data)
+        this.setData({
+          areaList: res.data.data,
+          placeList:[],
+        });
+        this.addToHistory(keyword);
+      },
+    });
   },
+    //前往房源详情
+  goToHouseDetail(e){
+    my.navigateTo({
+    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+    })
+  }
 });

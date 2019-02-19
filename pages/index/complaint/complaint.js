@@ -116,7 +116,8 @@ Page({
       formData:{savePrefix:'complaintSuggest'},
       filePath: image,
       success: res => {
-        console.log('success');
+        console.log('success****************');
+        console.log(res);
         console.log(res.data);
 
         var json1 = JSON.parse(res.data);

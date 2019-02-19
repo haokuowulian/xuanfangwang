@@ -74,7 +74,7 @@
   <view a:if="{{status!=3}}" class="page-user1">
     <view class="users">
       <view class="users-title"></view>
-      <view class="order-btn" onTap="onCancel">申请中止</view>
+      <view class="order-btn" onTap="onCancel">申请解约</view>
     </view>
      <view class="users">
       <view class="users-title"></view>

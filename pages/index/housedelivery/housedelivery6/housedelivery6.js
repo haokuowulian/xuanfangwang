@@ -82,8 +82,51 @@ Page({
     var powerprice = that.data.powerprice;
     var property = that.data.property;
     var payway = that.data.payway;
+    var regNum1=new RegExp('[0-9]','g');
+    var regNum2=new RegExp('[0-9]','g');
+    var regNum3=new RegExp('[0-9]','g');
+    var houserentNum = regNum1.exec(houserent);
+    var waterpriceNum = regNum2.exec(waterprice);
+    var powerpriceNum = regNum3.exec(powerprice);
+    console.log(houserentNum)
+    console.log(waterpriceNum)
+    console.log(powerpriceNum)
     if(houserent!=''&&waterprice!=''&&powerprice!=''){
-      that.getHouseInfo(houserent,waterprice,powerprice);
+      if(houserentNum){
+        if(waterpriceNum){
+          if(powerpriceNum){
+            that.getHouseInfo(houserent,waterprice,powerprice);
+          }else{
+            my.alert({
+            title: '电费请输入数字',
+            success:() =>{
+              that.setData({
+                powerprice:'',
+              });
+            },
+          });
+          }
+        }else{
+          my.alert({
+          title: '水费请输入数字',
+          success:() =>{
+            that.setData({
+              waterprice:'',
+            });
+          },
+        });
+        }
+      }else{
+        my.alert({
+          title: '租金请输入数字',
+          success:() =>{
+            that.setData({
+              houseNo:'',
+            });
+          },
+        });
+      }
+      
     }else{
       my.alert({
         title: '请填写完整' 
@@ -190,7 +233,10 @@ Page({
     var feature = my.getStorageSync({
       key: 'r_feature', // 缓存数据的key
     }).data;
-
+    // var furniture = furnitures.join(",");
+    // var feature = features.join(",");
+    console.log(furniture)
+    console.log(feature)
     var extinguisher = my.getStorageSync({
       key: 'r_extinguisher', // 缓存数据的key
     }).data;
@@ -203,12 +249,34 @@ Page({
     var rope = my.getStorageSync({
       key: 'r_rope', // 缓存数据的key
     }).data;
+
+    var extinguisherimg = my.getStorageSync({
+      key: 'r_extinguisherimg', // 缓存数据的key
+    }).data;
+    var smokeMaskimg = my.getStorageSync({
+      key: 'r_smokeMaskimg', // 缓存数据的key
+    }).data;
+    var flashlightimg = my.getStorageSync({
+      key: 'r_flashlightimg', // 缓存数据的key
+    }).data;
+    var ropeimg = my.getStorageSync({
+      key: 'r_ropeimg', // 缓存数据的key
+    }).data;
+
     var uid = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
 
     var villageimg = my.getStorageSync({
       key: 'r_villageimg', // 缓存数据的key
+    }).data;
+
+    var v_address = my.getStorageSync({
+      key: 'r_address', // 缓存数据的key
+    }).data;
+
+    var buildingType = my.getStorageSync({
+      key: 'r_buildingType', // 缓存数据的key
     }).data;
 
     console.log(that.data.extinguisher)
@@ -218,15 +286,18 @@ Page({
 
     var payment = this.data.payment;
    
-   
- 
+    var address = village+vaddress;
+    var templateName = address+houseNo;
 
-// private Boolean extinguisher;	//灭火器
-// 	private Boolean smokeMask;		//防烟面罩
-// 	private Boolean flashlight;		//手电筒
-// 	private Boolean rope;			//逃脱绳
-
+    var roomList = [];
+    for(var i=0;i<roomcount;i++){
+      var roomName ='房间'+(i+1);
+      roomList[i]={roomName:roomName,rents:0}
+    };
+    console.log(roomList)
     var apartment = {
+      buildingType:buildingType,
+      address:address,
       provinceId:provinceCode,
       cityId:cityCode,
       districtId:countryCode,
@@ -245,6 +316,10 @@ Page({
       room:roomcount,
       hall:hallcount,
       toward:chaoxiang,
+      area:varea,
+      longitude:longitude,
+      latitude:latitude,
+      landlordId:uid,
       // vowner:vowner,
       // vownerCard:vownerCard,
       // vrelation:vrelation,
@@ -255,34 +330,122 @@ Page({
       entireRents:houserent,
       description:describe,
       images:houseimg,
-      extinguisher:extinguisher,
-      smokeMask:smokeMask,
-      flashlight:flashlight,
-      rope:rope,
+      
     };
-    var template = {
-      userId:uid,
+    var template = [{
+      templateName:templateName,
       area:varea,
       decorateType:decorateType,
       payment:payment,
       furniture:furniture,
       feature:feature,
-    };
-// console.log('uerId==='+uid)
+      waterRate:waterprice,
+      electricRate:powerprice,
+
+      extinguisher:extinguisher,
+      smokeMask:smokeMask,
+      flashlight:flashlight,
+      rope:rope,
+      extinguisherimg:extinguisherimg,
+      smokeMaskimg:smokeMaskimg,
+      flashlightimg:flashlightimg,
+      ropeimg:ropeimg,
+    }];
+console.log('uerId==='+uid)
+console.log(apartment)
+console.log(house)
+console.log(template)
+console.log(roomList)
     my.httpRequest({
-      url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do', // 目标服务器url
+      url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
       headers:{
         "Content-Type":'application/json'
       },
       method:'POST',
       dataType:'json',
       data:{
+        // userId:uid,
         apartment:apartment,
         house:house,
-        template:template,
+        rooms:roomList,
+        templates:template,
       },
       success: (res) => {
-        console.log('提交成功'+res)
+
+        console.log(res)
+        that.sign(res.data.apartmentId,res.data.houseId);
+        my.confirm({
+          title: '温馨提示',
+          content:'确认发布后管理员将进行审核，审核通过则上架房源',
+          confirmButtonText: '确认提交',
+          cancelButtonText: '取消提交',
+          success: (res) => {
+            my.alert({
+              title: '提交成功！',
+              success: () => {
+              my.navigateBack({
+                delta: 7,
+              });
+            }, 
+            });
+            
+          },
+        });
+      },
+    });
+  },
+  //签订合同
+  sign(apartmentId,houseId){
+    var that = this;
+    var name = my.getStorageSync({
+      key: 'certName', // 缓存数据的key
+    }).data;
+    var idNo = my.getStorageSync({
+      key: 'certNo', // 缓存数据的key
+    }).data;
+    var uid = my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    var startDate = my.getStorageSync({
+      key: 'm_startDate', // 缓存数据的key
+    }).data;
+    var endDate = my.getStorageSync({
+      key: 'm_endDate', // 缓存数据的key
+    }).data;
+    // var houseInfo = my.getStorageSync({
+    //   key: 'uhouseInfo', // 房源详情
+    // }).data;
+    // var apartmentId=houseInfo.apartment.id;
+    // var houseId=houseInfo.id;
+    
+    my.httpRequest({
+      url: app.globalData.baseUrl+"IF/landlordCompanyServlet", // 目标服务器url
+      method: 'POST',
+      data:{
+        
+        name:name,
+        idNo:idNo,
+        apartmentId:apartmentId,
+        houseId:houseId,
+        uid:uid,
+        startTime:startDate,
+        endTime:endDate,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('---------------');
+        console.log(res);
+        if(res.data.success){
+          // that.setData({
+          //   url:res.data.url,
+          // });
+          console.log('url:   '+that.data.url);
+        }
+
+      },
+      fail: (res) => {
+       console.log(res);
+       console.log('请求失败~~');
       },
     });
   },

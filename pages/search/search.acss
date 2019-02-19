@@ -76,11 +76,15 @@ page {
 
 .history-list {
   margin: 45rpx 40rpx;
-  height: 170rpx;
+  /* height: 170rpx; */
   border-bottom: 1rpx solid #F7F7F7;
+  display: flex;
+  flex-wrap: wrap;
 }
 .list-title{
   font-size: 35rpx;
+  margin-right: 35rpx;
+  margin-top: 15rpx;
 }
 
 .hot {
@@ -254,4 +258,18 @@ page {
   line-height: 40rpx;
   background-color: #E6E6E6;
   border-radius: 5rpx;
+}
+.p5-1{
+  float: left;
+  padding: 0 12rpx;
+  height: 50rpx;
+  background-color: #E6E6E6;
+  font-size: 25rpx;
+  padding-top: 18rpx;
+  border-radius: 5rpx;
+}
+.p5-2{
+  float: left;
+  height: 50rpx;
+  width: 20rpx;
 }

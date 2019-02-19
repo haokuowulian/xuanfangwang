@@ -1,4 +1,5 @@
 const app=getApp();
+const dates = ['','','',''];
 Page({
   data: {
     imgurl:app.globalData.baseImgUrl_whj,
@@ -10,6 +11,7 @@ Page({
     canAddImg:true,
     upload:false,
     rentType:0,
+    endDates:'',
   },
   onLoad() {
     var that = this;
@@ -18,6 +20,34 @@ Page({
     }).data;
     that.setData({
       rentType:rentType,
+    });
+  },
+  chooseDate(){
+    var startDate = app.getDate('yyyy-MM-dd',0);
+    var currentDate = app.getFormateDate('yyyy-MM-dd',1,0);
+    var endDate = app.getFormateDate('yyyy-MM-dd',10,12);
+    console.log(currentDate+'***********'+endDate)
+    my.datePicker({
+      format: currentDate,
+      currentDate: currentDate,
+      startDate: currentDate,
+      endDate: endDate,
+      success: (res) => {
+        this.setData({
+          endDates:res.date,
+        });
+        my.setStorageSync({
+          key: 'm_startDate', // 缓存数据的key
+          data: startDate, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'm_endDate', // 缓存数据的key
+          data: res.date, // 要缓存的数据
+        });
+        // my.alert({
+        //   content: res.date,
+        // });
+      },
     });
   },
   toInput(e){
@@ -66,7 +96,7 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var housename = that.data.housename;
     var describe = that.data.describe;
     var nearby = that.data.nearby;

@@ -1,7 +1,7 @@
 <view class="page">
   <!-- 搜索框 -->
   <view class="page-search">
-    <search-bar  value="{{value}}" placeholder="输入你想住的区域或小区" onInput="onInput" onCancel="onCancel" onClear="onClear" onSubmit="onSubmit" showCancelButton="{{false}}" />
+    <search-bar  value="{{keyword}}" placeholder="输入你想住的区域或小区" onInput="onInput" onCancel="onCancel" onClear="onClear" onSubmit="onSubmit" showCancelButton="{{false}}" />
   </view>
   
   

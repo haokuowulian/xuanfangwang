@@ -1,6 +1,9 @@
 var app = getApp();
+var buildingType = ['板楼','塔楼','板塔结合','平板'];
 Page({
   data: {
+    buildingTypes:buildingType,
+    buildingType:'',
     imgurl:app.globalData.baseImgUrl_whj,
     provinces: [],
     province: "",
@@ -99,8 +102,21 @@ Page({
 
   },
   onLoad() {
-      this.getCity();
-
+    this.getCity();
+    my.confirm({
+      title: '房源发布协议',
+      content: '在我平台发布房源将与我公司自动签订租房委托合同，上架期间的房屋在出租后，我公司将会收取一定的服务费，合同详情可以再房源信息成功提交审核后提供的链接查看。',
+      confirmButtonText: '同意',
+      cancelButtonText: '拒绝',
+      success: (res) => {
+        console.log(res)
+        if(res.confirm){
+          console.log('同意协议')
+        }else{
+          my.navigateBack();
+        }
+      },
+    });
   },
   onShow(){
     // var village = my.getStorageSync({
@@ -174,6 +190,17 @@ Page({
     })
 
   },
+  //选择建筑类型
+  bindPickerChange1(e){
+    console.log(e)
+    var that = this;
+    var index = e.detail.value;
+    var arr = that.data.buildingTypes;
+    this.setData({
+      // showBuildingType:true,
+      buildingType:arr[index],
+    });
+  },
   addImg(){
     var that = this;
     my.chooseImage({
@@ -210,6 +237,7 @@ Page({
       key: 'city', // 缓存数据的key
       data: this.data.city, // 要缓存的数据
     });
+    
 
   },
   toInput(e){
@@ -239,7 +267,7 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var image = that.data.img;
     var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;
@@ -251,74 +279,90 @@ Page({
     var vyear = that.data.vyear;
     var vgreen = that.data.vgreen;
     var vcubage = that.data.vcubage;
+    var buildingType = that.data.buildingType;
     if(provinceCode!=''&&cityCode!=''&&countryCode!=''){
-      if(this.data.village!=''){
-      my.setStorage({
-        key: 'r_provinceCode', // 缓存数据的key
-        data: provinceCode, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_cityCode', // 缓存数据的key
-        data: cityCode, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_countryCode', // 缓存数据的key
-        data: countryCode, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_longitude', // 经度
-        data: longitude, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_latitude', // 纬度
-        data: latitude, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_village', // 小区
-        data: village, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_vphone', // 小区联系号码
-        data: vphone, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_vyear', // 小区年份
-        data: vyear, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_vgreen', // 绿化率
-        data: vgreen, // 要缓存的数据
-      });
-      my.setStorage({
-        key: 'r_vcubage', // 容积率
-        data: vcubage, // 要缓存的数据
-      });
-      
-      my.uploadFile({
-        url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do', // 开发者服务器地址
-        filePath: image, // 要上传文件资源的本地定位符
-        fileName: 'file', 
-        fileType: 'image', // 文件类型，image / video / audio
-        formData:{savePrefix:'landlord'},
-        success: (res) => {
-          console.log('success');
-          var json2 = JSON.parse(res.data);
-          console.log(res);
-          var newimgs=json2['message'];
-          console.log(newimgs);
-          my.setStorageSync({
-            key: 'r_villageimg', // 缓存数据的key
-            data: newimgs, // 要缓存的数据
+      if(that.data.village!=''){
+        if(buildingType!=''&&vyear!=''&&vgreen!=''&&vcubage!=''){
+          my.setStorage({
+          key: 'r_provinceCode', // 缓存数据的key
+          data: provinceCode, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_cityCode', // 缓存数据的key
+          data: cityCode, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_countryCode', // 缓存数据的key
+          data: countryCode, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_longitude', // 经度
+          data: longitude, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_latitude', // 纬度
+          data: latitude, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_village', // 小区
+          data: village, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_vphone', // 小区联系号码
+          data: vphone, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_vyear', // 小区年份
+          data: vyear, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_vgreen', // 绿化率
+          data: vgreen, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_vcubage', // 容积率
+          data: vcubage, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_address', // 缓存数据的key
+          data: that.data.dist, // 要缓存的数据
+        });
+        my.setStorage({
+          key: 'r_buildingType', // 建筑类型
+          data: buildingType, // 要缓存的数据
+        });
+        
+        my.uploadFile({
+          url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do', // 开发者服务器地址
+          filePath: image, // 要上传文件资源的本地定位符
+          fileName: 'file', 
+          fileType: 'image', // 文件类型，image / video / audio
+          formData:{savePrefix:'landlord'},
+          success: (res) => {
+            console.log('success');
+            var json2 = JSON.parse(res.data);
+            console.log(res);
+            var newimgs=json2['message'];
+            console.log(newimgs);
+            my.setStorageSync({
+              key: 'r_villageimg', // 缓存数据的key
+              data: newimgs, // 要缓存的数据
+            });
+            that.toNext();
+          },
+          fail: (res) => {
+            console.log(res);
+            my.alert({ title: '上传失败' });
+          },
+        });
+        
+        that.toNext();
+        }else{
+          my.alert({
+            title: '请完善建筑信息' 
           });
-          that.toNext();
-        },
-        fail: (res) => {
-          console.log(res);
-          my.alert({ title: '上传失败' });
-        },
-      });
+        }
       
-      that.toNext();
       }else{
         my.alert({
           title: '请选择小区或公寓位置' 

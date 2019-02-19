@@ -1,7 +1,7 @@
 <view class="backgroundClass">
   <view class="titleClass">房源描述与价格（3/3）</view>
   <view class="subTitleClass">租金</view>
-    <input class="inputClass" type="text" placeholder="请填写租金价格" onInput="toInput" data-t='1' class="text_input" value="{{houserent}}"/>
+    <input class="inputClass" type="number" placeholder="请填写租金价格" onInput="toInput" data-t='1' class="text_input" value="{{houserent}}"/>
 
   <view class="lineClass"></view>
 
@@ -17,17 +17,17 @@
 
   <view class="subTitleClass">水费</view>
 
-   <input class="inputClass" type="text" placeholder="请填写水费价格"  onInput="toInput" data-t='2' class="text_input" value="{{waterprice}}"/>
+   <input class="inputClass" type="number" placeholder="请填写水费价格"  onInput="toInput" data-t='2' class="text_input" value="{{waterprice}}"/>
   
   <view class="lineClass"></view>
  <view class="subTitleClass">电费</view>
 
-   <input class="inputClass" type="text" placeholder="请填写电费价格"  onInput="toInput" data-t='3' class="text_input" value="{{powerprice}}"/>
+   <input class="inputClass" type="number" placeholder="请填写电费价格"  onInput="toInput" data-t='3' class="text_input" value="{{powerprice}}"/>
   
   <view class="lineClass"></view>
   <view class="subTitleClass">物业费</view>
 
-   <input class="inputClass" type="text" placeholder="请填写物业费价格" onInput="toInput" data-t='4' class="text_input" value="{{property}}" />
+   <input class="inputClass" type="number" placeholder="请填写物业费价格" onInput="toInput" data-t='4' class="text_input" value="{{property}}" />
   
   <view class="lineClass"></view>
 
