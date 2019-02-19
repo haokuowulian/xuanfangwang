@@ -1,35 +1,4 @@
-const contract1 = [
-//   {
-//     id:'10001',
-//     address:'湘湖科创园1栋8楼',
-//     date:'2018-09-13至2018-12-13',
-//     price:'￥28000元/月（月付）',
-//     status:1,
-//   },
-//   {
-//     id:'10002',
-//     address:'湘湖科创园1栋8楼',
-//     date:'2018-09-13至2018-12-13',
-//     price:'￥28000元/月（月付）',
-//     status:2,
-//   },
-]
-const contract2 = [
-//   {
-//     id:'10001',
-//     address:'湘湖科创园1栋8楼',
-//     date:'2018-09-13至2018-12-13',
-//     price:'基本服务费：￥28000',
-//     status:1,
-//   },
-//   {
-//     id:'10002',
-//     address:'湘湖科创园1栋8楼',
-//     date:'2018-09-13至2018-12-13',
-//     price:'基本服务费：￥28000',
-//     status:2,
-//   },
-]
+
 var app = getApp();
 Page({
   data: {
@@ -46,11 +15,49 @@ Page({
       roleType:roleType,
     });
    if(roleType==1){
-     this.getContract();
+     this.getFdContractList();
    }
    if(roleType==2){
      this.getContract();
    }
+  },
+  getFdContractList(){
+    var that = this;
+    var uid= my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    my.httpRequest({
+      url:app.globalData.baseUrl+ 'IF/contract/getFdContractList.do', // 目标服务器url
+      data:{
+        // uid:59,
+        fdid:uid,
+        pageIndex:that.data.pageIndex,
+        pageSize:6,
+      },
+      dataType: 'json',
+      success: (res) => {
+         if(that.data.pageIndex==1){
+                 that.setData({
+            contract:res.data.data
+          });
+            }else if(that.data.contract.length<res.data.count){
+               that.setData({
+                contract:that.data.contract.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
+        console.log(res);
+        // that.setData({
+        //   contract:res.data.data,
+        // });
+      },
+      fail: function(res) {
+        console.log(res);
+      },
+      complete: function(res){
+         my.hideLoading();
+      }
+    });
   },
   getContract(){
     var that = this;
@@ -60,28 +67,53 @@ Page({
     my.httpRequest({
       url:app.globalData.baseUrl+ 'IF/contract/getContractList.do', // 目标服务器url
       data:{
-        uid:59,
-        // uid:uid,
-        // pageIndex:that.data.pageIndex,
-        // pageSize:6,
+        // uid:59,
+        uid:uid,
+        pageIndex:that.data.pageIndex,
+        pageSize:6,
       },
       dataType: 'json',
       success: (res) => {
+         if(that.data.pageIndex==1){
+                 that.setData({
+            contract:res.data.data
+          });
+            }else if(that.data.contract.length<res.data.count){
+               that.setData({
+                contract:that.data.contract.concat(res.data.data)
+              });
+            }
+          my.stopPullDownRefresh();
         console.log(res);
-        that.setData({
-          contract:res.data.data,
-        });
+        // that.setData({
+        //   contract:res.data.data,
+        // });
       },
       fail: function(res) {
         console.log('-------fail--------');
         console.log(res);
       },
+      complete: function(res){
+         my.hideLoading();
+      }
     });
   },
-  toContractinfo(){
-    var id = this.data.contract.id;
+  toContractinfo:function(event){
+    var id = event.target.dataset.contractid;
     my.navigateTo({
-      url:'/pages/index/contractinfo/contractinfo?id='+id,
+      url:'/pages/index/contractinfo/contractinfo?id='+id+'&type='+this.data.roleType,
     });
+  },
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
+    });
+    this.getContract();
+  },
+  onReachBottom() {
+    this.setData({
+      pageIndex:this.data.pageIndex+1
+    });
+    this.getContract();
   },
 });

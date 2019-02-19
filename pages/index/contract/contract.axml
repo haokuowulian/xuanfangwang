@@ -3,7 +3,7 @@
   <view a:else>
   <block a:for="{{contract}}" a:for-item="list">
     <view class="page-body">
-      <view class="body-back" onTap="toContractinfo">
+      <view class="body-back" data-contractid="{{contract[index].id}}" onTap="toContractinfo" >
         <view class="title">{{list.apartmentName}}{{list.houseName}}</view>
         <view class="info">{{list.createDate}}</view>
         <view a:if="{{list.rentType==1}}" class="info">整租</view>

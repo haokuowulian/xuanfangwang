@@ -136,6 +136,13 @@
           <image src="/image/icon/right.png" class="right-img" />
         </view>
       </view>
+       <view class="page-suggest" onTap="toContract">
+        <view class="other-title">我的合同
+        </view>
+        <view>
+          <image src="/image/icon/right.png" class="right-img" />
+        </view>
+      </view>
       <view class="page-suggest" onTap="toSetting">
         <view class="other-title">个人设置
         </view>

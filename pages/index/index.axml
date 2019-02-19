@@ -12,7 +12,7 @@
         <text class="fake-placeholder">输入你想住的区域或小区</text>
       </view>
       <view class="banner-news" onTap="scan">
-        <image src="/image/qipao.png" class="qipao-img" />
+        <image src="/image/scan.png" class="qipao-img" />
       </view>
     </view>
 

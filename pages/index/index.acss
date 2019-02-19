@@ -66,8 +66,8 @@
 }
 .qipao-img{
 
-  height: 35rpx;
-  width: 40rpx;
+  height: 60rpx;
+  width: 60rpx;
 }
 .page-b1-swiper{
   /* top: 120rpx; */

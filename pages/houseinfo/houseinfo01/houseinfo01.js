@@ -86,7 +86,7 @@ Page({
   //获取是否收藏
   getIsCollect(){
      console.log('-------');
-    if(this.data.userId==''){
+    if(!this.data.userId||this.data.userId==''){
       this.setData({
         collectUrl:'/image/houseicon/uncollect.png',
         isColect:false
@@ -135,7 +135,7 @@ Page({
   },
  //获取是否预约
   getIsBespeak(){
-    if(this.data.userId==''){
+    if(!this.data.userId||this.data.userId==''){
       this.setData({
         collectUrl:'/image/houseicon/uncollect.png',
         isColect:false

@@ -84,28 +84,28 @@ Page({
     my.navigateTo({
      url: '/pages/index/signing/payway/payway',
     });
-    // my.getAuthCode({
-    //   scopes: 'auth_zhima',
-    //   success: (res) => {
-    //     my.httpRequest({
-    //         url: app.globalData.baseUrl+'/IF/user/getZhiMa.do?authCode='+res.authCode, // 目标服务器url
-    //         method: 'POST',
-    //         header:{
-    //           'content-type': 'application/json'
-    //         },
-    //         dataType: 'json',
-    //         success: (res) => {
-    //            console.log(res);
+    my.getAuthCode({
+      scopes: 'auth_zhima',
+      success: (res) => {
+        my.httpRequest({
+            url: app.globalData.baseUrl+'/IF/user/getZhiMa.do?authCode='+res.authCode, // 目标服务器url
+            method: 'POST',
+            header:{
+              'content-type': 'application/json'
+            },
+            dataType: 'json',
+            success: (res) => {
+               console.log(res);
                
-    //            if(res.data.success){
+               if(res.data.success){
  
-    //            }
+               }
                
-    //         },
-    //       });
+            },
+          });
        
-    //   },
-    // });
+      },
+    });
    
    
   },
@@ -114,12 +114,12 @@ Page({
     var startDate=app.getDate('yyyy年MM月dd日',0);
     startDate1=app.getDate('yyyy-MM-dd',0);
     //获取三、六、十二个月后日期
-    var date1 = app.getFormateDate('yyyy年MM月dd日',0,3);
-    date01 =app.getFormateDate('yyyy-MM-dd',0,3);
-    var date2 = app.getFormateDate('yyyy年MM月dd日',0,6);
-    date02 =app.getFormateDate('yyyy-MM-dd',0,6);
-    var date3 = app.getFormateDate('yyyy年MM月dd日',0,12);
-    date03 =app.getFormateDate('yyyy-MM-dd',0,12);
+    var date1 = app.getFormateDate('yyyy年MM月dd日',3);
+    date01 =app.getFormateDate('yyyy-MM-dd',3);
+    var date2 = app.getFormateDate('yyyy年MM月dd日',6);
+    date02 =app.getFormateDate('yyyy-MM-dd',6);
+    var date3 = app.getFormateDate('yyyy年MM月dd日',12);
+    date03 =app.getFormateDate('yyyy-MM-dd',12);
     console.log(date01+'-----------')
     this.setData({
       currentDate:startDate,

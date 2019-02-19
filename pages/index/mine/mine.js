@@ -322,7 +322,7 @@ Page({
   toContract(){
     if(roleId==7&&!this.data.isRoleUser){
       my.navigateTo({
-        url: '/pages/index/contract/contract?roleType=1',
+        url: '/pages/index/contract/contract?roleType=1',//1房东，2租客
       });
     }
     if(roleId==7&&this.data.isRoleUser){

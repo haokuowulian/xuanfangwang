@@ -44,7 +44,11 @@
 
   <view class="page-time">房东信息</view>
   <view class="page-user">
-    <view class="users">
+     <view class="users" a:if="{{type==1}}">
+      <view class="users-title">租客姓名</view>
+      <view class="users-info">{{zkName}}</view>
+    </view>
+    <view class="users" a:if="{{type==2}}">
       <view class="users-title">房东姓名</view>
       <view class="users-info">{{contract.user.certName}}</view>
     </view>
@@ -56,9 +60,13 @@
     </view>
   </view> -->
   <view class="page-user">
-    <view class="users">
+    <view class="users" a:if="{{type==1}}">
       <view class="users-title">联系方式</view>
-      <view class="users-info">{{contract.user.userName}}</view>
+      <view class="users-info">{{contract.username}}</view>
+    </view>
+    <view class="users" a:if="{{type==2}}">
+      <view class="users-title">联系方式</view>
+      <view class="users-info">{{contract.userName}}</view>
     </view>
   </view>
   <view class="page-time">合同操作</view>
@@ -73,6 +81,13 @@
       <view class="order-btn" onTap="onCancel">申请续约</view>
     </view>
   </view>
+   <view class="page-time">合同下载地址</view>
+   <view>
+     <textarea selectable='true'   style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx" value="{{url}}"
+      disabled='true' maxlength='-1'>
+      
+    </textarea>
+    </view>
   <view class="page-footer"></view>
 
 

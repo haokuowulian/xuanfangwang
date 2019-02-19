@@ -1,7 +1,7 @@
 <view>
   <view class="page-operate">{{content}}</view>
-  <view class="page-operate"  onTap="downloadUrl" >合同下载地址如下，请前往电脑上打印下载</view>
-  <text selectable='true'  style="color:#6666ff;padding:24rpx" >{{url}}</text>
+  <view class="page-operate"  onTap="downloadUrl" a:if="{{result==9000}}">合同下载地址如下，请前往电脑上打印下载或复制该链接前往浏览器预览</view>
+  <text selectable='true'  style="color:#6666ff;padding:24rpx" a:if="{{result==9000}}">{{url}}</text>
   <!-- <view class="page-operate">返回首页</view>
   <view class="page-operate">查看订单详情</view> -->
 </view>
