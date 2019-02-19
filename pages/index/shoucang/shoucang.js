@@ -23,7 +23,7 @@ Page({
     this.setData({
       userId:userId
     });
-    this.getMyCollect();
+    // this.getMyCollect();
     my.httpRequest({
       url: 'xxxxxxx?token='+app.globalData.token, // 目标服务器url
       success: (res) => {
@@ -33,6 +33,9 @@ Page({
         });
       },
     });
+  },
+  onShow(){
+    this.getMyCollect();
   },
   management(){
     this.setData({
@@ -208,5 +211,13 @@ Page({
       pageIndex:this.data.pageIndex+1
     });
      this.getMyCollect();
+  },
+  //房屋详情
+  toHouseInfo(e){
+    console.log('*********')
+    console.log(e)
+    my.navigateTo({
+    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+    })
   },
 });

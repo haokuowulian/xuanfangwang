@@ -259,11 +259,11 @@ Page({
       },
     });
   },
-  xfwLogin(){
-    my.navigateTo({
-      url: '/pages/login/login',
-    });
-  },
+  // xfwLogin(){
+  //   my.navigateTo({
+  //     url: '/pages/login/login',
+  //   });
+  // },
   changeRole1(){//切换为租客
 
     this.setData({
@@ -657,6 +657,22 @@ getServerTime(){
                 key: 'currentIdentityIsUser', // 缓存数据的key
                 data: true, // 要缓存的数据
               });
+              my.setStorageSync({
+                key: 'userlogin', // 缓存数据的key
+                data: true, // 要缓存的数据
+              });
+              if(res.data.certNo&&res.data.certNo!=''){
+                my.setStorageSync({
+                  key: 'userCompleted', // 缓存数据的key
+                  data: true, // 要缓存的数据
+                });
+              }else{
+                my.setStorageSync({
+                  key: 'userCompleted', // 缓存数据的key
+                  data: false, // 要缓存的数据
+                });
+              }
+               
               //  my.setStorageSync({
               //    key: 'phone', // 缓存数据的key
               //    data: res.data.info.userName, // 要缓存的数据

@@ -44,8 +44,8 @@ Page({
       userId:userId,
       certNo:certNo
     });
-    console.log(this.data.id);
-    console.log(this.data.rentType);
+    console.log('id:'+this.data.id);
+    console.log('type:'+this.data.rentType);
 
     this.getIsCollect();
     this.getIsBespeak();

@@ -940,7 +940,7 @@ Page({
         furniture:furnitureCondition,//家具
         sortWay:sort,//排序方式
         decorateType:-3,
-        rentType:1,
+        rentType:rt,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
       },
@@ -1002,7 +1002,7 @@ Page({
         feature:featureCondition,//特色
         furniture:furnitureCondition,//家具
         sortWay:sort,//排序方式
-        rentType:1,
+        rentType:rt,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
       },
@@ -1064,7 +1064,7 @@ Page({
         feature:featureCondition,//特色
         furniture:furnitureCondition,//家具
         sortWay:sort,//排序方式
-        rentType:2,
+        rentType:this.data.rentType,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
       },

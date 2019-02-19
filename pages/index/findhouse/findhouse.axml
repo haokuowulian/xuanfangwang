@@ -44,7 +44,7 @@
         <cover-view class="search-sousuo" onTap="searchHouse">
           <cover-image src="/image/icon/sousuo-hotel.png" class="sousuo-img"/>
         </cover-view>
-          <cover-view class="search-text" onTap="searchHouse">搜索或根据条件检索房源</cover-view>
+          <cover-view class="search-text" onTap="searchHouse">输入你想住的区域或小区</cover-view>
       </cover-view>
      
     <!-- 酒店 -->

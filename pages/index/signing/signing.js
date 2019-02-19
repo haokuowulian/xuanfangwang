@@ -38,7 +38,7 @@ Page({
      key: 'certNo', // 缓存数据的key
     }).data;
     var usersex;
-    if(sex==0){
+    if(sex==0||sex=='男'){
       usersex='男';
     }else{
       usersex='女';

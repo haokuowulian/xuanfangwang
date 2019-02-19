@@ -195,12 +195,37 @@ Page({
         pageSize: 10,
       },
       success: (res) => {
+        console.log(res)
         console.log(res.data.data)
-        this.setData({
-          // area: res.hotels,
+        if(res.data.count>0){
+          this.setData({
+            // area: res.hotels,
 
-          placeList: res.data.data,
-        });
+            placeList: res.data.data,
+          });
+        }else{
+          my.httpRequest({
+            url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+            method: 'POST',
+            data:{
+              keyword:keyword,
+              rentType:2,
+              pageIndex: this.data.pageIndex,
+              pageSize: 10,
+            },
+            success: (res) => {
+              this.setData({
+                areaList: res.data.data,
+                // placeList:[],
+                showView2: true,
+                showView1: false,
+                bg2: true, 
+                bg1: false,
+              });
+            },
+          });
+        }
+        
         this.addToHistory(keyword);
       },
     });
@@ -286,7 +311,7 @@ Page({
         console.log(res.data.data)
         this.setData({
           placeList: res.data.data,
-          areaList:[],
+          // areaList:[],
         });
         this.addToHistory(keyword);
       },
@@ -310,7 +335,7 @@ Page({
         console.log(res.data.data)
         this.setData({
           areaList: res.data.data,
-          placeList:[],
+          // placeList:[],
         });
         this.addToHistory(keyword);
       },
