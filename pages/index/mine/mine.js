@@ -29,6 +29,13 @@ Page({
     passwords:'',
     eyeclose:true,
     eyeopen:false,
+    showxfw:false,
+    showPhone:true,
+    second:60,
+    phoneNum:'',
+    phoneCode:'',
+    send:true,
+    alreadySend:false,
   },
   onLoad() {
     // var userId = my.getStorageSync({
@@ -122,7 +129,12 @@ Page({
        title:'登录'
      });
     this.setData({
-      userlogin:false
+      userlogin:false,
+      second:60,
+      phoneNum:'',
+      phoneCode:'',
+      send:true,
+      alreadySend:false,
     });
   }
   },
@@ -131,6 +143,7 @@ Page({
     console.log('验证登陆')
     my.getAuthCode({
       scopes: 'auth_user',
+      // scopes: 'auth_base',
       success: (res) => {
         var myCode=res.authCode;
         console.log('-------------authCode--------------');
@@ -160,7 +173,7 @@ Page({
                });
                my.setStorageSync({
                  key: 'token', // 缓存数据的key
-                 data: res.data.info.token, // 要缓存的数据
+                 data: res.data.token, // 要缓存的数据
                });
                my.setStorageSync({
                  key: 'certNo', // 缓存数据的key
@@ -259,11 +272,7 @@ Page({
       },
     });
   },
-  // xfwLogin(){
-  //   my.navigateTo({
-  //     url: '/pages/login/login',
-  //   });
-  // },
+  
   changeRole1(){//切换为租客
 
     this.setData({
@@ -602,6 +611,16 @@ getServerTime(){
         passwords:e.detail.value,
       });
     }
+    if(e.target.dataset.t==3){
+      that.setData({
+        phoneNum:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==4){
+      that.setData({
+        phoneCode:e.detail.value,
+      });
+    }
   },
 
   xfwLogin(){
@@ -621,6 +640,7 @@ getServerTime(){
             console.log(res)
             if(res.data.success){
               console.log("登录成功！")
+              // that.getPayId();
               my.setStorageSync({
                  key: 'userId', // 缓存数据的key
                  data: res.data.userId, // 要缓存的数据
@@ -629,10 +649,10 @@ getServerTime(){
               //    key: 'upayUserId', // 缓存数据的key
               //    data: res.data.info.payUserId, // 要缓存的数据
               //  });
-              //  my.setStorageSync({
-              //    key: 'token', // 缓存数据的key
-              //    data: res.data.info.token, // 要缓存的数据
-              //  });
+               my.setStorageSync({
+                 key: 'token', // 缓存数据的key
+                 data: res.data.token, // 要缓存的数据
+               });
                my.setStorageSync({
                  key: 'certNo', // 缓存数据的key
                  data: res.data.certNo, // 要缓存的数据
@@ -653,6 +673,10 @@ getServerTime(){
                  key: 'certName', // 缓存数据的key
                  data: res.data.certName, // 要缓存的数据
                });
+               my.setStorageSync({
+                key: 'upayUserId', // 缓存数据的key
+                data: res.data.upayUserId, // 要缓存的数据
+              });
                my.setStorage({
                 key: 'currentIdentityIsUser', // 缓存数据的key
                 data: true, // 要缓存的数据
@@ -703,6 +727,21 @@ getServerTime(){
       });
     }
   },
+  //静默授权获取支付宝id
+  // getPayId(){
+  //   console.log('验证登陆')
+  //   my.getAuthCode({
+  //     // scopes: 'auth_user',
+  //     scopes: 'auth_base',
+  //     success: (res) => {
+  //       // var myCode=res.authCode;
+  //       console.log('-------------authCode--------------');
+  //       console.log(res)
+  //       console.log('-------------authCode--------------');
+  //     }
+  //   });
+        
+  // },
   //清空当前输入框
   toEmpty(e){
     console.log(e.target.dataset.t)
@@ -717,6 +756,11 @@ getServerTime(){
         passwords:'',
       });
     }
+    if(e.target.dataset.t==3){
+      that.setData({
+        phoneNum:'',
+      });
+    }
   },
   toOpen(){
     this.setData({
@@ -729,5 +773,205 @@ getServerTime(){
       eyeclose:true,
       eyeopen:false,
     });
+  },
+  //切换选房网账号密码登陆
+  toXfwLogin(){
+    var that = this;
+    that.setData({
+      showxfw:true,
+      showPhone:false,
+    });
+  },
+  //切换手机验证码注册/登陆
+  toPhoneLogin(){
+    var that = this;
+    that.setData({
+      showxfw:false,
+      showPhone:true,
+    });
+  },
+  //发送手机验证码
+  sendMsg(){
+    var that = this;
+    var phoneNum = that.data.phoneNum;
+    if(phoneNum!=''){
+      var mobileNum =(/^1[34578]\d{9}$/.test(phoneNum))
+      if(mobileNum){
+        my.httpRequest({
+          url: app.globalData.baseUrl+'IF/user/registerVerificationCode.do', // 目标服务器url
+          method: 'POST',
+          header:{
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+          data: {
+            telphone:phoneNum,
+          },
+          dataType: 'json',
+          success: (res) => {
+            console.log(res)
+          },
+        });
+        that.setData({
+            alreadySend: true,
+            send: false,
+          })
+        that.timer();
+      }else{
+        my.alert({
+          title: '请输入正确的手机号！',
+          success:() =>{
+            that.setData({
+              phoneNum:'',
+            });
+          },
+        });
+      }
+    }else{
+      alert('请填写完整');
+    }
+    
+  },
+  timer(){
+    let promise = new Promise((resolve, reject) => {
+      let setTimer = setInterval(
+        () => {
+          this.setData({
+            second: this.data.second - 1
+          })
+          if (this.data.second <= 0) {
+            this.setData({
+              second: 60,
+              alreadySend: false,
+              send: true
+            })
+            resolve(setTimer)
+          }
+        }
+        , 1000)
+    })
+    promise.then((setTimer) => {
+      clearInterval(setTimer)
+    })
+  },
+  quickLogin(){
+    var that = this;
+    var phoneNum = that.data.phoneNum;
+    var phoneCode = that.data.phoneCode;
+
+
+    if(phoneNum!=''&&phoneCode!=''){
+       my.getAuthCode({
+        // scopes: 'auth_user',
+        scopes: 'auth_base',
+        success: (res) => {
+          // var myCode=res.authCode;
+          console.log('-------------authCode--------------');
+          console.log(res)
+          console.log('-------------authCode--------------');
+          that.phoneLogin(phoneNum,phoneCode,res.authCode);
+        }
+      });
+
+    }else{
+      alert('请填写完整');
+    }
+  },
+  phoneLogin(phoneNum,phoneCode,authCode){
+    var that = this;
+    my.httpRequest({
+      url:app.globalData.baseUrl+ 'IF/user/register.do', // 目标服务器url
+      method: 'POST',
+      header:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+      data: {
+        phone:phoneNum,
+        code:phoneCode,
+        authCode:authCode,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('-------------userLogin--------------');
+        console.log(res)
+        console.log('-------------userLogin--------------');
+        if(res.data.success){
+          console.log("登录成功！")
+          // that.getPayId();
+          my.setStorageSync({
+              key: 'userId', // 缓存数据的key
+              data: res.data.users.id, // 要缓存的数据
+            });
+          //  my.setStorageSync({
+          //    key: 'upayUserId', // 缓存数据的key
+          //    data: res.data.info.payUserId, // 要缓存的数据
+          //  });
+           my.setStorageSync({
+             key: 'token', // 缓存数据的key
+             data: res.data.token, // 要缓存的数据
+           });
+            my.setStorageSync({
+              key: 'certNo', // 缓存数据的key
+              data: res.data.users.certNo, // 要缓存的数据
+            });
+            my.setStorageSync({
+              key: 'avatar', // 缓存数据的key
+              data: res.data.users.avatar, // 要缓存的数据
+            });
+            my.setStorageSync({
+              key: 'nickName', // 缓存数据的key
+              data: res.data.users.nickName, // 要缓存的数据
+            });
+            my.setStorageSync({
+              key: 'roleId', // 缓存数据的key
+              data: res.data.users.roleId, // 要缓存的数据
+            });
+            my.setStorageSync({
+              key: 'certName', // 缓存数据的key
+              data: res.data.users.certName, // 要缓存的数据
+            });
+
+            my.setStorageSync({
+              key: 'upayUserId', // 缓存数据的key
+              data: res.data.users.upayUserId, // 要缓存的数据
+            });
+
+            my.setStorage({
+            key: 'currentIdentityIsUser', // 缓存数据的key
+            data: true, // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'userlogin', // 缓存数据的key
+            data: true, // 要缓存的数据
+          });
+          if(res.data.certNo&&res.data.certNo!=''){
+            my.setStorageSync({
+              key: 'userCompleted', // 缓存数据的key
+              data: true, // 要缓存的数据
+            });
+          }else{
+            my.setStorageSync({
+              key: 'userCompleted', // 缓存数据的key
+              data: false, // 要缓存的数据
+            });
+          }
+            
+          //  my.setStorageSync({
+          //    key: 'phone', // 缓存数据的key
+          //    data: res.data.info.userName, // 要缓存的数据
+          //  });
+          //  my.setStorageSync({
+          //    key: 'sex', // 缓存数据的key
+          //    data: res.data.info.sex, // 要缓存的数据
+          //  });
+          // my.navigateBack({
+          //   delta: 1
+          // });
+          that.onShow();
+        }else{
+          alert(res.data.msg);
+        }
+      },
+    });
+
   },
 });

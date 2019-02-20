@@ -32,13 +32,21 @@ Page({
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
+    var token= my.getStorageSync({
+      key: 'token', // 缓存数据的key
+    }).data;
     my.httpRequest({
       url: url, // 目标服务器url
+      // headers:{
+      //   'Content-Type': 'application/x-www-form-urlencoded',
+      //   'Cookie':token,
+      //   },
       method: 'POST',
       data:{
         userId:uid,
         pageIndex:that.data.pageIndex,
         pageSize:6,
+        token:token,
       },
       dataType: 'json',
      success: function(res) {

@@ -21,6 +21,21 @@ Page({
     uid:'',
   },
   onLoad() {
+    my.confirm({
+      title: '温馨提示',
+      content: '申请房东认证，我平台将收取一笔认证费用，费用为0.01元，是否同意？',
+      confirmButtonText: '同意',
+      cancelButtonText: '拒绝',
+      success: (res) => {
+        if(res.confirm){
+
+        }else{
+          my.navigateBack({
+            
+          });
+        }
+      },
+    });
     var userId = my.getStorageSync({
      key: 'userId', // 缓存数据的key
    }).data;

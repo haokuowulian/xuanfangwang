@@ -5,6 +5,7 @@
 
   <view>
     <view >
+      <input class="inputClass" type="text" placeholder="请输入您的姓名" onInput="bindName"/>
       <view  onTap="selectSex"><input class="inputClass" placeholder="请选择性别"  value="{{sex}}" disabled="true"/></view>
       <view  onTap="selectCity"><input class="inputClass" placeholder="请选择所在城市"  value="{{city}}" disabled="true"/></view>
       <view  onTap="selectArea"><input class="inputClass" placeholder="请选择所在地区"  value="{{area}}" disabled="true"/></view>

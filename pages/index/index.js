@@ -278,7 +278,16 @@ Page({
     my.scan({
       type: 'qr',
       success: (res) => {
-        my.alert({ title: res.code });
+        console.log(res)
+        var myData=res.code;
+        var infolist = myData.split(",");
+        var roomId=infolist[0];
+        var rent_type=infolist[1];
+        // my.alert({ title: res});
+        // my.alert({ title: res.code});
+        my.navigateTo({
+          url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+roomId+'&rentType='+rent_type,
+        })
       },
     });
   },

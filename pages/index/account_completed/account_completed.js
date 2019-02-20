@@ -1,6 +1,7 @@
 var app = getApp();
 Page({
   data: {
+    name:'',
     sex:'',
     city:'',
     area:'',
@@ -102,6 +103,12 @@ Page({
       password:e.detail.value
     })
   },
+  //输入姓名
+  bindPassword(e){
+    this.setData({
+      name:e.detail.value
+    })
+  },
    //获取选中地区
   getIndex(e){
     console.log(e.target.dataset.index);
@@ -113,7 +120,7 @@ Page({
   },
    //完善信息
   submit(){
-    if(this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
+    if(this.data.name==''||this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
        my.alert({
          title: '请完善信息' 
        });
@@ -145,6 +152,7 @@ Page({
               'content-type': 'application/json'
             },
         data: {
+         certName:that.data.name,
          sex:that.data.sexCode,
          cityCode:that.data.cityCode,
          cityName:that.data.city,
@@ -164,7 +172,10 @@ Page({
             //   headimg:that.data.headimg,
             //   userName:nickName
             // });
-            
+            my.setStorageSync({
+              key: 'certName', // 缓存数据的key
+              data: that.data.certName, // 要缓存的数据 
+            });
             my.setStorageSync({
               key: 'certNo', // 缓存数据的key
               data: that.data.certNo, // 要缓存的数据 
