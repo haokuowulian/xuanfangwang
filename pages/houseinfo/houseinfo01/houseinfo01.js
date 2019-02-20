@@ -141,6 +141,7 @@ Page({
   },
  //获取是否预约
   getIsBespeak(){
+    var that = this;
     if(!this.data.userId||this.data.userId==''){
       this.setData({
         collectUrl:'/image/houseicon/uncollect.png',
@@ -201,7 +202,7 @@ Page({
     }).data;
     if(!userlogin){
       my.alert({
-        title: '请先登录' 
+        title: '请在先登录' 
       });
     }else{
       if(userCompleted){
