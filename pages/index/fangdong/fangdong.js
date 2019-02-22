@@ -14,13 +14,40 @@ Page({
    console.log(roleId)
   },
   toBeOwner(){
+    var userCompleted = my.getStorageSync({
+      key: 'userCompleted', 
+    }).data;
     if(this.data.roleId!=null&&this.data.roleId!=''){
-      my.navigateTo({
-      url: '/pages/index/fangdongreg/fangdongreg',
-    });
+      if(userCompleted){
+        my.navigateTo({
+          url: '/pages/index/fangdongreg/fangdongreg',
+        });
+      }else{
+        my.confirm({
+          title: '温馨提示',
+          content: '请先完善个人信息',
+          confirmButtonText: '确认',
+          cancelButtonText: '取消',
+          success: (res) => {
+            if(res.confirm){
+              my.navigateTo({
+                url: '/pages/index/account_completed/account_completed',
+              });
+            }
+            
+          },
+        });
+      }
+      
     }else{
       my.alert({
-        title: '请先登录' 
+        title: '请先登录',
+        buttonText: '确定',
+        success: () => {
+          my.navigateTo({
+            url: '/pages/login/login',
+          });
+        },
       });
     }
   },

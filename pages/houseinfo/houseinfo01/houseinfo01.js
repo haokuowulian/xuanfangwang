@@ -202,7 +202,13 @@ Page({
     }).data;
     if(!userlogin){
       my.alert({
-        title: '请在先登录' 
+        title: '请在先登录',
+        buttonText: '确定',
+        success: () => {
+          my.navigateTo({
+            url: '/pages/login/login',
+          });
+        },
       });
     }else{
       if(userCompleted){
@@ -237,7 +243,13 @@ Page({
      
     if(!userlogin){
       my.alert({
-        title: '请先登录' 
+        title: '请先登录',
+        buttonText: '确定',
+          success: () => {
+            my.navigateTo({
+              url: '/pages/login/login',
+            });
+          },
       });
     }else{
       
@@ -378,7 +390,13 @@ Page({
     }).data;
     if(!userlogin){
       my.alert({
-        title: '请先登录' 
+        title: '请先登录',
+        buttonText: '确定',
+            success: () => {
+              my.navigateTo({
+                url: '/pages/login/login',
+              });
+            },
       });
     }else{
       my.navigateTo({
@@ -397,7 +415,13 @@ Page({
     console.log(userCompleted)
      if(!userlogin){
       my.alert({
-        title: '请先登录' 
+        title: '请先登录',
+        buttonText: '确定',
+            success: () => {
+              my.navigateTo({
+                url: '/pages/login/login',
+              });
+            },
       });
     }else{
       if(userCompleted){

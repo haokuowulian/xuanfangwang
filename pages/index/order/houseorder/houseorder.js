@@ -35,11 +35,12 @@ Page({
     var token= my.getStorageSync({
       key: 'token', // 缓存数据的key
     }).data;
+    console.log('token='+token)
     my.httpRequest({
       url: url, // 目标服务器url
       // headers:{
-      //   'Content-Type': 'application/x-www-form-urlencoded',
-      //   'Cookie':token,
+      //   'Content-Type': 'application/json',
+      //   'Cookie': "uuid=" + token,
       //   },
       method: 'POST',
       data:{
@@ -62,6 +63,16 @@ Page({
               });
             }
           my.stopPullDownRefresh();
+        }else{
+          my.alert({
+            title: '登陆超时，请重新登录！',
+            buttonText: '确定',
+            success: () => {
+              my.navigateTo({
+                url: '/pages/login/login',
+              });
+            },
+          });
         }
       },
       fail: function(res) {

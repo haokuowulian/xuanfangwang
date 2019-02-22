@@ -8,6 +8,7 @@ Page({
     showBottom: false,
     areaList:[],
     userId:'',
+    password:'',
   },
   onLoad() {
     var userId = my.getStorageSync({
@@ -104,7 +105,8 @@ Page({
     })
   },
   //输入姓名
-  bindPassword(e){
+  bindName(e){
+    console.log(e.detail.value)
     this.setData({
       name:e.detail.value
     })
@@ -120,6 +122,7 @@ Page({
   },
    //完善信息
   submit(){
+    console.log(this.data.name+'|||'+this.data.sex+'|||'+this.data.cityCode+'|||'+this.data.areaId+'|||'+this.data.certNo+'|||'+this.data.password)
     if(this.data.name==''||this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
        my.alert({
          title: '请完善信息' 

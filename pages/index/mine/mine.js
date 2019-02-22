@@ -44,6 +44,7 @@ Page({
     // if(userId!=''&&userId!=null){
     //   this.antLogin();
     // }
+   
     var userlogin = my.getStorageSync({
       key: 'userlogin', 
     }).data;
@@ -77,52 +78,88 @@ Page({
    currentIdentityIsUser = my.getStorageSync({
      key: 'currentIdentityIsUser', // 缓存数据的key
    }).data;
+   
   if(userId&&userId!=''){
-    if(certNo&&certNo!=''){
-      my.setNavigationBar({
-            title:'个人中心'
-          });
-      if(roleId==7&&!currentIdentityIsUser){//房东
-        this.setData({
-          userlogin:true,
-          userCompleted:true,
-          isRoleUser:false,
-          headimg:avatar,
-          username:nickName,
-          userId:userId
-        });
-      }else if(roleId==7&&currentIdentityIsUser){//房东&租客
-        this.setData({
-          userlogin:true,
-          userCompleted:true,
-          isRoleUser:true,
-          headimg:avatar,
-          username:nickName,
-          userId:userId
-        });
-      }else if(roleId==8){//租客
-        this.setData({
-          userlogin:true,
-          userCompleted:true,
-          isRoleUser:true,
-          headimg:avatar,
-          username:nickName,
-          userId:userId
-        });
-      }
+    var token = my.getStorageSync({
+      key: 'token', 
+    }).data;
+    var userName = my.getStorageSync({
+      key: 'userName', 
+    }).data;
+  console.log(token)
+    my.httpRequest({
+        url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          phone:userName,
+          token:token,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log(res)
+          if(res.data.success){
+              if(certNo&&certNo!=''){
+                my.setNavigationBar({
+                      title:'个人中心'
+                    });
+                if(roleId==7&&!currentIdentityIsUser){//房东
+                  this.setData({
+                    userlogin:true,
+                    userCompleted:true,
+                    isRoleUser:false,
+                    headimg:avatar,
+                    username:nickName,
+                    userId:userId
+                  });
+                }else if(roleId==7&&currentIdentityIsUser){//房东&租客
+                  this.setData({
+                    userlogin:true,
+                    userCompleted:true,
+                    isRoleUser:true,
+                    headimg:avatar,
+                    username:nickName,
+                    userId:userId
+                  });
+                }else if(roleId==8){//租客
+                  this.setData({
+                    userlogin:true,
+                    userCompleted:true,
+                    isRoleUser:true,
+                    headimg:avatar,
+                    username:nickName,
+                    userId:userId
+                  });
+                }
       
-    }else{
-      my.setNavigationBar({
-            title:'完善信息'
-          });
-      this.setData({
-        userlogin:true,
-        userCompleted:false,
-        headimg:avatar,
-        username:nickName,
-        userId:userId
+            }else{
+              my.setNavigationBar({
+                    title:'完善信息'
+                  });
+              this.setData({
+                userlogin:true,
+                userCompleted:false,
+                headimg:avatar,
+                username:nickName,
+                userId:userId
+              });
+            }
+          }else{
+            my.alert({
+              title: '登陆超时，请重新登录！',
+              buttonText: '确定',
+              success: () => {
+                my.clearStorage();
+                my.navigateTo({
+                  url: '/pages/login/login',
+                });
+              },
+            });
+          }
+        },
       });
-    }
+
+
+    
     
   }else{
     my.setNavigationBar({
@@ -174,6 +211,10 @@ Page({
                my.setStorageSync({
                  key: 'token', // 缓存数据的key
                  data: res.data.token, // 要缓存的数据
+               });
+               my.setStorageSync({
+                 key: 'userName', // 缓存数据的key
+                 data: res.data.info.userName, // 要缓存的数据
                });
                my.setStorageSync({
                  key: 'certNo', // 缓存数据的key
@@ -250,10 +291,18 @@ Page({
                  }
                 
                }else if(res.data.info.roleId==7){//房东
-               my.setStorageSync({
-                 key: 'roleUser', // 缓存数据的key
-                 data: false, // 要缓存的数据
-               });
+                my.setStorageSync({
+                  key: 'roleUser', // 缓存数据的key
+                  data: false, // 要缓存的数据
+                });
+                my.setStorageSync({
+                  key: 'userCompleted', // 缓存数据的key
+                  data: true, // 要缓存的数据
+                });
+                my.setStorageSync({
+                  key: 'userlogin', // 缓存数据的key
+                  data: true, // 要缓存的数据
+                });
                 this.setData({
                   userlogin:true,
                   headimg:res.data.info.avatar,
@@ -327,9 +376,41 @@ Page({
     });
   },
   toEvaluate(){
-    my.navigateTo({
-      url: '/pages/index/evaluate/evaluate',
-    });
+    // my.navigateTo({
+    //   url: '/pages/index/evaluate/evaluate',
+    // });
+    var token = my.getStorageSync({
+      key: 'token', 
+    }).data;
+    var userName = my.getStorageSync({
+      key: 'userName', 
+    }).data;
+
+    my.httpRequest({
+        url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          phone:userName,
+          token:token,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log(res)
+          if(res.data.success){
+            
+          }else{
+            my.alert({
+              title: '登陆超时，请重新登录！',
+              buttonText: '确定',
+              success: () => {
+                my.navigateTo({
+                  url: '/pages/login/login',
+                });
+              },
+            });
+          }
+        },
+      });
   },
   toBill(){
     my.navigateTo({
@@ -645,13 +726,17 @@ getServerTime(){
                  key: 'userId', // 缓存数据的key
                  data: res.data.userId, // 要缓存的数据
                });
-              //  my.setStorageSync({
-              //    key: 'upayUserId', // 缓存数据的key
-              //    data: res.data.info.payUserId, // 要缓存的数据
-              //  });
+               my.setStorageSync({
+                 key: 'upayUserId', // 缓存数据的key
+                 data: res.data.payUserId, // 要缓存的数据
+               });
                my.setStorageSync({
                  key: 'token', // 缓存数据的key
                  data: res.data.token, // 要缓存的数据
+               });
+               my.setStorageSync({
+                 key: 'userName', // 缓存数据的key
+                 data: res.data.userName, // 要缓存的数据
                });
                my.setStorageSync({
                  key: 'certNo', // 缓存数据的key
@@ -673,10 +758,6 @@ getServerTime(){
                  key: 'certName', // 缓存数据的key
                  data: res.data.certName, // 要缓存的数据
                });
-               my.setStorageSync({
-                key: 'upayUserId', // 缓存数据的key
-                data: res.data.upayUserId, // 要缓存的数据
-              });
                my.setStorage({
                 key: 'currentIdentityIsUser', // 缓存数据的key
                 data: true, // 要缓存的数据
@@ -794,6 +875,7 @@ getServerTime(){
   sendMsg(){
     var that = this;
     var phoneNum = that.data.phoneNum;
+    console.log(phoneNum)
     if(phoneNum!=''){
       var mobileNum =(/^1[34578]\d{9}$/.test(phoneNum))
       if(mobileNum){
@@ -898,62 +980,63 @@ getServerTime(){
           console.log("登录成功！")
           // that.getPayId();
           my.setStorageSync({
-              key: 'userId', // 缓存数据的key
-              data: res.data.users.id, // 要缓存的数据
-            });
-          //  my.setStorageSync({
-          //    key: 'upayUserId', // 缓存数据的key
-          //    data: res.data.info.payUserId, // 要缓存的数据
-          //  });
-           my.setStorageSync({
-             key: 'token', // 缓存数据的key
-             data: res.data.token, // 要缓存的数据
-           });
-            my.setStorageSync({
-              key: 'certNo', // 缓存数据的key
-              data: res.data.users.certNo, // 要缓存的数据
-            });
-            my.setStorageSync({
-              key: 'avatar', // 缓存数据的key
-              data: res.data.users.avatar, // 要缓存的数据
-            });
-            my.setStorageSync({
-              key: 'nickName', // 缓存数据的key
-              data: res.data.users.nickName, // 要缓存的数据
-            });
-            my.setStorageSync({
-              key: 'roleId', // 缓存数据的key
-              data: res.data.users.roleId, // 要缓存的数据
-            });
-            my.setStorageSync({
-              key: 'certName', // 缓存数据的key
-              data: res.data.users.certName, // 要缓存的数据
-            });
-
-            my.setStorageSync({
-              key: 'upayUserId', // 缓存数据的key
-              data: res.data.users.upayUserId, // 要缓存的数据
-            });
-
-            my.setStorage({
-            key: 'currentIdentityIsUser', // 缓存数据的key
-            data: true, // 要缓存的数据
+            key: 'userId', // 缓存数据的key
+            data: res.data.users.id, // 要缓存的数据
           });
           my.setStorageSync({
-            key: 'userlogin', // 缓存数据的key
+            key: 'upayUserId', // 缓存数据的key
+            data: res.data.users.payUserId, // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'token', // 缓存数据的key
+            data: res.data.token, // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'userName', // 缓存数据的key
+            data: res.data.users.userName, // 要缓存的数据
+          });
+        my.setStorageSync({
+          key: 'certNo', // 缓存数据的key
+          data: res.data.users.certNo, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'avatar', // 缓存数据的key
+          data: res.data.users.avatar, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'nickName', // 缓存数据的key
+          data: res.data.users.nickName, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'roleId', // 缓存数据的key
+          data: res.data.users.roleId, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'certName', // 缓存数据的key
+          data: res.data.users.certName, // 要缓存的数据
+        });
+
+        
+
+        my.setStorage({
+          key: 'currentIdentityIsUser', // 缓存数据的key
+          data: true, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'userlogin', // 缓存数据的key
+          data: true, // 要缓存的数据
+        });
+        if(res.data.certNo&&res.data.certNo!=''){
+          my.setStorageSync({
+            key: 'userCompleted', // 缓存数据的key
             data: true, // 要缓存的数据
           });
-          if(res.data.certNo&&res.data.certNo!=''){
-            my.setStorageSync({
-              key: 'userCompleted', // 缓存数据的key
-              data: true, // 要缓存的数据
-            });
-          }else{
-            my.setStorageSync({
-              key: 'userCompleted', // 缓存数据的key
-              data: false, // 要缓存的数据
-            });
-          }
+        }else{
+          my.setStorageSync({
+            key: 'userCompleted', // 缓存数据的key
+            data: false, // 要缓存的数据
+          });
+        }
             
           //  my.setStorageSync({
           //    key: 'phone', // 缓存数据的key

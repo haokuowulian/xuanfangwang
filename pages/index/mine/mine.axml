@@ -19,29 +19,29 @@
   </view>
 
   <view a:if="{{showxfw}}">
-  <view class="classInput1">
-    <input type="text" placeholder="用户名/手机号" class="classAccount1" onInput="toInput" value="{{account}}" data-t='1'/>
-    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{account.length>0}}" onTap="toEmpty" data-t='1'/>
-  </view>
-  <view class="classLine"></view>
+    <view class="classInput1">
+      <input type="text" placeholder="用户名/手机号" class="classAccount1" onInput="toInput" value="{{account}}" data-t='1'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{account.length>0}}" onTap="toEmpty" data-t='1'/>
+    </view>
+    <view class="classLine"></view>
 
-  <view class="classInput1" a:if="{{eyeclose}}">
-    <input type="text" placeholder="请输入密码" password class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
-    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
-    <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen"/>
-  </view>
+    <view class="classInput1" a:if="{{eyeclose}}">
+      <input type="text" placeholder="请输入密码" password class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
+      <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen"/>
+    </view>
 
-  <view class="classInput1" a:if="{{eyeopen}}">
-    <input type="text" placeholder="请输入密码" class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
-    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
-    <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose"/>
-  </view>
-  <view class="classLine"></view>
+    <view class="classInput1" a:if="{{eyeopen}}">
+      <input type="text" placeholder="请输入密码" class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
+      <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose"/>
+    </view>
+    <view class="classLine"></view>
 
-  <view class="btn_box">
-    <button class="btn_login" type="default" onTap="xfwLogin">立即登录
-    </button>
-  </view>
+    <view class="btn_box">
+      <button class="btn_login" type="default" onTap="xfwLogin">立即登录
+      </button>
+    </view>
   </view>
 
   <view a:if="{{showPhone}}">
