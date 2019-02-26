@@ -22,8 +22,8 @@
           <view a:if="{{rentType==2}}" class="house-price-pay">￥{{houseDetail.rents}}元/月</view>
           <view class="house-price-payway" onTap="onPaymentMethod">付款方式<image src="/image/icon/right.png" class="icon-size"/></view>
       </view>
-      <view a:if="{{rentType==1}}" class="house-price-room">{{houseDetail.apartment.apartmentName}}·{{houseDetail.buildingUnit}}·{{houseDetail.houseNo}}</view>
-      <view a:if="{{rentType==2}}" class="house-price-room">{{houseDetail.house.apartment.apartmentName}}·{{houseDetail.house.buildingUnit}}·{{houseDetail.roomName}}</view>
+      <view a:if="{{rentType==1}}" class="house-price-room">{{houseDetail.apartment.apartmentName}}·{{houseDetail.houseNo}}</view>
+      <view a:if="{{rentType==2}}" class="house-price-room">{{houseDetail.house.apartment.apartmentName}}·{{houseDetail.roomName}}</view>
     </view>
     <view class="house-info">
       <view class="house-info-c1">
@@ -40,9 +40,9 @@
           <view class="info-c2-list">{{houseDetail.toward}}</view>
       </view>
       <view  class="house-info-c2">
-        <view a:if="{{rentType==1}}" class="info-c2-area"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.apartment.address}}
+        <view a:if="{{rentType==1}}" class="info-c2-area" onTap="toMap"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.apartment.address}}
         </view>
-         <view a:if="{{rentType==2}}" class="info-c2-area"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.house.apartment.address}}
+         <view a:if="{{rentType==2}}" class="info-c2-area" onTap="toMap"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.house.apartment.address}}
         </view>
     </view>
   </view>

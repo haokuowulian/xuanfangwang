@@ -54,7 +54,10 @@
     "pages/index/housedelivery/housedelivery5-1/housedelivery5-1",
     "pages/index/housedelivery/housedelivery5-2/housedelivery5-2",
     "pages/index/housedelivery/housedelivery-map/housedelivery-map",
-    "pages/index/account_completed/account_completed"
+    "pages/chat/chat",
+    "pages/index/account_completed/account_completed",
+    "pages/chatlist/chatlist",
+    "pages/index/map_house/map_house"
   ],
   "window": {
     "defaultTitle": "My App"
@@ -75,6 +78,12 @@
         "pagePath": "pages/index/findhouse/findhouse",
         "activeIcon": "image/sousuo.png",
         "name": "找房"
+      },
+      {
+        "icon": "image/icon/xiaoxi.png",
+        "pagePath": "pages/chatlist/chatlist",
+        "activeIcon": "image/xiaoxi.png",
+        "name": "会话"
       },
       {
         "icon": "image/icon/yaoshi.png",

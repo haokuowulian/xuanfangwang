@@ -25,7 +25,7 @@
       <picker onChange="bindPickerChange" value="{{index}}" range="{{sexarr}}">
         <view class="row-extra">{{usersex}}</view>
       </picker>
-      </view>
+    </view>
     <view class="content">身份证<input class="inputClass" type="number" value="{{cardId}}"  focus="false" onInput="bindCadeInput"/></view>
     <view class="content" style="border:0">手机号<input class="inputClass" type="number" value="{{phone}}" focus="false" onInput="bindPhoneInput"/></view>
  

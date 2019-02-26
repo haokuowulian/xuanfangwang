@@ -1,5 +1,5 @@
 .page-banner{
-  height: 450rpx;
+  height: 320rpx;
   width: 750rpx;
   background-color: #2B2B2B;
   display: flex;
@@ -53,7 +53,7 @@
 }
 .user-name{
   font-size: 40rpx;
-  margin-top: 35rpx;
+  margin-top: 15rpx;
 }
 
 .page-option{
@@ -176,7 +176,7 @@
 }
 
 .page-banner1{
-  height: 470rpx;
+  height: 320rpx;
   width: 750rpx;
   background-color: #FFFACD;
   display: flex;
@@ -205,6 +205,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
 }
 .qipao-img{
   height: 35rpx;
@@ -213,7 +214,7 @@
 .user-account{
   height: 55rpx;
   width: 190rpx;
-  margin-top: 65rpx;
+  /* margin-top: 65rpx; */
   border-top-left-radius: 50rpx;
   border-bottom-left-radius: 50rpx;
   background-color: #ff9900;
@@ -226,7 +227,8 @@
 .user-info{
   font-size: 40rpx;
   color: #333333;
-  margin-top: 65rpx;
+  /* margin-top: 65rpx; */
+  /* margin-top: 35rpx; */
   margin-left: 35rpx;
   display: flex;
   flex-direction: row;

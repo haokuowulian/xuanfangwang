@@ -27,7 +27,7 @@ Page({
     this.getWholeRentalHousing();
     this.getSharedHousing();
     this.getLocation();
-    // this.initialize();
+    this.initialize();
   },
   handleInput(value) {
     this.setData({
@@ -293,16 +293,18 @@ Page({
   },
   //初始化合同
   initialize(){
+    console.log('初始化合同开始');
      my.httpRequest({
       url: app.globalData.baseUrl+"IF/initialize/initialize.do",
       method: 'POST',
       dataType: 'json',
       success: function(res) {
         console.log(res.data);
-        
+         console.log('初始化合同成功');
       },
       fail: function(res) {
        console.log(res);
+       console.log('初始化合同失败');
       },
       complete: function(res) {
         my.hideLoading();

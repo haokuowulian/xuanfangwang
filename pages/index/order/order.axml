@@ -1,6 +1,53 @@
 <view>
+  <view a:if="{{orderList.length==0}}" class="tips">你还没有订单</view>
+  <view a:else>
+  <block a:for="{{orderList}}" a:for-item="list">
+    <view class="page-order">
+
+      <view class="order">
+        <view class="order-head">
+          <view class="order-title" onTap="toHouseInfo" data-id="{{list.housingId}}" data-type="{{list.housingType}}">
+            <view>{{list.housingName}}</view>
+            <view class="rightimg">
+              <image src="/image/icon/right.png" class="right-img" />
+            </view>
+          </view>
+
+          <view a:if="{{list.status==0}}" class="order-status1">待付款</view>
+          <view a:if="{{list.status==1}}" class="order-status1">已付款</view>
+          <view a:if="{{list.status==2}} " class="order-status1">退款申请中</view>
+          <view a:if="{{list.status==3}} " class="order-status1">退款完成</view>
+          <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
+        </view>
+
+        <view class="order-content" onTap="toOrderInfo" data-id="{{list.id}}">
+          <!-- <view class="content"> -->
+            <view class="content-left">
+              <image src="{{imgurl}}{{list.images}}" class="house-img" />
+            </view>
+
+            <view class="content-right">
+              <view class="right-text">{{list.startDate}}至{{list.endDate}}</view>
+                <view class="right-pay right-text">首付款项：
+                  <view class="right-firstpay">{{list.totalMoney}}</view>元
+                </view>
+              <view a:if="{{list.payment==1}}" class="right-text">月付</view>
+              <view a:if="{{list.payment==3}}" class="right-text">季付</view>
+              <view a:if="{{list.payment==6}}" class="right-text">半年付</view>
+              <view a:if="{{list.payment==12}}" class="right-text">年付</view>
+            </view>
+          <!-- </view> -->
+
+        </view>
+
+      </view>
+    </view>
+  </block>
+  </view>
+
+</view>
+<!-- <view>
   <view class="order">
-    <!-- <view class="myorder" onTap="toTest"> -->
     <view class="myorder" onTap="toHouseOrderList">
       <view class="order-title">我的租房订单</view>
       <view class="order-right">
@@ -9,12 +56,12 @@
     </view>
   </view>
 
-  <!-- <view class="order">
+  <view class="order">
     <view class="myorder">
       <view class="order-title">我的酒店订单</view>
       <view class="order-right">
         <image src="/image/icon/right.png" class="right-img" />
       </view>
     </view>
-  </view> -->
-</view>
+  </view>
+</view> -->

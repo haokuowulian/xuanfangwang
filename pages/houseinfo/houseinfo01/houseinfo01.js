@@ -65,6 +65,7 @@ Page({
       },
       dataType: 'json',
       success: function(res) {
+        console.log("房源详情");
         console.log(res.data);
         var list=[];
        for(var i=0;i<res.data.furnitureList.length;i++ ){
@@ -451,5 +452,9 @@ Page({
       url: '/pages/houseinfo/payment_method/payment_method?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
     });
   },
-  
+  toMap(){
+    my.navigateTo({
+      url: '/pages/index/map_house/map_house?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+    });
+  },
 });

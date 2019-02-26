@@ -51,7 +51,9 @@ Page({
       },
       dataType: 'json',
      success: function(res) {
+        console.log('111');
         console.log(res.data);
+        console.log('222');
         if(res.data.success){
            if(that.data.pageIndex==1){
             that.setData({
