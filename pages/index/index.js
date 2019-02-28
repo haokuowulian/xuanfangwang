@@ -27,7 +27,7 @@ Page({
     this.getWholeRentalHousing();
     this.getSharedHousing();
     this.getLocation();
-    // this.initialize();
+    this.initialize();
   },
   handleInput(value) {
     this.setData({
