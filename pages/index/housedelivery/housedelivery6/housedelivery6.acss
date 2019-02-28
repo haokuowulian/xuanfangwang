@@ -55,7 +55,7 @@
 
 .nextStepButtonClass{
   width: 300rpx;
-  background-color: #dcdcdc;
+  background-color: #ffa800;
   color: white;
   font-size: 35rpx;
   height: 70rpx;

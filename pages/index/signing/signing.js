@@ -12,6 +12,20 @@ Page({
     index:0,
   },
   onLoad(option) {
+    my.confirm({
+      title: '租 房 合 同 书（模板）',
+      content: '甲方将房屋租给乙方使用，经双方协商，订立如下协议： 一、 租用期时间自选。二、 租金按约定金额支付，收租期为合同生效下个月当天。三、 付款方法：签订合同后，甲方向乙方收取一个月押金，而押金不能作租金用途。四、 电费、水费、卫生费、物业费等一切杂费由双方协商。五、 乙方如中途退房，应提前一个月通知甲方，否则不退押金，不能私自转租他人及更改用途，否则甲方有权收回此房屋，押金不退。六、 乙方要遵守法律制度及治安管理条例，如有违法乙方自行解决与甲方无关。七、 乙方要自觉爱护甲方财物，如有损坏，则要按价赔偿。八、 乙方如违反合约或有违法行为，甲方有权提前收回此房屋，押金不退。九、 乙方在房屋内装修需甲方统一。十、 此合同将生产电子合同，双方各执一份，双方电子签章后生效。',
+      confirmButtonText: '同意',
+      cancelButtonText: '拒绝',
+      success: (res) => {
+        console.log(res)
+        if(res.confirm){
+          console.log('同意协议')
+        }else{
+          my.navigateBack();
+        }
+      },
+    });
     this.setData({
       houseDetail:JSON.parse(option.houseDetail),
       rentType:option.rentType

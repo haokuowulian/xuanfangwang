@@ -1,0 +1,54 @@
+<view class='page_bg' a:if='{{block}}' onTap='hide_bg' />
+<view class='btn_bg' a:if='{{block}}'>
+  <view a:for="{{link_list}}" a:key='index'>
+    <button class="sp_tit" id='{{index}}' onTap='list_item'>查看详情 {{item}} </button>
+  </view>
+</view>
+<scroll-view class="history" scroll-y="true" scroll-with-animation scroll-top="{{scrollTop}}">
+ 
+  <block a:key="{{index}}" a:for="{{allContentList}}">
+    <!-- <view>
+      <text class='time'>{{time}}</text>
+    </view> -->
+    <view class='my_right' a:if="{{item.is_my}}">
+      <view class='p_r' a:if='{{item.is_my.text}}'>
+        <text class='new_txt'><text class='new_txt_my'>{{item.is_my.text}}</text></text>
+        <view class='sanjiao my'></view>
+        <image class='new_img' src='/images/test.jpg'></image>
+      </view>
+      <view class='p_r' a:if='{{item.is_my.img}}' onTap='my_audio_click' data-id='{{index}}'>
+        <text class='new_txt'> </text>
+        <view class='my_img_bg'>
+        <image class='my_audio' src='{{img}}'></image></view>
+        <view class='sanjiao my'></view>
+        <image class='new_img' src='/images/test.jpg'></image>
+      </view>
+    </view>
+    <!-- <view class='you_left' id='id_{{allContentList.length}}'> -->
+    <view class='you_left' id='id_{{allContentList.length}}' a:key="{{index}}" a:if="{{item.is_ai}}">
+      <view class='p_r'>
+        <image class='new_img' src='/images/chac.jpg'></image>
+        <view class='sanjiao you'></view>
+        <view class='new_txt'>
+          <view class='new_txt_ai'>
+            <!-- {{item.text}} -->
+            <block a:for='{{item.is_two}}' a:key='index'>
+              <text a:if='{{item.text}}'>{{item.text}}</text>
+              <text a:if='{{item.a.title}}' style='color:#0000EE' onTap='link' id='{{item.a.link}}'>{{item.a.title}}</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class="sendmessage">
+  <image class='voice_icon' onTap='addImg' src='/images/jia_img.png'></image>
+  <block a:if='{{!addImg}}'>
+    <input type="text" bindinput="bindKeyInput" value='{{inputValue}}' focus='{{focus}}' bindfocus="focus" confirm-type="done" placeholder="" />
+    <button onTap="submitTo" class='user_input_text'>发送</button>
+  </block>
+  <block a:if='{{addImg}}'>
+    <view class='voice_ing' onTap="upimg">发送图片</view>
+  </block>
+</view>

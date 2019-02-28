@@ -22,6 +22,7 @@
   margin-left: 20rpx;
   margin-top: 35rpx;
   color: #999999;
+  width: 680rpx;
 }
 
 .lineClass{
@@ -34,7 +35,7 @@
 
 .nextStepButtonClass{
   width: 300rpx;
-  background-color: #dcdcdc;
+  background-color: #ffa800;
   color: white;
   font-size: 35rpx;
   height: 70rpx;

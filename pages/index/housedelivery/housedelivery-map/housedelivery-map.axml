@@ -4,9 +4,9 @@
       <input class="inputClass"  type="text" id="keyword" name="keyword" placeholder="请输入公寓/小区名称" onInput="bindKeyInput" value="{{value}}"/>
     <button class="confirmClass"  onTap="confirm">确定</button>
     </view>
-   <view a:if="{{isShow}}" class="scrollViewClass">
-      <view a:for="{{searchResults}}" class="resultClass" onTap="selectIt" data-item="{{item}}">{{item.name}}</view>
-   </view>
+   <cover-view a:if="{{isShow}}" class="scrollViewClass">
+      <cover-view a:for="{{searchResults}}" class="resultClass" onTap="selectIt" data-item="{{item}}">{{item.name}}</cover-view>
+   </cover-view>
     <map 
         class="mapClass"
         id="map" 

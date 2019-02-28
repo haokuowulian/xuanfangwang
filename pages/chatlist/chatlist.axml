@@ -1,0 +1,11 @@
+<web-view src="https://webim-h5.easemob.com/#/login" />
+<!-- <view>
+  <block a:for="{{chatlist}}" a:for-item="list">
+    <view class="chat_box" onTap="toChat" data-uid="{{list.uid}}">
+      <view class="chat_left">
+        <image src="{{list.img}}" class="classImg" />
+      </view>
+      <view class="chat_right"></view>
+    </view>
+  </block>
+</view> -->

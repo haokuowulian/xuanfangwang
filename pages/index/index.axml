@@ -40,7 +40,7 @@
       </view>
       
       <view class="choose1"  onTap="choose1OnTap" data-choose="4">
-        <image src="/image/house004.png" class="img-house"/>无人酒店
+        <image src="/image/house004.png" class="img-house"/>民宿
       </view>
     </view>
   </view>

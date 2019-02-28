@@ -65,6 +65,7 @@ Page({
       },
       dataType: 'json',
       success: function(res) {
+        console.log("房源详情");
         console.log(res.data);
         var list=[];
        for(var i=0;i<res.data.furnitureList.length;i++ ){
@@ -405,6 +406,16 @@ Page({
     }
     
   },
+
+  onShareAppMessage(){
+    console.log(this.data.id)
+    console.log(this.data.rentType)
+    return {
+      title: '房源详情分享',
+      desc: '房源详情分享',
+      path: '/pages/houseinfo/houseinfo01/houseinfo01?id='+this.data.id+'&rentType='+this.data.rentType,
+    };
+  },
   toSigning(){
     var userCompleted = my.getStorageSync({
       key: 'userCompleted', 
@@ -451,5 +462,9 @@ Page({
       url: '/pages/houseinfo/payment_method/payment_method?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
     });
   },
-  
+  toMap(){
+    my.navigateTo({
+      url: '/pages/index/map_house/map_house?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+    });
+  },
 });

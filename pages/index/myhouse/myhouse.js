@@ -11,7 +11,7 @@ Page({
   },
   onLoad() {
     
-    this.getHouseList();
+    this.getHouseList(1);
   },
   onShow(){},
   toMyroominfo(e){
@@ -29,7 +29,7 @@ Page({
       pageIndex:1,
       rentType:1
     });
-    this.getHouseList();
+    this.getHouseList(1);
   },
   finish(){
     this.setData({
@@ -38,20 +38,20 @@ Page({
       pageIndex:1,
       rentType:2
     });
-     this.getHouseList();
+     this.getHouseList(2);
   },
   //获取房源列表
-  getHouseList(){
+  getHouseList(rentType){
     var userId=my.getStorageSync({
       key: 'userId', // 缓存数据的key
-    });
+    }).data;
     var that=this;
      my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHousingListIFByLandlord.do",
       method: 'POST',
       data: {
         userId:userId,
-        rentType:this.data.rentType,
+        rentType:rentType,
         pageIndex: this.data.pageIndex,
         pageSize: 6,
       },

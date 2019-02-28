@@ -256,7 +256,15 @@
           <image src="/image/qipao.png" class="qipao-img" />
         </view> -->
       </view>
-      <view class="banner1-user">
+   
+       
+      <view class="posion-bkgd">
+        <image src="{{headimg}}" class="posion-img" />
+      </view>
+      <view class="user-name font-color2">{{username}}
+      </view>
+        
+      <!-- <view class="banner1-user">
         <view class="user-info">
           <view class="posion-bkgd">
             <image src="{{headimg}}" class="posion-img" />
@@ -264,9 +272,9 @@
           <view class="user-name1 font-color2">{{username}}
           </view>
         </view>
-        <!-- <view class="user-account" onTap="toAccountInfo">账号信息
-        </view> -->
-      </view>
+        <view class="user-account" onTap="toAccountInfo">账号信息
+        </view>
+      </view> -->
     </view>
     <view class="page-option page-section">
       <view class="option">
@@ -328,8 +336,8 @@
             <image src="/image/mine/xiuli.png" class="service-img" />
             <view class="content-text3">在线报修
             </view>
-          </view>
-          <view class="content-box content-bkgd4">
+          </view> -->
+          <!-- <view class="content-box content-bkgd4">
             <image src="/image/mine/menjin.png" class="service-img" />
             <view class="content-text4">智能门禁
             </view>

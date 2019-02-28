@@ -78,7 +78,6 @@ Page({
    currentIdentityIsUser = my.getStorageSync({
      key: 'currentIdentityIsUser', // 缓存数据的key
    }).data;
-   
   if(userId&&userId!=''){
     var token = my.getStorageSync({
       key: 'token', 
@@ -366,7 +365,7 @@ Page({
   },
   toOrder(){
     my.navigateTo({
-      url: '/pages/index/order/order',
+      url: '/pages/index/order/order?type=1',//1:租客；2：房东
     });
   },
   //前往房东时我的订单
@@ -376,41 +375,9 @@ Page({
     });
   },
   toEvaluate(){
-    // my.navigateTo({
-    //   url: '/pages/index/evaluate/evaluate',
-    // });
-    var token = my.getStorageSync({
-      key: 'token', 
-    }).data;
-    var userName = my.getStorageSync({
-      key: 'userName', 
-    }).data;
-
-    my.httpRequest({
-        url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
-        method: 'POST',
-        data:{
-          phone:userName,
-          token:token,
-        },
-        dataType: 'json',
-        success: (res) => {
-          console.log(res)
-          if(res.data.success){
-            
-          }else{
-            my.alert({
-              title: '登陆超时，请重新登录！',
-              buttonText: '确定',
-              success: () => {
-                my.navigateTo({
-                  url: '/pages/login/login',
-                });
-              },
-            });
-          }
-        },
-      });
+    my.navigateTo({
+      url: '/pages/index/evaluate/evaluate',
+    });
   },
   toBill(){
     my.navigateTo({
@@ -465,12 +432,12 @@ Page({
     });
   },
   toAccountInfo(){
-    my.navigateTo({
-      url: '/pages/index/accountinfo/accountinfo',
-    });
-    //  my.navigateTo({
-    //   url: '/pages/index/account_completed/account_completed',
+    // my.navigateTo({
+    //   url: '/pages/index/accountinfo/accountinfo',
     // });
+     my.navigateTo({
+      url: '/pages/index/housedelivery/housedelivery2/housedelivery2',
+    });
   },
   // toTest(){
   //   my.navigateTo({
@@ -614,8 +581,8 @@ getServerTime(){
         my.alert({
             content: JSON.stringify(res),
         });
-    }
-});
+      }
+    });
   },
   //请求服务器完善信息
    complexUserInfo(){
@@ -777,7 +744,10 @@ getServerTime(){
                   data: false, // 要缓存的数据
                 });
               }
-               
+               that.setData({
+                 account:'',
+                 passwords:'',
+               });
               //  my.setStorageSync({
               //    key: 'phone', // 缓存数据的key
               //    data: res.data.info.userName, // 要缓存的数据
@@ -1037,7 +1007,12 @@ getServerTime(){
             data: false, // 要缓存的数据
           });
         }
-            
+          if(res.data.reg){
+            my.alert({
+              title: '温馨提示',
+              content:'您的初始密码为手机号后6位，请尽快完善个人信息并修改密码。',
+            });
+          }
           //  my.setStorageSync({
           //    key: 'phone', // 缓存数据的key
           //    data: res.data.info.userName, // 要缓存的数据

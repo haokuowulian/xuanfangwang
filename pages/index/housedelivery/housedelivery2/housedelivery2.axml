@@ -1,7 +1,7 @@
 <view class="backgroundClass">
   <view class="titleClass">房源信息与认证（2/2）</view>
-  <view class="subTitleClass">单元、楼号</view>
-    <input class="inputClass" type="text" placeholder="请填写房源具体单元" onInput="toInput" data-t='1' value="{{vaddress}}"/>
+  <view class="subTitleClass">楼栋、单元</view>
+    <input class="inputClass" type="text" placeholder="请填写房源具体楼栋、单元" onInput="toInput" data-t='1' value="{{vaddress}}"/>
 
   <view class="lineClass"></view>
 
@@ -40,19 +40,19 @@
 
   <view class="subTitleClass">业主</view>
 
-   <input class="inputClass" type="number" placeholder="请填写所有人姓名" onInput="toInput" data-t='3' value="{{vowner}}"/>
+   <input class="inputClass" type="text" placeholder="请填写所有人姓名" onInput="toInput" data-t='3' value="{{vowner}}"/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">业主身份证号</view>
 
-   <input class="inputClass" type="number" placeholder="请填写业主的身份证号码" onInput="toInput" data-t='4' value="{{vownerCard}}"/>
+   <input class="inputClass" type="idcard" placeholder="请填写业主的身份证号码" onInput="toInput" data-t='4' value="{{vownerCard}}"/>
   
   <view class="lineClass"></view>
 
   <view class="subTitleClass">与业主关系</view>
 
-   <input class="inputClass" type="number" placeholder="请填写与业主的关系" onInput="toInput" data-t='5' value="{{vrelation}}"/>
+   <input class="inputClass" type="text" placeholder="请填写与业主的关系" onInput="toInput" data-t='5' value="{{vrelation}}"/>
    <view class="lineClass"></view>
 
   <view class="subTitleClass">授权证书认证</view>

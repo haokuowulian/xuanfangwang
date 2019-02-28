@@ -24,8 +24,8 @@ Page({
   },
   chooseDate(){
     var startDate = app.getDate('yyyy-MM-dd',0);
-    var currentDate = app.getFormateDate('yyyy-MM-dd',1,0);
-    var endDate = app.getFormateDate('yyyy-MM-dd',10,12);
+    var currentDate = app.getFormateDate1('yyyy-MM-dd',1,0);
+    var endDate = app.getFormateDate1('yyyy-MM-dd',10,12);
     console.log(currentDate+'***********'+endDate)
     my.datePicker({
       format: currentDate,

@@ -1,14 +1,14 @@
 App({
 
    globalData:{
-    baseUrl:'http://192.168.1.89:8080/LLGY/', 
-    // baseUrl_whj:'http://192.168.1.193:8080/LLGY/',
-    baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
-    baseImgUrl_whj:'http://192.168.1.89:8080/LLGY/upload/',
+    // baseUrl:'http://192.168.1.89:8080/LLGY/', 
+    // // baseUrl_whj:'http://192.168.1.193:8080/LLGY/',
+    // baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
+    // baseImgUrl_whj:'http://192.168.1.189:8080/LLGY/upload/',
 
-    // baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
-    // baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    // baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
+    baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
+    baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
    },
   onLanuch(){
     const {data} = my.getStorageSync({key: 'logs'});
@@ -68,6 +68,26 @@ App({
  getFormateDate(dateFormate,n){
   var time = new Date();
   time.setMonth(time.getMonth() + n);//设置month月后的时间
+  var Y = time.getFullYear();
+  var M = time.getMonth() + 1;//获取当前月份
+  var D = time.getDate();
+    switch(dateFormate){
+      case "yyyy年MM月dd日":
+        return Y+"年"+M+"月"+D+'日';
+      break;
+      case "yyyy-MM-dd":
+        return Y+"-"+M+"-"+D;
+      break;
+      default:
+        return Y+"-"+M+"-"+D;
+      break;
+    }
+  },
+   //获取几个月后
+ getFormateDate1(dateFormate,y,m){
+  var time = new Date();
+  time.setMonth(time.getMonth() + m);//设置m月后的时间
+  time.setFullYear(time.getFullYear()+y);//设置y年后的时间
   var Y = time.getFullYear();
   var M = time.getMonth() + 1;//获取当前月份
   var D = time.getDate();

@@ -320,60 +320,64 @@ Page({
 
     var furnitures = that.data.furniture;
     var features = that.data.feature;
-    var furniture = furnitures.join(",");
-    var feature = features.join(",");
-    // var fireid = that.data.selectId;
-    if(furniture!=''&&feature!=''){
-      my.setStorageSync({
-        key: 'r_furniture', // 缓存数据的key
-        data: furniture, // 要缓存的数据
-      });
-      my.setStorageSync({
-        key: 'r_feature', // 缓存数据的key
-        data: feature, // 要缓存的数据
-      });
-      my.setStorageSync({
-        key: 'r_extinguisher', // 缓存数据的key
-        data: that.data.extinguisher, // 要缓存的数据
-      });
-       my.setStorageSync({
-        key: 'r_smokeMask', // 缓存数据的key
-        data: that.data.smokeMask, // 要缓存的数据
-      });
-       my.setStorageSync({
-        key: 'r_flashlight', // 缓存数据的key
-        data: that.data.flashlight, // 要缓存的数据
-      });
-       my.setStorageSync({
-        key: 'r_rope', // 缓存数据的key
-        data: that.data.rope, // 要缓存的数据
-      });
-      
-      my.setStorageSync({
-        key: 'r_extinguisherimg', // 缓存数据的key
-        data: that.data.extinguisherimg, // 要缓存的数据
-      });
-       my.setStorageSync({
-        key: 'r_smokeMaskimg', // 缓存数据的key
-        data: that.data.smokeMaskimg, // 要缓存的数据
-      });
-       my.setStorageSync({
-        key: 'r_flashlightimg', // 缓存数据的key
-        data: that.data.flashlightimg, // 要缓存的数据
-      });
-       my.setStorageSync({
-        key: 'r_ropeimg', // 缓存数据的key
-        data: that.data.ropeimg, // 要缓存的数据
-      });
-      my.navigateTo({
-        url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
-      })
+    if(furnitures!=''){
+      if(features!=''){
+        var furniture = furnitures.join(",");
+        var feature = features.join(",");
+        my.setStorageSync({
+          key: 'r_furniture', // 缓存数据的key
+          data: furniture, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_feature', // 缓存数据的key
+          data: feature, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_extinguisher', // 缓存数据的key
+          data: that.data.extinguisher, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_smokeMask', // 缓存数据的key
+          data: that.data.smokeMask, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_flashlight', // 缓存数据的key
+          data: that.data.flashlight, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_rope', // 缓存数据的key
+          data: that.data.rope, // 要缓存的数据
+        });
+        
+        my.setStorageSync({
+          key: 'r_extinguisherimg', // 缓存数据的key
+          data: that.data.extinguisherimg, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_smokeMaskimg', // 缓存数据的key
+          data: that.data.smokeMaskimg, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_flashlightimg', // 缓存数据的key
+          data: that.data.flashlightimg, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'r_ropeimg', // 缓存数据的key
+          data: that.data.ropeimg, // 要缓存的数据
+        });
+        my.navigateTo({
+          url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
+        })
+      }else{
+        my.alert({
+          title: '请选择你的房屋特色' 
+        });
+      }
     }else{
-      my.alert({ title: '请填写完整' });
+      my.alert({
+        title: '请勾选相应的便利设施' 
+      });
     }
-    
-    
-
     
   },
   publish(){
@@ -621,7 +625,7 @@ Page({
               title: '提交成功！',
               success: () => {
               my.navigateBack({
-                delta: 5,
+                delta: 6,
               });
             }, 
             });

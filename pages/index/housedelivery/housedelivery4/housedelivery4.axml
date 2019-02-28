@@ -6,9 +6,9 @@
 
   <view class="lineClass"></view>
 
-   <view class="subTitleClass">预计房屋出租时长</view>
+   <view class="subTitleClass">预计房屋出租结束时间</view>
    <view onTap="chooseDate">
-    <input class="inputClass" type="text" placeholder="选择预计截至"  data-t='4' value="{{endDates}}"/>
+    <input class="inputClass" type="text" placeholder="请选择预计结束日期"  data-t='4' value="{{endDates}}"/>
     </view>
 
   <view class="lineClass"></view>

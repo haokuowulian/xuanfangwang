@@ -1,4 +1,95 @@
-.page-reg{
+.backgroundClass{
+  background-color: white;
+  width: 750rpx;
+  height: 100%;
+}
+.titleClass{
+  font-size: 50rpx;
+  color: #101010;
+  margin-left: 35rpx;
+  padding-top: 85rpx;
+}
+
+.subTitleClass{
+   font-size: 35rpx;
+   color: #333333;
+   margin-left: 35rpx;
+   margin-top: 45rpx;
+}
+
+.inputClass{
+  font-size: 25rpx;
+  margin-left: 20rpx;
+  margin-top: 35rpx;
+  color: #999999;
+}
+
+.lineClass{
+  height: 2rpx;
+  width: 680rpx;
+  margin-left: 35rpx;
+  background-color: #f5f5f3;
+  margin-top: 15rpx;
+}
+
+.nextStepButtonClass{
+  width: 680rpx;
+  background-color: #ffa800;
+  color: white;
+  font-size: 35rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-top: 100rpx;
+  margin-bottom: 35rpx;
+  margin-left:35rpx;
+  border-radius: 35rpx;
+}
+
+.addViewMainClass{
+  /* margin-left: 35rpx;
+  width: 680rpx;
+  height: 180rpx; */
+}
+.addViewClass{
+  margin-top: 35rpx;
+  width: 216rpx;
+  height:235rpx;
+  text-align: center;
+  float: left;
+}
+
+.addImageViewClass{
+  width: 216rpx;
+  height: 140rpx;
+  margin-bottom: 24rpx;
+}
+
+.textClass{
+  font-size: 25rpx;
+  color: #999999;
+}
+.content{
+  position: relative;
+}
+.delImg{
+  position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
+}
+.content1{
+  /* border-bottom: 1rpx solid #e6e6e6; */
+  height: 100rpx;
+  width: 640rpx;
+  margin-left: 35rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 25rpx;
+  color: #999999;
+}
+
+
+/* 原房东注册页样式 */
+/* .page-reg{
   height: 100%;;
   width: 750rpx;
   background-color: #ffffff;
@@ -8,7 +99,6 @@
   width: 680rpx;
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
   border-bottom: 2rpx solid #f7f7f7f7;
 }
@@ -17,9 +107,6 @@
   padding-left: 35rpx;
   padding-right: 35rpx;
 }
-/* .input{
-  border-bottom: 2rpx solid #f7f7f7f7;
-} */
 .btn{
   height: 150rpx;
   width: 680rpx;
@@ -78,4 +165,4 @@
 
 .radio-left{
   margin-right: 25rpx;
-}
+} */

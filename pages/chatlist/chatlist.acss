@@ -1,0 +1,22 @@
+.classImg{
+  height: 120rpx;
+  width: 120rpx;
+}
+.chat_box{
+  margin-top: 15rpx;
+  height: 120rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+}
+.chat_left{
+  height: 120rpx;
+  width: 120rpx;
+}
+.chat_right{
+  height: 120rpx;
+  width: 560rpx;
+}

@@ -21,13 +21,14 @@ Page({
 
   },
   getOrder(){
-    var url;
-    if(this.data.type==1){
-      url=app.globalData.baseUrl_whj+"IF/order/getOrderByConsumer.do"
-    }else if(this.data.type==2){
-       url=app.globalData.baseUrl_whj+"IF/order/getOrderByLandlord.do"
-    }
     var that = this;
+    var url=app.globalData.baseUrl_whj+"IF/order/getOrderByLandlord.do";
+    // if(this.data.type==1){
+    //   url=app.globalData.baseUrl_whj+"IF/order/getOrderByConsumer.do"
+    // }else if(this.data.type==2){
+    //    url=app.globalData.baseUrl_whj+"IF/order/getOrderByLandlord.do"
+    // }
+    console.log('url='+url);
     console.log('----------------'+that.data.pageIndex);
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
@@ -51,7 +52,9 @@ Page({
       },
       dataType: 'json',
      success: function(res) {
+        console.log('111');
         console.log(res.data);
+        console.log('222');
         if(res.data.success){
            if(that.data.pageIndex==1){
             that.setData({

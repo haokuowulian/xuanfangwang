@@ -358,3 +358,11 @@
 .tousu{
   position: absolute; top: 15rpx; right: 15rpx; height: 60rpx; overflow: visible;
 }
+.share{
+  position: absolute; top: 480rpx; right: 15rpx; height: 60rpx; overflow: visible;
+}
+.btn_share{
+  height: 60rpx;
+  width: 60rpx;
+  background:none;border:none;
+}

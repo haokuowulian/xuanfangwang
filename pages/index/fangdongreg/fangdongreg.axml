@@ -1,4 +1,92 @@
-<view>
+<view class="backgroundClass">
+  <view class="titleClass">身份认证</view>
+
+  <view class="subTitleClass">真实姓名</view>
+
+   <input class="inputClass" type="text" placeholder="请填写您的姓名" onInput="toInput" data-t='1' value="{{vowner}}"/>
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">性别</view>
+  <view class="content1">请选择
+    <picker onChange="bindPickerChange" value="{{index}}" range="{{sexarr}}">
+      <view class="row-extra">{{usersex}}</view>
+    </picker>
+  </view>
+
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">身份证号码</view>
+
+   <input class="inputClass" type="idcard" placeholder="请填写您的身份证号码" onInput="toInput" data-t='2' value="{{vownerCard}}"/>
+  
+  <view class="lineClass"></view>
+
+  <view class="subTitleClass">手机号</view>
+
+   <input class="inputClass" type="number" placeholder="请填写您的手机号码" onInput="toInput" data-t='3' value="{{vphone}}"/>
+   <view class="lineClass"></view>
+
+  <view class="subTitleClass">授权证书上传</view>
+ 
+  <!-- <view style="addViewMainClass"> -->
+    <view a:if="{{!canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{img1}}" />
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="1">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+      <text class="textClass">身份证正面(国徽)</text>
+    </view>
+
+    <view a:if="{{canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="1"/>
+      <text class="textClass">身份证正面(国徽)</text>
+    </view>
+
+
+    <view a:if="{{!canAddImg2}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{img2}}" />
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+      <text class="textClass">身份证反面(人面)</text>
+    </view>
+
+    <view a:if="{{canAddImg2}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="2"/>
+      <text class="textClass">身份证反面(人面)</text>
+    </view>
+
+
+
+    <view a:if="{{!canAddImg3}}" class="addViewClass" style="margin-left:16rpx;">
+      <view class="content">
+        <image class="addImageViewClass" src="{{img3}}" />
+        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="3">
+            <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+      <text class="textClass">租赁许可</text>
+    </view>
+
+    <view a:if="{{canAddImg3}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="3"/>
+      <text class="textClass">租赁许可</text>
+    </view>
+
+  <!-- </view> -->
+  <button class="nextStepButtonClass" onTap="next">身份认证</button>
+
+
+  
+</view>
+
+<!-- 原房东认证页 -->
+<!-- <view>
   <view class="page-reg">
     <form onSubmit="formSubmit" onReset="formReset">
       <view class="reg-back">
@@ -69,4 +157,4 @@
     </form>
   </view>
   
-</view>
+</view> -->

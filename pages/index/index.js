@@ -291,18 +291,28 @@ Page({
       },
     });
   },
+  //首页分享
+  // onShareAppMessage(){
+  //   return {
+  //     title: '选房网首页分享',
+  //     desc: '选房网首页分享',
+  //     path: '/pages/index/index',
+  //   };
+  // },
   //初始化合同
   initialize(){
+    console.log('初始化合同开始');
      my.httpRequest({
       url: app.globalData.baseUrl+"IF/initialize/initialize.do",
       method: 'POST',
       dataType: 'json',
       success: function(res) {
         console.log(res.data);
-        
+         console.log('初始化合同成功');
       },
       fail: function(res) {
        console.log(res);
+       console.log('初始化合同失败');
       },
       complete: function(res) {
         my.hideLoading();
