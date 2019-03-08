@@ -8,7 +8,7 @@
     </view>
   </view>
 
-  <view a:if="{{houseList.length==0}}" class="tips">暂无数据</view>
+  <view a:if="{{houseList.length==0}}" class="tips">暂无此房源</view>
   <view  a:else >
   <block a:for="{{houseList}}" a:for-item="list" >
     <view  class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='{{rentType}}'>
@@ -26,7 +26,8 @@
             </view>
             <view class="p2-1" a:if="{{rentType==2}}">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
             </view>
-            <view class="p2-2">{{list.entireRents}}元/月
+            <view a:if="{{rentType==1}}" class="p2-2">{{list.entireRents}}元/月
+            <!-- <view a:if="{{rentType==2}}" class="p2-2">{{list.rents}}元/月 -->
             </view>
           </view>
           <view class="p3"> 

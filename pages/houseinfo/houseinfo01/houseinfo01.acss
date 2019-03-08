@@ -356,13 +356,23 @@
   width: 60rpx;
 }
 .tousu{
-  position: absolute; top: 15rpx; right: 15rpx; height: 60rpx; overflow: visible;
+  position: absolute; top: 15rpx; right: 95rpx; height: 60rpx; overflow: visible;
+  border-radius:50%;
+  background:rgba(0,0,0,0.6);
+  background-color: #D5D5D5;
 }
 .share{
-  position: absolute; top: 480rpx; right: 15rpx; height: 60rpx; overflow: visible;
+  /* position: absolute; top: 480rpx; right: 15rpx; height: 65rpx; overflow: visible; */
+  position: absolute; top: 15rpx; right: 15rpx; height: 60rpx; overflow: visible;
+  border-radius:50%;
+  background:rgba(0,0,0,0.6);
+  background-color: #D5D5D5;
 }
 .btn_share{
   height: 60rpx;
   width: 60rpx;
   background:none;border:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

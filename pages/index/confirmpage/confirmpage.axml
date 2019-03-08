@@ -24,7 +24,7 @@
     <view class="content">联系方式<input class="inputClass" type="number" placeholder="请填写联系方式" focus="false" onInput="bindContactWayInput"/></view>
     <view class="content" onTap="selectTime">期望看房时间<input class="inputClass" type="number" placeholder="请选择期望看房时间"  disabled="true" value="{{expectTime}}" /></view>
     <view class="content" style="border:0">留言</view>
-    <textarea class="textAreaClass" placeholder="若有需要，请填写留言" auto-height="true" onInput="bindLeaveWordInput"/>
+    <textarea class="textAreaClass" placeholder="若有需要，请填写留言" auto-height="true" onInput="bindLeaveWordInput" maxlength="20"/>
    
   </view>
   

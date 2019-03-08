@@ -406,7 +406,7 @@ Page({
     }
     
   },
-
+//页面分享
   onShareAppMessage(){
     console.log(this.data.id)
     console.log(this.data.rentType)

@@ -18,6 +18,7 @@ const evaluate = [
   //   content:'环境优美，地理位置好，交通方便，房间舒适卫生，服务人员很热情，乐于提供各种帮助，早餐丰富。设施很人性化，网络高速信号好，窗外风景好。有特别的开床服务，房间小摆件的设计也很有特色。性价比不错，下次还要入住',
   // },
 ]
+const app=getApp();
 Page({
   data: {
     evaluate,
@@ -25,5 +26,27 @@ Page({
     nostar:'/image/mine/no-start.png',
     fullstar:'/image/mine/full-start.png',
   },
-  onLoad() {},
+  onLoad() {
+    my.httpRequest({
+      url: app.globalData.baseUrl+"IF/connectTest.do", // 目标服务器url
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        console.log('---------------');
+        console.log(res);
+        var myOrderStr = res.data.message;
+        my.tradePay({
+          orderStr: myOrderStr,
+          success: (res) => {
+            var json1 = res.result;
+            console.log(res)
+          },
+        });
+      },
+      fail: (res) => {
+       console.log(res);
+       console.log('请求失败~~');
+      },
+    });
+  },
 });

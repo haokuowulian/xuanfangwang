@@ -64,6 +64,8 @@ Page({
     console.log('取消订单')
     var id = this.data.orderid;
     var uid = this.data.userId;
+    console.log(id)
+    console.log(uid)
     my.confirm({
       title: '取消订单提示',
       content: '您正在取消订单，是否确定？',
@@ -75,8 +77,8 @@ Page({
           url:app.globalData.baseUrl_whj+'IF/order/cancelLocalOrder.do', // 目标服务器url
           method: 'POST',
           data:{
-            userId:uid,
-            orderId:id,
+            userId:this.data.userId,
+            orderId:this.data.orderid,
           },
           dataType: 'json',
           success: (res) => {
@@ -141,6 +143,9 @@ Page({
     var tradeNO=that.data.tradeNO;
     var uid = that.data.userId;
     var orderId = that.data.orderid;
+    console.log('-------tradeNO--------');
+    console.log(tradeNO)
+    console.log('-------tradeNO--------');
     my.tradePay({
       tradeNO: tradeNO, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
       success: (res) => {
@@ -148,7 +153,7 @@ Page({
         console.log(res);
         that.uploadCode(uid,orderId,res.resultCode);
         my.navigateTo({
-          url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+          url:'/pages/index/signing/payment_result/payment_result?resultCode='+res.resultCode+'&type=2',
         });
       },
       fail: (res) => {
@@ -156,7 +161,7 @@ Page({
         console.log(res);
         that.uploadCode(uid,orderId,res.resultCode);
         my.navigateTo({
-          url:'/pages/index/signing/payment_result/payment_result?payment='+res.resultCode,
+          url:'/pages/index/signing/payment_result/payment_result?resultCode='+res.resultCode+'&type=2',
         });
       }
     });

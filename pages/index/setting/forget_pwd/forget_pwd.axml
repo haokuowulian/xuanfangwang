@@ -1,0 +1,62 @@
+<view class="page">
+  <view a:if="{{type==1}}" class="page-title">
+    验证手机号
+  </view>
+  <view a:if="{{type==2}}" class="page-title">
+    设置新密码
+  </view>
+  
+
+  <view a:if="{{type==1}}">
+     <view class="classInput1">
+      <view class="phoneAccount">手机号:</view><input type="text" placeholder="请输入手机号" class="accountPhone" disabled="ture" value="{{phoneNum}}" data-t='1'/>
+    </view>
+    <view class="classLine"></view>
+    <view class="classInput1">
+      <view class="phoneAccount">验证码:</view><input type="number" placeholder="请输入验证码" class="phoneCode" onInput="toInput" value="{{phoneCode}}" data-t='2'/>
+      <button class="classSend" a:if="{{send}}" type="default" onTap="sendMsg">获取验证码</button>
+      <button class="classSend" a:if="{{alreadySend}}" type="default" onTap="#">{{second+"s"}}</button>
+    </view>
+    <view class="classLine"></view>
+    <view class="btn_box">
+      <button class="btn_login" type="default" onTap="toNext">下一步
+      </button>
+    </view>
+  </view>
+
+ 
+  <view a:if="{{type==2}}">
+  
+    <view class="classInput1" a:if="{{eyeclose1}}">
+      <view class="newPassword">新密码:</view><input type="text" password placeholder="请输入新密码" class="passwordNew" onInput="toInput" value="{{newPassword}}" data-t='3'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{newPassword.length>0}}" onTap="toEmpty" data-t='3'/>
+      <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen" data-t='1'/>
+    </view>
+
+    <view class="classInput1" a:if="{{eyeopen1}}">
+      <view class="newPassword">新密码:</view><input type="text" placeholder="请输入新密码" class="passwordNew" onInput="toInput" value="{{newPassword}}" data-t='3'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{newPassword.length>0}}" onTap="toEmpty" data-t='3'/>
+      <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose" data-t='1'/>
+    </view>
+
+    <view class="classLine"></view>
+    <view class="classInput1" a:if="{{eyeclose2}}">
+      <view class="newPassword">确认密码:</view><input type="text" password placeholder="请再输入新密码" class="passwordNew" onInput="toInput" value="{{confirmPassword}}" data-t='4'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{confirmPassword.length>0}}" onTap="toEmpty" data-t='4'/>
+      <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen" data-t='2'/>
+    </view>
+
+    <view class="classInput1" a:if="{{eyeopen2}}">
+      <view class="newPassword">确认密码:</view><input type="text"  placeholder="请再输入新密码" class="passwordNew" onInput="toInput" value="{{confirmPassword}}" data-t='4'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{confirmPassword.length>0}}" onTap="toEmpty" data-t='4'/>
+      <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose" data-t='2'/>
+    </view>
+
+    <view class="classLine"></view>
+    <view class="btn_box">
+      <button class="btn_login" type="default" onTap="updataPassword">确认修改
+      </button>
+    </view>
+
+  </view>
+</view>

@@ -47,7 +47,16 @@
     </view>
   </view>
 
-  <view class="page-end">您授权我们以您的本人信息（包括但不限于姓名和身份证件号码）对正在签署的合同进行数字签名</view>
+  <view class="page-body1">
+    <view class="body">
+      <view class="body-back">
+        <view class="body-text1">合同预览</view>
+        <view class="body-text2"><button class="btn_preview" type="default" onTap="toContractPage">点击查看</button></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-end">您授权我们以您的本人信息（包括但不限于姓名和身份证件号码）对正在生成的订单进行合同数字签名</view>
 
   <view  class="page-btn" onTap="toConfirm">我确认以上信息</view>
 </view>

@@ -29,7 +29,7 @@
             <view class="content-right">
               <view class="right-text">{{list.startDate}}至{{list.endDate}}</view>
                 <view class="right-pay right-text">首付款项：
-                  <view class="right-firstpay">{{list.totalMoney}}</view>
+                  <view class="right-firstpay">{{list.totalMoney}}</view>元
                 </view>
               <view a:if="{{list.payment==1}}" class="right-text">月付</view>
               <view a:if="{{list.payment==3}}" class="right-text">季付</view>

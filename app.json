@@ -33,7 +33,6 @@
     "pages/index/signing/signing",
     "pages/index/housedelivery/housedelivery",
     "pages/index/more/more",
-    "pages/index/signing/emergency_contact/emergency_contact",
     "pages/index/signing/renting_date/renting_date",
     "pages/index/signing/payway/payway",
     "pages/index/signing/confirmagain/confirmagain",
@@ -57,7 +56,12 @@
     "pages/chat/chat",
     "pages/index/account_completed/account_completed",
     "pages/chatlist/chatlist",
-    "pages/index/map_house/map_house"
+    "pages/index/map_house/map_house",
+    "pages/index/setting/edit_page/edit_page",
+    "pages/index/setting/forget_pwd/forget_pwd",
+    "pages/index/my_plan/my_plan",
+    "pages/index/housedelivery/fire_letter/fire_letter",
+    "pages/index/signing/contract_preview/contract_preview"
   ],
   "window": {
     "defaultTitle": "My App"

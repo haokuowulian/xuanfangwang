@@ -131,9 +131,9 @@ Page({
                 }
       
             }else{
-              my.setNavigationBar({
-                    title:'完善信息'
-                  });
+              // my.setNavigationBar({
+              //       title:'完善信息'
+              //     });
               this.setData({
                 userlogin:true,
                 userCompleted:false,
@@ -176,6 +176,9 @@ Page({
   },
   //授权登录
   antLogin(){
+    my.showLoading({
+      content: '正在登陆...',
+    });
     console.log('验证登陆')
     my.getAuthCode({
       scopes: 'auth_user',
@@ -187,6 +190,7 @@ Page({
         console.log(res)
         console.log('-------------authCode--------------');
         if(res.authCode){
+          
           my.httpRequest({
             url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
             // url: app.globalData.baseUrl_whj+'/IF/user/appLogin.do?authCode='+myCode,
@@ -199,6 +203,7 @@ Page({
               console.log('---------------------------');
                console.log(res);
                console.log('---------------------------');
+               my.hideLoading();
                my.setStorageSync({
                  key: 'userId', // 缓存数据的key
                  data: res.data.info.id, // 要缓存的数据
@@ -256,6 +261,7 @@ Page({
                     key: 'userlogin', // 缓存数据的key
                     data: true, // 要缓存的数据
                   });
+                  
                    this.setData({
                       certNo:res.data.info.certNo,
                       userlogin:true,
@@ -267,9 +273,9 @@ Page({
                    });
                     
                  }else{//未完善信息
-                  my.setNavigationBar({
-                    title:'完善信息'
-                  });
+                  // my.setNavigationBar({
+                  //   title:'完善信息'
+                  // });
                    my.setStorageSync({
                     key: 'userCompleted', // 缓存数据的key
                     data: false, // 要缓存的数据
@@ -429,6 +435,11 @@ Page({
   toMore(){
     my.navigateTo({
       url: '/pages/index/more/more',
+    });
+  },
+  toMyPlan(){
+    my.navigateTo({
+      url: '/pages/index/my_plan/my_plan',
     });
   },
   toAccountInfo(){
@@ -672,11 +683,15 @@ getServerTime(){
   },
 
   xfwLogin(){
+    my.showLoading({
+      content: '正在登陆...',
+    });
     var that = this;
     var userName = that.data.account;
     var passwords = that.data.passwords;
     if(userName!=''){
       if(passwords!=''){
+        // my.showLoading();
         my.httpRequest({
           url: app.globalData.baseUrl+'IF/user/webLogin.do', // 目标服务器url
           method: 'POST',
@@ -687,6 +702,7 @@ getServerTime(){
           success: (res) => {
             console.log(res)
             if(res.data.success){
+              my.hideLoading();
               console.log("登录成功！")
               // that.getPayId();
               my.setStorageSync({
@@ -703,6 +719,10 @@ getServerTime(){
                });
                my.setStorageSync({
                  key: 'userName', // 缓存数据的key
+                 data: res.data.userName, // 要缓存的数据
+               });
+               my.setStorageSync({
+                 key: 'phone', // 缓存数据的key
                  data: res.data.userName, // 要缓存的数据
                });
                my.setStorageSync({
@@ -847,7 +867,7 @@ getServerTime(){
     var phoneNum = that.data.phoneNum;
     console.log(phoneNum)
     if(phoneNum!=''){
-      var mobileNum =(/^1[34578]\d{9}$/.test(phoneNum))
+      var mobileNum =(/^1[3456789]\d{9}$/.test(phoneNum))
       if(mobileNum){
         my.httpRequest({
           url: app.globalData.baseUrl+'IF/user/registerVerificationCode.do', // 目标服务器url
@@ -929,6 +949,9 @@ getServerTime(){
     }
   },
   phoneLogin(phoneNum,phoneCode,authCode){
+    my.showLoading({
+      content: '正在登陆...',
+    });
     var that = this;
     my.httpRequest({
       url:app.globalData.baseUrl+ 'IF/user/register.do', // 目标服务器url
@@ -947,6 +970,7 @@ getServerTime(){
         console.log(res)
         console.log('-------------userLogin--------------');
         if(res.data.success){
+          my.hideLoading();
           console.log("登录成功！")
           // that.getPayId();
           my.setStorageSync({

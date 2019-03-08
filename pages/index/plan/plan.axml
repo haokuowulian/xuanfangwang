@@ -19,11 +19,14 @@
               <image src="{{headimg}}" class="head-img" />
               <view class="name">{{nickName}}</view>
             </view>
-            <view a:if="{{item.state==0}}" class="status">已拒绝</view>
-            <view a:elif="{{item.state==1}}" class="status">已同意</view>
-             <view a:elif="{{item.state==2}}" class="status">待处理</view>
+            
+            
+              <view a:if="{{item.state==0}}" class="status">已拒绝</view>
+              <view a:elif="{{item.state==1}}" class="status">已同意</view>
+              <view a:elif="{{item.state==2}}" class="status">待处理</view>
               <view a:elif="{{item.state==3}}" class="status">已取消</view>
-               <view a:else="{{item.state==4}}" class="status">已完成</view>
+              <view a:else="{{item.state==4}}" class="status">已完成</view>
+              <view a:if="{{item.state==5}}" class="status">已过期</view>
           </view>
           <view class="infos">约看时间：{{item.expectedTime}}</view>
           <view class="infos">约看备注：{{item.leaveWord}}</view>

@@ -23,11 +23,11 @@
     <view class="info-content"><input type="text" placeholder="为您的房间起个名，以区别其它房间" onInput="toInput" data-t='1' class="text_input" value="{{roomName}}"/></view>
   </view>
   <view class="info">
-    <view class="info-title">面积</view>
+    <view class="info-title">面积(m²)</view>
     <view class="info-content"><input type="text" placeholder="请填写房间的面积" onInput="toInput" data-t='2' class="text_input" value="{{area}}"/></view>
   </view>
   <view class="info">
-    <view class="info-title">租金</view>
+    <view class="info-title">租金(元)</view>
     <view class="info-content"><input type="text" placeholder="请填写租金价格" onInput="toInput" data-t='3' class="text_input" value="{{rents}}"/></view>
   </view>
   <view class="info">

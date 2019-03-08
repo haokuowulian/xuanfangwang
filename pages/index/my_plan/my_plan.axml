@@ -1,0 +1,75 @@
+<view >
+  <view class="title-bar page-select">
+    <view class="finish-bar {{click1?'title-click':''}}" onTap="unfinished">
+      未完成约看
+    </view>
+    <view class="unfinished-bar {{click2?'title-click':''}}" onTap="finish">
+      已完成约看
+    </view>
+  </view>
+
+  <view a:if="{{planList.length==0}}" class="tips">暂无数据</view>
+  <view a:else>
+  <block a:for="{{planList}}" >
+    <view class="plan-content page-select" >
+      <view class="plan-time" >
+        <view class="plan-info">
+          <view class="info-user">
+            <view class="user-name">
+              <image src="{{item.avatar}}" class="head-img" />
+              <view class="name">{{item.contacts}}</view>
+            </view>
+            
+            
+              <view a:if="{{item.state==0}}" class="status">已拒绝</view>
+              <view a:elif="{{item.state==1}}" class="status">已同意</view>
+              <view a:elif="{{item.state==2}}" class="status">待处理</view>
+              <view a:elif="{{item.state==3}}" class="status">已取消</view>
+              <view a:else="{{item.state==4}}" class="status">已完成</view>
+              <view a:if="{{item.state==5}}" class="status">已过期</view>
+          </view>
+          <view class="infos">约看时间：{{item.expectedTime}}</view>
+          <view class="infos">约看备注：{{item.leaveWord}}</view>
+        </view>
+      </view>
+
+      <view class="plan-house" onTap="goToDetail" data-houseId="{{item.houseId}}" data-roomId="{{item.roomId}}" data-rentType="{{item.rentType}}">
+       
+          <view class="house">
+            <view>
+              <image a:if="{{item.rentType==1}}" src="{{imgUrl}}{{item.house.images.split(',')[0]}}" class="house-img" />
+             <image a:if="{{item.rentType==2}}" src="{{imgUrl}}{{item.room.images.split(',')[0]}}" class="house-img" />
+            </view>
+
+            <view class="house-info" a:if="{{item.rentType==1}}">
+              <view  class="house-name">{{item.apartmentName}}·{{item.houseName}}</view>
+              <view  class="houseinfo" >{{item.house.room}}室{{item.house.hall}}厅 | {{item.house.area}}m² | {{item.house.toward}} </view>
+              <view  class="houseinfo">￥{{item.house.entireRents}}元/月</view>
+              <view a:if="{{item.house.status==1}}" class="house-status">待租中</view>
+              <view a:if="{{item.house.statu==100}}" class="house-status">已出租</view>
+            </view>
+
+            <view class="house-info" a:if="{{item.rentType==2}}">
+              <view  class="house-name">{{item.apartmentName}}·{{item.houseName}}·{{item.roomName}}</view>
+              <view  class="houseinfo" >{{item.house.room}}室{{item.house.hall}}厅 | {{item.room.area}}m² | {{item.room.toward}} </view>
+              <view  class="houseinfo">￥{{item.room.rents}}元/月</view>
+              <view a:if="{{item.room.status==1}}" class="house-status">待租中</view>
+              <view a:if="{{house.room==100}}" class="house-status">已出租</view>
+            </view>
+
+          </view>
+      
+      </view>
+
+      <view class="plan-btn">
+        <view class="btn">
+          <view class="btn-button" onTap="contact" data-number="{{item.contactWay}}">联系对方</view>
+          <view a:if="{{!complete}}" class="btn-button left-radius" onTap="alertCancel" data-pid="{{item.id}}" data-uid="{{item.uid}}">拒绝约看</view>
+          <view a:if="{{complete}}" class="btn-button left-radius" onTap="alertDelete" data-pid="{{item.id}}">删除</view>
+   
+        </view>
+      </view>
+    </view>
+  </block>
+  </view>
+</view>

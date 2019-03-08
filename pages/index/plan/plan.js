@@ -11,7 +11,8 @@ Page({
     click2:false,
     pageIndex:1,
     planList:[],
-    imgUrl:app.globalData.baseImgUrl_whj
+    imgUrl:app.globalData.baseImgUrl_whj,
+    nowTime:null,
   },
   onLoad() {
     var that = this;
@@ -59,39 +60,56 @@ Page({
     // my.showLoading();
     var that=this;
     var manageState=0;
-    if(!this.data.complete){
+    if(!that.data.complete){
       manageState=0;
     }else{
       manageState=1;
     }
+    var myDate = new Date();
+    var nowTime = myDate.getTime();
     
-    var that=this;
+   
     my.httpRequest({
       url: app.globalData.baseUrl+'IF/bespeak/getBespeakList.do',
       method: 'POST',
       data: {
-        uid:this.data.uid,
-        pageIndex:this.data.pageIndex,
-        pageSize: 3,
+        uid:that.data.uid,
+        pageIndex:that.data.pageIndex,
+        pageSize: 6,
         manageState:manageState
       },
       dataType: 'json',
       success: function(res) {
        console.log(res);
        my.hideLoading();
-            if(res.data.success){
-              if(that.data.pageIndex==1){
-                that.setData({
-                  planList:res.data.data
-                });
-            }else if(that.data.planList.length<res.data.count){
-                that.setData({
-                  planList:that.data.planList.concat(res.data.data)
-                });
-            }
-           
-            my.stopPullDownRefresh();
-            }
+        if(res.data.success){
+          var list = res.data.data;
+          console.log(res);
+          console.log('list:---------');
+          // for(let i=0;i<list.length;i++){
+          //   var expectedTime = list[i].expectedTime+':00';
+          //   console.log(expectedTime);
+          //   // var t = expectedTime.replace(new RegExp("-","gm"),"/");
+          //   var pt =  (new Date(expectedTime)).getTime();
+          //   if(pt<nowTime){
+          //     list[i]['state']=5;
+          //   }
+          // }
+          console.log(list);
+          if(that.data.pageIndex==1){
+            that.setData({
+              nowTime:nowTime,
+              planList:list,
+            });
+          }else if(that.data.planList.length< res.data.count){
+            that.setData({
+              nowTime:nowTime,
+              planList:that.data.planList.concat(list)
+            });
+          }
+        
+          my.stopPullDownRefresh();
+        }
       },
       fail: function(res) {
        console.log(res);
@@ -116,18 +134,7 @@ Page({
   //联系房东
   contact(e){
     let number = e.target.dataset.number;
-     my.confirm({
-      title: '温馨提示',
-      content: '确定要联系该房东吗?',
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      success: (result) => {
-       if(result.confirm){
-         my.makePhoneCall({ number: number });
-       }
-      },
-    });
-    
+    my.makePhoneCall({ number: number });
   },
   //提示取消约看
   alertCancel(e){

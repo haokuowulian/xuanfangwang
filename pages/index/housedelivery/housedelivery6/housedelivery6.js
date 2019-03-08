@@ -223,9 +223,11 @@ Page({
     var nearby = my.getStorageSync({
       key: 'r_nearby', // 缓存数据的key
     }).data;
-    var houseimg = my.getStorageSync({
+    var houseimg1 = my.getStorageSync({
       key: 'r_houseimg', // 缓存数据的key
     }).data;
+    var houseimg = houseimg1.join(',');
+    console.log(houseimg);
 
     var furniture = my.getStorageSync({
       key: 'r_furniture', // 缓存数据的key

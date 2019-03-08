@@ -163,7 +163,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30rpx;
+  font-size: 25rpx;
   color: #ff9900;
   border-radius: 8rpx;
   border: 1rpx solid #ff9900;

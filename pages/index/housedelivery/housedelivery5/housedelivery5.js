@@ -77,7 +77,9 @@ Page({
     console.log(this.data.roomList)
     console.log(this.data.tempList)
     this.setData({
-      roomList:this.data.roomList
+      roomList:this.data.roomList,
+      furniturelist:this.data.furniturelist,
+      featurelist:this.data.featurelist,
     });
     my.setStorageSync({
       key: 'r_roomList', // 缓存数据的key
@@ -416,14 +418,14 @@ Page({
   goTo1(){
      my.hideKeyboard();
      my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery5-1/housedelivery5-1',
+      url: '/pages/index/housedelivery/housedelivery5-1/housedelivery5-1?furniture='+this.data.furniture,
     })
   },
   //前往房屋特色
   goTo2(){
     my.hideKeyboard();
     my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery5-2/housedelivery5-2',
+      url: '/pages/index/housedelivery/housedelivery5-2/housedelivery5-2?feature='+this.data.feature,
     })
   },
   getHouseInfo(roomList){
@@ -513,10 +515,11 @@ Page({
     var nearby = my.getStorageSync({
       key: 'r_nearby', // 缓存数据的key
     }).data;
-    var houseimg = my.getStorageSync({
+    var houseimg1 = my.getStorageSync({
       key: 'r_houseimg', // 缓存数据的key
     }).data;
-
+    var houseimg = houseimg1.join(',');
+    console.log(houseimg);
     var rentType = my.getStorageSync({
       key: 'r_rentType', // 缓存数据的key
     }).data;

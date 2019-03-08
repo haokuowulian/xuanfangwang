@@ -25,24 +25,41 @@
   
   <view class="lineClass"></view>
 
-  <view class="subTitleClass">房源照片上传</view>
+  <view class="subTitleClass">
+    <view>房源照片上传</view>
+    <view>{{images.length}}/6</view>
+  </view>
 
-    <view a:if="{{!canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
+    <!-- <view a:if="{{!canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
       <view class="content">
         <image class="addImageViewClass" src="{{img}}" />
         <view onTap="delImg" class="delImg">
           <icon type="cancel" color="red" size="18" />
         </view>
       </view>
-    </view>
+    </view> -->
 
-    <view a:if="{{canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
+    <!-- <view a:if="{{canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg"/>
+    </view> -->
+  <view class="chooseImg">
+    <block a:for="{{images}}"  a:key="{{item}}" a:for-index="idx">
+      <view  class="addViewClass" style="margin-right:16rpx;"> 
+      <view class="content">
+        <image class="addImageViewClass" src="{{item}}" />
+        <view onTap="delImg" class="delImg" data-index="{{idx}}">
+          <icon type="cancel" color="red" size="18" />
+        </view>
+      </view>
+    </view>
+      
+    </block>
+    <view a:if="{{canAddImg}}" class="addViewClass" style="margin-right:16rpx;"> 
       <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg"/>
     </view>
-
-  
+  </view>
    
 
-   <view><button class="nextStepButtonClass" onTap="next">下一步</button></view>
+   <view class="btn_next"><button class="nextStepButtonClass" onTap="next">下一步</button></view>
   
 </view>

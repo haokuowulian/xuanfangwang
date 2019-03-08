@@ -22,12 +22,15 @@ Page({
 
   },
   onLoad(){
+    
+    // this.initialize();
+  },
+  onShow(){
     this.getBanner();
     this.getBoutiqueHousing();
     this.getWholeRentalHousing();
     this.getSharedHousing();
     this.getLocation();
-    this.initialize();
   },
   handleInput(value) {
     this.setData({
@@ -279,6 +282,7 @@ Page({
       type: 'qr',
       success: (res) => {
         console.log(res)
+        console.log('扫描成功')
         var myData=res.code;
         var infolist = myData.split(",");
         var roomId=infolist[0];

@@ -55,8 +55,12 @@
   font-size: 40rpx;
   margin-top: 15rpx;
 }
-
 .page-option{
+  height: 188rpx;
+  width: 750rpx;
+}
+.page-option1{
+  margin-top: 15rpx;
   height: 188rpx;
   width: 750rpx;
 }

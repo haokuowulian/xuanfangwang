@@ -44,6 +44,9 @@ Page({
   },
     //授权登录
   antLogin(){
+    my.showLoading({
+      content: '正在登陆...',
+    });
     console.log('验证登陆')
     my.getAuthCode({
       scopes: 'auth_user',
@@ -64,6 +67,7 @@ Page({
             },
             dataType: 'json',
             success: (res) => {
+              my.hideLoading();
               console.log('---------------------------');
                console.log(res);
                console.log('---------------------------');
@@ -161,6 +165,9 @@ Page({
   },
   //账号密码登陆
   xfwLogin(){
+    my.showLoading({
+      content: '正在登陆...',
+    });
     var that = this;
     var userName = that.data.account;
     var passwords = that.data.passwords;
@@ -176,6 +183,7 @@ Page({
           success: (res) => {
             console.log(res)
             if(res.data.success){
+              my.hideLoading();
               console.log("登录成功！")
               // that.getPayId();
               my.setStorageSync({
@@ -401,6 +409,9 @@ Page({
     }
   },
   phoneLogin(phoneNum,phoneCode,authCode){
+    my.showLoading({
+      content: '正在登陆...',
+    });
     var that = this;
     my.httpRequest({
       url:app.globalData.baseUrl+ 'IF/user/register.do', // 目标服务器url
@@ -419,6 +430,7 @@ Page({
         console.log(res)
         console.log('-------------userLogin--------------');
         if(res.data.success){
+          my.hideLoading();
           console.log("登录成功！")
           // that.getPayId();
           my.setStorageSync({

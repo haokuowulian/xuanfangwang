@@ -22,7 +22,7 @@
   font-size: 25rpx;
   margin-left: 20rpx;
   margin-top: 35rpx;
-  color: #999999;
+  color: #000000;
   width: 680rpx;
 }
 
@@ -111,4 +111,43 @@
 }
 .delImg{
   position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
+}
+.classFire{
+  height: 100%;
+  width: 620rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  margin-left: 25rpx;
+  padding: 25rpx 40rpx 75rpx;
+}
+.page_file{
+  width: 700rpx;
+  height: 100%;
+  padding-top: 20rpx;
+}
+.text_title{
+  font-size: 45rpx;
+  color: #333333;
+  margin-top: 60rpx;
+  margin-bottom: 70rpx;
+}
+.text_content{
+  font-size: 30rpx;
+  line-height: 1.5em;
+}
+.box_agree{
+  padding-top: 45rpx;
+}
+.classAgree{
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

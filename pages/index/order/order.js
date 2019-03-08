@@ -20,13 +20,18 @@ Page({
      this.getOrder();
 
   },
+  onUnload() {
+    // 页面被关闭
+    if(this.data.type==2){
+      my.navigateBack({
+        delta: 7
+      });
+    }
+    
+  },
   getOrder(){
     var url=app.globalData.baseUrl_whj+"IF/order/getOrderByConsumer.do";
-    // if(this.data.type==1){
-    //   url=app.globalData.baseUrl_whj+"IF/order/getOrderByConsumer.do"
-    // }else if(this.data.type==2){
-    //    url=app.globalData.baseUrl_whj+"IF/order/getOrderByLandlord.do"
-    // }
+    
     console.log('url='+url);
     var that = this;
     console.log('----------------'+that.data.pageIndex);
@@ -55,6 +60,7 @@ Page({
         console.log('111');
         console.log(res.data);
         console.log('222');
+        console.log(res.data.count)
         if(res.data.success){
            if(that.data.pageIndex==1){
             that.setData({
