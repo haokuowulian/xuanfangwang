@@ -20,15 +20,14 @@ Page({
      this.getOrder();
 
   },
-  onUnload() {
-    // 页面被关闭
-    if(this.data.type==2){
-      my.navigateBack({
-        delta: 7
-      });
-    }
-    
-  },
+  // onUnload() {
+  //   // 页面被关闭
+  //   if(this.data.type==2){
+  //     my.navigateBack({
+  //       delta: 8
+  //     });
+  //   }
+  // },
   getOrder(){
     var url=app.globalData.baseUrl_whj+"IF/order/getOrderByConsumer.do";
     

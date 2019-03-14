@@ -1,0 +1,46 @@
+<view class="pages">
+  <view class="lineClass"></view>
+  <view class="page_box">
+    <view class="box_content">
+      <view class="class_title">姓名</view>
+      <view class="class_content">胡海</view>
+    </view>
+  </view>
+  <view class="lineClass1"></view>
+  <view class="page_box">
+    <view class="box_content1">
+      <view class="class_left">
+        <view class="class_title">开户银行</view>
+        <input type="text" placeholder="请选择开户银行" class="input"/>
+      </view>
+      <view><image src="/image/icon/right.png" class="img" /></view>
+    </view>
+  </view>
+  <view class="lineClass1"></view>
+  <view class="page_box">
+    <view class="box_content1">
+      <view class="class_left">
+        <view class="class_title">开户地区</view>
+        <input type="text" placeholder="请选择开户地区" class="input"/>
+      </view>
+      <view><image src="/image/icon/right.png" class="img" /></view>
+    </view>
+  </view>
+  <view class="lineClass1"></view>
+  <view class="page_box">
+    <view class="box_content">
+      <view class="class_title">银行卡号</view>
+      <input type="text" placeholder="请输入银行卡号" class="input1"/>
+    </view>
+  </view>
+  <view class="lineClass1"></view>
+  <view class="page_box">
+    <view class="box_content">
+      <view class="class_title">预留手机号</view>
+      <input type="text" placeholder="请输入银行预留手机号" class="input1"/>
+    </view>
+  </view>
+</view>
+<view class="other">所填信息真实有效，如有虚假 愿意承担违约责任</view>
+ 
+<view class="page-btn" onTap="toConfirm">提交</view>

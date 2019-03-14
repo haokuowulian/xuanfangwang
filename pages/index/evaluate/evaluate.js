@@ -27,26 +27,26 @@ Page({
     fullstar:'/image/mine/full-start.png',
   },
   onLoad() {
-    my.httpRequest({
-      url: app.globalData.baseUrl+"IF/connectTest.do", // 目标服务器url
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {
-        console.log('---------------');
-        console.log(res);
-        var myOrderStr = res.data.message;
-        my.tradePay({
-          orderStr: myOrderStr,
-          success: (res) => {
-            var json1 = res.result;
-            console.log(res)
-          },
-        });
-      },
-      fail: (res) => {
-       console.log(res);
-       console.log('请求失败~~');
-      },
-    });
+    // my.httpRequest({
+    //   url: app.globalData.baseUrl+"IF/connectTest.do", // 目标服务器url
+    //   method: 'POST',
+    //   dataType: 'json',
+    //   success: (res) => {
+    //     console.log('---------------');
+    //     console.log(res);
+    //     var myOrderStr = res.data.message;
+    //     my.tradePay({
+    //       orderStr: myOrderStr,
+    //       success: (res) => {
+    //         var json1 = res.result;
+    //         console.log(res)
+    //       },
+    //     });
+    //   },
+    //   fail: (res) => {
+    //    console.log(res);
+    //    console.log('请求失败~~');
+    //   },
+    // });
   },
 });

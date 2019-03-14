@@ -127,7 +127,7 @@
 
     <view class="page-option page-section">
       <view class="option">
-        <view class="option-content">
+        <view class="option-content" onTap="toMyWallet">
           <view>
             <image src="/image/mine/zhanghu.png" class="option-img"/>
           </view>
@@ -168,7 +168,7 @@
 
     <view class="page-option1 page-section">
       <view class="option">
-        <view class="option-content" onTap="toMyPlan">
+        <view class="option-content" onTap="toMyLock">
           <view>
             <image src="/image/mine/mylock.png" class="option-img"/>
           </view>
@@ -182,7 +182,7 @@
           <view class="option-text">房源约看
           </view>
         </view>
-        <view class="option-content" onTap="toMyPlan">
+        <view class="option-content" onTap="toEvaluate">
           <view>
             <image src="/image/mine/pingjia1.png" class="option-img"/>
           </view>
@@ -377,13 +377,13 @@
           <view class="option-text">评价
           </view>
         </view>
-        <!-- <view class="option-content">
+        <view class="option-content" onTap="toWallet">
           <view>
             <image src="/image/mine/qianbao.png" class="option-img"/>
           </view>
           <view class="option-text">钱包
           </view>
-        </view> -->
+        </view>
       </view>
     </view>
     <view class="page-service page-section">
@@ -408,6 +408,7 @@
             <view class="content-text3">在线报修
             </view>
           </view> -->
+
           <view class="content-box content-bkgd4">
             <image src="/image/mine/menjin.png" class="service-img" />
             <view class="content-text4">我的钥匙

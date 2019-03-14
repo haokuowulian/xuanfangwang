@@ -1,11 +1,11 @@
 .page-setting{
-  height: 300rpx;
+  height: 200rpx;
   width: 750rpx;
   padding-top: 20rpx;
 }
 .setting-back{
   background-color: #ffffff;
-  height: 300rpx;
+  height: 200rpx;
   width: 680rpx;
   padding-left: 35rpx;
   padding-right: 35rpx;

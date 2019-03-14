@@ -1,0 +1,15 @@
+<view>
+  <view class="lineClass"></view>
+  <block>
+    <view class="bill_info">
+      <view class="bill_content">
+        <view class="bill_left">
+          <view class="bill_title">充值</view>
+          <view class="bill_date">2019-03-11</view>
+        </view>
+        <view class="bill_money">+￥100000</view>
+      </view>
+    </view>
+  </view>
+  <view class="lineClass1"></view>
+</block>

@@ -78,7 +78,7 @@
     </view>
      <view class="users">
       <view class="users-title"></view>
-      <view class="order-btn" onTap="onCancel">申请续约</view>
+      <view class="order-btn" onTap="onContinue">申请续约</view>
     </view>
   </view>
    <view class="page-time">合同下载地址</view>

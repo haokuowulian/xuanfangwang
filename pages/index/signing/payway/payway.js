@@ -8,6 +8,7 @@ Page({
     dateType:3,
     houseInfo:'',
     rentType:0,
+    payment:0,
   },
   onLoad() {
     var that=this;
@@ -23,11 +24,45 @@ Page({
     var houseInfo =my.getStorageSync({
      key: 'uhouseInfo', // 缓存数据的key
     }).data;
-    that.setData({
-      dateType:dateType,
-      houseInfo:houseInfo,
-      rentType:rentType,
-    });
+    var payment = houseInfo.template.payment;
+    if(payment==1){
+      that.setData({
+        dateType:dateType,
+        houseInfo:houseInfo,
+        rentType:rentType,
+        payment:payment,
+        selected1:true,
+        selected:1,
+      });
+    }else if(payment==3){
+      that.setData({
+        dateType:dateType,
+        houseInfo:houseInfo,
+        rentType:rentType,
+        payment:payment,
+        selected2:true,
+        selected:2,
+      });
+    }else if(payment==6){
+      that.setData({
+        dateType:dateType,
+        houseInfo:houseInfo,
+        rentType:rentType,
+        payment:payment,
+        selected3:true,
+        selected:3,
+      });
+    }else if(payment==12){
+      that.setData({
+        dateType:dateType,
+        houseInfo:houseInfo,
+        rentType:rentType,
+        payment:payment,
+        selected4:true,
+        selected:4,
+      });
+    }
+    
   },
   onChoose(e){
     var that = this;
@@ -86,6 +121,7 @@ Page({
       key: 'upayType', // 缓存数据的key
       data: that.data.selected, // 要缓存的数据
     });
+    console.log(that.data.selected)
     my.navigateTo({
      url: '/pages/index/signing/confirmagain/confirmagain',
     });

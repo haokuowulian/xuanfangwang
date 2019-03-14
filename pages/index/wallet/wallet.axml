@@ -1,0 +1,22 @@
+<view>
+  <view class="page_banner">
+    <view class="banner_text">我的余额</view>
+    <view class="banner_money">￥100000.00</view>
+  </view>
+  <view class="classManger">钱包管理</view>
+  <view class="page_content">
+    <view class="content" onTap="toMyBill">账单 <image src="/image/icon/right.png" class="img_right"/></view>
+    <view class="lineClass"></view>
+    <view class="content" onTap="toRecharge">充值 <image src="/image/icon/right.png" class="img_right"/></view>
+    <view class="lineClass"></view>
+    <view class="content" onTap="toWithdraw">提现 <image src="/image/icon/right.png" class="img_right"/></view>
+    <view class="lineClass"></view>
+    <view class="content" onTap="toBankCard">银行卡 <image src="/image/icon/right.png" class="img_right"/></view>
+  </view>
+  <view class="classManger">钱包设置</view>
+  <view class="page_content">
+    <view class="content" onTap="toUserInfo">实名认证<view class="content_text" onTap="toInfo">已认证</view></view>
+    <view class="content" onTap="updataPassword">修改支付密码</view>
+    <view class="content" onTap="forgetPassword">忘记支付密码</view>
+  </view>
+</view>

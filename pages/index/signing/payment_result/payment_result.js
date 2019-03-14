@@ -8,11 +8,13 @@ Page({
   },
   onLoad(option) {
     var that = this;
+    console.log('resultCode:')
     console.log(option.resultCode)
     var result = option.resultCode;
     // this.setData({
     var type=option.type;
     console.log(type)
+    console.log(result)
     that.setData({
       type:type,
     });
@@ -75,7 +77,7 @@ Page({
     // 页面被关闭
     if(this.data.type==1){
       my.navigateBack({
-        delta:6
+        delta:7
       });
     }
     if(this.data.type==2){

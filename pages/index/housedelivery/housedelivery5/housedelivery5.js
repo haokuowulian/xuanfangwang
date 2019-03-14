@@ -567,6 +567,7 @@ Page({
       area:varea,
       longitude:longitude,
       latitude:latitude,
+      landlordId:uid,
       // vowner:vowner,
       // vownerCard:vownerCard,
       // vrelation:vrelation,

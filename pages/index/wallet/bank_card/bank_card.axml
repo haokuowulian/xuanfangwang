@@ -1,0 +1,19 @@
+<block a:for="{{mycard}}" a:for-item="list">
+<view class="page_box">
+  <view class="page_content">
+    <view class="content_box">
+      <view class="content_left">
+        <view class="left_name">{{list.name}}</view>
+        <view class="left_type">{{list.type}}</view>
+      </view>
+      <view class="content_right">{{list.cardNo}}</view>
+    </view>
+  </view>
+</view>
+</block>
+
+<view class="page_box" onTap="toAddCard">
+  <view class="page_content1">
+    <view class="classAdd">添加银行卡</view>
+  </view>
+</view>

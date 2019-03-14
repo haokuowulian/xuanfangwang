@@ -1,14 +1,20 @@
+.back_page{
+  height: 100%;
+  width: 750rpx;
+  background-color: #ffffff;
+}
 .page{
   width: 680rpx;
-  height: 100vh;
+  height: 100%;
   padding-left: 35rpx;
   padding-right: 35rpx;
+  padding-top: 80rpx;
   background-color: #ffffff;
 }
 .page-title{
   font-size: 50rpx;
   color: #101010;
-  margin-top: 80rpx;
+  /* margin-top: 80rpx; */
   margin-bottom: 45rpx;
 }
 .classInput1{
@@ -75,7 +81,8 @@
   width: 680rpx;
   /* padding-left: 35rpx; */
   padding-right: 35rpx;
-  margin-top: 25rpx;
+  margin-top: 150rpx;
+  margin-bottom: 50rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;

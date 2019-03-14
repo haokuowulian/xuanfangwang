@@ -14,19 +14,58 @@ Page({
     choose1:false,
     choose2:false,
     choose3:false,
+    payment:0,
   },
   onLoad() {
-    this.setData({
-      choose1:true,
-      choose:1,
-    });
+    var that = this;
+    var houseInfo =my.getStorageSync({
+     key: 'uhouseInfo', // 缓存数据的key
+    }).data;
+    var payment = houseInfo.template.payment;
+    console.log(payment)
+    that.getCurrentDate(payment);
+    if(payment==1){
+      that.setData({
+        choose1:true,
+        choose:1,
+        payment:payment,
+      });
+    }else if(payment==3){
+      that.setData({
+        choose1:true,
+        choose:1,
+        payment:payment,
+      });
+    }else if(payment==6){
+      that.setData({
+        choose2:true,
+        choose:2,
+        payment:payment,
+      });
+    }else if(payment==12){
+      that.setData({
+        choose3:true,
+        choose:3,
+        payment:payment,
+      });
+    }
+    // this.setData({
+    //   choose1:true,
+    //   choose:1,
+    // });
   },
   onShow(){
-    this.getCurrentDate();
+    
   },
   onChoose(e){
     var that = this;
     var id = e.currentTarget.id;
+    that.toChooseDate(id);
+  },
+  toChooseDate(id){
+    console.log('---------------')
+    console.log(id)
+    var that = this;
     switch(id){
       case '1':
         that.setData({
@@ -84,33 +123,34 @@ Page({
     my.navigateTo({
      url: '/pages/index/signing/payway/payway',
     });
-    my.getAuthCode({
-      scopes: 'auth_zhima',
-      success: (res) => {
-        my.httpRequest({
-            url: app.globalData.baseUrl+'/IF/user/getZhiMa.do?authCode='+res.authCode, // 目标服务器url
-            method: 'POST',
-            header:{
-              'content-type': 'application/json'
-            },
-            dataType: 'json',
-            success: (res) => {
-               console.log(res);
+    // my.getAuthCode({
+    //   scopes: 'auth_zhima',
+    //   success: (res) => {
+    //     my.httpRequest({
+    //         url: app.globalData.baseUrl+'/IF/user/getZhiMa.do?authCode='+res.authCode, // 目标服务器url
+    //         method: 'POST',
+    //         header:{
+    //           'content-type': 'application/json'
+    //         },
+    //         dataType: 'json',
+    //         success: (res) => {
+    //            console.log(res);
                
-               if(res.data.success){
+    //            if(res.data.success){
  
-               }
+    //            }
                
-            },
-          });
+    //         },
+    //       });
        
-      },
-    });
+    //   },
+    // });
    
    
   },
   //获取当前3、6、12个月后日期
-  getCurrentDate(){
+  getCurrentDate(payment){
+    var that = this;
     var startDate=app.getDate('yyyy年MM月dd日',0);
     startDate1=app.getDate('yyyy-MM-dd',0);
     //获取三、六、十二个月后日期
@@ -121,14 +161,52 @@ Page({
     var date3 = app.getFormateDate('yyyy年MM月dd日',12);
     date03 =app.getFormateDate('yyyy-MM-dd',12);
     console.log(date01+'-----------')
-    this.setData({
-      currentDate:startDate,
-      date1:date1,
-      date2:date2,
-      date3:date3,
-      endDate:date01,
-    });
-    console.log(startDate)
+    console.log(date02+'-----------')
+    console.log(date03+'-----------')
+    if(payment==1){
+      that.setData({
+        currentDate:startDate,
+        date1:date1,
+        date2:date2,
+        date3:date3,
+        endDate:date01,
+      });
+    }
+    if(payment==3){
+      that.setData({
+        currentDate:startDate,
+        date1:date1,
+        date2:date2,
+        date3:date3,
+        endDate:date01,
+      });
+    }
+    if(payment==6){
+      that.setData({
+        currentDate:startDate,
+        date1:date1,
+        date2:date2,
+        date3:date3,
+        endDate:date02,
+      });
+    }
+    if(payment==12){
+      that.setData({
+        currentDate:startDate,
+        date1:date1,
+        date2:date2,
+        date3:date3,
+        endDate:date03,
+      });
+    }
+    // this.setData({
+    //   currentDate:startDate,
+    //   date1:date1,
+    //   date2:date2,
+    //   date3:date3,
+    //   endDate:date01,
+    // });
+    // console.log(startDate)
   },
   
 });

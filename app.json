@@ -53,15 +53,27 @@
     "pages/index/housedelivery/housedelivery5-1/housedelivery5-1",
     "pages/index/housedelivery/housedelivery5-2/housedelivery5-2",
     "pages/index/housedelivery/housedelivery-map/housedelivery-map",
-    "pages/chat/chat",
     "pages/index/account_completed/account_completed",
-    "pages/chatlist/chatlist",
     "pages/index/map_house/map_house",
     "pages/index/setting/edit_page/edit_page",
     "pages/index/setting/forget_pwd/forget_pwd",
     "pages/index/my_plan/my_plan",
     "pages/index/housedelivery/fire_letter/fire_letter",
-    "pages/index/signing/contract_preview/contract_preview"
+    "pages/index/signing/contract_preview/contract_preview",
+    "pages/index/wallet/wallet",
+    "pages/index/wallet/my_bill/my_bill",
+    "pages/index/wallet/recharge/recharge",
+    "pages/index/wallet/cash_withdrawal/cash_withdrawal",
+    "pages/index/wallet/bank_card/bank_card",
+    "pages/index/wallet/myinfo/myinfo",
+    "pages/index/wallet/updata_pwd/updata_pwd",
+    "pages/index/wallet/forget_pwd/forget_pwd",
+    "pages/index/wallet_fangdong/wallet_fangdong",
+    "pages/index/myLock/myLock",
+    "pages/index/wallet_fangdong/my_payment/my_payment",
+    "pages/index/wallet_fangdong/settlement/settlement",
+    "pages/index/wallet/add_card/add_card",
+    "pages/index/wallet/new_pwd/new_pwd"
   ],
   "window": {
     "defaultTitle": "My App"
@@ -82,12 +94,6 @@
         "pagePath": "pages/index/findhouse/findhouse",
         "activeIcon": "image/sousuo.png",
         "name": "找房"
-      },
-      {
-        "icon": "image/icon/xiaoxi.png",
-        "pagePath": "pages/chatlist/chatlist",
-        "activeIcon": "image/xiaoxi.png",
-        "name": "会话"
       },
       {
         "icon": "image/icon/yaoshi.png",

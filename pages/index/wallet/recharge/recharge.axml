@@ -1,0 +1,31 @@
+<view class="mypage">
+  <view class="page_content">
+    <view class="page_card">
+      <view class="img_left">
+        <image src="/image/icon/left.png" class="img" />
+      </view>
+      <view class="card_concent">
+        <view class="card_type">
+          <view class="name_text">工商银行</view>
+          <view class="type_text">储蓄卡</view>
+        </view>
+        <view class="card_number">************5456</view>
+      </view>
+      <view class="img_right">
+        <image src="/image/icon/right.png" class="img" />
+      </view>
+    </view>
+    <view class="lineClass"></view>
+    <view class="page_money">
+      <view class="money_title">充值金额</view>
+      <view class="money_input">
+        ￥<input type="digit" placeholder="" class="class_input"/>
+      </view>
+      <view class="lineClass1"></view>
+    </view>
+    
+    <view class="page_btn">
+      <button type="default" onTap="defaultTap" class="btn">确定</button>
+    </view>
+  </view>
+</view>

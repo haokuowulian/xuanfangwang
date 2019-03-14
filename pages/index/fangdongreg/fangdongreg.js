@@ -291,7 +291,6 @@ Page({
       console.log('刷脸成功');
        console.log(res);
        if(res.faceRetCode==1000){
-         //发起支付
          that.uploadData();
        }else{
          my.alert({

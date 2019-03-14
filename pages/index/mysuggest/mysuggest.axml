@@ -1,7 +1,7 @@
 <view>
   <view class="page-suggest">
     <view class="suggest-left" onTap="toComplaint">
-      <image src="/image/mine/tousu.png" class="suggest-img" />
+      <image src="/image/mine/complaint.png" class="suggest-img" />
       <view class="suggest-text">我要投诉</view>
     </view>
     <view class="suggest-right" onTap="toProposal">

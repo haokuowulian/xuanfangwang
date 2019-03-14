@@ -1,4 +1,4 @@
-<view class="backgroundClass">
+<!-- <view class="backgroundClass">
  <view class="title-bar page-select">
     <view class="finish-bar {{click1?'title-click':''}}" onTap="unfinished">
       整租
@@ -8,9 +8,9 @@
     </view>
   </view>
 
-  <view a:if="{{houseList.length==0}}" class="tips">暂无此房源</view>
+  <view a:if="{{myhouse.length==0}}" class="tips">暂无此房源</view>
   <view  a:else >
-  <block a:for="{{houseList}}" a:for-item="list" >
+  <block a:for="{{myhouse}}" a:for-item="list" >
     <view  class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='{{rentType}}'>
       <view class="house-info">
         <view class="p-img">
@@ -24,21 +24,111 @@
           <view class="p2">
             <view class="p2-1" a:if="{{rentType==1}}">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
             </view>
-            <view class="p2-1" a:if="{{rentType==2}}">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
+            <view class="p2-1" a:if="{{rentType==2}}">{{list.area}}m² | {{list.room}}室{{list.house.hall}}厅
             </view>
             <view a:if="{{rentType==1}}" class="p2-2">{{list.entireRents}}元/月
-            <!-- <view a:if="{{rentType==2}}" class="p2-2">{{list.rents}}元/月 -->
             </view>
           </view>
           <view class="p3"> 
-            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
             {{list.toward}}    
           </view>
-          <view class="p4">      {{list.template.feature.split(',')[0]}}    
+          <view class="class_p5">
+          <view class="p4">      {{list.feature.split(',')[0]}}    
+          </view>
+          <view class="p5">正在审核</view>
           </view>
         </view>
       </view>
     </view>
   </block>
+  </view>
+</view> -->
+
+
+<!-- 原页面 -->
+<view class="backgroundClass">
+ <view class="title-bar page-select">
+    <view class="finish-bar {{click1?'title-click':''}}" onTap="unfinished">
+      整租
+    </view>
+    <view class="unfinished-bar {{click2?'title-click':''}}" onTap="finish">
+      合租
+    </view>
+  </view>
+
+  <view a:if="{{houseList.length==0}}" class="tips">暂无此房源</view>
+  <view  a:else >
+  <view a:if="{{rentType==1}}">
+  <block a:for="{{houseList}}" a:for-item="list" >
+    <!-- <view  class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='{{rentType}}'>
+      <view class="house-info">
+        <view class="p0">
+          <view a:if="{{rentType==1}}" class="p1">      {{list.buildingUnit}}    
+          </view>
+           <view a:if="{{rentType==2}}" class="p1">      {{list.roomName}}    
+          </view>
+          <view class="p2">
+            <view class="p2-1" a:if="{{rentType==1}}">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
+            </view>
+            <view class="p2-1" a:if="{{rentType==2}}">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅 | {{list.toward}} 
+            </view>
+            </view>
+          </view>
+          <view a:if="{{list.disabled}}" class="class_status">
+            <view>当前状态：</view><view class="p5">已租</view>
+          </view>
+          <view a:else>
+            <view>当前状态：</view>
+            <view class="p6" a:if="{{list.status==0}}">正在审核</view>
+            <view class="p7" a:if="{{list.status==1}}">未租</view>
+          </view>
+          
+          </view>
+        </view>
+      </view>
+    </view> -->
+
+
+    <view class="lineClass"></view>
+    <view class="page_content">
+      <view class="page_backgeound">
+        <view class="class_title">{{list.buildingUnit}}</view>
+        <view class="class_content">{{list.area}}m² | {{list.room}}室{{list.hall}}厅 | {{list.toward}} </view>
+        <view>
+          <view a:if="{{list.disabled}}" class="class_status">
+            <view>当前状态：</view><view class="p5">已租</view>
+          </view>
+          <view a:else class="class_status">
+            <view>当前状态：</view>
+            <view class="p6" a:if="{{list.status==0}}">正在审核</view>
+            <view class="p7" a:if="{{list.status==1}}">未租</view>
+          </view> 
+        </view>
+      </view>
+    </view>
+  </block>
+  </view>
+
+  <view a:if="{{rentType==2}}">
+  <block a:for="{{houseList}}" a:for-item="list" >
+    <view class="lineClass"></view>
+    <view class="page_content">
+      <view class="page_backgeound">
+        <view class="class_title">{{list.roomName}}</view>
+        <view class="class_content">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅 | {{list.toward}} </view>
+        <view>
+          <view a:if="{{list.disabled}}" class="class_status">
+            <view>当前状态：</view><view class="p5">已租</view>
+          </view>
+          <view a:else class="class_status">
+            <view>当前状态：</view>
+            <view class="p6" a:if="{{list.status==0}}">正在审核</view>
+            <view class="p7" a:if="{{list.status==1}}">未租</view>
+          </view> 
+        </view>
+      </view>
+    </view>
+  </block>
+  </view>
   </view>
 </view>

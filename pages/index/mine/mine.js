@@ -450,12 +450,21 @@ Page({
       url: '/pages/index/housedelivery/housedelivery2/housedelivery2',
     });
   },
-  // toTest(){
-  //   my.navigateTo({
-  //     url: '/pages/index/order/orderinfo/orderinfo',
-  //   });
-  // },
-
+  toWallet(){
+    my.navigateTo({
+      url: '/pages/index/wallet/wallet',
+    });
+  },
+  toMyWallet(){
+    my.navigateTo({
+      url: '/pages/index/wallet_fangdong/wallet_fangdong',
+    });
+  },
+  toMyLock(){
+    my.navigateTo({
+      url: '/pages/index/myLock/myLock',
+    });
+  },
   //选择性别
   selectSex(){
     my.showActionSheet({

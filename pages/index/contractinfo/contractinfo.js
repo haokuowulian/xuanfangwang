@@ -40,4 +40,35 @@ Page({
       },
     });
   },
+  onCancel(){
+    my.confirm({
+      title: '温馨提示',
+      content: '是否申请解约？',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      success: (res) => {
+        if(res.confirm){
+          my.alert({
+            title: '已提交申请，请耐心等待处理。' 
+          });
+        }
+      },
+    });
+    
+  },
+  onContinue(){
+    my.confirm({
+      title: '温馨提示',
+      content: '是否申请续约？',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      success: (res) => {
+        if(res.confirm){
+          my.alert({
+            title: '已提交申请，请耐心等待处理。' 
+          });
+        }
+      },
+    });
+  },
 });

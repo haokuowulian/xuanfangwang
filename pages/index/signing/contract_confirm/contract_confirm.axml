@@ -50,7 +50,7 @@
   <view class="page-body1">
     <view class="body">
       <view class="body-back">
-        <view class="body-text1">合同预览</view>
+        <view class="body-text1">合同预览(模板)</view>
         <view class="body-text2"><button class="btn_preview" type="default" onTap="toContractPage">点击查看</button></view>
       </view>
     </view>

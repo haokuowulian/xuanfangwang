@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="payway-info">
+  <view class="payway-info" a:if="{{payment==1}}">
     <view class="info-box" onTap="onChoose" id='1'>
       <view class="info-select">
         <view a:if="{{selected1}}" class="selected"></view>
@@ -24,7 +24,16 @@
       <view class="payway-text">押一付一</view>
     </view>
   </view>
-  <view class="payway-info">
+  <view a:else class="payway-info">
+    <view class="info-box">
+      <view class="info-select">
+        <view a:if="{{true}}" class="unselected"></view>
+      </view>
+      <view class="payway-text0">押一付一</view>
+    </view>
+  </view>
+
+  <view class="payway-info" a:if="{{payment==3}}">
     <view class="info-box" onTap="onChoose" id='2'>
       <view class="info-select">
         <view a:if="{{selected2}}" class="selected"></view>
@@ -32,8 +41,16 @@
       <view class="payway-text">押一付三</view>
     </view>
   </view>
+  <view class="payway-info">
+    <view class="info-box">
+      <view class="info-select">
+        <view a:if="{{true}}" class="unselected"></view>
+      </view>
+      <view class="payway-text0">押一付三</view>
+    </view>
+  </view>
 
-  <view a:if="{{dateType>=2}}" class="payway-info">
+  <view a:if="{{dateType>=2&&payment==6}}" class="payway-info">
     <view class="info-box" onTap="onChoose" id='3'>
       <view class="info-select">
         <view a:if="{{selected3}}" class="selected"></view>
@@ -50,7 +67,7 @@
     </view>
   </view>
 
-  <view a:if="{{dateType>=3}}" class="payway-info">
+  <view a:if="{{dateType>=3&&payment==12}}" class="payway-info">
     <view class="info-box" onTap="onChoose" id='4'>
       <view class="info-select">
         <view a:if="{{selected4}}" class="selected"></view>

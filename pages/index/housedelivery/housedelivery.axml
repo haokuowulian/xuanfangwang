@@ -1,9 +1,9 @@
 <view class="backgroundClass" a:if="{{type==2}}">
   <view class="titleClass">房源信息与认证（1/2）</view>
   <view class="subTitleClass">地区</view>
-  <!-- <view onTap="open"> -->
-    <input class="inputClass" type="text" placeholder="请选择房源所在地区信息" value="{{dist}}"  onFocus="open"/>
-  <!-- </view> -->
+  <view onTap="open">
+    <input class="inputClass" type="text" placeholder="请选择房源所在地区信息" value="{{dist}}"  onFocus="hideKeyboard"/>
+  </view>
   <view class="lineClass"></view>
 
 
@@ -14,7 +14,7 @@
   <view class="lineClass"></view>
 
   
-  <view class="subTitleClass">小区/公寓电话</view>
+  <view class="subTitleClass">小区/公寓物业电话</view>
 
    <input class="inputClass" type="number" placeholder="请输入联系方式"  value="{{vphone}}" onInput="toInput" data-t='3'/>
   
@@ -28,7 +28,7 @@
   <view class="subTitleClass">建筑类型</view>
   <picker onChange="bindPickerChange1" value="{{index}}" range="{{buildingTypes}}">
     <view >
-      <input class="inputClass" type="text" placeholder="请填写建筑类型" value="{{buildingType}}" onFocus="open"/>
+      <input class="inputClass" type="text" placeholder="请填写建筑类型" value="{{buildingType}}" onFocus="hideKeyboard"/>
    </view>
   </picker>
   <view class="lineClass"></view>

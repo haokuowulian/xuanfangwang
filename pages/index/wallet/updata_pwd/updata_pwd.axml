@@ -1,0 +1,9 @@
+<view class="page">
+  <view class="page_content">
+    <view class="content_title">修改密码</view>
+    <input type="text" placeholder="请输入支付密码"  password class="input"/>
+    <view class="lineClass"></view>
+    <view class="other">请输入原密码验证身份</view>
+    <view class="classnext" onTap="toNext">下一步</view>
+  </view>
+</view>

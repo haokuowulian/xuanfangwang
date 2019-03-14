@@ -125,6 +125,7 @@ Page({
               title: '订单退款申请中', 
               success: (res) => {
                 console.log(res);
+                my.navigateBack();
               }
             });
           },

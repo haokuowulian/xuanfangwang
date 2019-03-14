@@ -1,3 +1,4 @@
+<view class="back_page">
 <view class="page">
   <view a:if="{{type==1}}" class="page-title">
     绑定新手机号
@@ -76,4 +77,5 @@
     </view>
     <view class="pwdForget" onTap="pwdForget">忘记密码</view>
   </view>
+</view>
 </view>

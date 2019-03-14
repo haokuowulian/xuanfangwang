@@ -1,12 +1,14 @@
 <view>
-  <view class="page-operate">{{content}}</view>
+  <view class="page-operate">
+    <view class="box_operate">{{content}}!</view>
+  </view>
   <view>
     <button type="default" onTap="toOrder">查看订单</button>
   </view>
-  <view a:if="{{showUrl}}">
+  <!-- <view a:if="{{showUrl}}">
   <view class="page-operate"  onTap="downloadUrl" >合同下载地址如下，请前往电脑上打印下载</view>
   <text selectable='true'  style="color:#6666ff;padding:24rpx" >{{url}}</text>
-  </view>
+  </view> -->
   <!-- <view class="page-operate">返回首页</view>
   <view class="page-operate">查看订单详情</view> -->
 </view>

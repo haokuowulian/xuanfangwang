@@ -1,0 +1,24 @@
+<view>
+  <view class="page_banner">
+    <view class="banner_text">我的余额</view>
+    <view class="banner_money">￥100000.00</view>
+  </view>
+  <view class="page_content">
+    <view class="content" onTap="toBankCard">
+      银行卡 
+      <view class="class_text">
+        已绑定
+        <image src="/image/icon/right.png" class="img_right"/>
+      </view>
+    </view>
+  </view>
+  <view class="classManger1"></view>
+  <view class="page_content" onTap="toMySettlement">
+    <view class="content">结算方式<view onTap="toInfo" class="class_text">订单结算<image src="/image/icon/right.png" class="img_right"/></view></view>
+  </view>
+  <view class="lineClass"></view>
+  <view class="page_content" onTap="toMyPayment">
+    <view class="content">收款方式<view onTap="toInfo" class="class_text">我的钱包<image src="/image/icon/right.png" class="img_right"/></view></view>
+  </view>
+  <view class="classManger">提示：提现请切换至房客端个人中心>钱包</view>
+</view>

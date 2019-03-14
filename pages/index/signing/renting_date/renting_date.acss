@@ -42,7 +42,7 @@
   width: 34rpx;
   margin-left: 40rpx;
   border-radius: 65rpx;
-  border: 1rpx solid #ffa800;
+  border: 1rpx solid #DDDDDD;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +50,11 @@
 .date-text{
   font-size: 30rpx;
   color: #333333;
+  margin-left: 20rpx;
+}
+.date-text1{
+  font-size: 30rpx;
+  color: #DDDDDD;
   margin-left: 20rpx;
 }
 .startDate1{
@@ -97,3 +102,14 @@
   background-color: #ff9900;
   border-radius: 65rpx;
 }
+.unselected{
+  height: 25rpx;
+  width: 25rpx;
+  border-radius: 65rpx;
+  background-color: #DDDDDD;
+}
+}
+/* .payway-text0{
+  font-size: 35rpx;
+  color: #DDDDDD;
+} */

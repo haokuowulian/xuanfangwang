@@ -23,7 +23,6 @@
   margin-left: 20rpx;
   margin-top: 35rpx;
   color: #000000;
-  width: 680rpx;
 }
 
 .lineClass{
