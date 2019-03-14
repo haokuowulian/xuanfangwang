@@ -41,11 +41,34 @@ Page({
     //     }
     //   },
     // });
+    
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
+    var certName = my.getStorageSync({
+      key: 'certName', // 缓存数据的key
+    }).data;
+    var sex1 = my.getStorageSync({
+      key: 'sex', // 缓存数据的key
+    }).data;
+    var arr = this.data.sexarr;
+    if(sex1==0){
+      this.setData({
+        index:sex1,
+        usersex:arr[sex1],
+      });
+    }
+    var certNo = my.getStorageSync({
+      key: 'certNo', // 缓存数据的key
+    }).data;
+    var phone = my.getStorageSync({
+      key: 'phone', // 缓存数据的key
+    }).data;
     this.setData({
       uid:userId,
+      vowner:certName,
+      vownerCard:certNo,
+      vphone:phone,
     });
   },
   //选择户型
@@ -218,7 +241,7 @@ Page({
         if(mobileNum){
           my.confirm({
             title: '温馨提示',
-            content: '确认提交审核？',
+            content: '我们将把您提交的身份信息进行公安备案，确认提交审核吗？',
             confirmButtonText: '确认',
             cancelButtonText: '取消',
             success: (res) => {

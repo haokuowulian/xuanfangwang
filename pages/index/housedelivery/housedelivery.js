@@ -28,6 +28,8 @@ Page({
     img:'',
     canAddImg:true,
     upload:false,
+    datatime:'2018-01-01',
+    type:1,
   },
   onChange: function (e) {
     //console.log(e);
@@ -104,20 +106,20 @@ Page({
   onLoad() {
     my.showLoading();
     this.getCity();
-    my.confirm({
-      title: '房 源 发 布 合 同 书（模板）',
-      content: '甲方将房屋租给乙方使用，经双方协商，订立如下协议： 一、 租用期时间自选。二、 租金按约定金额支付，收租期为合同生效下个月当天。三、 付款方法：签订合同后，甲方向乙方收取一个月押金，而押金不能作租金用途。四、 电费、水费、卫生费、物业费等一切杂费由双方协商。五、 乙方如中途退房，应提前一个月通知甲方，否则不退押金，不能私自转租他人及更改用途，否则甲方有权收回此房屋，押金不退。六、 乙方要遵守法律制度及治安管理条例，如有违法乙方自行解决与甲方无关。七、 乙方要自觉爱护甲方财物，如有损坏，则要按价赔偿。八、 乙方如违反合约或有违法行为，甲方有权提前收回此房屋，押金不退。九、 乙方在房屋内装修需甲方统一。十、 此合同将生产电子合同，双方各执一份，双方电子签章后生效。',
-      confirmButtonText: '同意',
-      cancelButtonText: '拒绝',
-      success: (res) => {
-        console.log(res)
-        if(res.confirm){
-          console.log('同意协议')
-        }else{
-          my.navigateBack();
-        }
-      },
-    });
+    // my.confirm({
+    //   title: '消防安全责任书（模板）',
+    //   content: '为推进社会消防安全管理，加强对火灾隐患的源头管控，预防和减少火灾危害，房东与承租人确保房屋及承租房的人身、财产和公共财产的安全，遵循“谁使用，谁管理，谁负责”的原则，双方特签订本消防及安全责任书：  一、房屋承租人已对出租的房屋作了充分了解，愿意承租该房屋。并在租赁期内，非房屋承租人为因素，房屋主体结构的维修由出租方承担，其他由均由承租方承担。  二、房屋承租人对该房屋消防及安全负全面责任，应严格履行消防及安全责任，采取有效措施防火灾发生。  三、承租人应对房屋内的人员进行消防意识的宣传教育，提高消防意识，使该房屋使用人员都能掌握和使用所配备有的消防设施及火灾发生后逃生、自救的技能。  四、承租人应定期对该房屋电器、燃气热水器、电器线路进行检查（检修），加强安全性能维护，并配合房东对本房屋的消防安全检查、监督。  五、承租人严格遵守电气装置安装规程和技术管理规程，禁止非电工安装、修理电气线路。宿舍内不得使用电炉、电茶壶、热得快等大功率电器设备和大功率的照明设备，严禁私拉电气线路，严禁使用明火灶具。存放液化石油气罐的燃气热水器，应自然通风排风。如为不正当使用燃气热水器及因使用大功率电器设备产生火灾及人身安全后果由承租人自负，房东概不负责，承租人应承担相应房屋赔付及装修款项。  六、楼梯、通道严禁堆放杂物，电瓶车应在室外停放充电并在充电时有人照看。 七、掌握消防逃生技能，遇到火灾时能准确拔打119报警电话并帮助儿童老人特殊人群逃生。  本责任书一式二份，出租房房东一份，承租人一份，在房屋租赁期间，本责任书长期有效。  对上述各项消防和安全管理责任应认真落实执行，若违反将承担相关法律后果。',
+    //   confirmButtonText: '同意',
+    //   cancelButtonText: '拒绝',
+    //   success: (res) => {
+    //     console.log(res)
+    //     if(res.confirm){
+    //       console.log('同意协议')
+    //     }else{
+    //       my.navigateBack();
+    //     }
+    //   },
+    // });
   },
   onShow(){
     // var village = my.getStorageSync({
@@ -195,12 +197,14 @@ Page({
   bindPickerChange1(e){
     console.log(e)
     var that = this;
-    var index = e.detail.value;
+    var index = e.detail.value*1;
     var arr = that.data.buildingTypes;
-    this.setData({
-      // showBuildingType:true,
-      buildingType:arr[index],
+    var buildingType = arr[index]
+    console.log(buildingType);
+    that.setData({
+      buildingType:buildingType,
     });
+    
   },
   addImg(){
     var that = this;
@@ -217,6 +221,9 @@ Page({
         });
       },
     });
+  },
+  open(){
+    my.hideKeyboard();
   },
   delImg(){
     var that = this;
@@ -395,5 +402,16 @@ Page({
       });
     }
      
-  }
+  },
+  toAgree(){
+    var that = this;
+    console.log('已点击同意')
+    my.pageScrollTo({
+      scrollTop: 0
+    });
+    that.setData({
+      type:2
+    })
+    
+  },
 });

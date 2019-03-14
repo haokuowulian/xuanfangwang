@@ -1,0 +1,26 @@
+<view class="page_file">
+  <view class="classFire">
+    <view class="box_title">
+      <text class="text_title">房屋租赁合同</text>
+    </view>
+      <text class="text_content">业主：__张三__身份证号：__123456789012345678__</text>
+      <text class="text_content">租客：__李四__身份证号：__123456789012345678__</text>
+      <text class="text_content">甲方(业主)将___________租给乙方(租客)使用，经双方协商，订立如下协议：</text>
+      <text class="text_content">  （一）租用期时间为一年，即__2019-03-08__起至__2020-03-08__止。</text>
+      <text class="text_content">  （二）租金为每月人民币壹仟元整，收租期为合同生效下个月当天。</text>
+      <text class="text_content">  （三）付款方法：签订合同后，甲方向乙方收取一个月押金，而押金不能作租金用途。</text>
+      <text class="text_content">  （四）电费、水费、物业费等一切杂费由乙方负责。</text>
+      <text class="text_content">  （五）乙方如中途退房，应提前一个月通知甲方，否则不退押金，不能私自转租他人及更改用途，否则甲方有权收回此房屋，押金不退。</text>
+      <text class="text_content">  （六）乙方要遵守法律制度及治安管理条例，如有违法乙方自行解决与甲方无关。</text>
+      <text class="text_content">  （七） 乙方要自觉爱护甲方财物，如有损坏，则要按价赔偿。</text> 
+      <text class="text_content">  （八） 乙方如违反合约或有违法行为，甲方有权提前收回此房屋，押金不退。</text> 
+      <text class="text_content">  （九） 乙方在房屋内装修需甲方同意。</text> 
+      <text class="text_content">  （十） 此合同将生产电子合同，双方各执一份，双方电子签章后生效。</text> 
+      <text class="text_content1">甲方签名：电子签章   乙方签名：电子签章</text>
+      <text class="text_content">日期：3月8日</text>
+    </view>
+    <view class="box_agree">
+      <view class="classAgree" onTap="toAgree">我同意上述条款</view>
+    </view>
+  </view>
+</view>

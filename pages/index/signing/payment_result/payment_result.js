@@ -4,19 +4,24 @@ Page({
     content:'',
     url:'',
     showUrl:false,
+    type:0,
   },
   onLoad(option) {
     var that = this;
-    console.log(option.payment)
-    var result = option.payment;
+    console.log(option.resultCode)
+    var result = option.resultCode;
     // this.setData({
-      
+    var type=option.type;
+    console.log(type)
+    that.setData({
+      type:type,
+    });
     // });
     if(result==9000){
       that.setData({
-        content:'订单支付成功！',
-        url:app.globalData.baseUrl+option.url,
-        showUrl:true,
+        content:'下单成功！请等待房东确认',
+        // url:app.globalData.baseUrl+option.url,
+        // showUrl:true,
       });
     }
     if(result==8000){
@@ -56,11 +61,29 @@ Page({
       });
     }
   },
+  toOrder(){
+    if(this.data.type==2){
+      my.navigateBack();
+    }else{
+      my.navigateTo({
+        url:'/pages/index/order/order?type=2',
+      });
+    }
+    
+  },
   onUnload() {
     // 页面被关闭
-    my.navigateBack({
-      delta:6
-    });
+    if(this.data.type==1){
+      my.navigateBack({
+        delta:6
+      });
+    }
+    if(this.data.type==2){
+      my.navigateBack({
+        delta:1
+      });
+    }
+    
   },
   downloadUrl(){
     console.log(this.data.url);

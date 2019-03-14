@@ -2,23 +2,41 @@ var  app = getApp();
 Page({
   data: {
     furnitureList:[],
-    selectId:''
+    selectId:'',
+    furnitures:'',
   },
-  onLoad() {
-    this.getFurnitureList();
+  onLoad(option) {
+    var f = option.furniture;
+    var furniture = f.split(',');
+    console.log(furniture);
+    this.getFurnitureList(furniture);
+    this.setData({
+      selectId:f,
+    });
   },
   //获取家具
-  getFurnitureList(){
+  getFurnitureList(furniture){
     var that=this;
+    var furnitures='';
      my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/selectData/getFurnitureListIF.do",
       method: 'POST',
       dataType: 'json',
       success: function(res) {
         console.log(res.data);
+        var list = res.data.data;
+        for(var i=0;i<furniture.length;i++){
+          for(var j=0;j<list.length;j++){
+            if(list[j].id==furniture[i]){
+              list[j].deleted=true;
+              furnitures=furnitures+','+list[j].furniture;
+            }
+          }
+        }
         if(res.data.success){
           that.setData({
-            furnitureList:res.data.data
+            furnitureList:list,
+            furnitures:furnitures,
           });
         }
       },
@@ -32,17 +50,35 @@ Page({
   
   },
    onChange(e) {
+     var that = this;
+     console.log(e)
+     var furnitureList = that.data.furnitureList;
+     console.log(furnitureList)
+     var furnitures='';
+    //  var furniture = furnitureList.split(',');
+     var idlist = e.detail.value;
+     for(let i=0;i<furnitureList.length;i++){
+       for(let j=0;j<idlist.length;j++){
+         if(furnitureList[i].id==idlist[j]){
+           furnitures=furnitures+','+furnitureList[i].furniture;
+         }
+       }
+     }
+      console.log(idlist)
+      furnitures=furnitures.substr(1);
      this.setData({
-       selectId:e.detail.value
+       selectId:e.detail.value,
+       furnitures:furnitures,
      });
     
   },
   confirm(){
+    
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
     prevPage.setData({
       furniture: this.data.selectId,
-      furniturelist:'已添加',
+      furniturelist:this.data.furnitures,
     })
     my.navigateBack({
       delta: 1,

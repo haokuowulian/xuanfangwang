@@ -8,7 +8,7 @@
   <view class="lineClass"></view>
 
   <view class="subTitleClass">性别</view>
-  <view class="content1">请选择
+  <view class="content1">
     <picker onChange="bindPickerChange" value="{{index}}" range="{{sexarr}}">
       <view class="row-extra">{{usersex}}</view>
     </picker>
@@ -27,7 +27,7 @@
    <input class="inputClass" type="number" placeholder="请填写您的手机号码" onInput="toInput" data-t='3' value="{{vphone}}"/>
    <view class="lineClass"></view>
 
-  <view class="subTitleClass">授权证书上传</view>
+  <view class="subTitleClass">认证材料上传</view>
  
   <!-- <view style="addViewMainClass"> -->
     <view a:if="{{!canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 

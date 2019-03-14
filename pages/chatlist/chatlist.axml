@@ -1,4 +1,4 @@
-<web-view src="https://webim-h5.easemob.com/#/login" />
+<web-view src="https://webim-h5.easemob.com/#/contact/user01?username=user01" />
 <!-- <view>
   <block a:for="{{chatlist}}" a:for-item="list">
     <view class="chat_box" onTap="toChat" data-uid="{{list.uid}}">

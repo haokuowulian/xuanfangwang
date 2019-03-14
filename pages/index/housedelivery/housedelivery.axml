@@ -1,4 +1,4 @@
-<view class="backgroundClass">
+<view class="backgroundClass" a:if="{{type==2}}">
   <view class="titleClass">房源信息与认证（1/2）</view>
   <view class="subTitleClass">地区</view>
   <!-- <view onTap="open"> -->
@@ -21,14 +21,14 @@
   <view class="lineClass"></view>
 
   <view class="subTitleClass">建筑年代</view>
-
+  
    <input class="inputClass" type="number" placeholder="请填写建筑年代" value="{{vyear}}" onInput="toInput" data-t='4'/>
   
   <view class="lineClass"></view>
   <view class="subTitleClass">建筑类型</view>
   <picker onChange="bindPickerChange1" value="{{index}}" range="{{buildingTypes}}">
     <view >
-   <input class="inputClass" type="text" placeholder="请填写建筑类型" value="{{buildingType}}" onInput="toInput" data-t='7'/>
+      <input class="inputClass" type="text" placeholder="请填写建筑类型" value="{{buildingType}}" onFocus="open"/>
    </view>
   </picker>
   <view class="lineClass"></view>
@@ -86,3 +86,22 @@
  </view> 
 </popup>
 
+<view>
+<view class="page_file" a:if="{{type==1}}">
+  <view class="classFire">
+    <text class="text_title">消防安全责任书</text>
+      <text class="text_content">为推进社会消防安全管理，加强对火灾隐患的源头管控，预防和减少火灾危害，房东与承租人确保房屋及承租房的人身、财产和公共财产的安全，遵循“谁使用，谁管理，谁负责”的原则，双方特签订本消防及安全责任书：</text>
+      <text class="text_content">  （一）房屋承租人已对出租的房屋作了充分了解，愿意承租该房屋。并在租赁期内，非房屋承租人为因素，房屋主体结构的维修由出租方承担，其他由均由承租方承担。</text>
+      <text class="text_content">  （二）房屋承租人对该房屋消防及安全负全面责任，应严格履行消防及安全责任，采取有效措施防火灾发生。</text>
+      <text class="text_content">  （三）承租人应对房屋内的人员进行消防意识的宣传教育，提高消防意识，使该房屋使用人员都能掌握和使用所配备有的消防设施及火灾发生后逃生、自救的技能。</text>
+      <text class="text_content">  （四）承租人应定期对该房屋电器、燃气热水器、电器线路进行检查（检修），加强安全性能维护，并配合房东对本房屋的消防安全检查、监督。</text>
+      <text class="text_content">  （五）承租人严格遵守电气装置安装规程和技术管理规程，禁止非电工安装、修理电气线路。宿舍内不得使用电炉、电茶壶、热得快等大功率电器设备和大功率的照明设备，严禁私拉电气线路，严禁使用明火灶具。存放液化石油气罐的燃气热水器，应自然通风排风。如为不正当使用燃气热水器及因使用大功率电器设备产生火灾及人身安全后果由承租人自负，房东概不负责，承租人应承担相应房屋赔付及装修款项。</text>
+      <text class="text_content">  （六）楼梯、通道严禁堆放杂物，电瓶车应在室外停放充电并在充电时有人照看。</text>
+      <text class="text_content">  （七）掌握消防逃生技能，遇到火灾时能准确拔打119报警电话并帮助儿童老人特殊人群逃生。 </text> 
+      <text class="text_content">  本责任书一式二份，出租房房东一份，承租人一份，在房屋租赁期间，本责任书长期有效。  对上述各项消防和安全管理责任应认真落实执行，若违反将承担相关法律后果。</text>
+    </view>
+    <view class="box_agree">
+      <view class="classAgree" onTap="toAgree">我同意上述条款</view>
+    </view>
+  </view>
+</view>

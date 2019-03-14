@@ -14,4 +14,19 @@ Page({
     });
     my.navigateBack();
   },
+  toBindPhone(){
+    my.navigateTo({
+      url:'/pages/index/setting/edit_page/edit_page?type=1',
+    });
+  },
+  toBindEmail(){
+    my.navigateTo({
+      url:'/pages/index/setting/edit_page/edit_page?type=2',
+    });
+  },
+  toChangePassword(){
+    my.navigateTo({
+      url:'/pages/index/setting/edit_page/edit_page?type=3',
+    });
+  },
 });

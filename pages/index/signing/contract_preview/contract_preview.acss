@@ -1,0 +1,49 @@
+.classFire{
+  height: 100%;
+  width: 620rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  background-color: #ffffff;
+  margin-left: 25rpx;
+  padding: 25rpx 40rpx 75rpx;
+}
+.page_file{
+  width: 700rpx;
+  height: 100%;
+  padding-top: 20rpx;
+}
+.text_title{
+  font-size: 45rpx;
+  color: #333333;
+}
+.text_content{
+  font-size: 25rpx;
+  line-height: 1.5em;
+}
+.text_content1{
+  margin-top: 45rpx;
+  font-size: 25rpx;
+  line-height: 1.5em;
+}
+.box_agree{
+  padding-top: 45rpx;
+}
+.classAgree{
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box_title{
+  width: 620rpx;
+  margin-top: 60rpx;
+  margin-bottom: 70rpx;
+  display: flex;
+  justify-content: center;
+}

@@ -1,11 +1,11 @@
 <view>
-  <!-- <view class="page-setting">
+  <view class="page-setting">
     <view class="setting-back">
-      <view class="setting-info">证件信息<image src="/image/icon/right.png" class="right-img"/></view>
-      <view class="setting-info">资质信息<image src="/image/icon/right.png" class="right-img"/></view>
-      <view class="setting-info">学历信息<image src="/image/icon/right.png" class="right-img"/></view>
+      <view class="setting-info" onTap="toBindPhone">绑定手机<image src="/image/icon/right.png" class="right-img"/></view>
+      <view class="setting-info" onTap="toBindEmail">绑定邮箱<image src="/image/icon/right.png" class="right-img"/></view>
+      <view class="setting-info" onTap="toChangePassword">修改密码<image src="/image/icon/right.png" class="right-img"/></view>
     </view>
-  </view> -->
+  </view>
   <view class="page-logout" onTap="userLogout">
     <view class="logout">退出登录</view>
   </view>

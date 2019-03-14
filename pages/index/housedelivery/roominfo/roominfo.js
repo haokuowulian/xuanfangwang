@@ -484,14 +484,14 @@ Page({
     goTo1(){
      my.hideKeyboard();
      my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery5-1/housedelivery5-1',
+      url: '/pages/index/housedelivery/housedelivery5-1/housedelivery5-1?furniture='+this.data.furniture,
     })
   },
   //前往房屋特色
   goTo2(){
     my.hideKeyboard();
     my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery5-2/housedelivery5-2',
+      url: '/pages/index/housedelivery/housedelivery5-2/housedelivery5-2?feature='+this.data.feature,
     })
   },
   bindPickerChange1(e){
@@ -775,7 +775,7 @@ Page({
       var payment = that.data.payment;
       var peopleNum = that.data.peopleNum;
       var tar = that.data.tar;
-      var templateName=that.data.templateName+that.data.roomName;
+      var templateName=that.data.roomName;
       // var water=that.data.water;
       // var waterlist = that.data.waterlist;
       // if(waterlist!=''&&waterlist!=null){
