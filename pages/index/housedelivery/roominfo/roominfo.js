@@ -776,6 +776,9 @@ Page({
       var peopleNum = that.data.peopleNum;
       var tar = that.data.tar;
       var templateName=that.data.roomName;
+      var chaoxiang = my.getStorageSync({
+        key: 'r_chaoxiang', // 缓存数据的key
+      }).data;
       // var water=that.data.water;
       // var waterlist = that.data.waterlist;
       // if(waterlist!=''&&waterlist!=null){
@@ -793,13 +796,14 @@ Page({
       // var address = v_address+vaddress;
       // var templateName = address+houseNo;
 
+      //房间信息
       var obj1 = {
         roomName:that.data.roomName,
         area:that.data.area,
         rents:that.data.rents,
         payway:that.data.payway,
         payment:payment,
-        
+        toward:chaoxiang,
         privatebath:that.data.privatebath,
         bath:that.data.bath,
         people:that.data.people,
@@ -812,6 +816,7 @@ Page({
         waterfree:that.data.waterfree,
         watersave:that.data.watersave,
       };
+      //房间模板信息
       var obj2 = {
         templateName:templateName,
         payment:payment,

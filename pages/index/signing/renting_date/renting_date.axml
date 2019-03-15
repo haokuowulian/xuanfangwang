@@ -53,7 +53,7 @@
     </view>
   </view>
   
-  <!-- 月付&季付&半年付 -->
+  <!-- 月付&季付&半年付&年付 -->
   <view class="choose">
     <view class="choose-date" onTap="onChoose" id='3'>
       <view class="selected1">

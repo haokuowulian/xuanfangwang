@@ -11,7 +11,9 @@
     <view class="box_content1">
       <view class="class_left">
         <view class="class_title">开户银行</view>
-        <input type="text" placeholder="请选择开户银行" class="input"/>
+        <picker onChange="bindPickerChange" value="{{index}}" range="{{banklist}}">
+          <view><input type="text" placeholder="请选择开户银行" class="input" value="{{mybank}}" onFocus="hideKeyboard"/></view>
+        </picker>
       </view>
       <view><image src="/image/icon/right.png" class="img" /></view>
     </view>
@@ -21,7 +23,7 @@
     <view class="box_content1">
       <view class="class_left">
         <view class="class_title">开户地区</view>
-        <input type="text" placeholder="请选择开户地区" class="input"/>
+        <input type="text" placeholder="请选择开户地区" class="input" onFocus="hideKeyboard"/>
       </view>
       <view><image src="/image/icon/right.png" class="img" /></view>
     </view>
@@ -30,14 +32,14 @@
   <view class="page_box">
     <view class="box_content">
       <view class="class_title">银行卡号</view>
-      <input type="text" placeholder="请输入银行卡号" class="input1"/>
+      <input type="number" placeholder="请输入银行卡号" class="input1" onInput="input" data-t='1' value="{{cardNo}}"/>
     </view>
   </view>
   <view class="lineClass1"></view>
   <view class="page_box">
     <view class="box_content">
       <view class="class_title">预留手机号</view>
-      <input type="text" placeholder="请输入银行预留手机号" class="input1"/>
+      <input type="number" placeholder="请输入银行预留手机号" class="input1" onInput="input" data-t='2' value="{{phone}}"/>
     </view>
   </view>
 </view>

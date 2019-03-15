@@ -244,43 +244,38 @@ Page({
     var that = this;
     var oldPassword = that.data.oldPassword;
     var newPassword = that.data.newPassword;
-    var confirmPassword = that.data.confirmPassword;
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    if(newPassword==confirmPassword){
-      my.httpRequest({
-        url: app.globalData.baseUrl+'IF/user/editPassword.do', // 目标服务器url
-        method: 'POST',
-        data:{
-          id:userId,
-          password:oldPassword,
-          newPassword:newPassword,
-        },
-        dataType: 'json',
-        success: (res) => {
-          console.log(res)
-          if(res.data.success){
-            my.alert({
-              title: '密码修改成功！',
-              success: () =>{
-                my.navigateBack({
-                  delta: 2
-                });
-              }
-            });
-          }else{
-            my.alert({
-              title: res.data.message+'！' 
-            });
-          }
-        },
-      });
-    }else{
-      my.alert({
-        title: '新密码两次输入不一致！' 
-      });
-    }
+    
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/user/editPassword.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        id:userId,
+        password:oldPassword,
+        newPassword:newPassword,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+        if(res.data.success){
+          my.alert({
+            title: '密码修改成功！',
+            success: () =>{
+              my.navigateBack({
+                delta: 2
+              });
+            }
+          });
+        }else{
+          my.alert({
+            title: res.data.message+'！' 
+          });
+        }
+      },
+    });
+    
   },
   //忘记密码
   pwdForget(){

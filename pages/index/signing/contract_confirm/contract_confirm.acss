@@ -54,10 +54,11 @@
 }
 .btn_preview{
   font-size: 30rpx;
-  color: #999999;
+  color: #ff9900;
   height: 60rpx;
   border-radius: 10rpx;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-color: #ff9900;
 }

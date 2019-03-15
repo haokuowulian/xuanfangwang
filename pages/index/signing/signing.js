@@ -73,13 +73,13 @@ Page({
   },
   //确认性别
   bindPickerChange(e){
+    console.log(e)
     var arr = this.data.sexarr;
     var idx = e.detail.value;
       this.setData({
         index:e.detail.value,
         usersex:arr[idx],
     });
-   
   },
   //确认身份证号码
   bindCadeInput(e){

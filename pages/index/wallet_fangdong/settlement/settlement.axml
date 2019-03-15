@@ -1,3 +1,22 @@
-<view>
-  New Page
+<view class="page-date">
+  <view class="lineClass"></view>
+  <view class="choose">
+    <view class="choose-date" onTap="onChoose" id='1'>
+      <view class="selected1">
+        <view a:if="{{choose1}}" class="myselected"></view>
+      </view>
+      <view class="date-text">订单结算</view>
+    </view>
+  </view>
+
+  <view class="choose">
+    <view class="choose-date" onTap="onChoose" id='2'>
+      <view class="selected1">
+        <view a:if="{{choose2}}" class="myselected"></view>
+      </view>
+      <view class="date-text">按天结算</view>
+    </view>
+  </view>
+
+  <view class="btn">确定</view>
 </view>

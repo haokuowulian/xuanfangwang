@@ -22,20 +22,5 @@ Page({
       url: '/pages/index/wallet/add_card/add_card',
     });
   },
-  //验证银行卡是否有效
-  toText(){
-    my.httpRequest({
-      //https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?cardNo=1111&cardBinCheck=true
-      url: 'https://ccdcapi.alipay.com/validateAndCacheCardInfo.json', // 目标服务器url
-      method: 'POST',
-      data: {
-        cardNo:'6212261203018719574',
-        cardBinCheck:true,
-      },
-      dataType: 'json',
-      success: (res) => {
-        console.log(res)
-      },
-    });
-  },
+ 
 });

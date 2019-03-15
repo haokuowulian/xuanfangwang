@@ -2,6 +2,7 @@
   width: 750rpx;
   height: 100vh;
   background-color: #ffffff;
+  padding-top: 80rpx;
 }
 .page_content{
   width: 680rpx;
@@ -11,7 +12,6 @@
 .content_title{
   font-size: 50rpx;
   color: #101010;
-  margin-top: 80rpx;
 }
 .input{
   font-size: 25rpx;
