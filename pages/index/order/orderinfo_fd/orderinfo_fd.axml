@@ -1,0 +1,89 @@
+<view>
+  <view class="page-house">
+    <view class="house-info">
+      <view class="house-left">
+        <image src="{{images.split(',')[0]}}" class="house-img" />
+      </view>
+      <view class="house-right">
+        <view class="house-address">{{houseName}}</view>
+        <view class="house-status">
+          <view class="house-point">
+            <view>房源面积：</view>
+            <view>{{area}}m²</view>
+          </view>
+          <view a:if="{{status==0}}" class="house-paid">待付款</view>
+          <view a:if="{{status==1}}" class="house-paid">已付款</view>
+          <view a:if="{{status==8}}" class="house-paid">已取消</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-time">
+     入住时间段
+  </view>
+  <view class="page-times">
+    <view class="times-back">
+      <view class="time-title">入住</view>
+      <view class="time-date">{{startDate}}</view>
+    </view>
+    <view class="times-back1">
+      <view class="time-title">到期</view>
+      <view class="time-date">{{endDate}}</view>
+    </view>
+  </view>
+
+  <view class="page-time">入住人信息</view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">真实姓名</view>
+      <view class="users-info">{{uname}}</view>
+    </view>
+  </view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">身份证号</view>
+      <view class="users-info">{{uidCard}}</view>
+    </view>
+  </view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">联系方式</view>
+      <view class="users-info">{{uphone}}</view>
+    </view>
+  </view>
+  <view class="page-time">关于订单</view>
+  <view class="page-user">
+    <view class="users">
+      <view class="users-title">订单交易号</view>
+      <view class="users-info">{{orderNo}}</view>
+    </view>
+  </view>
+  <view a:if="{{status!=3}}" class="page-user">
+    <view class="users">
+      <view class="users-title">订单状态</view>
+      <view a:if="{{status==0}}" class="order-btn" onTap="onCancel">取消订单</view>
+      <view a:if="{{status==1}}" class="order-btn" onTap="onRefund">已支付</view>
+      <view a:if="{{status==9}}" class="order-btn" onTap="onRefund">已完成</view>
+      <view a:if="{{status==2&&type==1}}" class="order-btn" >退款中</view>
+      <view a:if="{{status==2&&type==2}}" class="order-btn" onTap="dealOrder">退款处理</view>
+      <view a:if="{{status==8&&type==1}}" class="order-btn" >删除订单</view>
+      
+    </view>
+  </view>
+  <view class="page-footer"></view>
+
+
+
+  <view class="operate">
+    <view class="operate-sum">
+      <view class="total ">租客订单金额：<view class="sum">￥{{totalMoney}}</view></view>
+      <view class="deposit">租信宝认证费用：￥500</view>
+    </view>
+    <view a:if="{{status==0}}" class="operate-pay" onTap="toPay">租客认证</view>
+    <view a:if="{{status==8}}" class="operate-pay" onTap="toPay">租客认证</view>
+    <view a:if="{{status==9}}" class="operate-pay" onTap="toPay">租客认证</view>
+    <!-- <view a:if="{{status==8}}" class="operate-pay" onTap="toPay">已取消</view> -->
+    <view a:if="{{status==1}}" class="operate-pay" onTap="toPay">评分查询</view>
+  </view>
+</view>

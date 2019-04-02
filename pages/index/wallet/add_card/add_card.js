@@ -51,13 +51,14 @@ Page({
     var shortname = that.data.shortname;
     console.log(cardNo)
     console.log(phone)
-    that.toText(cardNo,shortname);
+    that.toText(cardNo,shortname,phone);
   },
    //验证银行卡是否有效
-  toText(cardNo,shortname){
+  toText(cardNo,shortname,phone){
     console.log('开始校验')
     console.log(cardNo)
     console.log(shortname)
+    var mobileNum =(/^1[3456789]\d{9}$/.test(phone))
     my.httpRequest({
       //https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?cardNo=1111&cardBinCheck=true
       url: 'https://ccdcapi.alipay.com/validateAndCacheCardInfo.json', // 目标服务器url
@@ -71,9 +72,16 @@ Page({
         console.log(res)
         var bank = res.data.bank;
         if(shortname==bank){
-          my.alert({
-            title: '卡号与开户银行匹配！' 
-          });
+          if(mobileNum){
+            my.alert({
+              title: '卡号与开户银行匹配！' 
+            });
+          }else{
+            my.alert({
+              title: '手机号格式错误！' 
+            });
+          }
+          
         }else{
           my.alert({
             title: '您输入的卡号与选择的开户银行不符！' 

@@ -3,21 +3,90 @@
     <view class="box_title">
       <text class="text_title">房屋租赁合同</text>
     </view>
-      <text class="text_content">业主：__张三__身份证号：__123456789012345678__</text>
-      <text class="text_content">租客：__李四__身份证号：__123456789012345678__</text>
-      <text class="text_content">甲方(业主)将___________租给乙方(租客)使用，经双方协商，订立如下协议：</text>
-      <text class="text_content">  （一）租用期时间为一年，即__2019-03-08__起至__2020-03-08__止。</text>
-      <text class="text_content">  （二）租金为每月人民币壹仟元整，收租期为合同生效下个月当天。</text>
-      <text class="text_content">  （三）付款方法：签订合同后，甲方向乙方收取一个月押金，而押金不能作租金用途。</text>
-      <text class="text_content">  （四）电费、水费、物业费等一切杂费由乙方负责。</text>
-      <text class="text_content">  （五）乙方如中途退房，应提前一个月通知甲方，否则不退押金，不能私自转租他人及更改用途，否则甲方有权收回此房屋，押金不退。</text>
-      <text class="text_content">  （六）乙方要遵守法律制度及治安管理条例，如有违法乙方自行解决与甲方无关。</text>
-      <text class="text_content">  （七） 乙方要自觉爱护甲方财物，如有损坏，则要按价赔偿。</text> 
-      <text class="text_content">  （八） 乙方如违反合约或有违法行为，甲方有权提前收回此房屋，押金不退。</text> 
-      <text class="text_content">  （九） 乙方在房屋内装修需甲方同意。</text> 
-      <text class="text_content">  （十） 此合同将生产电子合同，双方各执一份，双方电子签章后生效。</text> 
-      <text class="text_content1">甲方签名：电子签章   乙方签名：电子签章</text>
-      <text class="text_content">日期：3月8日</text>
+      <text class="class_title">出租方(甲方)：{{my_name}} </text>
+      <text class="class_title">承租方(乙方)： {{your_name}}</text>
+
+      <text class="text_content">甲乙双方就下列房屋的租赁达成如下协议，具体内容如下：</text>
+      <text class="class_title">第一条  房屋基本情况</text>
+      <text class="text_content">甲方出租的房屋坐落地址：{{address}}室住宅一套</text>
+      <text class="class_title">第二条  租赁期限</text>
+      　　<text class="text_content">租期 {{duration}}，自 {{startDate}}起至{{endDate}}止。乙方有下列情形之一的，甲方可以单方提前终止合同，收回房屋：</text>
+      　　<text class="text_content">1、乙方擅自将房屋转租、转让或转借的；</text>
+          <text class="text_content">2、乙方利用承租房进行非法活动的；</text>
+          <text class="text_content">3、乙方拖欠租金累计超过15天的；</text>
+          <text class="text_content">4、乙方破坏或损坏房屋的一切情形；</text>
+           <text class="text_content">租赁期满前7日，双方商议续签房屋租赁协议；甲方继续出租房屋，乙方享有优先承租权；后续租金期限根据物价及周边住房租金涨幅情况，双方另行协商确定。</text>
+          <text class="class_title"> 第三条  租金：</text>
+          <text class="text_content"> 每月租金计人民币 {{cn_money}} （￥ {{money}} 元）（以上租金为甲方净得租金，不承担任何税费和责任）租赁期间，除双方协调一致调整租金并签订补充合同外；双发不得以任何理由调整租金。</text>
+          <text class="class_title"> 第四条  付款方式：</text>
+               <text class="text_content">1、根据协议要求支付宝支付租金。</text>
+               <text class="text_content">2、该房屋水、电及硬件设备押金人民币{{money}} 元，房屋租期满，水、电费无拖欠、硬件设施无人为损坏则押金如数退还，如有人为损坏双方约定折价赔偿，芝麻信用分700分以上免押金。</text>
+           <text class="text_content">3、租赁期间双方必须信守合同，任何乙方违反本合同的规定，按年度须向对方交纳年度租金的一个月租金作为违约金。乙方未交付租金的每逾期一日，甲方有权按月租金的2%向乙方加收滞纳金。</text>
+          <text class="class_title"> 第五条  交付房屋期限：</text>
+           <text class="text_content">甲方应于本合同生效之日起当日内，将房屋交付给乙方。</text>
+           <text class="class_title">第六条  甲方对房屋产权承诺：</text>
+           <text class="text_content">甲方保证在交房时该房屋没有产权纠纷；若有产权纠纷的，由甲方承担全部责任，由此给乙方造成的经济损失，由甲方负责赔偿。</text>
+          <text class="class_title"> 第七条  维修养护责任</text>
+           <text class="text_content">租赁期间，正常的维修养护责任由双方及物业管理部门按相关法律、法规的规定执行。因乙方管理使用不善造成房屋及相连设备的损失和维修费用，由乙方承担责任并赔偿损失。</text>
+           <text class="class_title">第八条  关于房屋租赁期间的相关费用</text>
+           <text class="text_content">在房屋租赁期间，以下费用由乙方支付：</text>
+          　　 <text class="text_content">1、物业管理费，根据使用情况进行分担,支付宝缴纳，由甲方代缴；</text>
+               <text class="text_content">2、水电费：根据使用情况进行分担,支付宝缴纳，由甲方代缴；</text>
+          　　 <text class="text_content">3、维修费：租赁期间，由于乙方的原因导致租赁房屋的质量和房屋的内部设施损毁的，包括门窗、水电等，维修费由乙方承担。</text>
+           <text class="class_title">第九条  关于房屋转租</text>
+          　　 <text class="text_content">租赁期间，乙方不得将房屋转租给第三方的，违法该条款甲方有权收回房屋。</text>
+           <text class="class_title">第十条  违约责任和损失赔偿</text>
+          　　 <text class="text_content">1、甲方无故提前解除合同或将房屋租给其他人的，视为甲方违约，应支付乙方违约金，违约金按当年月租金的五倍计算。</text>
+          　　 <text class="text_content">2、乙方无故提前解除合同或擅自转租的，视为乙方违约，应支付甲方违约金，违约金按当年月租金的五倍计算。</text>
+          　　 <text class="text_content">3、承租方违反合同，擅自将承租房屋转给他人使用的，应支付违约金，违约金按当年月租金的五倍计算。因此造成承租房屋损坏的，还应负责赔偿。</text>
+           <text class="class_title">第十一条  免责条件</text>
+           <text class="text_content">租赁期间，房屋因不可抗力损毁或造成乙方损失的，双方互不承担责任。</text>
+           <text class="class_title">第十二条  争议的解决</text>
+          　　 <text class="text_content">本合同在履行中发生争议，双方应协商解决，协商不成时，向人民法院起诉。</text>
+           <text class="class_title">第十三条  本合同如有未尽事宜，经甲、乙双方共同协商，作出补充书面约定，补充约定与本合同具有同等效力。</text>
+           <text class="class_title">第十四条  本合同为电子合同，经支付宝认证后生效。  </text> 
+
+          <view class="class_end">
+            <view class="box_info">
+              <text class="text_content1">甲方(盖章)：</text><text class="class_content"></text>
+            </view>
+            <view class="box_info">
+              <text class="text_content1">乙方(盖章)：</text><text class="class_content"></text>
+            </view>
+          </view>
+          <view class="class_end">
+            <view class="box_info">
+              <text class="text_content">代表人(签字)：</text> <text class="class_content">{{my_name}}</text>
+            </view>
+            <view class="box_info">
+              <text class="text_content">代表人(签字)：</text><text class="class_content">{{your_name}}</text>
+              </view>
+            </view> 
+          <view class="class_end">
+            <view class="box_info1">
+              <text class="text_content">身份证号：</text><text class="class_content1">{{my_card}}</text>
+            </view>
+            <view class="box_info1">
+              <text class="text_content">身份证号:</text><text class="class_content1">{{your_card}}</text>
+            </view>
+          </view>
+          <view class="class_end">
+            <view class="box_info">
+              <text class="text_content">联系电话：</text><text class="class_content">{{my_phone}}</text>
+            </view>
+            <view class="box_info">
+              <text class="text_content">联系电话：</text><text class="class_content">{{your_phone}}</text>
+            </view>
+          </view>                       　　　　
+          <view class="class_end">
+            <view class="box_info">
+              <text class="text_content">{{date}}  </text><text class="class_content"></text>
+            </view>
+            <view class="box_info">
+              <text class="text_content">年  月  日</text><text class="class_content"></text>
+            </view>
+          </view>
+
     </view>
     <view class="box_agree">
       <view class="classAgree" onTap="toAgree">我同意上述条款</view>

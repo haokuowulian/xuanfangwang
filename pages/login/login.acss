@@ -60,7 +60,7 @@
   width: 680rpx;
   /* margin-left: 35rpx; */
   border-radius: 12rpx;
-  background-color: #108ee9;
+  background-color: #1DD8E7;
   color: white;
   display: flex;
   flex-direction: row;

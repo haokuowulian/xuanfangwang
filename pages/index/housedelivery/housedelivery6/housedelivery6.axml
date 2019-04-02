@@ -15,7 +15,7 @@
   <view class="lineClass"></view>
 
 
-  <view class="subTitleClass">水费(元)</view>
+  <view class="subTitleClass">水费(元/立方)</view>
 
    <input class="inputClass" type="number" placeholder="请填写水费价格"  onInput="toInput" data-t='2' class="text_input" value="{{waterprice}}"/>
   
@@ -25,7 +25,7 @@
    <input class="inputClass" type="number" placeholder="请填写电费价格"  onInput="toInput" data-t='3' class="text_input" value="{{powerprice}}"/>
   
   <view class="lineClass"></view>
-  <view class="subTitleClass">物业费(元)</view>
+  <view class="subTitleClass">物业费(元/月)</view>
 
    <input class="inputClass" type="number" placeholder="请填写物业费价格" onInput="toInput" data-t='4' class="text_input" value="{{property}}" />
   

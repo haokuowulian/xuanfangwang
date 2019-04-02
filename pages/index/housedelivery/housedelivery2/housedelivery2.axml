@@ -38,26 +38,44 @@
   </picker>
   <view class="lineClass"></view>
 
-  <view class="subTitleClass">业主</view>
+  <view class="subTitleClass">房东</view>
 
-   <input class="inputClass" type="text" placeholder="请填写所有人姓名" onInput="toInput" data-t='3' value="{{vowner}}"/>
+   <input class="inputClass" type="text" placeholder="请填写房东姓名" onInput="toInput" data-t='3' value="{{vowner}}"/>
   
   <view class="lineClass"></view>
 
-  <view class="subTitleClass">业主身份证号</view>
+  <view class="subTitleClass">房东身份证号</view>
 
-   <input class="inputClass" type="idcard" placeholder="请填写业主的身份证号码" onInput="toInput" data-t='4' value="{{vownerCard}}"/>
+   <input class="inputClass" type="idcard" placeholder="请填写房东的身份证号码" onInput="toInput" data-t='4' value="{{vownerCard}}"/>
   
   <view class="lineClass"></view>
 
-  <view class="subTitleClass">与业主关系</view>
 
-   <input class="inputClass" type="text" placeholder="请填写与业主的关系" onInput="toInput" data-t='5' value="{{vrelation}}"/>
+  <view class="fd_type">
+  <view class="fd_class">房东类型：</view>
+  
+    <view class="type_choose">
+      <view class='icon_none' a:if="{{!show1}}" onTap="toChooseType1"></view>
+      <view class="icon-bkgd" a:if="{{show1}}">
+        <icon type="success" class="icon-check" color="#ff8800" />
+      </view><view class="type_name">本人</view>
+    </view>
+  
+    <view class="type_choose">
+      <view class='icon_none' a:if="{{!show2}}"  onTap="toChooseType2"></view>
+      <view class="icon-bkgd" a:if="{{show2}}">
+        <icon type="success" class="icon-check" color="#ff8800" />
+      </view><view class="type_name">二房东</view>
+    </view>
+  </view>
+
+   <!-- <input class="inputClass" type="text" placeholder="请填写与业主的关系" onInput="toInput" data-t='5' value="{{vrelation}}"/> -->
+   
    <view class="lineClass"></view>
-
-  <view class="subTitleClass">授权证书认证</view>
+   <!-- 本人 -->
+  <block a:if="{{show1}}">
+    <view class="subTitleClass">房产信息认证</view>
  
-  <!-- <view style="addViewMainClass"> -->
     <view a:if="{{!canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 
       <view class="content">
         <image class="addImageViewClass" src="{{img1}}" />
@@ -72,7 +90,6 @@
       <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="1"/>
       <text class="textClass">业主身份证正面</text>
     </view>
-
 
     <view a:if="{{!canAddImg2}}" class="addViewClass" style="margin-left:16rpx;"> 
       <view class="content">
@@ -89,8 +106,6 @@
       <text class="textClass">业主身份证反面</text>
     </view>
 
-
-
     <view a:if="{{!canAddImg3}}" class="addViewClass" style="margin-left:16rpx;"> 
       <view class="content">
         <image class="addImageViewClass" src="{{img3}}" />
@@ -106,9 +121,32 @@
       <text class="textClass">房产证</text>
     </view>
 
-  <!-- </view> -->
-  <button class="nextStepButtonClass" onTap="next">下一步</button>
+    <button class="nextStepButtonClass" onTap="next">下一步</button>
+  </block>
+  
+  <!-- 二房东 -->
+  <block  a:if="{{show2}}">
+    <view class="subTitleClass">业主授权租赁合同</view>
+ 
+    <view class="box_img">
+      <view a:if="{{!canAddImg4}}" class="addViewClass" style="margin-left:16rpx;"> 
+        <view class="content">
+          <image class="addImageViewClass" src="{{img4}}" />
+          <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="4">
+              <icon type="cancel" color="red" size="18" />
+          </view>
+        </view>
+        <text class="textClass">业主授权合同</text>
+      </view>
 
+      <view a:if="{{canAddImg4}}" class="addViewClass" style="margin-left:16rpx;"> 
+        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="4"/>
+        <text class="textClass">业主授权合同</text>
+      </view>
+    </view>
+
+    <button class="nextStepButtonClass" onTap="next">下一步</button>
+  </block>
 
   
 </view>

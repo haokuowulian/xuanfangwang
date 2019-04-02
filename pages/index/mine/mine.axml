@@ -127,14 +127,14 @@
 
     <view class="page-option page-section">
       <view class="option">
-        <view class="option-content" onTap="toMyWallet">
+        <view class="option-content" onTap="toWallet">
           <view>
             <image src="/image/mine/zhanghu.png" class="option-img"/>
           </view>
           <view class="option-text">我的钱包
           </view>
         </view>
-        <view class="option-content" onTap="toContract">
+        <view class="option-content" onTap="toContract2">
           <view>
             <image src="/image/mine/hetong.png" class="option-img"/>
           </view>
@@ -323,9 +323,10 @@
         <view class="title-change" onTap="changeRole2">
           <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />切换房东
         </view>
-        <!-- <view class="title-set">
-          <image src="/image/qipao.png" class="qipao-img" />
-        </view> -->
+        <view class="title-set"  onTap="toAccountInfo">
+          <!-- <image src="/image/qipao.png" class="qipao-img" /> -->
+          账号信息
+        </view>
       </view>
    
        
@@ -377,13 +378,13 @@
           <view class="option-text">评价
           </view>
         </view>
-        <view class="option-content" onTap="toWallet">
+        <!-- <view class="option-content" onTap="toWallet">
           <view>
             <image src="/image/mine/qianbao.png" class="option-img"/>
           </view>
           <view class="option-text">钱包
           </view>
-        </view>
+        </view> -->
       </view>
     </view>
     <view class="page-service page-section">
@@ -391,7 +392,7 @@
         <view class="service-title">专项服务
         </view>
         <view class="service-content">
-          <view class="content-box content-bkgd1" onTap="toContract">
+          <view class="content-box content-bkgd1" onTap="toContract1">
             <image src="/image/mine/hetong2.png" class="service-img" />
             <view class="content-text1">我的合同
             </view>
@@ -409,7 +410,7 @@
             </view>
           </view> -->
 
-          <view class="content-box content-bkgd4">
+          <view class="content-box content-bkgd4" onTap="toMyKey">
             <image src="/image/mine/menjin.png" class="service-img" />
             <view class="content-text4">我的钥匙
             </view>

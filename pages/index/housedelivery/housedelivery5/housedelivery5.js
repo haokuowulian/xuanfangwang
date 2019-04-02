@@ -153,10 +153,10 @@ Page({
     var that = this;
     var newimgs = '';
      my.uploadFile({
-          url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+          url: app.globalData.baseUrl_oos,
           fileName: 'file', 
           fileType: 'image', 
-          formData:{savePrefix:'landlord'},
+          formData:{savePrefix:'landlord/'},
           filePath: image,
           success: (res) => {
             var json1 = JSON.parse(res.data);
@@ -675,6 +675,7 @@ Page({
         uid:uid,
         startTime:startDate,
         endTime:endDate,
+        rentType:2,
       },
       dataType: 'json',
       success: (res) => {

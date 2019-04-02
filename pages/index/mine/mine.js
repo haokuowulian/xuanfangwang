@@ -204,6 +204,7 @@ Page({
                console.log(res);
                console.log('---------------------------');
                my.hideLoading();
+               app.getCity();
                my.setStorageSync({
                  key: 'userId', // 缓存数据的key
                  data: res.data.info.id, // 要缓存的数据
@@ -432,6 +433,36 @@ Page({
       });
     }
   },
+  toContract1(){
+    my.navigateTo({
+      url: '/pages/index/contract/contract?roleType=2',
+    });
+  },
+  toContract2(){
+    my.navigateTo({
+      url: '/pages/index/contract/contract?roleType=1',
+    });
+  },
+  toMyKey(){
+    // my.navigateTo({
+    //   url: '/pages/index/myKey/myKey',
+    // });
+    // my.openCardList();
+    // my.openTicketList();
+    my.ap.navigateToAlipayPage({
+    path:'alipays://platformapi/startapp?appId=60000155',
+    success:(res) => {
+        my.alert({content:'系统信息' + JSON.stringify(res)});
+    },
+    fail:(error) => {
+        my.alert({content:'系统信息' + JSON.stringify(error)});        
+    }
+})
+  },
+
+
+
+
   toMore(){
     my.navigateTo({
       url: '/pages/index/more/more',
@@ -443,11 +474,8 @@ Page({
     });
   },
   toAccountInfo(){
-    // my.navigateTo({
-    //   url: '/pages/index/accountinfo/accountinfo',
-    // });
-     my.navigateTo({
-      url: '/pages/index/housedelivery/housedelivery2/housedelivery2',
+    my.navigateTo({
+      url: '/pages/index/accountinfo/accountinfo',
     });
   },
   toWallet(){
@@ -713,6 +741,7 @@ getServerTime(){
             if(res.data.success){
               my.hideLoading();
               console.log("登录成功！")
+              app.getCity();
               // that.getPayId();
               my.setStorageSync({
                  key: 'userId', // 缓存数据的key
@@ -793,6 +822,7 @@ getServerTime(){
               my.alert({
                 title: res.data.message,
               });
+              my.hideLoading();
             }
           },
         });
@@ -981,6 +1011,7 @@ getServerTime(){
         if(res.data.success){
           my.hideLoading();
           console.log("登录成功！")
+          app.getCity();
           // that.getPayId();
           my.setStorageSync({
             key: 'userId', // 缓存数据的key

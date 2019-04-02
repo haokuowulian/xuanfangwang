@@ -2,22 +2,34 @@
   <view class="page-title">
     账号管理
   </view>
-  
-  <view class="info">
+  <!-- <view class="info" onTap="toChangeNickName">
+    <view>头像</view>
+    <view><image src="{{avatar}}" class="img_avatar" /></view>
+  </view> -->
+  <view class="info" onTap="toChangeNickName">
     <view>用户名</view>
-    <view>胡海</view>
+    <view>{{nickName}} <image src="/image/icon/right.png" class="img_right" /></view>
   </view>
-  <view class="info">
+  <view class="info" onTap="toChangePhone">
     <view>手机号</view>
-    <view>12345678901</view>
+    <view>{{phone}} <image src="/image/icon/right.png" class="img_right" /></view>
   </view>
-  <view class="info">
+  <view class="info" onTap="toAccountCompleted">
+    <view>个人信息</view>
+    <view>{{userType}}<image src="/image/icon/right.png" class="img_right" /></view>
+  </view>
+  <!-- <view class="info">
+    <view>证件信息</view>
+    <view><image src="/image/icon/right.png" class="img_right" /></view>
+  </view> -->
+
+  <!-- <view class="info">
     <view>邮箱</view>
     <view>未绑定</view>
-  </view>
-  <view class="info">
+  </view> -->
+  <!-- <view class="info">
     <view>修改密码</view>
     <view>去修改</view>
-  </view>
+  </view> -->
 
 </view>

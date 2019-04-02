@@ -75,3 +75,50 @@
 .delImg{
   position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
 }
+.icon-bkgd{
+  height: 45rpx;
+  width: 45rpx;
+}
+.icon_none{
+  height: 45rpx;
+  width: 45rpx;
+  border-radius: 50rpx;
+  border:1rpx solid #666666;
+}
+.fd_class{
+  font-size: 35rpx;
+  color: #333333;
+  width: 200rpx;
+}
+.fd_type{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* margin-left: 20rpx;
+  margin-top: 35rpx; */
+  width: 680rpx;
+  margin-left: 35rpx;
+  margin-top: 45rpx;
+}
+.type_choose{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 200rpx;
+  justify-content: center;
+}
+.type_name{
+  color: #333333;
+  font-size: 35rpx;
+  margin-left: 20rpx;
+}
+.box_img{
+  width: 680rpx;
+  height:140rpx;
+  margin-left: 35rpx;
+}
+.icon-check{
+  width: 35rpx;
+  height: 35rpx;
+  color: #ff8800;
+}

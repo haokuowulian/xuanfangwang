@@ -81,13 +81,16 @@
       <view class="order-btn" onTap="onContinue">申请续约</view>
     </view>
   </view>
-   <view class="page-time">合同下载地址</view>
-   <view>
+  <view class="page-time">合同下载地址</view>
+  <view a:if="{{contract.state==1}}">
      <textarea selectable='true'   style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx" value="{{url}}"
-      disabled='true' maxlength='-1'>
-      
+      disabled='false' maxlength='-1'>
     </textarea>
-    </view>
+  </view>
+  <view  a:else>
+    <textarea  style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx;color:#999999" value="合同生效后提供下载链接"  disabled='true' maxlength='-1'>
+    </textarea>
+  </view>
   <view class="page-footer"></view>
 
 

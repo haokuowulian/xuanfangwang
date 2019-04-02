@@ -49,7 +49,8 @@
 }
 .order-content{
   height: 160rpx;
-  width: 700rpx;
+  /* width: 700rpx; */
+  width: 580rpx;
   display: flex;
   flex-direction: row;
   padding-top: 25rpx;
@@ -79,6 +80,22 @@
   font-size: 32rpx;
   color: #999999;
   height: 100vh;
+}
+.box_content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.class_btn{
+  font-size: 25rpx;
+  height: 60rpx;
+  width: 120rpx;
+  border-radius: 15rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70rpx;
 }
 /* .order{
   height: 120rpx;

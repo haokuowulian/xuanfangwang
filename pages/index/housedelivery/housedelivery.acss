@@ -117,7 +117,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   background-color: #ffffff;
   margin-left: 25rpx;
   padding: 25rpx 40rpx 75rpx;
@@ -132,6 +132,9 @@
   color: #333333;
   margin-top: 60rpx;
   margin-bottom: 70rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .text_content{
   font-size: 30rpx;

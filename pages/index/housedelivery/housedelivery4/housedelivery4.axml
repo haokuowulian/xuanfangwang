@@ -19,11 +19,11 @@
   </view>
   <view class="lineClass"></view>
 
-  <view class="subTitleClass">周边情况</view>
+  <!-- <view class="subTitleClass">周边情况</view>
 
    <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="可介绍周边地标、商场、超市、公园、景点、交通工具等"  onInput="toInput" data-t='3'  value="{{nearby}}"/>
   
-  <view class="lineClass"></view>
+  <view class="lineClass"></view> -->
 
   <view class="subTitleClass">
     <view>房源照片上传</view>

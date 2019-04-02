@@ -209,33 +209,44 @@ Page({
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    if(phoneNum!=''&&phoneCode!=''){
-      my.httpRequest({
-        url: app.globalData.baseUrl+'IF/user/editMobile.do', // 目标服务器url
-        method: 'POST',
-        data:{
-          id:userId,
-          userName:phoneNum,
-          code:phoneCode,
-        },
-        dataType: 'json',
-        success: (res) => {
-          console.log(res)
-          
-          if(res.data.success){
-            my.alert({
-              title: res.data.message,
-              success: () =>{
-                my.navigateBack();
-              }
-            });
+    if(phoneNum!=''){
+      if(phoneCode!=''){
+        my.httpRequest({
+          url: app.globalData.baseUrl+'IF/user/editMobile.do', // 目标服务器url
+          method: 'POST',
+          data:{
+            id:userId,
+            userName:phoneNum,
+            code:phoneCode,
+          },
+          dataType: 'json',
+          success: (res) => {
+            console.log(res)
             
-          }else{
-            my.alert({
-              title: res.data.message
-            });
-          }
-        },
+            if(res.data.success){
+              my.alert({
+                title: res.data.message,
+                success: () =>{
+                  my.navigateBack();
+                }
+              });
+              
+            }else{
+              my.alert({
+                title: res.data.message
+              });
+            }
+          },
+        });
+      }else{
+        my.alert({
+          title: '验证码不能为空！' 
+        });
+      }
+      
+    }else{
+      my.alert({
+        title: '手机号不能为空！' 
       });
     }
   },
@@ -247,35 +258,51 @@ Page({
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    
-    my.httpRequest({
-      url: app.globalData.baseUrl+'IF/user/editPassword.do', // 目标服务器url
-      method: 'POST',
-      data:{
-        id:userId,
-        password:oldPassword,
-        newPassword:newPassword,
-      },
-      dataType: 'json',
-      success: (res) => {
-        console.log(res)
-        if(res.data.success){
-          my.alert({
-            title: '密码修改成功！',
-            success: () =>{
-              my.navigateBack({
-                delta: 2
-              });
-            }
+    if(oldPassword!=''){
+      if(newPassword!=''){
+        if(newPassword!=oldPassword){
+          my.httpRequest({
+            url: app.globalData.baseUrl+'IF/user/editPassword.do', // 目标服务器url
+            method: 'POST',
+            data:{
+              id:userId,
+              password:oldPassword,
+              newPassword:newPassword,
+            },
+            dataType: 'json',
+            success: (res) => {
+              console.log(res)
+              if(res.data.success){
+                my.alert({
+                  title: '密码修改成功！',
+                  success: () =>{
+                    my.navigateBack({
+                      delta: 2
+                    });
+                  }
+                });
+              }else{
+                my.alert({
+                  title: res.data.message+'！' 
+                });
+              }
+            },
           });
         }else{
           my.alert({
-            title: res.data.message+'！' 
+            title: '新密码不能与原密码相同！' 
           });
         }
-      },
-    });
-    
+      }else{
+        my.alert({
+          title: '新密码不能为空！' 
+        });
+      }
+    }else{
+      my.alert({
+        title: '原密码不能为空！' 
+      });
+    }
   },
   //忘记密码
   pwdForget(){

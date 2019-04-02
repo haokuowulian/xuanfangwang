@@ -1,20 +1,20 @@
 <view class="backgroundClass" a:if="{{type==2}}">
   <view class="titleClass">房源信息与认证（1/2）</view>
-  <view class="subTitleClass">地区</view>
+  <view class="subTitleClass">地区(必填)</view>
   <view onTap="open">
     <input class="inputClass" type="text" placeholder="请选择房源所在地区信息" value="{{dist}}"  onFocus="hideKeyboard"/>
   </view>
   <view class="lineClass"></view>
 
 
-  <view class="subTitleClass">小区/公寓名称</view>
+  <view class="subTitleClass">小区/公寓名称(必填)</view>
  <view onTap="selectPoi">
    <input class="inputClass" type="text" placeholder="请填写，以方便定位" value="{{village}}"/>
   </view>
   <view class="lineClass"></view>
 
   
-  <view class="subTitleClass">小区/公寓物业电话</view>
+  <view class="subTitleClass">物业电话</view>
 
    <input class="inputClass" type="number" placeholder="请输入联系方式"  value="{{vphone}}" onInput="toInput" data-t='3'/>
   
@@ -34,7 +34,7 @@
   <view class="lineClass"></view>
   <view class="subTitleClass">绿化率(%)</view>
 
-   <input class="inputClass" type="number" placeholder="请填写绿化率" value="{{vgreen}}" onInput="toInput" data-t='5'/>
+   <input class="inputClass" type="digit" placeholder="请填写绿化率" value="{{vgreen}}" onInput="toInput" data-t='5'/>
   
   <view class="lineClass"></view>
 
@@ -89,16 +89,18 @@
 <view>
 <view class="page_file" a:if="{{type==1}}">
   <view class="classFire">
-    <text class="text_title">消防安全责任书</text>
-      <text class="text_content">为推进社会消防安全管理，加强对火灾隐患的源头管控，预防和减少火灾危害，房东与承租人确保房屋及承租房的人身、财产和公共财产的安全，遵循“谁使用，谁管理，谁负责”的原则，双方特签订本消防及安全责任书：</text>
-      <text class="text_content">  （一）房屋承租人已对出租的房屋作了充分了解，愿意承租该房屋。并在租赁期内，非房屋承租人为因素，房屋主体结构的维修由出租方承担，其他由均由承租方承担。</text>
-      <text class="text_content">  （二）房屋承租人对该房屋消防及安全负全面责任，应严格履行消防及安全责任，采取有效措施防火灾发生。</text>
-      <text class="text_content">  （三）承租人应对房屋内的人员进行消防意识的宣传教育，提高消防意识，使该房屋使用人员都能掌握和使用所配备有的消防设施及火灾发生后逃生、自救的技能。</text>
-      <text class="text_content">  （四）承租人应定期对该房屋电器、燃气热水器、电器线路进行检查（检修），加强安全性能维护，并配合房东对本房屋的消防安全检查、监督。</text>
-      <text class="text_content">  （五）承租人严格遵守电气装置安装规程和技术管理规程，禁止非电工安装、修理电气线路。宿舍内不得使用电炉、电茶壶、热得快等大功率电器设备和大功率的照明设备，严禁私拉电气线路，严禁使用明火灶具。存放液化石油气罐的燃气热水器，应自然通风排风。如为不正当使用燃气热水器及因使用大功率电器设备产生火灾及人身安全后果由承租人自负，房东概不负责，承租人应承担相应房屋赔付及装修款项。</text>
-      <text class="text_content">  （六）楼梯、通道严禁堆放杂物，电瓶车应在室外停放充电并在充电时有人照看。</text>
-      <text class="text_content">  （七）掌握消防逃生技能，遇到火灾时能准确拔打119报警电话并帮助儿童老人特殊人群逃生。 </text> 
-      <text class="text_content">  本责任书一式二份，出租房房东一份，承租人一份，在房屋租赁期间，本责任书长期有效。  对上述各项消防和安全管理责任应认真落实执行，若违反将承担相关法律后果。</text>
+    <text class="text_title">房屋出租治安、消防责任书</text>
+      <text class="text_content">为进步加强居住出租房屋管理，根据《中华人民共和国治安管理处罚法》、《中华人民共和国消防法》、《浙江省居住房屋出租登记管理办法》、《浙江省流动人口居住登记条例》、《浙江省消防条例》等有关规定，预防和减少违法犯罪违法行为以及治安灾害事故的发生，特签订本责任书。</text>
+      <text class="text_content">  1、出租房屋必须按要求登记备案，并具备基本居住功能并符合建筑、消防等安全要求。</text>
+      <text class="text_content">  2、应当自租赁关系建立或终止之日起三个工作日内，到房屋所在村居(社区)报备房屋出租信息。</text>
+      <text class="text_content">  3、不得向无合法有效身份证明的个人出租房屋。</text>
+      <text class="text_content">  4、核对承租人的身份证件信息。承租人为流动人口的，应当及时按规定向村居(社区)报送信息，并告知办理暂住登记；承租人为境外人员的，应当告知其及时到公安机关办理临时住宿登记。</text>
+      <text class="text_content">  5、指导承租人安全使用电气、燃气等设施;向承租人宣传物业管理规定，劝止承租人乱扔垃圾、噪声扰民等不良行为并督促其改正。</text>
+      <text class="text_content">  6、合理控制同一套(间)居住房屋内的承租人数，避免和减少消防、治安等方面的安全隐患以及对邻里生活的妨碍。</text>
+      <text class="text_content">  7、居住出租房屋用于生产经营的，出租人应当告知承租人在开展生产经营活动之前办理相关证照。承租人未取得相关证照擅自生产经营的，应当予以制止，并及时向相关职能部门举报。</text> 
+      <text class="text_content">  8、配合和协助有关部门、机构、组织依法实施行政管理，发现有涉嫌违法犯罪行为的，及时向有关部门报告。</text>
+      <text class="text_content">  9、依法应当承担的其他义务。</text>
+      <text class="text_content">  本责任书同意方可发布房源，在房屋租赁期间，本责任书长期有效。  对上述各项消防和安全管理责任应认真落实执行，若违反将承担相关法律后果。</text>
     </view>
     <view class="box_agree">
       <view class="classAgree" onTap="toAgree">我同意上述条款</view>

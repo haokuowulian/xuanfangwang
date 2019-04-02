@@ -337,10 +337,10 @@ Page({
     var that = this;
     var newimgs = '';
      my.uploadFile({
-          url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+          url: app.globalData.baseUrl_oos,
           fileName: 'file', 
           fileType: 'image', 
-          formData:{savePrefix:'landlord'},
+          formData:{savePrefix:'landlord/'},
           filePath: image,
           success: (res) => {
             var json1 = JSON.parse(res.data);
@@ -733,10 +733,10 @@ Page({
     var that = this;
     var newimgs = '';
     my.uploadFile({
-      url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do',
+      url: app.globalData.baseUrl_oos,
       fileName: 'file', 
       fileType: 'image', 
-      formData:{savePrefix:'landlord'},
+      formData:{savePrefix:'landlord/'},
       filePath: image1,
       success: (res) => {
         var json1 = JSON.parse(res.data);
@@ -779,69 +779,103 @@ Page({
       var chaoxiang = my.getStorageSync({
         key: 'r_chaoxiang', // 缓存数据的key
       }).data;
+      var houseimg1 = my.getStorageSync({
+        key: 'r_houseimg', // 缓存数据的key
+      }).data;
+      var houseimg = houseimg1.join(',');
+      console.log(houseimg);
       // var water=that.data.water;
       // var waterlist = that.data.waterlist;
       // if(waterlist!=''&&waterlist!=null){
       //   water=waterlist;
       // }
-      var featurelist = that.data.featurelist;
-      var featurelist = that.data.featurelist;
-      console.log('templateName=-------------->'+templateName)
-      // var vaddress = my.getStorageSync({
-      //   key: 'r_vaddress', // 缓存数据的key
+      // var nearby = my.getStorageSync({
+      //   key: 'r_nearby', // 缓存数据的key
       // }).data;
-      // var v_address = my.getStorageSync({
-      //   key: 'r_address', // 缓存数据的key
-      // }).data;
-      // var address = v_address+vaddress;
-      // var templateName = address+houseNo;
+      var describe = my.getStorageSync({
+        key: 'r_describe', // 缓存数据的key
+      }).data;
+      
+      var furnitures = that.data.furniture;
+      var features = that.data.feature;
+      if(furnitures!=''){
+        if(features !=''){
+          var furniture = furnitures.join(",");
+          var feature = features.join(",");
+          console.log('templateName=-------------->'+templateName)
+          // var vaddress = my.getStorageSync({
+          //   key: 'r_vaddress', // 缓存数据的key
+          // }).data;
+          // var v_address = my.getStorageSync({
+          //   key: 'r_address', // 缓存数据的key
+          // }).data;
+          // var address = v_address+vaddress;
+          // var templateName = address+houseNo;
 
-      //房间信息
-      var obj1 = {
-        roomName:that.data.roomName,
-        area:that.data.area,
-        rents:that.data.rents,
-        payway:that.data.payway,
-        payment:payment,
-        toward:chaoxiang,
-        privatebath:that.data.privatebath,
-        bath:that.data.bath,
-        people:that.data.people,
-        peopleNum:peopleNum,
-        bed:that.data.bed,
-        bedNum:that.data.bedNum,
-        imgs1:imgs1,
-        fireid:fireid,
+          //房间信息
+          var obj1 = {
+            roomName:that.data.roomName,
+            area:that.data.area,
+            rents:that.data.rents,
+            payway:that.data.payway,
+            payment:payment,
+            toward:chaoxiang,
+            privatebath:that.data.privatebath,
+            bath:that.data.bath,
+            people:that.data.people,
+            peopleNum:peopleNum,
+            bed:that.data.bed,
+            bedNum:that.data.bedNum,
+            imgs1:imgs1,
+            fireid:fireid,
+            images:houseimg,
+            // description:nearby,
+            description:describe,
+            waterfree:that.data.waterfree,
+            watersave:that.data.watersave,
+          };
+          //房间模板信息
+          var obj2 = {
+            templateName:templateName,
+            payment:payment,
+            area:that.data.area,
+            water:water,
+            waterRate:that.data.waterRate,
+            electricRate:that.data.electricRate,
+            featurelist:that.data.featurelist,
+            furniturelist:that.data.furniturelist,
+            furniture:furniture,
+            feature:feature,
+            extinguisher:extinguisher,
+            smokeMask:smokeMask,
+            flashlight:flashlight,
+            rope:rope,
+            extinguisherimg:img2url,
+            smokeMaskimg:img3url,
+            flashlightimg:img4url,
+            ropeimg:img5url,
+          };
+          
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.data.roomList[tar]=obj1;
+          prevPage.data.tempList[tar]=obj2;
+          my.navigateBack({
+            delta: 1,
+          });
+        }else{
+          my.alert({
+            title: '请选择你的房屋特色' 
+          });
+        }
         
-        waterfree:that.data.waterfree,
-        watersave:that.data.watersave,
-      };
-      //房间模板信息
-      var obj2 = {
-        templateName:templateName,
-        payment:payment,
-        area:that.data.area,
-        water:water,
-        waterRate:that.data.waterRate,
-        electricRate:that.data.electricRate,
-        featurelist:that.data.featurelist,
-        furniturelist:that.data.furniturelist,
-        extinguisher:extinguisher,
-        smokeMask:smokeMask,
-        flashlight:flashlight,
-        rope:rope,
-        extinguisherimg:img2url,
-        smokeMaskimg:img3url,
-        flashlightimg:img4url,
-        ropeimg:img5url,
-      };
-      let pages = getCurrentPages();
-      let prevPage = pages[pages.length - 2];
-      prevPage.data.roomList[tar]=obj1;
-      prevPage.data.tempList[tar]=obj2;
-      my.navigateBack({
-        delta: 1,
-      });
+      }else{
+        my.alert({
+          title: '请勾选相应的便利设施' 
+        });
+      }
+     
+      
     
     
   },

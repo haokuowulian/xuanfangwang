@@ -36,6 +36,8 @@ Page({
       },
       dataType: 'json',
       success: (res) => {
+        console.log('-------------------------');
+        console.log(res.data.data);
          if(that.data.pageIndex==1){
                  that.setData({
             contract:res.data.data

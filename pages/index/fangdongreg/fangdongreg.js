@@ -1,5 +1,3 @@
-var towards=['朝东','朝南','朝西','朝北','东南','西北','东北','西南'];
-var decoration=['毛坯','简装','精装','豪装'];
 const app=getApp();
 Page({
   data: {
@@ -26,21 +24,6 @@ Page({
     currentTime:'',
   },
   onLoad() {
-    // my.confirm({
-    //   title: '温馨提示',
-    //   content: '申请房东认证，将收取一笔认证费用，费用为0.01元，是否同意？',
-    //   confirmButtonText: '同意',
-    //   cancelButtonText: '拒绝',
-    //   success: (res) => {
-    //     if(res.confirm){
-
-    //     }else{
-    //       my.navigateBack({
-            
-    //       });
-    //     }
-    //   },
-    // });
     
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
@@ -64,14 +47,30 @@ Page({
     var phone = my.getStorageSync({
       key: 'phone', // 缓存数据的key
     }).data;
+    my.httpRequest({
+      url:app.globalData.baseUrl_whj+'IF/user/getUserInfoById.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:userId,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('----------------');
+        console.log(res);
+        if(res.data.success){
+          this.setData({
+            vowner:res.data.data.certName,
+          });
+        }
+      },
+    });
     this.setData({
       uid:userId,
-      vowner:certName,
+      // vowner:certName,
       vownerCard:certNo,
       vphone:phone,
     });
   },
-  //选择户型
 
   open(){
     my.hideKeyboard();
@@ -182,11 +181,11 @@ Page({
   uploadImg(img,num){
     var that = this;
     my.uploadFile({
-      url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do', // 开发者服务器地址
+      url: app.globalData.baseUrl_oos, // 开发者服务器地址
       filePath: img, // 要上传文件资源的本地定位符
       fileName: 'file', // 文件名，即对应的 key, 开发者在服务器端通过这个 key 可以获取到文件二进制内容
       fileType: 'image', // 文件类型，image / video / audio
-      formData:{savePrefix:'landlord'},
+      formData:{savePrefix:'landlord/'},
       success: (res) => {
         var json1 = JSON.parse(res.data);
         console.log(res)
@@ -234,10 +233,13 @@ Page({
     console.log(phone)
     console.log(sex)
     console.log(cardNo)
-    var cardNum = (/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(cardNo));
-    var mobileNum =(/^1[34578]\d{9}$/.test(phone))
+    // var cardNum = (/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(cardNo));
+    var res_id = app.checkId(cardNo);
+    console.log('身份证号校验')
+    console.log(res_id)
+    var mobileNum =(/^1[3456789]\d{9}$/.test(phone))
     if(img1!=''&&img2!=''&&img3!=''&&name!=''&&phone!=''&&cardNo!=''){
-      if(cardNum){
+      if(res_id==1){
         if(mobileNum){
           my.confirm({
             title: '温馨提示',
@@ -263,9 +265,36 @@ Page({
           },
         });
         }
-      }else{
+      }else if(res_id==2){
         my.alert({
-        title: '请输入正确的身份证号',
+        title: '身份证号码位数不对',
+        success:() =>{
+          that.setData({
+            vownerCard:'',
+          });
+          },
+        });
+      }else if(res_id==3){
+        my.alert({
+        title: '身份证号码出生日期超出范围或含有非法字符',
+        success:() =>{
+          that.setData({
+            vownerCard:'',
+          });
+          },
+        });
+      }else if(res_id==4){
+        my.alert({
+        title: '身份证号码校验错误',
+        success:() =>{
+          that.setData({
+            vownerCard:'',
+          });
+          },
+        });
+      }else if(res_id==4){
+        my.alert({
+        title: '身份证地区非法',
         success:() =>{
           that.setData({
             vownerCard:'',
@@ -273,11 +302,17 @@ Page({
           },
         });
       }
+      
     }else{
       my.alert({
         title: '请填写完整' 
       });
     }
+    
+    // var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)/
+    // var cardNum = reg.test(cardNo);
+    
+    
     
   },
  //刷脸验证
@@ -294,7 +329,7 @@ Page({
          that.uploadData();
        }else{
          my.alert({
-            content: res.retCode,
+            content: '脸部识别未通过，请重试！',
         });
        }
       

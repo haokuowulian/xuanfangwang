@@ -92,18 +92,29 @@
     <!-- <view class="lineClass"></view> -->
     <view class="page_content">
       <view class="page_backgeound">
-        <view class="class_title">{{list.buildingUnit}}</view>
-        <view class="class_content">{{list.area}}m² | {{list.toward}} </view>
-        <view>
-          <view a:if="{{list.disabled}}" class="class_status">
-            <view>当前状态：</view><view class="p5">已租</view>
+        <view class="class_title" onTap="toHouseInfo" data-id="{{list.id}}" data-type="1">{{list.buildingUnit}}</view>
+        <view class="box_houseinfo">
+          <view class="box_infoleft" onTap="toHouseInfo"  data-id="{{list.id}}" data-type="1">
+            <view class="class_content">{{list.area}}m² | {{list.toward}} </view>
+            <view class="class_option">
+              <view a:if="{{list.status==1&&list.disabled}}" class="class_status">
+                <view>当前状态：</view><view class="p5">已租</view>
+              </view>
+              <view a:else class="class_status">
+                <view>当前状态：</view>
+                <view class="p6" a:if="{{list.status==0&&!list.disabled}}">正在审核</view>
+                <view class="p8" a:if="{{list.status==0&&list.disabled}}">已下架</view>
+                <view class="p7" a:if="{{list.status==1&&!list.disabled}}">未租</view>
+                <view class="p7" a:if="{{list.status==1&&list.disabled}}">已租</view>
+              </view> 
+            </view>
           </view>
-          <view a:else class="class_status">
-            <view>当前状态：</view>
-            <view class="p6" a:if="{{list.status==0}}">正在审核</view>
-            <view class="p7" a:if="{{list.status==1}}">未租</view>
-          </view> 
+          
+          <button a:if="{{list.status==0&&list.disabled}}" class="class_btn" type="default" onTap="#" data-houseid="{{list.id}}" data-type="1">已下架</button>
+          <button a:if="{{list.status==0&&!list.disabled}}" class="class_btn" type="default" onTap="toBack" data-houseid="{{list.id}}" data-type="1">取消审核</button>
+          <button a:if="{{list.status==1&&!list.disabled}}" class="class_btn" type="default" onTap="toCancel" data-houseid="{{list.id}}" data-type="1">下架房源</button>
         </view>
+
       </view>
     </view>
   </block>
@@ -114,18 +125,27 @@
     <!-- <view class="lineClass"></view> -->
     <view class="page_content">
       <view class="page_backgeound">
-        <view class="class_title">{{list.roomName}}</view>
-        <view class="class_content">{{list.area}}m² | {{list.toward}} </view>
-        <view>
-          <view a:if="{{list.disabled}}" class="class_status">
-            <view>当前状态：</view><view class="p5">已租</view>
+        <view class="class_title" onTap="toHouseInfo"  data-id="{{list.id}}" data-type="2">{{list.roomName}}</view>
+        <view class="box_houseinfo">
+          <view class="box_infoleft" onTap="toHouseInfo" data-id="{{list.id}}" data-type="2">
+            <view class="class_content">{{list.area}}m² | {{list.toward}} </view>
+              <view class="class_option">
+                <view a:if="{{list.status==1&&list.disabled}}" class="class_status">
+                  <view>当前状态：</view><view class="p5">已租</view>
+                </view>
+                <view a:else class="class_status">
+                  <view>当前状态：</view>
+                  <view class="p6" a:if="{{list.status==0&&!list.disabled}}">正在审核</view>
+                  <view class="p8" a:if="{{list.status==0&&list.disabled}}">已下架</view>
+                  <view class="p7" a:if="{{list.status==1&&!list.disabled}}">未租</view>
+                  <view class="p7" a:if="{{list.status==1&&list.disabled}}">已租</view>
+                </view> 
+              </view>
+            </view>
+            <button a:if="{{list.status==0&&list.disabled}}" class="class_btn" type="default" onTap="#" data-houseid="{{list.id}}" data-type="2">已下架</button>
+            <button a:if="{{list.status==0&&!list.disabled}}" class="class_btn" type="default" onTap="toBack" data-houseid="{{list.id}}" data-type="2">取消审核</button>
+            <button a:if="{{list.status==1&&!list.disabled}}" class="class_btn" type="default" onTap="toCancel" data-houseid="{{list.id}}" data-type="2">下架房源</button>
           </view>
-          <view a:else class="class_status">
-            <view>当前状态：</view>
-            <view class="p6" a:if="{{list.status==0}}">正在审核</view>
-            <view class="p7" a:if="{{list.status==1}}">未租</view>
-          </view> 
-        </view>
       </view>
     </view>
   </block>

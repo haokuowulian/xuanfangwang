@@ -30,11 +30,13 @@ Page({
     var endDate = app.getFormateDate1('yyyy-MM-dd',10,12);
     console.log(currentDate+'***********'+endDate)
     my.datePicker({
-      format: currentDate,
+      format: 'yyyy-MM-dd',
       currentDate: currentDate,
       startDate: currentDate,
       endDate: endDate,
       success: (res) => {
+        console.log(res)
+        console.log(res.date)
         this.setData({
           endDates:res.date,
         });
@@ -146,7 +148,7 @@ Page({
     var describe = that.data.describe;
     var nearby = that.data.nearby;
     var imgs = that.data.imgs;
-    if(housename!=''&&describe!=''&&nearby!=''){
+    if(housename!=''&&describe!=''){
       if(imgs.length>0){
         my.setStorageSync({
           key: 'r_housename', // 缓存数据的key
@@ -156,10 +158,10 @@ Page({
           key: 'r_describe', // 缓存数据的key
           data: describe, // 要缓存的数据
         });
-        my.setStorageSync({
-          key: 'r_nearby', // 缓存数据的key
-          data: nearby, // 要缓存的数据
-        });
+        // my.setStorageSync({
+        //   key: 'r_nearby', // 缓存数据的key
+        //   data: nearby, // 要缓存的数据
+        // });
         
         my.setStorageSync({
           key: 'r_houseimg', // 缓存数据的key
@@ -182,11 +184,11 @@ Page({
     var that = this;
     var imgs = that.data.imgs;
     my.uploadFile({
-      url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do', // 开发者服务器地址
+      url: app.globalData.baseUrl_oos, // 开发者服务器地址
       filePath: image, // 要上传文件资源的本地定位符
       fileName: 'file', 
       fileType: 'image', // 文件类型，image / video / audio
-      formData:{savePrefix:'landlord'},
+      formData:{savePrefix:'landlord/'},
       success: (res) => {
         console.log('success');
         var json2 = JSON.parse(res.data);

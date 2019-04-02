@@ -14,7 +14,6 @@ Page({
     payway:'月付',
     index1:0,
     payment:1,
-    
   },
   onLoad() {},
   toInput(e){
@@ -360,6 +359,7 @@ console.log(template)
 console.log(roomList)
     my.httpRequest({
       url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
+      // url: 'http://192.168.1.193:8080/LLGY/IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
       headers:{
         "Content-Type":'application/json'
       },
@@ -432,6 +432,7 @@ console.log(roomList)
         uid:uid,
         startTime:startDate,
         endTime:endDate,
+        rentType:1,
       },
       dataType: 'json',
       success: (res) => {
@@ -441,7 +442,7 @@ console.log(roomList)
           // that.setData({
           //   url:res.data.url,
           // });
-          console.log('url:   '+that.data.url);
+          console.log('url:   '+res.data.url);
         }
 
       },

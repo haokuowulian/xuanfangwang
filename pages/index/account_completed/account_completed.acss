@@ -1,14 +1,15 @@
 .page{
   width: 680rpx;
-  height: 100vh;
+  height: 100%;
   padding-left: 35rpx;
   padding-right: 35rpx;
   background-color: #ffffff;
+  padding-top: 80rpx;
 }
 .page-title{
   font-size: 50rpx;
   color: #101010;
-  margin-top: 80rpx;
+  /* margin-top: 80rpx; */
   margin-bottom: 45rpx;
 }
 .info{
@@ -49,7 +50,7 @@
 }
 .submitButton{
   font-size: 36rpx;
-  background-color: #248ff6;
+  background-color: #ff9900;
   color: white;
   border-radius: 10rpx;
   margin: 192rpx 24rpx 24rpx;

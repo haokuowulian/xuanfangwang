@@ -1,0 +1,61 @@
+
+<view class="page">
+<view class="news" bindtap='outbtn'>
+  <view class="historycon">
+<scroll-view class="history" scroll-y="true"  scroll-top="{{scrollTop}}">
+ 
+  <block a:key="{{index}}" a:for="{{allContentList}}">
+    
+    <view class="createDate">{{item.createDate}}</view>
+    
+    <view class="chat-news" a:if="{{item.type == 1}}">
+      <view style="text-align: right;padding-right: 20rpx;">
+        <text class="name">{{ my_nickName }}</text>
+        <image class='new_img' src="{{avatar}}"></image>
+      </view>
+      <view class="my_right">
+          <view class='new_txt'>{{item.content}}</view>
+      </view>
+    </view>
+
+    <view class="chat-news" a:if="{{item.type == 2}}">
+      <view style="text-align: left;padding-left: 20rpx;">
+        <image class='new_img' src="{{imgUrl}}"></image>
+        <text class="name">{{ your_nickName }}</text>
+      </view>
+      <view class='you_left'>
+        <view class='new_txt'>{{item.content}}</view>
+      </view>
+    </view>
+
+  </block>
+</scroll-view>
+    </view>
+  </view>
+
+<view id="flag"></view>
+
+
+<!-- <view class="message">
+<form bindreset="cleanInput" class="sendMessage">
+<input type="text" placeholder="请输入聊天内容.." value="{{massage}}" bindinput='bindChange'></input>
+<button type="primary" bindtap='send' formType="reset" size="small" button-hover="green">发送</button>
+</form>
+</view> -->
+
+<!-- <view class="sendmessage">
+  <image class='voice_icon' onTap='addImg' src='/images/jia_img.png'></image>
+  <block a:if='{{!addImg}}'>
+    <input type="text" onInput="bindKeyInput" value='{{msg}}' focus='{{focus}}' onFocus="focus" confirm-type="done" placeholder="请输入聊天内容.." />
+    <button onTap="submitTo" class='user_input_text'>发送</button>
+  </block>
+  <block a:if='{{addImg}}'>
+    <view class='voice_ing' onTap="upimg">发送图片</view>
+  </block>
+</view> -->
+
+</view>
+<view class="box_send">
+  <input class="input_send" type="text" onInput="bindKeyInput" value='{{msg}}' focus='{{focus}}'  onFocus="focus" confirm-type="done" placeholder="请输入聊天内容.."/>
+  <button onTap="submitTo" class='send_btn'>发送</button>
+</view>

@@ -1,13 +1,15 @@
 <view>
   <view class="lineClass"></view>
-  <block>
+  <block a:for="{{orderList}}" a:for-item="list">
     <view class="bill_info">
       <view class="bill_content">
         <view class="bill_left">
-          <view class="bill_title">充值</view>
-          <view class="bill_date">2019-03-11</view>
+          <view class="bill_title" a:if="{{list.type==1}}">房租-{{list.remark}}</view>
+          <view class="bill_title" a:if="{{list.type==2}}">结账转出</view>
+          <view class="bill_date">{{list.createDate}}</view>
         </view>
-        <view class="bill_money">+￥100000</view>
+        <view class="bill_money" a:if="{{list.type==1}}">+{{list.changeMoney}}￥</view>
+        <view class="bill_money" a:if="{{list.type==2}}">{{list.changeMoney}}￥</view>
       </view>
     </view>
   </view>

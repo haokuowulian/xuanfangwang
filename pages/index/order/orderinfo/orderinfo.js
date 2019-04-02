@@ -141,44 +141,75 @@ Page({
   },
   toPay(){
     var that = this;
-    var tradeNO=that.data.tradeNO;
-    var uid = that.data.userId;
     var orderId = that.data.orderid;
-    console.log('-------tradeNO--------');
-    console.log(tradeNO)
-    console.log('-------tradeNO--------');
-    my.tradePay({
-      tradeNO: tradeNO, // 调用统一收单交易创建接口alipay.trade.create）,获得返回字段支付宝交易号trade_no
-      success: (res) => {
-        console.log('-------success--------');
-        console.log(res);
-        that.uploadCode(uid,orderId,res.resultCode);
-        my.navigateTo({
-          url:'/pages/index/signing/payment_result/payment_result?resultCode='+res.resultCode+'&type=2',
-        });
-      },
-      fail: (res) => {
-        console.log('-------fail--------');
-        console.log(res);
-        that.uploadCode(uid,orderId,res.resultCode);
-        my.navigateTo({
-          url:'/pages/index/signing/payment_result/payment_result?resultCode='+res.resultCode+'&type=2',
-        });
-      }
-    });
-  },
-  uploadCode(uid,orderId,resultCode){
+
     my.httpRequest({
-      url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
+      url: app.globalData.base_whj+"IF/alipay/fundAuthOrderAppFreeze.do", // 目标服务器
       method: 'POST',
       data:{
-        userId:uid,
+        // userId:uid,
         orderId:orderId,
-        resultCode:resultCode,
       },
       dataType: 'json',
       success: (res) => {
-        console.log(res+'状态码上传成功');
+        console.log('333333333333')
+        console.log(res)
+        console.log('333333333333')
+        if(res.data.success){
+          var myOrderStr = res.data.data;
+          console.log(myOrderStr)
+          my.tradePay({
+            orderStr: myOrderStr, //完整的支付参数拼接成的字符串，从服务端获取
+            success: (res) => {
+              var json1 = res.result;
+              console.log(res)
+              if(res.resultCode ==6001){
+                my.navigateTo({
+                  url:'/pages/index/signing/payment_result/payment_result?resultCode='+res.resultCode+'&type=2',
+                });
+              }else if(res.resultCode ==9000){
+                var json2 = JSON.parse(json1);
+                console.log(json2)
+                var json3 = json2['alipay_fund_auth_order_app_freeze_response'];
+                var alipayOrderNo = json3.auth_no;
+                
+                console.log(alipayOrderNo)
+                that.uploadCode(orderId,1,res.resultCode,alipayOrderNo);
+              }
+
+            },
+            fail: (res) => {
+              my.alert({
+                content: JSON.stringify(res),
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+   //上传支付结果状态码
+  uploadCode(orderId,payWay,resultCode,alipayOrderNo){
+    my.httpRequest({
+      // url: app.globalData.baseUrl_whj+'IF/order/payAlipayFreezeOrder.do', // 目标服务器url
+      //  url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
+      url:  app.globalData.base_whj+'IF/order/paySuccessAndSetAutoNo.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        orderId:orderId,
+        payWay:payWay,
+        auth_no:alipayOrderNo,
+      },
+      dataType: 'json',
+      success: (res) => {
+        //  that.sign();
+        console.log('success');
+        console.log(res);
+        if(res.data.success){
+          my.navigateTo({
+            url:'/pages/index/signing/payment_result/payment_result?resultCode='+resultCode+'&type=2',
+          });
+        }
       },
     });
   },

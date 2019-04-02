@@ -6,11 +6,11 @@
   <view a:if="{{!free}}">
   <view class="page-content">
     <view class="info-title">电费(元/度)</view>
-    <view><input type="number" placeholder="请输入电费单价" class="text_input" onInput="toInput" data-t='1' value="{{powerprice}}"/></view>
+    <view><input type="digit" placeholder="请输入电费单价" class="text_input" onInput="toInput" data-t='1' value="{{powerprice}}"/></view>
   </view>
   <view class="page-content">
-    <view class="info-title">水费(元)</view>
-    <view><input type="text" placeholder="请输入水费单价" class="text_input" onInput="toInput" data-t='2' value="{{waterprice}}"/></view>
+    <view class="info-title">水费(元/立方)</view>
+    <view><input type="digit" placeholder="请输入水费单价" class="text_input" onInput="toInput" data-t='2' value="{{waterprice}}"/></view>
   </view>
   <!-- <view class="page-content">
     <view class="info-title">结算方式</view>

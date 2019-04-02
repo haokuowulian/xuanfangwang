@@ -1,0 +1,24 @@
+<view  class="page" a:if="{{!userlogin}}">
+  <view class="page-img">
+    <image src="/image/mine/logo1.png" class="success-img"/>
+  </view>
+  <view class="page-text1">您还没有登录！</view>
+  <view class="page-text2">请先登录才能查看会话列表</view>
+  <view class="page-btn">
+    <view class="btn-check" onTap="toLogin">点击登录</view>
+    <!-- <view class="btn-back" onTap="goBack">继续找房</view> -->
+  </view>
+</view>
+<view a:if="{{userlogin}}">
+  <block a:for="{{chatlist}}" a:for-item="list">
+    <view class="chat_box" onTap="toChat" data-uid="{{list.userId}}" data-avatar="{{list.user.avatar}}" data-nickName="{{list.user.nickName}}">
+      <view class="chat_left">
+        <image src="{{list.user.avatar}}" class="classImg" />
+      </view>
+      <view class="chat_right">
+        <view class="nickName">{{list.user.nickName}}</view>
+        <view class="time">{{list.time}}</view>
+      </view>
+    </view>
+  </block>
+</view>

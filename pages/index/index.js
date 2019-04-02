@@ -1,5 +1,4 @@
 const app = getApp();
-
 Page({
   data: {
     value: '',
@@ -24,6 +23,8 @@ Page({
   onLoad(){
     
     // this.initialize();
+    app.getCity();
+
   },
   onShow(){
     this.getBanner();
@@ -81,9 +82,15 @@ Page({
   choose1OnTap(e){
     var tp = e.currentTarget.dataset.choose;
     console.log(tp);
-    my.navigateTo({
+    if(tp==4){
+      my.navigateTo({
+        url: '/pages/apartment/apartment_list/apartment_list?type='+tp,
+      });
+    }else{
+      my.navigateTo({
       url: '/pages/index/houselist/houselist?type='+tp,
     });
+    }
   },
 
   //获取banner图

@@ -2,16 +2,16 @@
   <view a:if="{{contract.length==0}}" class="tips">你还没有合同</view>
   <view a:else>
   <block a:for="{{contract}}" a:for-item="list">
-    <view class="page-body" a:if="{{list.state == 1}}">
+    <!-- <view class="page-body" a:if="{{list.state == 1}}"> -->
       <view class="body-back" data-contractid="{{contract[index].id}}" onTap="toContractinfo" >
         <view class="title">{{list.apartmentName}}{{list.houseName}}</view>
         <view class="info">{{list.createDate}}</view>
         <view a:if="{{list.rentType==1}}" class="info">整租</view>
         <view a:if="{{list.rentType==2}}" class="info">合租</view>
         <view a:if="{{list.state == 1}}" class="status-text status1">已生效</view>
-        <!-- <view a:if="{{list.state == 0}}" class="status-text status2">未生效</view> -->
+        <view a:if="{{list.state == 0}}" class="status-text status2">未生效</view>
       </view>
-    </view>
+    <!-- </view> -->
   </block>
   </view>
 </view>

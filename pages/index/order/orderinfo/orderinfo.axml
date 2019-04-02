@@ -2,16 +2,19 @@
   <view class="page-house">
     <view class="house-info">
       <view class="house-left">
-        <image src="{{imgurl}}{{images}}" class="house-img" />
+        <image src="{{images.split(',')[0]}}" class="house-img" />
       </view>
       <view class="house-right">
         <view class="house-address">{{houseName}}</view>
-        <view class="house-point">
-          <view>房源面积：</view>
-          <view>{{area}}m²</view>
+        <view class="house-status">
+          <view class="house-point">
+            <view>房源面积：</view>
+            <view>{{area}}m²</view>
+          </view>
+          <view a:if="{{status==0}}" class="house-paid">待付款</view>
+          <view a:if="{{status==1}}" class="house-paid">已付款</view>
+          <view a:if="{{status==8}}" class="house-paid">已取消</view>
         </view>
-        <view a:if="{{status==0}}" class="house-paid">待付款</view>
-        <view a:if="{{status==1}}" class="house-paid">已付款</view>
       </view>
     </view>
   </view>

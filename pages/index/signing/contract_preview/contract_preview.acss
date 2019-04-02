@@ -47,3 +47,26 @@
   display: flex;
   justify-content: center;
 }
+.class_end{
+  display: flex;
+  flex-direction: row;
+}
+.box_info{
+  width: 310rpx;
+}
+.box_info1{
+  width: 310rpx;
+  display: flex;
+  flex-direction: column;
+}
+.class_content{
+
+}
+.class_content1{
+  font-size: 15rpx;
+}
+.class_title{
+  font-weight: bold;
+  font-size: 25rpx;
+  line-height: 1.5em;
+}

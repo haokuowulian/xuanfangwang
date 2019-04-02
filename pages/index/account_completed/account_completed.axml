@@ -1,18 +1,21 @@
 <view class="page">
-  <view class="page-title">
+  <view class="page-title" a:if="{{userCompleted}}">
+    个人信息
+  </view>
+  <view class="page-title" a:else>
     信息完善
   </view>
 
   <view>
     <view >
-      <input class="inputClass" type="text" placeholder="请输入您的姓名" onInput="bindName"/>
+      <input class="inputClass" type="text" placeholder="请输入您的姓名" onInput="bindName" value="{{name}}"/>
       <view  onTap="selectSex"><input class="inputClass" placeholder="请选择性别"  value="{{sex}}" disabled="true"/></view>
       <view  onTap="selectCity"><input class="inputClass" placeholder="请选择所在城市"  value="{{city}}" disabled="true"/></view>
       <view  onTap="selectArea"><input class="inputClass" placeholder="请选择所在地区"  value="{{area}}" disabled="true"/></view>
-      <input class="inputClass" type="idcard" placeholder="请输入本人身份证号"  onInput="bindIdCard" />
-      <input class="inputClass" type="text" placeholder="请输入密码"   password onInput="bindPassword"/>
+      <input class="inputClass" type="idcard" placeholder="请输入本人身份证号"  onInput="bindIdCard"  value="{{certNo}}"/>
+      <input a:if="{{!userCompleted}}" class="inputClass" type="text" placeholder="设置初始密码"   password onInput="bindPassword"/>
       
-      <button class="submitButton" type="default" onTap="submit">提交
+      <button a:if="{{!userCompleted}}" class="submitButton" type="default" onTap="submit">提交
       </button>
     </view>
 </view>

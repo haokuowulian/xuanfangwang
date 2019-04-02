@@ -92,7 +92,7 @@ Page({
     console.log(e.currentTarget.dataset.id)
     var orderid = e.currentTarget.dataset.id
     my.navigateTo({
-      url: '/pages/index/order/orderinfo/orderinfo?orderid='+orderid+'&type='+this.data.type,
+      url: '/pages/index/order/orderinfo_fd/orderinfo_fd?orderid='+orderid+'&type='+this.data.type,
     });
   },
   toHouseInfo(e){

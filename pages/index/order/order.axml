@@ -20,11 +20,11 @@
           <view a:if="{{list.status==8}} " class="order-status1">已取消</view>
           <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
         </view>
-
+        <view class="box_content">
         <view class="order-content" onTap="toOrderInfo" data-id="{{list.id}}">
           <!-- <view class="content"> -->
             <view class="content-left">
-              <image src="{{imgurl}}{{list.images}}" class="house-img" />
+              <image src="{{list.images.split(',')[0]}}" class="house-img" />
             </view>
 
             <view class="content-right">
@@ -40,7 +40,13 @@
           <!-- </view> -->
 
         </view>
-
+        <button a:if="{{list.status==1}}" class="class_btn" type="default" onTap="onRefund" data-id="{{list.id}}">申请退款</button>
+        <button a:if="{{list.status==2}}" class="class_btn" type="default" onTap="defaultTap" data-id="{{list.id}}">退款中</button>
+        <!-- <button a:if="{{list.status==9}}" class="class_btn" type="default" onTap="onConfirm" data-id="{{list.id}}">确认入住</button> -->
+        <button a:if="{{list.status==9}}" class="class_btn" type="default" data-id="{{list.id}}">已入住</button>
+        <button a:if="{{list.status==0}}" class="class_btn" type="default" onTap="toPay" data-id="{{list.id}}">立即支付</button>
+        
+        </view>
       </view>
     </view>
   </block>

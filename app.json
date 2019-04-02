@@ -73,7 +73,17 @@
     "pages/index/wallet_fangdong/my_payment/my_payment",
     "pages/index/wallet_fangdong/settlement/settlement",
     "pages/index/wallet/add_card/add_card",
-    "pages/index/wallet/new_pwd/new_pwd"
+    "pages/index/wallet/new_pwd/new_pwd",
+    "pages/index/credit/credit",
+    "pages/index/order/orderinfo_fd/orderinfo_fd",
+    "pages/chat/chat",
+    "pages/chatlist/chatlist",
+    "pages/index/myKey/myKey",
+    "pages/index/accountinfo/edit_nickname/edit_nickname",
+    "pages/houseinfo/houseinfo02/houseinfo02",
+    "pages/apartment/apartment",
+    "pages/apartment/apartment_list/apartment_list",
+    "pages/apartment/signing/signing"
   ],
   "window": {
     "defaultTitle": "My App"
@@ -94,6 +104,12 @@
         "pagePath": "pages/index/findhouse/findhouse",
         "activeIcon": "image/sousuo.png",
         "name": "找房"
+      },
+      {
+        "icon": "image/icon/xiaoxi.png",
+        "pagePath": "pages/chatlist/chatlist",
+        "activeIcon": "image/xiaoxi.png",
+        "name": "会话"
       },
       {
         "icon": "image/icon/yaoshi.png",

@@ -39,7 +39,7 @@ Page({
         console.log(arr);
         for(let i =0;i<arr.length;i++){
           if(arr[i].images!=''&&arr[i].images!=null){
-            arr[i].images = app.globalData.baseUrl+arr[i].images;
+            arr[i].images = arr[i].images;
           }else{
             arr[i].images='';
           }

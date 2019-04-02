@@ -4,19 +4,74 @@ Page({
     name:'',
     sex:'',
     city:'',
+    cityCode:'',
     area:'',
+    areaId:'',
+    certNo:'',
     showBottom: false,
     areaList:[],
     userId:'',
     password:'',
+    type:0,
+    sexCode:0,
   },
   onLoad() {
+    var that = this;
     var userId = my.getStorageSync({
       key: 'userId', 
     }).data;
-    this.setData({
-      userId:userId,
+    var userCompleted = my.getStorageSync({
+      key: 'userCompleted', // 缓存数据的key
+    }).data;
+    that.setData({
+      userCompleted:userCompleted,
     });
+    console.log(userCompleted)
+    if(userCompleted){
+      my.setNavigationBar({
+        title: '个人信息',
+      });
+      my.httpRequest({
+        url: app.globalData.baseUrl+'IF/user/getUserInfoById.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          userId:userId,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log(res)
+          var sexCode = res.data.data.sex;
+          var sex = '';
+          if(sexCode==0){
+            sex = '男';
+          }else{
+            sex = '女';
+          }
+          // var cy = res.data.data.cityName;
+          // console.log(cy)
+          // var city = cy.slice(start,-1)
+          // console.log(city)
+          that.setData({
+            name:res.data.data.certName,
+            sex:sex,
+            city:res.data.data.cityName,
+            area:res.data.data.areaName,
+            sexCode:sexCode,
+            certNo:res.data.data.certNo,
+            userCompleted:userCompleted,
+            userId:userId,
+            cityCode:res.data.data.cityCode,
+            areaId:res.data.data.areaCode,
+          });
+        },
+      });
+    }else{
+      that.setData({
+        userId:userId,
+        userCompleted:userCompleted,
+      });
+    }
+    
   },
   onPopupClose() {
     this.setData({
@@ -51,8 +106,8 @@ Page({
       success: (res) => {
         this.setData({
           city:res.city,
-          cityCode:res.adCode
-        
+          cityCode:res.adCode,
+          area:'',
 	      });
       },
     });
@@ -94,6 +149,7 @@ Page({
   },
   //输入身份证
   bindIdCard(e){
+    console.log(e.detail.value)
     this.setData({
       certNo:e.detail.value
     })
@@ -122,93 +178,271 @@ Page({
   },
    //完善信息
   submit(){
+    var that = this;
     console.log(this.data.name+'|||'+this.data.sex+'|||'+this.data.cityCode+'|||'+this.data.areaId+'|||'+this.data.certNo+'|||'+this.data.password)
-    if(this.data.name==''||this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
+    if(this.data.userCompleted){
+      if(this.data.name==''||this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''){
        my.alert({
          title: '请完善信息' 
        });
      }else{
-      
-    my.confirm({
-      title: '温馨提示',
-      content: '是否上传',
-      confirmButtonText: '同意',
-      cancelButtonText: '拒绝',
-      success: (result) => {
-       if(result.confirm){
-          console.log('同意');
-          this.complexUserInfo();
-       }else{
-          console.log('拒绝');
-       }
-      },
-    });
+      // var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)/
+      // var vownerCardNum = reg.test(this.data.certNo);
+      var res_id = app.checkId(this.data.certNo);
+      console.log('身份证号校验')
+      console.log(res_id)
+      if(res_id==1){
+          my.confirm({
+            title: '温馨提示',
+            content: '是否上传',
+            confirmButtonText: '同意',
+            cancelButtonText: '拒绝',
+            success: (result) => {
+            if(result.confirm){
+                console.log('同意');
+                this.complexUserInfo(this.data.userCompleted);
+            }else{
+                console.log('拒绝');
+            }
+            },
+          });
+        }else if(res_id==2){
+          my.alert({
+          title: '身份证号码位数不对',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }else if(res_id==3){
+          my.alert({
+          title: '身份证号码出生日期超出范围或含有非法字符',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }else if(res_id==4){
+          my.alert({
+          title: '身份证号码校验错误',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }else if(res_id==4){
+          my.alert({
+          title: '身份证地区非法',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }
+    
      }
+    }else{
+      if(this.data.name==''||this.data.sex==''||this.data.cityCode==''||this.data.areaId==''||this.data.certNo==''||this.data.password==''){
+       my.alert({
+         title: '请完善信息' 
+       });
+     }else{
+      // var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)/
+      // var vownerCardNum = reg.test(this.data.certNo);
+      var res_id = app.checkId(this.data.certNo);
+      console.log('身份证号校验')
+      console.log(res_id)
+      if(res_id==1){
+          my.confirm({
+            title: '温馨提示',
+            content: '是否上传',
+            confirmButtonText: '同意',
+            cancelButtonText: '拒绝',
+            success: (result) => {
+            if(result.confirm){
+                console.log('同意');
+                this.complexUserInfo(this.data.userCompleted);
+            }else{
+                console.log('拒绝');
+            }
+            },
+          });
+        }else if(res_id==2){
+          my.alert({
+          title: '身份证号码位数不对',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }else if(res_id==3){
+          my.alert({
+          title: '身份证号码出生日期超出范围或含有非法字符',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }else if(res_id==4){
+          my.alert({
+          title: '身份证号码校验错误',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }else if(res_id==4){
+          my.alert({
+          title: '身份证地区非法',
+          success:() =>{
+            that.setData({
+              certNo:'',
+            });
+            },
+          });
+        }
+     
+    
+     }
+    }
+    
   },
   //请求服务器完善信息
-   complexUserInfo(){
-     var that=this;
-      my.httpRequest({
-        url: app.globalData.baseUrl+'/IF/user/editUser.do',
-        method: 'POST',
-        header:{
-              'content-type': 'application/json'
-            },
-        data: {
-         certName:that.data.name,
-         sex:that.data.sexCode,
-         cityCode:that.data.cityCode,
-         cityName:that.data.city,
-         areaCode:that.data.areaId,
-         areaName:that.data.area,
-         certNo:that.data.certNo,
-         password:that.data.password,
-         id:that.data.userId,
-        },
-        dataType: 'json',
-        success: function(res) {
-          console.log(res)
-          if(res.data.success){
-            // that.setData({
-            //   userCompleted:true,
-            //   userlogin:true,
-            //   headimg:that.data.headimg,
-            //   userName:nickName
-            // });
-            my.setStorageSync({
-              key: 'certName', // 缓存数据的key
-              data: that.data.certName, // 要缓存的数据 
-            });
-            my.setStorageSync({
-              key: 'certNo', // 缓存数据的key
-              data: that.data.certNo, // 要缓存的数据 
-            });
-            my.setStorageSync({
-              key: 'sex', // 缓存数据的key
-              data: that.data.sex, // 要缓存的数据 
-            });
-            my.setStorageSync({
-              key: 'userCompleted', // 缓存数据的key
-              data: true, // 要缓存的数据 
-            });
-            my.alert({
-              title: '修改成功！',
-              success: () => {
-                my.navigateBack({
-                  delta: 1,
-                });
-              }
-            });
-           
+   complexUserInfo(userCompleted){
+      var that=this;
+      if(userCompleted){
+        my.httpRequest({
+          url: app.globalData.baseUrl+'/IF/user/editUser.do',
+          method: 'POST',
+          header:{
+                'content-type': 'application/json'
+              },
+          data: {
+          certName:that.data.name,
+          sex:that.data.sexCode,
+          cityCode:that.data.cityCode,
+          cityName:that.data.city,
+          areaCode:that.data.areaId,
+          areaName:that.data.area,
+          certNo:that.data.certNo,
+          id:that.data.userId,
+          },
+          dataType: 'json',
+          success: function(res) {
+            console.log(res)
+            if(res.data.success){
+              // that.setData({
+              //   userCompleted:true,
+              //   userlogin:true,
+              //   headimg:that.data.headimg,
+              //   userName:nickName
+              // });
+              my.setStorageSync({
+                key: 'certName', // 缓存数据的key
+                data: that.data.certName, // 要缓存的数据 
+              });
+              my.setStorageSync({
+                key: 'certNo', // 缓存数据的key
+                data: that.data.certNo, // 要缓存的数据 
+              });
+              my.setStorageSync({
+                key: 'sex', // 缓存数据的key
+                data: that.data.sex, // 要缓存的数据 
+              });
+              my.setStorageSync({
+                key: 'userCompleted', // 缓存数据的key
+                data: true, // 要缓存的数据 
+              });
+              my.alert({
+                title: '提交成功！',
+                success: () => {
+                  my.navigateBack({
+                    delta: 1,
+                  });
+                }
+              });
+            
 
+            }
+          },
+          fail: function(res) {
+          },
+          complete: function(res) {
+            my.hideLoading();
           }
-        },
-        fail: function(res) {
-        },
-        complete: function(res) {
-          my.hideLoading();
-        }
-      });
+        });
+      }else{
+        console.log(that.data.name)
+        my.httpRequest({
+          url: app.globalData.baseUrl+'/IF/user/editUser.do',
+          method: 'POST',
+          header:{
+                'content-type': 'application/json'
+              },
+          data: {
+          certName:that.data.name,
+          sex:that.data.sexCode,
+          cityCode:that.data.cityCode,
+          cityName:that.data.city,
+          areaCode:that.data.areaId,
+          areaName:that.data.area,
+          certNo:that.data.certNo,
+          password:that.data.password,
+          id:that.data.userId,
+          },
+          dataType: 'json',
+          success: function(res) {
+            console.log(res)
+            if(res.data.success){
+              // that.setData({
+              //   userCompleted:true,
+              //   userlogin:true,
+              //   headimg:that.data.headimg,
+              //   userName:nickName
+              // });
+              my.setStorageSync({
+                key: 'certName', // 缓存数据的key
+                data: that.data.certName, // 要缓存的数据 
+              });
+              my.setStorageSync({
+                key: 'certNo', // 缓存数据的key
+                data: that.data.certNo, // 要缓存的数据 
+              });
+              my.setStorageSync({
+                key: 'sex', // 缓存数据的key
+                data: that.data.sex, // 要缓存的数据 
+              });
+              my.setStorageSync({
+                key: 'userCompleted', // 缓存数据的key
+                data: true, // 要缓存的数据 
+              });
+              my.alert({
+                title: '提交成功！',
+                success: () => {
+                  my.navigateBack({
+                    delta: 1,
+                  });
+                }
+              });
+            
+
+            }
+          },
+          fail: function(res) {
+          },
+          complete: function(res) {
+            my.hideLoading();
+          }
+        });
+      }
+      
      
    },
 });

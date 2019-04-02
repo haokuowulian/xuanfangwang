@@ -30,7 +30,7 @@ Page({
         console.log(res.data.contractInfo);
         that.setData({
           contract:res.data.contractInfo,
-          url:app.globalData.baseUrl+res.data.contractInfo.url,
+          url:res.data.contractInfo.url,
           zkName:res.data.zkName
         });
       },

@@ -2,7 +2,7 @@
   <view class="page-title">
     <view class="title">
       <view class="title-left">
-        <image src="{{imgUrl}}{{houseInfo.images.split(',')[0]}}" class="house-img" />
+        <image src="{{houseInfo.images.split(',')[0]}}" class="house-img" />
       </view>
       <view class="title-right">
         <view a:if="{{rentType==1}}" class="right-p0">{{houseInfo.apartment.apartmentName}}{{houseInfo.buildingUnit}}{{houseInfo.houseNo}}</view>
@@ -35,7 +35,7 @@
       </view>
     </view>
 
-    <view class="content">服务费<input class="inputClass" type="number" value="{{fee}}"  onInput="bindChangeInput"/></view>
+    <view class="content">服务费<input class="inputClass" type="number" value="{{fee}}"  onInput="bindChangeInput" disabled="true"/></view>
     <view class="content" style="border:0">应付首次款项
       <view class="inputClass">￥{{allPay}}</view>
     </view>

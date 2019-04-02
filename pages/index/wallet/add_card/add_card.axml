@@ -30,16 +30,22 @@
   </view>
   <view class="lineClass1"></view>
   <view class="page_box">
-    <view class="box_content">
+    <view class="box_content1">
+      <view class="class_left">
       <view class="class_title">银行卡号</view>
-      <input type="number" placeholder="请输入银行卡号" class="input1" onInput="input" data-t='1' value="{{cardNo}}"/>
+      <input type="number" placeholder="请输入银行卡号" class="input" onInput="input" data-t='1' value="{{cardNo}}"/>
+      </view>
+      <view></view>
     </view>
   </view>
   <view class="lineClass1"></view>
   <view class="page_box">
-    <view class="box_content">
+    <view class="box_content1">
+      <view class="class_left">
       <view class="class_title">预留手机号</view>
-      <input type="number" placeholder="请输入银行预留手机号" class="input1" onInput="input" data-t='2' value="{{phone}}"/>
+      <input type="number" placeholder="请输入银行预留手机号" class="input" onInput="input" data-t='2' value="{{phone}}"/>
+      </view>
+      <view></view>
     </view>
   </view>
 </view>

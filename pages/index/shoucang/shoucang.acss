@@ -176,9 +176,6 @@
   width: 45rpx;
   border-radius: 50rpx;
   border:1rpx solid #666666;
-  /* margin-left: 35rpx;
-  margin-right: 5rpx; */
-  /* margin: 100rpx 0rpx 100rpx 35rpx; */
 }
 .icon-bkgd{
   height: 45rpx;

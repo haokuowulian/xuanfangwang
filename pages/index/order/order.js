@@ -105,7 +105,7 @@ Page({
     console.log(e.currentTarget.dataset.id)
     console.log(e.currentTarget.dataset.type)
     my.navigateTo({
-    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.currentTarget.dataset.id+'&rentType='+e.currentTarget.dataset.type,
+      url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.currentTarget.dataset.id+'&rentType='+e.currentTarget.dataset.type,
     })
   },
   //上拉监听
@@ -115,20 +115,154 @@ Page({
     });
     this.getOrder();
   },
+  //申请退款
+  onRefund(e){
+    console.log(e)
+    var orderid = e.target.dataset.id;
+    var uid= my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    
+    my.confirm({
+      title: '申请退款',
+      content: '您正在申请退款，稍后由工作人员联系，是否确定？',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      success: (res) => {
+        if(res.confirm){
+          my.httpRequest({
+            url:app.globalData.base_whj+'IF/order/refundApplication.do', // 目标服务器url
+            method: 'POST',
+            data:{
+              userId:uid,
+              orderId:orderid,
+            },
+            dataType: 'json',
+            success: (res) => {
+              console.log(res);
+              my.alert({
+                title: '订单退款申请中', 
+                success: (res) => {
+                  console.log(res);
+                  this.getOrder();
+                }
+              });
+            },
+            fail: (res) => {
+              console.log(res);
+              my.alert({ title: '申请退款失败，请稍后再试' });
+            },
+          });
+        }
+        
+      },
+    });
+  },
+  //立即支付
+  toPay(e){
+    var that = this;
+    var orderId = e.target.dataset.id;
+    var uid= my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
 
+    my.httpRequest({
+      url: app.globalData.base_whj+"IF/alipay/fundAuthOrderAppFreeze.do", // 目标服务器
+      method: 'POST',
+      data:{
+        // userId:uid,
+        orderId:orderId,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('333333333333')
+        console.log(res)
+        console.log('333333333333')
+        if(res.data.success){
+          var myOrderStr = res.data.data;
+          console.log(myOrderStr)
+          my.tradePay({
+            orderStr: myOrderStr, //完整的支付参数拼接成的字符串，从服务端获取
+            success: (res) => {
+              var json1 = res.result;
+              console.log(res)
+              if(res.resultCode ==6001){
+                my.navigateTo({
+                  url:'/pages/index/signing/payment_result/payment_result?resultCode='+res.resultCode+'&type=2',
+                });
+              }else if(res.resultCode ==9000){
+                var json2 = JSON.parse(json1);
+                console.log(json2)
+                var json3 = json2['alipay_fund_auth_order_app_freeze_response'];
+                var alipayOrderNo = json3.auth_no;
+                
+                console.log(alipayOrderNo)
+                that.uploadCode(orderId,1,res.resultCode,alipayOrderNo);
+              }
+
+            },
+            fail: (res) => {
+              my.alert({
+                content: JSON.stringify(res),
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+   //上传支付结果状态码
+  uploadCode(orderId,payWay,resultCode,alipayOrderNo){
+    my.httpRequest({
+      // url: app.globalData.baseUrl_whj+'IF/order/payAlipayFreezeOrder.do', // 目标服务器url
+      //  url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
+      url: app.globalData.base_whj+'IF/order/paySuccessAndSetAutoNo.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        orderId:orderId,
+        payWay:payWay,
+        auth_no:alipayOrderNo,
+      },
+      dataType: 'json',
+      success: (res) => {
+        //  that.sign();
+        console.log('success');
+        console.log(res);
+        if(res.data.success){
+          my.navigateTo({
+            url:'/pages/index/signing/payment_result/payment_result?resultCode='+resultCode+'&type=2',
+          });
+        }
+      },
+    });
+  },
+  //确认入住
+  onConfirm(e){
+    var that = this;
+    var orderId = e.target.dataset.id;
+    my.getAuthCode({
+      scopes: 'auth_base',
+      success: (res) => {
+        var myCode=res.authCode;
+        console.log(myCode)
+        my.httpRequest({
+          url:app.globalData.base_whj+ 'IF/alipay/tradePay.do', // 目标服务器url
+          method: 'POST',
+          data:{
+            orderId:orderId,
+            autoCode:myCode,
+          },
+          dataType: 'json',
+          success: (res) => {
+            console.log(res)
+            if(res.data.success){
+              that.getOrder();
+            }
+          },
+        });
+      },
+    });
+  },
 });
 
-// Page({
-//   data: {},
-//   onLoad() {},
-//   toHouseOrderList(){
-//     my.navigateTo({
-//       url: '/pages/index/order/houseorder/houseorder?type=1',//1：租客；2：房东
-//     });
-//   },
-//   toTest(){
-//     my.navigateTo({
-//       url: '/pages/index/order/orderinfo/orderinfo',
-//     });
-//   },
-// });
+

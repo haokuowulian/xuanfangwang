@@ -20,7 +20,7 @@
       <swiper style="height:370rpx" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" vertical="{{vertical}}" interval="{{interval}}" circular="{{circular}}" class="swiperClass">
         <block a:for="{{imgUrls}}" >
           <swiper-item class="swiperClass">
-            <image src="{{imgUrl}}{{item.image}}" class="slide-image"/>
+            <image src="{{item.image}}" class="slide-image"/>
           </swiper-item>
         </block>
       </swiper>
@@ -40,6 +40,10 @@
       </view>
       
       <view class="choose1"  onTap="choose1OnTap" data-choose="4">
+        <image src="/image/gy.png" class="img-house"/>公寓
+      </view>
+
+      <view class="choose1"  onTap="choose1OnTap" data-choose="5">
         <image src="/image/house004.png" class="img-house"/>民宿
       </view>
     </view>
@@ -91,7 +95,7 @@
       <block a:for="{{boutiqueHousing}}" a:for-item="lists">
         <view class="b4-housescroll" onTap="goToHouseDetail" data-text="{{lists.id}}" data-type='1'>
           <view class="p1">
-            <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
+            <image src="{{lists.images.split(',')[0]}}" class="house-img"/>
           </view>
           <view class="p2">{{lists.buildingUnit}}              </view>
           <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
@@ -126,7 +130,7 @@
             <block a:for="{{wholeRentalHousing}}" a:for-item="lists">
               <view class="b4-housescroll" onTap="goToHouseDetail" data-text="{{lists.id}}" data-type='1'>
                 <view class="p1">
-                  <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
+                  <image src="{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
                 <view class="p2">{{lists.buildingUnit}}              </view>
                  <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
@@ -162,7 +166,7 @@
             <block a:for="{{sharedHousing}}" a:for-item="lists">
               <view class="b4-housescroll" onTap="goToHouseDetail" data-text="{{lists.id}}" data-type='2'>
                 <view class="p1">
-                  <image src="{{imgUrl}}{{lists.images.split(',')[0]}}" class="house-img"/>
+                  <image src="{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
                 <view class="p2">{{lists.roomName}}              </view>
                 <view class="p3">{{lists.house.room}}室{{lists.house.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>

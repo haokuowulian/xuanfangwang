@@ -110,10 +110,10 @@ Page({
     var that = this;
     //图片上传
       my.uploadFile({
-      url: app.globalData.baseUrl+'/IF/upload/uploadSingleFile.do',
+      url: app.globalData.baseUrl_oos,
       fileType: 'image',
       fileName: 'file',
-      formData:{savePrefix:'complaintSuggest'},
+      formData:{savePrefix:'complaintSuggest/'},
       filePath: image,
       success: res => {
         console.log('success****************');

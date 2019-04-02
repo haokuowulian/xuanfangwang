@@ -78,7 +78,8 @@
 .inputClass{
   font-size: 30rpx;
   text-align: right;
-  color: #333333
+  color: #333333;
+  width: 400rpx;
 }
 .textAreaClass{
   padding-top: 0rpx;

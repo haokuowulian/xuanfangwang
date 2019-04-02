@@ -2,7 +2,7 @@
   <view class="page-title">
     <view class="title">
       <view class="title-left">
-        <image src="{{imgUrl}}{{houseDetail.images.split(',')[0]}}" class="house-img" />
+        <image src="{{houseDetail.images.split(',')[0]}}" class="house-img" />
       </view>
       <view class="title-right">
         <view a:if="{{rentType==1}}" class="right-p0">{{houseDetail.apartment.apartmentName}}{{houseDetail.buildingUnit}}{{houseDetail.houseNo}}</view>

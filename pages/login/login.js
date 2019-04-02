@@ -68,6 +68,7 @@ Page({
             dataType: 'json',
             success: (res) => {
               my.hideLoading();
+              app.getCity();
               console.log('---------------------------');
                console.log(res);
                console.log('---------------------------');
@@ -185,6 +186,7 @@ Page({
             if(res.data.success){
               my.hideLoading();
               console.log("登录成功！")
+              app.getCity();
               // that.getPayId();
               my.setStorageSync({
                  key: 'userId', // 缓存数据的key
@@ -432,6 +434,7 @@ Page({
         if(res.data.success){
           my.hideLoading();
           console.log("登录成功！")
+          app.getCity();
           // that.getPayId();
           my.setStorageSync({
               key: 'userId', // 缓存数据的key

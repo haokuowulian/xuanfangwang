@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "公寓信息",
+   "usingComponents": {
+    "grid": "mini-antui/es/grid/index"
+  }
+}

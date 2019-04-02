@@ -1,7 +1,7 @@
 <view>
   <view class="page_banner">
     <view class="banner_text">我的余额</view>
-    <view class="banner_money">￥100000.00</view>
+    <view class="banner_money">￥0.00</view>
   </view>
   <view class="page_content">
     <view class="content" onTap="toBankCard">

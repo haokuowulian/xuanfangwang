@@ -2,7 +2,7 @@
   <view a:if="{{orderList.length==0}}" class="tips">你还没有订单</view>
   <view a:else>
   <block a:for="{{orderList}}" a:for-item="list">
-    <view class="page-order">
+    <view class="page-order" a:if="{{list.status==1||list.status==2||list.status==9}}">
 
       <view class="order">
         <view class="order-head">
@@ -13,17 +13,19 @@
             </view>
           </view>
 
+          <view a:if="{{list.status==8}}" class="order-status1">已取消</view>
           <view a:if="{{list.status==0}}" class="order-status1">待付款</view>
-          <view a:if="{{list.status==1}}" class="order-status1">已付款</view>
+          <view a:if="{{list.status==1}}" class="order-status1">租客已付款</view>
           <view a:if="{{list.status==2}} " class="order-status1">退款申请中</view>
           <view a:if="{{list.status==3}} " class="order-status1">退款完成</view>
+          <view a:if="{{list.status==9}} " class="order-status1">订单已生效</view>
           <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
         </view>
 
         <view class="order-content" onTap="toOrderInfo" data-id="{{list.id}}">
           <!-- <view class="content"> -->
             <view class="content-left">
-              <image src="{{imgurl}}{{list.images}}" class="house-img" />
+              <image src="{{list.images.split(',')[0]}}" class="house-img" />
             </view>
 
             <view class="content-right">

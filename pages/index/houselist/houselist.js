@@ -207,57 +207,106 @@ Page({
         { id: 1, title: '附近', 
           childModel:[
             {id: '11',title: '1000米',
-              childMode2: [
-                { id: '21', title: '沿浦' }, 
-                { id: '22', title:'钱江世纪城' },
-              ]
+              // childMode2: [
+              //   { id: '21', title: '沿浦' }, 
+              //   { id: '22', title:'钱江世纪城' },
+              // ]
              },
             {id: '12',title: '2000米',
-              childMode2: [
-                { id: '21', title:'湘湖' },
-                { id: '22', title:'闻堰' },
-              ]
+              // childMode2: [
+              //   { id: '21', title:'湘湖' },
+              //   { id: '22', title:'闻堰' },
+              // ]
              },
             {id: '13',title: '3000米',
-              childMode2: [
-                { id: '21', title:'萧山市区' },
-                { id: '22', title:'西兴' },
-              ]
+              // childMode2: [
+              //   { id: '21', title:'萧山市区' },
+              //   { id: '22', title:'西兴' },
+              // ]
              },
           ],
           },
-        { id: 2, title: '商圈', 
+        { id: 2, title: '区域', 
           childModel: [
             { id: '21', title: '不限' }, 
             { id: '22', title: '余杭',
               childMode2: [
-                { id: '31', title: '沿浦1' }, 
-                { id: '32', title:'钱江世纪城1' },
-                { id: '33', title:'湘湖1' },
-                { id: '34', title:'闻堰1' },
-                { id: '35', title:'萧山市区1' },
-                { id: '36', title:'西兴1' },
+                { id: '1', title: '乔司' }, 
+                { id: '2', title:'仓前' },
+                { id: '3', title:'临平' },
+                { id: '4', title:'南苑' },
+                { id: '5', title:'星桥' },
+                { id: '6', title:'良渚' },
               ]
              },
             { id: '23', title: '萧山',
               childMode2: [
-                { id: '31', title: '沿浦' }, 
-                { id: '32', title:'钱江世纪城' },
-                { id: '33', title:'湘湖' },
-                { id: '34', title:'闻堰' },
-                { id: '35', title:'萧山市区' },
-                { id: '36', title:'西兴' },
+                { id: '1', title: '沿浦' }, 
+                { id: '2', title:'钱江世纪城' },
+                { id: '3', title:'湘湖' },
+                { id: '4', title:'闻堰' },
+                { id: '5', title:'萧山市区' },
+                { id: '6', title:'西兴' },
               ]
              },
-            { id: '24', title: '滨江' },
-            { id: '25', title: '上城' },
-            { id: '26', title: '下城' },
-            { id: '27', title: '下沙' },
-            { id: '28', title: '拱墅' },
-            { id: '29', title: '江干' },
-            { id: '20', title: '西湖' },
+            { id: '24', title: '滨江',
+            childMode2: [
+                { id: '1', title: '长河' }, 
+                { id: '2', title:'白马湖' },
+                { id: '3', title:'西兴' },
+              ] },
+            { id: '25', title: '上城',
+            childMode2: [
+                { id: '1', title: '湖滨' }, 
+                { id: '2', title:'望江' },
+                { id: '3', title:'清波' },
+              ] },
+            { id: '26', title: '下城',
+            childMode2: [
+                { id: '1', title: '武林' }, 
+                { id: '2', title:'长庆' },
+                { id: '3', title:'天水' },
+              ] },
+            { id: '27', title: '西湖',
+            childMode2: [
+                { id: '1', title: '西湖' }, 
+                { id: '2', title:'灵隐' },
+                { id: '3', title:'文一路' },
+              ] },
+            { id: '28', title: '拱墅',
+            childMode2: [
+                { id: '1', title: '和睦' }, 
+                { id: '2', title:'小河' },
+                { id: '3', title:'大关' },
+              ] },
+            { id: '29', title: '江干',
+            childMode2: [
+                { id: '1', title: '闸弄口' }, 
+                { id: '2', title:'白杨' },
+                { id: '3', title:'丁桥' },
+              ] },
             ]},
-        { id: 3, title: '地铁'},
+        { id: 3, title: '地铁',
+        childModel:[
+            {id: '11',title: '1号线',
+              // childMode2: [
+              //   { id: '21', title: '沿浦' }, 
+              //   { id: '22', title:'钱江世纪城' },
+              // ]
+             },
+            {id: '12',title: '2号线',
+              // childMode2: [
+              //   { id: '21', title:'湘湖' },
+              //   { id: '22', title:'闻堰' },
+              // ]
+             },
+            {id: '13',title: '4号线',
+              // childMode2: [
+              //   { id: '21', title:'萧山市区' },
+              //   { id: '22', title:'西兴' },
+              // ]
+             },
+          ],},
       ],
   },
   onLoad(query) {

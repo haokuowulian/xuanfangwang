@@ -104,8 +104,8 @@ Page({
 
   },
   onLoad() {
-    my.showLoading();
-    this.getCity();
+    // my.showLoading();
+    this.init();
   },
   onShow(){
     // var village = my.getStorageSync({
@@ -117,27 +117,27 @@ Page({
     //   });
     // }
   },
-  getCity(){
-    var that=this;
-     my.httpRequest({
-      url: app.globalData.baseUrl_whj+"json/dist.json",
-      method: 'GET',
-      dataType: 'json',
-      success: function(res) {
-        console.log(res.data.data);
-        that.setData({
-          cityData:res.data.data
-        });
-        that.init();
-      },
-      fail: function(res) {
-       console.log(res);
-      },
-      complete: function(res) {
-        my.hideLoading();
-      }
-    });
-  },
+  // getCity(){
+  //   var that=this;
+  //    my.httpRequest({
+  //     url: app.globalData.baseUrl_whj+"json/dist.json",
+  //     method: 'GET',
+  //     dataType: 'json',
+  //     success: function(res) {
+  //       console.log(res.data.data);
+  //       that.setData({
+  //         cityData:res.data.data
+  //       });
+  //       that.init();
+  //     },
+  //     fail: function(res) {
+  //      console.log(res);
+  //     },
+  //     complete: function(res) {
+  //       my.hideLoading();
+  //     }
+  //   });
+  // },
   //打开城市选择
   open(){
      my.hideKeyboard();
@@ -147,7 +147,12 @@ Page({
   },
   init(){
     var that=this;
-    var cityData = that.data.cityData;
+    var cityData = my.getStorageSync({
+      key: 'list_city', // 缓存数据的key
+    }).data;
+    that.setData({
+      cityData:cityData,
+    });
     const provinces = [];
     const citys = [];
     const countys = [];
@@ -261,7 +266,7 @@ Page({
   },
   next(){
     var that = this;
-    // that.toNext();
+    that.toNext();
     var image = that.data.img;
     var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;
@@ -276,8 +281,8 @@ Page({
     var buildingType = that.data.buildingType;
     if(provinceCode!=''&&cityCode!=''&&countryCode!=''){
       if(that.data.village!=''){
-        if(buildingType!=''&&vyear!=''&&vgreen!=''&&vcubage!=''){
-          my.setStorage({
+        // if(buildingType!=''&&vyear!=''&&vgreen!=''&&vcubage!=''){
+        my.setStorage({
           key: 'r_provinceCode', // 缓存数据的key
           data: provinceCode, // 要缓存的数据
         });
@@ -326,37 +331,45 @@ Page({
           data: buildingType, // 要缓存的数据
         });
         
-        my.uploadFile({
-
-          url: app.globalData.baseUrl+'IF/upload/uploadSingleFile.do', // 开发者服务器地址
-          filePath: image, // 要上传文件资源的本地定位符
-          fileName: 'file', 
-          fileType: 'image', // 文件类型，image / video / audio
-          formData:{savePrefix:'landlord'},
-          success: (res) => {
-            console.log('success');
-            var json2 = JSON.parse(res.data);
-            console.log(res);
-            var newimgs=json2['message'];
-            console.log(newimgs);
-            my.setStorageSync({
-              key: 'r_villageimg', // 缓存数据的key
-              data: newimgs, // 要缓存的数据
-            });
-            that.toNext();
-          },
-          fail: (res) => {
-            console.log(res);
-            my.alert({ title: '上传失败' });
-          },
-        });
+        if(!that.data.canAddImg){
+          my.uploadFile({
+            url: app.globalData.baseUrl_oos, // 开发者服务器地址
+            filePath: image, // 要上传文件资源的本地定位符
+            fileName: 'file', 
+            fileType: 'image', // 文件类型，image / video / audio
+            formData:{savePrefix:'landlord/'},
+            success: (res) => {
+              console.log('success');
+              var json2 = JSON.parse(res.data);
+              console.log(res);
+              var newimgs=json2['message'];
+              console.log(newimgs);
+              my.setStorageSync({
+                key: 'r_villageimg', // 缓存数据的key
+                data: newimgs, // 要缓存的数据
+              });
+              that.toNext();
+            },
+            fail: (res) => {
+              console.log(res);
+              my.alert({ title: '上传失败' });
+            },
+          });
+        }else{
+          my.setStorageSync({
+            key: 'r_villageimg', // 缓存数据的key
+            data: '', // 要缓存的数据
+          });
+          that.toNext();
+        }
+        
         
         // that.toNext();
-        }else{
-          my.alert({
-            title: '请完善建筑信息' 
-          });
-        }
+        // }else{
+        //   my.alert({
+        //     title: '请完善建筑信息' 
+        //   });
+        // }
       
       }else{
         my.alert({

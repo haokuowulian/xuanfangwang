@@ -1,4 +1,5 @@
 const app = getApp();
+var date0;
 var date01;
 var date02;
 var date03;
@@ -6,15 +7,18 @@ var startDate1;
 Page({
   data: {
     currentDate:'',
+    date10:'',
     date1:'',
     date2:'',
     date3:'',
     endDate:'',
-    choose:1,
+    choose:0,
+    choose0:false,
     choose1:false,
     choose2:false,
     choose3:false,
     payment:0,
+    beginDate:'',
   },
   onLoad() {
     var that = this;
@@ -23,11 +27,17 @@ Page({
     }).data;
     var payment = houseInfo.template.payment;
     console.log(payment)
-    that.getCurrentDate(payment);
+    var startDate=app.getDate('yyyy年MM月dd日',0);
+    console.log('++++++++++1++++++++++++')
+    console.log(startDate)
+    console.log('++++++++++2++++++++++++')
+    if(startDate!=''){
+      that.getCurrentDate(payment,startDate);
+    }
     if(payment==1){
       that.setData({
-        choose1:true,
-        choose:1,
+        choose0:true,
+        choose:0,
         payment:payment,
       });
     }else if(payment==3){
@@ -69,6 +79,7 @@ Page({
     switch(id){
       case '1':
         that.setData({
+          choose0:false,
           choose1:true,
           choose2:false,
           choose3:false,
@@ -78,6 +89,7 @@ Page({
         break;
       case '2':
         that.setData({
+          choose0:false,
           choose1:false,
           choose2:true,
           choose3:false,
@@ -87,6 +99,7 @@ Page({
         break;
       case '3':
         that.setData({
+          choose0:false,
           choose1:false,
           choose2:false,
           choose3:true,
@@ -94,12 +107,23 @@ Page({
           endDate:date03,
         });
         break;
-      default:
+        case '10':
         that.setData({
-          choose1:true,
+          choose0:true,
+          choose1:false,
           choose2:false,
           choose3:false,
-          choose:1,
+          choose:0,
+          endDate:date0,
+        });
+        break;
+      default:
+        that.setData({
+          choose0:true,
+          choose1:false,
+          choose2:false,
+          choose3:false,
+          choose:0,
           endDate:date01,
         });
         break;
@@ -107,6 +131,7 @@ Page({
   },
   toNext(){
     var that=this;
+    console.log(startDate1)
     console.log(that.data.endDate)
     my.setStorageSync({
       key: 'udateType', // 缓存数据的key
@@ -120,61 +145,78 @@ Page({
       key: 'uendDate', // 缓存数据的key
       data: that.data.endDate, // 要缓存的数据
     });
+    
+
     my.navigateTo({
      url: '/pages/index/signing/payway/payway',
     });
-    // my.getAuthCode({
-    //   scopes: 'auth_zhima',
-    //   success: (res) => {
-    //     my.httpRequest({
-    //         url: app.globalData.baseUrl+'/IF/user/getZhiMa.do?authCode='+res.authCode, // 目标服务器url
-    //         method: 'POST',
-    //         header:{
-    //           'content-type': 'application/json'
-    //         },
-    //         dataType: 'json',
-    //         success: (res) => {
-    //            console.log(res);
-               
-    //            if(res.data.success){
- 
-    //            }
-               
-    //         },
-    //       });
-       
-    //   },
-    // });
+   
    
    
   },
+  //选择开始时间
+  chooseDate(){
+    var startDate = app.getDate('yyyy-MM-dd',0);
+    var currentDate = app.getFormateDate2('yyyy-MM-dd',0,0,0);
+    var endDate = app.getFormateDate2('yyyy-MM-dd',0,0,7);
+    console.log(currentDate+'***********'+endDate)
+    my.datePicker({
+      format: 'yyyy年MM月dd日',
+      currentDate: currentDate,
+      startDate: currentDate,
+      endDate: endDate,
+      success: (res) => {
+        console.log(res)
+        console.log('-------------1--------------')
+        console.log(res.date)
+        console.log('-------------2--------------')
+        // my.alert({
+        //   content: res.data,
+        // });
+        this.setData({
+          currentDate:res.date,
+        });
+        this.getCurrentDate(this.data.payment,res.date);
+        
+      },
+    });
+  },
   //获取当前3、6、12个月后日期
-  getCurrentDate(payment){
+  getCurrentDate(payment,beginDate){
     var that = this;
-    var startDate=app.getDate('yyyy年MM月dd日',0);
-    startDate1=app.getDate('yyyy-MM-dd',0);
+    
     //获取三、六、十二个月后日期
-    var date1 = app.getFormateDate('yyyy年MM月dd日',3);
-    date01 =app.getFormateDate('yyyy-MM-dd',3);
-    var date2 = app.getFormateDate('yyyy年MM月dd日',6);
-    date02 =app.getFormateDate('yyyy-MM-dd',6);
-    var date3 = app.getFormateDate('yyyy年MM月dd日',12);
-    date03 =app.getFormateDate('yyyy-MM-dd',12);
+    startDate1 = app.getFormateDate(beginDate,'yyyy-MM-dd日',0);
+    var currentDate = app.getFormateDate(beginDate,'yyyy年MM月dd日',0);
+    console.log('************')
+    console.log(currentDate)
+    console.log(startDate1)
+    console.log('************')
+    var date10 = app.getFormateDate(beginDate,'yyyy年MM月dd日',1);
+    date0 =app.getFormateDate(beginDate,'yyyy-MM-dd',1);
+    var date1 = app.getFormateDate(beginDate,'yyyy年MM月dd日',3);
+    date01 =app.getFormateDate(beginDate,'yyyy-MM-dd',3);
+    var date2 = app.getFormateDate(beginDate,'yyyy年MM月dd日',6);
+    date02 =app.getFormateDate(beginDate,'yyyy-MM-dd',6);
+    var date3 = app.getFormateDate(beginDate,'yyyy年MM月dd日',12);
+    date03 =app.getFormateDate(beginDate,'yyyy-MM-dd',12);
     console.log(date01+'-----------')
     console.log(date02+'-----------')
     console.log(date03+'-----------')
     if(payment==1){
       that.setData({
-        currentDate:startDate,
+        currentDate:currentDate,
+        date10:date10,
         date1:date1,
         date2:date2,
         date3:date3,
-        endDate:date01,
+        endDate:date0,
       });
     }
     if(payment==3){
       that.setData({
-        currentDate:startDate,
+        currentDate:currentDate,
+        date10:date10,
         date1:date1,
         date2:date2,
         date3:date3,
@@ -183,7 +225,8 @@ Page({
     }
     if(payment==6){
       that.setData({
-        currentDate:startDate,
+        currentDate:currentDate,
+        date10:date10,
         date1:date1,
         date2:date2,
         date3:date3,
@@ -192,21 +235,14 @@ Page({
     }
     if(payment==12){
       that.setData({
-        currentDate:startDate,
+        currentDate:currentDate,
+        date10:date10,
         date1:date1,
         date2:date2,
         date3:date3,
         endDate:date03,
       });
     }
-    // this.setData({
-    //   currentDate:startDate,
-    //   date1:date1,
-    //   date2:date2,
-    //   date3:date3,
-    //   endDate:date01,
-    // });
-    // console.log(startDate)
   },
   
 });
