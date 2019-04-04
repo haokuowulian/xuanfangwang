@@ -82,3 +82,10 @@
   width: 250rpx;
   margin-left: 150rpx;
 }
+.tips{
+  width: 750rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999999;
+  padding-top: 32rpx;
+}

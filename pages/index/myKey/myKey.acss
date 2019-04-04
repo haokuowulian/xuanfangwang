@@ -5,3 +5,18 @@
   color: #999999;
   padding-top: 32rpx;
 }
+.img{
+  height: 750rpx;
+  width: 450rpx;
+  margin-top: 35rpx;
+}
+.box_img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.class_title{
+  font-size: 45rpx;
+  margin-top: 45rpx;
+}

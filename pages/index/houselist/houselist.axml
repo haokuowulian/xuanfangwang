@@ -254,7 +254,7 @@
     </view>
   </block>
  </view>
-  <view a:elif="{{houseType==4}}">
+  <view a:elif="{{houseType==5}}">
    <view a:if="{{hotels.length==0}}" class="tips">暂无房源</view>
    <view a:else>
     <block a:for="{{hotels}}" a:for-item="list">

@@ -329,6 +329,17 @@
   align-items: center;
   
 }
+.page-suggest1{
+  margin-top: 15rpx;
+  background-color: white;
+  height: 115rpx;
+  width: 750rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+}
 .right-img{
   margin-right: 40rpx;
   height: 19rpx;
@@ -363,8 +374,8 @@
   width: 60rpx;
 }
 .xfw_img{
-  height: 60rpx;
-  width: 60rpx;
+  height: 57rpx;
+  width: 57rpx;
 }
 .classText{
   font-size: 25rpx;
@@ -593,4 +604,46 @@
   border-radius: 12rpx;
   margin-top: 10rpx;
   color: #A2A2A2;
+}
+.tips{
+  width: 750rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999999;
+  padding-top: 32rpx;
+}
+.chat_box{
+  margin-top: 15rpx;
+  height: 120rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+}
+.chat_left{
+  height: 120rpx;
+  width: 120rpx;
+}
+.chat_right{
+  height: 120rpx;
+  width: 560rpx;
+  display: flex;
+  flex-direction: row;
+  margin-left: 15rpx;
+  justify-content: space-between;
+  align-items: center;
+}
+.classImg{
+  height: 120rpx;
+  width: 120rpx;
+}
+.nickName{
+  font-size: 35rpx;
+  margin-left: 25rpx;
+}
+.time{
+  font-size: 25rpx;
+  color: #999999;
 }

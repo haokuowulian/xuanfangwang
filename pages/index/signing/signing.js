@@ -42,10 +42,10 @@ Page({
      key: 'certNo', // 缓存数据的key
     }).data;
     var usersex;
-    if(sex==0||sex=='男'){
-      usersex='男';
-    }else{
+    if(sex==1||sex=='女'){
       usersex='女';
+    }else{
+      usersex='男';
     }
     var phone = my.getStorageSync({
      key: 'phone', // 缓存数据的key
@@ -59,7 +59,7 @@ Page({
       },
       dataType: 'json',
       success: (res) => {
-        console.log('----------------');
+        console.log('--------------1---------------');
         console.log(res);
         if(res.data.success){
           this.setData({

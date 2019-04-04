@@ -628,9 +628,12 @@ Page({
             my.alert({
               title: '提交成功！',
               success: () => {
-              my.navigateBack({
-                delta: 6,
-              });
+                my.navigateTo({
+                  url:'/pages/index/housedelivery/page_result/page_result?type=1',
+                });
+              // my.navigateBack({
+              //   delta: 6,
+              // });
             }, 
             });
             

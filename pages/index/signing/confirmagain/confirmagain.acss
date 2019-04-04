@@ -30,7 +30,7 @@
   width: 200rpx;
 }
 .right{
-  margin-top: 70rpx;
+  margin-top: 20rpx;
   display: flex;
   justify-content: space-between;
 }

@@ -385,9 +385,12 @@ console.log(roomList)
             my.alert({
               title: '提交成功！',
               success: () => {
-              my.navigateBack({
-                delta: 7,
-              });
+                my.navigateTo({
+                  url:'/pages/index/housedelivery/page_result/page_result?type=2',
+                });
+              // my.navigateBack({
+              //   delta: 7,
+              // });
             }, 
             });
             

@@ -1,6 +1,6 @@
 <view class="mypage">
   <view class="page_content">
-    <view class="page_card">
+    <!-- <view class="page_card">
       <view class="img_left">
         <image src="/image/icon/left.png" class="img" />
       </view>
@@ -14,18 +14,47 @@
       <view class="img_right">
         <image src="/image/icon/right.png" class="img" />
       </view>
+    </view> -->
+    <view class="page_card">
+      
+      <view class="card_concent1">
+        <!-- <view class="card_type">
+          <view class="name_text">工商银行</view>
+          <view class="type_text">储蓄卡</view>
+        </view> -->
+        <view class="card_number1">提现至绑定支付宝账号</view>
+      </view>
+      
     </view>
+
     <view class="lineClass"></view>
     <view class="page_money">
-      <view class="money_title">提现金额</view>
+      <view class="money_title">提现金额（提现支付宝手续费0.8%）</view>
       <view class="money_input">
-        ￥<input type="digit" placeholder="" class="class_input"/>
+        ￥<input type="digit" placeholder="" class="class_input" onInput="input" value="{{money}}"/>
       </view>
       <view class="lineClass1"></view>
     </view>
     
     <view class="page_btn">
-      <button type="default" onTap="defaultTap" class="btn">确定</button>
+      <button type="default" onTap="toConfirm" class="btn">确定</button>
+    </view>
+
+    <view class="temp temp3 {{pxopen ? 'show' : 'disappear'}} ">
+      <view class='tempheight'>
+        <view class="btn_clear"><image src="/image/clear.png" class="img_clear" onTap="toBack"/></view>
+        <view class="page_money">
+          <view class="money_title">输入支付密码</view>
+          <view class="money_input">
+            <input type="number" placeholder="" class="class_input" onInput="input1" value="{{password}}" password="true"/>
+          </view>
+          <view class="lineClass1"></view>
+        </view>
+        <view class="page_btn">
+          <button type="default" onTap="toConfirm1" class="btn">确定</button>
+        </view>
+      </view>
     </view>
   </view>
+  
 </view>

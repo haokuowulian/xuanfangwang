@@ -63,7 +63,7 @@
 
 }
 .class_content1{
-  font-size: 15rpx;
+  font-size: 25rpx;
 }
 .class_title{
   font-weight: bold;

@@ -29,4 +29,9 @@ Page({
       url:'/pages/index/setting/edit_page/edit_page?type=3',
     });
   },
+  toAccountInfo(){
+    my.navigateTo({
+      url: '/pages/index/accountinfo/accountinfo',
+    });
+  },
 });

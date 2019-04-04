@@ -266,7 +266,7 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var image = that.data.img;
     var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;

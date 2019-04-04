@@ -35,7 +35,7 @@
       </view>
     </view>
 
-    <view class="content">服务费<input class="inputClass" type="number" value="{{fee}}"  onInput="bindChangeInput" disabled="true"/></view>
+    <!-- <view class="content">服务费<input class="inputClass" type="number" value="{{fee}}"  onInput="bindChangeInput" disabled="true"/></view> -->
     <view class="content" style="border:0">应付首次款项
       <view class="inputClass">￥{{allPay}}</view>
     </view>

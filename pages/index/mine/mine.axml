@@ -222,6 +222,32 @@
       </view>
     </view>
 
+    <!-- <view class="page-option1 ">
+     
+    </view> -->
+    
+    <!-- <view>最新消息</view> -->
+    <view class="page-suggest1" onTap="toChat">
+      <view class="other-title">消息列表
+      </view>
+      <view>
+        <image src="/image/icon/right.png" class="right-img" />
+      </view>
+    </view>
+    <!-- <view>
+      <view a:if="{{chatlist.length<=0}}" class="tips">暂无会话</view>
+      <block a:else a:for="{{chatlist}}" a:for-item="list">
+        <view class="chat_box" onTap="toChat" data-uid="{{list.userId}}" data-avatar="{{list.user.avatar}}" data-nickName="{{list.user.nickName}}">
+          <view class="chat_left">
+            <image src="{{list.user.avatar}}" class="classImg" />
+          </view>
+          <view class="chat_right">
+            <view class="nickName">{{list.user.nickName}}</view>
+            <view class="time">{{list.time}}</view>
+          </view>
+        </view>
+      </block>
+    </view> -->
 
     <!-- <view class="page-asset">
       <view class="asset">
@@ -323,9 +349,9 @@
         <view class="title-change" onTap="changeRole2">
           <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />切换房东
         </view>
-        <view class="title-set"  onTap="toAccountInfo">
-          <!-- <image src="/image/qipao.png" class="qipao-img" /> -->
-          账号信息
+        <view class="title-set"  onTap="toChat">
+          <image src="/image/qipao.png" class="qipao-img" />
+          <!-- 账号信息 -->
         </view>
       </view>
    

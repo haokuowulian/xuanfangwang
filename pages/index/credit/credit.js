@@ -13,6 +13,8 @@ Page({
     userId:null,
     contract:false,
     status:null,
+    houseName:'',
+    money:'',
   },
   onLoad(option) {
     var that = this;
@@ -127,7 +129,7 @@ Page({
   getOrder(orderid){
     var that = this;
     my.httpRequest({
-      url: app.globalData.base_whj+'IF/order/getOrderById.do', // 目标服务器url
+      url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
       method: 'POST',
       data:{
         id:orderid,
@@ -141,11 +143,15 @@ Page({
           that.setData({
             contract:true,
             status:res.data.data.status,
+            houseName:res.data.data.housingName,
+            money:res.data.data.totalMoney,
           });
         }else{
           that.setData({
             contract:false,
             status:res.data.data.status,
+            houseName:res.data.data.housingName,
+            money:res.data.data.totalMoney,
           });
         }
         
@@ -154,6 +160,7 @@ Page({
   },
   toSign(){
     var that = this;
+    // that.toAddMoney();
     var orderid = that.data.orderid;
     var userId = that.data.userId;
     console.log(orderid)
@@ -182,9 +189,9 @@ Page({
               if(res.data.success){
                 console.log("签约成功！")
                 console.log(res.data.contractId)
-                // var contractId = res.data.contractId;
-                that.toGetRent(orderid,res.data.contractId);
-                // that.toUploadContractId(orderid,contractId,userId)
+                console.log(orderid)
+                var contractId = res.data.contractId;
+                that.toGetRent(orderid,contractId);
                 
               }
             
@@ -200,8 +207,10 @@ Page({
   },
   //解冻并转支付
   toGetRent(orderId,contractId){
+    var that = this;
+    console.log('冻结转支付')
     my.httpRequest({
-      url:app.globalData.base_whj+ 'IF/alipay/tradePay.do', // 目标服务器url
+      url:app.globalData.baseUrl_whj+ 'IF/alipay/tradePay.do', // 目标服务器url
       method: 'POST',
       data:{
         orderId:orderId,
@@ -212,6 +221,41 @@ Page({
         console.log(res)
          my.hideLoading();
         if(res.data.success){
+          my.showLoading({
+            content: '租金正在到账...',
+          });
+          that.toAddMoney();
+        }
+      },
+    });
+  },
+  //余额修改
+  toAddMoney(){
+    var that = this;
+    console.log('余额修改')
+    var userId = my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    var money = that.data.money;
+    var house = that.data.houseName;
+    var fromUserId = that.data.userId;
+    console.log(userId+'********'+money+'*********'+house+'********'+fromUserId)
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+ 'IF/wallet/editMoney.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:userId,
+        money:money,
+        house:house,
+        fromUserId:fromUserId,
+        type:1,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+        my.hideLoading();
+        if(res.data.success){
+          console.log('余额到账！')
           my.alert({
             title: '签约成功！' ,
             success: () => {
@@ -224,23 +268,6 @@ Page({
       },
     });
   },
-  //上传合同id
-  // toUploadContractId(orderid,contractId,userId){
-  //   var that = this;
-  //   my.httpRequest({
-  //     url: app.globalData.base_whj+'IF/order/landlordConsent.do', // 目标服务器url
-  //     method: 'POST',
-  //     data:{
-  //       orderId:orderid,
-  //       contractId:contractId,
-  //       userId:userId,
-  //     },      
-  //     dataType: 'json',
-  //     success: (res) => {
-  //       console.log(res)
-  //     },
-  //   });
-  // },
 
   toCancel(){
     var that = this;

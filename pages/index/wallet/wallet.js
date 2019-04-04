@@ -2,6 +2,7 @@ var app = getApp();
 Page({
   data: {
     money:'',
+    perfect:false,
   },
   onLoad() {},
   onShow(){
@@ -14,13 +15,21 @@ Page({
         url:app.globalData.baseUrl+ 'IF/wallet/getWalletByUserId.do', // 目标服务器url
         method: 'POST',
         data:{
-          userId:75,
+          userId:userId,
         },
         dataType: 'json',
         success: (res) => {
-          that.setData({
-            money:res.data.wallet.money,
-          });
+          console.log(res)
+          if(res.data.success){
+            that.setData({
+              money:res.data.wallet.money,
+            });
+            if(res.data.wallet.txAlipay!=''){
+              that.setData({
+                perfect:true,
+              });
+            }
+          }
         },
       });
     }
@@ -36,9 +45,17 @@ Page({
     });
   },
   toWithdraw(){
-    my.navigateTo({
-      url: '/pages/index/wallet/cash_withdrawal/cash_withdrawal',
-    });
+    var that = this;
+    if(that.data.perfect){
+      my.navigateTo({
+        url: '/pages/index/wallet/cash_withdrawal/cash_withdrawal',
+      });
+    }else{
+      my.alert({
+        title: '请先完善钱包信息' 
+      });
+    }
+    
   },
   toBankCard(){
     my.navigateTo({

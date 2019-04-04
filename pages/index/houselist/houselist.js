@@ -340,6 +340,9 @@ Page({
       case "3"://合租房源
         this.getSharedHousing();
       break;
+      case "5"://民宿
+        // this.getSharedHousing();
+      break;
     }
    this.getFeature();
    this.getFurniture();
@@ -1157,6 +1160,9 @@ Page({
       case "3"://合租房源
         this.getSharedHousing();
       break;
+      case "5"://民宿
+        // this.getSharedHousing();
+      break;
     }
   },
   onReachBottom() {
@@ -1174,6 +1180,10 @@ Page({
 
       case "3"://合租房源
         this.getSharedHousing();
+      break;
+
+      case "5"://民宿
+        // this.getSharedHousing();
       break;
     }
   },

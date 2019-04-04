@@ -1,0 +1,9 @@
+<view>
+  <view class="page-operate">
+    <view class="box_operate">{{content}}!</view>
+  </view>
+  <view>
+    <button type="default" onTap="toMyhouse">查看我的房源</button>
+  </view>
+  
+</view>

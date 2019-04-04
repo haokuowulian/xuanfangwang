@@ -1,3 +1,33 @@
-<view>
-  New Page
+<view class="back_page">
+<view class="page">
+  
+  <view class="page-title">
+    钱包设置
+  </view>
+
+  
+  <view >
+
+    <view class="classInput1">
+      <input type="text" placeholder="设置支付宝账号" class="passwordNew" onInput="toInput" value="{{txAlipay}}" data-t='1'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{txAlipay.length>0}}" onTap="toEmpty" data-t='1'/>
+    </view>
+
+    <view class="classLine"></view>
+    
+
+    <view class="classInput1">
+      <input type="text" placeholder="设置支付密码" class="passwordNew" onInput="toInput" value="{{payPassword}}" data-t='2' password="true"/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{payPassword.length>0}}" onTap="toEmpty" data-t='2'/>
+    </view>
+
+
+    <view class="classLine"></view>
+    <view class="btn_box">
+      <button class="btn_login" type="default" onTap="toSave">保存
+      </button>
+    </view>
+   
+  </view>
+</view>
 </view>
