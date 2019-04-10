@@ -19,12 +19,14 @@ Page({
     ],
     charge:'预收',
     index2:0,
+    waterScale:'',
+    electricityScale:'',
+    property:'',
   },
   onLoad(option) {
     var that = this;
     var arr = option.waterlist;
     console.log(option)
-    
     var waterfree = option.waterfree;
     var watersave =option.watersave;
     if(waterfree==true){
@@ -132,6 +134,9 @@ Page({
     // var rpaymethod = that.data.index2;
     var powerprice = that.data.powerprice;
     var waterprice = that.data.waterprice;
+    var waterScale = that.data.waterScale;
+    var electricityScale = that.data.electricityScale;
+    var property = that.data.property;
     // var advanceprice = that.data.advanceprice;
     var regNum1=new RegExp('[0-9]','g');
     var regNum2=new RegExp('[0-9]','g');
@@ -148,6 +153,9 @@ Page({
                 // rpaymethod:rpaymethod,
                 powerprice:powerprice,
                 waterprice:waterprice,
+                waterScale:waterScale,
+                electricityScale:electricityScale,
+                property:property,
                 // advanceprice:advanceprice,
               };
               let pages = getCurrentPages();
@@ -159,6 +167,9 @@ Page({
                 waterlist:obj,
                 waterRate:waterprice,
                 electricRate:powerprice,
+                waterScale:waterScale,
+                electricityScale:electricityScale,
+                property:property,
               });
               
               my.navigateBack({
@@ -208,21 +219,37 @@ Page({
     }
     if(e.target.dataset.t==3){
       that.setData({
-        advanceprice:e.detail.value,
+        electricityScale:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==4){
+      that.setData({
+        waterScale:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==5){
+      that.setData({
+        property:e.detail.value,
       });
     }
   },
   getInfo(arr,watersave){
     var that = this;
     if(arr!=''&&arr!=null){
+      var waterScale = arr.waterScale;
+      var electricityScale = arr.electricityScale;
       var rpayway=arr.rpayway;
       var rpaymethod=arr.rpaymethod;
       var rpowerprice=arr.powerprice;
       var rwaterprice=arr.waterprice;
       var radvanceprice=arr.advanceprice;
+      var property = arr.property;
       if(watersave!=null&&watersave!=''){
       that.setData({
         watersave:watersave,
+        waterScale:waterScale,
+        electricityScale:electricityScale,
+        property:property,
       });
     }
     if(rpayway!=null&&rpayway!=''){
@@ -232,7 +259,7 @@ Page({
       switch(rpayway){
         case 0:
         that.setData({
-          payway:'月付',
+          payway:'月付', 
         });
         break;
         case 1:

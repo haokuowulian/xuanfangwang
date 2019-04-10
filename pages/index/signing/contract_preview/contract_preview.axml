@@ -3,8 +3,8 @@
     <view class="box_title">
       <text class="text_title">房屋租赁合同</text>
     </view>
-      <text class="class_title">出租方(甲方)：{{my_name}} </text>
-      <text class="class_title">承租方(乙方)： {{your_name}}</text>
+      <text class="class_title">出租方(甲方)：{{your_name}} </text>
+      <text class="class_title">承租方(乙方)：{{my_name}} </text>
 
       <text class="text_content">甲乙双方就下列房屋的租赁达成如下协议，具体内容如下：</text>
       <text class="class_title">第一条  房屋基本情况</text>
@@ -56,34 +56,34 @@
           </view>
           <view class="class_end">
             <view class="box_info">
-              <text class="text_content">代表人(签字)：</text> <text class="class_content">{{my_name}}</text>
+              <text class="text_content">代表人(签字)：</text> <text class="class_content">{{your_name}}</text>
             </view>
             <view class="box_info">
-              <text class="text_content">代表人(签字)：</text><text class="class_content">{{your_name}}</text>
+              <text class="text_content">代表人(签字)：</text><text class="class_content">{{my_name}}</text>
               </view>
             </view> 
           <view class="class_end">
             <view class="box_info1">
-              <text class="text_content">身份证号：</text><text class="class_content1">{{my_card}}</text>
+              <text class="text_content">身份证号：</text><text class="class_content1">{{your_card}}</text>
             </view>
             <view class="box_info1">
-              <text class="text_content">身份证号:</text><text class="class_content1">{{your_card}}</text>
+              <text class="text_content">身份证号:</text><text class="class_content1">{{my_card}}</text>
             </view>
           </view>
           <view class="class_end">
             <view class="box_info">
-              <text class="text_content">联系电话：</text><text class="class_content">{{my_phone}}</text>
+              <text class="text_content">联系电话：</text><text class="class_content">{{your_phone}}</text>
             </view>
             <view class="box_info">
-              <text class="text_content">联系电话：</text><text class="class_content">{{your_phone}}</text>
+              <text class="text_content">联系电话：</text><text class="class_content">{{my_phone}}</text>
             </view>
           </view>                       　　　　
           <view class="class_end">
             <view class="box_info">
-              <text class="text_content">{{date}}  </text><text class="class_content"></text>
+              <text class="text_content">年  月  日  </text><text class="class_content"></text>
             </view>
             <view class="box_info">
-              <text class="text_content">年  月  日</text><text class="class_content"></text>
+              <text class="text_content">{{date}}</text><text class="class_content"></text>
             </view>
           </view>
 

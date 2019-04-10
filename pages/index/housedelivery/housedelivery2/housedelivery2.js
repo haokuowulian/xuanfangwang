@@ -132,7 +132,7 @@ Page({
       decorateType:index*1+1
     });
   },
-  toInput(e){
+  toInput1(e){
     console.log(e.detail.value)
     var that = this;
     if(e.target.dataset.t==1){

@@ -24,7 +24,7 @@ Page({
             that.setData({
               money:res.data.wallet.money,
             });
-            if(res.data.wallet.txAlipay!=''){
+            if(res.data.wallet.txAlipay!=''&&res.data.wallet.txAlipay!=null){
               that.setData({
                 perfect:true,
               });

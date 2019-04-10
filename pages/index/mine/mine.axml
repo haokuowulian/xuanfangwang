@@ -424,11 +424,11 @@
             </view>
           </view>
 
-          <!-- <view class="content-box content-bkgd2" onTap="toBill">
+          <view class="content-box content-bkgd2" onTap="toBill">
             <image src="/image/mine/zhangdan.png" class="service-img" />
             <view class="content-text2">待缴账单
             </view>
-          </view> -->
+          </view>
 
           <!-- <view class="content-box content-bkgd3" onTap="toRepair">
             <image src="/image/mine/xiuli.png" class="service-img" />

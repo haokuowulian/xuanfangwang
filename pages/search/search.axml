@@ -61,7 +61,7 @@
         <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
           <view class="house-info">
             <view class="p-img">
-              <image src="{{imgurl}}{{list.images}}" class="house-img"/>
+              <image src="{{list.images.split(',')[0]}}" class="house-img"/>
             </view>
             <view class="p0">
               <view class="p1">      {{list.buildingUnit}}    
@@ -87,15 +87,15 @@
         <view a:if="{{showView2}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='2'>
           <view class="house-info">
             <view class="p-img">
-              <image src="{{imgurl}}{{list.images.split(',')[0]}}" class="house-img"/>
+              <image src="{{list.images.split(',')[0]}}" class="house-img"/>
             </view>
             <view class="p0">
               <view class="p1">      {{list.roomName}}    
               </view>
               <view class="p2">
-                <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
+                <view class="p2-1">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
                 </view>
-                <view class="p2-2">{{list.entireRents}}元/月
+                <view class="p2-2">{{list.rents}}元/月
                 </view>
               </view>
               <view class="p3"> 

@@ -1,35 +1,96 @@
 <view class="backgroundClass">
-  <view class="titleClass">房源描述与价格（3/3）</view>
-  <view class="subTitleClass">租金(元)</view>
-    <input class="inputClass" type="number" placeholder="请填写租金价格" onInput="toInput" data-t='1' class="text_input" value="{{houserent}}"/>
+  <view class="titleClass">房源描述与价格（2/2）</view>
 
-  <view class="lineClass"></view>
+  <view class="page-content">
 
-   <view class="subTitleClass">付款方式</view>
+    <view class="content">租金(元)
+      <view>
+        <input class="inputClass1" type="digit" placeholder="请填写租金价格" onInput="toInput" data-t='1' value="{{houserent}}"/>
+      </view>
+    </view>
+
+    <view class="content">付款方式
+      <view class="inputClass2">
+        <picker onChange="bindPickerChange1" value="{{index1}}" range="{{payways}}">
+          <view class="class_text">{{payway}}<image src="/image/icon/right.png" class="right-img"/></view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="content">当前电表刻度
+      <view>
+        <input class="inputClass1" type="digit" placeholder="请填写当前电表刻度" onInput="toInput" data-t='5' value="{{electricityScale}}"/>
+      </view>
+    </view>
+    
+    <view class="content">当前水表刻度
+      <view>
+        <input class="inputClass1" type="digit" placeholder="请填写当前水表刻度" onInput="toInput" data-t='6' value="{{waterScale}}"/>
+      </view>
+    </view>
+
+    <view class="content">水费(元/立方)
+      <view>
+        <input class="inputClass1" type="digit" placeholder="请填写水费价格" onInput="toInput" data-t='2' value="{{waterprice}}"/>
+      </view>
+    </view>
+
+    <view class="content">电费(元/度)
+      <view>
+        <input class="inputClass1" type="digit" placeholder="请填写电费价格" onInput="toInput" data-t='3' value="{{powerprice}}"/>
+      </view>
+    </view>
+
+    <view class="content">物业费(元/月)
+      <view>
+        <input class="inputClass1" type="digit" placeholder="请填写电费价格" onInput="toInput" data-t='4' value="{{property}}"/>
+      </view>
+    </view>
+
+
+  </view>
+
+
+
+
+
+  <!-- <view class="subTitleClass">租金(元)</view>
+    <input class="inputClass" type="digit" placeholder="请填写租金价格" onInput="toInput" data-t='1' class="text_input" value="{{houserent}}"/>
+
+  <view class="lineClass"></view> -->
+
+   <!-- <view class="subTitleClass">付款方式</view>
     <view class="info-content1">
       <picker onChange="bindPickerChange1" value="{{index1}}" range="{{payways}}">
         <view class="row-extra">{{payway}}<image src="/image/icon/right.png" class="right-img"/></view>
       </picker>
-    </view>
+    </view> -->
   
-  <view class="lineClass"></view>
+  <!-- <view class="lineClass"></view>
+  <view class="subTitleClass">当前电表刻度</view>
 
+  <input class="inputClass" type="digit" placeholder="请填写当前电表刻度"  onInput="toInput" data-t='5' class="text_input" value="{{electricityScale}}"/>
+  <view class="lineClass"></view> -->
+  <!-- <view class="subTitleClass">当前水表刻度</view>
 
+  <input class="inputClass" type="digit" placeholder="请填写当前水表刻度"  onInput="toInput" data-t='6' class="text_input" value="{{waterScale}}"/> -->
+
+  <!-- <view class="lineClass"></view>
   <view class="subTitleClass">水费(元/立方)</view>
 
-   <input class="inputClass" type="number" placeholder="请填写水费价格"  onInput="toInput" data-t='2' class="text_input" value="{{waterprice}}"/>
+   <input class="inputClass" type="digit" placeholder="请填写水费价格"  onInput="toInput" data-t='2' class="text_input" value="{{waterprice}}"/> -->
   
-  <view class="lineClass"></view>
+  <!-- <view class="lineClass"></view>
  <view class="subTitleClass">电费(元/度)</view>
 
-   <input class="inputClass" type="number" placeholder="请填写电费价格"  onInput="toInput" data-t='3' class="text_input" value="{{powerprice}}"/>
+   <input class="inputClass" type="digit" placeholder="请填写电费价格"  onInput="toInput" data-t='3' class="text_input" value="{{powerprice}}"/> -->
   
-  <view class="lineClass"></view>
+  <!-- <view class="lineClass"></view>
   <view class="subTitleClass">物业费(元/月)</view>
 
-   <input class="inputClass" type="number" placeholder="请填写物业费价格" onInput="toInput" data-t='4' class="text_input" value="{{property}}" />
+   <input class="inputClass" type="digit" placeholder="请填写物业费价格" onInput="toInput" data-t='4' class="text_input" value="{{property}}" />
   
-  <view class="lineClass"></view>
+  <view class="lineClass"></view> -->
 
  <button class="nextStepButtonClass" onTap="publish">发布</button>
   

@@ -3,37 +3,44 @@
     <view>水电费全免</view>
     <view><switch checked="{{free}}" onChange="switchChange" class="switch"/></view>
   </view>
-  <view a:if="{{!free}}">
-  <view class="page-content">
-    <view class="info-title">电费(元/度)</view>
-    <view><input type="digit" placeholder="请输入电费单价" class="text_input" onInput="toInput" data-t='1' value="{{powerprice}}"/></view>
-  </view>
-  <view class="page-content">
-    <view class="info-title">水费(元/立方)</view>
-    <view><input type="digit" placeholder="请输入水费单价" class="text_input" onInput="toInput" data-t='2' value="{{waterprice}}"/></view>
-  </view>
-  <!-- <view class="page-content">
-    <view class="info-title">结算方式</view>
-    <view class="info-content1">
-      <picker onChange="bindPickerChange1" value="{{index1}}" range="{{payways}}">
-        <view class="row-extra">{{payway}}<image src="/image/icon/right.png" class="right-img"/></view>
-      </picker>
-    </view>
-  </view>
-  <view class="page-content">
-    <view class="info-title">收款方式</view>
-    <view class="info-content1">
-      <picker onChange="bindPickerChange2" value="{{index2}}" range="{{charges}}">
-        <view class="row-extra">{{charge}}<image src="/image/icon/right.png" class="right-img"/></view>
-      </picker>
-    </view>
-  </view>
+  <view a:if="{{!free}}" class="pages">
 
-  <view a:if="{{index2==0}}" class="page-content">
-    <view class="info-title">预收金额</view>
-    <view><input type="text" placeholder="请输入预收金额" class="text_input" onInput="toInput" data-t='3' value="{{advanceprice}}"/></view>
-  </view> -->
-  <view class="page-btn" onTap="toSave">保存</view>
+    <view class="page-content">
+
+      <view class="content">当前电表刻度
+        <view>
+          <input class="inputClass1" type="digit" placeholder="请输入当前电表刻度" onInput="toInput" data-t='3' value="{{electricityScale}}"/>
+        </view>
+      </view>
+
+      <view class="content">当前水表刻度
+        <view>
+          <input class="inputClass1" type="digit" placeholder="请输入当前水表刻度" onInput="toInput" data-t='4' value="{{waterScale}}"/>
+        </view>
+      </view>
+
+      <view class="content">电费(元/度)
+        <view>
+          <input class="inputClass1" type="digit" placeholder="请输入电费单价" onInput="toInput" data-t='1' value="{{powerprice}}"/>
+        </view>
+      </view>
+
+      <view class="content">水费(元/立方)
+        <view>
+          <input class="inputClass1" type="digit" placeholder="请输入当前水表刻度" onInput="toInput" data-t='2' value="{{waterprice}}"/>
+        </view>
+      </view>
+
+      <view class="content">物业费(元/月)
+        <view>
+          <input class="inputClass1" type="digit" placeholder="请输入均摊物业费" onInput="toInput" data-t='5' value="{{property}}"/>
+        </view>
+      </view>
+
+    </view>
+
+  
   </view>
+  <view class="page-btn" onTap="toSave">保存</view>
 
 </view>

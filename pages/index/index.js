@@ -23,8 +23,9 @@ Page({
   onLoad(){
     
     // this.initialize();
-    app.getCity();
-
+    // app.getCity();
+    console.log(1111111111111);
+    // console.log(cityData);
   },
   onShow(){
     this.getBanner();

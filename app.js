@@ -26,7 +26,7 @@ App({
    getDate(dateFormate,year){
    var date=new Date();
    //年
-``
+
     var Y =
     date.getFullYear()+year;
 
@@ -175,10 +175,11 @@ App({
         // that.setData({
         //   cityData:res.data.data
         // });
-        my.setStorage({
+        my.setStorageSync({
           key: 'list_city', // 经度
           data: res.data.data, // 要缓存的数据
         });
+       
       },
       fail: function(res) {
        console.log(res);

@@ -35,6 +35,7 @@ Page({
     feature:'',
     featurelist:'',
     images:[],
+    imgs:[],
     img:'',
     canAddImg:true,
     upload:false,
@@ -59,6 +60,22 @@ Page({
     upload3:false,
     upload4:false,
     upload5:false,
+    show1:true,
+    show2:false,
+    show3:false,
+    sexs:[
+      '男女不限',
+      '只限男',
+      '只限女',
+    ],
+    sex:'男女不限',
+    index5:0,
+    sexCondition:0,
+    housename:'',//房源名称
+    describe:'',//房源描述
+    describe1:'小区位置，交通方便，眼界开阔,房间干净舒适，光线足，通风性能良好，可随时看房。',//房源描述
+    endDates:'',
+    count:6,
   },
   onLoad() {
     var that = this;
@@ -90,10 +107,133 @@ Page({
       data: this.data.tempList, // 要缓存的数据
     });
   },
+  chooseDate(){
+    var startDate = app.getDate('yyyy-MM-dd',0);
+    var currentDate = app.getFormateDate1('yyyy-MM-dd',1,0);
+    var endDate = app.getFormateDate1('yyyy-MM-dd',10,12);
+    console.log(currentDate+'***********'+endDate)
+    my.datePicker({
+      format: 'yyyy-MM-dd',
+      currentDate: currentDate,
+      startDate: currentDate,
+      endDate: endDate,
+      success: (res) => {
+        console.log(res)
+        console.log(res.date)
+        this.setData({
+          endDates:res.date,
+        });
+        my.setStorageSync({
+          key: 'm_startDate', // 缓存数据的key
+          data: startDate, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'm_endDate', // 缓存数据的key
+          data: res.date, // 要缓存的数据
+        });
+        // my.alert({
+        //   content: res.date,
+        // });
+      },
+    });
+  },
+      //添加图片
+  addImg2(){
+    var that = this;
+    var newCount = that.data.count-1;
+    console.log(newCount)
+    console.log(that.data.images)
+    my.chooseImage({
+      chooseImage: 1,
+      success: (res) => {
+        var tempFilePaths = res.apFilePaths
+        console.log(tempFilePaths)
+        if(that.data.images.length==5){
+          that.uploadImg1(tempFilePaths[0]);
+          that.setData({
+            images:that.data.images.concat(tempFilePaths),
+            // img:tempFilePaths[0],
+            upload:true,
+            canAddImg:false,
+            count:newCount,
+          });
+        }else{
+          that.uploadImg1(tempFilePaths[0]);
+          that.setData({
+          images:that.data.images.concat(tempFilePaths),
+          // img:tempFilePaths[0],
+          upload:true,
+          canAddImg:true,
+          count:newCount,
+        });
+        }
+        
+      },
+    });
+  },
+  //房间图片删除
+  delImg2(e){
+    var that = this;
+    var index = e.target.dataset.index;
+    console.log('下标：'+index)
+    var images = that.data.images;
+    var imgs = that.data.imgs;
+    var newcount = that.data.count+1;
+    images.splice(index,1);
+    imgs.splice(index,1);
+    if(images.length==0){
+      console.log('清空')
+      that.setData({
+        images:[],
+        imgs:[],
+        canAddImg:true,
+        count:newcount,
+      });
+    }
+    if(images.length>0){
+      console.log('删除')
+      console.log(images)
+      that.setData({
+        count:newcount,
+        canAddImg:true,
+        images:images,
+        imgs:imgs,
+      });
+    }
+    console.log(that.data.images)
+
+  },
+  uploadImg1(image){
+    var that = this;
+    var imgs = that.data.imgs;
+    my.uploadFile({
+      url: app.globalData.baseUrl_oos, // 开发者服务器地址
+      filePath: image, // 要上传文件资源的本地定位符
+      fileName: 'file', 
+      fileType: 'image', // 文件类型，image / video / audio
+      formData:{savePrefix:'landlord/'},
+      success: (res) => {
+        console.log('success');
+        var json2 = JSON.parse(res.data);
+        console.log(res);
+        var newimgs=json2['message'];
+        console.log(newimgs);
+        that.setData({
+          imgs:imgs.concat(newimgs),
+        });
+        
+      },
+      fail: (res) => {
+        console.log(res);
+        my.alert({ title: '上传失败' });
+      },
+    });
+
+  },
   addImg1(e){
     var that = this;
     var t = e.target.dataset.t;
-    var fireList = this.data.fireList;
+    var fireList = that.data.fireList;
       // for(let a=0;a<selectId.length;a++){
       //   fireList[selectId[a]-1].selected=true;
       // }
@@ -152,6 +292,7 @@ Page({
   uploadImgs(image,t){
     var that = this;
     var newimgs = '';
+    var fireList = that.data.fireList;
      my.uploadFile({
           url: app.globalData.baseUrl_oos,
           fileName: 'file', 
@@ -186,6 +327,38 @@ Page({
           },
           fail: function(res) {
             console.log(res);
+            if(t==2){
+              fireList[0].selected=false;
+              that.setData({
+                canAddImg2:true,
+                extinguisher:false,
+                fireList:fireList,
+              });
+            }
+            if(t==3){
+              fireList[1].selected=false;
+              that.setData({
+                canAddImg3:true,
+                smokeMask:false,
+                fireList:fireList,
+              });
+            }
+            if(t==4){
+              fireList[2].selected=false;
+              that.setData({
+                canAddImg4:true,
+                flashlight:false,
+                fireList:fireList,
+              });
+            }
+            if(t==5){
+              fireList[3].selected=false;
+              that.setData({
+                canAddImg5:true,
+                rope:false,
+                fireList:fireList,
+              });
+            }
             my.alert({ title: '上传失败' });
           },
         });
@@ -244,7 +417,7 @@ Page({
         fireList:fireList,
       });
     }
-    if(e.target.dataset.t==51){
+    if(e.target.dataset.t==5){
       fireList[3].selected=false;
         that.setData({
         img5url:'',
@@ -257,6 +430,47 @@ Page({
     }
 
     
+  },
+  bindPickerChange5(e){
+    var that = this;
+    var arr = that.data.sexs;
+    var idx = e.detail.value;
+    if(idx==0){
+      that.setData({
+        index5:e.detail.value,
+        sex:arr[idx],
+        sexCondition:0
+      });
+    }
+    if(idx==1){
+      that.setData({
+        index5:e.detail.value,
+        sex:arr[idx],
+        sexCondition:1
+      });
+    }
+    if(idx==2){
+      that.setData({
+        index5:e.detail.value,
+        sex:arr[idx],
+        sexCondition:2
+      });
+    }
+      
+  },
+  toInput(e){
+    var that = this;
+    console.log(e.detail.value)
+    if(e.target.dataset.t==1){
+      that.setData({
+        housename:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==2){
+      that.setData({
+        describe:e.detail.value,
+      });
+    }
   },
   onChange(e) {
     var that = this;
@@ -308,76 +522,152 @@ Page({
        selectId:e.detail.value
      });
   },
+  toChooseType1(){
+    var that = this;
+    that.setData({
+      show1:true,
+      show2:false,
+      show3:false,
+      sexCondition:0,
+    });
+  },
+  toChooseType2(){
+    var that = this;
+    that.setData({
+      show1:false,
+      show2:true,
+      show3:false,
+      sexCondition:1,
+    });
+  },
+  toChooseType3(){
+    var that = this;
+    that.setData({
+      show1:false,
+      show2:false,
+      show3:true,
+      sexCondition:2,
+    });
+  },
   next(){
     var that = this;
     console.log(that.data.extinguisher)
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
     console.log(that.data.rope)
-
+    
+    var extinguisher = that.data.img2url;
+    var smokeMask = that.data.img3url;
+    var flashlight = that.data.img4url;
+    var rope = that.data.img5url;
     //测试---------------------------------------测试
     // my.navigateTo({
     //   url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
     // })
-
+    var housename = that.data.housename;
+    if(that.data.describe!=''){
+      var describe = that.data.describe;
+    }else{
+      var describe = that.data.describe1;
+    }
+    var endDates = that.data.endDates;
+    var imgs = that.data.imgs;
     var furnitures = that.data.furniture;
     var features = that.data.feature;
-    if(furnitures!=''){
-      if(features!=''){
-        var furniture = furnitures.join(",");
-        var feature = features.join(",");
-        my.setStorageSync({
-          key: 'r_furniture', // 缓存数据的key
-          data: furniture, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_feature', // 缓存数据的key
-          data: feature, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_extinguisher', // 缓存数据的key
-          data: that.data.extinguisher, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_smokeMask', // 缓存数据的key
-          data: that.data.smokeMask, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_flashlight', // 缓存数据的key
-          data: that.data.flashlight, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_rope', // 缓存数据的key
-          data: that.data.rope, // 要缓存的数据
-        });
-        
-        my.setStorageSync({
-          key: 'r_extinguisherimg', // 缓存数据的key
-          data: that.data.extinguisherimg, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_smokeMaskimg', // 缓存数据的key
-          data: that.data.smokeMaskimg, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_flashlightimg', // 缓存数据的key
-          data: that.data.flashlightimg, // 要缓存的数据
-        });
-        my.setStorageSync({
-          key: 'r_ropeimg', // 缓存数据的key
-          data: that.data.ropeimg, // 要缓存的数据
-        });
-        my.navigateTo({
-          url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
-        })
+    if(housename!=''&&endDates!=''){
+      if(imgs.length>0){
+        if(furnitures!=''){
+          if(features!=''){
+            if(extinguisher!=''&&smokeMask!=''&&flashlight!=''&&rope!=''){
+              var furniture = furnitures.join(",");
+              var feature = features.join(",");
+              my.setStorageSync({
+                key: 'r_furniture', // 缓存数据的key
+                data: furniture, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_feature', // 缓存数据的key
+                data: feature, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_extinguisher', // 缓存数据的key
+                data: that.data.extinguisher, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_smokeMask', // 缓存数据的key
+                data: that.data.smokeMask, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_flashlight', // 缓存数据的key
+                data: that.data.flashlight, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_rope', // 缓存数据的key
+                data: that.data.rope, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_sexCondition', // 租客性别限制
+                data: that.data.sexCondition, // 要缓存的数据
+              });
+              
+              
+
+              my.setStorageSync({
+                key: 'r_extinguisherimg', // 缓存数据的key
+                data: extinguisher, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_smokeMaskimg', // 缓存数据的key
+                data: smokeMask, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_flashlightimg', // 缓存数据的key
+                data: flashlight, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_ropeimg', // 缓存数据的key
+                data: rope, // 要缓存的数据
+              });
+
+              my.setStorageSync({
+                key: 'r_housename', // 缓存数据的key
+                data: housename, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_describe', // 缓存数据的key
+                data: describe, // 要缓存的数据
+              });
+              my.setStorageSync({
+                key: 'r_houseimg', // 缓存数据的key
+                data: imgs, // 要缓存的数据
+              });
+
+              my.navigateTo({
+                url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
+              })
+            }else{
+              my.alert({
+                title: '需要上传消防设备照片！' 
+              });
+            }
+          }else{
+            my.alert({
+              title: '请选择你的房屋特色' 
+            });
+          }
+        }else{
+          my.alert({
+            title: '请勾选相应的便利设施' 
+          });
+        }
       }else{
         my.alert({
-          title: '请选择你的房屋特色' 
+          title: '请上传房源照片' 
         });
       }
     }else{
       my.alert({
-        title: '请勾选相应的便利设施' 
+        title: '请填写完整！' 
       });
     }
     
@@ -504,6 +794,9 @@ Page({
     var img3url = my.getStorageSync({
       key: 'r_img3url', // 缓存数据的key
     }).data;
+    var img4url = my.getStorageSync({
+      key: 'r_img4url', // 缓存数据的key
+    }).data;
 
 
     var housename = my.getStorageSync({
@@ -574,6 +867,12 @@ Page({
       // idcard_positive:img1url,
       // idcard_reverse:img2url,
       // licence:img3url,
+      //业主授权许可
+      issuerRelation:vrelation,
+      identityCardFront:img1url,
+      identityCardReverse:img2url,
+      propertyOwnershipCertificate:img3url,
+      contract:img4url,
       rentType:rentType,
       description:describe,
       images:houseimg,

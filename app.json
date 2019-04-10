@@ -47,7 +47,6 @@
     "pages/index/housedelivery/water_power_rate/water_power_rate",
     "pages/index/housedelivery/housedelivery2/housedelivery2",
     "pages/index/housedelivery/housedelivery3/housedelivery3",
-    "pages/index/housedelivery/housedelivery4/housedelivery4",
     "pages/index/housedelivery/housedelivery5/housedelivery5",
     "pages/index/housedelivery/housedelivery6/housedelivery6",
     "pages/index/housedelivery/housedelivery5-1/housedelivery5-1",
@@ -84,7 +83,8 @@
     "pages/apartment/apartment_list/apartment_list",
     "pages/apartment/signing/signing",
     "pages/apartment/signing/renting_date/renting_date",
-    "pages/index/housedelivery/page_result/page_result"
+    "pages/index/housedelivery/page_result/page_result",
+    "pages/index/housedelivery/housedelivery5_new/housedelivery5_new"
   ],
   "window": {
     "defaultTitle": "My App"
