@@ -6,7 +6,7 @@ Page({
     contract:[],
     roleId:'',
     roleType:'',
-    pageIndex:0,
+    pageIndex:1,
 
   },
   onLoad(option) {
@@ -107,15 +107,29 @@ Page({
     });
   },
   onPullDownRefresh() {
+    var roleType = this.data.roleType;
     this.setData({
       pageIndex:1
     });
-    this.getContract();
+    if(roleType==1){
+     this.getFdContractList();
+   }
+   if(roleType==2){
+     this.getContract();
+   }
+    // this.getContract();
   },
   onReachBottom() {
+    var roleType = this.data.roleType;
     this.setData({
       pageIndex:this.data.pageIndex+1
     });
-    this.getContract();
+    if(roleType==1){
+     this.getFdContractList();
+   }
+   if(roleType==2){
+     this.getContract();
+   }
+    // this.getContract();
   },
 });

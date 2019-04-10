@@ -165,111 +165,27 @@
 
 <!-- /test -->
 
-  <!-- <view class="page-choosetabs">
-    <view class="info1 {{bg1?'b1':'b2'}}" onTap="onChange1">      精品房源    
-    </view>
-    <view class="info2 {{bg2?'b1':'b2'}}" onTap="onChange2">      优质公寓    
-    </view>
-  </view> -->
+
   
- <view a:if="{{houseType==1}}">
-   <block a:for="{{boutiqueHousing}}" a:for-item="list" >
-    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
-      <view class="house-info">
-        <view class="p-img">
-          <image src="{{list.images.split(',')[0]}}" class="house-img"/>
-        </view>
-        <view class="p0">
-          <view class="p1">      {{list.buildingUnit}}    
-          </view>
-          <view class="p2">
-            <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
-            </view>
-            <view class="p2-2">{{list.entireRents}}元/月
-            </view>
-          </view>
-          <view class="p3"> 
-            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
-            {{list.toward}}    
-          </view>
-          <view class="p4">      {{list.template.feature.split(',')[0]}}    
-          </view>
-        </view>
-      </view>
-    </view>
-  </block>
-  
- </view>
- <view a:elif="{{houseType==2}}">
-  <block a:for="{{wholeRentalHousing}}" a:for-item="list">
-    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1'>
-      <view class="house-info">
-        <view class="p-img">
-          <image src="{{list.images.split(',')[0]}}" class="house-img"/>
-        </view>
-        <view class="p0">
-          <view class="p1">      {{list.buildingUnit}}    
-          </view>
-          <view class="p2">
-            <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
-            </view>
-            <view class="p2-2">{{list.entireRents}}元/月
-            </view>
-          </view>
-          <view class="p3"> 
-            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
-            {{list.toward}}    
-          </view>
-          <view class="p4">      {{list.template.feature.split(',')[0]}}    
-          </view>
-        </view>
-      </view>
-    </view>
-  </block>
- </view>
- <view a:elif="{{houseType==3}}">
-    <block a:for="{{sharedHousing}}" a:for-item="list">
-    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='2' >
-      <view class="house-info">
-        <view class="p-img">
-          <image src="{{list.images.split(',')[0]}}" class="house-img"/>
-        </view>
-        <view class="p0">
-          <view class="p1">      {{list.roomName}}    
-          </view>
-          <view class="p2">
-            <view class="p2-1">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
-            </view>
-            <view class="p2-2">{{list.rents}}元/月
-            </view>
-          </view>
-          <view class="p3"> 
-            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
-            {{list.toward}}    
-          </view>
-          <view class="p4">      {{list.template.feature.split(',')[0]}}    
-          </view>
-        </view>
-      </view>
-    </view>
-  </block>
- </view>
-  <view a:elif="{{houseType==4}}">
-   <view a:if="{{hotels.length==0}}" class="tips">暂无房源</view>
+
+
+
+  <view a:if="{{houseType==4}}">
+   <view a:if="{{boutiqueHousing.length==0}}" class="tips">暂无房源</view>
    <view a:else>
-    <block a:for="{{hotels}}" a:for-item="list">
-    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='2' >
+    <block a:for="{{boutiqueHousing}}" a:for-item="list">
+    <view a:if="{{showView1}}" class="page-house" onTap="goToHouseDetail" data-text="{{list.id}}" data-type='1' >
       <view class="house-info">
         <view class="p-img">
           <image src="{{list.images.split(',')[0]}}" class="house-img"/>
         </view>
         <view class="p0">
-          <view class="p1">      {{list.roomName}}    
+          <view class="p1">      {{list.buildingUnit}}    
           </view>
           <view class="p2">
-            <view class="p2-1">{{list.area}}m² | {{list.house.room}}室{{list.house.hall}}厅
+            <view class="p2-1">{{list.area}}m² | {{list.room}}室{{list.hall}}厅
             </view>
-            <view class="p2-2">{{list.rents}}元/月
+            <view class="p2-2">{{list.entireRents}}元/月
             </view>
           </view>
           <view class="p3"> 

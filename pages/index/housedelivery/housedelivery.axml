@@ -1,20 +1,148 @@
 <view class="backgroundClass" a:if="{{type==2}}">
-  <view class="titleClass">房源信息与认证（1/2）</view>
-  <view class="subTitleClass">地区(必填)</view>
+  <view class="titleClass">房源信息与认证</view>
+  <!-- <view class="lineClass"></view> -->
+  <view class="page-content">
+    <view class="content" onTap="openCity">地区<input class="inputClass1" type="text" placeholder="请选择房源所在地区信息" focus="false"  onFocus="hideKeyboard" focus="false" value="{{dist}}"/></view>
+    <view class="content" onTap="selectPoi">小区/公寓<input class="inputClass1" type="text" placeholder="请填写，以方便定位" focus="false" onFocus="hideKeyboard" onInput="toInput1" data-t='1' value="{{village}}"/></view>
+    <view class="content">楼栋、单元<input class="inputClass1" type="text" placeholder="请填写房源具体楼栋、单元" onInput="toInput1" data-t='1' value="{{vaddress}}" /></view>
+    <view class="content">门牌号<input class="inputClass1" type="text" placeholder="请填写房源门牌号" onInput="toInput1" data-t='6' value="{{houseNo}}"/></view>
+    <view class="content" onTap="selectHuXing">户型<input class="inputClass1" type="text" placeholder="请选择房源的户型" disabled="true"  value="{{huxing}}" onFocus="open" /></view>
+    <view class="content">朝向
+      <picker onChange="bindPickerChange1" value="{{index}}" range="{{towardsArray}}">
+        <view >
+          <input class="inputClass1" type="text" placeholder="请选择房源的朝向"  value="{{chaoxiang}}" onFocus="hideKeyboard"/>
+        </view>
+      </picker>
+    </view>
+
+    <view class="content">面积<input class="inputClass1" type="text" placeholder="请填写房源面积" onInput="toInput1" data-t='2' value="{{varea}}"/></view>
+
+    <view class="content">装修
+      <picker onChange="bindPickerChange2" value="{{index}}" range="{{decorationArray}}">
+        <view >
+          <input class="inputClass1" type="text" placeholder="请选择装修类型"  value="{{zhuangxiu}}" onFocus="hideKeyboard"/>
+        </view>
+      </picker>
+    </view>
+
+    <view class="content">房东<input class="inputClass1" type="text" placeholder="请填写房东姓名" onInput="toInput1" data-t='3' value="{{vowner}}"/></view>
+    <view class="content">房东身份证号<input class="inputClass1" type="idcard" placeholder="请填写房东的身份证号码" onInput="toInput1" data-t='4' value="{{vownerCard}}"/></view>
+
+    <!-- <view class="content">面积<input class="inputClass1" type="text" placeholder="请选择期望看房时间"  disabled="true" value="{{expectTime}}" /></view> -->
+
+    <view class="content">
+      <view>房东类型：</view>
+    
+      <view class="type_choose">
+        <view class='icon_none' a:if="{{!show1}}" onTap="toChooseType1"></view>
+        <view class="icon-bkgd" a:if="{{show1}}">
+          <icon type="success" class="icon-check" color="#ff8800" />
+        </view><view class="type_name">一房东</view>
+      </view>
+    
+      <view class="type_choose">
+        <view class='icon_none' a:if="{{!show2}}"  onTap="toChooseType2"></view>
+        <view class="icon-bkgd" a:if="{{show2}}">
+          <icon type="success" class="icon-check" color="#ff8800" />
+        </view><view class="type_name">二房东</view>
+      </view>
+    </view>
+</view>
+    <!-- <view class="lineClass"></view> -->
+    <!-- 本人 -->
+    <block a:if="{{show1}}">
+      <view class="subTitleClass">房产信息认证</view>
+  
+      <view a:if="{{!canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 
+        <view class="contents">
+          <image class="addImageViewClass" src="{{img1}}" />
+          <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="1">
+              <icon type="cancel" color="red" size="18" />
+          </view>
+        </view>
+        <text class="textClass">业主身份证正面</text>
+      </view>
+
+      <view a:if="{{canAddImg1}}" class="addViewClass" style="margin-left:35rpx;"> 
+        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="1"/>
+        <text class="textClass">业主身份证正面</text>
+      </view>
+
+      <view a:if="{{!canAddImg2}}" class="addViewClass" style="margin-left:16rpx;"> 
+        <view class="contents">
+          <image class="addImageViewClass" src="{{img2}}" />
+          <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
+              <icon type="cancel" color="red" size="18" />
+          </view>
+        </view>
+        <text class="textClass">业主身份证反面</text>
+      </view>
+
+      <view a:if="{{canAddImg2}}" class="addViewClass" style="margin-left:16rpx;"> 
+        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="2"/>
+        <text class="textClass">业主身份证反面</text>
+      </view>
+
+      <view a:if="{{!canAddImg3}}" class="addViewClass" style="margin-left:16rpx;"> 
+        <view class="contents">
+          <image class="addImageViewClass" src="{{img3}}" />
+          <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="3">
+              <icon type="cancel" color="red" size="18" />
+          </view>
+        </view>
+        <text class="textClass">房产证</text>
+      </view>
+
+      <view a:if="{{canAddImg3}}" class="addViewClass" style="margin-left:16rpx;"> 
+        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="3"/>
+        <text class="textClass">房产证</text>
+      </view>
+
+      <button class="nextStepButtonClass" onTap="next">下一步</button>
+    </block>
+    
+    <!-- 二房东 -->
+    <block  a:if="{{show2}}">
+      <view class="subTitleClass">业主授权租赁合同</view>
+  
+      <view class="box_img">
+        <view a:if="{{!canAddImg4}}" class="addViewClass" style="margin-left:16rpx;"> 
+          <view class="contents">
+            <image class="addImageViewClass" src="{{img4}}" />
+            <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="4">
+                <icon type="cancel" color="red" size="18" />
+            </view>
+          </view>
+          <text class="textClass">业主授权合同</text>
+        </view>
+
+        <view a:if="{{canAddImg4}}" class="addViewClass" style="margin-left:16rpx;"> 
+          <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="4"/>
+          <text class="textClass">业主授权合同</text>
+        </view>
+      </view>
+
+      <button class="nextStepButtonClass" onTap="next">下一步</button>
+    </block>
+
+  </view>
+
+
+  <!-- <view class="subTitleClass">地区(必填)</view>
   <view onTap="open">
     <input class="inputClass" type="text" placeholder="请选择房源所在地区信息" value="{{dist}}"  onFocus="hideKeyboard"/>
-  </view>
-  <view class="lineClass"></view>
+  </view> 
+  <view class="lineClass"></view> -->
 
 
-  <view class="subTitleClass">小区/公寓名称(必填)</view>
+  <!-- <view class="subTitleClass">小区/公寓名称(必填)</view>
  <view onTap="selectPoi">
    <input class="inputClass" type="text" placeholder="请填写，以方便定位" value="{{village}}"/>
-  </view>
-  <view class="lineClass"></view>
+  </view> 
+  <view class="lineClass"></view> -->
 
-  
-  <view class="subTitleClass">物业电话</view>
+
+  <!-- <view class="subTitleClass">物业电话</view>
 
    <input class="inputClass" type="number" placeholder="请输入联系方式"  value="{{vphone}}" onInput="toInput" data-t='3'/>
   
@@ -42,13 +170,14 @@
 
    <input class="inputClass" type="digit" placeholder="请填写容积率" value="{{vcubage}}" onInput="toInput" data-t='6'/>
 
-   
+    -->
   
-  <view class="lineClass"></view>
-  <view class="subTitleClass">小区照片上传</view>
+  <!-- <view class="lineClass"></view> -->
+  
+  <!-- <view class="subTitleClass">小区照片上传</view>
 
     <view a:if="{{!canAddImg}}" class="addViewClass" style="margin-left:35rpx;"> 
-      <view class="content">
+      <view class="contents">
         <image class="addImageViewClass" src="{{img}}" />
         <view onTap="delImg" class="delImg">
           <icon type="cancel" color="red" size="18" />
@@ -60,9 +189,10 @@
       <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg"/>
     </view>
 
-  <button class="nextStepButtonClss" onTap="next">下一步</button>
+  <button class="nextStepButtonClss" onTap="next1">下一步</button> -->
   
-</view>
+
+
  <!--弹出动画  -->
 <popup show="{{condition}}" position="bottom" onClose="onPopupClose">
   

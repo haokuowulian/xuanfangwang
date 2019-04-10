@@ -3,88 +3,208 @@
     房间信息
   </view>
 
-  <view class="info">
+  <view class="page-content">
+
+    <view class="content">便利设施
+      <view onTap="goTo1">
+        <input class="inputClass1" type="text" placeholder="请选择用户可以选择的便利设施"  value="{{furniturelist}}"/>
+      </view>
+    </view>
+
+    <view class="content">房屋特色
+      <view onTap="goTo2">
+        <input class="inputClass1" type="text" placeholder="请选择房屋特色"  value="{{featurelist}}"/>
+      </view>
+    </view>
+
+    <view class="content">房间名称
+      <input class="inputClass1" type="text" placeholder="为您的房间起个名，以区别其它房间" onInput="toInput" data-t='1' class="text_input" value="{{roomName}}"/>
+    </view>
+
+    <view class="content">房间面积(m²)
+      <input class="inputClass1" type="digit" placeholder="请填写房间的面积" onInput="toInput" data-t='2' class="text_input" value="{{area}}"/>
+    </view>
+
+    <view class="content">租金(元)
+      <input class="inputClass1" type="digit" placeholder="请填写租金价格" onInput="toInput" data-t='3' class="text_input" value="{{rents}}"/>
+    </view>
+
+    <view class="content">付款方式
+      <view class="inputClass2">
+        <picker onChange="bindPickerChange1" value="{{index1}}" range="{{payways}}">
+          <view class="class_text">{{payway}}<image src="/image/icon/right.png" class="right-img"/></view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="content">水电费杂项
+      <view class="inputClass2">
+        <view onTap="toWERate">
+          <view a:if="{{waterfree}}">{{water}}</view>
+          <view a:if="{{watersave}}">{{water}}</view>
+          <view a:if="{{waterdefault}}" class="text_input1">{{watertext}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="content">是否独卫
+      <view class="inputClass2">
+        <picker onChange="bindPickerChange2" value="{{index2}}" range="{{pBathroom}}">
+          <view class="class_text">{{privatebath}}<image src="/image/icon/right.png" class="right-img"/></view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="content">可住人数
+      <view class="inputClass2">
+        <picker onChange="bindPickerChange3" value="{{index3}}" range="{{peoples}}">
+          <view class="class_text">{{people}}<image src="/image/icon/right.png" class="right-img"/></view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="content">床位
+      <view class="inputClass2">
+        <picker onChange="bindPickerChange4" value="{{index4}}" range="{{beds}}">
+          <view class="class_text">{{bed}}<image src="/image/icon/right.png" class="right-img"/></view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="content">租客性别
+      <view class="inputClass2">
+        <picker onChange="bindPickerChange5" value="{{index5}}" range="{{sexs}}">
+          <view class="class_text">{{sex}}<image src="/image/icon/right.png" class="right-img"/></view>
+        </picker>
+      </view>
+    </view>
+ 
+
+  </view>
+
+
+  <!-- <view class="info">
   <view class="info-title">便利设施</view>
    <view onTap="goTo1" class="info-content">
     <input class="text_input" type="text" placeholder="请选择用户可以选择的便利设施" value="{{furniturelist}}"/>
-   </view>
- 
+   </view> 
+   </view>-->
 
-   </view>
-  <view class="info">
+  <!-- <view class="info">
    <view class="info-title">房屋特色</view>
    <view onTap="goTo2" class="info-content">
     <input class="text_input" type="text" placeholder="请选择房屋特色" value="{{featurelist}}"/>
   </view>
-  </view>
+  </view> -->
 
-  <view class="info">
+  <!-- <view class="info">
     <view class="info-title">房间名称</view>
     <view class="info-content"><input type="text" placeholder="为您的房间起个名，以区别其它房间" onInput="toInput" data-t='1' class="text_input" value="{{roomName}}"/></view>
-  </view>
-  <view class="info">
+  </view> -->
+
+  <!-- <view class="info">
     <view class="info-title">面积(m²)</view>
     <view class="info-content"><input type="digit" placeholder="请填写房间的面积" onInput="toInput" data-t='2' class="text_input" value="{{area}}"/></view>
-  </view>
-  <view class="info">
+  </view> -->
+  <!-- <view class="info">
     <view class="info-title">租金(元)</view>
     <view class="info-content"><input type="digit" placeholder="请填写租金价格" onInput="toInput" data-t='3' class="text_input" value="{{rents}}"/></view>
-  </view>
-  <view class="info">
+  </view> -->
+  <!-- <view class="info">
     <view class="info-title">付款方式</view>
     <view class="info-content1">
       <picker onChange="bindPickerChange1" value="{{index1}}" range="{{payways}}">
         <view class="row-extra">{{payway}}<image src="/image/icon/right.png" class="right-img"/></view>
       </picker>
     </view>  
-  </view>
-  <view class="info">
+  </view> -->
+  <!-- <view class="info">
     <view class="info-title">水电费</view>
     <view class="info-content3" onTap="toWERate">
       <view a:if="{{waterfree}}"  class="text_input1">{{water}}</view>
       <view a:if="{{watersave}}"  class="text_input1">{{water}}</view>
       <view a:if="{{waterdefault}}"  class="text_input1">{{watertext}}</view>
-    <image src="/image/icon/right.png" class="right-img"/></view>
-  </view>
-  <view class="info">
+      <image src="/image/icon/right.png" class="right-img"/>
+    </view>
+  </view> -->
+  <!-- <view class="info">
     <view class="info-title">是否独卫</view>
     <view class="info-content1">
       <picker onChange="bindPickerChange2" value="{{index2}}" range="{{pBathroom}}">
         <view class="row-extra">{{privatebath}}<image src="/image/icon/right.png" class="right-img"/></view>
       </picker>
     </view>
-  </view>
-  <view class="info">
+  </view> -->
+  <!-- <view class="info">
     <view class="info-title">可住人数</view>
     <view class="info-content1">
        <picker onChange="bindPickerChange3" value="{{index3}}" range="{{peoples}}">
         <view class="row-extra">{{people}}<image src="/image/icon/right.png" class="right-img"/></view>
       </picker>
     </view>
-  </view>
-  <view class="info">
+  </view> -->
+  <!-- <view class="info">
     <view class="info-title">床位</view>
     <view class="info-content1">
       <picker onChange="bindPickerChange4" value="{{index4}}" range="{{beds}}">
         <view class="row-extra">{{bed}}<image src="/image/icon/right.png" class="right-img"/></view>
       </picker>
     </view>
-  </view>
-  <view class="info info1">
-    <view class="info-title">房间照片</view>
-    <view a:if="{{!canAddImg1}}" class="info-content2">
-      <image src="{{img1}}" class="img"/>
-      <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="1">
-          <icon type="cancel" color="red" size="18" />
+  </view> -->
+  <!-- <view class="info info1"> -->
+  <view class="info2">
+    <view class="subTitleClass">
+      <view>房源照片上传</view>
+      <view>{{images.length}}/6</view>
+    </view>
+    
+    <view class="chooseImg">
+      <block a:for="{{images}}"  a:key="{{item}}" a:for-index="idx">
+        <view  class="addViewClass" style="margin-right:16rpx;"> 
+        <view class="contents">
+          <image class="addImageViewClass" src="{{item}}" />
+          <view onTap="delImg2" class="delImg" data-index="{{idx}}">
+            <icon type="cancel" color="red" size="18" />
+          </view>
+        </view>
+      </view>
+        
+      </block>
+      <view a:if="{{canAddImg}}" class="addViewClass" style="margin-right:16rpx;"> 
+        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg2"/>
       </view>
     </view>
 
-    <view a:if="{{canAddImg1}}" class="info-content2" onTap="addImg" data-t="1">
-      <image src="{{img11}}" class="img"/>
-      <!-- 添加/相册 -->
-    </view>
   </view>
+
+  <!-- <view class="info">
+    <view class="info-title">租客性别</view>
+    <view class="box_choose_sex">
+      <view class="type_choose">
+        <view class='icon_none' a:if="{{!show1}}" onTap="toChooseType1"></view>
+        <view class="icon-bkgd" a:if="{{show1}}">
+          <icon type="success" class="icon-check" color="#ff8800" />
+        </view><view class="type_name">男女不限</view>
+      </view>
+    
+      <view class="type_choose">
+        <view class='icon_none' a:if="{{!show2}}"  onTap="toChooseType2"></view>
+        <view class="icon-bkgd" a:if="{{show2}}">
+          <icon type="success" class="icon-check" color="#ff8800" />
+        </view><view class="type_name">只限男</view>
+      </view>
+
+      <view class="type_choose">
+        <view class='icon_none' a:if="{{!show3}}"  onTap="toChooseType3"></view>
+        <view class="icon-bkgd" a:if="{{show3}}">
+          <icon type="success" class="icon-check" color="#ff8800" />
+        </view><view class="type_name">只限女</view>
+      </view>
+    </view>
+  </view> -->
+
   <view class="info info1">
+    
     <view class="info-title">室内消防设备</view>
     <checkbox-group onChange="onChange" class="checkboxGroupClass">
       <label a:for="{{fireList}}" class="checkboxClass">
@@ -94,7 +214,6 @@
     </checkbox-group>
    
   </view>
-
 
 
   <view class="fire">

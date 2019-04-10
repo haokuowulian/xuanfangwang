@@ -2,6 +2,7 @@ var app = getApp();
 Page({
   data: {
     orderList:[],
+    pageIndex:1,
   },
   onLoad() {
     var that = this;
@@ -13,17 +14,23 @@ Page({
         url:app.globalData.baseUrl+ 'IF/walletLog/getWalletLogListByUserId.do', // 目标服务器url
         method: 'POST',
         data:{
-          userId:75,
+          userId:userId,
           pageIndex:1,
           pageSize:10,
         },
         dataType: 'json',
         success: (res) => {
           console.log(res)
-          var list = res.data.data;
-          that.setData({
-            orderList:list,
-          });
+          if(that.data.pageIndex==1){
+            that.setData({
+              orderList:res.data.data,
+            });
+          }else if(that.data.orderList.length<res.data.count){
+            that.setData({
+              orderList:that.data.orderList.concat(res.data.data)
+            });
+          }
+          my.stopPullDownRefresh();
         },
       });
     }else{

@@ -39,6 +39,15 @@
   justify-content: space-between;
   width: 670rpx;
 }
+.card_concent1{
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  width: 670rpx;
+}
 .card_type{
   display: flex;
   flex-direction: column;
@@ -69,6 +78,10 @@
 .card_number{
   font-size: 50rpx;
   color: #ff8800;
+}
+.card_number1{
+  font-size: 50rpx;
+  color: #333333;
 }
 .lineClass{
   height: 2rpx;
@@ -104,4 +117,38 @@
   height: 80rpx;
   width: 610rpx;
   border-radius: 6rpx;
+}
+.temp {
+  position: relative;
+  z-index: 4;
+  font-size: 14px;
+  top: 35rpx;
+}
+.temp3 {
+  width: 690rpx;;
+  height: 100%;
+  position: absolute;
+  overflow-y: scroll;
+  background-color: rgba(0,0,0,0.5);
+}
+.tempheight {
+  height: 545rpx;
+  overflow-y: scroll;
+  background: #fff; 
+}
+.disappear {
+  display: none;
+}
+.show {
+  display: block;
+}
+.btn_clear{
+  height: 45rpx;
+  width: 690rpx;
+  margin-top: 10rpx;
+  margin-left: 15rpx;
+}
+.img_clear{
+  width: 35rpx;
+  height: 35rpx;
 }

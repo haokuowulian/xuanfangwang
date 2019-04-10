@@ -1,0 +1,86 @@
+<view class="page-date">
+  <view class="startDate">
+    <view class="startDate-text">开始时间</view>
+  </view>
+  <view class="begin-date" onTap="chooseDate">
+    <view class="selected">
+      <view class="selected-true"></view>
+    </view>
+    <view class="date-text">{{currentDate}}</view>
+  </view>
+  <view class="startDate1">
+    <view class="startDate-text1">*开始时间可从当前时间起7日内选择</view>
+    <view class="startDate-text2">结束时间</view>
+  </view>
+
+  <!-- 结束时间：3、6、12 -->
+  <!-- 月租 -->
+  <view class="choose" a:if="{{payment==3||payment==6||payment==12}}">
+    <view class="choose-date" id='10'>
+      <view class="selected1">
+        <view a:if="{{true}}" class="unselected"></view>
+      </view>
+      <view class="date-text1">{{date10}}</view>
+    </view>
+  </view>
+
+  <view class="choose" a:else>
+    <view class="choose-date" onTap="onChoose" id='10'>
+      <view class="selected1">
+        <view a:if="{{choose0}}" class="myselected"></view>
+      </view>
+      <view class="date-text">{{date10}}</view>
+    </view>
+  </view>
+  <!-- 结束时间：3、6、12 -->
+  <!-- 月付&季付 -->
+  <view class="choose" a:if="{{payment==6||payment==12}}">
+    <view class="choose-date" id='1'>
+      <view class="selected1">
+        <view a:if="{{true}}" class="unselected"></view>
+      </view>
+      <view class="date-text1">{{date1}}</view>
+    </view>
+  </view>
+
+  <view class="choose" a:else>
+    <view class="choose-date" onTap="onChoose" id='1'>
+      <view class="selected1">
+        <view a:if="{{choose1}}" class="myselected"></view>
+      </view>
+      <view class="date-text">{{date1}}</view>
+    </view>
+  </view>
+
+  
+
+  <!-- 月付&季付&半年付 -->
+  <view class="choose"  a:if="{{payment==12}}">
+    <view class="choose-date">
+      <view class="selected1">
+        <view a:if="{{true}}" class="unselected"></view>
+      </view>
+      <view class="date-text1">{{date2}}</view>
+    </view>
+  </view>
+
+  <view class="choose" a:else>
+    <view class="choose-date" onTap="onChoose" id='2'>
+      <view class="selected1">
+        <view a:if="{{choose2}}" class="myselected"></view>
+      </view>
+      <view class="date-text">{{date2}}</view>
+    </view>
+  </view>
+  
+  <!-- 月付&季付&半年付&年付 -->
+  <view class="choose">
+    <view class="choose-date" onTap="onChoose" id='3'>
+      <view class="selected1">
+        <view a:if="{{choose3}}" class="myselected"></view>
+      </view>
+      <view class="date-text">{{date3}}</view>
+    </view>
+  </view>
+  <view class="page-btn" onTap="toNext">下一步</view>
+</view>

@@ -1,0 +1,38 @@
+<view class="backgroundClass">
+  
+  <view a:if="{{rentType==2}}" class="titleClass">房源详情描述</view>
+  <view class="page-content">
+
+    <view class="content">房源名称
+      <input class="inputClass1" type="text" placeholder="为您的房源起个名称" onInput="toInput" data-t='1' value="{{housename}}"/>
+    </view>
+
+    <view class="content">预计发布截止时间
+      <view onTap="chooseDate">
+        <input class="inputClass1" type="text" placeholder="请选择预计结束日期" data-t='4' value="{{endDates}}"/>
+      </view>
+    </view>
+
+    <view class="subTitleClass">房源描述</view>
+    <view onTap="selectArea">
+      <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="小区位置，交通方便，眼界开阔,房间干净舒适，光线足，通风性能良好，可随时看房。" onInput="toInput" data-t='2'  value="{{describe}}"/>
+    </view>
+
+    <view class="subTitleClass">房间列表：</view>
+      <block a:for="{{roomcount}}" a:for-index="idx">
+        
+        <!-- <view onTap="toRoominfo" data-t='{{idx}}'> -->
+          <view class="content" onTap="toRoominfo" data-t='{{idx}}'>
+            <view class="room_title">房间{{idx+1}}</view>
+            <input class="inputClass1" type="text" placeholder="添加房间信息" value="{{roomList[idx].roomName}}"/>
+          </view>
+        <!-- </view> -->
+        
+      </block>
+    </view>
+   <button a:if="{{rentType==2}}" class="nextStepButtonClass" onTap="publish">发布</button>
+  </view>
+
+
+
+</view>

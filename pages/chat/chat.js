@@ -44,7 +44,7 @@ Page({
         });
         // that.getMessage(uid);
         that.getMessage(uid);
-        that.getMessageTimely(uid);
+        // that.getMessageTimely(uid);
       },
     });
 
@@ -122,6 +122,7 @@ Page({
     var content = that.data.msg;
     var userId = that.data.userId;
     var type = that.data.type;
+    that.getMessage(userId);
     if(content!=''){
       my.httpRequest({
         url: app.globalData.baseUrl+'IF/chat/addChat.do', // 目标服务器url
@@ -150,7 +151,7 @@ Page({
   getMessageTimely(uid){
     var that = this;
     console.log('刷新成功！')
-    that.data.interval = setInterval(function(){that.getMessage(uid)}, 3000);
+    that.data.interval = setInterval(function(){that.getMessage(uid)}, 2000);
   },
   // 页面被关闭
   onUnload() {

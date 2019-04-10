@@ -6,14 +6,16 @@ Page({
     powerprice:'',
     property:'',
     payways:[
-      '月付',
-      '季付',
-      '半年付',
-      '年付',
+      '押一付一',
+      '押一付三',
+      '押一付六',
+      '押一付十二',
     ],
     payway:'月付',
     index1:0,
     payment:1,
+    electricityScale:'',
+    waterScale:'',
   },
   onLoad() {},
   toInput(e){
@@ -37,6 +39,16 @@ Page({
     if(e.target.dataset.t==4){
       that.setData({
         property:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==5){
+      that.setData({
+        electricityScale:e.detail.value,
+      });
+    }
+    if(e.target.dataset.t==6){
+      that.setData({
+        waterScale:e.detail.value,
       });
     }
   },
@@ -79,8 +91,10 @@ Page({
     var houserent = that.data.houserent;
     var waterprice = that.data.waterprice;
     var powerprice = that.data.powerprice;
-    var property = that.data.property;
     var payway = that.data.payway;
+    var property = that.data.property;
+    var electricityScale = that.data.electricityScale;
+    var waterScale = that.data.waterScale;
     var regNum1=new RegExp('[0-9]','g');
     var regNum2=new RegExp('[0-9]','g');
     var regNum3=new RegExp('[0-9]','g');
@@ -90,7 +104,7 @@ Page({
     console.log(houserentNum)
     console.log(waterpriceNum)
     console.log(powerpriceNum)
-    if(houserent!=''&&waterprice!=''&&powerprice!=''){
+    if(houserent!=''&&waterprice!=''&&powerprice!=''&&electricityScale!=''&&waterScale!=''&&property!=''){
       if(houserentNum){
         if(waterpriceNum){
           if(powerpriceNum){
@@ -208,9 +222,15 @@ Page({
     var img3url = my.getStorageSync({
       key: 'r_img3url', // 缓存数据的key
     }).data;
+    var img4url = my.getStorageSync({
+      key: 'r_img4url', // 缓存数据的key
+    }).data;
 
     var rentType = my.getStorageSync({
       key: 'r_rentType', // 缓存数据的key
+    }).data;
+    var sexCondition = my.getStorageSync({
+      key: 'r_sexCondition', // 性别限制
     }).data;
 
     var housename = my.getStorageSync({
@@ -284,6 +304,9 @@ Page({
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
     console.log(that.data.rope)
+    var property = that.data.property;
+    var electricityScale = that.data.electricityScale;
+    var waterScale = that.data.waterScale;
 
     var payment = this.data.payment;
    
@@ -327,6 +350,15 @@ Page({
       // idcard_positive:img1url,
       // idcard_reverse:img2url,
       // licence:img3url,
+      //sexCondition 性别限制
+      issuerRelation:vrelation,
+      identityCardFront:img1url,
+      identityCardReverse:img2url,
+      propertyOwnershipCertificate:img3url,
+      contract:img4url,
+      waterScale:waterScale,
+      electricityScale:electricityScale,
+      // property:property,
       rentType:rentType,
       entireRents:houserent,
       description:describe,
@@ -351,6 +383,8 @@ Page({
       smokeMaskimg:smokeMaskimg,
       flashlightimg:flashlightimg,
       ropeimg:ropeimg,
+      sexneed:sexCondition,
+      propertyFee:property,
     }];
 console.log('uerId==='+uid)
 console.log(apartment)
@@ -385,9 +419,12 @@ console.log(roomList)
             my.alert({
               title: '提交成功！',
               success: () => {
-              my.navigateBack({
-                delta: 7,
-              });
+                my.navigateTo({
+                  url:'/pages/index/housedelivery/page_result/page_result?type=2',
+                });
+              // my.navigateBack({
+              //   delta: 7,
+              // });
             }, 
             });
             

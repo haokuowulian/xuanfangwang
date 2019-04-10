@@ -36,6 +36,7 @@ Page({
     phoneCode:'',
     send:true,
     alreadySend:false,
+    chatlist:[],
   },
   onLoad() {
     // var userId = my.getStorageSync({
@@ -60,6 +61,7 @@ Page({
     
   },
   onShow(){
+    var that = this;
     userId = my.getStorageSync({
      key: 'userId', // 缓存数据的key
    }).data;
@@ -99,10 +101,11 @@ Page({
           if(res.data.success){
               if(certNo&&certNo!=''){
                 my.setNavigationBar({
-                      title:'个人中心'
-                    });
+                  title:'个人中心'
+                });
+                that.getChatList();
                 if(roleId==7&&!currentIdentityIsUser){//房东
-                  this.setData({
+                  that.setData({
                     userlogin:true,
                     userCompleted:true,
                     isRoleUser:false,
@@ -111,7 +114,7 @@ Page({
                     userId:userId
                   });
                 }else if(roleId==7&&currentIdentityIsUser){//房东&租客
-                  this.setData({
+                  that.setData({
                     userlogin:true,
                     userCompleted:true,
                     isRoleUser:true,
@@ -120,7 +123,7 @@ Page({
                     userId:userId
                   });
                 }else if(roleId==8){//租客
-                  this.setData({
+                  that.setData({
                     userlogin:true,
                     userCompleted:true,
                     isRoleUser:true,
@@ -134,7 +137,7 @@ Page({
               // my.setNavigationBar({
               //       title:'完善信息'
               //     });
-              this.setData({
+              that.setData({
                 userlogin:true,
                 userCompleted:false,
                 headimg:avatar,
@@ -174,6 +177,30 @@ Page({
     });
   }
   },
+  getChatList(){
+    var that = this;
+    var userId = my.getStorageSync({
+     key: 'userId', // 缓存数据的key
+   }).data;
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/chatList/getFdChatList.do', // 目标服务器url
+      method: 'POST',
+      data: {
+        landlordId:userId,
+        pageIndex:1,
+        pageSize:10,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+        if(res.data.success){
+          that.setData({
+            chatlist:res.data.data,
+          });
+        }
+      },
+    });
+  },
   //授权登录
   antLogin(){
     my.showLoading({
@@ -204,7 +231,7 @@ Page({
                console.log(res);
                console.log('---------------------------');
                my.hideLoading();
-               app.getCity();
+              //  app.getCity();
                my.setStorageSync({
                  key: 'userId', // 缓存数据的key
                  data: res.data.info.id, // 要缓存的数据
@@ -450,14 +477,18 @@ Page({
     // my.openCardList();
     // my.openTicketList();
     my.ap.navigateToAlipayPage({
-    path:'alipays://platformapi/startapp?appId=60000155',
-    success:(res) => {
-        my.alert({content:'系统信息' + JSON.stringify(res)});
-    },
-    fail:(error) => {
-        my.alert({content:'系统信息' + JSON.stringify(error)});        
-    }
-})
+      path:'alipays://platformapi/startapp?appId=60000032&url=%2Fwww%2FexternalCard.html%3FcertDocType%3DCYBER_TRUSTED_ID%26bizType%3DHZ_HOTEL_ROOM_RENT_CYBER_TRUSTED_ID',
+      success:(res) => {
+        console.log('系统信息success')
+        console.log(JSON.stringify(res))
+          // my.alert({content:'系统信息' + JSON.stringify(res)});
+      },
+      fail:(error) => {
+        console.log('系统信息fail')
+        console.log(JSON.stringify(res))
+          // my.alert({content:'系统信息' + JSON.stringify(error)});        
+      }
+    })
   },
 
 
@@ -741,7 +772,7 @@ getServerTime(){
             if(res.data.success){
               my.hideLoading();
               console.log("登录成功！")
-              app.getCity();
+              // app.getCity();
               // that.getPayId();
               my.setStorageSync({
                  key: 'userId', // 缓存数据的key
@@ -1011,7 +1042,7 @@ getServerTime(){
         if(res.data.success){
           my.hideLoading();
           console.log("登录成功！")
-          app.getCity();
+          // app.getCity();
           // that.getPayId();
           my.setStorageSync({
             key: 'userId', // 缓存数据的key
@@ -1095,5 +1126,10 @@ getServerTime(){
       },
     });
 
+  },
+  toChat(){
+    my.navigateTo({
+       url: '/pages/chatlist/chatlist',
+    });
   },
 });

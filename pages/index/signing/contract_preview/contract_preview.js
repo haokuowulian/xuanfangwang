@@ -102,7 +102,7 @@ Page({
         if(res.data.success){
           that.setData({
             your_name:res.data.data.certName,
-            your_phone:res.data.data.telPhone,
+            your_phone:res.data.data.userName,
             your_card:res.data.data.certNo,
           });
         }

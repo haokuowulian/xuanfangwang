@@ -210,7 +210,7 @@ Page({
       // url: app.globalData.baseUrl_whj+"IF/order/addAlipayFreezeOrder2.do", // 目标服务器url
       // url: app.globalData.baseUrl_whj+"IF/order/addAlipayFreezeOrder.do", // 目标服务器url
       // url: app.globalData.baseUrl_whj+"IF/order/addOrder.do", // 目标服务器urlhttp://192.168.1.89:8080/LLGY/
-      url: app.globalData.base_whj+"IF/order/addOrder.do", // 目标服务器
+      url: app.globalData.baseUrl_whj+"IF/order/addOrder.do", // 目标服务器
       method: 'POST',
       data:{
         userId:uid,
@@ -243,7 +243,7 @@ Page({
         if(res.data.success){
           var orderId = res.data.id;
           my.httpRequest({
-            url:  app.globalData.base_whj+"IF/alipay/fundAuthOrderAppFreeze.do", // 目标服务器
+            url:  app.globalData.baseUrl_whj+"IF/alipay/fundAuthOrderAppFreeze.do", // 目标服务器
             method: 'POST',
             data:{
               // userId:uid,
@@ -309,7 +309,7 @@ Page({
     my.httpRequest({
       // url: app.globalData.baseUrl_whj+'IF/order/payAlipayFreezeOrder.do', // 目标服务器url
       //  url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
-      url: app.globalData.base_whj+'IF/order/paySuccessAndSetAutoNo.do', // 目标服务器url
+      url: app.globalData.baseUrl_whj+'IF/order/paySuccessAndSetAutoNo.do', // 目标服务器url
       method: 'POST',
       data:{
         orderId:orderId,

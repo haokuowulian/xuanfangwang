@@ -313,21 +313,14 @@ Page({
     this.setData({
       houseType:query.type,
     });
-    if(query.type==3){
-      console.log(query.type)
-      this.setData({
-        rentType:2,
-        r1:false,
-        r2:true,
-      });
-    }else{
-      console.log(query.type)
-      this.setData({
-        rentType:1,
-        r1:true,
-        r2:false,
-      });
-    }
+   
+    console.log(query.type)
+    this.setData({
+      rentType:1,
+      r1:false,
+      r2:true,
+    });
+    
     switch(query.type){
       case "4"://精选房源
         this.getBoutiqueHousing();
@@ -407,7 +400,6 @@ Page({
     console.log('******************')
     console.log(arr)
     that.onPullDownRefresh();
-    // that.getBoutiqueHousing();
     that.closeHyFilter();
   },
   
@@ -524,7 +516,6 @@ Page({
       pageIndex:1,
     });
     that.onPullDownRefresh();
-    // that.getBoutiqueHousing();
     that.closeHyFilter();
   },
   
@@ -600,7 +591,6 @@ Page({
       pageIndex:1,
     });
     that.onPullDownRefresh();
-    // that.getBoutiqueHousing();
     that.closeHyFilter();
     if(that.data.pricetype){
       // 提交固定取值
@@ -707,7 +697,6 @@ Page({
     });
     console.log(that.data.condition1+'|'+that.data.condition2+'|'+that.data.rentType)
     that.onPullDownRefresh();
-    // that.getBoutiqueHousing();
     that.closeHyFilter();
   },
   // 下拉框
@@ -965,22 +954,33 @@ Page({
     var rt = that.data.rentType;
     console.log( this.data.pageIndex);
     my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
+      url: app.globalData.base_whj+"IF/housing/getHomeHousingApartmentIF.do",
       method: 'POST',
       data: {
+        // room:condition,//几室1/2/3
+        // minRent:minRent,//最小租金
+        // maxRent:maxRent,//最大租金
+        // toward:directionCondition,//朝向directionCondition
+        // feature:featureCondition,//特色
+        // furniture:furnitureCondition,//家具
+        // sortWay:sort,//排序方式
         // decorateType:-3,
-        room:condition,//几室1/2/3
-        minRent:minRent,//最小租金
-        maxRent:maxRent,//最大租金
-        toward:directionCondition,//朝向directionCondition
-        feature:featureCondition,//特色
-        furniture:furnitureCondition,//家具
-        sortWay:sort,//排序方式
-        decorateType:-3,
-        rentType:rt,
-        pageIndex: this.data.pageIndex,
-        pageSize: 6,
-        keyword:this.data.keyword,
+        // rentType:1,
+        // pageIndex: this.data.pageIndex,
+        // pageSize: 6,
+        // keyword:this.data.keyword,
+        decorateType:'',
+        rentType:1,
+        room:'',
+        minRent:'',
+        maxRent:'',
+        toward:'',
+        feature:'',
+        furniture:'',
+        sortWay:'',
+        pageIndex:1,
+        pageSize:6,
+        keyword:'',
       },
       dataType: 'json',
       success: function(res) {
@@ -1007,148 +1007,17 @@ Page({
     });
   },
 
-  //获取整租房源
-  getWholeRentalHousing(){
-    var that=this;
-    console.log('--------'+this.data.pageIndex);
-    var minRent=0;
-    var maxRent=10000;
-    var condition = that.data.condition1;
-    var sort = that.data.sort;
-    if(that.data.pricetype){
-      minRent=that.data.sliderleft1;
-      maxRent=that.data.sliderright1;
-    }else{
-      minRent=that.data.sliderleft;
-      maxRent=that.data.sliderright;
-    }
-    var a = that.data.featureCondition;
-    var b = that.data.furnitureCondition;
-    var c = that.data.direction;
-    var featureCondition = a.join(",");
-    var furnitureCondition = b.join(",");
-    var directionCondition = c.join(",");
-    var rt = that.data.rentType;
-    my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
-      method: 'POST',
-      data: {
-        room:condition,//几室1/2/3
-        minRent:minRent,//最小租金
-        maxRent:maxRent,//最大租金
-        toward:directionCondition,//朝向directionCondition
-        feature:featureCondition,//特色
-        furniture:furnitureCondition,//家具
-        sortWay:sort,//排序方式
-        rentType:rt,
-        pageIndex: this.data.pageIndex,
-        pageSize: 6,
-        keyword:this.data.keyword,
-      },
-      dataType: 'json',
-      success: function(res) {
-        console.log(res.data);
-        if(res.data.success){
-           if(that.data.pageIndex==1){
-                 that.setData({
-            wholeRentalHousing:res.data.data
-          });
-            }else if(that.data.wholeRentalHousing.length<res.data.count){
-               that.setData({
-                wholeRentalHousing:that.data.wholeRentalHousing.concat(res.data.data)
-              });
-            }
-          my.stopPullDownRefresh();
-        }
-      },
-      fail: function(res) {
-       console.log(res);
-      },
-      complete: function(res) {
-        my.hideLoading();
-      }
-    });
-  },
-
-  //获取合租房源
-  getSharedHousing(){
-    var that=this;
-    console.log('--------'+this.data.pageIndex);
-    var minRent=0;
-    var maxRent=10000;
-    var condition = that.data.condition1;
-    var sort = that.data.sort;
-    if(that.data.pricetype){
-      minRent=that.data.sliderleft1;
-      maxRent=that.data.sliderright1;
-    }else{
-      minRent=that.data.sliderleft;
-      maxRent=that.data.sliderright;
-    }
-    var a = that.data.featureCondition;
-    var b = that.data.furnitureCondition;
-    var c = that.data.direction;
-    var featureCondition = a.join(",");
-    var furnitureCondition = b.join(",");
-    var directionCondition = c.join(",");
-    var rt = that.data.rentType;
-    my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
-      method: 'POST',
-      data: {
-        room:condition,//几室1/2/3
-        minRent:minRent,//最小租金
-        maxRent:maxRent,//最大租金
-        toward:directionCondition,//朝向directionCondition
-        feature:featureCondition,//特色
-        furniture:furnitureCondition,//家具
-        sortWay:sort,//排序方式
-        rentType:rt,
-        pageIndex: this.data.pageIndex,
-        pageSize: 6,
-        keyword:this.data.keyword,
-      },
-      dataType: 'json',
-      success: function(res) {
-       console.log(res.data);
-        if(res.data.success){
-           if(that.data.pageIndex==1){
-                 that.setData({
-            sharedHousing:res.data.data
-          });
-            }else if(that.data.sharedHousing.length<res.data.count){
-               that.setData({
-                sharedHousing:that.data.sharedHousing.concat(res.data.data)
-              });
-            }
-          my.stopPullDownRefresh();
-        }
-      },
-      fail: function(res) {
-       console.log(res);
-      },
-      complete: function(res) {
-        my.hideLoading();
-      }
-    });
-  },
+  
   onPullDownRefresh() {
     var rentType = this.data.rentType;
     this.setData({
       pageIndex:1
     });
      switch(this.data.houseType){
-      case "1"://精选房源
+      case "4"://精选房源
         this.getBoutiqueHousing();
       break;
 
-      case "2"://整租房源
-        this.getWholeRentalHousing();
-      break;
-
-      case "3"://合租房源
-        this.getSharedHousing();
-      break;
     }
   },
   onReachBottom() {
@@ -1156,23 +1025,16 @@ Page({
       pageIndex:this.data.pageIndex+1
     });
      switch(this.data.houseType){
-      case "1"://精选房源
+      case "4"://精选房源
         this.getBoutiqueHousing();
       break;
 
-      case "2"://整租房源
-        this.getWholeRentalHousing();
-      break;
-
-      case "3"://合租房源
-        this.getSharedHousing();
-      break;
     }
   },
   //前往房源详情
   goToHouseDetail(e){
     my.navigateTo({
-    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+    url: '/pages/apartment/apartment?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
   },
   //搜索框搜索

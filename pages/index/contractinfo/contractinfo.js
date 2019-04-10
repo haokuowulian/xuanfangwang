@@ -14,6 +14,7 @@ Page({
   },
   getContractinfo(id){
     var that = this;
+    console.log(id)
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
@@ -57,6 +58,7 @@ Page({
     
   },
   onContinue(){
+    
     my.confirm({
       title: '温馨提示',
       content: '是否申请续约？',
@@ -71,4 +73,35 @@ Page({
       },
     });
   },
+  toBoard(){
+    var that = this;
+    var url = that.data.url;
+    my.setClipboard({
+      text: url, // 剪贴板数据
+      success: (res) => {
+        my.alert({
+          title: '合同链接已复制' 
+        });
+      },
+    });
+  },
+  // toDownload(){
+  //   var that = this;
+  //   var url = that.data.url;
+  //   my.downloadFile({
+  //     url: url,
+  //     success({ apFilePath }) {
+  //       // my.previewImage({
+  //       //   urls: [apFilePath],
+  //       // });
+  //       console.log(apFilePath)
+  //       my.saveFile();
+  //     },
+  //     fail(res) {
+  //       my.alert({
+  //         content: res.errorMessage || res.error,
+  //       });
+  //     },
+  //   });
+  // },
 });

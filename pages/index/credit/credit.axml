@@ -53,6 +53,7 @@
 
 
 <view class="box_btn" a:if="{{status!=9}}">
+  <!-- <view class="box_btn" > -->
   <button class="btn_class btn_back" type="default" onTap="toCancel">取消订单</button>
   <button class="btn_class btn_back1" type="default" onTap="toSign">合同签约</button>
 </view>

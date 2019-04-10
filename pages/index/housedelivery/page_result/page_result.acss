@@ -1,0 +1,13 @@
+.page-operate{
+  height: 150rpx;
+  width: 680rpx;
+  padding: 24rpx 35rpx;;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.box_operate{
+  font-size: 32rpx;
+}

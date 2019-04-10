@@ -47,7 +47,6 @@
     "pages/index/housedelivery/water_power_rate/water_power_rate",
     "pages/index/housedelivery/housedelivery2/housedelivery2",
     "pages/index/housedelivery/housedelivery3/housedelivery3",
-    "pages/index/housedelivery/housedelivery4/housedelivery4",
     "pages/index/housedelivery/housedelivery5/housedelivery5",
     "pages/index/housedelivery/housedelivery6/housedelivery6",
     "pages/index/housedelivery/housedelivery5-1/housedelivery5-1",
@@ -58,7 +57,6 @@
     "pages/index/setting/edit_page/edit_page",
     "pages/index/setting/forget_pwd/forget_pwd",
     "pages/index/my_plan/my_plan",
-    "pages/index/housedelivery/fire_letter/fire_letter",
     "pages/index/signing/contract_preview/contract_preview",
     "pages/index/wallet/wallet",
     "pages/index/wallet/my_bill/my_bill",
@@ -83,7 +81,10 @@
     "pages/houseinfo/houseinfo02/houseinfo02",
     "pages/apartment/apartment",
     "pages/apartment/apartment_list/apartment_list",
-    "pages/apartment/signing/signing"
+    "pages/apartment/signing/signing",
+    "pages/apartment/signing/renting_date/renting_date",
+    "pages/index/housedelivery/page_result/page_result",
+    "pages/index/housedelivery/housedelivery5_new/housedelivery5_new"
   ],
   "window": {
     "defaultTitle": "My App"
@@ -104,12 +105,6 @@
         "pagePath": "pages/index/findhouse/findhouse",
         "activeIcon": "image/sousuo.png",
         "name": "找房"
-      },
-      {
-        "icon": "image/icon/xiaoxi.png",
-        "pagePath": "pages/chatlist/chatlist",
-        "activeIcon": "image/xiaoxi.png",
-        "name": "会话"
       },
       {
         "icon": "image/icon/yaoshi.png",

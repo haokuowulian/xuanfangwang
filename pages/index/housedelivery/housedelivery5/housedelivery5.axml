@@ -1,32 +1,71 @@
 <view class="backgroundClass">
-  <view a:if="{{rentType==1}}" class="titleClass">房源描述与价格（2/3）</view>
-  <view a:if="{{rentType==2}}" class="titleClass">房源描述与价格（2/2）</view>
-  <view a:if="{{rentType==1}}">
-  <view class="subTitleClass">便利设施</view>
-   <view onTap="goTo1">
-    <input class="inputClass" type="text" placeholder="请选择用户可以选择的便利设施" value="{{furniturelist}}"/>
-   </view>
-  <view class="lineClass"></view>
+  <view class="titleClass">房源描述与价格（1/2）</view>
 
-   <view class="subTitleClass">房屋特色</view>
-   <view onTap="goTo2">
-    <input class="inputClass" type="text" placeholder="请选择房屋特色" value="{{featurelist}}"/>
+  <view class="page-content">
+
+    <view class="content">房源名称
+      <input class="inputClass1" type="text" placeholder="为您的房源起个名称" onInput="toInput" data-t='1' value="{{housename}}"/>
+    </view>
+
+    <view class="content">预计发布截止时间
+      <view onTap="chooseDate">
+        <input class="inputClass1" type="text" placeholder="请选择预计结束日期" data-t='4' value="{{endDates}}"/>
+      </view>
+    </view>
+
+    <view class="subTitleClass">房源描述</view>
+    <view onTap="selectArea">
+      <textarea maxlength='-1' auto-height='true' show-count='false' class="inputClass" type="text" placeholder="小区位置，交通方便，眼界开阔,房间干净舒适，光线足，通风性能良好，可随时看房。" onInput="toInput" data-t='2'  value="{{describe}}"/>
+    </view>
+
+    <view class="content">便利设施
+      <view onTap="goTo1">
+        <input class="inputClass1" type="text" placeholder="请选择用户可以选择的便利设施"  value="{{furniturelist}}"/>
+      </view>
+    </view>
+
+    <view class="content">房屋特色
+      <view onTap="goTo2">
+        <input class="inputClass1" type="text" placeholder="请选择房屋特色"  value="{{featurelist}}"/>
+      </view>
+    </view>
+
+    <view class="content">租客性别
+      <view class="inputClass2">
+        <picker onChange="bindPickerChange5" value="{{index5}}" range="{{sexs}}">
+          <view class="class_text">{{sex}}<image src="/image/icon/right.png" class="right-img"/></view>
+        </picker>
+      </view>
+    </view>
+
   </view>
-  <view class="lineClass"></view>
-</view>
 
-  <block a:if="{{rentType==2}}" a:for="{{roomcount}}" a:for-index="idx">
-  <view onTap="toRoominfo" data-t='{{idx}}'>
-  <view class="subTitleClass">房间{{idx+1}}</view>
-
-  <input class="inputClass" type="text" placeholder="添加房间信息" value="{{roomList[idx].roomName}}"/>
-  <view class="lineClass"></view>
-  </view>
-  </block>
-
-  <view a:if="{{rentType==1}}">
+  <view class="info2">
+    <view class="subTitleClass">
+      <view>房源照片上传</view>
+      <view>{{images.length}}/6</view>
+    </view>
     
-      
+    <view class="chooseImg">
+      <block a:for="{{images}}"  a:key="{{item}}" a:for-index="idx">
+        <view  class="addViewClass" style="margin-right:16rpx;"> 
+        <view class="contents">
+          <image class="addImageViewClass" src="{{item}}" />
+          <view onTap="delImg2" class="delImg" data-index="{{idx}}">
+            <icon type="cancel" color="red" size="18" />
+          </view>
+        </view>
+      </view>
+        
+      </block>
+      <view a:if="{{canAddImg}}" class="addViewClass" style="margin-right:16rpx;"> 
+        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg2"/>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="info1">
     <view class="subTitleClass">消防设备</view>
     <checkbox-group onChange="onChange" class="checkboxGroupClass">
       <label a:for="{{fireList}}" class="checkboxClass">
@@ -87,11 +126,8 @@
       </view>
     
   </view>
-
-
-  </view>
   
 
  <view><button a:if="{{rentType==1}}" class="nextStepButtonClass" onTap="next">下一步</button></view>
- <view><button a:if="{{rentType==2}}" class="nextStepButtonClass" onTap="publish">发布</button></view>
+
 </view>

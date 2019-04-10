@@ -132,7 +132,7 @@ Page({
       decorateType:index*1+1
     });
   },
-  toInput(e){
+  toInput1(e){
     console.log(e.detail.value)
     var that = this;
     if(e.target.dataset.t==1){
@@ -287,7 +287,7 @@ Page({
   },
   next(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var img1 = that.data.img1;
     var img2 = that.data.img2;
     var img3 = that.data.img3;

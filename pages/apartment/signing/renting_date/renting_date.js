@@ -26,15 +26,14 @@ Page({
      key: 'uhouseInfo', // 缓存数据的key
     }).data;
     var payment = houseInfo.template.payment;
-    // console.log(payment)
-    // var startDate=app.getDate('yyyy年MM月dd日',0);
-    // console.log('++++++++++1++++++++++++')
-    // console.log(startDate)
-    // console.log('++++++++++2++++++++++++')
-    // if(startDate!=''){
-    //   that.getCurrentDate(payment,startDate);
-    // }
-    that.getCurrentDate1();
+    console.log(payment)
+    var startDate=app.getDate('yyyy年MM月dd日',0);
+    console.log('++++++++++1++++++++++++')
+    console.log(startDate)
+    console.log('++++++++++2++++++++++++')
+    if(startDate!=''){
+      that.getCurrentDate(payment,startDate);
+    }
     if(payment==1){
       that.setData({
         choose0:true,
@@ -244,31 +243,6 @@ Page({
         endDate:date03,
       });
     }
-  },
-
-  //初始获取当前1、3、6、12个月后日期
-  getCurrentDate1(){
-    var startDate=app.getDate('yyyy年MM月dd日',0);
-    startDate1=app.getDate('yyyy-MM-dd',0);
-    //获取三、六、十二个月后日期
-    var date10 = app.getFormateDate3('yyyy年MM月dd日',1);
-    date0 =app.getFormateDate3('yyyy-MM-dd',1);
-    var date1 = app.getFormateDate3('yyyy年MM月dd日',3);
-    date01 =app.getFormateDate3('yyyy-MM-dd',3);
-    var date2 = app.getFormateDate3('yyyy年MM月dd日',6);
-    date02 =app.getFormateDate3('yyyy-MM-dd',6);
-    var date3 = app.getFormateDate3('yyyy年MM月dd日',12);
-    date03 =app.getFormateDate3('yyyy-MM-dd',12);
-    console.log(date01+'-----------')
-    this.setData({
-      currentDate:startDate,
-      date10:date10,
-      date1:date1,
-      date2:date2,
-      date3:date3,
-      endDate:date01,
-    });
-    console.log(startDate)
   },
   
 });

@@ -1,7 +1,7 @@
 .backgroundClass{
   background-color: white;
   width: 750rpx;
-  height: 100vh;
+  height: 100%;
 }
 .titleClass{
   font-size: 50rpx;
@@ -89,4 +89,45 @@
 .right-img{
   height: 19rpx;
   width: 10rpx;
+  margin-left: 10rpx;
+}
+.page-content{
+  width: 680rpx;
+  background-color: #ffffff;
+  margin-top: 10rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+}
+.content{
+  border-bottom: 1rpx solid #e6e6e6;
+  height: 100rpx;
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.inputClass1{
+  font-size: 30rpx;
+  text-align: right;
+  color: #333333;
+  width: 400rpx;
+}
+.inputClass2{
+  /* font-size: 30rpx; */
+  text-align: right;
+  color: #333333;
+  height: 100rpx;
+  /* width: 400rpx; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10rpx;
+}
+.class_text{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

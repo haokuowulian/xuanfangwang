@@ -224,27 +224,64 @@ Page({
         },
       });
     }else{
-      if(userCompleted){
-        my.navigateTo({
-          url: '/pages/index/confirmpage/confirmpage?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
-        });
-      }else{
-        my.confirm({
-          title: '温馨提示',
-          content: '请先完善个人信息',
-          confirmButtonText: '确认',
-          cancelButtonText: '取消',
+      if(userlogin){
+        var token = my.getStorageSync({
+          key: 'token', 
+        }).data;
+        var userName = my.getStorageSync({
+          key: 'userName', 
+        }).data;
+        console.log(token)
+        my.httpRequest({
+          url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
+          method: 'POST',
+          data:{
+            phone:userName,
+            token:token,
+          },
+          dataType: 'json',
           success: (res) => {
-            if(res.confirm){
-              my.navigateTo({
-                url: '/pages/index/account_completed/account_completed',
+            console.log(res)
+            if(res.data.success){
+              if(userCompleted){
+                my.navigateTo({
+                  url: '/pages/index/confirmpage/confirmpage?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+                });
+              }else{
+                my.confirm({
+                  title: '温馨提示',
+                  content: '请先完善个人信息',
+                  confirmButtonText: '确认',
+                  cancelButtonText: '取消',
+                  success: (res) => {
+                    if(res.confirm){
+                      my.navigateTo({
+                        url: '/pages/index/account_completed/account_completed',
+                      });
+                    }
+                    
+                  },
+                });
+              }
+            }else{
+              my.setStorageSync({
+                key: 'userlogin', // 缓存数据的key
+                data: false, // 要缓存的数据
+              });
+              my.alert({
+                title: '登陆超时，请重新登录！',
+                buttonText: '确定',
+                success: () => {
+                  my.clearStorage();
+                  my.navigateTo({
+                    url: '/pages/login/login',
+                  });
+                },
               });
             }
-            
-          },
+          }
         });
       }
-      
     }
     
   },
@@ -265,11 +302,48 @@ Page({
           },
       });
     }else{
-      
-      if(this.data.isColect){//已收藏
-        this.unCollect();
-      }else{//未收藏
-        this.collect();
+      if(userlogin){
+        var token = my.getStorageSync({
+          key: 'token', 
+        }).data;
+        var userName = my.getStorageSync({
+          key: 'userName', 
+        }).data;
+        console.log(token)
+        my.httpRequest({
+          url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
+          method: 'POST',
+          data:{
+            phone:userName,
+            token:token,
+          },
+          dataType: 'json',
+          success: (res) => {
+            console.log(res)
+            if(res.data.success){
+              if(this.data.isColect){//已收藏
+                this.unCollect();
+              }else{//未收藏
+                this.collect();
+              }
+            }else{
+              my.setStorageSync({
+                key: 'userlogin', // 缓存数据的key
+                data: false, // 要缓存的数据
+              });
+              my.alert({
+                title: '登陆超时，请重新登录！',
+                buttonText: '确定',
+                success: () => {
+                  my.clearStorage();
+                  my.navigateTo({
+                    url: '/pages/login/login',
+                  });
+                },
+              });
+            }
+          }
+        });
       }
     }
     
@@ -447,25 +521,64 @@ Page({
             },
       });
     }else{
-      if(userCompleted){
-        my.navigateTo({
-          url: '/pages/index/signing/signing?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
-        });
-      }else{
-         my.confirm({
-          title: '温馨提示',
-          content: '请先完善个人信息',
-          confirmButtonText: '确认',
-          cancelButtonText: '取消',
-          success: (res) => {
-            if(res.confirm){
+    if(userlogin){
+      var token = my.getStorageSync({
+        key: 'token', 
+      }).data;
+      var userName = my.getStorageSync({
+        key: 'userName', 
+      }).data;
+      console.log(token)
+      my.httpRequest({
+        url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          phone:userName,
+          token:token,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log(res)
+          if(res.data.success){
+            if(userCompleted){
               my.navigateTo({
-                url: '/pages/index/account_completed/account_completed',
+                url: '/pages/index/signing/signing?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+              });
+            }else{
+              my.confirm({
+                title: '温馨提示',
+                content: '请先完善个人信息',
+                confirmButtonText: '确认',
+                cancelButtonText: '取消',
+                success: (res) => {
+                  if(res.confirm){
+                    my.navigateTo({
+                      url: '/pages/index/account_completed/account_completed',
+                    });
+                  }
+                },
               });
             }
-          },
-        });
-      }
+          }else{
+            my.setStorageSync({
+              key: 'userlogin', // 缓存数据的key
+              data: false, // 要缓存的数据
+            });
+            my.alert({
+              title: '登陆超时，请重新登录！',
+              buttonText: '确定',
+              success: () => {
+                my.clearStorage();
+                my.navigateTo({
+                  url: '/pages/login/login',
+                });
+              },
+            });
+          }
+        }
+      });
+    }
+      
       
     }
   },
@@ -500,25 +613,63 @@ Page({
           },
       });
     }else{
-      console.log(landlordId)
-      console.log('2233')
-      // var landlordId = housedetail.landlordId;
-      // console.log(landlordId)
-      my.httpRequest({
-        url: app.globalData.baseUrl+'IF/user/getUserInfoById.do', // 目标服务器url
-        method: 'POST',
-        data: {
-          userId:landlordId,
-        },
-        dataType: 'json',
-        success: (res) => {
-          console.log(res)
+      if(userlogin){
+        var token = my.getStorageSync({
+          key: 'token', 
+        }).data;
+        var userName = my.getStorageSync({
+          key: 'userName', 
+        }).data;
+        console.log(token)
+        my.httpRequest({
+          url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
+          method: 'POST',
+          data:{
+            phone:userName,
+            token:token,
+          },
+          dataType: 'json',
+          success: (res) => {
+            console.log(res)
+            if(res.data.success){
+              console.log(landlordId)
+              console.log('2233')
+              // var landlordId = housedetail.landlordId;
+              // console.log(landlordId)
+              my.httpRequest({
+                url: app.globalData.baseUrl+'IF/user/getUserInfoById.do', // 目标服务器url
+                method: 'POST',
+                data: {
+                  userId:landlordId,
+                },
+                dataType: 'json',
+                success: (res) => {
+                  console.log(res)
 
-          my.navigateTo({
-            url: '/pages/chat/chat?uid='+landlordId+'&avatar='+res.data.data.avatar+'&nickName='+res.data.data.nickName,
-          });
-        },
-      });
+                  my.navigateTo({
+                    url: '/pages/chat/chat?uid='+landlordId+'&avatar='+res.data.data.avatar+'&nickName='+res.data.data.nickName,
+                  });
+                },
+              });
+            }else{
+              my.setStorageSync({
+                key: 'userlogin', // 缓存数据的key
+                data: false, // 要缓存的数据
+              });
+              my.alert({
+                title: '登陆超时，请重新登录！',
+                buttonText: '确定',
+                success: () => {
+                  my.clearStorage();
+                  my.navigateTo({
+                    url: '/pages/login/login',
+                  });
+                },
+              });
+            }
+          }
+        });
+      }
     }
     
   },

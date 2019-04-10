@@ -7,11 +7,17 @@ App({
     base_whj:'http://192.168.1.193:8080/LLGY/',
     baseUrl_oos:'http://192.168.1.89:8080/LLGY/IF/upload/headImgUpload.do', 
 
-    // baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
-    // baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    // base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    // baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
-    // baseUrl_oos:'https://www.xuanfangwang.com.cn:8080/LLGY/IF/upload/headImgUpload.do', 
+    // baseUrl:'http://192.168.1.193:8080/LLGY/', 
+    // baseUrl_whj:'http://192.168.1.193:8080/LLGY/',
+    // baseImgUrl_whj:'http://192.168.1.193:8080/LLGY/upload/',
+    // base_whj:'http://192.168.1.193:8080/LLGY/',
+    // baseUrl_oos:'http://192.168.1.193:8080/LLGY/IF/upload/headImgUpload.do', 
+
+    baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
+    baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
+    baseUrl_oos:'https://www.xuanfangwang.com.cn:8080/LLGY/IF/upload/headImgUpload.do', 
    },
   onLanuch(){
     const {data} = my.getStorageSync({key: 'logs'});
@@ -20,19 +26,19 @@ App({
    getDate(dateFormate,year){
    var date=new Date();
    //年
-``
+
     var Y =
     date.getFullYear()+year;
 
     //月
 
     var M = (date.getMonth()
-    + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    + 1 < 10 ?  (date.getMonth() + 1) : date.getMonth() + 1);
 
     //日
 
     var D = date.getDate()
-    < 10 ? '0' + date.getDate() :
+    < 10 ? date.getDate() :
     date.getDate();
 
     //时
@@ -134,6 +140,28 @@ App({
       break;
     }
   },
+  getFormateDate3(dateFormate,n){
+  var time = new Date();
+  time.setMonth(time.getMonth() + n);//设置month月后的时间
+  var Y = time.getFullYear();
+  var M = time.getMonth() + 1;//获取当前月份
+  var D = time.getDate();
+    switch(dateFormate){
+      case "yyyy年MM月dd日":
+        return Y+"年"+M+"月"+D+'日';
+      break;
+      case "yyyy-MM-dd":
+        return Y+"-"+M+"-"+D;
+      break;
+      default:
+        return Y+"-"+M+"-"+D;
+      break;
+    }
+  },
+
+
+
+
   //缓存城市列表
   getCity(){
     var that=this;
@@ -147,10 +175,11 @@ App({
         // that.setData({
         //   cityData:res.data.data
         // });
-        my.setStorage({
+        my.setStorageSync({
           key: 'list_city', // 经度
           data: res.data.data, // 要缓存的数据
         });
+       
       },
       fail: function(res) {
        console.log(res);
@@ -160,6 +189,7 @@ App({
       }
     });
   },
+  
   //身份证校验
   checkId(idcard) {
       var Errors = new Array(1,2,3, 4,5);

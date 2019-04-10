@@ -22,7 +22,7 @@
 .page-logout{
   height: 175rpx;
   width: 750rpx;
-  padding-top: 75rpx;
+  padding-top: 175rpx;
   
 }
 .logout{

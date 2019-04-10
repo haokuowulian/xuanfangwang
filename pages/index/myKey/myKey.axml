@@ -1,1 +1,8 @@
-<view class="tips">你还没有钥匙</view>
+<view a:if="{{imglist.length<=0}}" class="tips">你还没有钥匙</view>
+<view a:else class="box_img">
+  <view class="class_title">电子身份证开锁流程</view>
+  <block a:for="{{imglist}}"  a:for-index="idx">
+    <image src="{{imglist[idx]}}" class="img"/>
+    第{{idx+1}}步
+  </block>
+</view>

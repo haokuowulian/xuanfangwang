@@ -34,7 +34,7 @@ Page({
     console.log(id)
     my.httpRequest({
       // url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
-      url: app.globalData.base_whj+'IF/order/getOrderById.do', // 目标服务器url
+      url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
       method: 'POST',
       data:{
         id:id,
@@ -121,7 +121,7 @@ Page({
       console.log(uidCard)
       my.httpRequest({
         // app.globalData.baseUrl_whj+
-        url: app.globalData.base_whj+'IF/alipay/certifiedPay.do', // 目标服务器url
+        url: app.globalData.baseUrl_whj+'IF/alipay/certifiedPay.do', // 目标服务器url
         method: 'POST',
         data:{
           orderId:orderid,
@@ -156,7 +156,7 @@ Page({
   successCertified(orderid){
     my.httpRequest({
       // app.globalData.baseUrl_whj+
-      url: app.globalData.base_whj+'IF/order/successCertified.do', // 目标服务器url
+      url: app.globalData.baseUrl_whj+'IF/order/successCertified.do', // 目标服务器url
       method: 'POST',
       data:{
         orderId:orderid,
@@ -189,7 +189,7 @@ Page({
   confirm(){
     var that=this;
     my.httpRequest({
-      url: app.globalData.base_whj+"IF/alipay/refundUnfreezeOrder.do", // 目标服务器url
+      url: app.globalData.baseUrl_whj+"IF/alipay/refundUnfreezeOrder.do", // 目标服务器url
       method: 'POST',
       data:{
         userId:this.data.userId,
