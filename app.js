@@ -1,11 +1,11 @@
 App({
 
    globalData:{
-    // baseUrl:'http://192.168.1.89:8080/LLGY/', 
-    // baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
-    // baseImgUrl_whj:'http://192.168.1.89:8080/LLGY/upload/',
-    // base_whj:'http://192.168.1.193:8080/LLGY/',
-    // baseUrl_oos:'http://192.168.1.89:8080/LLGY/IF/upload/headImgUpload.do', 
+    baseUrl:'http://192.168.1.89:8080/LLGY/', 
+    baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
+    baseImgUrl_whj:'http://192.168.1.89:8080/LLGY/upload/',
+    base_whj:'http://192.168.1.193:8080/LLGY/',
+    baseUrl_oos:'http://192.168.1.89:8080/LLGY/IF/upload/headImgUpload.do', 
 
     // baseUrl:'http://192.168.1.193:8080/LLGY/', 
     // baseUrl_whj:'http://192.168.1.193:8080/LLGY/',
