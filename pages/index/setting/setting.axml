@@ -2,6 +2,10 @@
   <view class="page-setting">
     <view class="setting-back">
       <view class="setting-info" onTap="toAccountInfo">账号信息<image src="/image/icon/right.png" class="right-img"/></view>
+      <view class="info" onTap="toAccountCompleted">
+        <view>个人信息</view>
+        <view>{{userType}}<image src="/image/icon/right.png" class="img_right" /></view>
+      </view>
       <view class="setting-info" onTap="toBindPhone">绑定手机<image src="/image/icon/right.png" class="right-img"/></view>
       <!-- <view class="setting-info" onTap="toBindEmail">绑定邮箱<image src="/image/icon/right.png" class="right-img"/></view> -->
       <view class="setting-info" onTap="toChangePassword">修改密码<image src="/image/icon/right.png" class="right-img"/></view>

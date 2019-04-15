@@ -1,7 +1,8 @@
 .backgroundClass{
   background-color: white;
   width: 750rpx;
-  height: 100vh;
+  height: 100%;
+  padding-bottom: 45rpx;
 }
 .titleClass{
   font-size: 50rpx;
@@ -10,6 +11,11 @@
   padding-top: 85rpx;
 }
 .subTitleClass{
+   font-size: 35rpx;
+   color: #333333;
+   margin-left: 35rpx;
+}
+.subTitleClass1{
    font-size: 35rpx;
    color: #333333;
    margin-left: 35rpx;
@@ -55,3 +61,15 @@
   border-radius: 35rpx;
 }
 
+.page-btn{
+  position:fixed;
+  bottom:0;
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

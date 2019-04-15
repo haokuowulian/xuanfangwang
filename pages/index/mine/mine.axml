@@ -228,7 +228,7 @@
     
     <!-- <view>最新消息</view> -->
     <view class="page-suggest1" onTap="toChat">
-      <view class="other-title">消息列表
+      <view class="other-title">会话列表
       </view>
       <view>
         <image src="/image/icon/right.png" class="right-img" />
@@ -349,8 +349,8 @@
         <view class="title-change" onTap="changeRole2">
           <image src="/image/mine/qiehuan2.png" class="qiehuan-img" />切换房东
         </view>
-        <view class="title-set"  onTap="toChat">
-          <image src="/image/qipao.png" class="qipao-img" />
+        <view class="title-set"  onTap="toChat">会话列表
+          <!-- <image src="/image/qipao.png" class="qipao-img" /> -->
           <!-- 账号信息 -->
         </view>
       </view>

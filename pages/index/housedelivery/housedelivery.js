@@ -818,7 +818,8 @@ Page({
       });
     }
   },
-      //添加图片
+  
+  //添加图片
   addImg(e){
     var that = this;
     my.chooseImage({

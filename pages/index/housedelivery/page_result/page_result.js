@@ -8,7 +8,6 @@ Page({
   },
   onLoad(option) {
     var that = this;
-    c
     // this.setData({
     var type=option.type;
     console.log(type)
@@ -32,12 +31,12 @@ Page({
     // 页面被关闭
     if(this.data.type==1){
       my.navigateBack({
-        delta:7
+        delta:5
       });
     }
     if(this.data.type==2){
       my.navigateBack({
-        delta:8
+        delta:6
       });
     }
     

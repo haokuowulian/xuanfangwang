@@ -1,7 +1,27 @@
 Page({
-  data: {},
+  data: {
+    userType:'',
+    userCompleted:false,
+  },
   onLoad() {
     console.log(11111111);
+  },
+  onShow(){
+    var that = this;
+    var userCompleted = my.getStorageSync({
+      key: 'userCompleted', // 缓存数据的key
+    }).data;
+    if(userCompleted){
+      that.setData({
+        userType:'已完善',
+        userCompleted:userCompleted,
+      });
+    }else{
+      that.setData({
+        userType:'待完善',
+        userCompleted:userCompleted,
+      });
+    }
   },
   userLogout(){
     my.clearStorage();
@@ -33,5 +53,17 @@ Page({
     my.navigateTo({
       url: '/pages/index/accountinfo/accountinfo',
     });
+  },
+  toAccountCompleted(){
+    var that = this;
+    if(that.data.userCompleted){
+      my.navigateTo({
+        url:'/pages/index/account_completed/account_completed',
+      });
+    }else{
+      my.navigateTo({
+        url: '/pages/index/account_completed/account_mine/account_mine',
+      });
+    }
   },
 });

@@ -33,10 +33,6 @@
     "pages/index/signing/signing",
     "pages/index/housedelivery/housedelivery",
     "pages/index/more/more",
-    "pages/index/signing/renting_date/renting_date",
-    "pages/index/signing/payway/payway",
-    "pages/index/signing/confirmagain/confirmagain",
-    "pages/index/signing/contract_confirm/contract_confirm",
     "pages/houseinfo/payment_method/payment_method",
     "pages/index/accountinfo/accountinfo",
     "pages/index/order/orderinfo/orderinfo",
@@ -45,7 +41,6 @@
     "pages/index/signing/payment_result/payment_result",
     "pages/index/housedelivery/roominfo/roominfo",
     "pages/index/housedelivery/water_power_rate/water_power_rate",
-    "pages/index/housedelivery/housedelivery2/housedelivery2",
     "pages/index/housedelivery/housedelivery3/housedelivery3",
     "pages/index/housedelivery/housedelivery5/housedelivery5",
     "pages/index/housedelivery/housedelivery6/housedelivery6",
@@ -84,7 +79,8 @@
     "pages/apartment/signing/signing",
     "pages/apartment/signing/renting_date/renting_date",
     "pages/index/housedelivery/page_result/page_result",
-    "pages/index/housedelivery/housedelivery5_new/housedelivery5_new"
+    "pages/index/housedelivery/housedelivery5_new/housedelivery5_new",
+    "pages/index/account_completed/account_mine/account_mine"
   ],
   "window": {
     "defaultTitle": "My App"

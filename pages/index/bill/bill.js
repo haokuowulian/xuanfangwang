@@ -1,24 +1,95 @@
-const bill = [
-  // {
-  //   billid:1,
-  //   billname:'电费',
-  //   address:'湘湖科创园1栋8楼',
-  //   date:'2018-08-25',
-  //   cost:'￥200',
-  //   billstatus:1,
-  // },
-  // {
-  //   billid:2,
-  //   billname:'电费',
-  //   address:'湘湖科创园1栋8楼',
-  //   date:'2018-07-25',
-  //   cost:'￥200',
-  //   billstatus:2,
-  // },
-]
+var app = getApp();
 Page({
   data: {
-    bill,
+    bill:[],
+    pageIndex:1,
   },
-  onLoad() {},
+  onLoad() {
+    var that = this;
+    that.getMyOrder();
+  },
+  getMyOrder(){
+    var that = this;
+    var uid= my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+'IF/bill/getBillByUserId.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:uid,
+        pageIndex:that.data.pageIndex,
+        pageSize:6,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+        var list = res.data.data;
+        if(that.data.pageIndex==1){
+          that.setData({
+            bill:res.data.data,
+          });
+        }else if(res.data.data.length<res.data.count){
+          that.setData({
+            bill:that.data.bill.concat(res.data.data),
+          });
+        }
+        my.stopPullDownRefresh();
+      },
+    });
+  },
+  toPay(e){
+    var that = this;
+    console.log(e)
+    var id = e.target.dataset.id;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+'IF/bill/addAlipayAuditing.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        billId:id,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+        if(res.data.success){
+          var trade_No = res.data.tradeNo;
+          var out_trade_no = res.data.out_trade_no;
+          my.tradePay({
+            tradeNO:trade_No,
+            success: (res) => {
+              console.log(res)
+              my.httpRequest({
+                url: app.globalData.baseUrl_whj+'IF/bill/payAlipayAuditing.do', // 目标服务器url
+                method: 'POST',
+                data:{
+                  billId:id,
+                  resultCode:res.resultCode,
+                  tradeNo:trade_No,
+                  out_trade_no:out_trade_no,
+                },
+                dataType: 'json',
+                success: (res) => {
+                  console.log(res)
+                  that.getMyOrder();
+                },
+              });
+            },
+          });
+        }
+      },
+    });
+    
+  },
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
+    });
+    this.getMyOrder();
+  },
+  onReachBottom() {
+    this.setData({
+      pageIndex:this.data.pageIndex+1
+    });
+    this.getMyOrder();
+  },
 });

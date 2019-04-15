@@ -449,7 +449,7 @@ Page({
     }else{
       if(userCompleted){
         my.navigateTo({
-          url: '/pages/apartment/signing/signing?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
+          url: '/pages/index/signing/signing?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
         });
       }else{
          my.confirm({

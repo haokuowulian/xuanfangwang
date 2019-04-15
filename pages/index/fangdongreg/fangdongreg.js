@@ -47,6 +47,7 @@ Page({
     var phone = my.getStorageSync({
       key: 'phone', // 缓存数据的key
     }).data;
+    console.log(userId)
     my.httpRequest({
       url:app.globalData.baseUrl_whj+'IF/user/getUserInfoById.do', // 目标服务器url
       method: 'POST',
@@ -250,6 +251,7 @@ Page({
               if(res.confirm){
                 //刷脸？
                 that.faceVerify();
+                // that.uploadData();
               }else{
 
               }

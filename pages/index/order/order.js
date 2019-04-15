@@ -43,10 +43,6 @@ Page({
     console.log('token='+token)
     my.httpRequest({
       url: url, // 目标服务器url
-      // headers:{
-      //   'Content-Type': 'application/json',
-      //   'Cookie': "uuid=" + token,
-      //   },
       method: 'POST',
       data:{
         userId:uid,
@@ -64,7 +60,7 @@ Page({
            if(that.data.pageIndex==1){
             that.setData({
               orderList:res.data.data,
-          });
+            });
             }else if(that.data.orderList.length<res.data.count){
                that.setData({
                 orderList:that.data.orderList.concat(res.data.data)

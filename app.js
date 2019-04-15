@@ -76,13 +76,13 @@ App({
  //获取几个月后
  getFormateDate(beginDate,dateFormate,n){
   var str = beginDate;
-  console.log(beginDate)
-  console.log(str)
+  // console.log(beginDate)
+  // console.log(str)
   str = str.replace(/[^\d]/g,'/');
-  console.log(str)
+  // console.log(str)
   var time =  new Date(str );
-  console.log('tiem"')
-  console.log(time)
+  // console.log('tiem"')
+  // console.log(time)
   time.setMonth(time.getMonth() + n);//设置month月后的时间
   var Y = time.getFullYear();
   var M = time.getMonth() + 1;//获取当前月份

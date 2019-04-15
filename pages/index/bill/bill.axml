@@ -5,14 +5,14 @@
     <view class="page-body">
       <view class="body-back">
         <view class="list-left">
-          <view class="list-title">{{list.billname}}</view>
-          <view class="list-address">{{list.address}}</view>
-          <view class="list-date">{{list.date}}</view>
+          <view class="list-title">房租</view>
+          <view class="list-address">{{list.housingName}}</view>
+          <view class="list-date">{{list.createDate}}</view>
         </view>
         <view class="list-right">
-          <view class="list-cost">{{list.cost}}</view>
-          <view a:if="{{list.billstatus == 1}}" class="status-text1">立即缴费</view>
-          <view a:if="{{list.billstatus == 2}}" class="status-text2">已缴费</view>
+          <view class="list-cost">￥{{list.totalMoney}}</view>
+          <button a:if="{{list.status == 0}}" data-id='{{list.id}}' onTap="toPay" class="status-text1">立即缴费</button>
+          <view a:if="{{list.status == 1}}" class="status-text2">已缴费</view>
         </view>
       </view>
     </view>

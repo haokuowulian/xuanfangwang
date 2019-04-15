@@ -44,7 +44,7 @@ Page({
         });
         // that.getMessage(uid);
         that.getMessage(uid);
-        // that.getMessageTimely(uid);
+        that.getMessageTimely(uid);
       },
     });
 
@@ -109,6 +109,17 @@ Page({
       },
     });
   },
+  onFocus(){
+    var that = this;
+    clearInterval(that.data.interval);
+  },
+  onBlur(){
+    console.log('失焦')
+    var that = this;
+    var uid = that.data.userId;
+    that.getMessageTimely(uid);
+    
+  },
   bindKeyInput(e){
     var that = this;
     console.log(e.detail.value)
@@ -151,7 +162,7 @@ Page({
   getMessageTimely(uid){
     var that = this;
     console.log('刷新成功！')
-    that.data.interval = setInterval(function(){that.getMessage(uid)}, 2000);
+    that.data.interval = setInterval(function(){that.getMessage(uid)}, 5000);
   },
   // 页面被关闭
   onUnload() {

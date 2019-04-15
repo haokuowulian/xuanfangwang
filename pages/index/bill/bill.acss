@@ -53,7 +53,7 @@
   font-size: 25rpx;
   color: #ffffff;
   background-color: #ffa800;
-  border-radius: 5rpx;
+  border-radius: 8rpx;
 }
 .status-text2{
   width: 150rpx;

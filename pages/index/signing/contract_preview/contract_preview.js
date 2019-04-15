@@ -18,11 +18,12 @@ Page({
   onLoad() {
     var that = this;
     var ucard = my.getStorageSync({
-      key: 'ucard', // 缓存数据的key
+      key: 'certNo', // 缓存数据的key
     }).data;
     var uname= my.getStorageSync({
-      key: 'uname', // 缓存数据的key
+      key: 'certName', // 缓存数据的key
     }).data;
+    console.log(uname)
     var startDate = my.getStorageSync({
       key: 'ustartDate', // 缓存数据的key
     }).data;
@@ -32,6 +33,7 @@ Page({
     var houseInfo = my.getStorageSync({
       key: 'uhouseInfo', // 缓存数据的key
     }).data;
+    console.log(houseInfo)
     var payway = my.getStorageSync({
       key: 'upayWay', // 缓存数据的key 
     }).data;
@@ -59,6 +61,13 @@ Page({
     if(rentType==2){
       var address = houseInfo.house.apartment.address;
     }
+    if(rentType==1){
+      var fd_id = houseInfo.landlordId;
+    }
+    if(rentType==2){
+      var fd_id = houseInfo.house.landlordId;
+    }
+
     var deposit = my.getStorageSync({
       key: 'udeposit', // 押金|每月租金
     }).data;
@@ -66,10 +75,10 @@ Page({
       key: 'uallPay', // 总金额
     }).data;
     var uphone = my.getStorageSync({
-      key: 'uphone', // 租客手机号
+      key: 'phone', // 租客手机号
     }).data;
     
-    var fd_id = houseInfo.landlordId;
+    // var fd_id = houseInfo.landlordId;
     that.getLandlordInfo(fd_id);
     that.getBigNumber(deposit);
     var date = app.getDate('yyyy年MM月dd日',0);
@@ -88,6 +97,7 @@ Page({
   },
   //根据房东id查信息
   getLandlordInfo(fd_id){
+    console.log('--------fd--------');
     var that = this;
     my.httpRequest({
       url:app.globalData.baseUrl_whj+'IF/user/getUserInfoById.do', // 目标服务器url
@@ -97,7 +107,7 @@ Page({
       },
       dataType: 'json',
       success: (res) => {
-        console.log('----------------');
+        console.log('--------fd--------');
         console.log(res);
         if(res.data.success){
           that.setData({

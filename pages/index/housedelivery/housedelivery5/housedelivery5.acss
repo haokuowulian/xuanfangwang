@@ -2,6 +2,7 @@
   background-color: white;
   width: 750rpx;
   height: 100%;
+  margin-bottom: 145rpx;
 }
 .titleClass{
   font-size: 50rpx;
@@ -231,4 +232,16 @@
   flex-wrap: wrap;
   /* justify-content: space-around; */
   /* height: 140rpx; */
+}
+.page-btn{
+  position:fixed;
+  bottom:0;
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

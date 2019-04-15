@@ -1,5 +1,5 @@
 <view class="backgroundClass">
-  <view class="titleClass">房源描述与价格（1/2）</view>
+  <!-- <view class="titleClass">房源描述与价格（1/2）</view> -->
 
   <view class="page-content">
 
@@ -128,6 +128,7 @@
   </view>
   
 
- <view><button a:if="{{rentType==1}}" class="nextStepButtonClass" onTap="next">下一步</button></view>
+ <!-- <view><button a:if="{{rentType==1}}" class="nextStepButtonClass" onTap="next">下一步</button></view> -->
 
 </view>
+<button class="page-btn" onTap="next">下一步</button>

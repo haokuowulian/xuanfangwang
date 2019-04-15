@@ -256,7 +256,7 @@ Page({
                   success: (res) => {
                     if(res.confirm){
                       my.navigateTo({
-                        url: '/pages/index/account_completed/account_completed',
+                        url: '/pages/index/account_completed/account_mine/account_mine',
                       });
                     }
                     
@@ -553,7 +553,7 @@ Page({
                 success: (res) => {
                   if(res.confirm){
                     my.navigateTo({
-                      url: '/pages/index/account_completed/account_completed',
+                      url: '/pages/index/account_completed/account_mine/account_mine',
                     });
                   }
                 },

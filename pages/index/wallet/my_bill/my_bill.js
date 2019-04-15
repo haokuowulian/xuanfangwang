@@ -11,7 +11,7 @@ Page({
     }).data;
     if(userId!=''){
       my.httpRequest({
-        url:app.globalData.baseUrl+ 'IF/walletLog/getWalletLogListByUserId.do', // 目标服务器url
+        url:app.globalData.baseUrl+ 'IF/wallet/getWalletLogListByUserId.do', // 目标服务器url
         method: 'POST',
         data:{
           userId:userId,
