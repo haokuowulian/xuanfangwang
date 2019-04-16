@@ -2,6 +2,7 @@
   background-color: white;
   width: 750rpx;
   height: 100%;
+  /* margin-bottom: 250rpx; */
 }
 .titleClass{
   font-size: 50rpx;
@@ -11,8 +12,6 @@
 }
 
 .subTitleClass{
-   /* font-size: 35rpx;
-   color: #333333; */
    margin-left: 35rpx;
    margin-top: 45rpx;
 }
@@ -111,6 +110,9 @@
   height:235rpx;
   text-align: center;
   float: left;
+  background-color: white;
+  /* margin-bottom: 125rpx; */
+  padding-bottom: 125rpx;
 }
 .contents{
   position: relative;
@@ -213,6 +215,10 @@
   height:140rpx;
   margin-left: 35rpx;
 }
+.box_img1{
+  width: 750rpx;
+  height:140rpx;
+}
 .icon-check{
   width: 35rpx;
   height: 35rpx;
@@ -229,14 +235,27 @@
   width: 45rpx;
 }
 .nextStepButtonClass{
-  width: 300rpx;
+  /* width: 300rpx; */
+  width: 750rpx;
   background-color: #ffa800;
   color: white;
   font-size: 35rpx;
-  height: 70rpx;
+  height: 100rpx;
   line-height: 70rpx;
   margin-top: 100rpx;
   margin-bottom: 35rpx;
-  margin-left:415rpx;
-  border-radius: 35rpx;
+  /* margin-left:415rpx; */
+  /* border-radius: 35rpx; */
+}
+.page-btn{
+  position:fixed;
+  bottom:0;
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

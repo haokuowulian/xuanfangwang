@@ -1,9 +1,7 @@
 .page{
   width: 680rpx;
   height: 100%;
-  padding-left: 35rpx;
-  padding-right: 35rpx;
-  padding-top: 80rpx;
+  padding: 80rpx 35rpx 25rpx;
   background-color: #ffffff;
 }
 .page-title{

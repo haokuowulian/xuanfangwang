@@ -1,12 +1,9 @@
-<view class="page">
-  <view class="page-title" a:if="{{userCompleted}}">
+  <!-- <view class="page-title">
     个人信息
   </view>
-  <view class="page-title" a:else>
-    信息完善
-  </view>
+   -->
 
-  <view>
+  <!-- <view>
     <view >
       <input class="inputClass" type="text" placeholder="请输入您的姓名" onInput="bindName" value="{{name}}"/>
       <view  onTap="selectSex"><input class="inputClass" placeholder="请选择性别"  value="{{sex}}" disabled="true"/></view>
@@ -18,10 +15,40 @@
       <button a:if="{{!userCompleted}}" class="submitButton" type="default" onTap="submit">提交
       </button>
     </view>
+</view> -->
+
+<view class="pages">
+  <view class="pages_content">
+    <view class="content_title">姓名：</view>
+    <view class="content_body">{{name}}</view>
+  </view>
+  <view class="pages_content">
+    <view class="content_title">性别：</view>
+    <view class="content_body">{{sex}}</view>
+  </view>
+  <view class="pages_content">
+    <view class="content_title">民族：</view>
+    <view class="content_body">{{nation}}</view>
+  </view>
+  <view class="pages_content">
+    <view class="content_title">身份号码：</view>
+    <view class="content_body">{{certNo}}</view>
+  </view>
+  <view class="pages_content">
+    <view class="content_title">现居城市：</view>
+    <view class="content_body">
+      <view a:if="{{city==''}}" class="body_city1" onTap="selectCity">请选择现居城市</view>
+      <view a:else class="body_city" onTap="selectCity">{{city}}</view>
+      <view a:if="{{area==''}}" class="body_area1" onTap="selectArea">请选择现住区域</view>
+      <view a:else class="body_area" onTap="selectArea">{{area}}</view>
+    </view>
+  </view>
+  <button class="page-btn" onTap="submit">保存</button>
+  <!-- <button class="submitButton" onTap="submit">提交</button> -->
 </view>
 
 
-</view>
+
 <view class="modal-box" hidden="{{!showBottom}}" onTap="onPopupClose" >
     <view class="modal-body">
       <view class="modal-content">

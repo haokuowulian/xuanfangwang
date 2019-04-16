@@ -77,7 +77,7 @@ Page({
     // 页面被关闭
     if(this.data.type==1){
       my.navigateBack({
-        delta:6
+        delta:2
       });
     }
     if(this.data.type==2){

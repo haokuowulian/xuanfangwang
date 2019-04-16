@@ -60,7 +60,7 @@
   flex-direction: column;
 }
 .class_content{
-
+  font-size: 25rpx;
 }
 .class_content1{
   font-size: 25rpx;

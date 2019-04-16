@@ -181,7 +181,7 @@ Page({
             content: '取消成功',
             duration: 2000
           });
-          }
+        }
       },
       fail: function(res) {
        console.log(res);
@@ -217,19 +217,19 @@ Page({
       },
       dataType: 'json',
       success: function(res) {
-       console.log(res);
-       my.hideLoading();
-       that.setData({
-         pageIndex:1
-       });
-       that.getBespeakList();
-      if(res.data.success){
+        console.log(res);
+        my.hideLoading();
+        that.setData({
+          pageIndex:1
+        });
+        that.getBespeakList();
+        if(res.data.success){
           my.showToast({
             type: 'success',
             content: '删除成功',
             duration: 2000
           });
-          }
+        }
       },
       fail: function(res) {
        console.log(res);
@@ -253,6 +253,61 @@ Page({
       my.navigateTo({
         url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+id+'&rentType='+rentType,
       })
-  }
-    
+  },
+  sayYes(e){
+    var that = this;
+    my.showLoading();
+    let id = e.target.dataset.pid;
+    let uid =  e.target.dataset.uid;
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do', // 目标服务器url
+      method: 'POST',
+      data: {
+        id:id,
+        uid:uid,
+        state:1,
+      },
+      dataType: 'json',
+      success: (res) => {
+        my.hideLoading();
+        if(res.data.success){
+          that.getBespeakList();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
+  allRight(e){
+    var that = this;
+    my.showLoading();
+    let id = e.target.dataset.pid;
+    let uid =  e.target.dataset.uid;
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do', // 目标服务器url
+      method: 'POST',
+      data: {
+        id:id,
+        uid:uid,
+        state:4,
+      },
+      dataType: 'json',
+      success: (res) => {
+        my.hideLoading();
+        if(res.data.success){
+          that.getBespeakList();
+        }
+      },
+      fail: function(res) {
+       console.log(res);
+      },
+      complete: function(res) {
+        my.hideLoading();
+      }
+    });
+  },
 });

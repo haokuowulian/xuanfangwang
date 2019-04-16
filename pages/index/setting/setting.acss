@@ -1,11 +1,11 @@
 .page-setting{
-  height: 200rpx;
+  height: 400rpx;
   width: 750rpx;
   padding-top: 20rpx;
 }
 .setting-back{
   background-color: #ffffff;
-  height: 200rpx;
+  height: 400rpx;
   width: 680rpx;
   padding-left: 35rpx;
   padding-right: 35rpx;
@@ -22,8 +22,7 @@
 .page-logout{
   height: 175rpx;
   width: 750rpx;
-  padding-top: 175rpx;
-  
+  margin-top: 175rpx;
 }
 .logout{
   height: 100rpx;
@@ -36,4 +35,18 @@
 .right-img{
   height: 19rpx;
   width: 10rpx;
+}
+.img_right{
+  height: 19rpx;
+  width: 10rpx;
+  margin-left: 15rpx;
+}
+.info{
+  height: 100rpx;
+  width: 680rpx;
+  border-bottom: 1rpx solid #f7f7f7;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

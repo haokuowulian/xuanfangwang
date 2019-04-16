@@ -416,17 +416,20 @@ console.log(roomList)
           confirmButtonText: '确认提交',
           cancelButtonText: '取消提交',
           success: (res) => {
-            my.alert({
-              title: '提交成功！',
-              success: () => {
-                my.navigateTo({
-                  url:'/pages/index/housedelivery/page_result/page_result?type=2',
-                });
-              // my.navigateBack({
-              //   delta: 7,
-              // });
-            }, 
+            my.navigateTo({
+              url:'/pages/index/housedelivery/page_result/page_result?type=2',
             });
+            // my.alert({
+            //   title: '提交成功！',
+            //   success: () => {
+            //     my.navigateTo({
+            //       url:'/pages/index/housedelivery/page_result/page_result?type=2',
+            //     });
+            //   // my.navigateBack({
+            //   //   delta: 7,
+            //   // });
+            // }, 
+            // });
             
           },
         });

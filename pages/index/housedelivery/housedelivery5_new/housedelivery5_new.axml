@@ -1,6 +1,6 @@
 <view class="backgroundClass">
   
-  <view a:if="{{rentType==2}}" class="titleClass">房源详情描述</view>
+  <!-- <view a:if="{{rentType==2}}" class="titleClass">房源详情描述</view> -->
   <view class="page-content">
 
     <view class="content">房源名称
@@ -30,9 +30,10 @@
         
       </block>
     </view>
-   <button a:if="{{rentType==2}}" class="nextStepButtonClass" onTap="publish">发布</button>
+   <!-- <button a:if="{{rentType==2}}" class="nextStepButtonClass" onTap="publish">发布</button> -->
   </view>
 
 
 
 </view>
+<button class="page-btn" onTap="publish">发布</button>

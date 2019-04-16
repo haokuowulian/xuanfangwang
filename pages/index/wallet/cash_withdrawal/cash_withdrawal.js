@@ -66,7 +66,7 @@ Page({
           });
         }else{
           my.alert({
-            title: '未知错误，请稍后再试！' 
+            title: res.data.message 
           });
         }
       },

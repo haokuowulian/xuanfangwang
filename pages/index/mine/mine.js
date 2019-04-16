@@ -370,6 +370,9 @@ Page({
      roleId = my.getStorageSync({
         key: 'roleId', // 缓存数据的key
     }).data;
+    var userCompleted = my.getStorageSync({
+      key: 'userCompleted', 
+    }).data;
     my.setStorage({
       key: 'currentIdentityIsUser', // 缓存数据的key
       data: false, // 要缓存的数据
@@ -381,9 +384,30 @@ Page({
     });
     
     }else{
-      my.navigateTo({
-        url: '/pages/index/fangdongreg/fangdongreg',
-      });
+      if(roleId!=''&&roleId!=null){
+        if(userCompleted){
+          my.navigateTo({
+            url: '/pages/index/fangdongreg/fangdongreg',
+          });
+        }else{
+          my.confirm({
+            title: '温馨提示',
+            content: '请先完善个人信息',
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            success: (res) => {
+              if(res.confirm){
+                my.navigateTo({
+                  // url: '/pages/index/account_completed/account_completed',
+                  url: '/pages/index/account_completed/account_mine/account_mine',
+                });
+              }
+              
+            },
+          });
+        }
+      }
+      
     }
      
   },
@@ -951,6 +975,11 @@ getServerTime(){
           dataType: 'json',
           success: (res) => {
             console.log(res)
+            if(!res.data.success){
+              my.alert({
+                title: '24小时内验证码发送次数已达上限！' 
+              });
+            }
           },
         });
         that.setData({
@@ -1091,7 +1120,8 @@ getServerTime(){
           key: 'userlogin', // 缓存数据的key
           data: true, // 要缓存的数据
         });
-        if(res.data.certNo&&res.data.certNo!=''){
+        console.log(res.data.users.certNo)
+        if(res.data.users.certNo&&res.data.users.certNo!=''){
           my.setStorageSync({
             key: 'userCompleted', // 缓存数据的key
             data: true, // 要缓存的数据

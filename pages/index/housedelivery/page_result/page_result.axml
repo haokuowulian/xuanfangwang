@@ -1,4 +1,4 @@
-<view>
+<!-- <view>
   <view class="page-operate">
     <view class="box_operate">{{content}}!</view>
   </view>
@@ -6,4 +6,15 @@
     <button type="default" onTap="toMyhouse">查看我的房源</button>
   </view>
   
+</view> -->
+
+<view class="page">
+  <view class="page-img">
+    <image src="/image/mine/success.png" class="success-img"/>
+  </view>
+  <view class="page-text1">您的房源已经成功提交审核！</view>
+  <view class="page-text2">我们将尽快审核您所提交的房源信息</view>
+  <view class="page-btn">
+    <view class="btn-check" onTap="toMyhouse">查看我的房源</view>
+  </view>
 </view>

@@ -94,7 +94,7 @@ Page({
   toCommit(e){
     var that = this;
     var image = that.data.img1;
-    var content = that.data.myText;
+    var content = that.data.myText+'';
     if(content!=''){
       if(image!=''){
         that.uploadImg(image,content);

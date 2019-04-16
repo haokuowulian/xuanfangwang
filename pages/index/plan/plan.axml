@@ -37,8 +37,8 @@
        
           <view class="house">
             <view>
-              <image a:if="{{item.rentType==1}}" src="{{imgUrl}}{{item.house.images.split(',')[0]}}" class="house-img" />
-             <image a:if="{{item.rentType==2}}" src="{{imgUrl}}{{item.room.images.split(',')[0]}}" class="house-img" />
+              <image a:if="{{item.rentType==1}}" src="{{item.house.images.split(',')[0]}}" class="house-img" />
+             <image a:if="{{item.rentType==2}}" src="{{item.room.images.split(',')[0]}}" class="house-img" />
             </view>
 
             <view class="house-info" a:if="{{item.rentType==1}}">

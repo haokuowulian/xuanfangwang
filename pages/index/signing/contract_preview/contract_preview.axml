@@ -8,7 +8,7 @@
 
       <text class="text_content">甲乙双方就下列房屋的租赁达成如下协议，具体内容如下：</text>
       <text class="class_title">第一条  房屋基本情况</text>
-      <text class="text_content">甲方出租的房屋坐落地址：{{address}}室住宅一套</text>
+      <text class="text_content">甲方出租的房屋坐落地址：{{address}}住宅一套。</text>
       <text class="class_title">第二条  租赁期限</text>
       　　<text class="text_content">租期 {{duration}}，自 {{startDate}}起至{{endDate}}止。乙方有下列情形之一的，甲方可以单方提前终止合同，收回房屋：</text>
       　　<text class="text_content">1、乙方擅自将房屋转租、转让或转借的；</text>
@@ -44,7 +44,7 @@
            <text class="class_title">第十二条  争议的解决</text>
           　　 <text class="text_content">本合同在履行中发生争议，双方应协商解决，协商不成时，向人民法院起诉。</text>
            <text class="class_title">第十三条  本合同如有未尽事宜，经甲、乙双方共同协商，作出补充书面约定，补充约定与本合同具有同等效力。</text>
-           <text class="class_title">第十四条  本合同为电子合同，经支付宝认证后生效。  </text> 
+           <text class="class_title">第十四条  本合同为电子合同，经e签宝认证后生效。  </text> 
 
           <view class="class_end">
             <view class="box_info">

@@ -76,3 +76,15 @@
   display: flex;
   flex-direction: row;
 }
+.page-btn{
+  position:fixed;
+  bottom:0;
+  height: 110rpx;
+  width: 750rpx;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

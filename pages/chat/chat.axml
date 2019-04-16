@@ -55,7 +55,7 @@
 </view> -->
 
 </view>
-<view class="box_send">
-  <input class="input_send" type="text" onInput="bindKeyInput" value='{{msg}}' focus='{{focus}}'  onFocus="focus" confirm-type="done" placeholder="请输入聊天内容.."/>
+<view  class="box_send1">
+  <input class="input_send" type="text" onInput="bindKeyInput" value='{{msg}}' onFocus="onFocus" onBlur="onBlur" focus='{{focus}}' confirm-type="done" placeholder="请输入聊天内容.."/>
   <button onTap="submitTo" class='send_btn'>发送</button>
 </view>

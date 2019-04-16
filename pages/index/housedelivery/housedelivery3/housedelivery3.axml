@@ -1,17 +1,18 @@
 <view class="backgroundClass">
-  <view class="titleClass">房源出租方式</view>
+  <!-- <view class="titleClass">房源出租方式</view> -->
   <view class="subTitleClass">整租</view>
   <view class="radioViewClass">
     <view class="textClass">用户可租赁整个空间，包扩客厅、厨房等共用空间</view>
     <view class="radioView" onTap="onChoose1"><radio checked='{{selected1}}'  color="#fda729"/></view>
   </view>
   <view class="lineClass"></view>
-  <view class="subTitleClass">合租</view>
+  <view class="subTitleClass1">合租</view>
   <view class="radioViewClass">
     <view class="textClass">用户可租赁一个独立的房间，同时和其他客人分享客厅、厨房等公用空间</view>
      <view class="radioView" onTap="onChoose2"><radio  checked='{{selected2}}' color="#fda729"/></view>
   </view>
- <view class="lineClass"></view>
+ <!-- <view class="lineClass"></view> -->
 
-  <button class="nextStepButtonClass" onTap="next">下一步</button>
+  <!-- <button class="page-btn" onTap="next">下一步</button> -->
 </view>
+<button class="page-btn" onTap="next">下一步</button>

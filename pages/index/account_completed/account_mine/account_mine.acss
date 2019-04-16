@@ -3,8 +3,8 @@
   height: 100%;
   padding-left: 35rpx;
   padding-right: 35rpx;
-  background-color: #ffffff;
-  padding-top: 80rpx;
+  /* background-color: #ffffff; */
+  padding-top:45rpx;
 }
 .page-title{
   font-size: 50rpx;
@@ -53,23 +53,67 @@
   background-color: #ff9900;
   color: white;
   border-radius: 10rpx;
-  /* margin: 192rpx 24rpx 24rpx; */
-  bottom: 0rpx;;
+  margin: 50rpx 24rpx 24rpx;
 }
-.inputClass{
+/* .inputClass{
   background: white;
   margin-left: 24rpx;
   margin-top: 24rpx;
-  width: 678rpx;
+  width: 650rpx;
   border-radius: 10rpx;
   height: 88rpx;
   font-size: 32rpx;
   color: #333333;
+} */
+.addViewClass{
+  margin-top: 35rpx;
+  /* width: 216rpx;
+  height:235rpx; */
+  width: 332rpx;
+  height: 200rpx;
+  text-align: center;
+  float: left;
+  background-color: white;
+  /* margin-bottom: 125rpx; */
+  /* padding-bottom: 125rpx; */
 }
-.pages{
-  /* padding-top: 35rpx; */
+.addImageViewClass{
+  /* width: 216rpx;
+  height: 140rpx; */
+  width: 332rpx;
+  height: 200rpx;
+  margin-bottom: 24rpx;
+}
+.delImg{
+  position: absolute; top: -20rpx; right: -20rpx; height: 18px; overflow: visible
+}
+.box_img1{
+  width: 680rpx;
+  height: 300rpx;
+}
+.subTitleClass{
+   margin-left: 35rpx;
+   margin-top: 45rpx;
+}
+
+.page-btn{
+  position:fixed;
+  bottom:0;
+  height: 110rpx;
   width: 750rpx;
-  height: 100vh;
+  background-color: #ff9900;
+  font-size: 35rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.pages{
+  margin-top: 35rpx;
+  width: 750rpx;
+  height: 100%;
   background-color: #ffffff;
 }
 .pages_title{
@@ -98,8 +142,8 @@
   /* justify-content: center; */
 }
 .content_body{
-  width: 490rpx;
-  padding-left: 25rpx;
+  width: 515rpx;
+  /* padding-left: 25rpx; */
   display: flex;
   flex-direction: row;
 }
@@ -122,16 +166,4 @@
   color: #D5D5D5;
   width: 233rpx;
   padding-left: 15rpx;
-}
-.page-btn{
-  position:fixed;
-  bottom:0;
-  height: 110rpx;
-  width: 750rpx;
-  background-color: #ff9900;
-  font-size: 35rpx;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

@@ -55,7 +55,7 @@ page{
 }
 
 .page-house{
-  height: 235rpx;
+  height: 200rpx;
   width: 750rpx;
   margin-left: 25rpx;
 }
@@ -71,12 +71,13 @@ page{
   width: 415rpx;
   display: flex;
   flex-direction: column;
-  
+  margin-top: 15rpx;
 }
 .house-img{
   border-radius: 6rpx;
   height: 185rpx;
   width: 250rpx;
+  border: #666666 1rpx solid;
 }
 .p1{
   font-size: 30rpx;

@@ -76,16 +76,16 @@ Page({
       },
       dataType: 'json',
       success: (res) => {
-         if(that.data.pageIndex==1){
-                 that.setData({
+        if(that.data.pageIndex==1){
+          that.setData({
             contract:res.data.data
           });
-            }else if(that.data.contract.length<res.data.count){
-               that.setData({
-                contract:that.data.contract.concat(res.data.data)
-              });
-            }
-          my.stopPullDownRefresh();
+        }else if(that.data.contract.length<res.data.count){
+            that.setData({
+            contract:that.data.contract.concat(res.data.data)
+          });
+        }
+      my.stopPullDownRefresh();
         console.log(res);
         // that.setData({
         //   contract:res.data.data,

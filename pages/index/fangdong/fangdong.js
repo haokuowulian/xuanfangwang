@@ -60,6 +60,7 @@ Page({
     var userCompleted = my.getStorageSync({
       key: 'userCompleted', 
     }).data;
+    console.log(userCompleted)
     if(this.data.roleId!=null&&this.data.roleId!=''){
       if(userCompleted){
         my.navigateTo({
@@ -74,7 +75,8 @@ Page({
           success: (res) => {
             if(res.confirm){
               my.navigateTo({
-                url: '/pages/index/account_completed/account_completed',
+                // url: '/pages/index/account_completed/account_completed',
+                url: '/pages/index/account_completed/account_mine/account_mine',
               });
             }
             
