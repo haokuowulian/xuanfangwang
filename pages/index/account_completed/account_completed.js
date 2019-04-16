@@ -208,7 +208,10 @@ Page({
           console.log(res)
           that.gatInfo();
           my.alert({
-            title: '保存成功！' 
+            title: '保存成功！' ,
+            success: () => {
+              my.navigateBack();
+            },
           });
         }
       },

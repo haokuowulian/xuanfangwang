@@ -37,8 +37,8 @@
        
           <view class="house">
             <view>
-              <image a:if="{{item.rentType==1}}" src="{{imgUrl}}{{item.house.images.split(',')[0]}}" class="house-img" />
-             <image a:if="{{item.rentType==2}}" src="{{imgUrl}}{{item.room.images.split(',')[0]}}" class="house-img" />
+              <image a:if="{{item.rentType==1}}" src="{{item.house.images.split(',')[0]}}" class="house-img" />
+             <image a:if="{{item.rentType==2}}" src="{{item.room.images.split(',')[0]}}" class="house-img" />
             </view>
 
             <view class="house-info" a:if="{{item.rentType==1}}">
@@ -63,9 +63,11 @@
 
       <view class="plan-btn">
         <view class="btn">
-          <view class="btn-button" onTap="contact" data-number="{{item.contactWay}}">联系对方</view>
-          <view a:if="{{!complete}}" class="btn-button left-radius" onTap="alertCancel" data-pid="{{item.id}}" data-uid="{{item.uid}}">拒绝约看</view>
-          <view a:if="{{complete}}" class="btn-button left-radius" onTap="alertDelete" data-pid="{{item.id}}">删除</view>
+          <button a:if="{{item.state==2}}" class="btn-button" onTap="sayYes" data-pid="{{item.id}}" data-uid="{{item.uid}}">确认</button>
+          <button a:if="{{item.state!=2}}" class="btn-button" onTap="contact" data-number="{{item.contactWay}}">联系对方</button>
+          <button a:if="{{!complete&&item.state!=2}}" class="btn-button left-radius" onTap="allRight" data-pid="{{item.id}}" data-uid="{{item.uid}}">确认完成</button>
+          <button a:if="{{!complete&&item.state==2}}" class="btn-button left-radius" onTap="alertCancel" data-pid="{{item.id}}" data-uid="{{item.uid}}">拒绝约看</button>
+          <button a:if="{{complete}}" class="btn-button left-radius" onTap="alertDelete" data-pid="{{item.id}}">删除</button>
    
         </view>
       </view>

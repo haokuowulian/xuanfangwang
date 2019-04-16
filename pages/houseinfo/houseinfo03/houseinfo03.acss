@@ -1,4 +1,154 @@
-.page{
+.house-banner{
+  height: 560rpx;
+  width: 750rpx;
+  position: relative;
+  background-color: #ffffff;
+}
+.banner-img{
+  height: 560rpx;
+  width: 750rpx;
+}
+.tousu-img{
+  height: 60rpx;
+  width: 60rpx;
+}
+.tousu{
+  position: absolute; top: 15rpx; right: 95rpx; height: 60rpx; overflow: visible;
+  border-radius:50%;
+  background:rgba(0,0,0,0.6);
+  background-color: #D5D5D5;
+}
+.share{
+  position: absolute; top: 15rpx; right: 15rpx; height: 60rpx; overflow: visible;
+  border-radius:50%;
+  background:rgba(0,0,0,0.6);
+  background-color: #D5D5D5;
+}
+.btn_share{
+  height: 60rpx;
+  width: 60rpx;
+  background:none;border:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.house-price{
+  /* margin-top: 15rpx; */
+  border: 1px solid #F7F7F7;
+  background-color: #ffffff;
+}
+.house-price-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 55rpx 35rpx 20rpx 35rpx;
+}
+.house-price-pay{
+  font-size: 45rpx;
+  color: #222222;
+  
+}
+.house-price-payway{
+  display: flex;
+  align-items: center;
+  color: #888888;
+}
+.house-price-room{
+  font-size: 45rpx;
+  color: #222222;
+  margin-top: 20rpx;
+  margin-left: 35rpx;
+  margin-bottom: 55rpx;
+}
+.icon-size{
+  height: 18px;
+  width: 11px;
+  margin-left: 30rpx;
+}
+
+.house-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+}
+.house-info-c1{
+  padding-bottom: 40rpx;
+  width: 750rpx;
+  border: 1px solid #F7F7F7;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 45rpx;
+}
+.house-info-c2{
+  height: 120rpx;
+  width: 750rpx;
+  border: 1px solid #F7F7F7;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.info-c1-list{
+  border: 1px solid #333333;
+  margin-left: 35rpx;
+  height: 55rpx;
+  width: 140rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25rpx;
+}
+.info-c2-list{
+  margin-top: 45rpx;
+  margin-bottom: 45rpx;
+  margin-left: 50rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333333;
+}
+.weizhi-img{
+  height: 25rpx;
+  width: 21rpx;
+  margin-right: 15rpx;
+}
+.info-c2-area{
+  margin-left: 45rpx;
+}
+.houseinfo-p2{
+  width: 750rpx;
+  margin-top: 15rpx;
+  background-color: #ffffff;
+}
+.house-details{
+  font-size: 30rpx;
+  color: #666666;
+  padding: 20rpx 40rpx 40rpx 5rpx;
+}
+.textClass{
+  padding-left: 35rpx;
+}
+.houseinfo-title{
+  font-size: 35rpx;
+  width: 680rpx;
+  color: #222222;
+  margin-left: 35rpx;
+  height: 110rpx;
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+
+/* .page{
   width: 750rpx;
 }
 .viewClass{
@@ -6,7 +156,6 @@
 }
 
 .houseinfo-p1{
-  /* height: 1175rpx; */
   width: 750rpx;
 }
 .house-banner{
@@ -57,26 +206,21 @@
   align-items: center;
 }
 .house-info-c1{
-  /* margin-left: 35rpx; */
-  /* height: 140rpx; */
   padding-bottom: 24rpx;
   width: 750rpx;
   border: 1px solid #F7F7F7;
   display:flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
   flex-wrap: wrap;
 }
 .house-info-c2{
-  /* margin-left: 35rpx; */
   height: 120rpx;
   width: 750rpx;
   border: 1px solid #F7F7F7;
   display:flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
   flex-wrap: wrap;
 }
 .info-c1-list{
@@ -118,24 +262,17 @@
   width: 680rpx;
   color: #222222;
   margin-left: 35rpx;
-  /* margin-top: 50rpx;
-  margin-bottom: 25rpx; */
   height: 110rpx;
   display: flex;
   align-items: center;
-  /* padding-top: 50rpx;
-  padding-bottom: 25rpx; */
 }
 .textClass{
   padding-left: 35rpx;
 }
 .houseinfo-p2{
- /* padding-left:35rpx; */
- /* margin-left: 35rpx; */
   width: 750rpx;
 }
 .houseinfo-p3{
-  /* height: 240rpx; */
   
   
   width: 680rpx;
@@ -147,14 +284,12 @@
   font-size: 30rpx;
   color: #666666;
   margin: 20rpx 40rpx 20rpx 5rpx;
-
 }
 .house-support{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* justify-content: center; */
   margin: 20rpx 40rpx 20rpx 5rpx;
 }
 .furniture-list{
@@ -186,23 +321,13 @@
   width: 680rpx;
   flex-direction: column;
 }
-/* .house-support{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: ;
-  margin: 20rpx 40rpx 20rpx 5rpx;
-} */
+
 .roomlist{
   height: 121rpx;
-  /* margin-left: 35rpx; */
-  /* margin-right: 35rpx; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid #F7F7F7; */
   border-top: 1px solid #F7F7F7;
   border-bottom: 1px solid #F7F7F7;
 }
@@ -210,7 +335,6 @@
   height: 121rpx;
   width: 100rpx;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   font-size: 30rpx;
   color: #666666;
@@ -233,7 +357,6 @@
 .features-info{
   display: flex;
   flex-direction: row;
-  /* margin: 45rpx 35rpx 45rpx 5rpx; */
   margin-top: 45rpx;
   margin-bottom: 45rpx;
 }
@@ -243,19 +366,15 @@
   display: flex;
   font-size: 30rpx;
   color: #999999;
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 .features-content{
   width: 490rpx;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   font-size: 30rpx;
   color: #666666;
 }
 .house-village{
-  /* margin: 20rpx 35rpx 40rpx 35rpx; */
   margin-top: 20rpx;
   margin-bottom: 40rpx;
 }
@@ -276,7 +395,6 @@
   border-bottom: 1px solid #F7F7F7;
 }
 .house-traffic{
-  /* margin: 20rpx 35rpx 40rpx; */
   margin-top: 20rpx;
   margin-bottom: 150rpx;
   margin-left: 35rpx;
@@ -324,12 +442,7 @@
   color: #333333;
   border-left: #f6f6f6 solid 2rpx;
 }
-/* .verticalLineView{
-  margin-top: 25rpx;
-  height: 60rpx;
-  width: 2rpx;
-  background-color: #f0f0f0
-} */
+
 .operate-yuyue{
   width: 300rpx;
   display: flex;
@@ -388,7 +501,6 @@
   background-color: #D5D5D5;
 }
 .share{
-  /* position: absolute; top: 480rpx; right: 15rpx; height: 65rpx; overflow: visible; */
   position: absolute; top: 15rpx; right: 15rpx; height: 60rpx; overflow: visible;
   border-radius:50%;
   background:rgba(0,0,0,0.6);
@@ -401,4 +513,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */

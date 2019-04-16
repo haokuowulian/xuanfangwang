@@ -30,7 +30,7 @@ Page({
       });
     }
   },
-    toInput(e){
+  toInput(e){
     console.log(e.detail.value)
     var that = this;
     if(e.target.dataset.t==1){
@@ -69,8 +69,6 @@ Page({
         eyeopen2:true,
       });
     }
-    
-    
   },
   toClose(e){
     console.log(e)
@@ -157,7 +155,7 @@ Page({
       clearInterval(setTimer)
     })
   },
-    //清空当前输入框
+  //清空当前输入框
   toEmpty(e){
     console.log(e.target.dataset.t)
     var that = this;
@@ -171,7 +169,6 @@ Page({
         confirmPassword:'',
       });
     }
-   
   },
   toNext(){
     var that = this;

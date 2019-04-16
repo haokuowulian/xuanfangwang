@@ -25,8 +25,8 @@
       </picker>
     </view>
 
-    <view class="content">业主姓名<input class="inputClass1" type="text" placeholder="请填写房东姓名" onInput="toInput1" data-t='3' value="{{vowner}}"/></view>
-    <view class="content">业主身份证号<input class="inputClass1" type="idcard" placeholder="请填写房东的身份证号码" onInput="toInput1" data-t='4' value="{{vownerCard}}"/></view>
+    <view class="content">业主姓名<input class="inputClass1" type="text" placeholder="请填写产权所有人姓名" onInput="toInput1" data-t='3' value="{{vowner}}"/></view>
+    <view class="content">业主身份证号<input class="inputClass1" type="idcard" placeholder="请填写产权所有人身份证号码" onInput="toInput1" data-t='4' value="{{vownerCard}}"/></view>
 
     <!-- <view class="content">面积<input class="inputClass1" type="text" placeholder="请选择期望看房时间"  disabled="true" value="{{expectTime}}" /></view> -->
 

@@ -21,7 +21,7 @@
   <view class="content-title">预约信息</view>
   <view class="page-content">
     <view class="content">联系人<input class="inputClass" type="text" placeholder="请填写联系人姓名" focus="false" onInput="bindContactsInput"/></view>
-    <view class="content">联系方式<input class="inputClass" type="number" placeholder="请填写联系方式" focus="false" onInput="bindContactWayInput"/></view>
+    <view class="content">联系号码<input class="inputClass" type="number" placeholder="请填写联系方式" focus="false" onInput="bindContactWayInput"/></view>
     <view class="content" onTap="selectTime">期望看房时间<input class="inputClass" type="number" placeholder="请选择期望看房时间"  disabled="true" value="{{expectTime}}" /></view>
     <view class="content" style="border:0">留言</view>
     <textarea class="textAreaClass" placeholder="若有需要，请填写留言" auto-height="true" onInput="bindLeaveWordInput" maxlength="30"/>

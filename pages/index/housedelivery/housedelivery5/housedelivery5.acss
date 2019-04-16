@@ -225,13 +225,10 @@
 }
 .chooseImg{
   width: 700rpx;
-  /* margin-left: 35rpx; */
   margin-top: 24rpx;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
-  /* height: 140rpx; */
 }
 .page-btn{
   position:fixed;

@@ -1,0 +1,40 @@
+
+
+<view class="page">
+  <view class="page-title">
+    设置新密码
+  </view>
+
+  <view class="classInput1" a:if="{{eyeclose1}}">
+    <view class="newPassword">新密码:</view><input type="text" password placeholder="请输入新密码" class="passwordNew" onInput="toInput" value="{{newPassword}}" data-t='3'/>
+    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{newPassword.length>0}}" onTap="toEmpty" data-t='3'/>
+    <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen" data-t='1'/>
+  </view>
+
+  <view class="classInput1" a:if="{{eyeopen1}}">
+    <view class="newPassword">新密码:</view><input type="text" placeholder="请输入新密码" class="passwordNew" onInput="toInput" value="{{newPassword}}" data-t='3'/>
+    <image src="/image/icon/cha8.png" class="cha_img" a:if="{{newPassword.length>0}}" onTap="toEmpty" data-t='3'/>
+    <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose" data-t='1'/>
+  </view>
+
+  <view class="classLine"></view>
+    <view class="classInput1" a:if="{{eyeclose2}}">
+      <view class="newPassword">确认密码:</view><input type="text" password placeholder="请再输入新密码" class="passwordNew" onInput="toInput" value="{{confirmPassword}}" data-t='4'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{confirmPassword.length>0}}" onTap="toEmpty" data-t='4'/>
+      <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen" data-t='2'/>
+    </view>
+
+    <view class="classInput1" a:if="{{eyeopen2}}">
+      <view class="newPassword">确认密码:</view><input type="text"  placeholder="请再输入新密码" class="passwordNew" onInput="toInput" value="{{confirmPassword}}" data-t='4'/>
+      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{confirmPassword.length>0}}" onTap="toEmpty" data-t='4'/>
+      <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose" data-t='2'/>
+    </view>
+
+    <view class="classLine"></view>
+    <view class="btn_box">
+      <button class="btn_login" type="default" onTap="updataPassword">保存设置
+      </button>
+    </view>
+
+
+</view>

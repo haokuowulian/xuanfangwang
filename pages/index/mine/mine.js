@@ -975,6 +975,11 @@ getServerTime(){
           dataType: 'json',
           success: (res) => {
             console.log(res)
+            if(!res.data.success){
+              my.alert({
+                title: '24小时内验证码发送次数已达上限！' 
+              });
+            }
           },
         });
         that.setData({
@@ -1115,7 +1120,8 @@ getServerTime(){
           key: 'userlogin', // 缓存数据的key
           data: true, // 要缓存的数据
         });
-        if(res.data.certNo&&res.data.certNo!=''){
+        console.log(res.data.users.certNo)
+        if(res.data.users.certNo&&res.data.users.certNo!=''){
           my.setStorageSync({
             key: 'userCompleted', // 缓存数据的key
             data: true, // 要缓存的数据

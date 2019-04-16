@@ -8,7 +8,8 @@
       </view>
       <view class="setting-info" onTap="toBindPhone">绑定手机<image src="/image/icon/right.png" class="right-img"/></view>
       <!-- <view class="setting-info" onTap="toBindEmail">绑定邮箱<image src="/image/icon/right.png" class="right-img"/></view> -->
-      <view class="setting-info" onTap="toChangePassword">修改密码<image src="/image/icon/right.png" class="right-img"/></view>
+      <view a:if="{{password}}" class="setting-info" onTap="toChangePassword">修改密码<image src="/image/icon/right.png" class="right-img"/></view>
+      <view a:if="{{!password}}" class="setting-info" onTap="toSetPassword">设置密码<image src="/image/icon/right.png" class="right-img"/></view>
     </view>
   </view>
   <view class="page-logout" onTap="userLogout">

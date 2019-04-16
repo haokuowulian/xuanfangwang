@@ -60,6 +60,7 @@ Page({
     var userCompleted = my.getStorageSync({
       key: 'userCompleted', 
     }).data;
+    console.log(userCompleted)
     if(this.data.roleId!=null&&this.data.roleId!=''){
       if(userCompleted){
         my.navigateTo({
