@@ -13,11 +13,11 @@ App({
     // base_whj:'http://192.168.1.193:8080/LLGY/',
     // baseUrl_oos:'http://192.168.1.193:8080/LLGY/IF/upload/headImgUpload.do', 
 
-    baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
-    baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
-    baseUrl_oos:'https://www.xuanfangwang.com.cn:8080/LLGY/IF/upload/headImgUpload.do', 
+    // baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
+    // baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    // base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    // baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
+    // baseUrl_oos:'https://www.xuanfangwang.com.cn:8080/LLGY/IF/upload/headImgUpload.do', 
    },
   onLanuch(){
     const {data} = my.getStorageSync({key: 'logs'});
