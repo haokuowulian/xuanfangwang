@@ -247,7 +247,7 @@ Page({
         id=roomId
       }
       my.navigateTo({
-        url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+id+'&rentType='+rentType,
+        url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+id+'&rentType='+rentType,
       })
   }
     

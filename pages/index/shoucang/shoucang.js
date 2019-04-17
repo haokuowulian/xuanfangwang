@@ -217,7 +217,7 @@ Page({
     console.log('*********')
     console.log(e)
     my.navigateTo({
-    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+    url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
   },
 });

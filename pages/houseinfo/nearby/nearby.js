@@ -48,6 +48,8 @@ Page({
       },
       dataType: 'json',
       success: function(res) {
+        console.log("附近交通查询成功")
+        console.log(res)
         var nearBy=[];
         for(var i=0;i<(res.data.pois.length<10?res.data.pois.length:10);i++){
           var obj={

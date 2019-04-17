@@ -1,3 +1,23 @@
+
+const hangzhou = 
+[
+  {"id":330100,"name":"杭州市","subList":[
+    {"id":330102,"name":"上城区","subList":[]},
+    {"id":330103,"name":"下城区","subList":[]},
+    {"id":330104,"name":"江干区","subList":[]},
+    {"id":330105,"name":"拱墅区","subList":[]},
+    {"id":330106,"name":"西湖区","subList":[]},
+    {"id":330108,"name":"滨江区","subList":[]},
+    {"id":330109,"name":"萧山区","subList":[]},
+    {"id":330110,"name":"余杭区","subList":[]},
+    {"id":330111,"name":"富阳区","subList":[]},
+    {"id":330122,"name":"桐庐县","subList":[]},
+    {"id":330127,"name":"淳安县","subList":[]},
+    {"id":330182,"name":"建德市","subList":[]},
+    {"id":330185,"name":"临安市","subList":[]},
+    ]
+  }
+]
 const app = getApp();
 const directionList = [
   {
@@ -204,87 +224,93 @@ Page({
     sort:'',
     dropDownMenuFourthData: [{ id: 1, title: '智能排序' }, { id: 2, title: '发布时间' }, { id: 3, title: '距离优先' }],//排序数据
     dropDownMenuFirstData:[
-        { id: 1, title: '附近', 
-          childModel:[
-            {id: '11',title: '1000米',
-              // childMode2: [
-              //   { id: '21', title: '沿浦' }, 
-              //   { id: '22', title:'钱江世纪城' },
-              // ]
-             },
-            {id: '12',title: '2000米',
-              // childMode2: [
-              //   { id: '21', title:'湘湖' },
-              //   { id: '22', title:'闻堰' },
-              // ]
-             },
-            {id: '13',title: '3000米',
-              // childMode2: [
-              //   { id: '21', title:'萧山市区' },
-              //   { id: '22', title:'西兴' },
-              // ]
-             },
-          ],
-          },
+        // { id: 1, title: '附近', 
+        //   childModel:[
+        //     {id: '11',title: '1000米',
+        //       // childMode2: [
+        //       //   { id: '21', title: '沿浦' }, 
+        //       //   { id: '22', title:'钱江世纪城' },
+        //       // ]
+        //      },
+        //     {id: '12',title: '2000米',
+        //       // childMode2: [
+        //       //   { id: '21', title:'湘湖' },
+        //       //   { id: '22', title:'闻堰' },
+        //       // ]
+        //      },
+        //     {id: '13',title: '3000米',
+        //       // childMode2: [
+        //       //   { id: '21', title:'萧山市区' },
+        //       //   { id: '22', title:'西兴' },
+        //       // ]
+        //      },
+        //   ],
+        //   },
         { id: 2, title: '区域', 
           childModel: [
             { id: '21', title: '不限' }, 
             { id: '22', title: '余杭',
-              childMode2: [
-                { id: '1', title: '乔司' }, 
-                { id: '2', title:'仓前' },
-                { id: '3', title:'临平' },
-                { id: '4', title:'南苑' },
-                { id: '5', title:'星桥' },
-                { id: '6', title:'良渚' },
-              ]
+              // childMode2: [
+              //   { id: '1', title: '乔司' }, 
+              //   { id: '2', title:'仓前' },
+              //   { id: '3', title:'临平' },
+              //   { id: '4', title:'南苑' },
+              //   { id: '5', title:'星桥' },
+              //   { id: '6', title:'良渚' },
+              // ]
              },
             { id: '23', title: '萧山',
-              childMode2: [
-                { id: '1', title: '沿浦' }, 
-                { id: '2', title:'钱江世纪城' },
-                { id: '3', title:'湘湖' },
-                { id: '4', title:'闻堰' },
-                { id: '5', title:'萧山市区' },
-                { id: '6', title:'西兴' },
-              ]
+              // childMode2: [
+              //   { id: '1', title: '沿浦' }, 
+              //   { id: '2', title:'钱江世纪城' },
+              //   { id: '3', title:'湘湖' },
+              //   { id: '4', title:'闻堰' },
+              //   { id: '5', title:'萧山市区' },
+              //   { id: '6', title:'西兴' },
+              // ]
              },
             { id: '24', title: '滨江',
-            childMode2: [
-                { id: '1', title: '长河' }, 
-                { id: '2', title:'白马湖' },
-                { id: '3', title:'西兴' },
-              ] },
+            // childMode2: [
+            //     { id: '1', title: '长河' }, 
+            //     { id: '2', title:'白马湖' },
+            //     { id: '3', title:'西兴' },
+            //   ] 
+              },
             { id: '25', title: '上城',
-            childMode2: [
-                { id: '1', title: '湖滨' }, 
-                { id: '2', title:'望江' },
-                { id: '3', title:'清波' },
-              ] },
+            // childMode2: [
+            //     { id: '1', title: '湖滨' }, 
+            //     { id: '2', title:'望江' },
+            //     { id: '3', title:'清波' },
+            //   ] 
+              },
             { id: '26', title: '下城',
-            childMode2: [
-                { id: '1', title: '武林' }, 
-                { id: '2', title:'长庆' },
-                { id: '3', title:'天水' },
-              ] },
+            // childMode2: [
+            //     { id: '1', title: '武林' }, 
+            //     { id: '2', title:'长庆' },
+            //     { id: '3', title:'天水' },
+            //   ] 
+              },
             { id: '27', title: '西湖',
-            childMode2: [
-                { id: '1', title: '西湖' }, 
-                { id: '2', title:'灵隐' },
-                { id: '3', title:'文一路' },
-              ] },
+            // childMode2: [
+            //     { id: '1', title: '西湖' }, 
+            //     { id: '2', title:'灵隐' },
+            //     { id: '3', title:'文一路' },
+            //   ] 
+              },
             { id: '28', title: '拱墅',
-            childMode2: [
-                { id: '1', title: '和睦' }, 
-                { id: '2', title:'小河' },
-                { id: '3', title:'大关' },
-              ] },
+            // childMode2: [
+            //     { id: '1', title: '和睦' }, 
+            //     { id: '2', title:'小河' },
+            //     { id: '3', title:'大关' },
+            //   ] 
+              },
             { id: '29', title: '江干',
-            childMode2: [
-                { id: '1', title: '闸弄口' }, 
-                { id: '2', title:'白杨' },
-                { id: '3', title:'丁桥' },
-              ] },
+            // childMode2: [
+            //     { id: '1', title: '闸弄口' }, 
+            //     { id: '2', title:'白杨' },
+            //     { id: '3', title:'丁桥' },
+            //   ]
+               },
             ]},
         { id: 3, title: '地铁',
         childModel:[
@@ -1190,7 +1216,7 @@ Page({
   //前往房源详情
   goToHouseDetail(e){
     my.navigateTo({
-    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+    url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
   },
   //搜索框搜索

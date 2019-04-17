@@ -18,25 +18,28 @@ Page({
     
   },
   toMyhouse(){
-    if(this.data.type==2){
-      my.navigateBack();
-    }else{
-      my.navigateTo({
-        url: '/pages/index/myhouse/myhouse',
-      });
-    }
+    my.navigateTo({
+      url: '/pages/index/myhouse/myhouse',
+    });
+    // if(this.data.type==2){
+    //   my.navigateBack();
+    // }else{
+    //   my.navigateTo({
+    //     url: '/pages/index/myhouse/myhouse',
+    //   });
+    // }
     
   },
   onUnload() {
     // 页面被关闭
     if(this.data.type==1){
       my.navigateBack({
-        delta:5
+        delta:4
       });
     }
     if(this.data.type==2){
       my.navigateBack({
-        delta:6
+        delta:5
       });
     }
     

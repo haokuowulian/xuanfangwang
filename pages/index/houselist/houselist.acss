@@ -611,7 +611,7 @@ page{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-bottom: 50rpx;
   color: #cccccc;
 }
@@ -640,19 +640,28 @@ page{
   text-align: center;
   line-height: 65rpx;
   border-radius: 10rpx;
+  margin-right: 15rpx;
 }
 .screen-print1{
-  margin-top: 25rpx;
+  /* margin-top: 25rpx;
   margin-right: 25rpx;
   height: 65rpx;
   padding-left: 15rpx;
   padding-right: 15rpx;
-  /* width: 155rpx; */
   font-size: 28rpx;
   border: 1px solid;
   text-align: center;
   line-height: 65rpx;
+  border-radius: 10rpx; */
+  margin-top: 25rpx;
+  width: 140rpx;
+  height: 65rpx;
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 10rpx;
+  margin-right: 25rpx;
 }
 .screen-print2{
   margin-top: 25rpx;
@@ -664,6 +673,7 @@ page{
   text-align: center;
   line-height: 65rpx;
   border-radius: 10rpx;
+  margin-right: 25rpx;
 }
 .bnt-screen{
   display: flex;

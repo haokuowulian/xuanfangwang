@@ -26,18 +26,24 @@
 .banner-search{
   align-self: center;
   float: left;
-  width: 610rpx;
+  /* width: 610rpx; */
+  width: 470rpx;
   height: 80rpx;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   background-color: #F7F7F7;
+}
+.icon_search{
+  height: 35rpx;
+  width: 35rpx;
+  margin-left: 30rpx;
 }
 .search{
 
 }
 .fake-placeholder{
-  margin-left: 12rpx;
+  margin-left: 25rpx;
   color: rgba(153, 153, 153, 0.89);
   font-size: 28rpx;
 }

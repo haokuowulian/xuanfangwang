@@ -5,6 +5,7 @@ Page({
     show2:false,
     name:'',
     nation:'',
+    residenceAddress:'',
     sex:'',
     city:'',
     cityCode:'',
@@ -156,6 +157,7 @@ Page({
             var sex = json1['sex'];
             var name = json1['name'];
             var num = json1['num'];
+            var address = json1['address']
             if(sex=='男'){
               that.setData({
                 sexCode:0,
@@ -167,6 +169,7 @@ Page({
               });
             }
             that.setData({
+              residenceAddress:address,
               name:name,
               nation:nation,
               sex:sex,
@@ -348,6 +351,7 @@ Page({
         cardUrl1:that.data.idImg1,
         cardUrl2:that.data.idImg2,
         nation:that.data.nation,
+        censusAddress:that.data.residenceAddress,
         // password:that.data.password,
         },
         dataType: 'json',
@@ -356,7 +360,7 @@ Page({
           if(res.data.success){
             my.setStorageSync({
               key: 'certName', // 缓存数据的key
-              data: that.data.certName, // 要缓存的数据 
+              data: that.data.name, // 要缓存的数据 
             });
             my.setStorageSync({
               key: 'certNo', // 缓存数据的key

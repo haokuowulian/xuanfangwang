@@ -82,7 +82,8 @@
     "pages/index/housedelivery/housedelivery5_new/housedelivery5_new",
     "pages/index/account_completed/account_mine/account_mine",
     "pages/index/setting/set_pwd/set_pwd",
-    "pages/houseinfo/houseinfo03/houseinfo03"
+    "pages/houseinfo/houseinfo03/houseinfo03",
+    "pages/houseinfo/share_page/share_page"
   ],
   "window": {
     "defaultTitle": "My App"

@@ -18,6 +18,7 @@ Page({
     imgUrl:'',
     textArry:[],
     nation:'',
+    residenceAddress:'',
   },
   onLoad(){
     this.gatInfo();
@@ -66,6 +67,7 @@ Page({
             cityCode:res.data.data.cityCode,
             areaId:res.data.data.areaCode,
             nation:res.data.data.nation,
+            residenceAddress:res.data.data.censusAddress,
           });
         },
       });

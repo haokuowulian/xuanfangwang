@@ -17,8 +17,9 @@ Page({
     nearByHouseList:[],
     lag:0,
     lng:0,
-    distance:20000
-
+    distance:20000,
+    city:'',
+    cityCode:'',
   },
   onLoad(){
     
@@ -26,6 +27,7 @@ Page({
     // app.getCity();
     console.log(1111111111111);
     // console.log(cityData);
+    
   },
   onShow(){
     this.getBanner();
@@ -56,17 +58,22 @@ Page({
       content: value,
     });
   },
+  //选择城市
   chooseCity() {
-    my.chooseCity({
-      showLocatedCity: true,
-      showHotCities: true,
-      success: (res) => {
-        my.alert({
-          title: 'chooseAlipayContact response: ' + JSON.stringify(res),
-        });
-      },
+    my.alert({
+      title: '暂无其他城市房源！' 
     });
+    // my.chooseCity({
+    //   success: (res) => {
+    //     console.log(res)
+    //     this.setData({
+    //       city:res.city,
+    //       cityCode:res.adCode,
+	  //     });
+    //   },
+    // });
   },
+  
   onSearchBarTap() {
     my.navigateTo({
       url: '/pages/search/search',
@@ -222,10 +229,16 @@ Page({
         console.log(res)
         console.log('***********')
         my.hideLoading();
+        var city = res.city
+        console.log(city)
+        var str = city.split('市');
+        console.log(str[0])
        that.setData({
          address:res.streetNumber.street+res.streetNumber.number,
          lng:res.longitude,
-         lag:res.latitude
+         lag:res.latitude,
+         city:str,
+         cityCode:res.cityAdcode,
        });
         that.getNearByHousing();
        
@@ -233,6 +246,10 @@ Page({
       fail() {
         my.hideLoading();
         my.alert({ title: '定位失败' });
+        that.setData({
+          city:'杭州',
+          cityCode:'330100',
+        });
       },
     })
  },
@@ -279,8 +296,8 @@ Page({
   //前往房源详情
   goToHouseDetail(e){
     my.navigateTo({
-      url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
-      // url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+      // url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+      url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
   },
   scan(){

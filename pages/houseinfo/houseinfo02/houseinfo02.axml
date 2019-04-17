@@ -1,77 +1,66 @@
-<view class="page">
-  <view class="viewClass" >
-  <view class="page-section houseinfo-p1">
+<view class="house-banner">
+  <swiper
+  autoplay=true
+  interval="{{interval}}">
+    <block a:for="{{houseDetail.images.split(',')}}" >
+      <swiper-item>
+        <image src="{{item}}" class="banner-img"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="tousu" onTap="toComplaint" a:if="{{!isLandrord}}">
+    <image src="/image/houseicon/tousu.png" class="tousu-img" />
+  </view>
+  <view class="share" onTap="onShareAppMessage" a:if="{{!isLandrord}}">
+    <button type="default" open-type="share" class="btn_share" onTap="defaultTap"><image src="/image/houseicon/share.png" class="tousu-img" /></button>
+  </view>
+
+</view>
+
+<view class="house-price">
+  <view class="house-price-info">
+      <view a:if="{{rentType==1}}" class="house-price-pay">￥{{houseDetail.entireRents}}元/月</view>
+      <view a:if="{{rentType==2}}" class="house-price-pay">￥{{houseDetail.rents}}元/月</view>
+      <view class="house-price-payway" onTap="onPaymentMethod">付款方式<image src="/image/icon/right.png" class="icon-size"/></view>
+  </view>
+  <view a:if="{{rentType==1}}" class="house-price-room">{{houseDetail.apartment.apartmentName}}·{{houseDetail.houseNo}}</view>
+  <view a:if="{{rentType==2}}" class="house-price-room">{{houseDetail.house.apartment.apartmentName}}·{{houseDetail.roomName}}</view>
+</view>
+
+<view class="house-info">
+    <view class="house-info-c1">
+      <block a:for="{{houseDetail.template.feature.split(',')}}" >
+        <view class="info-c1-list">{{item}}</view>
+      </block>
+      
+    </view>
     
-    <view class="house-banner">
-      <swiper
-      autoplay=true
-      interval="{{interval}}">
-        <block a:for="{{houseDetail.images.split(',')}}" >
-          <swiper-item>
-            <image src="{{item}}" class="banner-img"/>
-          </swiper-item>
-        </block>
-      </swiper>
-      <!-- <view class="tousu" onTap="toComplaint" a:if="{{!isLandrord}}">
-        <image src="/image/houseicon/tousu.png" class="tousu-img" />
-      </view>
-      <view class="share" onTap="onShareAppMessage" a:if="{{!isLandrord}}">
-        <button type="default" open-type="share" class="btn_share" onTap="defaultTap"><image src="/image/houseicon/share.png" class="tousu-img" /></button>
-      </view> -->
-   
+    <view class="house-info-c2">
+        <view class="info-c2-list">{{houseDetail.area}}m² </view>
+        <view class="info-c2-list" a:if="{{rentType==1}}">{{houseDetail.room}}室{{houseDetail.hall}}厅</view>
+        <view class="info-c2-list" a:if="{{rentType==2}}">{{houseDetail.house.room}}室{{houseDetail.house.hall}}厅</view>
+        <view class="info-c2-list">{{houseDetail.toward}}</view>
     </view>
-    <view class="house-price">
-      <view class="house-price-info">
-          <view a:if="{{rentType==1}}" class="house-price-pay">￥{{houseDetail.entireRents}}元/月</view>
-          <view a:if="{{rentType==2}}" class="house-price-pay">￥{{houseDetail.rents}}元/月</view>
-          <view class="house-price-payway" onTap="onPaymentMethod">付款方式<image src="/image/icon/right.png" class="icon-size"/></view>
+    <view  class="house-info-c2">
+      <view a:if="{{rentType==1}}" class="info-c2-area" onTap="toMap"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.apartment.address}}
       </view>
-      <view a:if="{{rentType==1}}" class="house-price-room">{{houseDetail.apartment.apartmentName}}·{{houseDetail.houseNo}}</view>
-      <view a:if="{{rentType==2}}" class="house-price-room">{{houseDetail.house.apartment.apartmentName}}·{{houseDetail.roomName}}</view>
-    </view>
-    <view class="house-info">
-      <view class="house-info-c1">
-        <block a:for="{{houseDetail.template.feature.split(',')}}" >
-          <view class="info-c1-list">{{item}}</view>
-        </block>
-        
+        <view a:if="{{rentType==2}}" class="info-c2-area" onTap="toMap"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.house.apartment.address}}
       </view>
-     
-      <view  class="house-info-c2">
-          <view class="info-c2-list">{{houseDetail.area}}m² </view>
-          <view class="info-c2-list" a:if="{{rentType==1}}">{{houseDetail.room}}室{{houseDetail.hall}}厅</view>
-          <view class="info-c2-list" a:if="{{rentType==2}}">{{houseDetail.house.room}}室{{houseDetail.house.hall}}厅</view>
-          <view class="info-c2-list">{{houseDetail.toward}}</view>
-      </view>
-      <view  class="house-info-c2">
-        <view a:if="{{rentType==1}}" class="info-c2-area" onTap="toMap"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.apartment.address}}
-        </view>
-         <view a:if="{{rentType==2}}" class="info-c2-area" onTap="toMap"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.house.apartment.address}}
-        </view>
-    </view>
   </view>
+</view>
 
-  <view class="page-section houseinfo-p2">
-    <view class="houseinfo-title">房源信息</view>
-    <view class="house-details">
-      <view class="textClass">{{houseDetail.description}}</view>
-    </view>
+<view class="houseinfo-p2">
+  <view class="houseinfo-title">房源信息</view>
+  <view class="house-details">
+    <view class="textClass">{{houseDetail.description}}</view>
   </view>
+</view>
+<view class="houseinfo-p2">
+  <view class="houseinfo-title">配套设施</view>
+    <grid  columnNum="{{4}}" list="{{furnitureList}}" />
+</view>
 
-  <view class="page-section houseinfo-p2">
-    <view class="houseinfo-title">配套设施</view>
-    <!-- <view class="house-support"> -->
-      <grid  columnNum="{{4}}" list="{{furnitureList}}" />
-      <!-- <block a:for="{{furnitureList}}" >
-        <view  class="furniture-list">         
-          <image  src="{{imgUrl}}{{item.icon}}" class="furniture-img"/>
-          <text   class="furniture-text">{{item.furniture}}</text>
-        </view>
-      </block> -->
-    <!-- </view> -->
-  </view>
-
-  <view a:if="{{rentType==2}}" class="page-section houseinfo-p2">
+<view a:if="{{rentType==2}}" class="houseinfo-p2">
     <view class="houseinfo-title">房间信息</view>
     <view class="house-roominfo">
       <block a:for="{{houseDetail.house.rooms}}" >
@@ -80,58 +69,45 @@
           <view a:if="{{item.status==1}}" class="roomlist-info1">待租</view>
           <view a:if="{{item.status==100}}" class="roomlist-info1">已租</view>
           <view class="roomlist-info2">{{item.rents}}元/月</view>
-          <!-- <view class="roomlist-info2" data-roomid="{{list.id}}">{{list.houseinfo}}</view> -->
         </view>
       </block>
     </view>
   </view>
 
-  <!-- <view class="page-section houseinfo-p2">
-    <view class="houseinfo-title">房源特色</view>
-    <view class="house-features">
-      <block a:for="{{features}}" a:for-item="list">
-        <view class="features-info">
-          <view class="features-title">{{list.title}}</view>
-          <view class="features-content">{{list.content}}</view>
-        </view>
-      </block>
-    </view>
-  </view> -->
-
-  <view class="page-section houseinfo-p2">
+  <view class="houseinfo-p2">
     <view class="houseinfo-title">小区信息</view>
     <view a:if="{{rentType==1}}" class="house-village" >
-      <!-- <block a:for="{{villageinfo}}" a:for-item="list"> -->
       <view><image src="{{houseDetail.apartment.images.split(',')[0]}}" class="village-img"/></view>
       <view class="villageinfo"><view>建筑年代</view><view>{{houseDetail.apartment.age}}年建成</view></view>
       <view class="villageinfo"><view>建筑类型</view><view>{{houseDetail.apartment.buildingType}}</view></view>
       <view class="villageinfo"><view>绿化率</view><view>{{houseDetail.apartment.green}}%</view></view>
       <view class="villageinfo"><view>容积率</view><view>{{houseDetail.apartment.plotRatio}}</view></view>
-      <!-- </block> -->
     </view>
     <view a:if="{{rentType==2}}" class="house-village" >
-      <!-- <block a:for="{{villageinfo}}" a:for-item="list"> -->
       <view><image src="{{houseDetail.house.apartment.images.split(',')[0]}}" class="village-img"/></view>
       <view class="villageinfo"><view>建筑年代</view><view>{{houseDetail.house.apartment.age}}年建成</view></view>
       <view class="villageinfo"><view>建筑类型</view><view>{{houseDetail.house.apartment.buildingType}}</view></view>
       <view class="villageinfo"><view>绿化率</view><view>{{houseDetail.house.apartment.green}}%</view></view>
       <view class="villageinfo"><view>容积率</view><view>{{houseDetail.house.apartment.plotRatio}}</view></view>
-      <!-- </block> -->
     </view>
   </view>
 
-  <view class="villageinfo" onTap="goToNearBy">
-    <view class="houseinfo-title" style="margin-left:0">周边交通</view>
-    <image class="icon-size" src="/image/icon/right.png"   /> 
-   
+  <view class="houseinfo-p2">
+    <view class="villageinfo" onTap="goToNearBy">
+      <view class="houseinfo-title" style="margin-left:0">周边交通</view>
+      <image class="icon-size" src="/image/icon/right.png" /> 
+    </view>
   </view>
-</view>
-<!-- <view class="horiztalView" a:if="{{!isLandrord}}" ></view>
+
+
+
+<!-- 
+<view class="horiztalView" a:if="{{!isLandrord}}" ></view>
   <view class="operate" a:if="{{!isLandrord}}">
     <view class="operate-shoucang" ><view onTap="collectOrUncollect"><image src="{{collectUrl}}" class="aixin-img" /></view></view>
-    <view class="operate-shoucang1" onTap="toChat"><view onTap="collectOrUncollect"><image src="/image/icon/xiaoxi.png" class="lt-img" /></view></view>
+    <view class="operate-shoucang1" onTap="toChat"><view><image src="/image/icon/xiaoxi.png" class="lt-img" /></view></view>
     <view a:if="{{!isBespeak}}" class="operate-yuyue" onTap="toConfirmpage">预约看房</view>
     <view a:if="{{isBespeak}}" class="operate-yuyue" onTap="alertPromt">已预约</view>
     <view class="operate-qianyue" onTap="toSigning">立即签约</view>
   </view>
-</view> -->
+</view>  -->

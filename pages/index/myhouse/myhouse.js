@@ -48,7 +48,7 @@ Page({
     }).data;
     var that=this;
      my.httpRequest({
-      url: app.globalData.base_whj+"IF/housing/getHousingListIFByLandlord.do",
+      url: app.globalData.baseUrl_whj+"IF/housing/getHousingListIFByLandlord.do",
       // url: "http://192.168.1.193:8080/LLGY/"+"IF/housing/getHousingListIFByLandlord.do",
       method: 'POST',
       data: {
@@ -123,7 +123,7 @@ Page({
       success: (res) => {
         if(res.confirm){
           my.httpRequest({
-            url: app.globalData.base_whj+'IF/housing/cancelRelease.do', // 目标服务器url
+            url: app.globalData.baseUrl_whj+'IF/housing/cancelRelease.do', // 目标服务器url
             method: 'POST',
             data: {
               userId:userId,
@@ -164,7 +164,7 @@ Page({
       success: (res) => {
         if(res.confirm){
           my.httpRequest({
-            url: app.globalData.base_whj+'IF/housing/cancelRelease.do', // 目标服务器url
+            url: app.globalData.baseUrl_whj+'IF/housing/cancelRelease.do', // 目标服务器url
             method: 'POST',
             data: {
               userId:userId,

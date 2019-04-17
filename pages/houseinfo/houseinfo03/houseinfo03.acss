@@ -7,6 +7,7 @@
 .banner-img{
   height: 560rpx;
   width: 750rpx;
+  border: #f7f7f7 1rpx solid;
 }
 .tousu-img{
   height: 60rpx;
@@ -101,6 +102,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 25rpx;
+  border-radius: 6rpx;
 }
 .info-c2-list{
   margin-top: 45rpx;
@@ -143,177 +145,6 @@
   display: flex;
   align-items: center;
 }
-
-
-
-
-
-/* .page{
-  width: 750rpx;
-}
-.viewClass{
-  padding-bottom: 150rpx;
-}
-
-.houseinfo-p1{
-  width: 750rpx;
-}
-.house-banner{
-  height: 560rpx;
-  width: 750rpx;
-  position: relative;
-}
-.banner-img{
-  height: 560rpx;
-  width: 750rpx;
-}
-.icon-size{
-  height: 18px;
-  width: 11px;
-  margin-left: 30rpx;
-}
-.house-price{
-  border: 1px solid #F7F7F7;
-}
-.house-price-info{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin: 55rpx 35rpx 20rpx 35rpx;
-}
-.house-price-pay{
-  font-size: 45rpx;
-  color: #222222;
-  
-}
-.house-price-payway{
-  display: flex;
-  align-items: center;
-  color: #888888;
-}
-.house-price-room{
-  font-size: 45rpx;
-  color: #222222;
-  margin-top: 20rpx;
-  margin-left: 35rpx;
-  margin-bottom: 55rpx;
-}
-.house-info{
-  height: 380rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.house-info-c1{
-  padding-bottom: 24rpx;
-  width: 750rpx;
-  border: 1px solid #F7F7F7;
-  display:flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.house-info-c2{
-  height: 120rpx;
-  width: 750rpx;
-  border: 1px solid #F7F7F7;
-  display:flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.info-c1-list{
-  margin-left: 35rpx;
-  height: 55rpx;
-  margin-top: 12rpx;
-  padding-left:12rpx; 
-  padding-right:12rpx; 
-  border-radius: 10rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #333333;
-  font-size: 25rpx;
-  color: #333333;
-}
-.info-c2-list{
-  margin-top: 45rpx;
-  margin-bottom: 45rpx;
-  margin-left: 50rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 30rpx;
-  color: #333333;
-}
-.weizhi-img{
-  height: 25rpx;
-  width: 21rpx;
-  margin-right: 15rpx;
-}
-.info-c2-area{
-  margin-left: 45rpx;
-}
-.houseinfo-title{
-  font-size: 35rpx;
-  width: 680rpx;
-  color: #222222;
-  margin-left: 35rpx;
-  height: 110rpx;
-  display: flex;
-  align-items: center;
-}
-.textClass{
-  padding-left: 35rpx;
-}
-.houseinfo-p2{
-  width: 750rpx;
-}
-.houseinfo-p3{
-  
-  
-  width: 680rpx;
-}
-.houseinfo-p7{
-  margin-bottom: 110rpx;
-}
-.house-details{
-  font-size: 30rpx;
-  color: #666666;
-  margin: 20rpx 40rpx 20rpx 5rpx;
-}
-.house-support{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 20rpx 40rpx 20rpx 5rpx;
-}
-.furniture-list{
-  height: 79rpx;
-  width: 75rpx;
-  margin-bottom: 40rpx;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  -webkit-flex-direction: column;
-  margin: 20rpx 50rpx 25rpx 20rpx;
-  align-items: center;
-  -webkit-align-items: center;
-}
-.furniture-img{
-  height: 34rpx;
-  width: 44rpx;
-
-}
-.furniture-text{
-  font-size: 25rpx;
-  color: #666666;
-  margin-top: 20rpx;
-}
 .house-roominfo{
   margin-left: 35rpx;
   margin-top: 20rpx;
@@ -321,7 +152,6 @@
   width: 680rpx;
   flex-direction: column;
 }
-
 .roomlist{
   height: 121rpx;
   display: flex;
@@ -348,40 +178,15 @@
   font-size: 30rpx;
   color: #666666;
 }
-.house-features{
-  display: flex;
-  flex-direction: column;
-  width: 680rpx;
-  border-bottom: 1px solid #F7F7F7;
-}
-.features-info{
-  display: flex;
-  flex-direction: row;
-  margin-top: 45rpx;
-  margin-bottom: 45rpx;
-}
-.features-title{
-  width: 190rpx;
-  margin-right: 35rpx;
-  display: flex;
-  font-size: 30rpx;
-  color: #999999;
-}
-.features-content{
-  width: 490rpx;
-  display: flex;
-  align-items: center;
-  font-size: 30rpx;
-  color: #666666;
-}
 .house-village{
   margin-top: 20rpx;
-  margin-bottom: 40rpx;
+  /* margin-bottom: 40rpx; */
 }
 .village-img{
   margin-left: 35rpx;
   height: 439rpx;
   width: 680rpx;
+  border: #f7f7f7 1rpx solid;
 }
 .villageinfo{
   margin-left: 35rpx;
@@ -394,13 +199,17 @@
   color: #999999;
   border-bottom: 1px solid #F7F7F7;
 }
-.house-traffic{
-  margin-top: 20rpx;
-  margin-bottom: 150rpx;
-  margin-left: 35rpx;
+.map_nearby{
   width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  padding-bottom: 100rpx;
 }
-
+.mapClass{
+  width: 645rpx;
+  /* max-height: 676rpx; */
+  height: 676rpx;
+}
 .horiztalView{
   position: fixed;
   bottom: 110rpx;
@@ -490,27 +299,4 @@
   height: 110rpx;
   background-color: #00000000;
 }
-.tousu-img{
-  height: 60rpx;
-  width: 60rpx;
-}
-.tousu{
-  position: absolute; top: 15rpx; right: 95rpx; height: 60rpx; overflow: visible;
-  border-radius:50%;
-  background:rgba(0,0,0,0.6);
-  background-color: #D5D5D5;
-}
-.share{
-  position: absolute; top: 15rpx; right: 15rpx; height: 60rpx; overflow: visible;
-  border-radius:50%;
-  background:rgba(0,0,0,0.6);
-  background-color: #D5D5D5;
-}
-.btn_share{
-  height: 60rpx;
-  width: 60rpx;
-  background:none;border:none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+

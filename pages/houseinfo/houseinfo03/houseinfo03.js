@@ -20,8 +20,18 @@ Page({
     bespeakId:'',
     isLandrord:false,
     landlordId:'',
+
+    scale:15,
+    markers:[],
+    circles:[],
+    radius:1000,
+    longitude:0,
+    latitude:0,
   },
-   
+  onReady() {
+    // 使用 my.createMapContext 获取 map 上下文
+    this.mapCtx = my.createMapContext( 'map' );
+  },
   onLoad(option) {
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
@@ -44,11 +54,26 @@ Page({
     });
     console.log('id:'+this.data.id);
     console.log('type:'+this.data.rentType);
+    
+    // if(option.rentType==1){
+    //   this.setData({
+    //     longitude: JSON.parse(option.houseDetail).longitude,
+    //     latitude: JSON.parse(option.houseDetail).latitude,
+    //     rentType:option.rentType
+    //   });
+    //  }else if(option.rentType==2){
+    //   this.setData({
+    //     longitude: JSON.parse(option.houseDetail).house.longitude,
+    //     latitude: JSON.parse(option.houseDetail).house.latitude,
+    //     rentType:option.rentType
+    //   });
+    //  }
+    
 
     this.getIsCollect();
     this.getIsBespeak();
     this.getHouseDetail(this.data.rentType);
-  
+
   },
 
   //获取房源详情
@@ -67,10 +92,14 @@ Page({
         console.log(res.data);
         if(rentType==1){
           that.setData({
+            longitude:res.data.data.longitude,
+            latitude:res.data.data.latitude,
             landlordId:res.data.data.landlordId,
           });
         }else if(rentType==2){
           that.setData({
+            longitude:res.data.data.house.longitude,
+            latitude:res.data.data.house.latitude,
             landlordId:res.data.data.house.landlordId,
           });
         }
@@ -670,4 +699,5 @@ Page({
     }
     
   },
+  
 });

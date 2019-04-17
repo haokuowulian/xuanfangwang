@@ -84,6 +84,10 @@
     <view class="content_body">{{certNo}}</view>
   </view>
   <view class="pages_content">
+    <view class="content_title">户籍住址：</view>
+    <view class="content_body">{{residenceAddress}}</view>
+  </view>
+  <view class="pages_content">
     <view class="content_title">有效日期：</view>
     <view class="content_body">{{date}}</view>
   </view>

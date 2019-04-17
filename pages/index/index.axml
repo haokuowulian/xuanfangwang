@@ -3,12 +3,12 @@
     <view class="page-banner">
       <view class="banner-city">
         <!-- {{array[index]}}城市onTap="chooseCity" -->
-        <!-- <view class="content">杭州</view>
-        <view class="icon"></view> -->
+        <view class="content" onTap="chooseCity">{{city}}</view>
+        <view class="icon"></view>
         <!-- <view class="content">杭州</view> -->
       </view>
       <view class="banner-search" onTap="onSearchBarTap">
-        <icon type="search" size="14" color="#1D1D1D" />
+        <icon class="icon_search" type="search" size="14" color="#1D1D1D" />
         <text class="fake-placeholder">输入你想住的区域或小区</text>
       </view>
       <view class="banner-news" onTap="scan">

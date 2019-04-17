@@ -35,6 +35,10 @@
     <view class="content_body">{{certNo}}</view>
   </view>
   <view class="pages_content">
+    <view class="content_title">户籍住址：</view>
+    <view class="content_body">{{residenceAddress}}</view>
+  </view>
+  <view class="pages_content">
     <view class="content_title">现居城市：</view>
     <view class="content_body">
       <view a:if="{{city==''}}" class="body_city1" onTap="selectCity">请选择现居城市</view>
