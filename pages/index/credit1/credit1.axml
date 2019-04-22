@@ -1,0 +1,63 @@
+<view>
+  <view class="page_banner">
+    <view class="img_box">
+      <view class="head_box">
+        <image src="{{avatar}}" class="img_head" />
+      </view>
+    </view>
+    <view class="user_name">{{name}}</view>
+    
+  </view>
+  <view class="page_content">
+    <view class="content_score">
+      <view class="score_title">综合信用评分</view>
+
+      <view class="score_box">
+        <view class="score score{{classType}}">{{score}}</view>
+        <view class="score_type score_type{{classType}}">{{scoreType}}</view>
+      </view>
+
+
+    </view>
+    <view class="lineClass"></view>
+    <view class="box_explain">
+      <text class="text_explain">该评分通过大数据分析身份核查、失信人员、芝麻信用分、历史租房评价等所得综合评分，最高5分</text>
+    </view>
+    <view class="lineClass1"></view>
+    <view class="user_info">租客详情</view>
+    <view class="info_box">
+      <view class="info_content">
+        <view>姓名</view>
+        <view>{{name}}</view>
+      </view>
+      <view class="lineClass"></view>
+      <view class="info_content">
+        <view>性别</view>
+        <view a:if="{{sex==0}}">男</view>
+        <view a:if="{{sex==1}}">女</view>
+      </view>
+      <view class="lineClass"></view>
+      <view class="info_content">
+        <view>年龄</view>
+        <view>{{age}}</view>
+      </view>
+      <view class="lineClass"></view>
+      <view class="info_content">
+        <view>手机号码</view>
+        <view>{{phone}}</view>
+      </view>
+      <view class="lineClass"></view>
+    </view>
+  </view>
+
+  <view class="back"></view>
+
+
+  <view class="box_btn" a:if="{{status!=9}}">
+  <!-- <view class="box_btn"> -->
+    <!-- <view class="box_btn" > -->
+    <!-- <button class="btn_class btn_back" type="default" onTap="toCancel">取消订单</button>
+    <button class="btn_class btn_back1" type="default" onTap="toSign">合同签约</button> -->
+  </view>
+
+</view>

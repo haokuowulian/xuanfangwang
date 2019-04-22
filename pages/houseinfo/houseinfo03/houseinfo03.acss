@@ -300,3 +300,12 @@
   background-color: #00000000;
 }
 
+
+.share_page{
+  height: 550rpx;
+  width: 750rpx;
+}
+.share_img{
+  height: 550rpx;
+  width: 750rpx
+}

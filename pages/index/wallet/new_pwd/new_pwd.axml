@@ -1,9 +1,9 @@
 <view class="page">
   <view class="page_content">
     <view class="content_title">新密码</view>
-    <input type="text" placeholder="请输入新的支付密码"  password class="input"/>
+    <input type="text" placeholder="请输入新的支付密码"  password onInput="inputPwd" class="input" value="{{payPassword}}"/>
     <view class="lineClass"></view>
     <view class="other"></view>
-    <view class="classnext" onTap="toNext">确定</view>
+    <view class="classnext" onTap="toSave">确定</view>
   </view>
 </view>

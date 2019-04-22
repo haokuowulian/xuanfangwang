@@ -9,7 +9,7 @@
           <view class="bill_date">{{list.createDate}}</view>
         </view>
         <view class="bill_money" a:if="{{list.type==1}}">+{{list.changeMoney}}￥</view>
-        <view class="bill_money" a:if="{{list.type==2}}">{{list.changeMoney}}￥</view>
+        <view class="bill_money" a:if="{{list.type==2}}">-{{list.changeMoney}}￥</view>
       </view>
     </view>
   </view>

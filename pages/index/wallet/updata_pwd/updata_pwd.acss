@@ -16,7 +16,7 @@
 }
 .input{
   font-size: 25rpx;
-  color: #dddddd;
+  /* color: #dddddd; */
   margin-top: 80rpx;
   width: 680rpx;
 }

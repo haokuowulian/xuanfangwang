@@ -3,6 +3,7 @@ Page({
   data: {
     money:'',
     perfect:false,
+    payPassword:'',
   },
   onLoad() {},
   onShow(){
@@ -23,6 +24,7 @@ Page({
           if(res.data.success){
             that.setData({
               money:res.data.wallet.money,
+              payPassword:res.data.wallet.payPassword,
             });
             if(res.data.wallet.txAlipay!=''&&res.data.wallet.txAlipay!=null){
               that.setData({
@@ -67,6 +69,11 @@ Page({
       url: '/pages/index/wallet/myinfo/myinfo',
     });
   },
+  toEditInfo(){
+    my.navigateTo({
+      url: '/pages/index/wallet/myinfo_edit/myinfo_edit',
+    });
+  },
   updataPassword(){
     my.navigateTo({
       url: '/pages/index/wallet/updata_pwd/updata_pwd',
@@ -74,7 +81,7 @@ Page({
   },
   forgetPassword(){
     my.navigateTo({
-      url: '/pages/index/wallet/forget_pwd/forget_pwd',
+      url: '/pages/index/wallet/forget_pwd/forget_pwd?payPassword='+this.data.payPassword,
     });
   },
 });

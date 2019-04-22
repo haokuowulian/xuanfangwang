@@ -404,26 +404,27 @@ Page({
   },
    bindPickerChange5(e){
     var that = this;
-    var arr = that.data.sexs;
+    var arr = that.data.sexarr;
     var idx = e.detail.value;
+    console.log(e)
     if(idx==0){
       that.setData({
         index5:e.detail.value,
-        sex:arr[idx],
+        usersex:arr[idx],
         sexCondition:0
       });
     }
     if(idx==1){
       that.setData({
         index5:e.detail.value,
-        sex:arr[idx],
+        usersex:arr[idx],
         sexCondition:1
       });
     }
     if(idx==2){
       that.setData({
         index5:e.detail.value,
-        sex:arr[idx],
+        usersex:arr[idx],
         sexCondition:2
       });
     }

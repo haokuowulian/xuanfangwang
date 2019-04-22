@@ -29,7 +29,7 @@ Page({
     console.log(uidCard);
     console.log('------------------pay-------------------');
     console.log(pay);
-    console.log('订单未确认');
+    console.log('订单已确认');
     if(pay){
       that.setData({
         pay1:true,

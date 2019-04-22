@@ -344,8 +344,8 @@ Page({
       longitude:longitude,
       latitude:latitude,
       landlordId:uid,
-      // vowner:vowner,
-      // vownerCard:vownerCard,
+      vowner:vowner,
+      vownerCard:vownerCard,
       // vrelation:vrelation,
       // idcard_positive:img1url,
       // idcard_reverse:img2url,
@@ -363,7 +363,7 @@ Page({
       entireRents:houserent,
       description:describe,
       images:houseimg,
-      
+      spell:0,
     };
     var template = [{
       templateName:templateName,

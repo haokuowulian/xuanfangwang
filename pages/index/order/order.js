@@ -154,6 +154,9 @@ Page({
       },
     });
   },
+  deleteOrder(e){
+    console.log(e)
+  },
   //立即支付
   toPay(e){
     var that = this;
@@ -256,6 +259,35 @@ Page({
             }
           },
         });
+      },
+    });
+  },
+  //删除订单
+  deleteOrder(e){
+    var that = this;
+    var orderId = e.target.dataset.id;
+    var uid= my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    console.log(uid)
+    console.log(orderId)
+    my.httpRequest({
+      url: app.globalData.base_whj+'IF/order/disabledOrder.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        orderId:orderId,
+        userId:uid,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+        if(res.data.success){
+          that.getOrder();
+        }else{
+          my.alert({
+            title: '删除失败，请稍候再试！' 
+          });
+        }
       },
     });
   },

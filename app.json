@@ -83,7 +83,10 @@
     "pages/index/account_completed/account_mine/account_mine",
     "pages/index/setting/set_pwd/set_pwd",
     "pages/houseinfo/houseinfo03/houseinfo03",
-    "pages/houseinfo/share_page/share_page"
+    "pages/houseinfo/share_page/share_page",
+    "pages/index/page_share/page_share",
+    "pages/index/credit1/credit1",
+    "pages/index/wallet/myinfo_edit/myinfo_edit"
   ],
   "window": {
     "defaultTitle": "My App"

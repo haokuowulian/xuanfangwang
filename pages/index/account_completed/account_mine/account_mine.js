@@ -31,6 +31,7 @@ Page({
     upload2:false,
     idImg1:'',
     idImg2:'',
+    currentTime:'',
   },
   onLoad() {
     var that = this;
@@ -131,10 +132,17 @@ Page({
               date:date,
               show1:true,
             });
+          }else{
+            my.alert({
+              title: '识别失败，请尝试上传清晰照片！' 
+            });
           }
         },
         fail: (res) =>{
           my.hideLoading();
+          my.alert({
+            title: '识别失败，请尝试上传清晰照片！' 
+          });
         }
       });
     }
@@ -153,6 +161,7 @@ Page({
             my.hideLoading();
             var ocr = res.data.ocr;
             var json1 = JSON.parse(ocr);
+            console.log(json1)
             var nation = json1['nationality'];
             var sex = json1['sex'];
             var name = json1['name'];
@@ -176,10 +185,17 @@ Page({
               certNo:num,
               show2:true,
             });
+          }else{
+            my.alert({
+              title: '识别失败，请尝试上传清晰照片！' 
+            });
           }
         },
         fail: (res) =>{
           my.hideLoading();
+          my.alert({
+            title: '识别失败，请尝试上传清晰照片！' 
+          });
         }
       });
     }
@@ -301,7 +317,8 @@ Page({
     if(idImg1!=''&&idImg2!=''){
       if(cityId!=''){
         if(areaId!=''){
-          that.complexUserInfo();
+          that.faceVerify();
+          // that.complexUserInfo();
           // if(password!=''){
           //   that.complexUserInfo();
           // }else{
@@ -324,6 +341,42 @@ Page({
         title: '请先上传身份证照片！' 
       });
     }
+  },
+
+  //刷脸验证
+  faceVerify(){
+    var that = this;
+    that.getServerTime();
+    my.ap.faceVerify({
+    bizId: this.data.currentTime+''+this.data.userId, //业务请求的唯一标识，需要保证唯一性
+    bizType: '2', //业务场景参数，必须填写‘2’，代表刷脸认证  
+    success: (res) => {
+      console.log('刷脸成功');
+       console.log(res);
+       if(res.faceRetCode==1000){
+         that.complexUserInfo();
+       }else{
+        my.alert({
+            content: '脸部识别未通过，请重试！',
+        });
+       }
+      
+    },
+    fail: (res) => {
+        my.alert({
+            content: '脸部识别未通过，请重试！',
+        });
+      }
+    });
+  },
+  getServerTime(){
+    my.getServerTime({
+      success: (res) => {
+        this.setData({
+          currentTime:res.time
+        });
+      },
+    });
   },
  
   //请求服务器完善信息

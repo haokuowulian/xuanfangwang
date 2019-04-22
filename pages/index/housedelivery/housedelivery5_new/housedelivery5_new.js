@@ -176,11 +176,12 @@ Page({
     var nearby = my.getStorageSync({
       key: 'r_nearby', // 缓存数据的key
     }).data;
-    var houseimg1 = my.getStorageSync({
-      key: 'r_houseimg', // 缓存数据的key
-    }).data;
-    var houseimg = houseimg1.join(',');
-    console.log(houseimg);
+    // var houseimg1 = my.getStorageSync({
+    //   key: 'r_houseimg', // 缓存数据的key
+    // }).data;
+    //  console.log(houseimg1);
+    // var houseimg = houseimg1.join(',');
+    // console.log(houseimg);
     var rentType = my.getStorageSync({
       key: 'r_rentType', // 缓存数据的key
     }).data;
@@ -229,8 +230,8 @@ Page({
       longitude:longitude,
       latitude:latitude,
       landlordId:uid,
-      // vowner:vowner,
-      // vownerCard:vownerCard,
+      vowner:vowner,
+      vownerCard:vownerCard,
       // vrelation:vrelation,
       // idcard_positive:img1url,
       // idcard_reverse:img2url,
@@ -243,7 +244,8 @@ Page({
       contract:img4url,
       rentType:rentType,
       description:describe,
-      images:houseimg,
+      // images:houseimg,
+      spell:0,
     };
 
     var template = tempList;
@@ -292,17 +294,20 @@ Page({
           confirmButtonText: '确认提交',
           cancelButtonText: '取消提交',
           success: (res) => {
-            my.alert({
-              title: '提交成功！',
-              success: () => {
-                my.navigateTo({
-                  url:'/pages/index/housedelivery/page_result/page_result?type=1',
-                });
-              // my.navigateBack({
-              //   delta: 6,
-              // });
-            }, 
-            });
+            if(res.confirm){
+              my.alert({
+                title: '提交成功！',
+                success: () => {
+                  my.navigateTo({
+                    url:'/pages/index/housedelivery/page_result/page_result?type=1',
+                  });
+                // my.navigateBack({
+                //   delta: 6,
+                // });
+              }, 
+              });
+            }
+            
             
           },
         });

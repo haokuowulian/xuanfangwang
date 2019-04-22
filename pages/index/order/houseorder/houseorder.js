@@ -17,7 +17,8 @@ Page({
   },
   onShow(){
     console.log(this.data.type);
-     this.getOrder();
+    console.log('页面刷新');
+    this.getOrder();
 
   },
   getOrder(){

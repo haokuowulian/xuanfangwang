@@ -15,10 +15,14 @@
   </view>
   <view class="classManger">钱包设置</view>
   <view class="page_content1">
-    <view class="content" onTap="toUserInfo">完善钱包信息
-      <view class="content_text" onTap="toInfo" a:if="{{!perfect}}">未完善</view>
-      <view class="content_text" a:if="{{perfect}}">已完善</view>
+
+    <view class="content" a:if="{{!perfect}}">完善钱包信息
+      <view class="content_text" onTap="toInfo">未完善</view>
     </view>
+    <view class="content" a:if="{{perfect}}">修改钱包信息
+      <view class="content_text"  onTap="toEditInfo">已完善</view>
+    </view>
+
     <view class="content" onTap="updataPassword">修改支付密码</view>
     <view class="content" onTap="forgetPassword">忘记支付密码</view>
   </view>

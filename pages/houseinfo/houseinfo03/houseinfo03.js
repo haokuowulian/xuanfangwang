@@ -27,6 +27,8 @@ Page({
     radius:1000,
     longitude:0,
     latitude:0,
+
+    showpage:false,
   },
   onReady() {
     // 使用 my.createMapContext 获取 map 上下文
@@ -75,7 +77,7 @@ Page({
     this.getHouseDetail(this.data.rentType);
 
   },
-
+  
   //获取房源详情
   getHouseDetail(rentType){
     var that=this;
@@ -513,19 +515,27 @@ Page({
       });
     }else{
       my.navigateTo({
-      url:'/pages/index/complaint/complaint?houseId='+this.data.id+'&rentType='+this.data.rentType,
-    });
+        url:'/pages/index/complaint/complaint?houseId='+this.data.id+'&rentType='+this.data.rentType,
+      });
     }
     
   },
 //页面分享
+  toShare(){
+    var that = this;
+    that.setData({
+      showpage:true,
+    });
+  },
+
   onShareAppMessage(){
     console.log(this.data.id)
     console.log(this.data.rentType)
     return {
       title: '房源详情分享',
       desc: '房源详情分享',
-      path: '/pages/houseinfo/houseinfo01/houseinfo01?id='+this.data.id+'&rentType='+this.data.rentType,
+      path: '/pages/houseinfo/houseinfo03/houseinfo03?id='+this.data.id+'&rentType='+this.data.rentType,
+
     };
   },
   toSigning(){

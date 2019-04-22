@@ -29,7 +29,7 @@
       <input class="inputClass" type="text" value="{{username}}" onInput="bindNameInput"/>
     </view>
     <view class="content">性别      
-      <picker onChange="bindPickerChange" value="{{index}}" range="{{sexarr}}">
+      <picker onChange="bindPickerChange5" value="{{index}}" range="{{sexarr}}">
         <view class="row-extra">{{usersex}}
         </view>
       </picker>

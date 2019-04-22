@@ -1,3 +1,4 @@
+<!-- <view a:if="{{!showpage}}"> -->
 <view class="house-banner">
   <swiper
   autoplay=true
@@ -11,8 +12,9 @@
   <view class="tousu" onTap="toComplaint" a:if="{{!isLandrord}}">
     <image src="/image/houseicon/tousu.png" class="tousu-img" />
   </view>
-  <view class="share" onTap="onShareAppMessage" a:if="{{!isLandrord}}">
-    <button type="default" open-type="share" class="btn_share" onTap="defaultTap"><image src="/image/houseicon/share.png" class="tousu-img" /></button>
+  <view class="share" a:if="{{!isLandrord}}">
+    <!-- <button type="default" open-type="share" class="btn_share"  onTap="toShare"><image src="/image/houseicon/share.png" class="tousu-img" /></button> -->
+    <button type="default" open-type="share" class="btn_share"><image src="/image/houseicon/share.png" class="tousu-img" /></button>
   </view>
 
 </view>
@@ -36,10 +38,10 @@
     </view>
     
     <view class="house-info-c2">
-        <view class="info-c2-list">{{houseDetail.area}}m² </view>
-        <view class="info-c2-list" a:if="{{rentType==1}}">{{houseDetail.room}}室{{houseDetail.hall}}厅</view>
-        <view class="info-c2-list" a:if="{{rentType==2}}">{{houseDetail.house.room}}室{{houseDetail.house.hall}}厅</view>
-        <view class="info-c2-list">{{houseDetail.toward}}</view>
+      <view class="info-c2-list">{{houseDetail.area}}m² </view>
+      <view class="info-c2-list" a:if="{{rentType==1}}">{{houseDetail.room}}室{{houseDetail.hall}}厅</view>
+      <view class="info-c2-list" a:if="{{rentType==2}}">{{houseDetail.house.room}}室{{houseDetail.house.hall}}厅</view>
+      <view class="info-c2-list">{{houseDetail.toward}}</view>
     </view>
     <view  class="house-info-c2">
       <view a:if="{{rentType==1}}" class="info-c2-area" onTap="toMap"><image src="/image/icon/weizhi-2.png" class="weizhi-img"/>{{houseDetail.apartment.address}}
@@ -111,3 +113,11 @@
     <view class="operate-qianyue" onTap="toSigning">立即签约</view>
   </view>
 </view> 
+
+<!-- </view> -->
+
+<!-- <view a:if="{{showpage}}">
+  <view class="share_page">
+    <image src="{{houseDetail.images.split(',')[0]}}" class="share_img"/>
+  </view>
+</view> -->

@@ -239,7 +239,7 @@ Page({
     console.log('身份证号校验')
     console.log(res_id)
     var mobileNum =(/^1[3456789]\d{9}$/.test(phone))
-    if(img1!=''&&img2!=''&&img3!=''&&name!=''&&phone!=''&&cardNo!=''){
+    if(img1!=''&&img2!=''&&name!=''&&phone!=''&&cardNo!=''){
       if(res_id==1){
         if(mobileNum){
           my.confirm({
@@ -317,7 +317,7 @@ Page({
     
     
   },
- //刷脸验证
+  //刷脸验证
   faceVerify(){
     var that = this;
     that.getServerTime();

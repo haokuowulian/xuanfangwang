@@ -23,6 +23,7 @@ Page({
     sex:'男',
     age:0,
     certified:false,
+    pay:false,
   },
   onLoad(option) {
     var that = this;
@@ -44,6 +45,15 @@ Page({
         console.log('----------info-----------')
         console.log(res)
         var order = res.data.data;
+        if(order.status==9){
+            that.setData({
+              pay:true,
+            });
+          }else{
+            that.setData({
+              pay:false,
+            });
+          }
         that.setData({
           uname:order.consumerName,
           uidCard:order.consumerIdCard,
@@ -64,6 +74,55 @@ Page({
         });
       },
     });
+  },
+  onShow(){
+    console.log('刷新页面中')
+    var that = this;
+    var id = that.data.orderid;
+    if(id!=''&&id!=null){
+      my.httpRequest({
+        // url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
+        url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          id:id,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log('----------info-----------')
+          console.log(res)
+          var order = res.data.data;
+          if(order.status==9){
+            that.setData({
+              pay:true,
+            });
+          }else{
+            that.setData({
+              pay:false,
+            });
+          }
+          that.setData({
+            uname:order.consumerName,
+            uidCard:order.consumerIdCard,
+            uphone:order.consumerTel,
+            startDate:order.startDate,
+            endDate:order.endDate,
+            houseName:order.housingName,
+            orderNo:order.localOrderNo,
+            payment:order.payment,
+            deposit:order.deposit,
+            images:order.images,
+            totalMoney:order.totalMoney,
+            area:order.area,
+            userId:order.consumerId,
+            status:order.status,
+            tradeNO:order.alipayOrderNo,
+            certified:order.certified,
+          });
+        },
+      });
+    }
+    
   },
   onCancel(){
     console.log('取消订单')
@@ -113,10 +172,20 @@ Page({
     var userId = that.data.userId;
     var uidCard = this.data.uidCard;
     var certified = this.data.certified;
+    var status = that.data.status;
+    console.log(status)
+    console.log(certified)
+    var pay = that.data.pay;
     if(certified){
-      my.navigateTo({
-        url:'/pages/index/credit/credit?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid,
-      });
+      if(status==9){
+        my.navigateTo({
+          url:'/pages/index/credit1/credit1?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid+'&pay=false'+'&status='+status,
+        });
+      }else{
+        my.navigateTo({
+          url:'/pages/index/credit/credit?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid+'&pay=false'+'&status='+status,
+        });
+      }
     }else{
       console.log(uidCard)
       my.httpRequest({
@@ -135,9 +204,16 @@ Page({
             success: (res) => {
               if(res.resultCode==9000){
                 that.successCertified(orderid);
-                my.navigateTo({
-                  url:'/pages/index/credit/credit?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid,
-                });
+                if(status==9){
+                  my.navigateTo({
+                    url:'/pages/index/credit1/credit1?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid+'&pay=false'+'&status='+status,
+                  });
+                }else{
+                  my.navigateTo({
+                    url:'/pages/index/credit/credit?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid+'&pay=false'+'&status='+status,
+                  });
+                }
+                
               }else{
                 my.alert({
                   title: '支付失败！' 

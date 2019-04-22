@@ -6,7 +6,7 @@
     <view class="content" onTap="selectPoi">小区/公寓<input class="inputClass1" type="text" placeholder="请填写，以方便定位"  onFocus="hideKeyboard" onInput="toInput1" data-t='1' value="{{village}}"/></view>
     <view class="content">楼栋、单元<input class="inputClass1" type="text" placeholder="请填写房源具体楼栋、单元" onInput="toInput1" data-t='1' value="{{vaddress}}" /></view>
     <view class="content">门牌号<input class="inputClass1" type="text" placeholder="请填写房源门牌号" onInput="toInput1" data-t='6' value="{{houseNo}}"/></view>
-    <view class="content" onTap="selectHuXing">户型<input class="inputClass1" type="text" placeholder="请选择房源的户型" disabled="true"  value="{{huxing}}" onFocus="open" /></view>
+    <view class="content" onTap="selectHuXing">户型<input class="inputClass1" type="text" placeholder="请选择房源的户型"  value="{{huxing}}" onFocus="open" /></view>
     <view class="content">朝向
       <picker onChange="bindPickerChange1" value="{{index}}" range="{{towardsArray}}">
         <view >

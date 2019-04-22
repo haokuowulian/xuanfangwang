@@ -47,7 +47,7 @@
   width: 140rpx;
 }
 .posion-img{
-    border-radius: 65rpx;
+  border-radius: 65rpx;
   height: 140rpx;
   width: 140rpx;
 }
@@ -551,9 +551,7 @@
 .btn_login{
   height: 80rpx;
   width: 680rpx;
-  /* margin-left: 35rpx; */
   border-radius: 12rpx;
-  /* background-color: #108ee9;*/
   background-color: #1DD8E7;
   color: white;
   display: flex;

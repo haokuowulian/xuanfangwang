@@ -935,27 +935,28 @@ Page({
     if(roomname!=''&&roomarea!=''&&roomrent!=''&&water!=''&&imgs!=''&&peopleNum>0){
       //数据类型验证
       var roomareaNum = regNum.exec(roomarea);
-      var roomrentNum = regNum.exec(roomrent);
+      var roomrentNum = regNum.exec(roomrent*1);
       if(roomareaNum){
-        if(roomrentNum){
-          that.toSaveData(water);
-          // if(img1url!=null&&img1url!=''&&canAddImg1==true){
-          //   that.toSaveData(img1url,water);
-          // }else{
-          //   console.log("上传房间照片")
-          //   that.uploadImg(img1,water);
-          // }
+        that.toSaveData(water);
+        // if(roomrentNum){
+        //   that.toSaveData(water);
+        //   // if(img1url!=null&&img1url!=''&&canAddImg1==true){
+        //   //   that.toSaveData(img1url,water);
+        //   // }else{
+        //   //   console.log("上传房间照片")
+        //   //   that.uploadImg(img1,water);
+        //   // }
 
-        }else{
-          my.alert({
-          title: '租金请输入数字',
-          success:() =>{
-            that.setData({
-              roomarea:'',
-            });
-          },
-        });
-        }
+        // }else{
+        //   my.alert({
+        //     title: '租金请输入数字',
+        //     success:() =>{
+        //       that.setData({
+        //         roomarea:'',
+        //       });
+        //     },
+        //   });
+        // }
         
       }else{
         my.alert({
@@ -1074,7 +1075,7 @@ Page({
               var obj1 = {
                 roomName:that.data.roomName,
                 area:that.data.area,
-                rents:that.data.rents,
+                rents:that.data.rents*1,
                 payway:that.data.payway,
                 payment:payment,
                 toward:chaoxiang,

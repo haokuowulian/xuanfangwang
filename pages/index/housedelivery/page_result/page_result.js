@@ -30,47 +30,33 @@ Page({
     // }
     
   },
+  // onUnload() {
+  //   console.log('页面关闭')
+  //   if(this.data.type==1){
+  //     my.navigateBack({
+  //       delta:4
+  //     });
+  //   }
+  //   if(this.data.type==2){
+  //     my.navigateBack({
+  //       delta:5
+  //     });
+  //   }
+    
+  // },
   onUnload() {
-    // 页面被关闭
+    console.log('页面关闭')
     if(this.data.type==1){
       my.navigateBack({
-        delta:4
+        delta:3
       });
     }
     if(this.data.type==2){
       my.navigateBack({
-        delta:5
+        delta:4
       });
     }
     
   },
-  downloadUrl(){
-    console.log(this.data.url);
-    //  my.navigateTo({
-    //             url:'/pages/index/downloadwebview/downloadwebview?url='+that.data.url,
-    //           });
-  //   my.downloadFile({
-  //         url: app.globalData.baseUrl+this.data.url, // 下载文件地址
-  //         success: (res) => {
-  //           console.log('download+------'+res)
-  //           // my.saveFile({
-  //           //   apFilePath: res.apFilePath,
-  //           //   success: (res) => {
-  //           //     console.log(res);
-  //           //   },
-  //           //   fail: (msg) => {
-  //           //     console.log(msg);
-  //           //   },
-  //           // });
-  //         },fail:(err)=>{
-  //           console.log(err)
-  //         }
-  //       });
-  //   //  my.saveFile({
-  //   //   apFilePath:app.globalData.baseUrl+this.data.url,
-  //   //   success: (res) => {
-  //   //     console.log(JSON.stringify(res))
-  //   //   },
-  //   // });
-   }
+  
 });

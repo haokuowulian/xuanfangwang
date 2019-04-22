@@ -2,7 +2,7 @@
   <view a:if="{{orderList.length==0}}" class="tips">你还没有订单</view>
   <view a:else>
   <block a:for="{{orderList}}" a:for-item="list">
-    <view class="page-order">
+    <view class="page-order" longTap="deleteOrder"  data-id="{{list.housingId}}">
 
       <view class="order">
         <view class="order-head">
@@ -45,6 +45,7 @@
         <!-- <button a:if="{{list.status==9}}" class="class_btn" type="default" onTap="onConfirm" data-id="{{list.id}}">确认入住</button> -->
         <button a:if="{{list.status==9}}" class="class_btn" type="default" data-id="{{list.id}}">已入住</button>
         <button a:if="{{list.status==0}}" class="class_btn" type="default" onTap="toPay" data-id="{{list.id}}">立即支付</button>
+        <button a:if="{{list.status==8}}" class="class_btn" type="default" onTap="deleteOrder" data-id="{{list.id}}">删除订单</button>
         
         </view>
       </view>
