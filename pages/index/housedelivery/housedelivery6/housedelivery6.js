@@ -391,50 +391,45 @@ console.log(apartment)
 console.log(house)
 console.log(template)
 console.log(roomList)
-    my.httpRequest({
-      url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
-      // url: 'http://192.168.1.193:8080/LLGY/IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
-      headers:{
-        "Content-Type":'application/json'
-      },
-      method:'POST',
-      dataType:'json',
-      data:{
-        // userId:uid,
-        apartment:apartment,
-        house:house,
-        rooms:roomList,
-        templates:template,
-      },
-      success: (res) => {
-
-        console.log(res)
-        that.sign(res.data.apartmentId,res.data.houseId);
-        my.confirm({
-          title: '温馨提示',
-          content:'确认发布后管理员将进行审核，审核通过则上架房源',
-          confirmButtonText: '确认提交',
-          cancelButtonText: '取消提交',
+  my.confirm({
+    title: '温馨提示',
+    content:'确认发布后管理员将进行审核，审核通过则上架房源',
+    confirmButtonText: '确认提交',
+    cancelButtonText: '取消提交',
+    success: (res) => {
+      if(res.confirm){
+        my.httpRequest({
+          url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
+          headers:{
+            "Content-Type":'application/json'
+          },
+          method:'POST',
+          dataType:'json',
+          data:{
+            apartment:apartment,
+            house:house,
+            rooms:roomList,
+            templates:template,
+          },
           success: (res) => {
-            my.navigateTo({
-              url:'/pages/index/housedelivery/page_result/page_result?type=2',
+            console.log(res)
+            that.sign(res.data.apartmentId,res.data.houseId);
+            my.alert({
+              title: '提交成功！',
+              success: () => {
+                my.navigateTo({
+                  url:'/pages/index/housedelivery/page_result/page_result?type=2',
+                });
+              }, 
             });
-            // my.alert({
-            //   title: '提交成功！',
-            //   success: () => {
-            //     my.navigateTo({
-            //       url:'/pages/index/housedelivery/page_result/page_result?type=2',
-            //     });
-            //   // my.navigateBack({
-            //   //   delta: 7,
-            //   // });
-            // }, 
-            // });
             
           },
         });
-      },
-    });
+      }
+      
+    },
+  });
+    
   },
   //签订合同
   sign(apartmentId,houseId){

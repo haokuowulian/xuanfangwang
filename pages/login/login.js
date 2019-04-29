@@ -324,12 +324,13 @@ Page({
     });
   },
   //发送手机验证码
+    //发送手机验证码
   sendMsg(){
     var that = this;
     var phoneNum = that.data.phoneNum;
-    console.log('phoneNum'+phoneNum)
+    console.log(phoneNum)
     if(phoneNum!=''){
-      var mobileNum =(/^1[34578]\d{9}$/.test(phoneNum))
+      var mobileNum =(/^1[3456789]\d{9}$/.test(phoneNum))
       if(mobileNum){
         my.httpRequest({
           url: app.globalData.baseUrl+'IF/user/registerVerificationCode.do', // 目标服务器url
@@ -343,6 +344,11 @@ Page({
           dataType: 'json',
           success: (res) => {
             console.log(res)
+            if(!res.data.success){
+              my.alert({
+                title: '24小时内验证码发送次数已达上限！' 
+              });
+            }
           },
         });
         that.setData({

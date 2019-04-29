@@ -29,8 +29,8 @@
   </view>
   <view>
     <view class="page-footer">说明</view>
-    <view class="footer">1.押金会在您办理解约时一并返还；</view>
-    <view class="footer">2.解约时，未发生的租金将按日结算。</view>
+    <view class="footer">1.押金会在您完成合同时返还。</view>
+    <view class="footer">2.解约时，未发生的租金将按日结算，违约则按合同处理。</view>
   </view>
  
 </view>

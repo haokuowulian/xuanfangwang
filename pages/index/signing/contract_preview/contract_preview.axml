@@ -21,7 +21,7 @@
           <text class="class_title"> 第四条  付款方式：</text>
                <text class="text_content">1、根据协议要求支付宝支付租金。</text>
                <text class="text_content">2、该房屋水、电及硬件设备押金人民币{{money}} 元，房屋租期满，水、电费无拖欠、硬件设施无人为损坏则押金如数退还，如有人为损坏双方约定折价赔偿，芝麻信用分700分以上免押金。</text>
-           <text class="text_content">3、租赁期间双方必须信守合同，任何乙方违反本合同的规定，按年度须向对方交纳年度租金的一个月租金作为违约金。乙方未交付租金的每逾期一日，甲方有权按月租金的2%向乙方加收滞纳金。</text>
+           <text class="text_content">3、租赁期间双方必须信守合同，任何一方违反本合同的规定，按年度须向对方交纳年度租金的一个月租金作为违约金。乙方未交付租金的每逾期一日，甲方有权按月租金的2%向乙方加收滞纳金。</text>
           <text class="class_title"> 第五条  交付房屋期限：</text>
            <text class="text_content">甲方应于本合同生效之日起当日内，将房屋交付给乙方。</text>
            <text class="class_title">第六条  甲方对房屋产权承诺：</text>
@@ -36,9 +36,9 @@
            <text class="class_title">第九条  关于房屋转租</text>
           　　 <text class="text_content">租赁期间，乙方不得将房屋转租给第三方的，违法该条款甲方有权收回房屋。</text>
            <text class="class_title">第十条  违约责任和损失赔偿</text>
-          　　 <text class="text_content">1、甲方无故提前解除合同或将房屋租给其他人的，视为甲方违约，应支付乙方违约金，违约金按当年月租金的五倍计算。</text>
-          　　 <text class="text_content">2、乙方无故提前解除合同或擅自转租的，视为乙方违约，应支付甲方违约金，违约金按当年月租金的五倍计算。</text>
-          　　 <text class="text_content">3、承租方违反合同，擅自将承租房屋转给他人使用的，应支付违约金，违约金按当年月租金的五倍计算。因此造成承租房屋损坏的，还应负责赔偿。</text>
+          　　 <text class="text_content">1、甲方无故提前解除合同或将房屋租给其他人的，视为甲方违约，应支付乙方违约金，租期三个月内(不包含三个月)的违约金按租客押金金额加上当年月租金的一半计算，租期三个月以上(包含三个月)的违约金按租客押金金额加上当年一个月租金计算。</text>
+          　　 <text class="text_content">2、乙方无故提前解除合同或擅自转租的，视为乙方违约，应支付甲方违约金，租期三个月内(不包含三个月)的违约金按当年月租金的一半计算并扣除押金，租期三个月以上(包含三个月)的违约金按当年一个月租金计算并扣除押金。</text>
+          　　 <text class="text_content">3、承租方违反合同，擅自将承租房屋转给他人使用的，应支付违约金，因此造成承租房屋损坏的，还应负责赔偿。</text>
            <text class="class_title">第十一条  免责条件</text>
            <text class="text_content">租赁期间，房屋因不可抗力损毁或造成乙方损失的，双方互不承担责任。</text>
            <text class="class_title">第十二条  争议的解决</text>

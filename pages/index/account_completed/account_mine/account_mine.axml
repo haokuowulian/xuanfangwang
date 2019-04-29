@@ -1,68 +1,31 @@
 <view class="page">
-    <!-- <view>添加身份证照片读取信息</view> -->
-   <view class="box_img1">
+  
+  <view class="box_img1">
 
-     <view a:if="{{!canAddImg2}}" class="addViewClass"> 
-        <image class="addImageViewClass" src="{{img2}}" onTap="addImg" data-t="2"/>
-        <text class="textClass">身份证反面(人面)</text>
-      </view>
-
-      <view a:if="{{canAddImg2}}" class="addViewClass"> 
-        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="2"/>
-        <text class="textClass">身份证反面(人面)</text>
-      </view>
-
-
-
-      <view a:if="{{!canAddImg1}}" class="addViewClass" style="margin-left:16rpx;"> 
-        <image class="addImageViewClass" src="{{img1}}" onTap="addImg" data-t="1" />
-        <text class="textClass">身份证正面(国徽)</text>
-      </view>
-
-      <view a:if="{{canAddImg1}}" class="addViewClass" style="margin-left:16rpx;"> 
-        <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="1"/>
-        <text class="textClass">身份证正面(国徽)</text>
-      </view>
-
-      
-
-      
+    <view a:if="{{!canAddImg2}}" class="addViewClass"> 
+      <image class="addImageViewClass" src="{{img2}}" onTap="addImg" data-t="2"/>
+      <text class="textClass">身份证反面(人面)</text>
     </view>
+
+    <view a:if="{{canAddImg2}}" class="addViewClass"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="2"/>
+      <text class="textClass">身份证反面(人面)</text>
+    </view>
+
+
+
+    <view a:if="{{!canAddImg1}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <image class="addImageViewClass" src="{{img1}}" onTap="addImg" data-t="1" />
+      <text class="textClass">身份证正面(国徽)</text>
+    </view>
+
+    <view a:if="{{canAddImg1}}" class="addViewClass" style="margin-left:16rpx;"> 
+      <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="1"/>
+      <text class="textClass">身份证正面(国徽)</text>
+    </view>
+    
+  </view>
    
-
-  <!-- <view class="page-content">
-
-      <view class="content1"><view class="content_title">姓名:</view>
-        <view class="inputClass">{{name}}</view>
-      </view>
-      <view class="content2"><view class="content_title">民族:</view>
-        <view class="inputClass4">{{nation}}</view>
-      </view>
-      <view class="content2"><view class="content_title">性别:</view>
-        <view class="inputClass5">{{sex}}</view>
-      </view>
-  </view>
-
-  <view class="content1"><view class="content_title">身份证号：</view>
-    <view class="inputClass1">{{certNo}}</view>
-  </view>
-
-  <view class="page-content">
-
-      <view class="content3" onTap="selectCity"><view class="content_title">城市：</view>
-        <view class="inputClass1">{{city}}</view>
-      </view>
-      <view class="content3" onTap="selectArea"><view class="content_title">地区：</view>
-        <view class="inputClass2">{{area}}</view>
-      </view>
-  </view>
-
-  <view class="content1"><view class="content_title">初始密码：</view>
-    <input class="inputClass1" type="text" placeholder="设置初始密码"   password onInput="bindPassword"/>
-  </view> -->
-
-
-
 </view>
 
 <view class="pages">
@@ -100,23 +63,20 @@
       <view a:else class="body_area" onTap="selectArea">{{area}}</view>
     </view>
   </view>
-  <!-- <view class="pages_content">
-    <view class="content_title">初始密码：</view>
-    <view class="content_body"><input type="text" placeholder="设置初始密码"   password onInput="bindPassword"/></view>
-  </view> -->
+ 
 </view>
 
- <button class="submitButton" onTap="submit1">提交</button>
- <!-- <button class="page-btn" onTap="submit">提交</button> -->
+<button class="submitButton" onTap="submit1">提交</button>
+
 
 <view class="modal-box" hidden="{{!showBottom}}" onTap="onPopupClose" >
-    <view class="modal-body">
-      <view class="modal-content">
-       <scroll-view scroll-y="true" style="height: 200px;" >
-       <block a:for="{{areaList}}" >
-         <view class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</view>
-       </block>
-      </scroll-view> 
-      </view>
+  <view class="modal-body">
+    <view class="modal-content">
+      <scroll-view scroll-y="true" style="height: 200px;" >
+      <block a:for="{{areaList}}" >
+        <view class="areaItemClass" onTap="getIndex" data-index="{{index}}">{{item.distName}}</view>
+      </block>
+    </scroll-view> 
     </view>
   </view>
+</view>

@@ -71,7 +71,7 @@
   </view>
   <view class="page-time">合同操作</view>
  
-  <view a:if="{{status!=3}}" class="page-user1">
+  <view a:if="{{contract.state==1}}" class="page-user1">
     <view class="users">
       <view class="users-title"></view>
       <view class="order-btn" onTap="onCancel">申请解约</view>
@@ -81,11 +81,14 @@
       <view class="order-btn" onTap="onContinue">申请续约</view>
     </view>
   </view>
+  <view  a:else>
+    <textarea  style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx;color:#999999" value="未生效合同"  disabled='true' maxlength='-1'>
+    </textarea>
+  </view>
+  
+
   <view class="page-time">合同下载地址（点击下面链接复制到剪贴板）</view>
   <view a:if="{{contract.state==1}}">
-    <!-- <button type="default" onTap="toDownload">点击下载合同</button> -->
-     <!-- <textarea selectable='true'   style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx" value="{{url}}" maxlength='-1'  disabled='true' onTap="toBoard">
-    </textarea> -->
     <view style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx" onTap="toBoard">{{url}}
     </view>
   </view>

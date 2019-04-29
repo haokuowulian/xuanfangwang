@@ -369,9 +369,6 @@ Page({
       return;
     }
 
-
-
-
   },
   onLoad() {
     // my.showLoading();
@@ -552,8 +549,6 @@ Page({
       key: 'city', // 缓存数据的key
       data: this.data.city, // 要缓存的数据
     });
-    
-
   },
   toInput(e){
     console.log(e.detail.value)
@@ -582,7 +577,7 @@ Page({
   },
   next1(){
     var that = this;
-    that.toNext();
+    // that.toNext();
     var image = that.data.img;
     var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;
@@ -758,9 +753,13 @@ Page({
       }
     })
   },
-  // open(){
-  //   my.hideKeyboard();
-  // },
+  //关闭选择城市
+  open(){
+    my.hideKeyboard();
+    this.setData({
+      condition: !this.data.condition
+    })
+  },
   //选择朝向
   bindPickerChange1(e){
     console.log(e)

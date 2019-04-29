@@ -87,14 +87,17 @@ Page({
   },
   toAccountCompleted(){
     var that = this;
-    if(that.data.userCompleted){
-      my.navigateTo({
-        url:'/pages/index/account_completed/account_completed',
-      });
-    }else{
-      my.navigateTo({
+    my.navigateTo({
         url: '/pages/index/account_completed/account_mine/account_mine',
       });
-    }
+    // if(that.data.userCompleted){
+    //   my.navigateTo({
+    //     url:'/pages/index/account_completed/account_completed',
+    //   });
+    // }else{
+    //   my.navigateTo({
+    //     url: '/pages/index/account_completed/account_mine/account_mine',
+    //   });
+    // }
   },
 });

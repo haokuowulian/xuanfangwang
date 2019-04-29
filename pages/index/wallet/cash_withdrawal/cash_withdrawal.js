@@ -24,9 +24,16 @@ Page({
     var that = this;
     var money = that.data.money;
     if(money!=''){
-      that.setData({
-        pxopen:true,
-      });
+      if(money>=0.2){
+        that.setData({
+          pxopen:true,
+        });
+      }else{
+        my.alert({
+          title: '提现金额不能少于0.2！' 
+        });
+      }
+      
     }
   },
   toBack(){

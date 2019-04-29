@@ -269,50 +269,46 @@ Page({
     console.log(house)
     console.log(template)
     console.log(room)
-
-
-    my.httpRequest({
-      url: app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid,
-      headers:{
-        "Content-Type":'application/json'
-      },
-      method:'POST',
-      dataType:'json',
-      data:{
-        apartment:apartment,
-        house:house,
-        rooms:room,
-        templates:template,
-       
-      },
+    
+    my.confirm({
+      title: '温馨提示',
+      content:'确认发布后管理员将进行审核，审核通过则上架房源',
+      confirmButtonText: '确认提交',
+      cancelButtonText: '取消提交',
       success: (res) => {
-        console.log(res)
-        that.sign(res.data.apartmentId,res.data.houseId);
-        my.confirm({
-          title: '温馨提示',
-          content:'确认发布后管理员将进行审核，审核通过则上架房源',
-          confirmButtonText: '确认提交',
-          cancelButtonText: '取消提交',
-          success: (res) => {
-            if(res.confirm){
+        if(res.confirm){
+          my.httpRequest({
+            url: app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid,
+            headers:{
+              "Content-Type":'application/json'
+            },
+            method:'POST',
+            dataType:'json',
+            data:{
+              apartment:apartment,
+              house:house,
+              rooms:room,
+              templates:template,
+            
+            },
+            success: (res) => {
+              console.log(res)
+              that.sign(res.data.apartmentId,res.data.houseId);
               my.alert({
                 title: '提交成功！',
                 success: () => {
                   my.navigateTo({
                     url:'/pages/index/housedelivery/page_result/page_result?type=1',
                   });
-                // my.navigateBack({
-                //   delta: 6,
-                // });
-              }, 
+                }, 
               });
-            }
-            
-            
-          },
-        });
+            },
+          });
+        }
       },
     });
+
+    
   },
    //签订合同
   sign(apartmentId,houseId){

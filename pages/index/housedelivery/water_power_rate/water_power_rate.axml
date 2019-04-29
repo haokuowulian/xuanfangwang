@@ -21,13 +21,13 @@
 
       <view class="content">电费(元/度)
         <view>
-          <input class="inputClass1" type="digit" placeholder="请输入电费单价" onInput="toInput" data-t='1' value="{{powerprice}}"/>
+          <input class="inputClass1" type="digit" placeholder="请输入电费价格" onInput="toInput" data-t='1' value="{{powerprice}}"/>
         </view>
       </view>
 
       <view class="content">水费(元/立方)
         <view>
-          <input class="inputClass1" type="digit" placeholder="请输入当前水表刻度" onInput="toInput" data-t='2' value="{{waterprice}}"/>
+          <input class="inputClass1" type="digit" placeholder="请输入水费价格" onInput="toInput" data-t='2' value="{{waterprice}}"/>
         </view>
       </view>
 

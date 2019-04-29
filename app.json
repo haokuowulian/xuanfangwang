@@ -86,7 +86,8 @@
     "pages/houseinfo/share_page/share_page",
     "pages/index/page_share/page_share",
     "pages/index/credit1/credit1",
-    "pages/index/wallet/myinfo_edit/myinfo_edit"
+    "pages/index/wallet/myinfo_edit/myinfo_edit",
+    "pages/contract_renew/contract_renew"
   ],
   "window": {
     "defaultTitle": "My App"

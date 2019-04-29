@@ -43,7 +43,7 @@
 
     <view class="content">物业费(元/月)
       <view>
-        <input class="inputClass1" type="digit" placeholder="请填写电费价格" onInput="toInput" data-t='4' value="{{property}}"/>
+        <input class="inputClass1" type="digit" placeholder="请填写物业费价格" onInput="toInput" data-t='4' value="{{property}}"/>
       </view>
     </view>
 

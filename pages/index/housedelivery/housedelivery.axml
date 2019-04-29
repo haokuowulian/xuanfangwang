@@ -6,7 +6,7 @@
     <view class="content" onTap="selectPoi">小区/公寓<input class="inputClass1" type="text" placeholder="请填写，以方便定位"  onFocus="hideKeyboard" onInput="toInput1" data-t='1' value="{{village}}"/></view>
     <view class="content">楼栋、单元<input class="inputClass1" type="text" placeholder="请填写房源具体楼栋、单元" onInput="toInput1" data-t='1' value="{{vaddress}}" /></view>
     <view class="content">门牌号<input class="inputClass1" type="text" placeholder="请填写房源门牌号" onInput="toInput1" data-t='6' value="{{houseNo}}"/></view>
-    <view class="content" onTap="selectHuXing">户型<input class="inputClass1" type="text" placeholder="请选择房源的户型"  value="{{huxing}}" onFocus="open" /></view>
+    <view class="content" onTap="selectHuXing">户型<input class="inputClass1" type="text" placeholder="请选择房源的户型"  value="{{huxing}}" onFocus="hideKeyboard" /></view>
     <view class="content">朝向
       <picker onChange="bindPickerChange1" value="{{index}}" range="{{towardsArray}}">
         <view >
@@ -153,9 +153,9 @@
 </popup>
 
 <view>
-<view class="page_file" a:if="{{type==1}}">
-  <view class="classFire">
-    <text class="text_title">房屋出租治安、消防责任书</text>
+  <view class="page_file" a:if="{{type==1}}">
+    <view class="classFire">
+      <text class="text_title">房屋出租治安、消防责任书</text>
       <text class="text_content">为进步加强居住出租房屋管理，根据《中华人民共和国治安管理处罚法》、《中华人民共和国消防法》、《浙江省居住房屋出租登记管理办法》、《浙江省流动人口居住登记条例》、《浙江省消防条例》等有关规定，预防和减少违法犯罪违法行为以及治安灾害事故的发生，特签订本责任书。</text>
       <text class="text_content">  1、出租房屋必须按要求登记备案，并具备基本居住功能并符合建筑、消防等安全要求。</text>
       <text class="text_content">  2、应当自租赁关系建立或终止之日起三个工作日内，到房屋所在村居(社区)报备房屋出租信息。</text>

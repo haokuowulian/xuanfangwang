@@ -1,0 +1,103 @@
+<view>
+  <view class="page-title">
+    <view class="title">
+      <view class="title-left">
+        <image src="{{houseDetail.images.split(',')[0]}}" class="house-img" />
+      </view>
+      <view class="title-right">
+        <view a:if="{{rentType==1}}" class="right-p0">{{houseDetail.apartment.apartmentName}}{{houseDetail.buildingUnit}}{{houseDetail.houseNo}}
+        </view>
+        <view a:if="{{rentType==2}}" class="right-p0">{{houseDetail.house.apartment.apartmentName}}{{houseDetail.house.buildingUnit}}{{houseDetail.roomName}}
+        </view>
+        <view class="right">
+          <view class="right-p1">
+            <view a:if="{{rentType==1}}" class="p1-text">{{houseDetail.entireRents}}
+            </view>
+            <view a:if="{{rentType==2}}" class="p1-text">{{houseDetail.rents}}
+            </view>            元/月 （{{my_payway}}）         
+          </view>
+          <view class="right-p2">{{houseDetail.area}}m²
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="content-title">签约主体
+  </view>
+  <view class="page-content">
+    <view class="content">姓名
+      <input class="inputClass" type="text" value="{{username}}" onInput="bindNameInput"/>
+    </view>
+    <view class="content">性别      
+      <picker onChange="bindPickerChange5" value="{{index}}" range="{{sexarr}}">
+        <view class="row-extra">{{usersex}}
+        </view>
+      </picker>
+    </view>
+    <view class="content">身份证
+      <input class="inputClass" type="idcard" value="{{cardId}}" onInput="bindCadeInput"/>
+    </view>
+    <view class="content" style="border:0">手机号
+      <input class="inputClass" type="number" value="{{phone}}" onInput="bindPhoneInput"/>
+    </view>
+  </view>
+</view>
+<view>
+</view>
+<view class="page-date">
+  <view class="startDate">
+    <view class="startDate-text">开始时间
+    </view>
+    <view class="startDate-text">结束时间
+    </view>
+  </view>
+  <view class="begin-date">
+    <view class="date-text" onTap="chooseDate">{{currentDate}}
+    </view>
+    <picker onChange="bindPickerChange" value="{{index1}}" range="{{myEndDates}}">
+      <view class="date-text">{{myEndDate}}
+      </view>
+    </picker>
+  </view>
+</view>
+<view class="content-title">首次款项
+</view>
+<view class="page-content">
+  <view class="content1">
+    <view class="content-info">
+      <view>租金({{payWay}}{{price}}.0元/月)
+      </view>
+      <view class="content-info-p1">
+        <view>×{{month}}月
+        </view>
+        <view>￥{{pay}}.0
+        </view>
+      </view>
+    </view>
+    <view class="content-info1">
+      <view>押金
+      </view>
+      <view>￥{{price}}.0
+      </view>
+    </view>
+  </view>
+  <view class="content">应付首次款项      
+    <view class="inputClass">￥{{allPay}}
+    </view>
+  </view>
+  <view class="body-back">
+    <view class="body-text1">合同预览
+    </view>
+    <view class="body-text2">
+      <button class="btn_preview" type="default" onTap="toContractPage">点击查看
+      </button>
+    </view>
+  </view>
+</view>
+</view>
+<view class="page-end">您授权我们以您的本人信息（包括但不限于姓名和身份证件号码）对正在生成的订单进行合同数字签名
+</view>
+<view class="startDate1">
+</view>
+<view class="page-btn" onTap="toConfirm1">立即签约
+</view>

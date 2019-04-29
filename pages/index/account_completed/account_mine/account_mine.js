@@ -52,9 +52,6 @@ Page({
     //添加图片
   addImg(e){
     var that = this;
-    // my.showLoading({
-    //   content: '正在识别...',
-    // });
     my.chooseImage({
       chooseImage: 1,
       sizeType:['compressed'],

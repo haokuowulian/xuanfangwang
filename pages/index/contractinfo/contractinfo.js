@@ -4,7 +4,10 @@ Page({
     baseUrl:app.globalData.baseUrl,
     url:'',
     type:0,
-    zkName:''
+    zkName:'',
+    houseId:'',
+    rentType:'',
+    endTime:'',
   },
   onLoad(option) {
     this.getContractinfo(option.id);
@@ -32,7 +35,10 @@ Page({
         that.setData({
           contract:res.data.contractInfo,
           url:res.data.contractInfo.url,
-          zkName:res.data.zkName
+          zkName:res.data.zkName,
+          houseId:res.data.contractInfo.houseId,
+          rentType:res.data.contractInfo.rentType,
+          endTime:res.data.contractInfo.endTime,
         });
       },
       fail: function(res) {
@@ -58,7 +64,13 @@ Page({
     
   },
   onContinue(){
-    
+    var that = this;
+    var rentType = that.data.rentType;
+    var houseId = that.data.houseId;
+    var endTime = that.data.endTime;
+    console.log('endTime')
+    console.log(endTime)
+    console.log('endTime')
     my.confirm({
       title: '温馨提示',
       content: '是否申请续约？',
@@ -66,9 +78,31 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.alert({
-            title: '已提交申请，请耐心等待处理。' 
-          });
+          my.httpRequest({
+            url: app.globalData.baseUrl_whj+"IF/housing/getHousingDetailIF.do",
+            method: 'POST',
+            data: {
+              id: houseId,
+              rentType: rentType
+            },
+            dataType: 'json',
+            success: function(res) {
+              console.log(res)
+              if(res.data.success){
+                my.navigateTo({
+                  url:'/pages/contract_renew/contract_renew?houseDetail='+JSON.stringify(res.data.data)+'&rentType='+rentType+'&endTime'+endTime,
+                });
+              }else{
+                my.alert({
+                  title: '未知错误，请稍后再试！' 
+                });
+              }
+            }
+          })
+
+          // my.navigateTo({
+          //   url:'/pages/contract_renew/contract_renew?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+rentType+'&endTime'+endTime,
+          // });
         }
       },
     });

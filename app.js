@@ -1,10 +1,10 @@
 App({
 
    globalData:{
-    baseUrl:'http://192.168.1.89:8080/LLGY/', 
-    baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
-    baseImgUrl_whj:'http://192.168.1.89:8080/LLGY/upload/',
-    base_whj:'http://192.168.1.89:8080/LLGY/',
+    // baseUrl:'http://192.168.1.89:8080/LLGY/', 
+    // baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
+    // baseImgUrl_whj:'http://192.168.1.89:8080/LLGY/upload/',
+    // base_whj:'http://192.168.1.89:8080/LLGY/',
     // baseUrl_oos:'http://192.168.1.89:8080/LLGY/IF/upload/headImgUpload.do', 
 
     // baseUrl:'http://192.168.1.193:8080/LLGY/', 
@@ -13,10 +13,10 @@ App({
     // base_whj:'http://192.168.1.193:8080/LLGY/',
     // baseUrl_oos:'http://192.168.1.193:8080/LLGY/IF/upload/headImgUpload.do', 
 
-    // baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
-    // baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    // base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    // baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
+    baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
+    baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
     baseUrl_oos:'https://www.xuanfangwang.com.cn:8080/LLGY/IF/upload/headImgUpload.do', 
    },
   onLanuch(){
@@ -24,7 +24,7 @@ App({
     const logs = data && data.logs ? data.logs : [];
 
   },
-   getDate(dateFormate,year){
+  getDate(dateFormate,year){
    var date=new Date();
    //年
 
@@ -73,7 +73,7 @@ App({
         return Y+"-"+M+"-"+D+" "+h+":"+m+":"+s
       break;
     }
-},
+  },
  //获取几个月后
  getFormateDate(beginDate,dateFormate,n){
   var str = beginDate;
@@ -269,10 +269,8 @@ App({
             if (M == idcard_array[17]) return Errors[0]; //检测ID的校验位
             else return Errors[3];
           } else return Errors[2];
-          break;
         default:
           return Errors[1];
-          break;
       }
     },
 })
