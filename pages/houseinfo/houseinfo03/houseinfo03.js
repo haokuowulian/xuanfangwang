@@ -57,21 +57,6 @@ Page({
     console.log('id:'+this.data.id);
     console.log('type:'+this.data.rentType);
     
-    // if(option.rentType==1){
-    //   this.setData({
-    //     longitude: JSON.parse(option.houseDetail).longitude,
-    //     latitude: JSON.parse(option.houseDetail).latitude,
-    //     rentType:option.rentType
-    //   });
-    //  }else if(option.rentType==2){
-    //   this.setData({
-    //     longitude: JSON.parse(option.houseDetail).house.longitude,
-    //     latitude: JSON.parse(option.houseDetail).house.latitude,
-    //     rentType:option.rentType
-    //   });
-    //  }
-    
-
     this.getIsCollect();
     this.getIsBespeak();
     this.getHouseDetail(this.data.rentType);

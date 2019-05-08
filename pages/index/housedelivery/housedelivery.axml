@@ -4,9 +4,37 @@
   <view class="page-content">
     <view class="content" onTap="openCity">地区<input class="inputClass1" type="text" placeholder="请选择房源所在地区信息"   onFocus="hideKeyboard" value="{{dist}}"/></view>
     <view class="content" onTap="selectPoi">小区/公寓<input class="inputClass1" type="text" placeholder="请填写，以方便定位"  onFocus="hideKeyboard" onInput="toInput1" data-t='1' value="{{village}}"/></view>
-    <view class="content">楼栋、单元<input class="inputClass1" type="text" placeholder="请填写房源具体楼栋、单元" onInput="toInput1" data-t='1' value="{{vaddress}}" /></view>
+    <view class="content">楼栋<input class="inputClass1" type="text" placeholder="请填写房源具体楼栋" onInput="toInput1" data-t='1' value="{{vaddress}}" /></view>
+    <view class="content">单元<input class="inputClass1" type="text" placeholder="请填写房源具体单元" onInput="toInput1" data-t='8' value="{{unit}}" /></view>
     <view class="content">门牌号<input class="inputClass1" type="text" placeholder="请填写房源门牌号" onInput="toInput1" data-t='6' value="{{houseNo}}"/></view>
-    <view class="content" onTap="selectHuXing">户型<input class="inputClass1" type="text" placeholder="请选择房源的户型"  value="{{huxing}}" onFocus="hideKeyboard" /></view>
+
+    <view class="content" onTap="selectStorey">楼层
+      <view a:if="{{houseFloor==''}}" class="inputClass2">请选择房源所在楼层</view>
+      <view a:else class="inputClass3">{{houseFloor}}</view>
+    </view>
+
+    <view class="content">
+      <view>电梯</view>
+    
+      <view class="type_choose">
+        <view class='icon_none' a:if="{{!show3}}" onTap="toChooseType1"></view>
+        <view class="icon-bkgd" a:if="{{show3}}">
+          <icon type="success" class="icon-check" color="#ff8800" size="18"/>
+        </view><view class="type_name">无</view>
+      </view>
+    
+      <view class="type_choose">
+        <view class='icon_none' a:if="{{!show4}}"  onTap="toChooseType2"></view>
+        <view class="icon-bkgd" a:if="{{show4}}">
+          <icon type="success" class="icon-check" color="#ff8800" size="18"/>
+        </view><view class="type_name">有</view>
+      </view>
+    </view>
+
+    <view class="content" onTap="selectHuXing">户型
+      <view a:if="{{huxing==''}}" class="inputClass2">请选择房源的户型</view>
+      <view a:else class="inputClass3">{{huxing}}</view>
+    </view>
     <view class="content">朝向
       <picker onChange="bindPickerChange1" value="{{index}}" range="{{towardsArray}}">
         <view >
@@ -27,7 +55,7 @@
 
     <view class="content">业主姓名<input class="inputClass1" type="text" placeholder="请填写产权所有人姓名" onInput="toInput1" data-t='3' value="{{vowner}}"/></view>
     <view class="content">业主身份证号<input class="inputClass1" type="idcard" placeholder="请填写产权所有人身份证号码" onInput="toInput1" data-t='4' value="{{vownerCard}}"/></view>
-
+    <view class="content">业主手机号<input class="inputClass1" type="number" placeholder="请填写产权所有人手机号码" onInput="toInput1" data-t='7' value="{{ownerTel}}"/></view>
     <!-- <view class="content">面积<input class="inputClass1" type="text" placeholder="请选择期望看房时间"  disabled="true" value="{{expectTime}}" /></view> -->
 
     <!-- <view class="content">

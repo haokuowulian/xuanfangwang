@@ -210,6 +210,9 @@ Page({
     var vownerCard = my.getStorageSync({
       key: 'r_vownerCard', // 缓存数据的key
     }).data;
+    var ownerTel = my.getStorageSync({
+      key: 'r_vownerTel', // 缓存数据的key
+    }).data;
     var vrelation = my.getStorageSync({
       key: 'r_vrelation', // 缓存数据的key
     }).data;
@@ -300,6 +303,19 @@ Page({
       key: 'r_buildingType', // 缓存数据的key
     }).data;
 
+    var unit = my.getStorageSync({
+      key: 'r_unit', // 缓存数据的key
+    }).data;
+    var floor = my.getStorageSync({
+      key: 'r_floor', // 缓存数据的key
+    }).data;
+    var totalFloor = my.getStorageSync({
+      key: 'r_totalFloor', // 缓存数据的key
+    }).data;
+    var elevator = my.getStorageSync({
+      key: 'r_elevator', // 缓存数据的key
+    }).data;
+
     console.log(that.data.extinguisher)
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
@@ -344,8 +360,15 @@ Page({
       longitude:longitude,
       latitude:latitude,
       landlordId:uid,
-      vowner:vowner,
-      vownerCard:vownerCard,
+      ownerIdentityCard:vowner,
+      ownerIdentityCard:vownerCard,
+      ownerTel:ownerTel,
+
+      unit:unit,
+      floor:floor,
+      totalFloor:totalFloor,
+      elevator:elevator,
+
       // vrelation:vrelation,
       // idcard_positive:img1url,
       // idcard_reverse:img2url,

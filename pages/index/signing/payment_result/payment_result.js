@@ -81,9 +81,9 @@ Page({
       });
     }
     if(this.data.type==2){
-      my.navigateBack({
-        delta:1
-      });
+      // my.navigateBack({
+      //   delta:1
+      // });
     }
     
   },

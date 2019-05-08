@@ -100,7 +100,7 @@ Page({
     console.log(e.currentTarget.dataset.id)
     console.log(e.currentTarget.dataset.type)
     my.navigateTo({
-    url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.currentTarget.dataset.id+'&rentType='+e.currentTarget.dataset.type,
+    url: '/pages/houseinfo/houseinfo02/houseinfo02?id='+e.currentTarget.dataset.id+'&rentType='+e.currentTarget.dataset.type,
     })
   },
   //上拉监听

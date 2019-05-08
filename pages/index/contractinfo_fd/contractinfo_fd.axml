@@ -42,8 +42,7 @@
     </view>
   </view>
 
-  <view class="page-time" a:if="{{type==1}}">租客信息</view>
-  <view class="page-time" a:if="{{type==2}}">房东信息</view>
+  <view class="page-time">房东信息</view>
   <view class="page-user">
      <view class="users" a:if="{{type==1}}">
       <view class="users-title">租客姓名</view>
@@ -70,7 +69,6 @@
       <view class="users-info">{{contract.userName}}</view>
     </view>
   </view>
-  <view a:if="{{type==2}}">
   <view class="page-time">合同操作</view>
  
   <view a:if="{{contract.state==1}}" class="page-user1">
@@ -87,24 +85,7 @@
     <textarea  style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx;color:#999999" value="未生效合同"  disabled='true' maxlength='-1'>
     </textarea>
   </view>
-  </view>
-
-  <view a:if="{{type==1}}">
-    <view a:if="{{contract.state==1}}" class="page-user1">
-      <view class="users">
-        <view class="users-title"></view>
-        <view class="order-btn" onTap="onCancel">申请解约</view>
-      </view>
-      <view class="users">
-        <view class="users-title"></view>
-        <view class="order-btn" onTap="onContinue">申请续约</view>
-      </view>
-    </view>
-    <view  a:else>
-      <textarea  style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx;color:#999999" value="未生效合同"  disabled='true' maxlength='-1'>
-      </textarea>
-    </view>
-  </view>
+  
 
   <view class="page-time">合同下载地址（点击下面链接复制到剪贴板）</view>
   <view a:if="{{contract.state==1}}">

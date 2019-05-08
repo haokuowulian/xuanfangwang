@@ -1,5 +1,5 @@
 .page-house{
-  height: 150rpx;
+  height: 200rpx;
   width: 750rpx;
   padding-top: 25rpx;
   padding-bottom: 25rpx;
@@ -29,12 +29,6 @@
 .house-address{
   font-size: 35rpx;
   color: #333333;
-}
-.house-status{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 475rpx;
 }
 .house-point{
   font-size: 25rpx;
@@ -101,6 +95,13 @@
   padding-right: 25rpx;
   background-color: #ffffff;
 }
+.page-user1{
+  height: 200rpx;
+  width: 700rpx;
+  padding-left: 25rpx;
+  padding-right: 25rpx;
+  background-color: #ffffff;
+}
 .users{
   height: 100rpx;
   width: 700rpx;
@@ -140,7 +141,6 @@
 }
 .operate-pay{
   width: 300rpx;
-  height: 110rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,7 +170,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25rpx;
+  font-size: 30rpx;
   color: #ff9900;
   border-radius: 8rpx;
   border: 1rpx solid #ff9900;

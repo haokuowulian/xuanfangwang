@@ -24,7 +24,7 @@
 </view> -->
 <view a:if="{{chatlist.length<=0}}" class="tips">暂无会话</view>
   <block a:else a:for="{{chatlist}}" a:for-item="list">
-    <view class="chat_box" onTap="toChat" data-uid="{{list.userId}}" data-avatar="{{list.user.avatar}}" data-nickName="{{list.user.nickName}}">
+    <view class="chat_box" onTap="toChat" onLongTap="toDelete" data-uid="{{list.userId}}" data-avatar="{{list.user.avatar}}" data-nickName="{{list.user.nickName}}">
       <view class="chat_left">
         <image src="{{list.user.avatar}}" class="classImg" />
       </view>

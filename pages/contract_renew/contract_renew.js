@@ -40,22 +40,24 @@ Page({
     myEndDate:'',
     index1:0,
     my_payway:'',
-    endTime:'',
+    starTime:'',
+    contractId:'',
   },
   onLoad(option) {
     var that = this;
     var houseInfo = JSON.parse(option.houseDetail);
     console.log(houseInfo)
     var rentType = option.rentType;
-    var endTime = option.endTime;
-    console.log('endTime')
-    console.log(endTime)
-    console.log('endTime')
+    var starTime = option.endTime;
+    console.log('starTime')
+    console.log(starTime)
+    console.log('starTime')
     this.setData({
       houseDetail:JSON.parse(option.houseDetail),
       rentType:option.rentType,
       houseInfo:houseInfo,
-      endTime:endTime,
+      starTime:starTime,
+      contractId:option.contractId,
     });
     my.setStorageSync({
       key: 'urentType', // 缓存数据的key
@@ -67,8 +69,8 @@ Page({
     });
 
     var payment = houseInfo.template.payment;
-   
-    that.getCurrentDate1(payment);
+    that.getCurrentDate(payment,starTime)
+    // that.getCurrentDate1(payment);
     if(payment==1){
       that.setData({
         choose0:true,
@@ -124,14 +126,13 @@ Page({
       var housingId = houseInfo.id;
     }
     my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/order/addOrder.do", // 目标服务器
+      url: app.globalData.baseUrl_whj+"IF/order/addRenewableOrder.do", // 目标服务器
       method: 'POST',
       data:{
         userId:uid,
         startDate:startDate1,
         endDate:that.data.endDate,
-        housingId:housingId,
-        housingType:rentType,
+        contractId:that.data.contractId,
         origin:2,
       },
       dataType: 'json',
@@ -193,7 +194,9 @@ Page({
       },
       fail: (res) => {
        console.log(res);
-       console.log('请求失败2~~');
+       my.alert({
+          title: '请求失败，请稍后再试！',
+        });
       },
     });
 
@@ -648,15 +651,17 @@ Page({
 
   //选择开始时间
   chooseDate(){
-    var startDate = app.getDate('yyyy-MM-dd',0);
+    // var startDate = app.getDate('yyyy-MM-dd',0);
+    var startDate = app.getFormateDate(this.data.starTime,'yyyy-MM-dd',0);
     var currentDate = app.getFormateDate2('yyyy-MM-dd',0,0,0);
-    var endDate = app.getFormateDate2('yyyy-MM-dd',0,0,7);
+    // var endDate = app.getFormateDate2('yyyy-MM-dd',0,0,7);
+    var endDate = app.getFormateDates(this.data.starTime,'yyyy-MM-dd',0,0,7);
     console.log(currentDate+'***********'+endDate)
     my.datePicker({
       format: 'yyyy年MM月dd日',
-      currentDate: currentDate,
-      startDate: currentDate,
-      endDate: endDate,
+      currentDate: startDate,
+      startDate: startDate,
+      endDate: startDate,
       success: (res) => {
         console.log(res)
         console.log('-------------1--------------')
@@ -776,20 +781,6 @@ Page({
     date03 =app.getFormateDate3('yyyy-MM-dd',12);
     console.log(date01+'-----------')
     var list = [];
-    // list[0]=date10;
-    // list[1]=date1;
-    // list[2]=date2;
-    // list[3]=date3;
-    // this.setData({
-    //   currentDate:startDate,
-    //   date10:date10,
-    //   date1:date1,
-    //   date2:date2,
-    //   date3:date3,
-    //   endDate:date0,
-    //   myEndDates:list,
-    //   myEndDate:date10,
-    // });
     if(payment==1){
       list[0]=date10;
       list[1]=date1;

@@ -1,10 +1,10 @@
 App({
 
    globalData:{
-    // baseUrl:'http://192.168.1.89:8080/LLGY/', 
-    // baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
-    // baseImgUrl_whj:'http://192.168.1.89:8080/LLGY/upload/',
-    // base_whj:'http://192.168.1.89:8080/LLGY/',
+    baseUrl:'http://192.168.1.89:8080/LLGY/', 
+    baseUrl_whj:'http://192.168.1.89:8080/LLGY/',
+    baseImgUrl_whj:'http://192.168.1.89:8080/LLGY/upload/',
+    base_whj:'http://192.168.1.89:8080/LLGY/',
     // baseUrl_oos:'http://192.168.1.89:8080/LLGY/IF/upload/headImgUpload.do', 
 
     // baseUrl:'http://192.168.1.193:8080/LLGY/', 
@@ -13,16 +13,15 @@ App({
     // base_whj:'http://192.168.1.193:8080/LLGY/',
     // baseUrl_oos:'http://192.168.1.193:8080/LLGY/IF/upload/headImgUpload.do', 
 
-    baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
-    baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
-    baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
+    // baseUrl:'https://www.xuanfangwang.com.cn:8080/LLGY/', 
+    // baseUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    // base_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/',
+    // baseImgUrl_whj:'https://www.xuanfangwang.com.cn:8080/LLGY/upload/',
     baseUrl_oos:'https://www.xuanfangwang.com.cn:8080/LLGY/IF/upload/headImgUpload.do', 
    },
   onLanuch(){
     const {data} = my.getStorageSync({key: 'logs'});
     const logs = data && data.logs ? data.logs : [];
-
   },
   getDate(dateFormate,year){
    var date=new Date();
@@ -71,6 +70,34 @@ App({
       break;
       default:
         return Y+"-"+M+"-"+D+" "+h+":"+m+":"+s
+      break;
+    }
+  },
+  //获取几个月后
+ getFormateDates(beginDate,dateFormate,y,n,d){
+  var str = beginDate;
+  // console.log(beginDate)
+  // console.log(str)
+  str = str.replace(/[^\d]/g,'/');
+  // console.log(str)
+  var time =  new Date(str );
+  // console.log('tiem"')
+  // console.log(time)
+  time.setMonth(time.getMonth() + n);//设置month月后的时间
+  time.setFullYear(time.getFullYear()+y);//设置y年后的时间
+  time.setDate(time.getDate()+d);//设置d天后的时间
+  var Y = time.getFullYear();
+  var M = time.getMonth() + 1;//获取当前月份
+  var D = time.getDate();
+    switch(dateFormate){
+      case "yyyy年MM月dd日":
+        return Y+"年"+M+"月"+D+'日';
+      break;
+      case "yyyy-MM-dd":
+        return Y+"-"+M+"-"+D;
+      break;
+      default:
+        return Y+"-"+M+"-"+D;
       break;
     }
   },

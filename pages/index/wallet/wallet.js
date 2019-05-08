@@ -2,6 +2,7 @@ var app = getApp();
 Page({
   data: {
     money:'',
+    withdrawableCash:'',
     perfect:false,
     payPassword:'',
   },
@@ -25,6 +26,7 @@ Page({
             that.setData({
               money:res.data.wallet.money,
               payPassword:res.data.wallet.payPassword,
+              withdrawableCash:res.data.wallet.withdrawableCash,
             });
             if(res.data.wallet.txAlipay!=''&&res.data.wallet.txAlipay!=null){
               that.setData({

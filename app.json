@@ -87,7 +87,9 @@
     "pages/index/page_share/page_share",
     "pages/index/credit1/credit1",
     "pages/index/wallet/myinfo_edit/myinfo_edit",
-    "pages/contract_renew/contract_renew"
+    "pages/contract_renew/contract_renew",
+    "pages/index/order/orderinfo_renew/orderinfo_renew",
+    "pages/index/contractinfo_fd/contractinfo_fd"
   ],
   "window": {
     "defaultTitle": "My App"

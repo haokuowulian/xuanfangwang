@@ -289,40 +289,77 @@ Page({
     }
 
   },
-    //添加图片
+  //添加图片
   addImg2(){
     var that = this;
     var newCount = that.data.count-1;
     console.log(newCount)
     console.log(that.data.images)
     my.chooseImage({
-      chooseImage: 1,
+      count: 6,
       success: (res) => {
         var tempFilePaths = res.apFilePaths
         console.log(tempFilePaths)
-        if(that.data.images.length==5){
-          that.uploadImg1(tempFilePaths[0]);
-          that.setData({
-            images:that.data.images.concat(tempFilePaths),
-            // img:tempFilePaths[0],
-            upload:true,
-            canAddImg:false,
-            count:newCount,
-          });
-        }else{
-          that.uploadImg1(tempFilePaths[0]);
-          that.setData({
-          images:that.data.images.concat(tempFilePaths),
-          // img:tempFilePaths[0],
-          upload:true,
-          canAddImg:true,
-          count:newCount,
-        });
+        for(let i = 0;i<tempFilePaths.length;i++){
+          console.log(tempFilePaths.length)
+          console.log('No:')
+          console.log(that.data.images.length)
+          if(that.data.images.length<=5){
+            that.uploadImg1(tempFilePaths[i]);
+            that.setData({
+              images:that.data.images.concat(tempFilePaths[i]),
+            });
+            if(that.data.images.length==6){
+              that.setData({
+                upload:true,
+                canAddImg:false,
+              });
+            }
+          }else{
+            that.setData({
+              upload:true,
+              canAddImg:false,
+            });
+            break;
+          }
         }
-        
       },
     });
   },
+  //   //添加图片
+  // addImg2(){
+  //   var that = this;
+  //   var newCount = that.data.count-1;
+  //   console.log(newCount)
+  //   console.log(that.data.images)
+  //   my.chooseImage({
+  //     chooseImage: 1,
+  //     success: (res) => {
+  //       var tempFilePaths = res.apFilePaths
+  //       console.log(tempFilePaths)
+  //       if(that.data.images.length==5){
+  //         that.uploadImg1(tempFilePaths[0]);
+  //         that.setData({
+  //           images:that.data.images.concat(tempFilePaths),
+  //           // img:tempFilePaths[0],
+  //           upload:true,
+  //           canAddImg:false,
+  //           count:newCount,
+  //         });
+  //       }else{
+  //         that.uploadImg1(tempFilePaths[0]);
+  //         that.setData({
+  //         images:that.data.images.concat(tempFilePaths),
+  //         // img:tempFilePaths[0],
+  //         upload:true,
+  //         canAddImg:true,
+  //         count:newCount,
+  //       });
+  //       }
+        
+  //     },
+  //   });
+  // },
   //房间图片删除
   delImg2(e){
     var that = this;

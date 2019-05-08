@@ -96,4 +96,7 @@ Page({
       url: '/pages/login/login',
     });
   },
+  toDelete(){
+    console.log('delete...')
+  },
 });

@@ -102,6 +102,10 @@ Page({
   },
   toContractinfo:function(event){
     var id = event.target.dataset.contractid;
+    var roleType = this.data.roleType;
+    // if(){
+
+    // }
     my.navigateTo({
       url:'/pages/index/contractinfo/contractinfo?id='+id+'&type='+this.data.roleType,
     });

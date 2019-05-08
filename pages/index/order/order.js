@@ -18,6 +18,7 @@ Page({
   onShow(){
     console.log(this.data.type);
      this.getOrder();
+    // this.onPullDownRefresh();
 
   },
   // onUnload() {
@@ -101,13 +102,19 @@ Page({
     console.log(e.currentTarget.dataset.id)
     console.log(e.currentTarget.dataset.type)
     my.navigateTo({
-      url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.currentTarget.dataset.id+'&rentType='+e.currentTarget.dataset.type,
+      url: '/pages/houseinfo/houseinfo02/houseinfo02?id='+e.currentTarget.dataset.id+'&rentType='+e.currentTarget.dataset.type,
     })
   },
   //上拉监听
   onReachBottom() {
     this.setData({
       pageIndex:this.data.pageIndex+1
+    });
+    this.getOrder();
+  },
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
     });
     this.getOrder();
   },
@@ -154,9 +161,9 @@ Page({
       },
     });
   },
-  deleteOrder(e){
-    console.log(e)
-  },
+  // deleteOrder(e){
+  //   console.log(e)
+  // },
   //立即支付
   toPay(e){
     var that = this;
@@ -271,6 +278,7 @@ Page({
     }).data;
     console.log(uid)
     console.log(orderId)
+    console.log('-------------delete1-----------------')
     my.httpRequest({
       url: app.globalData.base_whj+'IF/order/disabledOrder.do', // 目标服务器url
       method: 'POST',
@@ -281,8 +289,15 @@ Page({
       dataType: 'json',
       success: (res) => {
         console.log(res)
+        console.log('-------------delete-----------------')
         if(res.data.success){
-          that.getOrder();
+          console.log('-------------delete2-----------------')
+          my.alert({
+            title: '删除成功！' ,
+            success: () => {
+              that.onPullDownRefresh();
+            },
+          });
         }else{
           my.alert({
             title: '删除失败，请稍候再试！' 

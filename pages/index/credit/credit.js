@@ -210,8 +210,8 @@ Page({
                 console.log("签约成功！")
                 console.log(res.data.contractId)
                 console.log(orderid)
-                var contractId = res.data.contractId;
-                that.toGetRent(orderid,contractId);
+                // var contractId = res.data.contractId;
+                that.toGetRent(orderid,res.data.contractId);
                 
               }
             
@@ -229,6 +229,7 @@ Page({
   toGetRent(orderId,contractId){
     var that = this;
     console.log('冻结转支付')
+    console.log(contractId)
     my.httpRequest({
       url:app.globalData.baseUrl_whj+ 'IF/alipay/tradePay.do', // 目标服务器url
       method: 'POST',

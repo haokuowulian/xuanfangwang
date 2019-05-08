@@ -8,7 +8,6 @@ Page({
     houseId:'',
     rentType:'',
     endTime:'',
-    contractId:'',
   },
   onLoad(option) {
     this.getContractinfo(option.id);
@@ -40,7 +39,6 @@ Page({
           houseId:res.data.contractInfo.houseId,
           rentType:res.data.contractInfo.rentType,
           endTime:res.data.contractInfo.endTime,
-          contractId:res.data.contractInfo.id,
         });
       },
       fail: function(res) {
@@ -70,7 +68,6 @@ Page({
     var rentType = that.data.rentType;
     var houseId = that.data.houseId;
     var endTime = that.data.endTime;
-    var contractId = that.data.contractId;
     console.log('endTime')
     console.log(endTime)
     console.log('endTime')
@@ -93,7 +90,7 @@ Page({
               console.log(res)
               if(res.data.success){
                 my.navigateTo({
-                  url:'/pages/contract_renew/contract_renew?houseDetail='+JSON.stringify(res.data.data)+'&rentType='+rentType+'&endTime='+endTime+'&contractId='+contractId,
+                  url:'/pages/contract_renew/contract_renew?houseDetail='+JSON.stringify(res.data.data)+'&rentType='+rentType+'&endTime='+endTime,
                 });
               }else{
                 my.alert({

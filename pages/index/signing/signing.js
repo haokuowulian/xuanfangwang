@@ -188,6 +188,9 @@ Page({
       fail: (res) => {
        console.log(res);
        console.log('请求失败2~~');
+       my.alert({
+        title: '请求失败,请稍后再试！', 
+      });
       },
     });
 

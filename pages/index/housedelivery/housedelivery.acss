@@ -29,6 +29,20 @@
   color: #333333;
   width: 400rpx;
 }
+.inputClass2{
+  font-size: 30rpx;
+  text-align: right;
+  color: #CCCCCC;
+  width: 400rpx;
+  margin-right: 8rpx;
+}
+.inputClass3{
+  font-size: 30rpx;
+  text-align: right;
+  color: #333333;
+  width: 400rpx;
+  margin-right: 8rpx;
+}
 .textAreaClass{
   padding-top: 0rpx;
   padding-left: 0rpx;
@@ -223,8 +237,8 @@
   color: #ff8800;
 }
 .icon_none{
-  height: 45rpx;
-  width: 45rpx;
+  height: 35rpx;
+  width: 35rpx;
   border-radius: 50rpx;
   border:1rpx solid #666666;
 }

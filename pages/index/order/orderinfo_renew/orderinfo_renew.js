@@ -24,7 +24,6 @@ Page({
     age:0,
     certified:false,
     pay:false,
-    linkOrderId:'',
   },
   onLoad(option) {
     var that = this;
@@ -72,7 +71,6 @@ Page({
           status:order.status,
           tradeNO:order.alipayOrderNo,
           certified:order.certified,
-          linkOrderId:order.linkOrderId,
         });
       },
     });
@@ -229,22 +227,6 @@ Page({
       });
     }
     
-  },
-  toCredit(){
-    var that = this;
-    var orderid = that.data.orderid;
-    var userId = that.data.userId;
-    var uidCard = this.data.uidCard;
-    var status = that.data.status;
-    if(status==9){
-      my.navigateTo({
-        url:'/pages/index/credit1/credit1?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid+'&pay=false'+'&status='+status,
-      });
-    }else{
-      my.navigateTo({
-        url:'/pages/index/credit/credit?userId='+userId+'&uidCard='+uidCard+'&orderid='+orderid+'&pay=false'+'&status='+status,
-      });
-    }
   },
   //房东认证支付成功http://192.168.1.193:8080/LLGY/IF/order/successCertified.do
   successCertified(orderid){
