@@ -56,6 +56,20 @@
 
 </view>
 <view  class="box_send1">
-  <input class="input_send" type="text" onInput="bindKeyInput" value='{{msg}}' onFocus="onFocus" onBlur="onBlur" focus='{{focus}}' confirm-type="done" placeholder="请输入聊天内容.."/>
-  <button onTap="submitTo" class='send_btn'>发送</button>
+  <view class="area">
+  <input class="input_send" type="text" onInput="bindKeyInput" value="{{msg}}" onFocus="onFocus" onBlur="onBlur" focus='{{focus}}' confirm-type="done" placeholder="请输入聊天内容.." adjust-position="{{false}}"/>
+  <button onTap="submitTo" class="send_btn">发送</button>
+  </view>
 </view>
+
+<!-- <view class="input" style="bottom:{{bottom}}rpx">
+
+<view class="area">
+
+<input value="{{msg}}" placeholder='请输入文字内容' onInput='bindKeyInput' adjust-position="{{false}}" onFocus="onFocus" onBlur="onBlur"></input>
+
+<view class="button" onTap='submitTo'>发送</view>
+
+</view>
+
+</view> -->

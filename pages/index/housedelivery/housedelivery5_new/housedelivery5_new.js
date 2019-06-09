@@ -217,6 +217,10 @@ Page({
       key: 'r_elevator', // 缓存数据的key
     }).data;
 
+    var streetId = my.getStorageSync({
+      key: 'r_streetId', // 缓存数据的key
+    }).data;
+
     var address = village+vaddress;
     var templateName = address+houseNo;
 
@@ -235,6 +239,7 @@ Page({
       green:vgreen,
       plotRatio:vcubage,
       images:villageimg,
+      streetId:streetId,
     };
     var house = {
       buildingUnit:vaddress,
@@ -428,10 +433,21 @@ Page({
       });
     }
     if(e.target.dataset.t==2){
-      that.setData({
-        describe:e.detail.value,
+      
+      if(e.detail.value!=''){
+        var describe = e.detail.value; 
+        that.setData({
+          describe:e.detail.value,
+        });
+      }else{
+        var describe = that.data.describe1;
+      }
+      my.setStorageSync({
+        key: 'r_describe', // 缓存数据的key
+        data: describe, // 要缓存的数据
       });
     }
+
     
   },
 });

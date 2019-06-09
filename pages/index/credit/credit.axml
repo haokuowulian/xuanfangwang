@@ -21,7 +21,7 @@
     </view>
     <view class="lineClass"></view>
     <view class="box_explain">
-      <text class="text_explain">该评分通过大数据分析身份核查、失信人员、芝麻信用分、历史租房评价等所得综合评分，最高5分</text>
+      <text class="text_explain">该评分通过获取公安数据(逃犯，前科，吸毒)进行大数据分析身份核查，再结合失信人员、芝麻信用分、历史租房评价等所得综合评分，最高5分</text>
     </view>
     <view class="lineClass1"></view>
     <view class="user_info">租客详情</view>

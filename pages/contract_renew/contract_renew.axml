@@ -60,6 +60,7 @@
     </picker>
   </view>
 </view>
+
 <view class="content-title">首次款项
 </view>
 <view class="page-content">
@@ -81,8 +82,13 @@
       </view>
     </view>
   </view>
-  <view class="content">应付首次款项      
-    <view class="inputClass">￥{{allPay}}
+  <view class="content">抵用券      
+    <view class="chooseVoucher" onTap="chooseVoucher">
+      <view>-{{voucher}}￥<image src="/image/icon/right.png" class="img_right" /></view>
+    </view>
+  </view>
+  <view class="content">续约应付款项      
+    <view class="inputClass">￥{{(price-voucher)>1?(price-voucher):1}}
     </view>
   </view>
   <view class="body-back">

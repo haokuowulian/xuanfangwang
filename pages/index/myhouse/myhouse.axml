@@ -105,7 +105,8 @@
                 <view class="p6" a:if="{{list.status==0&&!list.disabled}}">正在审核</view>
                 <view class="p8" a:if="{{list.status==0&&list.disabled}}">已下架</view>
                 <view class="p7" a:if="{{list.status==1&&!list.disabled}}">未租</view>
-                <view class="p7" a:if="{{list.status==1&&list.disabled}}">已租</view>
+                <view class="p7" a:if="{{list.status==2}}">已租</view>
+                <view class="p7" a:elif="{{list.status==1&&list.disabled}}">已租</view>
               </view> 
             </view>
           </view>
@@ -138,7 +139,8 @@
                   <view class="p6" a:if="{{list.status==0&&!list.disabled}}">正在审核</view>
                   <view class="p8" a:if="{{list.status==0&&list.disabled}}">已下架</view>
                   <view class="p7" a:if="{{list.status==1&&!list.disabled}}">未租</view>
-                  <view class="p7" a:if="{{list.status==1&&list.disabled}}">已租</view>
+                  <view class="p7" a:if="{{list.status==2}}">已租</view>
+                  <view class="p7" a:elif="{{list.status==1&&list.disabled}}">已租</view>
                 </view> 
               </view>
             </view>

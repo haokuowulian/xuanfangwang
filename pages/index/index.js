@@ -24,10 +24,6 @@ Page({
   onLoad(){
   },
   onShow(){
-    this.getBanner();
-    this.getBoutiqueHousing();
-    this.getWholeRentalHousing();
-    this.getSharedHousing();
     this.getLocation();
   },
   handleInput(value) {
@@ -54,18 +50,32 @@ Page({
   },
   //选择城市
   chooseCity() {
-    my.alert({
-      title: '暂无其他城市房源！' 
-    });
-    // my.chooseCity({
-    //   success: (res) => {
-    //     console.log(res)
-    //     this.setData({
-    //       city:res.city,
-    //       cityCode:res.adCode,
-	  //     });
-    //   },
+    // my.alert({
+    //   title: '暂无其他城市房源！' 
     // });
+    var that = this;
+    my.chooseCity({
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          city:res.city,
+          cityCode:res.adCode,
+	      });
+        my.setStorageSync({
+          key: 'cityAdcode', // 缓存数据的key
+          data: res.adCode, // 要缓存的数据
+        });
+        my.setStorageSync({
+          key: 'cityAdname', // 缓存数据的key
+          data: res.city, // 要缓存的数据
+        });
+        that.getNearByHousing();
+        that.getBanner(res.adCode);
+        that.getBoutiqueHousing(res.adCode);
+        that.getWholeRentalHousing(res.adCode);
+        that.getSharedHousing(res.adCode);
+      },
+    });
   },
   
   onSearchBarTap() {
@@ -96,7 +106,7 @@ Page({
   },
 
   //获取banner图
-  getBanner(){
+  getBanner(cityAdcode){
    var that=this;
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/homePage/getHomeImageIF.do",
@@ -127,7 +137,7 @@ Page({
  
 
   //获取精选房源
-  getBoutiqueHousing(){
+  getBoutiqueHousing(cityAdcode){
     var that=this;
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
@@ -137,6 +147,7 @@ Page({
         rentType:1,
         pageIndex: 0,
         pageSize: 6,
+        cityAdcode:cityAdcode,
       },
       dataType: 'json',
       success: function(res) {
@@ -157,7 +168,7 @@ Page({
   },
 
   //获取整租房源
-  getWholeRentalHousing(){
+  getWholeRentalHousing(cityAdcode){
     var that=this;
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
@@ -166,6 +177,7 @@ Page({
         rentType:1,
         pageIndex: 0,
         pageSize: 6,
+        cityAdcode:cityAdcode,
       },
       dataType: 'json',
       success: function(res) {
@@ -186,7 +198,7 @@ Page({
   },
 
   //获取合租房源
-  getSharedHousing(){
+  getSharedHousing(cityAdcode){
     var that=this;
     my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
@@ -195,6 +207,7 @@ Page({
         rentType:2,
         pageIndex: 0,
         pageSize: 6,
+        cityAdcode:cityAdcode,
       },
       dataType: 'json',
       success: function(res) {
@@ -216,39 +229,82 @@ Page({
 //获取当前位置
  getLocation(){
     var that=this;
-    my.getLocation({
-      type:2,
-      success(res) {
-        console.log('***********')
-        console.log(res)
-        console.log('***********')
-        my.hideLoading();
-        var city = res.city
-        console.log(city)
-        var str = city.split('市');
-        console.log(str[0])
-       that.setData({
-         address:res.streetNumber.street+res.streetNumber.number,
-         lng:res.longitude,
-         lag:res.latitude,
-         city:str,
-         cityCode:res.cityAdcode,
-       });
-        that.getNearByHousing();
-       
-      },
-      fail() {
-        my.hideLoading();
-        my.alert({ title: '定位失败' });
+    var cityAdcode = my.getStorageSync({
+      key: 'cityAdcode', // 缓存数据的key
+    }).data;
+    if(cityAdcode!=''&&cityAdcode!=null){
+      var cityAdname = my.getStorageSync({
+        key: 'cityAdname', // 缓存数据的key
+      }).data;
+      that.setData({
+        city:cityAdname,
+        cityCode:cityAdcode,
+      });
+      that.getNearByHousing();
+      that.getBanner(cityAdcode);
+      that.getBoutiqueHousing(cityAdcode);
+      that.getWholeRentalHousing(cityAdcode);
+      that.getSharedHousing(cityAdcode);
+    }else{
+      my.getLocation({
+        type:2,
+        success(res) {
+          console.log('***********')
+          console.log(res)
+          console.log('***********')
+          my.hideLoading();
+          var city = res.city
+          console.log(city)
+          var str = city.split('市');
+          console.log(str[0])
         that.setData({
-          city:'杭州',
-          cityCode:'330100',
+          address:res.streetNumber.street+res.streetNumber.number,
+          lng:res.longitude,
+          lag:res.latitude,
+          city:str,
+          cityCode:res.cityAdcode,
         });
-      },
-    })
+          my.setStorageSync({
+            key: 'cityAdcode', // 缓存数据的key
+            data: res.cityAdcode, // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'cityAdname', // 缓存数据的key
+            data: str, // 要缓存的数据
+          });
+          that.getNearByHousing();
+          that.getBanner(res.cityAdcode);
+          that.getBoutiqueHousing(res.cityAdcode);
+          that.getWholeRentalHousing(res.cityAdcode);
+          that.getSharedHousing(res.cityAdcode);
+        
+        },
+        fail() {
+          my.hideLoading();
+          my.alert({ title: '定位失败' });
+          that.setData({
+            city:'杭州',
+            cityCode:'330100',
+          });
+          my.setStorageSync({
+            key: 'cityAdcode', // 缓存数据的key
+            data: '330100', // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'cityAdname', // 缓存数据的key
+            data: '杭州', // 要缓存的数据
+          });
+          that.getNearByHousing();
+          that.getBanner('330100');
+          that.getBoutiqueHousing('330100');
+          that.getWholeRentalHousing('330100');
+          that.getSharedHousing('330100');
+        },
+      })
+    }
  },
   //获取附近房源
-  getNearByHousing(l){
+  getNearByHousing(){
      var that=this;
      my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/homePage/getHomeHouseIF.do",

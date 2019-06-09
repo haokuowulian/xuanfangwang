@@ -1,0 +1,24 @@
+<view>
+  <view class="lineClass"></view>
+  <view class="title_content">可兑优惠券</view>
+  <view class="page_body">
+    <block a:for="{{couponlist}}" a:for-item="list">
+      <view class="page_content">
+        <view class="content_l">
+          <view class="r_money">￥<text class="r_money1">{{list.money}}</text></view>
+          <view class="r_type">无门槛</view>
+        </view>
+        <view class="content_r">
+          <view class="r_info">
+            <view class="info_name">{{list.name}}</view>
+            <view class="info_time">有效期{{list.effectiveTime}}个月</view>
+          </view>
+          <view class="r_option">
+            <button type="default" onTap="toAddCoupon" data-i="{{list.money*100}}" data-c="{{list.money}}" class="option_btn">兑换</button>
+            <view class="option_integral">需<text class="option_text">{{list.money*100}}</text>积分</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

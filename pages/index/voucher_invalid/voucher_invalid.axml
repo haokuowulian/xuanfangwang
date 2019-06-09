@@ -1,0 +1,33 @@
+<view class="lineClass"></view>
+<view>
+  <block a:for="{{couponlist}}" a:for-item="list">
+    <view a:if="{{list.state==1}}" class="page_content back_img1">
+      <view class="page_content1">
+        <view class="content1_l">
+          <view class="l_name">{{list.name}}</view>
+          <view class="l_time">有效期至{{list.endTime}}</view>
+        </view>
+        <view class="content1_r">
+          <view class="r_money">￥<text class="r_money1">{{list.money}}</text></view>
+          <view class="r_type">无门槛</view>
+        </view>
+      </view>
+      <view class="lineClass1"></view>
+      <view class="page_content2">仅限本账号使用</view>
+    </view>
+    <view a:if="{{list.state==2}}" class="page_content back_img1">
+      <view class="page_content1">
+        <view class="content1_l">
+          <view class="l_name">{{list.name}}</view>
+          <view class="l_time">有效期至{{list.endTime}}</view>
+        </view>
+        <view class="content1_r">
+          <view class="r_money">￥<text class="r_money1">{{list.money}}</text></view>
+          <view class="r_type">无门槛</view>
+        </view>
+      </view>
+      <view class="lineClass1"></view>
+      <view class="page_content2">仅限本账号使用</view>
+    </view>
+  </block>
+  </view>

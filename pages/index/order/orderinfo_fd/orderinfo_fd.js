@@ -73,6 +73,7 @@ Page({
           tradeNO:order.alipayOrderNo,
           certified:order.certified,
           linkOrderId:order.linkOrderId,
+          couponId:order.couponId,
         });
       },
     });
@@ -120,6 +121,7 @@ Page({
             status:order.status,
             tradeNO:order.alipayOrderNo,
             certified:order.certified,
+            couponId:order.couponId,
           });
         },
       });
@@ -262,7 +264,7 @@ Page({
       });
   },
   
-    //退款处理
+  //退款处理
   dealOrder(){
     var that=this;
     my.confirm({
@@ -293,6 +295,7 @@ Page({
       success: function(res) {
         console.log(res.data);
         if(res.data.success){
+          that.editCouponState();
           my.alert({
             title: '退款操作成功！' ,
             success: () => {
@@ -300,20 +303,35 @@ Page({
             },
 
           });
-          //  my.showToast({
-          //   content: '退款处理成功',
-          //   duration: 2000
-          // });
-          
+      
         }
       },
-      // fail: function(res) {
-      //   console.log('-------fail--------'+res);
-      //   console.log(res);
-      // },
       complete: function(res) {
         my.hideLoading();
       }
     });
-  }
+  },
+      //改优惠券状态
+  editCouponState(){
+    var that = this;
+    var userId = that.data.userId;
+    var couponId = that.data.couponId;
+    if(couponId!=null&&couponId!=''){
+      my.httpRequest({
+        url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          id:couponId,
+          userId:userId,
+          state:0,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log('优惠券返还成功')
+        },
+      });
+    }else{
+      console.log('优惠券返还失败')
+    }
+  },
 });

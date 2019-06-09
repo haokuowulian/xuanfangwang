@@ -1,0 +1,104 @@
+.title_content{
+  margin-left: 35rpx;
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
+  font-size: 35rpx;
+  font-family: "MicrosoftYaHei";
+  color: #0d0d0d;
+}
+.lineClass{
+  height: 2rpx;
+  width: 750rpx;
+  /* margin-left: 35rpx; */
+  background-color: #f5f5f5;
+}
+.page_body{
+  margin-bottom: 20rpx;
+}
+.page_content{
+  height: 180rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+.content_l{
+  width: 180rpx;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: #f5f5f5 1px dashed;
+}
+.content_r{
+  width: 520rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.r_info{
+  display: flex;
+  flex-direction: column;
+  margin-left: 40rpx;
+}
+.r_option{
+  margin-right: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.r_money{
+  font-family: "MicrosoftYaHei";
+  font-size: 45rpx;
+  color: #fb4f45;
+}
+.r_money1{
+  font-family: "MicrosoftYaHei";
+  font-size: 70rpx;
+  color: #fb4f45;
+}
+.r_type{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 25rpx;
+  color: #666666;
+}
+.info_name{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 30rpx;
+  color: #333333;
+}
+.info_time{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 25rpx;
+  color: #666666;
+  margin-top: 20rpx;
+}
+.option_integral{
+  margin-top: 20rpx;
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 20rpx;
+  color: #999999;
+}
+.option_btn{
+  width: 120rpx;
+  height: 50rpx;
+  background-color: #ffa800;
+  color: #ffffff;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 45rpx;
+}
+.option_text{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 20rpx;
+  color: #ffa800;
+}

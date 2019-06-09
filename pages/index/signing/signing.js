@@ -40,6 +40,8 @@ Page({
     myEndDate:'',
     index1:0,
     my_payway:'',
+    voucher:0,//抵用券金额
+    voucher_id:null,
   },
   onLoad(option) {
     var that = this;
@@ -97,6 +99,13 @@ Page({
     that.getMyData(houseInfo,rentType,payment);
     this.getUserInfo();
   },
+  onShow(){
+    var that= this;
+    that.setData({
+      voucher:that.data.voucher,
+      voucher_id:that.data.voucher_id,
+    });
+  },
   toConfirm1(){
     var that = this;
     console.log(that.data.rentType)
@@ -111,6 +120,8 @@ Page({
     }).data;
     var rentType = that.data.rentType;
     var houseInfo = that.data.houseInfo;
+    var voucher = that.data.voucher;
+    var couponId = that.data.voucher_id;
     if(rentType==1){
       var housingId = houseInfo.id;
     }
@@ -127,6 +138,8 @@ Page({
         housingId:housingId,
         housingType:rentType,
         origin:2,
+        couponId:couponId,
+        discounts:voucher,
       },
       dataType: 'json',
       success: (res) => {
@@ -168,6 +181,8 @@ Page({
                       var alipayOrderNo = json3.auth_no;
                       console.log(alipayOrderNo)
                       that.uploadCode(orderId,1,res.resultCode,alipayOrderNo);
+                      //改优惠券状态
+                      that.editCouponState();
                     }
                   },
                   fail: (res) => {
@@ -194,6 +209,31 @@ Page({
       },
     });
 
+  },
+  //改优惠券状态
+  editCouponState(){
+    var that = tis;
+    var voucher_id = that.data.voucher_id;
+    var userId = my.getStorageSync({
+      key: 'userId', // 用户id
+    }).data;
+    if(voucher_id!=null||voucher_id!=''){
+      my.httpRequest({
+        url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          id:voucher_id,
+          userId:userId,
+          state:2,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log('优惠券使用成功')
+        },
+      });
+    }else{
+      console.log('没有使用优惠券')
+    }
   },
   //上传支付结果状态码
   uploadCode(orderId,payWay,resultCode,alipayOrderNo){
@@ -251,6 +291,7 @@ Page({
     // var houseInfo =my.getStorageSync({
     //  key: 'uhouseInfo', // 缓存数据的key
     // }).data;
+    var voucher = that.data.voucher;
     if(rentType==1){
       var price = houseInfo.entireRents;
     }
@@ -538,7 +579,7 @@ Page({
             });
             },
           });
-        }else if(res_id==4){
+        }else if(res_id==5){
           my.alert({
           title: '身份证地区非法',
           success:() =>{
@@ -846,5 +887,16 @@ Page({
       });
     }
     console.log(startDate)
+  },
+  chooseVoucher(){
+    var that = this;
+    var voucher_id = that.data.voucher_id;
+    my.setStorageSync({
+      key: 'voucher_id', // 缓存数据的key
+      data: voucher_id, // 要缓存的数据
+    });
+    my.navigateTo({
+      url: '/pages/index/voucher_choose/voucher_choose',
+    });
   },
 });

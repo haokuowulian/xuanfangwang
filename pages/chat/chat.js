@@ -13,6 +13,8 @@ Page({
     my_nickName:'',
     scrollTop:1000,
     interval:null,
+    bottom:false,
+    screenHeight:null,
   },
   onLoad(option) {
     var that = this;
@@ -52,8 +54,16 @@ Page({
     
   },
   onShow(){
-    // var that = this;
+    var that = this;
     // that.getMessage();
+    my.getSystemInfo({
+      success: (res) => {
+        console.log(res)
+        that.setData({
+          screenHeight:res.screenHeight,
+        });
+      },
+    });
   },
 
   getMessage(uid){
@@ -109,16 +119,22 @@ Page({
       },
     });
   },
-  onFocus(){
+  onFocus(e){
     var that = this;
+    console.log(e)
     clearInterval(that.data.interval);
+    that.setData({
+      bottom:true,
+    });
   },
   onBlur(){
     console.log('失焦')
     var that = this;
     var uid = that.data.userId;
     that.getMessageTimely(uid);
-    
+    that.setData({
+      bottom:false,
+    });
   },
   bindKeyInput(e){
     var that = this;

@@ -2,7 +2,9 @@
   <view class="page_banner">
     <view class="banner_text">我的余额</view>
     <view class="banner_money">￥{{money}}</view>
-    <view class="withdrawableCash">（当前可提现金额：￥{{withdrawableCash}}）<view class="explain"><image src="/image/wenhao.png" class="wenhao_img" /></view></view>
+    <view class="withdrawableCash">（当前可提现金额：￥{{withdrawableCash}}）
+      <!-- <view class="explain"><image src="/image/wenhao.png" class="wenhao_img" /></view> -->
+    </view>
   </view>
   <view class="money_text">（为保障资金安全，新增余额在七天后方可提现）</view>
   <view class="classManger">钱包管理</view>

@@ -294,3 +294,14 @@
   align-items: center;
   border-color: #ff9900;
 }
+.img_right{
+  width: 10rpx;
+  height: 19rpx;
+  /* margin-left: 5rpx; */
+}
+.chooseVoucher{
+  font-size: 30rpx;
+  text-align: right;
+  color: #333333;
+  width: 400rpx;
+}

@@ -1,0 +1,33 @@
+<view>
+  <view class="lineClass"></view>
+  <view class="page_top">
+    <view>
+      <view class="top_font">当前积分<text class="top_voucher">{{integral}}</text></view>
+      <view class="top_text">每1000积分可兑10元优惠券</view>
+    </view>
+    <view>
+      <button type="default" onTap="toExchange" class="top_btn">立即兑换</button>
+    </view>
+  </view>
+  <view class="title_content">可用优惠券</view>
+  <view>
+  <block a:for="{{couponlist}}" a:for-item="list">
+    <view class="page_content {{list.disabled?'is_choose':'not_choose'}}" data-index="{{index}}" data-id="{{list.id}}" data-money="{{list.money}}" onTap="toChoose">
+      <view class="page_content1">
+        <view class="content1_l">
+          <view class="l_name">{{list.name}}</view>
+          <view class="l_time">有效期至{{list.endTime}}</view>
+        </view>
+        <view class="content1_r">
+          <view class="r_money">￥<text class="r_money1">{{list.money}}</text></view>
+          <view class="r_type">无门槛</view>
+        </view>
+      </view>
+      <view class="lineClass1"></view>
+      <view class="page_content2">仅限本账号使用</view>
+    </view>
+  </block>
+  </view>
+  <view class="page_footer" onTap="toInvalid">不使用优惠券</view>
+  <view class="lineClass"></view>
+</view>

@@ -42,6 +42,10 @@ Page({
     my_payway:'',
     starTime:'',
     contractId:'',
+
+    my_payway:'',
+    voucher:0,//抵用券金额
+    voucher_id:null,
   },
   onLoad(option) {
     var that = this;
@@ -105,6 +109,13 @@ Page({
     that.getMyData(houseInfo,rentType,payment);
     that.getUserInfo();
   },
+  onShow(){
+    var that= this;
+    that.setData({
+      voucher:that.data.voucher,
+      voucher_id:that.data.voucher_id,
+    });
+  },
   toConfirm1(){
     var that = this;
     console.log(that.data.rentType)
@@ -134,6 +145,7 @@ Page({
         endDate:that.data.endDate,
         contractId:that.data.contractId,
         origin:2,
+        discounts:voucher,
       },
       dataType: 'json',
       success: (res) => {
@@ -840,5 +852,16 @@ Page({
       });
     }
     console.log(startDate)
+  },
+  chooseVoucher(){
+    var that = this;
+    var voucher_id = that.data.voucher_id;
+    my.setStorageSync({
+      key: 'voucher_id', // 缓存数据的key
+      data: voucher_id, // 要缓存的数据
+    });
+    my.navigateTo({
+      url: '/pages/index/voucher_choose/voucher_choose',
+    });
   },
 });

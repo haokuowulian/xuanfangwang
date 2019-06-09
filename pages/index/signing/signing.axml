@@ -81,8 +81,13 @@
       </view>
     </view>
   </view>
+  <view class="content">抵用券      
+    <view class="chooseVoucher" onTap="chooseVoucher">
+      <view>-{{voucher}}￥<image src="/image/icon/right.png" class="img_right" /></view>
+    </view>
+  </view>
   <view class="content">应付首次款项      
-    <view class="inputClass">￥{{allPay}}
+    <view class="inputClass">￥{{(allPay-voucher)>0?(allPay-voucher):0}}
     </view>
   </view>
   <view class="body-back">
@@ -101,3 +106,21 @@
 </view>
 <view class="page-btn" onTap="toConfirm1">立即签约
 </view>
+
+
+<view class="temp temp3 {{showVoucher ? 'show' : 'disappear'}} ">
+      <view class='tempheight'>
+        123333333
+        <!-- <view class="btn_clear"><image src="/image/clear.png" class="img_clear" onTap="toBack"/></view>
+        <view class="page_money">
+          <view class="money_title">输入支付密码</view>
+          <view class="money_input">
+            <input type="number" placeholder="" class="class_input" onInput="input1" value="{{password}}" password="true"/>
+          </view>
+          <view class="lineClass1"></view>
+        </view>
+        <view class="page_btn">
+          <button type="default" onTap="toConfirm1" class="btn">确定</button>
+        </view> -->
+      </view>
+    </view>

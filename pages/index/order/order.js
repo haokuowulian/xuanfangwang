@@ -4,7 +4,7 @@ Page({
     imgurl:app.globalData.baseImgUrl_whj,
     orderList:[],
     pageIndex:1,
-    type:0
+    type:0,
   },
   onLoad(option) {
     if(option.type!=''){
@@ -204,6 +204,7 @@ Page({
                 
                 console.log(alipayOrderNo)
                 that.uploadCode(orderId,1,res.resultCode,alipayOrderNo);
+                // that.toAddIntegral();
               }
 
             },
@@ -303,6 +304,27 @@ Page({
             title: '删除失败，请稍候再试！' 
           });
         }
+      },
+    });
+  },
+  //支付添加积分
+  toAddIntegral(integral,remark){
+    var that = this;
+    var userId = my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+'IF/integralLog/editIntegral.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:userId,
+        integral:integral,
+        type:1,
+        remark:remark,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('积分添加成功！')
       },
     });
   },

@@ -314,6 +314,7 @@ Page({
     if(idImg1!=''&&idImg2!=''){
       if(cityId!=''){
         if(areaId!=''){
+          
           that.faceVerify();
           // that.complexUserInfo();
           // if(password!=''){
@@ -424,14 +425,8 @@ Page({
               key: 'userCompleted', // 缓存数据的key
               data: true, // 要缓存的数据 
             });
-            my.alert({
-              title: '提交成功！',
-              success: () => {
-                my.navigateBack({
-                  delta: 1,
-                });
-              }
-            });
+
+            that.toAddCoupon();
           
 
           }
@@ -443,6 +438,44 @@ Page({
         }
       });
    },
-  
+  //完善信息赠送抵用券
+  toAddCoupon(){
+    var that = this;
+    my.httpRequest({
+      url: app.globalData.baseUrl+'IF/coupon/addfirstCoupon.do', // 目标服务器url
+      method: 'POST',
+      header:{
+            'content-type': 'application/json'
+          },
+      data: {
+      userId:that.data.userId,
+      },
+      dataType: 'json',
+      success: (res) => {
+        if(res.data.success){
+          my.alert({
+            title: '提交成功！',
+            content:'赠送一张20元抵用券，请于卡券中查看',
+            buttonText: '我知道了',
+            success: () => {
+              my.navigateBack({
+                delta: 1,
+              });
+            }
+          });
+        }else{
+          my.alert({
+            title: '提交成功！',
+            success: () => {
+              my.navigateBack({
+                delta: 1,
+              });
+            }
+          });
+        }
+        
+      },
+    });
+  },
    
 });

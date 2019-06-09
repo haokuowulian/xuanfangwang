@@ -289,7 +289,27 @@ Page({
       },
     });
   },
-
+  //租客积分增加
+  toAddIntegral(){
+    var that = this;
+    var fromUserId = that.data.userId;
+    var money = that.data.money;
+    var house = that.data.houseName;
+    my.httpRequest({
+      url: app.globalData.base_whj+'IF/integralLog/editIntegral.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:fromUserId,
+        integral:money,
+        type:1,
+        remark:house,
+      },      
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+      },
+    });
+  },
   toCancel(){
     var that = this;
     var orderid = that.data.orderid;

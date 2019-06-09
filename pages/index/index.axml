@@ -1,11 +1,11 @@
 <view class="page-tools">
   <view class="page-section">
     <view class="page-banner">
-      <view class="banner-city">
-        <!-- {{array[index]}}城市onTap="chooseCity" -->
-        <view class="content" onTap="chooseCity">{{city}}</view>
+      <view class="banner-city" onTap="chooseCity">
+
+        <view class="content">{{city}}</view>
         <view class="icon"></view>
-        <!-- <view class="content">杭州</view> -->
+     
       </view>
       <view class="banner-search" onTap="onSearchBarTap">
         <icon class="icon_search" type="search" size="14" color="#1D1D1D" />
@@ -26,7 +26,7 @@
       </swiper>
     </view>
 
-    <view class="page-b2-house">
+    <view class="page-b2-house">         
       <view class="choose1" onTap="choose1OnTap" data-choose="1">
         <image src="/image/house001.png" class="img-house"/>  精选
       </view>
