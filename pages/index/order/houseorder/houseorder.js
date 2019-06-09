@@ -24,11 +24,7 @@ Page({
   getOrder(){
     var that = this;
     var url=app.globalData.baseUrl_whj+"IF/order/getOrderByLandlord.do";
-    // if(this.data.type==1){
-    //   url=app.globalData.baseUrl_whj+"IF/order/getOrderByConsumer.do"
-    // }else if(this.data.type==2){
-    //    url=app.globalData.baseUrl_whj+"IF/order/getOrderByLandlord.do"
-    // }
+    
     console.log('url='+url);
     console.log('----------------'+that.data.pageIndex);
     var uid= my.getStorageSync({
@@ -40,10 +36,6 @@ Page({
     console.log('token='+token)
     my.httpRequest({
       url: url, // 目标服务器url
-      // headers:{
-      //   'Content-Type': 'application/json',
-      //   'Cookie': "uuid=" + token,
-      //   },
       method: 'POST',
       data:{
         userId:uid,
@@ -110,5 +102,10 @@ Page({
     });
     this.getOrder();
   },
-
+  onPullDownRefresh() {
+    this.setData({
+      pageIndex:1
+    });
+    this.getOrder();
+  },
 });

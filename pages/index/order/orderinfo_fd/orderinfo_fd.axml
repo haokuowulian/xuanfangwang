@@ -78,7 +78,7 @@
   <view class="operate">
     <view class="operate-sum">
       <view class="total ">租客订单金额：<view class="sum">￥{{totalMoney}}</view></view>
-      <view class="deposit">租信宝认证费用：￥50</view>
+      <view class="deposit">租信宝认证费用：￥100</view>
     </view>
     <view a:if="{{linkOrderId==''}}">
       <view a:if="{{status==0}}" class="operate-pay" onTap="toPay">评分查询</view>

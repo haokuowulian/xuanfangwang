@@ -18,6 +18,7 @@
           <view a:if="{{list.status==2}}" class="order-status1">退款中</view>
           <view a:if="{{list.status==3}}" class="order-status1">退款完成</view>
           <view a:if="{{list.status==8}}" class="order-status1">已取消</view>
+          <view a:if="{{list.status==88}}" class="order-status1">未同意</view>
           <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
         </view>
         <view class="box_content">
@@ -46,7 +47,7 @@
         <button a:if="{{list.status==9}}" class="class_btn" type="default" data-id="{{list.id}}">已入住</button>
         <button a:if="{{list.status==0}}" class="class_btn" type="default" onTap="toPay" data-id="{{list.id}}">立即支付</button>
         <button a:if="{{list.status==8||list.status==3}}" class="class_btn" type="default" onTap="deleteOrder" data-id="{{list.id}}">删除订单</button>
-        
+        <button a:if="{{list.status==88||list.status==3}}" class="class_btn" type="default" onTap="deleteOrder" data-id="{{list.id}}">删除订单</button>
         </view>
       </view>
     </view>

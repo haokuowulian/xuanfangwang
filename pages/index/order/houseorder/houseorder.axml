@@ -1,4 +1,3 @@
-<view>
   <view a:if="{{orderList.length==0}}" class="tips">你还没有订单</view>
   <view a:else>
   <block a:for="{{orderList}}" a:for-item="list">
@@ -19,7 +18,7 @@
           <view a:if="{{list.status==2}} " class="order-status1">退款申请中</view>
           <view a:if="{{list.status==3}} " class="order-status1">退款完成</view>
           <view a:if="{{list.status==9}} " class="order-status1">订单已生效</view>
-          <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> -->
+          <!-- <view a:if="{{list.orderstatus == 2}}" class="order-status2">已结束</view> --> 
         </view>
 
         <view class="order-content" onTap="toOrderInfo" data-id="{{list.id}}">
@@ -47,4 +46,3 @@
   </block>
   </view>
 
-</view>

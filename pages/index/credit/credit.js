@@ -17,6 +17,8 @@ Page({
     money:'',
     pay1:false,
     pay2:false,
+    consumerId:'',
+    couponId:'',
   },
   onLoad(option) {
     var that = this;
@@ -159,12 +161,16 @@ Page({
         console.log('订单信息')
         console.log(res)
         var contractId = res.data.data.contractId;
+        var consumerId = res.data.data.consumerId;
+        var couponId = res.data.data.couponId;
         if(contractId!=''&&contractId!=null){
           that.setData({
             contract:true,
             status:res.data.data.status,
             houseName:res.data.data.housingName,
             money:res.data.data.totalMoney,
+            consumerId:consumerId,
+            couponId:couponId,
           });
         }else{
           that.setData({
@@ -172,6 +178,8 @@ Page({
             status:res.data.data.status,
             houseName:res.data.data.housingName,
             money:res.data.data.totalMoney,
+            consumerId:consumerId,
+            couponId:couponId,
           });
         }
         
@@ -277,6 +285,7 @@ Page({
         my.hideLoading();
         if(res.data.success){
           console.log('余额到账！')
+          that.toAddIntegral();
           my.alert({
             title: '签约成功！' ,
             success: () => {
@@ -289,33 +298,91 @@ Page({
       },
     });
   },
-
-  toCancel(){
+  //租客积分增加
+  toAddIntegral(){
     var that = this;
-    var orderid = that.data.orderid;
+    var fromUserId = that.data.consumerId;
+    var money = that.data.money;
+    var house = that.data.houseName;
     my.httpRequest({
-      url: app.globalData.base_whj+'IF/alipay/fundAuthOrderUnfreeze.do', // 目标服务器url
+      url: app.globalData.base_whj+'IF/integralLog/editIntegral.do', // 目标服务器url
       method: 'POST',
       data:{
-        orderId:orderid,
+        userId:fromUserId,
+        integral:money,
+        type:1,
+        remark:house,
       },      
       dataType: 'json',
       success: (res) => {
-        console.log('取消订单')
         console.log(res)
-        if(res.data.success){
-          my.alert({
-            title: '取消成功！' ,
-            success: () => {
-              my.navigateBack({
-                delta:2
-              });
-            },
-          });
-          
-        }
-      
       },
     });
+  },
+  toCancel(){
+    var that = this;
+    var orderid = that.data.orderid;
+    my.confirm({
+      title: '取消订单提示',
+      content: '您正在取消订单，是否确定？',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      success: (res) => {
+        if(res.confirm){
+          my.httpRequest({
+            url: app.globalData.base_whj+'IF/alipay/fundAuthOrderUnfreeze.do', // 目标服务器url
+            method: 'POST',
+            data:{
+              orderId:orderid,
+            },      
+            dataType: 'json',
+            success: (res) => {
+              console.log('取消订单')
+              console.log(res)
+              if(res.data.success){
+                that.editCouponState(that.data.couponId,that.data.consumerId);
+                my.alert({
+                  title: '取消成功！',
+                  success: () =>{
+                    my.navigateBack({
+                      delta:2
+                    });
+                  }
+                });
+                
+              }
+            
+            },
+            fail: (res) => {
+              console.log(res);
+              my.alert({ title: '取消失败，请稍后再试' });
+            },
+          });
+        }
+      },
+    });
+    
+  },
+
+  //改优惠券状态
+  editCouponState(couponId,consumerId){
+    var that = this;
+    if(couponId!=null||couponId!=''){
+      my.httpRequest({
+        url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          id:couponId,
+          userId:consumerId,
+          state:0,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log('优惠券返还成功')
+        },
+      });
+    }else{
+      console.log('优惠券返还失败')
+    }
   },
 });

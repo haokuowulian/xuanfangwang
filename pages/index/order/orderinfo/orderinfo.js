@@ -60,10 +60,11 @@ Page({
       },
     });
   },
-  onCancel(){
+  onCancel(e){
     console.log('取消订单')
     var id = this.data.orderid;
     var uid = this.data.userId;
+    var couponId = e.target.dataset.couponId;
     console.log(id)
     console.log(uid)
     my.confirm({
@@ -74,32 +75,60 @@ Page({
       success: (res) => {
         if(res.confirm){
           my.httpRequest({
-          url:app.globalData.baseUrl_whj+'IF/order/cancelLocalOrder.do', // 目标服务器url
-          method: 'POST',
-          data:{
-            userId:this.data.userId,
-            orderId:this.data.orderid,
-          },
-          dataType: 'json',
-          success: (res) => {
-            console.log(res);
-            my.alert({
-              title: '订单取消成功', 
-              success: (res) => {
-                my.navigateBack();
+            url:app.globalData.baseUrl_whj+'IF/order/cancelLocalOrder.do', // 目标服务器url
+            method: 'POST',
+            data:{
+              userId:this.data.userId,
+              orderId:this.data.orderid,
+            },
+            dataType: 'json',
+            success: (res) => {
+              console.log('取消成功');
+              console.log(res);
+              if(couponId!=''&&couponId!=null){
+                that.editCouponState(couponId);
               }
-            });
-          },
-          fail: (res) => {
-            console.log(res);
-            my.alert({ title: '取消失败，请稍后再试' });
-          },
-        });
+              my.alert({
+                title: '订单取消成功', 
+                success: (res) => {
+                  my.navigateBack();
+                }
+              });
+            },
+            fail: (res) => {
+              console.log(res);
+              my.alert({ title: '取消失败，请稍后再试' });
+            },
+          });
         }
         
       },
     });
     
+  },
+    //改优惠券状态
+  editCouponState(couponId){
+    var that = this;
+    var userId = my.getStorageSync({
+      key: 'userId', // 用户id
+    }).data;
+    if(voucher_id!=null||voucher_id!=''){
+      my.httpRequest({
+        url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          id:couponId,
+          userId:userId,
+          state:0,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log('优惠券返还成功')
+        },
+      });
+    }else{
+      console.log('优惠券返还失败')
+    }
   },
   onRefund(){
     var id = this.data.orderid;

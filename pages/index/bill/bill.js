@@ -42,6 +42,8 @@ Page({
     var that = this;
     console.log(e)
     var id = e.target.dataset.id;
+    var mark = e.target.dataset.mark;
+    var totalMoney = e.target.dataset.totalMoney;
     my.httpRequest({
       url: app.globalData.baseUrl_whj+'IF/bill/addAlipayAuditing.do', // 目标服务器url
       method: 'POST',
@@ -70,6 +72,7 @@ Page({
                 dataType: 'json',
                 success: (res) => {
                   console.log(res)
+                  that.toAddIntegral(totalMoney,mark);
                   that.getMyOrder();
                 },
               });
@@ -91,5 +94,25 @@ Page({
       pageIndex:this.data.pageIndex+1
     });
     this.getMyOrder();
+  },
+  toAddIntegral(integral,remark){
+    var that = this;
+    var userId = my.getStorageSync({
+      key: 'userId', // 缓存数据的key
+    }).data;
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+'IF/integralLog/editIntegral.do', // 目标服务器url
+      method: 'POST',
+      data:{
+        userId:userId,
+        integral:integral,
+        type:1,
+        remark:remark,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('积分添加成功！')
+      },
+    });
   },
 });

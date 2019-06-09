@@ -40,6 +40,8 @@ Page({
     myEndDate:'',
     index1:0,
     my_payway:'',
+    voucher:0,//抵用券金额
+    voucher_id:null,
   },
   onLoad(option) {
     var that = this;
@@ -97,6 +99,13 @@ Page({
     that.getMyData(houseInfo,rentType,payment);
     this.getUserInfo();
   },
+  onShow(){
+    var that= this;
+    that.setData({
+      voucher:that.data.voucher,
+      voucher_id:that.data.voucher_id,
+    });
+  },
   toConfirm1(){
     var that = this;
     console.log(that.data.rentType)
@@ -111,6 +120,8 @@ Page({
     }).data;
     var rentType = that.data.rentType;
     var houseInfo = that.data.houseInfo;
+    var voucher = that.data.voucher;
+    var couponId = that.data.voucher_id;
     if(rentType==1){
       var housingId = houseInfo.id;
     }
@@ -127,6 +138,8 @@ Page({
         housingId:housingId,
         housingType:rentType,
         origin:2,
+        couponId:couponId,
+        discounts:voucher,
       },
       dataType: 'json',
       success: (res) => {
@@ -168,6 +181,8 @@ Page({
                       var alipayOrderNo = json3.auth_no;
                       console.log(alipayOrderNo)
                       that.uploadCode(orderId,1,res.resultCode,alipayOrderNo);
+                      //改优惠券状态
+                      // that.editCouponState();
                     }
                   },
                   fail: (res) => {
@@ -194,6 +209,31 @@ Page({
       },
     });
 
+  },
+  //改优惠券状态
+  editCouponState(){
+    var that = this;
+    var voucher_id = that.data.voucher_id;
+    var userId = my.getStorageSync({
+      key: 'userId', // 用户id
+    }).data;
+    if(voucher_id!=null||voucher_id!=''){
+      my.httpRequest({
+        url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
+        method: 'POST',
+        data:{
+          id:voucher_id,
+          userId:userId,
+          state:2,
+        },
+        dataType: 'json',
+        success: (res) => {
+          console.log('优惠券使用成功')
+        },
+      });
+    }else{
+      console.log('没有使用优惠券')
+    }
   },
   //上传支付结果状态码
   uploadCode(orderId,payWay,resultCode,alipayOrderNo){
@@ -251,6 +291,7 @@ Page({
     // var houseInfo =my.getStorageSync({
     //  key: 'uhouseInfo', // 缓存数据的key
     // }).data;
+    var voucher = that.data.voucher;
     if(rentType==1){
       var price = houseInfo.entireRents;
     }
@@ -374,31 +415,35 @@ Page({
       username:e.detail.value
     });
   },
-  //确认性别
+  //选择结束时间
   bindPickerChange(e){
     console.log(e)
     var that = this;
     var arr = this.data.myEndDates;
     var idx = e.detail.value;
     if(idx==0){
+      that.getCurrentDate2(1);
       that.setData({
         index1:e.detail.value,
         myEndDate:arr[idx],
       });
     }
     if(idx==1){
+      that.getCurrentDate2(3);
       that.setData({
         index1:e.detail.value,
         myEndDate:arr[idx],
       });
     }
     if(idx==2){
+      that.getCurrentDate2(6);
       that.setData({
         index1:e.detail.value,
         myEndDate:arr[idx],
       });
     }
     if(idx==3){
+      that.getCurrentDate2(12);
       that.setData({
         index1:e.detail.value,
         myEndDate:arr[idx],
@@ -538,7 +583,7 @@ Page({
             });
             },
           });
-        }else if(res_id==4){
+        }else if(res_id==5){
           my.alert({
           title: '身份证地区非法',
           success:() =>{
@@ -846,5 +891,90 @@ Page({
       });
     }
     console.log(startDate)
+  },
+  //保存结束日期
+  getCurrentDate2(payment){
+    var that = this;
+    var startDate=app.getDate('yyyy年MM月dd日',0);
+    startDate1=app.getDate('yyyy-MM-dd',0);
+    //获取一、三、六、十二个月后日期
+    var date10 = app.getFormateDate3('yyyy年MM月dd日',1);
+    date0 =app.getFormateDate3('yyyy-MM-dd',1);
+    var date1 = app.getFormateDate3('yyyy年MM月dd日',3);
+    date01 =app.getFormateDate3('yyyy-MM-dd',3);
+    var date2 = app.getFormateDate3('yyyy年MM月dd日',6);
+    date02 =app.getFormateDate3('yyyy-MM-dd',6);
+    var date3 = app.getFormateDate3('yyyy年MM月dd日',12);
+    date03 =app.getFormateDate3('yyyy-MM-dd',12);
+    console.log(date01+'-----------')
+    var list = [];
+    if(payment==1){
+      that.setData({
+        endDate:date0,
+        choose:0,
+      });
+      my.setStorageSync({
+      key: 'uendDate', // 缓存数据的key
+        data: date0, // 要缓存的数据
+      });
+      my.setStorageSync({
+      key: 'udateType', // 缓存数据的key
+        data: 0, // 要缓存的数据
+      });
+    }
+    if(payment==3){
+      that.setData({
+        endDate:date01,
+        choose:1,
+      });
+      my.setStorageSync({
+      key: 'uendDate', // 缓存数据的key
+        data: date01, // 要缓存的数据
+      });
+      my.setStorageSync({
+      key: 'udateType', // 缓存数据的key
+        data: 1, // 要缓存的数据
+      });
+    }
+    if(payment==6){
+      that.setData({
+        endDate:date02,
+        choose:2,
+      });
+      my.setStorageSync({
+      key: 'uendDate', // 缓存数据的key
+        data: date02, // 要缓存的数据
+      });
+      my.setStorageSync({
+      key: 'udateType', // 缓存数据的key
+        data: 2, // 要缓存的数据
+      });
+    }
+    if(payment==12){
+      that.setData({
+        endDate:date03,
+        choose:3,
+      });
+      my.setStorageSync({
+      key: 'uendDate', // 缓存数据的key
+        data: date03, // 要缓存的数据
+      });
+      my.setStorageSync({
+      key: 'udateType', // 缓存数据的key
+        data: 3, // 要缓存的数据
+      });
+    }
+    console.log(startDate)
+  },
+  chooseVoucher(){
+    var that = this;
+    var voucher_id = that.data.voucher_id;
+    my.setStorageSync({
+      key: 'voucher_id', // 缓存数据的key
+      data: voucher_id, // 要缓存的数据
+    });
+    my.navigateTo({
+      url: '/pages/index/voucher_choose/voucher_choose',
+    });
   },
 });

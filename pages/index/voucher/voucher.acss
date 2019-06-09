@@ -1,0 +1,129 @@
+.page_top{
+  height: 140rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lineClass{
+  height: 2rpx;
+  width: 750rpx;
+  background-color: #f5f5f5;
+}
+.title_content{
+  margin-left: 35rpx;
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
+  font-size: 35rpx;
+  font-family: "MicrosoftYaHei";
+  color: #0d0d0d;
+}
+.top_font{
+  font-size: 25rpx;
+  font-family: "MicrosoftYaHei";
+  color: #0d0d0d;
+}
+.top_voucher{
+  font-size: 30rpx;
+  color: #ffa800;
+  font-family: "MicrosoftYaHei";
+  margin-left: 10rpx;
+}
+.top_text{
+  font-size: 20rpx;
+  font-family: "FZLTXHK--GBK1-0";
+  color: #999999; 
+  margin-top: 20rpx;
+}
+.top_btn{
+  height: 50rpx;
+  width: 145rpx;
+  color: #ffffff;
+  background-color: #ffa800;
+  border-radius: 45rpx;
+  font-size: 20rpx;
+  font-family: "FZLTXHK--GBK1-0";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page_content{
+  height: 245rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  background-color: #ffffff;
+  margin-bottom: 25rpx;
+}
+.page_content1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 175rpx;
+  width: 620rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.page_content2{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 20rpx;
+  color: #999999;
+  margin-top: 20rpx;
+  width: 620rpx;
+  height: 70rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.lineClass1{
+  height: 2rpx;
+  width: 620rpx;
+  margin-left: 40rpx;
+  background-color: #f5f5f5;
+}
+.content1_l{
+  margin-top: 57rpx;
+}
+.content1_r{
+  margin-top: 25rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.l_name{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 35rpx;
+  color: #333333;
+}
+.l_time{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 25rpx;
+  color: #666666;
+  margin-top: 20rpx;
+}
+.r_money{
+  font-family: "MicrosoftYaHei";
+  font-size: 45rpx;
+  color: #fb4f45;
+}
+.r_money1{
+  font-family: "MicrosoftYaHei";
+  font-size: 70rpx;
+  color: #fb4f45;
+}
+.r_type{
+  font-family: "FZLTXHK--GBK1-0";
+  font-size: 25rpx;
+  color: #666666;
+}
+.page_footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  width: 750rpx;
+  height: 50rpx;
+  margin-bottom: 55rpx;
+}

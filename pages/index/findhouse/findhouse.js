@@ -10,7 +10,7 @@ const includePoints = [{
 
 Page({
   data: {
-     scale: 11,
+    scale: 11,
     lng: '',
     lat: '',
     nearByHouseList:[],
@@ -29,37 +29,39 @@ Page({
     housecount: 0,
     map1: true,
     map2: false,
+
+    show1:false,
+    show2:false,
   },
   onReady() {
     // 使用 my.createMapContext 获取 map 上下文
     this.mapCtx = my.createMapContext('map');
     
   },
-  onLoad ( )
-  {
-   this.getLocation();
-   
+  onLoad(){
+    // this.getLocation();
   },
-
- 
+  onShow(){
+    this.getLocation();
+  },
   //获取当前位置
- getLocation(){
+  getLocation(){
     var that=this;
     my.getLocation({
       type:2,
       success(res) {
         my.hideLoading();
-       that.setData({
-         lng:res.longitude,
-         lat:res.latitude,
-         circles: [ {
-            longitude: res.longitude,
-            latitude: res.latitude,
-            fillColor: '#0099FF33',
-            radius: that.data.distance,
-            strokeWidth: 3,
-          } ]
-       });
+        that.setData({
+          lng:res.longitude,
+          lat:res.latitude,
+          circles: [ {
+              longitude: res.longitude,
+              latitude: res.latitude,
+              fillColor: '#0099FF33',
+              radius: that.data.distance,
+              strokeWidth: 3,
+            } ]
+        });
        
         that.getNearByHousing();
         
@@ -112,7 +114,7 @@ Page({
         height: 1,
         // iconPath: '/image/mark_bs.png',
         "label": {
-          content: this.data.nearByHouseList[i].apartment.apartmentName+this.data.nearByHouseList[i].buildingUnit+this.data.nearByHouseList[i].houseNo,
+          content: this.data.nearByHouseList[i].apartment.apartmentName,
           color: "#ffffff",
           fontSize: 16,
           borderRadius: 5,
@@ -175,136 +177,136 @@ Page({
     });
     }
   },
-  titleClick1(e){
-    if(this.titleCss1){
-      this.setData({
-        titleCss1:false,
-        titleCss2:false,
-        tabdisplay1:true,
-        tabdisplay2:false,
-        circles,
-        markers:housemarkers1,
-        map1:true,
-        map2:false,
-      });
-    }else{
-      this.setData({
-        titleCss1:true,
-        titleCss2:false,
-        tabdisplay1:true,
-        tabdisplay2:false,
-        circles,
-        markers:housemarkers1,
-        map1:true,
-        map2:false,
-      });
-    }
-  },
-  titleClick2(e){
-    if(this.titleCss2){
-      this.setData({
-        titleCss1:false,
-        titleCss2:false,
-        tabdisplay1:true,
-        tabdisplay2:false,
-        circles:[],
-        markers:hotels,
-        map1:false,
-        map2:true,
-      });
-    }else{
-      this.setData({
-        titleCss1:false,
-        titleCss2:true,
-        tabdisplay1:false,
-        tabdisplay2:true,
-        circles:[],
-        markers:hotels,
-        map1:false,
-        map2:true,
-      });
-    }
-  },
+  // titleClick1(e){
+  //   if(this.titleCss1){
+  //     this.setData({
+  //       titleCss1:false,
+  //       titleCss2:false,
+  //       tabdisplay1:true,
+  //       tabdisplay2:false,
+  //       circles,
+  //       markers:housemarkers1,
+  //       map1:true,
+  //       map2:false,
+  //     });
+  //   }else{
+  //     this.setData({
+  //       titleCss1:true,
+  //       titleCss2:false,
+  //       tabdisplay1:true,
+  //       tabdisplay2:false,
+  //       circles,
+  //       markers:housemarkers1,
+  //       map1:true,
+  //       map2:false,
+  //     });
+  //   }
+  // },
+  // titleClick2(e){
+  //   if(this.titleCss2){
+  //     this.setData({
+  //       titleCss1:false,
+  //       titleCss2:false,
+  //       tabdisplay1:true,
+  //       tabdisplay2:false,
+  //       circles:[],
+  //       markers:hotels,
+  //       map1:false,
+  //       map2:true,
+  //     });
+  //   }else{
+  //     this.setData({
+  //       titleCss1:false,
+  //       titleCss2:true,
+  //       tabdisplay1:false,
+  //       tabdisplay2:true,
+  //       circles:[],
+  //       markers:hotels,
+  //       map1:false,
+  //       map2:true,
+  //     });
+  //   }
+  // },
 
-  distanceChange(e){
-    console.log(e.detail.value)
+  // distanceChange(e){
+  //   console.log(e.detail.value)
     
-    if(e.detail.value>0&&e.detail.value<=410){
-      this.setData({
-        distance1:false,
-        distance2:false,
-        distance3:false,
-        distance4:false,
-        distance5:false,
-        distance:'1km',
-        scale: 14,
-        newradius:1000,
-        markers:housemarkers1,
-        // markers:housemarkers,
-      });
-    }
-    if(e.detail.value>410&&e.detail.value<=1550){
-      this.setData({
-        distance1:true,
-        distance2:false,
-        distance3:false,
-        distance4:false,
-        distance5:false,
-        distance:'1km',
-        scale: 14,
-        ['circles[0].radius']:1000,
-        markers:housemarkers1,
-      });
-    }
-    if(e.detail.value>1550&&e.detail.value<=2750){
-      this.setData({
-        distance1:true,
-        distance2:true,
-        distance3:false,
-        distance4:false,
-        distance5:false,
-        distance:'2km',
-        scale: 13,
-        ['circles[0].radius']:2000,
-        markers:housemarkers1,
-      });
-    }
-    if(e.detail.value>2750&&e.detail.value<=3920){
-      this.setData({
-        distance1:true,
-        distance2:true,
-        distance3:true,
-        distance4:false,
-        distance5:false,
-        distance:'3km',
-        scale: 13,
-        ['circles[0].radius']:3000,
-      });
-    }
-    if(e.detail.value>3920&&e.detail.value<=5120){
-      this.setData({
-        distance1:true,
-        distance2:true,
-        distance3:true,
-        distance4:true,
-        distance5:false,
-        distance:'4km',
-        scale: 12,
-        ['circles[0].radius']:4000,
-      });
-    }
-    if(e.detail.value>5120){
-      this.setData({
-        distance1:true,
-        distance2:true,
-        distance3:true,
-        distance4:true,
-        distance5:true,
-        distance:'5km',
-        scale: 12,
-        ['circles[0].radius']:5000,
-      });
-    }
-  },
+  //   if(e.detail.value>0&&e.detail.value<=410){
+  //     this.setData({
+  //       distance1:false,
+  //       distance2:false,
+  //       distance3:false,
+  //       distance4:false,
+  //       distance5:false,
+  //       distance:'1km',
+  //       scale: 14,
+  //       newradius:1000,
+  //       markers:housemarkers1,
+  //       // markers:housemarkers,
+  //     });
+  //   }
+  //   if(e.detail.value>410&&e.detail.value<=1550){
+  //     this.setData({
+  //       distance1:true,
+  //       distance2:false,
+  //       distance3:false,
+  //       distance4:false,
+  //       distance5:false,
+  //       distance:'1km',
+  //       scale: 14,
+  //       ['circles[0].radius']:1000,
+  //       markers:housemarkers1,
+  //     });
+  //   }
+  //   if(e.detail.value>1550&&e.detail.value<=2750){
+  //     this.setData({
+  //       distance1:true,
+  //       distance2:true,
+  //       distance3:false,
+  //       distance4:false,
+  //       distance5:false,
+  //       distance:'2km',
+  //       scale: 13,
+  //       ['circles[0].radius']:2000,
+  //       markers:housemarkers1,
+  //     });
+  //   }
+  //   if(e.detail.value>2750&&e.detail.value<=3920){
+  //     this.setData({
+  //       distance1:true,
+  //       distance2:true,
+  //       distance3:true,
+  //       distance4:false,
+  //       distance5:false,
+  //       distance:'3km',
+  //       scale: 13,
+  //       ['circles[0].radius']:3000,
+  //     });
+  //   }
+  //   if(e.detail.value>3920&&e.detail.value<=5120){
+  //     this.setData({
+  //       distance1:true,
+  //       distance2:true,
+  //       distance3:true,
+  //       distance4:true,
+  //       distance5:false,
+  //       distance:'4km',
+  //       scale: 12,
+  //       ['circles[0].radius']:4000,
+  //     });
+  //   }
+  //   if(e.detail.value>5120){
+  //     this.setData({
+  //       distance1:true,
+  //       distance2:true,
+  //       distance3:true,
+  //       distance4:true,
+  //       distance5:true,
+  //       distance:'5km',
+  //       scale: 12,
+  //       ['circles[0].radius']:5000,
+  //     });
+  //   }
+  // },
 });
 

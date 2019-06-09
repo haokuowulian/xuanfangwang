@@ -57,9 +57,9 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.alert({
-            title: '已提交申请，请耐心等待处理。' 
-          });
+          // my.alert({
+          //   title: '已提交申请，请耐心等待处理。' 
+          // });
         }
       },
     });

@@ -21,11 +21,7 @@
         show-location="true" style="width: 100%; height: 100vh;"
         >
     </map>
-      <!-- <cover-view class="findhouse-title">
-        <cover-view class="title1 {{titleCss1?'title-click':''}}" onTap="titleClick1">租房</cover-view>
-        <cover-view class="title2 {{titleCss2?'title-click':''}}" onTap="titleClick2">酒店</cover-view>
-      </cover-view> -->
-      <!-- 租房 -->
+     
       <cover-view  class="map-housecount">
         <cover-image src="/image/icon/santiaogang.png" class="dingwei-img" onTap="houseCountClick"/>
       </cover-view>
@@ -47,38 +43,3 @@
           <cover-view class="search-text" onTap="searchHouse">输入你想住的区域或小区</cover-view>
       </cover-view>
      
-    <!-- 酒店 -->
-    <!-- <map a:if="{{map2}}"
-        id="map" 
-        longitude="{{longitude}}"
-        latitude="{{latitude}}"
-        scale="{{scale}}"
-        controls="{{controls}}"
-        onControlTap="controltap"
-        markers="{{markers}}"
-        onMarkerTap="markertap"
-        polyline="{{polyline}}"
-        polygon="{{polygon}}"
-        circles="{{circles}}"
-        onRegionChange="regionchange"
-        onTap="tap"
-        onCalloutTap="callouttap"
-        show-location="true" style="width: 100%; height: 100vh;"
-        >
-    </map>
-    <!-- <cover-view class="findhouse-title">
-          <cover-view class="title1 {{titleCss1?'title-click':''}}" onTap="titleClick1">租房      </cover-view>
-          <cover-view class="title2 {{titleCss2?'title-click':''}}" onTap="titleClick2">酒店</cover-view>
-    </cover-view> -->
-    
-    <cover-view a:if="{{tabdisplay2}}" class="search-distance" onTap="searchHouse">
-      <cover-view class="search-sousuo">
-        <cover-image src="/image/icon/sousuo-hotel.png" class="sousuo-img"/>
-      </cover-view>
-      <cover-view class="search-text">搜索或根据条件检索酒店</cover-view>
-    </cover-view> -->
-  </view>
-</view>
-
-<!-- <view class="content">租房</view>
-<view class="icon"></view> -->

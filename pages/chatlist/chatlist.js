@@ -96,7 +96,40 @@ Page({
       url: '/pages/login/login',
     });
   },
-  toDelete(){
-    console.log('delete...')
-  },
+
+  //长按删除
+  // toDelete(e){
+  //   console.log('delete...')
+  //   console.log(e)
+  //   var that = this;
+  //   var id = e.target.dataset.uid;
+  //   my.confirm({
+  //     title: '温馨提示',
+  //     content: '是否删除该条聊天记录？',
+  //     confirmButtonText: '删除',
+  //     cancelButtonText: '取消',
+  //     success: (res) => {
+  //       if(res.confirm){
+  //         my.httpRequest({
+  //           url: app.globalData.baseUrl+'IF/chatList/delChatListById.do', // 目标服务器url
+  //           method: 'POST',
+  //           data:{
+  //             id:id,
+  //           },
+  //           dataType: 'json',
+  //           success: (res) => {
+  //             if(res.data.success){
+  //               my.alert({
+  //                 title: '删除成功！' ,
+  //                 success: (res) => {
+  //                   that.onShow();
+  //                 },
+  //               });
+  //             }
+  //           },
+  //         });
+  //       }
+  //     },
+  //   });
+  // },
 });

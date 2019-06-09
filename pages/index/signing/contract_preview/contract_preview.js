@@ -50,7 +50,7 @@ Page({
       var duration = '3个月'
     }
     if(udateType==2){
-      var duration = '4个月'
+      var duration = '6个月'
     }
     if(udateType==3){
       var duration = '1年'

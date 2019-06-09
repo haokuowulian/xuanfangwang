@@ -316,6 +316,10 @@ Page({
       key: 'r_elevator', // 缓存数据的key
     }).data;
 
+    var streetId = my.getStorageSync({
+      key: 'r_streetId', // 缓存数据的key
+    }).data;
+
     console.log(that.data.extinguisher)
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
@@ -349,6 +353,7 @@ Page({
       green:vgreen,
       plotRatio:vcubage,
       images:villageimg,
+      streetId:streetId,
     };
     var house = {
       buildingUnit:vaddress,
@@ -360,7 +365,7 @@ Page({
       longitude:longitude,
       latitude:latitude,
       landlordId:uid,
-      ownerIdentityCard:vowner,
+      ownerName:vowner,
       ownerIdentityCard:vownerCard,
       ownerTel:ownerTel,
 

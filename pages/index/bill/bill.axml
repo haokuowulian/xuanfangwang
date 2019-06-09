@@ -11,7 +11,7 @@
         </view>
         <view class="list-right">
           <view class="list-cost">￥{{list.totalMoney}}</view>
-          <button a:if="{{list.status == 0}}" data-id='{{list.id}}' onTap="toPay" class="status-text1">立即缴费</button>
+          <button a:if="{{list.status == 0}}" data-id="{{list.id}}" data-mark="{{list.housingName}}" data-totalMoney="{{list.totalMoney}}" onTap="toPay" class="status-text1">立即缴费</button>
           <view a:if="{{list.status == 1}}" class="status-text2">已缴费</view>
         </view>
       </view>

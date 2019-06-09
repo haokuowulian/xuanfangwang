@@ -256,26 +256,26 @@ Page({
           success: (res) => {
             console.log(res)
             if(res.data.success){
-              if(userCompleted){
+              // if(userCompleted){
                 my.navigateTo({
                   url: '/pages/index/confirmpage/confirmpage?houseDetail='+JSON.stringify(this.data.houseDetail)+'&rentType='+this.data.rentType,
                 });
-              }else{
-                my.confirm({
-                  title: '温馨提示',
-                  content: '请先完善个人信息',
-                  confirmButtonText: '确认',
-                  cancelButtonText: '取消',
-                  success: (res) => {
-                    if(res.confirm){
-                      my.navigateTo({
-                        url: '/pages/index/account_completed/account_mine/account_mine',
-                      });
-                    }
+              // }else{
+              //   my.confirm({
+              //     title: '温馨提示',
+              //     content: '请先完善个人信息',
+              //     confirmButtonText: '确认',
+              //     cancelButtonText: '取消',
+              //     success: (res) => {
+              //       if(res.confirm){
+              //         my.navigateTo({
+              //           url: '/pages/index/account_completed/account_mine/account_mine',
+              //         });
+              //       }
                     
-                  },
-                });
-              }
+              //     },
+              //   });
+              // }
             }else{
               my.setStorageSync({
                 key: 'userlogin', // 缓存数据的key

@@ -496,22 +496,15 @@ Page({
     });
   },
   toMyKey(){
-    // my.navigateTo({
-    //   url: '/pages/index/myKey/myKey',
-    // });
-    // my.openCardList();
-    // my.openTicketList();
     my.ap.navigateToAlipayPage({
       path:'alipays://platformapi/startapp?appId=60000032&url=%2Fwww%2FexternalCard.html%3FcertDocType%3DCYBER_TRUSTED_ID%26bizType%3DHZ_HOTEL_ROOM_RENT_CYBER_TRUSTED_ID',
       success:(res) => {
         console.log('系统信息success')
         console.log(JSON.stringify(res))
-          // my.alert({content:'系统信息' + JSON.stringify(res)});
       },
       fail:(error) => {
         console.log('系统信息fail')
         console.log(JSON.stringify(res))
-          // my.alert({content:'系统信息' + JSON.stringify(error)});        
       }
     })
   },
@@ -1162,5 +1155,10 @@ getServerTime(){
     my.navigateTo({
        url: '/pages/chatlist/chatlist',
     });
+  },
+  toVoucher(){
+    my.navigateTo({
+     url: '/pages/index/voucher/voucher',
+   });
   },
 });

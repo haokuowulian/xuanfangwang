@@ -89,7 +89,11 @@
     "pages/index/wallet/myinfo_edit/myinfo_edit",
     "pages/contract_renew/contract_renew",
     "pages/index/order/orderinfo_renew/orderinfo_renew",
-    "pages/index/contractinfo_fd/contractinfo_fd"
+    "pages/index/contractinfo_fd/contractinfo_fd",
+    "pages/index/voucher/voucher",
+    "pages/index/voucher_exchange/voucher_exchange",
+    "pages/index/voucher_invalid/voucher_invalid",
+    "pages/index/voucher_choose/voucher_choose"
   ],
   "window": {
     "defaultTitle": "My App"

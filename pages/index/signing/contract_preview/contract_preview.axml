@@ -8,7 +8,7 @@
 
       <text class="text_content">甲乙双方就下列房屋的租赁达成如下协议，具体内容如下：</text>
       <text class="class_title">第一条  房屋基本情况</text>
-      <text class="text_content">甲方出租的房屋坐落地址：{{address}}住宅一套。</text>
+      <text class="text_content">甲方出租的房屋坐落地址：{{address}}。</text>
       <text class="class_title">第二条  租赁期限</text>
       　　<text class="text_content">租期 {{duration}}，自 {{startDate}}起至{{endDate}}止。乙方有下列情形之一的，甲方可以单方提前终止合同，收回房屋：</text>
       　　<text class="text_content">1、乙方擅自将房屋转租、转让或转借的；</text>

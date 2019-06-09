@@ -1,91 +1,79 @@
 <view a:if="{{!userlogin}}">
-  <!-- <view class="page-login">
-    <image class="imageClass" src="/image/icon/sqdl.png"/>
-    
-    <button class="btn-xfw" type="default" onTap="xfwLogin">选房网账号登陆
-    </button>
-    <button class="btn-ant" type="default" onTap="antLogin">支付宝授权登陆
-    </button>
-
-
-  </view> -->
-
-
 
   <view class="page_login">
-  <view class="classLine"></view>
-  <view class="logo_box">
-    <image src="/image/logo.png" class="logo_img" />
-  </view>
-
-  <view a:if="{{showxfw}}">
-    <view class="classInput1">
-      <input type="text" placeholder="用户名/手机号" class="classAccount1" onInput="toInput" value="{{account}}" data-t='1'/>
-      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{account.length>0}}" onTap="toEmpty" data-t='1'/>
-    </view>
     <view class="classLine"></view>
-
-    <view class="classInput1" a:if="{{eyeclose}}">
-      <input type="text" placeholder="请输入密码" password class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
-      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
-      <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen"/>
+    <view class="logo_box">
+      <image src="/image/logo.png" class="logo_img" />
     </view>
 
-    <view class="classInput1" a:if="{{eyeopen}}">
-      <input type="text" placeholder="请输入密码" class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
-      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
-      <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose"/>
-    </view>
-    <view class="classLine"></view>
+    <view a:if="{{showxfw}}">
+      <view class="classInput1">
+        <input type="text" placeholder="用户名/手机号" class="classAccount1" onInput="toInput" value="{{account}}" data-t='1'/>
+        <image src="/image/icon/cha8.png" class="cha_img" a:if="{{account.length>0}}" onTap="toEmpty" data-t='1'/>
+      </view>
+      <view class="classLine"></view>
 
-    <view class="btn_box">
-      <button class="btn_login" type="default" onTap="xfwLogin">立即登录
-      </button>
-    </view>
-  </view>
+      <view class="classInput1" a:if="{{eyeclose}}">
+        <input type="text" placeholder="请输入密码" password class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
+        <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
+        <image src="/image/icon/biyan.png" class="yanjing_img" onTap="toOpen"/>
+      </view>
 
-  <view a:if="{{showPhone}}">
-    <view class="classInput1">
-      <view class="phoneAccount">手机号:</view><input type="text" placeholder="请输入手机号" class="accountPhone" onInput="toInput" value="{{phoneNum}}" data-t='3'/>
-      <image src="/image/icon/cha8.png" class="cha_img" a:if="{{phoneNum.length>0}}" onTap="toEmpty" data-t='3'/>
-    </view>
-    <view class="classLine"></view>
+      <view class="classInput1" a:if="{{eyeopen}}">
+        <input type="text" placeholder="请输入密码" class="classPassword1" onInput="toInput" value="{{passwords}}" data-t='2'/>
+        <image src="/image/icon/cha8.png" class="cha_img" a:if="{{passwords.length>0}}" onTap="toEmpty" data-t='2'/>
+        <image src="/image/icon/zhengyan.png" class="yanjing_img" onTap="toClose"/>
+      </view>
+      <view class="classLine"></view>
 
-
-    <view class="classInput1">
-      <view class="phoneAccount">验证码:</view><input type="number" placeholder="请输入验证码" class="phoneCode" onInput="toInput" value="{{phoneCode}}" data-t='4'/>
-      <button class="classSend" a:if="{{send}}" type="default" onTap="sendMsg">获取验证码</button>
-      <button class="classSend" a:if="{{alreadySend}}" type="default" onTap="#">{{second+"s"}}</button>
-    </view>
-    <view class="classLine"></view>
-
-    <view class="btn_box">
-      <button class="btn_login" type="default" onTap="quickLogin">快捷登陆
-      </button>
-    </view>
-  </view>
-
-  <view class="classLines">
-    <view class="classLine1"></view>
-    <view class="classText">其他登录方式</view>
-    <view class="classLine1"></view>
-  </view>
-
-  <view class="others_box">
-    <view a:if="{{showPhone}}" class="login-xfw" type="default" onTap="toXfwLogin">
-      <image src="/image/mine/userlogin.png" class="xfw_img"/>
+      <view class="btn_box">
+        <button class="btn_login" type="default" onTap="xfwLogin">立即登录
+        </button>
+      </view>
     </view>
 
-    <view a:if="{{showxfw}}" class="login-xfw" type="default" onTap="toPhoneLogin">
-      <image src="/image/mine/shouji.png" class="xfw_img"/>
-    </view>
-    
-    <view class="btn-ant" type="default" onTap="antLogin">
-      <image src="/image/icon/zfb.png" class="zfb_img"/>
-    </view>
-  </view>
+    <view a:if="{{showPhone}}">
+      <view class="classInput1">
+        <view class="phoneAccount">手机号:</view><input type="text" placeholder="请输入手机号" class="accountPhone" onInput="toInput" value="{{phoneNum}}" data-t='3'/>
+        <image src="/image/icon/cha8.png" class="cha_img" a:if="{{phoneNum.length>0}}" onTap="toEmpty" data-t='3'/>
+      </view>
+      <view class="classLine"></view>
 
-</view> 
+
+      <view class="classInput1">
+        <view class="phoneAccount">验证码:</view><input type="number" placeholder="请输入验证码" class="phoneCode" onInput="toInput" value="{{phoneCode}}" data-t='4'/>
+        <button class="classSend" a:if="{{send}}" type="default" onTap="sendMsg">获取验证码</button>
+        <button class="classSend" a:if="{{alreadySend}}" type="default" onTap="#">{{second+"s"}}</button>
+      </view>
+      <view class="classLine"></view>
+
+      <view class="btn_box">
+        <button class="btn_login" type="default" onTap="quickLogin">快捷登陆
+        </button>
+      </view>
+    </view>
+
+    <view class="classLines">
+      <view class="classLine1"></view>
+      <view class="classText">其他登录方式</view>
+      <view class="classLine1"></view>
+    </view>
+
+    <view class="others_box">
+      <view a:if="{{showPhone}}" class="login-xfw" type="default" onTap="toXfwLogin">
+        <image src="/image/mine/userlogin.png" class="xfw_img"/>
+      </view>
+
+      <view a:if="{{showxfw}}" class="login-xfw" type="default" onTap="toPhoneLogin">
+        <image src="/image/mine/shouji.png" class="xfw_img"/>
+      </view>
+      
+      <view class="btn-ant" type="default" onTap="antLogin">
+        <image src="/image/icon/zfb.png" class="zfb_img"/>
+      </view>
+    </view>
+
+  </view> 
 
 </view>
 
@@ -404,13 +392,13 @@
           <view class="option-text">评价
           </view>
         </view>
-        <!-- <view class="option-content" onTap="toWallet">
+        <view class="option-content" onTap="toVoucher">
           <view>
-            <image src="/image/mine/qianbao.png" class="option-img"/>
+            <image src="/image/mine/hongbao.png" class="option-img"/>
           </view>
-          <view class="option-text">钱包
+          <view class="option-text">卡券
           </view>
-        </view> -->
+        </view>
       </view>
     </view>
     <view class="page-service page-section">

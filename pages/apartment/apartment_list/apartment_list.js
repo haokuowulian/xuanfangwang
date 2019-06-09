@@ -12,7 +12,7 @@ const directionList = [
     title:'朝西',
     selected:false,
   },
-  {
+  { 
     title:'朝北',
     selected:false,
   },

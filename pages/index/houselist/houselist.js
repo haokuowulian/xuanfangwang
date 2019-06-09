@@ -106,7 +106,7 @@ const priceList = [
   {
     title:'不限',
     sliderleft1:0,
-    sliderright1:10000,
+    sliderright1:100000,
     selected:false,
   },
   {
@@ -186,7 +186,7 @@ Page({
     directionList,
     direction:[],
     imgUrl:app.globalData.baseImgUrl_whj,
-    houseType:0,
+    houseType:'',
     pageIndex:1,
     boutiqueHousing:[],
     wholeRentalHousing:[],
@@ -216,49 +216,51 @@ Page({
     pricetype:false,
     rentprice:'不限',
     sliderleft:0,//租金
-    sliderright:10000,
+    sliderright:100000,
     sliderleft1:0,//租金
-    sliderright1:10000,
+    sliderright1:100000,
     rentslider1:true,
     rentslider2:false,
+    rentslider3:false,
     sort:'',
     dropDownMenuFourthData: [{ id: 1, title: '智能排序' }, { id: 2, title: '发布时间' }, { id: 3, title: '距离优先' }],//排序数据
     dropDownMenuFirstData:[
-        { id: 2, title: '区域', 
-          childModel: [
-            { id: '21', title: '不限' }, 
-            { id: '22', title: '余杭',
-             },
-            { id: '23', title: '萧山',
-             },
-            { id: '24', title: '滨江',
-              },
-            { id: '25', title: '上城',
-              },
-            { id: '26', title: '下城',
-              },
-            { id: '27', title: '西湖',
-              },
-            { id: '28', title: '拱墅',
-              },
-            { id: '29', title: '江干',
-               },
-            ]},
-        { id: 3, title: '地铁',
-        childModel:[
-            {id: '11',title: '1号线',
-             },
-            {id: '12',title: '2号线',
-             },
-            {id: '13',title: '4号线',
-             },
-          ],},
+        // { id: 2, title: '区域', 
+          // childModel: [
+          //   { id: '21', title: '不限' }, 
+          //   { id: '22', title: '余杭',
+          //    },
+          //   { id: '23', title: '萧山',
+          //    },
+          //   { id: '24', title: '滨江',
+          //     },
+          //   { id: '25', title: '上城',
+          //     },
+          //   { id: '26', title: '下城',
+          //     },
+          //   { id: '27', title: '西湖',
+          //     },
+          //   { id: '28', title: '拱墅',
+          //     },
+          //   { id: '29', title: '江干',
+          //     },
+          // ]
+        // },
       ],
+    areaList:[],
+    streetList:[],
+    display1:false,
+    display2:false,
+    display3:false,
+    cityAdcode:'',//城市编码
+    areaCode:'',//区县编码
+    distCode:'',//街道编码
   },
   onLoad(query) {
     this.setData({
       houseType:query.type,
     });
+    
     if(query.type==3){
       console.log(query.type)
       this.setData({
@@ -274,17 +276,20 @@ Page({
         r2:false,
       });
     }
+    var cityAdcode = my.getStorageSync({
+      key: 'cityAdcode', // 缓存数据的key
+    }).data;
     switch(query.type){
       case "1"://精选房源
-        this.getBoutiqueHousing();
+        this.getBoutiqueHousing(cityAdcode);
       break;
 
       case "2"://整租房源
-        this.getWholeRentalHousing();
+        this.getWholeRentalHousing(cityAdcode);
       break;
 
       case "3"://合租房源
-        this.getSharedHousing();
+        this.getSharedHousing(cityAdcode);
       break;
       case "5"://民宿
         // this.getSharedHousing();
@@ -292,6 +297,49 @@ Page({
     }
    this.getFeature();
    this.getFurniture();
+  },
+  onShow(){
+    this.getCityLocation();
+    this.setData({showView1:true});
+    this.setData({rent1:true});
+
+    this.onBtnReset();
+    this.rentBtnReset();
+    this.onSortRest();
+  },
+  //根据当前城市行政编码查区域信息
+  getCityLocation(){
+    var that = this;
+    var cityAdcode = my.getStorageSync({
+      key: 'cityAdcode', // 缓存数据的key
+    }).data;
+    console.log('cityAdcode:')
+    console.log(cityAdcode)
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+'IF/selectData/getDistListByParentId.do', // 目标服务器url
+      // url: 'http://192.168.1.89:8080/LLGY/IF/selectData/getDistListByParentId.do', // 目标服务器url
+      method: 'POST',
+      header:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+      data: {
+        parenDistId:cityAdcode,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('位置')
+        console.log(res)
+        that.setData({
+          dropDownMenuFirstData:[{id:cityAdcode,title:'区域'}],
+          areaList:res.data.distList,
+          cityAdcode:cityAdcode,
+        });
+        my.setStorageSync({
+          key: 'areaList', // 缓存数据的key
+          data: res.data.distList, // 要缓存的数据
+        });
+      },
+    });
   },
   //获取筛选下拉框中房源特色
   getFeature(){
@@ -329,14 +377,7 @@ Page({
       },
     });
   },
-  onShow(){
-    this.setData({showView1:true});
-    this.setData({rent1:true});
 
-    this.onBtnReset();
-    this.rentBtnReset();
-    this.onSortRest();
-  },
 
   onChange1(){
     this.setData({bg1:true,bg2:false});
@@ -363,8 +404,14 @@ Page({
     });
     console.log('******************')
     console.log(arr)
-    that.onPullDownRefresh();
-    // that.getBoutiqueHousing();
+    var distCode = that.data.distCode;
+    if(distCode==''){
+      distCode = that.data.areaCode;
+      if(distCode==''){
+        distCode = that.data.cityAdcode;
+      }
+    }
+    that.onPullDownRefresh(distCode);
     that.closeHyFilter();
   },
   
@@ -480,7 +527,14 @@ Page({
     that.setData({
       pageIndex:1,
     });
-    that.onPullDownRefresh();
+    var distCode = that.data.distCode;
+    if(distCode==''){
+      distCode = that.data.areaCode;
+      if(distCode==''){
+        distCode = that.data.cityAdcode;
+      }
+    }
+    that.onPullDownRefresh(distCode);
     // that.getBoutiqueHousing();
     that.closeHyFilter();
   },
@@ -500,11 +554,14 @@ Page({
     }
     arr[index].selected=true;
     that.setData({
+      rentslider1:true,
+      rentslider2:false,
+      rentslider3:false,
       pageIndex:1,
       priceList:arr,
       sliderleft1:min,
       sliderright1:max,
-      pricetype:true,
+      pricetype:true, 
       rentprice:arr[index].title,
     });
     console.log('******************')
@@ -514,21 +571,48 @@ Page({
   // 滑块拖动中触发
   leftSchange(e){
     let value = e.detail.value;
-    this.setData({
-      pricetype:false,
-      sliderleft:e.detail.value,
-      rentslider2:true,
-      rentslider1:false,
-    });
+    if(this.data.sliderright==100000&&this.data.pricetype){
+      this.setData({
+        pricetype:false,
+        sliderleft:value,
+        sliderright:100000,
+        rentprice:'无限',
+        rentslider2:false,
+        rentslider1:false,
+        rentslider3:true,
+      });
+    }else{
+      this.setData({
+        pricetype:false,
+        sliderleft:value,
+        rentslider2:false,
+        rentslider1:false,
+        rentslider3:true,
+      });
+    }
+    
   },
   rightSchange(e){
     let value =e.detail.value;
-    this.setData({
-      pricetype:false,
-      sliderright:e.detail.value,
-      rentslider2:true,
-      rentslider1:false,
-    });
+    if(value>=10000){
+      this.setData({
+        pricetype:false,
+        sliderright:100000,
+        rentprice:'无限',
+        rentslider2:false,
+        rentslider1:false,
+        rentslider3:true,
+      });
+    }else{
+      this.setData({
+        pricetype:false,
+        sliderright:e.detail.value,
+        rentslider2:true,
+        rentslider1:false,
+        rentslider3:false,
+      });
+    }
+    
   },
   // 租金范围重置按钮
   rentBtnReset(){
@@ -542,10 +626,11 @@ Page({
       priceList:arr,
       pricetype:true,
       sliderleft1:0,
-      sliderright1:10000,
+      sliderright1:100000,
       rentprice:'不限',
       rentslider1:true,
       rentslider2:false,
+      rentslider3:false,
     });
     
   },
@@ -556,7 +641,14 @@ Page({
     that.setData({
       pageIndex:1,
     });
-    that.onPullDownRefresh();
+    var distCode = that.data.distCode;
+    if(distCode==''){
+      distCode = that.data.areaCode;
+      if(distCode==''){
+        distCode = that.data.cityAdcode;
+      }
+    }
+    that.onPullDownRefresh(distCode);
     // that.getBoutiqueHousing();
     that.closeHyFilter();
     if(that.data.pricetype){
@@ -578,6 +670,7 @@ Page({
         r2:false,
         rentType:1,
         condition1:'',
+        houseType:'2',
       });
    }else{
      this.setData({
@@ -585,6 +678,7 @@ Page({
         r2:false,
         rentType:1,
         condition1:'',
+        houseType:'2',
       });
    }
    console.log(this.data.rentType)
@@ -599,6 +693,7 @@ Page({
         r2:false,
         rentType:2,
         condition1:'',
+        houseType:'3',
       });
    }else{
      this.setData({
@@ -606,6 +701,7 @@ Page({
         r2:true,
         rentType:2,
         condition1:'',
+        houseType:'3',
       });
    }
    console.log(this.data.rentType)
@@ -662,15 +758,24 @@ Page({
     that.setData({
       pageIndex:1,
     });
-    console.log(that.data.condition1+'|'+that.data.condition2+'|'+that.data.rentType)
-    that.onPullDownRefresh();
-    // that.getBoutiqueHousing();
+    console.log(that.data.condition1+'|'+that.data.condition2+'|'+that.data.rentType+'|'+that.data.houseType)
+    
+   
+    var distCode = that.data.distCode;
+    if(distCode==''){
+      distCode = that.data.areaCode;
+      if(distCode==''){
+        distCode = that.data.cityAdcode;
+      }
+    }
+    that.onPullDownRefresh(distCode);
     that.closeHyFilter();
   },
   // 下拉框
   listqy(e){
     if (this.data.hyopen) {
         this.setData({
+          display1:false,
           hyopen: false,
           sqopen: false,
           pxopen: false,
@@ -680,6 +785,7 @@ Page({
         })
       } else {
         this.setData({
+          display1:true,
           hyopen: true,
           pxopen: false,
           sqopen: false,
@@ -776,43 +882,111 @@ Page({
   },
   // 位置下拉框
   selectleft(e){
+    console.log(e)
+    var that = this;
+    var areaList = my.getStorageSync({
+      key: 'areaList', // 缓存数据的key
+    }).data;
+    var cityAdcode = my.getStorageSync({
+      key: 'cityAdcode', // 缓存数据的key
+    }).data;
       var model = e.target.dataset.model.childModel;
       var selectedId = e.target.dataset.model.id
       var selectedTitle = e.target.dataset.model.title;
       this.setData({
+        display2:true,
         dropDownMenuDataFirstRight: model==null?"":model,
-        select1: selectedId,
+        select1: cityAdcode,
         select2: '',
         select3: '',
-        dropDownMenuDataFirstCenter: {},
+        areaList: areaList,
       })
-      if (model == null || model.length == 0) {
-        this.closeHyFilter();
-        this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
-      }
+      // if (model == null || model.length == 0) {
+      //   this.closeHyFilter();
+      //   this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
+      // }
   },
   selectcenter(e){
-      var model = e.target.dataset.model.childMode2;
-      var selectedId = e.target.dataset.model.id
-      var selectedTitle = e.target.dataset.model.title;
-      this.setData({
-        dropDownMenuDataFirstCenter:model==null?"":model,
-        select2: selectedId,
-        select3: '',
-      })
-      if (model == null || model.length == 0) {
-        this.closeHyFilter();
-        this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
-      }
+    var that = this;
+    console.log(e)
+    var distCode = e.target.dataset.model.distCode;
+    that.setData({
+      display3:true,
+      select2:distCode,
+      select3: ''
+    });
+    that.getStreet(distCode)
+  },
+  selectcenter1(e){
+    var that = this;
+    console.log(e)
+    var id = e.target.dataset.id;
+    that.onPullDownRefresh(id);
+    that.setData({
+      select2:id,
+      display3:false,
+    });
+    that.closeHyFilter();
+  },
+
+
+  getStreet(distCode){
+    var that = this;
+    console.log(distCode)
+    that.setData({
+      display3:true,
+      select2:distCode,
+    });
+    my.httpRequest({
+      url: app.globalData.baseUrl_whj+'IF/selectData/getDistListByParentId.do', // 目标服务器url
+      // url: 'http://192.168.1.89:8080/LLGY/IF/selectData/getDistListByParentId.do', // 目标服务器url
+      method: 'POST',
+      header:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+      data: {
+        parenDistId:distCode,
+      },
+      dataType: 'json',
+      success: (res) => {
+        console.log('位置')
+        console.log(res)
+        that.setData({
+          streetList:res.data.distList,
+          select2: distCode,
+          select3: '',
+        });
+      },
+    });
   },
   selectright(e){
-     var selectedId = e.target.dataset.model.id
-      var selectedTitle = e.target.dataset.model.title;
-      this.closeHyFilter();
-      this.setData({
-        select3: selectedId
-      })
-      this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
+    var that = this;
+    console.log('街道编码：')
+    var distCode = e.target.dataset.model.distCode;
+    console.log(distCode)
+    that.onPullDownRefresh(distCode);
+    that.setData({
+      distCode:distCode,
+      select3:distCode,
+    });
+    that.closeHyFilter();
+    //  var selectedId = e.target.dataset.model.id
+    //   var selectedTitle = e.target.dataset.model.title;
+      // this.closeHyFilter();
+      // this.setData({
+      //   select3: selectedId
+      // })
+      // this.triggerEvent("selectedItem", { index: this.data.shownavindex, selectedId: selectedId, selectedTitle: selectedTitle })
+  },
+  selectright1(e){
+    var that = this;
+    var id = e.target.dataset.id;
+    console.log(id)
+    that.onPullDownRefresh(id);
+    that.setData({
+      select3:id,
+    });
+    that.closeHyFilter();
   },
   selectsqitem(e) {
       var selectedId = e.target.dataset.model.id
@@ -899,11 +1073,11 @@ Page({
       }
   },
   //获取精选房源
-  getBoutiqueHousing(){
+  getBoutiqueHousing(cityAdcode){
     console.log('--------'+this.data.pageIndex);
     var that=this;
     var minRent=0;
-    var maxRent=10000;
+    var maxRent=100000;
     var condition = that.data.condition1;
     var sort = that.data.sort;
     if(that.data.pricetype){
@@ -938,6 +1112,7 @@ Page({
         pageIndex: this.data.pageIndex,
         pageSize: 6,
         keyword:this.data.keyword,
+        cityAdcode:cityAdcode,
       },
       dataType: 'json',
       success: function(res) {
@@ -965,11 +1140,11 @@ Page({
   },
 
   //获取整租房源
-  getWholeRentalHousing(){
+  getWholeRentalHousing(cityAdcode){
     var that=this;
     console.log('--------'+this.data.pageIndex);
     var minRent=0;
-    var maxRent=10000;
+    var maxRent=100000;
     var condition = that.data.condition1;
     var sort = that.data.sort;
     if(that.data.pricetype){
@@ -1001,6 +1176,7 @@ Page({
         pageIndex: this.data.pageIndex,
         pageSize: 6,
         keyword:this.data.keyword,
+        cityAdcode:cityAdcode,
       },
       dataType: 'json',
       success: function(res) {
@@ -1028,11 +1204,11 @@ Page({
   },
 
   //获取合租房源
-  getSharedHousing(){
+  getSharedHousing(cityAdcode){
     var that=this;
     console.log('--------'+this.data.pageIndex);
     var minRent=0;
-    var maxRent=10000;
+    var maxRent=100000;
     var condition = that.data.condition1;
     var sort = that.data.sort;
     if(that.data.pricetype){
@@ -1064,6 +1240,7 @@ Page({
         pageIndex: this.data.pageIndex,
         pageSize: 6,
         keyword:this.data.keyword,
+        cityAdcode:cityAdcode,
       },
       dataType: 'json',
       success: function(res) {
@@ -1089,22 +1266,27 @@ Page({
       }
     });
   },
-  onPullDownRefresh() {
+  onPullDownRefresh(cityAdcode) {
     var rentType = this.data.rentType;
     this.setData({
       pageIndex:1
     });
+    // var cityAdcode = my.getStorageSync({
+    //   key: 'cityAdcode', // 缓存数据的key
+    // }).data;
+    console.log("++++++++++++++++++++++++")
+    console.log(this.data.houseType)
      switch(this.data.houseType){
       case "1"://精选房源
-        this.getBoutiqueHousing();
+        this.getBoutiqueHousing(cityAdcode);
       break;
 
       case "2"://整租房源
-        this.getWholeRentalHousing();
+        this.getWholeRentalHousing(cityAdcode);
       break;
 
       case "3"://合租房源
-        this.getSharedHousing();
+        this.getSharedHousing(cityAdcode);
       break;
       case "5"://民宿
         // this.getSharedHousing();
@@ -1115,17 +1297,20 @@ Page({
     this.setData({
       pageIndex:this.data.pageIndex+1
     });
+    var cityAdcode = my.getStorageSync({
+      key: 'cityAdcode', // 缓存数据的key
+    }).data;
      switch(this.data.houseType){
       case "1"://精选房源
-        this.getBoutiqueHousing();
+        this.getBoutiqueHousing(cityAdcode);
       break;
 
       case "2"://整租房源
-        this.getWholeRentalHousing();
+        this.getWholeRentalHousing(cityAdcode);
       break;
 
       case "3"://合租房源
-        this.getSharedHousing();
+        this.getSharedHousing(cityAdcode);
       break;
 
       case "5"://民宿

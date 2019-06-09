@@ -163,6 +163,7 @@ Page({
                 canAddImg:false,
               });
             }
+            console.log(that.data.images)
           }else{
             that.setData({
               upload:true,
@@ -208,7 +209,7 @@ Page({
   },
   uploadImg1(image){
     var that = this;
-    var imgs = that.data.imgs;
+    // var imgs = that.data.imgs;
     my.uploadFile({
       url: app.globalData.baseUrl_oos, // 开发者服务器地址
       filePath: image, // 要上传文件资源的本地定位符
@@ -221,10 +222,12 @@ Page({
         console.log(res);
         var newimgs=json2['message'];
         console.log(newimgs);
+        console.log('图片数组：');
+        // console.log(imgs.concat(newimgs))
         that.setData({
-          imgs:imgs.concat(newimgs),
+          imgs:that.data.imgs.concat(newimgs),
         });
-        
+       
       },
       fail: (res) => {
         console.log(res);
@@ -558,7 +561,8 @@ Page({
     console.log(that.data.smokeMask)
     console.log(that.data.flashlight)
     console.log(that.data.rope)
-    
+    console.log(that.data.imgs)
+
     var extinguisher = that.data.img2url;
     var smokeMask = that.data.img3url;
     var flashlight = that.data.img4url;
