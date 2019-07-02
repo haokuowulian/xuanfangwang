@@ -22,6 +22,33 @@ Page({
     cityCode:'',
   },
   onLoad(){
+    const updateManager = my.getUpdateManager()
+
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log(res.hasUpdate)
+    })
+
+    updateManager.onUpdateReady(function () {
+      my.confirm({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+
+    updateManager.onUpdateFailed(function () {
+      // 新版本下载失败
+      my.alert({
+        title: '更新提示',
+        content: '更新失败！',
+      });
+    })
   },
   onShow(){
     this.getLocation();
@@ -108,9 +135,12 @@ Page({
   //获取banner图
   getBanner(cityAdcode){
    var that=this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/homePage/getHomeImageIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         pageIndex: 0,
         pageSize: 3,
@@ -139,9 +169,12 @@ Page({
   //获取精选房源
   getBoutiqueHousing(cityAdcode){
     var that=this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         decorateType:-3,
         rentType:1,
@@ -170,9 +203,12 @@ Page({
   //获取整租房源
   getWholeRentalHousing(cityAdcode){
     var that=this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         rentType:1,
         pageIndex: 0,
@@ -200,9 +236,12 @@ Page({
   //获取合租房源
   getSharedHousing(cityAdcode){
     var that=this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         rentType:2,
         pageIndex: 0,
@@ -236,9 +275,21 @@ Page({
       var cityAdname = my.getStorageSync({
         key: 'cityAdname', // 缓存数据的key
       }).data;
+      var lng = my.getStorageSync({
+        key: 'local_longitude', // 缓存数据的key
+      }).data;
+      var lag = my.getStorageSync({
+        key: 'local_latitude', // 缓存数据的key
+      }).data;
+      var address = my.getStorageSync({
+        key: 'local_address', // 缓存数据的key
+      }).data;
       that.setData({
         city:cityAdname,
         cityCode:cityAdcode,
+        lng:lng,
+        lag:lag,
+        address:address,
       });
       that.getNearByHousing();
       that.getBanner(cityAdcode);
@@ -272,6 +323,18 @@ Page({
             key: 'cityAdname', // 缓存数据的key
             data: str, // 要缓存的数据
           });
+          my.setStorageSync({
+            key: 'local_longitude', // 缓存数据的key
+            data: res.longitude, // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'local_latitude', // 缓存数据的key
+            data: res.latitude, // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'local_address', // 缓存数据的key
+            data: res.streetNumber.street+res.streetNumber.number, // 要缓存的数据
+          });
           that.getNearByHousing();
           that.getBanner(res.cityAdcode);
           that.getBoutiqueHousing(res.cityAdcode);
@@ -294,6 +357,14 @@ Page({
             key: 'cityAdname', // 缓存数据的key
             data: '杭州', // 要缓存的数据
           });
+          my.setStorageSync({
+            key: 'local_longitude', // 缓存数据的key
+            data: '120.12703', // 要缓存的数据
+          });
+          my.setStorageSync({
+            key: 'local_latitude', // 缓存数据的key
+            data: '30.273923', // 要缓存的数据
+          });
           that.getNearByHousing();
           that.getBanner('330100');
           that.getBoutiqueHousing('330100');
@@ -306,9 +377,18 @@ Page({
   //获取附近房源
   getNearByHousing(){
      var that=this;
-     my.httpRequest({
+     var lng = my.getStorageSync({
+       key: 'local_longitude', // 缓存数据的key
+     }).data;
+     var lag = my.getStorageSync({
+       key: 'local_latitude', // 缓存数据的key
+     }).data;
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/homePage/getHomeHouseIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         lng: this.data.lng,
         lat: this.data.lag,
@@ -346,7 +426,6 @@ Page({
   //前往房源详情
   goToHouseDetail(e){
     my.navigateTo({
-      // url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
       url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
   },
@@ -363,40 +442,10 @@ Page({
         var infolist = myData.split(",");
         var roomId=infolist[0];
         var rent_type=infolist[1];
-        // my.alert({ title: res});
-        // my.alert({ title: res.code});
         my.navigateTo({
           url: '/pages/houseinfo/houseinfo01/houseinfo01?id='+roomId+'&rentType='+rent_type,
         })
       },
     });
   },
-  //首页分享
-  // onShareAppMessage(){
-  //   return {
-  //     title: '选房网首页分享',
-  //     desc: '选房网首页分享',
-  //     path: '/pages/index/index',
-  //   };
-  // },
-  //初始化合同
-  initialize(){
-    console.log('初始化合同开始');
-     my.httpRequest({
-      url: app.globalData.baseUrl+"IF/initialize/initialize.do",
-      method: 'POST',
-      dataType: 'json',
-      success: function(res) {
-        console.log(res.data);
-         console.log('初始化合同成功');
-      },
-      fail: function(res) {
-       console.log(res);
-       console.log('初始化合同失败');
-      },
-      complete: function(res) {
-        my.hideLoading();
-      }
-    });
-  }
 });

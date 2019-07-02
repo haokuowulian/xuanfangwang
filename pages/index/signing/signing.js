@@ -128,9 +128,12 @@ Page({
     if(rentType==2){
       var housingId = houseInfo.id;
     }
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/order/addOrder.do", // 目标服务器
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:uid,
         startDate:startDate1,
@@ -148,9 +151,12 @@ Page({
         console.log('222222222')
         if(res.data.success){
           var orderId = res.data.id;
-          my.httpRequest({
+          my.request({
             url:  app.globalData.baseUrl_whj+"IF/alipay/fundAuthOrderAppFreeze.do", // 目标服务器
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data:{
               // userId:uid,
               orderId:orderId,
@@ -218,9 +224,12 @@ Page({
       key: 'userId', // 用户id
     }).data;
     if(voucher_id!=null||voucher_id!=''){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           id:voucher_id,
           userId:userId,
@@ -237,9 +246,12 @@ Page({
   },
   //上传支付结果状态码
   uploadCode(orderId,payWay,resultCode,alipayOrderNo){
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/order/paySuccessAndSetAutoNo.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         orderId:orderId,
         payWay:payWay,
@@ -374,9 +386,12 @@ Page({
      key: 'phone', // 缓存数据的key
     }).data;
 
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+'IF/user/getUserInfoById.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:userId,
       },

@@ -11,12 +11,12 @@ Page({
   //获取可兑换优惠券列表
   getListForCoupon(){
     var that = this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/couponList/getCouponListAll.do', // 目标服务器url
       method: 'POST',
-      header:{
-            'content-type': 'application/x-www-form-urlencoded'
-          },
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       dataType: 'json',
       success: (res) => {
         console.log(res)
@@ -40,12 +40,12 @@ Page({
     }).data;
     var result = integrals*1-integral*1
     if(result>=0){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/integralLog/editIntegral.do', // 目标服务器url
         method: 'POST',
-        header:{
-              'content-type': 'application/x-www-form-urlencoded'
-            },
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data: {
           userId:userId,
           integral:integral,
@@ -60,12 +60,12 @@ Page({
               key: 'integral', // 缓存数据的key
               data: result, // 要缓存的数据
             });
-            my.httpRequest({
+            my.request({
               url: app.globalData.baseUrl+'IF/coupon/addCoupon.do', // 目标服务器url
               method: 'POST',
-              header:{
-                    'content-type': 'application/x-www-form-urlencoded'
-                  },
+              headers:{
+                'content-type': 'application/x-www-form-urlencoded'
+              },
               data: {
                 userId:userId,
                 money:coupon,

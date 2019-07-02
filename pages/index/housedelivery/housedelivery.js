@@ -317,6 +317,8 @@ Page({
     streetCodes:[],//街道编码
     street:'',
     streetId:'',//所选街道编码
+
+    adname:'',//地图选择的小区所在区域名
   },
   onChange: function (e) {
     //console.log(e);
@@ -452,19 +454,11 @@ Page({
     
   },
   onShow(){
-    // var village = my.getStorageSync({
-    //   key: 'r_village', // 缓存数据的key
-    // }).data;
-    // if(village!=''&&this.data.cityCode!=''){
-    //   this.setData({
-    //     village:village,
-    //   });
-    // }
-    
+
   },
   // getCity(){
   //   var that=this;
-  //    my.httpRequest({
+  //    my.request({
   //     url: app.globalData.baseUrl_whj+"json/dist.json",
   //     method: 'GET',
   //     dataType: 'json',
@@ -573,22 +567,22 @@ Page({
       }
     })
   },
-  addImg(){
-    var that = this;
-    my.chooseImage({
-      chooseImage: 1,
-      success: (res) => {
-        var tempFilePaths = res.apFilePaths
-        console.log(tempFilePaths)
-        that.data.images[0]=tempFilePaths[0];
-        that.setData({
-          img:tempFilePaths[0],
-          upload:true,
-          canAddImg:false,
-        });
-      },
-    });
-  },
+  // addImg(){
+  //   var that = this;
+  //   my.chooseImage({
+  //     chooseImage: 1,
+  //     success: (res) => {
+  //       var tempFilePaths = res.apFilePaths
+  //       console.log(tempFilePaths)
+  //       that.data.images[0]=tempFilePaths[0];
+  //       that.setData({
+  //         img:tempFilePaths[0],
+  //         upload:true,
+  //         canAddImg:false,
+  //       });
+  //     },
+  //   });
+  // },
   hideKeyboard(){
     my.hideKeyboard();
   },
@@ -618,13 +612,13 @@ Page({
   //获取街道列表
   getStreetList(countyId){
     var that = this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/selectData/getDistListByParentId.do', // 目标服务器url
       // url: 'http://192.168.1.89:8080/LLGY/IF/selectData/getDistListByParentId.do', // 目标服务器url
       method: 'POST',
-      header:{
-            'content-type': 'application/x-www-form-urlencoded'
-          },
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         parenDistId:countyId,
       },
@@ -836,7 +830,88 @@ Page({
     that.setData({
       type:2
     })
+    that.toLoadHistoryData();
     
+  },
+  toLoadHistoryData(){
+    var that =this;
+    var page1 = my.getStorageSync({
+      key: 'page1', // 缓存数据的key
+    }).data;
+    console.log(page1)
+    if(page1!=null&&page1!=''){
+      var img1 = my.getStorageSync({
+        key: 'img1_temp', // 缓存数据的key
+      }).data;
+      var img2 = my.getStorageSync({
+        key: 'img2_temp', // 缓存数据的key
+      }).data;
+      var img3 = my.getStorageSync({
+        key: 'img3_temp', // 缓存数据的key
+      }).data;
+      var img4 = my.getStorageSync({
+        key: 'img4_temp', // 缓存数据的key
+      }).data;
+
+      my.confirm({
+        title: '温馨提示',
+        content: '是否加载上回未提交数据？',
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        success: (res) => {
+          if(res.confirm){
+            that.getStreetList(page1.countryCode);
+            that.setData({
+              adname:page1.adname,
+              county:page1.county,
+              dist:page1.dist,
+              provinceCode:page1.provinceCode,
+              cityCode:page1.cityCode,
+              countryCode:page1.countryCode,
+              longitude:page1.longitude,
+              latitude:page1.latitude,
+              village:page1.village,
+              vaddress:page1.vaddress,
+              unit:page1.unit,
+              floor:page1.floor,
+              totalFloor:page1.totalFloor,
+              houseFloor:page1.houseFloor,
+              elevator:page1.elevator,
+              show3:page1.elevator,
+              show4:!page1.elevator,
+              houseNo:page1.houseNo,
+              huxing:page1.huxing,
+              chaoxiang:page1.chaoxiang,
+              roomcount:page1.roomcount,
+              hallcount:page1.hallcount,
+              decorateType:page1.decorateType,
+              zhuangxiu:page1.zhuangxiu,
+              varea:page1.varea,
+              vowner:page1.vowner,
+              vownerCard:page1.vownerCard,
+              ownerTel:page1.ownerTel,
+              vrelation:page1.vrelation,
+              streetId:page1.streetId,
+              street:page1.street,
+              img1:img1,
+              img2:img2,
+              img3:img3,
+              img4:img4,
+              upload1:true,
+              canAddImg1:false,
+              upload2:true,
+              canAddImg2:false,
+              upload3:true,
+              canAddImg3:false,
+              upload4:true,
+              canAddImg4:false,
+            });
+          }else{
+
+          }
+        },
+      });
+    }
   },
 
 
@@ -981,6 +1056,10 @@ Page({
             upload1:true,
             canAddImg1:false,
           });
+          my.setStorageSync({
+            key: 'img1_temp', // 缓存数据的key
+            data: tempFilePaths[0], // 要缓存的数据
+          });
         }
         if(e.target.dataset.t==2){
           that.data.images[1]=tempFilePaths[0];
@@ -988,6 +1067,10 @@ Page({
             img2:tempFilePaths[0],
             upload2:true,
             canAddImg2:false,
+          });
+          my.setStorageSync({
+            key: 'img2_temp', // 缓存数据的key
+            data: tempFilePaths[0], // 要缓存的数据
           });
         }
         if(e.target.dataset.t==3){
@@ -997,6 +1080,10 @@ Page({
             upload3:true,
             canAddImg3:false,
           });
+          my.setStorageSync({
+            key: 'img3_temp', // 缓存数据的key
+            data: tempFilePaths[0], // 要缓存的数据
+          });
         }
         if(e.target.dataset.t==4){
           that.data.images[1]=tempFilePaths[0];
@@ -1004,6 +1091,10 @@ Page({
             img4:tempFilePaths[0],
             upload4:true,
             canAddImg4:false,
+          });
+          my.setStorageSync({
+            key: 'img4_temp', // 缓存数据的key
+            data: tempFilePaths[0], // 要缓存的数据
           });
         }
           
@@ -1101,6 +1192,7 @@ Page({
     var vowner = that.data.vowner;
 
     var image = that.data.img;
+    var dist = that.data.dist;
     var provinceCode = that.data.provinceCode;
     var cityCode = that.data.cityCode;
     var countryCode = that.data.countryCode;
@@ -1134,293 +1226,341 @@ Page({
     var regNum2=new RegExp('[0-9]','g');
     var mobileNum =(/^1[3456789]\d{9}$/.test(that.data.ownerTel))
     var ownerTel = that.data.ownerTel;
+    var adname = that.data.adname;
+    var county = that.data.county;
     if(provinceCode!=''&&cityCode!=''&&countryCode!=''){
       if(street!=''){
         if(that.data.village!=''){
-          console.log(huxing)
-          console.log(vaddress)
-          console.log(chaoxiang)
-          console.log(zhuangxiu)
-          console.log(varea)
-          console.log(vowner)
-          console.log(vownerCard)
-          console.log(vrelation)
-      if(vaddress!=''&&unit&&houseFloor!=''&&chaoxiang!=''&&zhuangxiu!=''&&varea!=''&&vowner!=''&&vownerCard!=''&&ownerTel!=''&&vrelation!=''&&huxing!=''){
-        //数据类型验证
-        var houseNonum=regNum1.exec(houseNo);
-        var vareanum=regNum2.exec(varea);
-        // var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)/
-        // var vownerCardNum = reg.test(vownerCard);
+          if(adname==county){
+              console.log(huxing)
+              console.log(vaddress)
+              console.log(chaoxiang)
+              console.log(zhuangxiu)
+              console.log(varea)
+              console.log(vowner)
+              console.log(vownerCard)
+              console.log(vrelation)
+          if(vaddress!=''&&unit&&houseFloor!=''&&chaoxiang!=''&&zhuangxiu!=''&&varea!=''&&vowner!=''&&vownerCard!=''&&ownerTel!=''&&vrelation!=''&&huxing!=''){
+            //数据类型验证
+            var houseNonum=regNum1.exec(houseNo);
+            var vareanum=regNum2.exec(varea);
+            // var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)/
+            // var vownerCardNum = reg.test(vownerCard);
 
-        var res_id = app.checkId(vownerCard);
-        console.log('身份证号校验')
-        console.log(res_id)
-          
-        
-        if(houseNonum){
-          if(vareanum){
-            if(res_id==1){
-              if(mobileNum){
-                if(vrelation==1){
-                  if(img1!=''&&img2!=''&&img3!=''){
-                    that.uploadImg(img1,1);
-                    that.uploadImg(img2,2);
-                    that.uploadImg(img3,3);
-                    my.setStorage({
-                      key: 'r_provinceCode', // 缓存数据的key
-                      data: provinceCode, // 要缓存的数据
-                    });
-                    my.setStorage({
-                      key: 'r_cityCode', // 缓存数据的key
-                      data: cityCode, // 要缓存的数据
-                    });
-                    my.setStorage({
-                      key: 'r_countryCode', // 缓存数据的key
-                      data: countryCode, // 要缓存的数据
-                    });
-                    my.setStorage({
-                      key: 'r_longitude', // 经度
-                      data: longitude, // 要缓存的数据
-                    });
-                    my.setStorage({
-                      key: 'r_latitude', // 纬度
-                      data: latitude, // 要缓存的数据
-                    });
-                    my.setStorage({
-                      key: 'r_village', // 小区
-                      data: village, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_vaddress', // 缓存数据的key
-                      data: vaddress, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_unit', // 缓存数据的key
-                      data: unit, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_floor', // 缓存数据的key
-                      data: floor, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_totalFloor', // 缓存数据的key
-                      data: totalFloor, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_elevator', // 缓存数据的key
-                      data: elevator, // 要缓存的数据
-                    });
+            var res_id = app.checkId(vownerCard);
+            console.log('身份证号校验')
+            console.log(res_id)
+              
+            
+            if(houseNonum){
+              if(vareanum){
+                if(res_id==1){
+                  if(mobileNum){
+                    if(vrelation==1){
+                      if(img1!=''&&img2!=''&&img3!=''){
+                        that.uploadImg(img1,1);
+                        that.uploadImg(img2,2);
+                        that.uploadImg(img3,3);
+                        my.setStorage({
+                          key: 'r_provinceCode', // 缓存数据的key
+                          data: provinceCode, // 要缓存的数据
+                        });
+                        my.setStorage({
+                          key: 'r_cityCode', // 缓存数据的key
+                          data: cityCode, // 要缓存的数据
+                        });
+                        my.setStorage({
+                          key: 'r_countryCode', // 缓存数据的key
+                          data: countryCode, // 要缓存的数据
+                        });
+                        my.setStorage({
+                          key: 'r_longitude', // 经度
+                          data: longitude, // 要缓存的数据
+                        });
+                        my.setStorage({
+                          key: 'r_latitude', // 纬度
+                          data: latitude, // 要缓存的数据
+                        });
+                        my.setStorage({
+                          key: 'r_village', // 小区
+                          data: village, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_vaddress', // 缓存数据的key
+                          data: vaddress, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_unit', // 缓存数据的key
+                          data: unit, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_floor', // 缓存数据的key
+                          data: floor, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_totalFloor', // 缓存数据的key
+                          data: totalFloor, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_elevator', // 缓存数据的key
+                          data: elevator, // 要缓存的数据
+                        });
 
 
-                    my.setStorageSync({
-                      key: 'r_houseNo', // 缓存数据的key
-                      data: houseNo, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_huxing', // 缓存数据的key
-                      data: huxing, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_chaoxiang', // 缓存数据的key
-                      data: chaoxiang, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_roomcount', // 缓存数据的key
-                      data: roomcount, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_hallcount', // 缓存数据的key
-                      data: hallcount, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_decorateType', // 缓存数据的key
-                      data: decorateType, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_varea', // 缓存数据的key
-                      data: varea, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_vowner', // 缓存数据的key
-                      data: vowner, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_vownerCard', // 缓存数据的key
-                      data: vownerCard, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_vownerTel', // 缓存数据的key
-                      data: ownerTel, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_vrelation', // 缓存数据的key
-                      data: vrelation, // 要缓存的数据
-                    });
-                    my.setStorageSync({
-                      key: 'r_streetId', // 缓存数据的key
-                      data: streetId, // 要缓存的数据
-                    });
-                    that.toNext();
+                        my.setStorageSync({
+                          key: 'r_houseNo', // 缓存数据的key
+                          data: houseNo, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_huxing', // 缓存数据的key
+                          data: huxing, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_chaoxiang', // 缓存数据的key
+                          data: chaoxiang, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_roomcount', // 缓存数据的key
+                          data: roomcount, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_hallcount', // 缓存数据的key
+                          data: hallcount, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_decorateType', // 缓存数据的key
+                          data: decorateType, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_houseFloor', // 缓存数据的key
+                          data: houseFloor, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_varea', // 缓存数据的key
+                          data: varea, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_vowner', // 缓存数据的key
+                          data: vowner, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_vownerCard', // 缓存数据的key
+                          data: vownerCard, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_vownerTel', // 缓存数据的key
+                          data: ownerTel, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_vrelation', // 缓存数据的key
+                          data: vrelation, // 要缓存的数据
+                        });
+                        my.setStorageSync({
+                          key: 'r_streetId', // 缓存数据的key
+                          data: streetId, // 要缓存的数据
+                        });
+                        var page1 = {
+                          adname:adname,
+                          dist:dist,
+                          provinceCode:provinceCode,
+                          cityCode:cityCode,
+                          county:county,
+                          countryCode:countryCode,
+                          longitude:longitude,
+                          latitude:latitude,
+                          village:village,
+                          zhuangxiu:zhuangxiu,
+                          vaddress:vaddress,
+                          unit:unit,
+                          floor:floor,
+                          totalFloor:totalFloor,
+                          elevator:elevator,
+                          houseNo:houseNo,
+                          huxing:huxing,
+                          chaoxiang:chaoxiang,
+                          roomcount:roomcount,
+                          hallcount:hallcount,
+                          houseFloor:houseFloor,
+                          decorateType:decorateType,
+                          varea:varea,
+                          vowner:vowner,
+                          vownerCard:vownerCard,
+                          ownerTel:ownerTel,
+                          vrelation:vrelation,
+                          streetId:streetId,
+                          street:street,
+                        }
+                        my.setStorageSync({
+                          key: 'page1', // 缓存数据的key
+                          data: page1, // 要缓存的数据
+                        });
+                        that.toNext();
+                      }else{
+                        my.alert({
+                          title: '证件齐全方可进行下一步' 
+                        });
+                      }
+                    }
                   }else{
                     my.alert({
-                      title: '证件齐全方可进行下一步' 
+                      title: '请输入正确的手机号' 
                     });
                   }
+                  
+                  if(vrelation==2){
+                    if(img4!=''){
+                      that.uploadImg(img4,4);
+                      my.setStorage({
+                        key: 'r_provinceCode', // 缓存数据的key
+                        data: provinceCode, // 要缓存的数据
+                      });
+                      my.setStorage({
+                        key: 'r_cityCode', // 缓存数据的key
+                        data: cityCode, // 要缓存的数据
+                      });
+                      my.setStorage({
+                        key: 'r_countryCode', // 缓存数据的key
+                        data: countryCode, // 要缓存的数据
+                      });
+                      my.setStorage({
+                        key: 'r_longitude', // 经度
+                        data: longitude, // 要缓存的数据
+                      });
+                      my.setStorage({
+                        key: 'r_latitude', // 纬度
+                        data: latitude, // 要缓存的数据
+                      });
+                      my.setStorage({
+                        key: 'r_village', // 小区
+                        data: village, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_vaddress', // 缓存数据的key
+                        data: vaddress, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_houseNo', // 缓存数据的key
+                        data: houseNo, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_huxing', // 缓存数据的key
+                        data: huxing, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_chaoxiang', // 缓存数据的key
+                        data: chaoxiang, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_roomcount', // 缓存数据的key
+                        data: roomcount, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_hallcount', // 缓存数据的key
+                        data: hallcount, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_decorateType', // 缓存数据的key
+                        data: decorateType, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_varea', // 缓存数据的key
+                        data: varea, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_vowner', // 缓存数据的key
+                        data: vowner, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_vownerCard', // 缓存数据的key
+                        data: vownerCard, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_vrelation', // 缓存数据的key
+                        data: vrelation, // 要缓存的数据
+                      });
+                      my.setStorageSync({
+                        key: 'r_streetId', // 缓存数据的key
+                        data: streetId, // 要缓存的数据
+                      });
+                      that.toNext();
+                    }else{
+                      my.alert({
+                        title: '证件齐全方可进行下一步' 
+                      });
+                    }
+                  }
+                  
+                }else if(res_id==2){
+                  my.alert({
+                  title: '身份证号码位数不对',
+                  success:() =>{
+                    that.setData({
+                      vownerCard:'',
+                    });
+                    },
+                  });
+                }else if(res_id==3){
+                  my.alert({
+                  title: '身份证号码出生日期超出范围或含有非法字符',
+                  success:() =>{
+                    that.setData({
+                      vownerCard:'',
+                    });
+                    },
+                  });
+                }else if(res_id==4){
+                  my.alert({
+                  title: '身份证号码校验错误',
+                  success:() =>{
+                    that.setData({
+                      vownerCard:'',
+                    });
+                    },
+                  });
+                }else if(res_id==5){
+                  my.alert({
+                  title: '身份证地区非法',
+                  success:() =>{
+                    that.setData({
+                      vownerCard:'',
+                    });
+                    },
+                  });
                 }
               }else{
                 my.alert({
-                  title: '请输入正确的手机号' 
-                });
+                title: '面积请输入数字',
+                success:() =>{
+                  that.setData({
+                    varea:'',
+                  });
+                },
+              });
               }
               
-              if(vrelation==2){
-                if(img4!=''){
-                  that.uploadImg(img4,4);
-                  my.setStorage({
-                    key: 'r_provinceCode', // 缓存数据的key
-                    data: provinceCode, // 要缓存的数据
-                  });
-                  my.setStorage({
-                    key: 'r_cityCode', // 缓存数据的key
-                    data: cityCode, // 要缓存的数据
-                  });
-                  my.setStorage({
-                    key: 'r_countryCode', // 缓存数据的key
-                    data: countryCode, // 要缓存的数据
-                  });
-                  my.setStorage({
-                    key: 'r_longitude', // 经度
-                    data: longitude, // 要缓存的数据
-                  });
-                  my.setStorage({
-                    key: 'r_latitude', // 纬度
-                    data: latitude, // 要缓存的数据
-                  });
-                  my.setStorage({
-                    key: 'r_village', // 小区
-                    data: village, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_vaddress', // 缓存数据的key
-                    data: vaddress, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_houseNo', // 缓存数据的key
-                    data: houseNo, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_huxing', // 缓存数据的key
-                    data: huxing, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_chaoxiang', // 缓存数据的key
-                    data: chaoxiang, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_roomcount', // 缓存数据的key
-                    data: roomcount, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_hallcount', // 缓存数据的key
-                    data: hallcount, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_decorateType', // 缓存数据的key
-                    data: decorateType, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_varea', // 缓存数据的key
-                    data: varea, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_vowner', // 缓存数据的key
-                    data: vowner, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_vownerCard', // 缓存数据的key
-                    data: vownerCard, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_vrelation', // 缓存数据的key
-                    data: vrelation, // 要缓存的数据
-                  });
-                  my.setStorageSync({
-                    key: 'r_streetId', // 缓存数据的key
-                    data: streetId, // 要缓存的数据
-                  });
-                  that.toNext();
-                }else{
-                  my.alert({
-                    title: '证件齐全方可进行下一步' 
-                  });
-                }
-              }
-              
-            }else if(res_id==2){
+            }else{
               my.alert({
-              title: '身份证号码位数不对',
-              success:() =>{
-                that.setData({
-                  vownerCard:'',
-                });
-                },
-              });
-            }else if(res_id==3){
-              my.alert({
-              title: '身份证号码出生日期超出范围或含有非法字符',
-              success:() =>{
-                that.setData({
-                  vownerCard:'',
-                });
-                },
-              });
-            }else if(res_id==4){
-              my.alert({
-              title: '身份证号码校验错误',
-              success:() =>{
-                that.setData({
-                  vownerCard:'',
-                });
-                },
-              });
-            }else if(res_id==5){
-              my.alert({
-              title: '身份证地区非法',
-              success:() =>{
-                that.setData({
-                  vownerCard:'',
-                });
+                title: '门牌号请输入数字',
+                success:() =>{
+                  that.setData({
+                    houseNo:'',
+                  });
                 },
               });
             }
+
+            
           }else{
             my.alert({
-            title: '面积请输入数字',
-            success:() =>{
-              that.setData({
-                varea:'',
-              });
-            },
-          });
+              title: '请填写完整' 
+            });
           }
-          
-        }else{
-          my.alert({
-            title: '门牌号请输入数字',
-            success:() =>{
-              that.setData({
-                houseNo:'',
-              });
-            },
-          });
-        }
-
-        
-      }else{
-        my.alert({
-          title: '请填写完整' 
-        });
-      }
+          }else{
+            my.alert({
+              title: '当前小区所在区域为'+adname+',请重新选择区域' 
+            });
+          }
+         
       }else{
           my.alert({
             title: '请选择小区或公寓位置' 

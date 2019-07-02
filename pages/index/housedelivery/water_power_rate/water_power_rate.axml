@@ -39,8 +39,9 @@
 
     </view>
 
+     
   
   </view>
-  <view class="page-btn" onTap="toSave">保存</view>
-
+ 
+  <view a:if="{{!free}}" class="page-btn" onTap="toSave">保存</view>
 </view>

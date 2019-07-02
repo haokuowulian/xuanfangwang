@@ -1,23 +1,3 @@
-
-const hangzhou = 
-[
-  {"id":330100,"name":"杭州市","subList":[
-    {"id":330102,"name":"上城区","subList":[]},
-    {"id":330103,"name":"下城区","subList":[]},
-    {"id":330104,"name":"江干区","subList":[]},
-    {"id":330105,"name":"拱墅区","subList":[]},
-    {"id":330106,"name":"西湖区","subList":[]},
-    {"id":330108,"name":"滨江区","subList":[]},
-    {"id":330109,"name":"萧山区","subList":[]},
-    {"id":330110,"name":"余杭区","subList":[]},
-    {"id":330111,"name":"富阳区","subList":[]},
-    {"id":330122,"name":"桐庐县","subList":[]},
-    {"id":330127,"name":"淳安县","subList":[]},
-    {"id":330182,"name":"建德市","subList":[]},
-    {"id":330185,"name":"临安市","subList":[]},
-    ]
-  }
-]
 const app = getApp();
 const directionList = [
   {
@@ -315,7 +295,7 @@ Page({
     }).data;
     console.log('cityAdcode:')
     console.log(cityAdcode)
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/selectData/getDistListByParentId.do', // 目标服务器url
       // url: 'http://192.168.1.89:8080/LLGY/IF/selectData/getDistListByParentId.do', // 目标服务器url
       method: 'POST',
@@ -344,9 +324,12 @@ Page({
   //获取筛选下拉框中房源特色
   getFeature(){
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+"IF/selectData/getFeatureListIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       dataType: 'json',
       success: (res) => {
         var li = res.data.data;
@@ -361,9 +344,12 @@ Page({
   //获取筛选下拉框中房源家具
   getFurniture(){
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+"IF/selectData/getFurnitureListIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       dataType: 'json',
       success: (res) => {
         var li = res.data.data;
@@ -937,7 +923,7 @@ Page({
       display3:true,
       select2:distCode,
     });
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/selectData/getDistListByParentId.do', // 目标服务器url
       // url: 'http://192.168.1.89:8080/LLGY/IF/selectData/getDistListByParentId.do', // 目标服务器url
       method: 'POST',
@@ -1095,9 +1081,12 @@ Page({
     var directionCondition = c.join(",");
     var rt = that.data.rentType;
     console.log( this.data.pageIndex);
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         // decorateType:-3,
         room:condition,//几室1/2/3
@@ -1161,9 +1150,12 @@ Page({
     var furnitureCondition = b.join(",");
     var directionCondition = c.join(",");
     var rt = that.data.rentType;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         room:condition,//几室1/2/3
         minRent:minRent,//最小租金
@@ -1225,9 +1217,12 @@ Page({
     var furnitureCondition = b.join(",");
     var directionCondition = c.join(",");
     var rt = that.data.rentType;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         room:condition,//几室1/2/3
         minRent:minRent,//最小租金
@@ -1321,7 +1316,7 @@ Page({
   //前往房源详情
   goToHouseDetail(e){
     my.navigateTo({
-    url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
+      url: '/pages/houseinfo/houseinfo03/houseinfo03?id='+e.target.dataset.text+'&rentType='+e.target.dataset.type,
     })
   },
   //搜索框搜索
@@ -1343,9 +1338,12 @@ Page({
     }
     console.log(keyword)
     if(houseType==1){
-      my.httpRequest({
+      my.request({
       url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         keyword:keyword,
         rentType:1,
@@ -1365,9 +1363,12 @@ Page({
     }
 
     if(houseType==2){
-      my.httpRequest({
+      my.request({
       url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         keyword:keyword,
         rentType:1,
@@ -1387,9 +1388,12 @@ Page({
     }
 
     if(houseType==3){
-      my.httpRequest({
+      my.request({
       url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         keyword:keyword,
         rentType:2,

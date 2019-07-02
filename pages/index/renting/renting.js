@@ -302,9 +302,12 @@ Page({
   //获取筛选下拉框中房源特色
   getFeature(){
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+"IF/selectData/getFeatureListIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       dataType: 'json',
       success: (res) => {
         var li = res.data.data;
@@ -319,9 +322,12 @@ Page({
   //获取筛选下拉框中房源家具
   getFurniture(){
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+"IF/selectData/getFurnitureListIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       dataType: 'json',
       success: (res) => {
         var li = res.data.data;
@@ -927,9 +933,12 @@ Page({
     var directionCondition = c.join(",");
     var rt = that.data.rentType;
     console.log( this.data.pageIndex);
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         // decorateType:-3,
         room:condition,//几室1/2/3
@@ -991,9 +1000,12 @@ Page({
     var furnitureCondition = b.join(",");
     var directionCondition = c.join(",");
     var rt = that.data.rentType;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         room:condition,//几室1/2/3
         minRent:minRent,//最小租金
@@ -1053,9 +1065,12 @@ Page({
     var furnitureCondition = b.join(",");
     var directionCondition = c.join(",");
     var rt = that.data.rentType;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         room:condition,//几室1/2/3
         minRent:minRent,//最小租金

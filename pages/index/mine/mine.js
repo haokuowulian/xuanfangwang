@@ -88,9 +88,12 @@ Page({
       key: 'userName', 
     }).data;
   console.log(token)
-    my.httpRequest({
+    my.request({
         url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           phone:userName,
           token:token,
@@ -182,9 +185,12 @@ Page({
     var userId = my.getStorageSync({
      key: 'userId', // 缓存数据的key
    }).data;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/chatList/getFdChatList.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         landlordId:userId,
         pageIndex:1,
@@ -218,12 +224,12 @@ Page({
         console.log('-------------authCode--------------');
         if(res.authCode){
           
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
             // url: app.globalData.baseUrl_whj+'/IF/user/appLogin.do?authCode='+myCode,
             method: 'POST',
-            header:{
-              'content-type': 'application/json'
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
             },
             dataType: 'json',
             success: (res) => {
@@ -584,9 +590,12 @@ Page({
       });
     }else{
       var that=this;
-       my.httpRequest({
+       my.request({
       url: app.globalData.baseUrl+"IF/user/getAreaDist.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         cityCode: this.data.cityCode,
       },
@@ -685,12 +694,12 @@ getServerTime(){
    complexUserInfo(){
      
      var that=this;
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'/IF/user/editUser.do',
         method: 'POST',
-        header:{
-              'content-type': 'application/json'
-            },
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data: {
          sex:this.data.sexCode,
          cityCode:this.data.cityCode,
@@ -778,9 +787,12 @@ getServerTime(){
     if(userName!=''){
       if(passwords!=''){
         // my.showLoading();
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/user/webLogin.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             userName:userName,
             password:passwords,
@@ -957,12 +969,12 @@ getServerTime(){
     if(phoneNum!=''){
       var mobileNum =(/^1[3456789]\d{9}$/.test(phoneNum))
       if(mobileNum){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/user/registerVerificationCode.do', // 目标服务器url
           method: 'POST',
           header:{
-                'content-type': 'application/x-www-form-urlencoded'
-              },
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data: {
             telphone:phoneNum,
           },
@@ -1046,12 +1058,12 @@ getServerTime(){
       content: '正在登陆...',
     });
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl+ 'IF/user/register.do', // 目标服务器url
       method: 'POST',
       header:{
-            'content-type': 'application/x-www-form-urlencoded'
-          },
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         phone:phoneNum,
         code:phoneCode,

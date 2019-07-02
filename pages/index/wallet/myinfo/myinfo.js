@@ -45,9 +45,12 @@ Page({
     var payPassword = that.data.payPassword;
     if(txAlipay!=''){
       if(payPassword!=''){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/wallet/editWallet.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             userId:userId,
             payPassword:payPassword,

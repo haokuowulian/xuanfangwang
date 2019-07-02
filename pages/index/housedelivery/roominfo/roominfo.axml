@@ -1,7 +1,4 @@
 <view class="page">
-  <!-- <view class="page-title">
-    房间信息
-  </view> -->
 
   <view class="page-content">
 
@@ -78,80 +75,8 @@
         </picker>
       </view>
     </view>
- 
-
   </view>
 
-
-  <!-- <view class="info">
-  <view class="info-title">便利设施</view>
-   <view onTap="goTo1" class="info-content">
-    <input class="text_input" type="text" placeholder="请选择用户可以选择的便利设施" value="{{furniturelist}}"/>
-   </view> 
-   </view>-->
-
-  <!-- <view class="info">
-   <view class="info-title">房屋特色</view>
-   <view onTap="goTo2" class="info-content">
-    <input class="text_input" type="text" placeholder="请选择房屋特色" value="{{featurelist}}"/>
-  </view>
-  </view> -->
-
-  <!-- <view class="info">
-    <view class="info-title">房间名称</view>
-    <view class="info-content"><input type="text" placeholder="为您的房间起个名，以区别其它房间" onInput="toInput" data-t='1' class="text_input" value="{{roomName}}"/></view>
-  </view> -->
-
-  <!-- <view class="info">
-    <view class="info-title">面积(m²)</view>
-    <view class="info-content"><input type="digit" placeholder="请填写房间的面积" onInput="toInput" data-t='2' class="text_input" value="{{area}}"/></view>
-  </view> -->
-  <!-- <view class="info">
-    <view class="info-title">租金(元)</view>
-    <view class="info-content"><input type="digit" placeholder="请填写租金价格" onInput="toInput" data-t='3' class="text_input" value="{{rents}}"/></view>
-  </view> -->
-  <!-- <view class="info">
-    <view class="info-title">付款方式</view>
-    <view class="info-content1">
-      <picker onChange="bindPickerChange1" value="{{index1}}" range="{{payways}}">
-        <view class="row-extra">{{payway}}<image src="/image/icon/right.png" class="right-img"/></view>
-      </picker>
-    </view>  
-  </view> -->
-  <!-- <view class="info">
-    <view class="info-title">水电费</view>
-    <view class="info-content3" onTap="toWERate">
-      <view a:if="{{waterfree}}"  class="text_input1">{{water}}</view>
-      <view a:if="{{watersave}}"  class="text_input1">{{water}}</view>
-      <view a:if="{{waterdefault}}"  class="text_input1">{{watertext}}</view>
-      <image src="/image/icon/right.png" class="right-img"/>
-    </view>
-  </view> -->
-  <!-- <view class="info">
-    <view class="info-title">是否独卫</view>
-    <view class="info-content1">
-      <picker onChange="bindPickerChange2" value="{{index2}}" range="{{pBathroom}}">
-        <view class="row-extra">{{privatebath}}<image src="/image/icon/right.png" class="right-img"/></view>
-      </picker>
-    </view>
-  </view> -->
-  <!-- <view class="info">
-    <view class="info-title">可住人数</view>
-    <view class="info-content1">
-       <picker onChange="bindPickerChange3" value="{{index3}}" range="{{peoples}}">
-        <view class="row-extra">{{people}}<image src="/image/icon/right.png" class="right-img"/></view>
-      </picker>
-    </view>
-  </view> -->
-  <!-- <view class="info">
-    <view class="info-title">床位</view>
-    <view class="info-content1">
-      <picker onChange="bindPickerChange4" value="{{index4}}" range="{{beds}}">
-        <view class="row-extra">{{bed}}<image src="/image/icon/right.png" class="right-img"/></view>
-      </picker>
-    </view>
-  </view> -->
-  <!-- <view class="info info1"> -->
   <view class="info2">
     <view class="subTitleClass">
       <view>房源照片上传</view>
@@ -177,47 +102,10 @@
 
   </view>
 
-  <!-- <view class="info">
-    <view class="info-title">租客性别</view>
-    <view class="box_choose_sex">
-      <view class="type_choose">
-        <view class='icon_none' a:if="{{!show1}}" onTap="toChooseType1"></view>
-        <view class="icon-bkgd" a:if="{{show1}}">
-          <icon type="success" class="icon-check" color="#ff8800" />
-        </view><view class="type_name">男女不限</view>
-      </view>
-    
-      <view class="type_choose">
-        <view class='icon_none' a:if="{{!show2}}"  onTap="toChooseType2"></view>
-        <view class="icon-bkgd" a:if="{{show2}}">
-          <icon type="success" class="icon-check" color="#ff8800" />
-        </view><view class="type_name">只限男</view>
-      </view>
-
-      <view class="type_choose">
-        <view class='icon_none' a:if="{{!show3}}"  onTap="toChooseType3"></view>
-        <view class="icon-bkgd" a:if="{{show3}}">
-          <icon type="success" class="icon-check" color="#ff8800" />
-        </view><view class="type_name">只限女</view>
-      </view>
-    </view>
-  </view> -->
 
   <view class="info info1">
     
-    <view class="info-title">室内消防设备</view>
-    <checkbox-group onChange="onChange" class="checkboxGroupClass">
-      <label a:for="{{fireList}}" class="checkboxClass">
-        <checkbox value="{{item.id}}" checked="{{item.selected}}" color="#fda729"/>
-        <text class="checkbox-text">{{item.name}}</text>
-      </label>
-    </checkbox-group>
-   
-  </view>
-
-
-  <view class="fire">
-
+    <view class="info-title">消防四件套</view>
       <view a:if="{{!canAddImg2}}" class="info-content4">
         <image src="{{img2}}" class="img"/>
         <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="2">
@@ -229,44 +117,6 @@
         <image src="{{img2}}" class="img"/>
         <!-- 灭火器 -->
       </view>
-
-      <view a:if="{{!canAddImg3}}" class="info-content4">
-        <image src="{{img3}}" class="img"/>
-        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="3">
-            <icon type="cancel" color="red" size="18" />
-        </view>
-      </view>
-
-      <view a:if="{{canAddImg3}}" class="info-content4" onTap="addImg1" data-t="3">
-        <image src="{{img3}}" class="img"/>
-        <!-- 防烟面罩 -->
-      </view>
-
-
-      <view a:if="{{!canAddImg4}}" class="info-content4">
-        <image src="{{img4}}" class="img"/>
-        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="4">
-            <icon type="cancel" color="red" size="18" />
-        </view>
-      </view>
-
-      <view a:if="{{canAddImg4}}" class="info-content4" onTap="addImg1" data-t="4">
-        <image src="{{img4}}" class="img"/>
-        <!-- 手电筒 -->
-      </view>
-
-
-      <view a:if="{{!canAddImg5}}" class="info-content4">
-        <image src="{{img5}}" class="img"/>
-        <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="5">
-            <icon type="cancel" color="red" size="18" />
-        </view>
-      </view>
-      <view a:if="{{canAddImg5}}" class="info-content4" onTap="addImg1" data-t="5">
-        <image src="{{img5}}" class="img"/>
-        <!-- 逃生绳 -->
-      </view>
-    
   </view>
 
   <view class="info">

@@ -34,10 +34,13 @@ Page({
       type:option.type
     });
     console.log(id)
-    my.httpRequest({
+    my.request({
       // url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
       url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         id:id,
       },
@@ -83,10 +86,13 @@ Page({
     var that = this;
     var id = that.data.orderid;
     if(id!=''&&id!=null){
-      my.httpRequest({
+      my.request({
         // url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
         url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           id:id,
         },
@@ -141,9 +147,12 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
           url:app.globalData.baseUrl_whj+'IF/order/cancelLocalOrder.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             userId:this.data.userId,
             orderId:this.data.orderid,
@@ -192,10 +201,13 @@ Page({
       }
     }else{
       console.log(uidCard)
-      my.httpRequest({
+      my.request({
         // app.globalData.baseUrl_whj+
         url: app.globalData.baseUrl_whj+'IF/alipay/certifiedPay.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           orderId:orderid,
         },
@@ -250,10 +262,13 @@ Page({
   },
   //房东认证支付成功http://192.168.1.193:8080/LLGY/IF/order/successCertified.do
   successCertified(orderid){
-    my.httpRequest({
+    my.request({
       // app.globalData.baseUrl_whj+
       url: app.globalData.baseUrl_whj+'IF/order/successCertified.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         orderId:orderid,
       },
@@ -284,9 +299,12 @@ Page({
   //同意退款
   confirm(){
     var that=this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/alipay/refundUnfreezeOrder.do", // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:this.data.userId,
         orderId:this.data.orderid
@@ -317,9 +335,12 @@ Page({
     var userId = that.data.userId;
     var couponId = that.data.couponId;
     if(couponId!=null&&couponId!=''){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           id:couponId,
           userId:userId,

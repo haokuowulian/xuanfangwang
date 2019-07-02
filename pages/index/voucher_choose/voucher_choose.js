@@ -20,12 +20,12 @@ Page({
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/integralLog/getIntegralByUserId.do', // 目标服务器url
       method: 'POST',
-      header:{
-            'content-type': 'application/x-www-form-urlencoded'
-          },
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         userId:userId,
       },
@@ -52,12 +52,12 @@ Page({
       key: 'voucher_id', // 缓存数据的key
     }).data;
     
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/coupon/getCouponListByUserId.do', // 目标服务器url
       method: 'POST',
-      header:{
-            'content-type': 'application/x-www-form-urlencoded'
-          },
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         userId:userId,
         state:0,

@@ -18,9 +18,12 @@ Page({
   getFurnitureList(furniture){
     var that=this;
     var furnitures='';
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/selectData/getFurnitureListIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       dataType: 'json',
       success: function(res) {
         console.log(res.data);
@@ -29,14 +32,15 @@ Page({
           for(var j=0;j<list.length;j++){
             if(list[j].id==furniture[i]){
               list[j].deleted=true;
-              furnitures=furnitures+','+list[j].furniture;
+              furnitures=furnitures+list[j].furniture+',';
             }
           }
         }
+        var _furnitures = furnitures.substr(0,furnitures.length-1)
         if(res.data.success){
           that.setData({
             furnitureList:list,
-            furnitures:furnitures,
+            furnitures:_furnitures,
           });
         }
       },
@@ -73,11 +77,17 @@ Page({
     
   },
   confirm(){
-    
+    var sid = this.data.selectId;
+    if(typeof(sid)=='string'){
+      var selectId = sid.split(',');
+    }else{
+      var selectId=sid;
+    }
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
+    
     prevPage.setData({
-      furniture: this.data.selectId,
+      furniture:selectId,
       furniturelist:this.data.furnitures,
     })
     my.navigateBack({

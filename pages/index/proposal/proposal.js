@@ -105,8 +105,12 @@ Page({
     var uid = that.data.uid;
     var type = that.data.type;
     console.log(content)
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'/IF/complaintSuggest/saveComplaintSuggest.do', // 目标服务器url
+      method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         uid:uid,
         fdid:landlordId,
@@ -115,6 +119,7 @@ Page({
         images:image,
         type:type,
       },
+      dataType: 'json',
       success: (res) => {
         console.log('success')
         my.hideLoading();
@@ -136,8 +141,12 @@ Page({
     var uid = that.data.uid;
     var type = that.data.type;
     console.log(content)
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'/IF/complaintSuggest/saveComplaintSuggest.do', // 目标服务器url
+      method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         uid:uid,
         fdid:landlordId,
@@ -146,6 +155,7 @@ Page({
         images:'',
         type:type,
       },
+      dataType: 'json',
       success: (res) => {
         console.log('success')
         my.hideLoading();

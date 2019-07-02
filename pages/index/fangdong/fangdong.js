@@ -24,9 +24,12 @@ Page({
         key: 'userName', 
       }).data;
       console.log(token)
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           phone:userName,
           token:token,

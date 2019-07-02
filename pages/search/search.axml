@@ -11,7 +11,7 @@
       showCancelButton="{{false}}"
       maxLength=8 />
   </view>
-
+  
   <!-- 搜索前 -->
   <view class="search-container" a:if="{{areaList.length === 0 && placeList.length === 0}}">
     <view a:if="{{value.length ===0}}">

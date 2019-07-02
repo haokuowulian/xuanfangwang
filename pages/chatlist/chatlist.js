@@ -35,9 +35,12 @@ Page({
         key: 'userName', 
       }).data;
       console.log(token)
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/token/getToken.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           phone:userName,
           token:token,
@@ -46,9 +49,12 @@ Page({
         success: (res) => {
           console.log(res)
           if(res.data.success){
-            my.httpRequest({
+            my.request({
               url: app.globalData.baseUrl+'IF/chatList/getFdChatList.do', // 目标服务器url
               method: 'POST',
+              headers:{
+                'content-type': 'application/x-www-form-urlencoded'
+              },
               data: {
                 landlordId:userId,
                 pageIndex:1,
@@ -110,7 +116,7 @@ Page({
   //     cancelButtonText: '取消',
   //     success: (res) => {
   //       if(res.confirm){
-  //         my.httpRequest({
+  //         my.request({
   //           url: app.globalData.baseUrl+'IF/chatList/delChatListById.do', // 目标服务器url
   //           method: 'POST',
   //           data:{

@@ -34,9 +34,12 @@ Page({
       key: 'token', // 缓存数据的key
     }).data;
     console.log('token='+token)
-    my.httpRequest({
+    my.request({
       url: url, // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:uid,
         pageIndex:that.data.pageIndex,

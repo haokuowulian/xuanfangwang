@@ -17,9 +17,12 @@ Page({
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/user/editUserInfo.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         id:userId,
         nickName:that.data.NickName

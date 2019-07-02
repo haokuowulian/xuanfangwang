@@ -185,9 +185,12 @@ Page({
     }
     console.log(keyword)
 
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         keyword:keyword,
         rentType:1,
@@ -204,9 +207,12 @@ Page({
             placeList: res.data.data,
           });
         }else{
-          my.httpRequest({
+          my.request({
             url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do",
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data:{
               keyword:keyword,
               rentType:2,
@@ -298,9 +304,12 @@ Page({
     this.setData({ showView1: true, showView2: false });
     var keyword = this.data.value;
     var rentType = 1;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do", 
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         keyword:keyword,
         rentType:rentType,
@@ -322,9 +331,12 @@ Page({
     this.setData({ showView2: true, showView1: false });
     var keyword = this.data.value;
     var rentType = 2;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+"IF/housing/getHomeHousingIF.do", 
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         keyword:keyword,
         rentType:rentType,

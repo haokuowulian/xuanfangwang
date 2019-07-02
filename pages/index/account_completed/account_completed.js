@@ -39,9 +39,12 @@ Page({
       my.setNavigationBar({
         title: '个人信息',
       });
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/user/getUserInfoById.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           userId:userId,
         },
@@ -125,9 +128,12 @@ Page({
       });
     }else{
       var that=this;
-       my.httpRequest({
+       my.request({
       url: app.globalData.baseUrl+"IF/user/getAreaDist.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         cityCode: this.data.cityCode,
       },
@@ -191,12 +197,12 @@ Page({
     var userId = that.data.userId;
     console.log(areaId+areaName)
     console.log(cityCode+cityName)
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/user/editArea.do',
       method: 'POST',
-      header:{
-            'content-type': 'application/json'
-          },
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         id:userId,
         cityCode:cityCode,

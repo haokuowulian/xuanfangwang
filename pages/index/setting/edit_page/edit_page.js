@@ -119,12 +119,12 @@ Page({
     if(phoneNum!=''){
       var mobileNum =(/^1[3456789]\d{9}$/.test(phoneNum))
       if(mobileNum){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/user/registerVerificationCode.do', // 目标服务器url
           method: 'POST',
-          header:{
-                'content-type': 'application/x-www-form-urlencoded'
-              },
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data: {
             telphone:phoneNum,
           },
@@ -211,9 +211,12 @@ Page({
     }).data;
     if(phoneNum!=''){
       if(phoneCode!=''){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/user/editMobile.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             id:userId,
             userName:phoneNum,
@@ -261,9 +264,12 @@ Page({
     if(oldPassword!=''){
       if(newPassword!=''){
         if(newPassword!=oldPassword){
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl+'IF/user/editPassword.do', // 目标服务器url
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data:{
               id:userId,
               password:oldPassword,

@@ -99,12 +99,12 @@ Page({
     if(phoneNum!=''){
       var mobileNum =(/^1[3456789]\d{9}$/.test(phoneNum))
       if(mobileNum){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/user/registerVerificationCode.do', // 目标服务器url
           method: 'POST',
-          header:{
-                'content-type': 'application/x-www-form-urlencoded'
-              },
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data: {
             telphone:phoneNum,
           },
@@ -178,9 +178,12 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
     if(phoneCode!=''){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/user/isCode.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           userName:phoneNum,
           code:phoneCode,
@@ -212,9 +215,12 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
     if(newPassword==confirmPassword){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/user/forgetPassword.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           id:userId,
           newPassword:newPassword,

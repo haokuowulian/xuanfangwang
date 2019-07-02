@@ -70,9 +70,12 @@ Page({
     var nowTime = myDate.getTime();
     var state = that.data.state;
    
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/getFdBespeakList.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         uid:that.data.uid,
         pageIndex:that.data.pageIndex,
@@ -158,9 +161,12 @@ Page({
   cancel(id,uid){
     var that=this;
     my.showLoading();
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         uid:uid,
         id:id,
@@ -209,9 +215,12 @@ Page({
   delete(id){
     var that=this;
     my.showLoading();
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/delBespeakById.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         id:id
       },
@@ -259,9 +268,12 @@ Page({
     my.showLoading();
     let id = e.target.dataset.pid;
     let uid =  e.target.dataset.uid;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         id:id,
         uid:uid,
@@ -287,9 +299,12 @@ Page({
     my.showLoading();
     let id = e.target.dataset.pid;
     let uid =  e.target.dataset.uid;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         id:id,
         uid:uid,

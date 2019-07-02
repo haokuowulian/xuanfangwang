@@ -97,7 +97,7 @@
           <view class="p1">
             <image src="{{lists.images.split(',')[0]}}" class="house-img"/>
           </view>
-          <view class="p2">{{lists.buildingUnit}}              </view>
+          <text class="p2">{{lists.buildingUnit}}              </text>
           <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
           <view class="p4">{{lists.entireRents}}元/月              </view>
           <view class="p5">
@@ -132,7 +132,7 @@
                 <view class="p1">
                   <image src="{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
-                <view class="p2">{{lists.buildingUnit}}              </view>
+                <text class="p2">{{lists.buildingUnit}}              </text>
                  <view class="p3">{{lists.room}}室{{lists.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
                 <view class="p4">{{lists.entireRents}}元/月              </view>
                 <view class="p5">
@@ -168,7 +168,7 @@
                 <view class="p1">
                   <image src="{{lists.images.split(',')[0]}}" class="house-img"/>
                 </view>
-                <view class="p2">{{lists.roomName}}              </view>
+                <text class="p2">{{lists.roomName}}              </text>
                 <view class="p3">{{lists.house.room}}室{{lists.house.hall}}厅 | {{lists.area}}m² | {{lists.toward}}             </view>
                  <view class="p4">{{lists.rents}}元/月              </view>
                 <view class="p5">

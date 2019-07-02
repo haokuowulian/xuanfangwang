@@ -24,9 +24,12 @@ Page({
     var payPassword = that.data.payPassword;
     if(payPassword!=''){
       if(payPassword!=oldPwd){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/wallet/forgetPassword.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             userId:userId,
             payPassword:payPassword,

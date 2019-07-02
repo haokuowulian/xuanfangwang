@@ -66,13 +66,13 @@
   </view>
 
   <view class="info1">
-    <view class="subTitleClass">消防设备</view>
-    <checkbox-group onChange="onChange" class="checkboxGroupClass">
+    <view class="subTitleClass">消防四件套</view>
+    <!-- <checkbox-group onChange="onChange" class="checkboxGroupClass">
       <label a:for="{{fireList}}" class="checkboxClass">
         <checkbox value="{{item.id}}" checked="{{item.selected}}" color="#fda729"/>
         <text class="checkbox-text">{{item.name}}</text>
       </label>
-    </checkbox-group>
+    </checkbox-group> -->
     
     <view class="fire">
 
@@ -85,10 +85,9 @@
 
       <view a:if="{{canAddImg2}}" class="info-content4" onTap="addImg1" data-t="2">
         <image src="{{img2}}" class="img"/>
-        <!-- 灭火器 -->
       </view>
 
-      <view a:if="{{!canAddImg3}}" class="info-content4">
+      <!-- <view a:if="{{!canAddImg3}}" class="info-content4">
         <image src="{{img3}}" class="img"/>
         <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="3">
             <icon type="cancel" color="red" size="18" />
@@ -97,7 +96,6 @@
 
       <view a:if="{{canAddImg3}}" class="info-content4" onTap="addImg1" data-t="3">
         <image src="{{img3}}" class="img"/>
-        <!-- 防烟面罩 -->
       </view>
 
 
@@ -110,7 +108,6 @@
 
       <view a:if="{{canAddImg4}}" class="info-content4" onTap="addImg1" data-t="4">
         <image src="{{img4}}" class="img"/>
-        <!-- 手电筒 -->
       </view>
 
 
@@ -122,11 +119,12 @@
       </view>
       <view a:if="{{canAddImg5}}" class="info-content4" onTap="addImg1" data-t="5">
         <image src="{{img5}}" class="img"/>
-        <!-- 逃生绳 -->
-      </view>
+      </view> -->
     
   </view>
+  <view class="info">
   
+  </view>
 
  <!-- <view><button a:if="{{rentType==1}}" class="nextStepButtonClass" onTap="next">下一步</button></view> -->
 

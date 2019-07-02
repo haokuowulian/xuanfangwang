@@ -29,9 +29,12 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
     
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/chat/isFirstChat.do', // 目标服务器url
       method: 'POST',
+      headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
       data: {
         landlordId:userId,
         userId:uid,
@@ -96,9 +99,12 @@ Page({
       });
     }
     
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/chat/getChat.do', // 目标服务器url
       method: 'POST',
+      headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
       data: {
         landlordId:userId,
         userId:uid,
@@ -151,9 +157,12 @@ Page({
     var type = that.data.type;
     that.getMessage(userId);
     if(content!=''){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/chat/addChat.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data: {
           landlordId:landlordId,
           type:1,

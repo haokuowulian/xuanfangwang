@@ -58,12 +58,12 @@ Page({
         console.log(res)
         console.log('-------------authCode--------------');
         if(res.authCode){
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl+'/IF/user/appLogin.do?authCode='+myCode,
             // url: app.globalData.baseUrl_whj+'/IF/user/appLogin.do?authCode='+myCode,
             method: 'POST',
-            header:{
-              'content-type': 'application/json'
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
             },
             dataType: 'json',
             success: (res) => {
@@ -174,9 +174,12 @@ Page({
     var passwords = that.data.passwords;
     if(userName!=''){
       if(passwords!=''){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/user/webLogin.do', // 目标服务器url
           method: 'POST',
+          headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
           data:{
             userName:userName,
             password:passwords,
@@ -332,7 +335,7 @@ Page({
     if(phoneNum!=''){
       var mobileNum =(/^1[3456789]\d{9}$/.test(phoneNum))
       if(mobileNum){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/user/registerVerificationCode.do', // 目标服务器url
           method: 'POST',
           header:{
@@ -421,7 +424,7 @@ Page({
       content: '正在登陆...',
     });
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl+ 'IF/user/register.do', // 目标服务器url
       method: 'POST',
       header:{

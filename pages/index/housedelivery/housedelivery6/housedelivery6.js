@@ -264,28 +264,28 @@ Page({
     var extinguisher = my.getStorageSync({
       key: 'r_extinguisher', // 缓存数据的key
     }).data;
-    var smokeMask = my.getStorageSync({
-      key: 'r_smokeMask', // 缓存数据的key
-    }).data;
-    var flashlight = my.getStorageSync({
-      key: 'r_flashlight', // 缓存数据的key
-    }).data;
-    var rope = my.getStorageSync({
-      key: 'r_rope', // 缓存数据的key
-    }).data;
+    // var smokeMask = my.getStorageSync({
+    //   key: 'r_smokeMask', // 缓存数据的key
+    // }).data;
+    // var flashlight = my.getStorageSync({
+    //   key: 'r_flashlight', // 缓存数据的key
+    // }).data;
+    // var rope = my.getStorageSync({
+    //   key: 'r_rope', // 缓存数据的key
+    // }).data;
 
     var extinguisherimg = my.getStorageSync({
       key: 'r_extinguisherimg', // 缓存数据的key
     }).data;
-    var smokeMaskimg = my.getStorageSync({
-      key: 'r_smokeMaskimg', // 缓存数据的key
-    }).data;
-    var flashlightimg = my.getStorageSync({
-      key: 'r_flashlightimg', // 缓存数据的key
-    }).data;
-    var ropeimg = my.getStorageSync({
-      key: 'r_ropeimg', // 缓存数据的key
-    }).data;
+    // var smokeMaskimg = my.getStorageSync({
+    //   key: 'r_smokeMaskimg', // 缓存数据的key
+    // }).data;
+    // var flashlightimg = my.getStorageSync({
+    //   key: 'r_flashlightimg', // 缓存数据的key
+    // }).data;
+    // var ropeimg = my.getStorageSync({
+    //   key: 'r_ropeimg', // 缓存数据的key
+    // }).data;
 
     var uid = my.getStorageSync({
       key: 'userId', // 缓存数据的key
@@ -404,13 +404,13 @@ Page({
       electricRate:powerprice,
 
       extinguisher:extinguisher,
-      smokeMask:smokeMask,
-      flashlight:flashlight,
-      rope:rope,
+      // smokeMask:smokeMask,
+      // flashlight:flashlight,
+      // rope:rope,
       extinguisherimg:extinguisherimg,
-      smokeMaskimg:smokeMaskimg,
-      flashlightimg:flashlightimg,
-      ropeimg:ropeimg,
+      // smokeMaskimg:smokeMaskimg,
+      // flashlightimg:flashlightimg,
+      // ropeimg:ropeimg,
       sexneed:sexCondition,
       propertyFee:property,
     }];
@@ -427,6 +427,21 @@ console.log(roomList)
     success: (res) => {
       if(res.confirm){
         my.httpRequest({
+          url: '', // 目标服务器url
+          method:'POST',
+          dataType:'json',
+          data:{
+            // userId:uid,
+            apartment:apartment,
+            house:house,
+            rooms:roomList,
+            templates:template,
+          },
+          success: (res) => {
+            
+          },
+        });
+        my.request({
           url:app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid, // 目标服务器url
           headers:{
             "Content-Type":'application/json'
@@ -434,6 +449,7 @@ console.log(roomList)
           method:'POST',
           dataType:'json',
           data:{
+            // userId:uid,
             apartment:apartment,
             house:house,
             rooms:roomList,
@@ -442,6 +458,15 @@ console.log(roomList)
           success: (res) => {
             console.log(res)
             that.sign(res.data.apartmentId,res.data.houseId);
+            my.removeStorageSync({
+              key: 'page1', // 缓存数据的key
+            });
+            my.removeStorageSync({
+              key: 'page2', // 缓存数据的key
+            });
+            my.removeStorageSync({
+              key: 'page3', // 缓存数据的key
+            });
             my.alert({
               title: '提交成功！',
               success: () => {
@@ -483,11 +508,13 @@ console.log(roomList)
     // var apartmentId=houseInfo.apartment.id;
     // var houseId=houseInfo.id;
     
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+"IF/landlordCompanyServlet", // 目标服务器url
       method: 'POST',
+      headers:{
+        'Content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
-        
         name:name,
         idNo:idNo,
         apartmentId:apartmentId,

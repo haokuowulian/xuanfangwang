@@ -16,9 +16,12 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
     if(payPassword!=''){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/wallet/isPassword.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           userId:userId,
           payPassword:payPassword,

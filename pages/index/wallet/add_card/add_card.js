@@ -59,10 +59,13 @@ Page({
     console.log(cardNo)
     console.log(shortname)
     var mobileNum =(/^1[3456789]\d{9}$/.test(phone))
-    my.httpRequest({
+    my.request({
       //https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?cardNo=1111&cardBinCheck=true
       url: 'https://ccdcapi.alipay.com/validateAndCacheCardInfo.json', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         cardNo:cardNo,
         cardBinCheck:true,

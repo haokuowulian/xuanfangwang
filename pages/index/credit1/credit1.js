@@ -42,9 +42,12 @@ Page({
       });
     }
     
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+'IF/user/getUserInfoById.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:userId,
       },
@@ -72,9 +75,12 @@ Page({
   //租信宝查询积分
   getScoring(uidCard){
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+'IF/zuZinBao/zuXinBao.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         certNo:uidCard,
         isTaofan:false,
@@ -148,9 +154,12 @@ Page({
   //获取订单内容
   getOrder(orderid){
     var that = this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         id:orderid,
       },      
@@ -196,9 +205,12 @@ Page({
           my.showLoading({
             content: '正在签约...',
           });
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl_whj+'IF/landlordRenterServlet', // 目标服务器url
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data:{
               orderId:orderid,
             },      
@@ -229,9 +241,12 @@ Page({
   toGetRent(orderId,contractId){
     var that = this;
     console.log('冻结转支付')
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+ 'IF/alipay/tradePay.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         orderId:orderId,
         contractId:contractId,
@@ -260,9 +275,12 @@ Page({
     var house = that.data.houseName;
     var fromUserId = that.data.userId;
     console.log(userId+'********'+money+'*********'+house+'********'+fromUserId)
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+ 'IF/wallet/editMoney.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:userId,
         money:money,
@@ -292,9 +310,12 @@ Page({
   toCancel(){
     var that = this;
     var orderid = that.data.orderid;
-    my.httpRequest({
+    my.request({
       url: app.globalData.base_whj+'IF/alipay/fundAuthOrderUnfreeze.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         orderId:orderid,
       },      

@@ -108,9 +108,12 @@ Page({
   getInfoByIdCard(imgUrl,type){
     var that = this;
     if(type==1){
-      my.httpRequest({
+      my.request({
         url:app.globalData.baseUrl+ 'IF/user/getOcrIdcard.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           url:imgUrl,
           side:'back',
@@ -144,9 +147,12 @@ Page({
       });
     }
     if(type==2){
-      my.httpRequest({
+      my.request({
         url:app.globalData.baseUrl+ 'IF/user/getOcrIdcard.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           url:imgUrl,
           side:'face',
@@ -245,9 +251,12 @@ Page({
       });
     }else{
       var that=this;
-       my.httpRequest({
+       my.request({
       url: app.globalData.baseUrl+"IF/user/getAreaDist.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         cityCode: this.data.cityCode,
       },
@@ -384,12 +393,12 @@ Page({
       console.log(that.data.idImg2)
       console.log(that.data.nation)
       console.log(that.data.name)
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'/IF/user/editUser.do',
         method: 'POST',
-        header:{
-              'content-type': 'application/json'
-            },
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data: {
         certName:that.data.name,
         sex:that.data.sexCode,
@@ -441,12 +450,12 @@ Page({
   //完善信息赠送抵用券
   toAddCoupon(){
     var that = this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/coupon/addfirstCoupon.do', // 目标服务器url
       method: 'POST',
-      header:{
-            'content-type': 'application/json'
-          },
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
       userId:that.data.userId,
       },

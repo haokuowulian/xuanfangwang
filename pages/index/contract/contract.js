@@ -26,8 +26,12 @@ Page({
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl+ 'IF/contract/getFdContractList.do', // 目标服务器url
+      method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         // uid:59,
         fdid:uid,
@@ -66,8 +70,12 @@ Page({
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl+ 'IF/contract/getContractList.do', // 目标服务器url
+      method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         // uid:59,
         uid:uid,

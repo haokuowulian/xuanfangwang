@@ -1,0 +1,30 @@
+
+<view class="page" a:if="{{houseList.length>0}}">
+<view class="lineClass"></view>
+<view class="classList">
+  <block a:for="{{houseList}}" a:for-item="list">
+    <view class="class_content" onTap="toHouseInfo" data-id="{{list.id}}" data-rentType="{{list.rentType}}">
+      <image src="{{list.images.split(',')[0]}}" class="content_img"/>
+      <view class="content_info">
+        <view class="info_name">
+          {{list.housingName}}
+        </view>
+        <view class="info_rents">
+          租金：
+          <view class="rents">{{list.rents}}/月</view>
+        </view>
+        <view a:if="{{list.rentType==1}}" class="info_type">
+          整租
+        </view>
+        <view a:if="{{list.rentType==2}}" class="info_type">
+          合租
+        </view>
+      </view>
+    </view>
+    <view class="lineClass"></view>
+  </block>
+</view>
+</view>
+<view a:else class="class_page">
+  暂无房源
+</view>

@@ -36,21 +36,35 @@
 
 <!-- 位置 -->
   <view class="quyu {{hyopen ? 'show' : 'disappear'}} ">
-    <view class="qy quyu-left">
+    <view a:if="{{display1}}" class="qy quyu-left">
       <view class="{{select1 == item.id ? 'current' : ''}}" a:for="{{dropDownMenuFirstData}}" onTap="selectleft" data-model='{{item}}' a:key="unique">
         {{item.title}}
       </view>
     </view>
 
-    <view class="qy quyu-center">
-      <view class="{{select2 == item.id ? 'current2' : ''}}" a:for="{{dropDownMenuDataFirstRight}}" onTap="selectcenter" data-model='{{item}}' a:key="unique">
-        {{item.title}}
-      </view>
-    </view>
-    <view class="qy quyu-right">
-      <view class="{{select3 == item.id ? 'current2' : ''}}" a:for="{{dropDownMenuDataFirstCenter}}" onTap="selectright" data-model='{{item}}' a:key="unique">
-        {{item.title}}
-      </view>
+    <view a:if="{{display2}}" class="qy quyu-center">
+      <scroll-view scroll-y="true">
+        <view class="classStreet {{select2 == select1 ? 'current2' : ''}}" data-id="{{select1}}" onTap="selectcenter1" data-model='{{item}}'>
+          不限
+        </view>
+        <block  a:for="{{areaList}}" >
+          <view class="{{select2 == item.id ? 'current2' : ''}}" onTap="selectcenter" data-model='{{item}}'>
+            {{item.distName}}
+          </view>
+        </block>
+      </scroll-view>
+    </view> 
+    <view a:if="{{display3}}" class="qy quyu-right">
+      <scroll-view scroll-y="true">
+        <view class="classStreet {{select3 == select2 ? 'current2' : ''}}" data-id="{{select2}}" onTap="selectright1" data-model='{{item}}'>
+          不限
+        </view>
+        <block  a:for="{{streetList}}" >
+          <view class="classStreet {{select3 == item.id ? 'current2' : ''}}" onTap="selectright" data-model='{{item}}'>
+            {{item.distName}}
+          </view>
+        </block>
+      </scroll-view>
     </view>
   </view>
 
@@ -98,12 +112,15 @@
             <block a:if="{{rentslider2?'active' : ''}}">
                 {{sliderleft}}-{{sliderright}}元
             </block>
+            <block a:if="{{rentslider3?'active' : ''}}">
+                {{sliderleft}}-{{rentprice}}
+            </block>
             
             <view class="left-slider">
             <slider class="slider-left" value="{{sliderleft}}" min="0" max="5000" step="100" trackSize="4" handleSize="20" backgroundColor="#ffa800" activeColor="#bbbbbb" onChanging="leftSchange"/>
             </view>
             <view class="right-slider">
-            <slider class="slider-right" value="{{sliderright}}" min="5000" max="10000" step="100" trackSize="4" handleSize="20" backgroundColor="#bbbbbb" activeColor="#ffa800" onChanging="rightSchange"/>
+            <slider class="slider-right" value="{{9999}}" min="5000" max="10000" step="100" trackSize="4" handleSize="20" backgroundColor="#bbbbbb" activeColor="#ffa800" onChanging="rightSchange"/>
             </view>
             
           </view>
@@ -189,7 +206,6 @@
             </view>
           </view>
           <view class="p3"> 
-            <!-- <image src="/image/icon/weizhi-2.png" class="weizhi-img" /> -->
             {{list.toward}}    
           </view>
           <view class="p4">      {{list.template.feature.split(',')[0]}}    

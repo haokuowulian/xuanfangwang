@@ -13,9 +13,12 @@ Page({
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/bill/getBillByUserId.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:uid,
         pageIndex:that.data.pageIndex,
@@ -44,9 +47,12 @@ Page({
     var id = e.target.dataset.id;
     var mark = e.target.dataset.mark;
     var totalMoney = e.target.dataset.totalMoney;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/bill/addAlipayAuditing.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         billId:id,
       },
@@ -60,9 +66,12 @@ Page({
             tradeNO:trade_No,
             success: (res) => {
               console.log(res)
-              my.httpRequest({
+              my.request({
                 url: app.globalData.baseUrl_whj+'IF/bill/payAlipayAuditing.do', // 目标服务器url
                 method: 'POST',
+                headers:{
+                  'content-type': 'application/x-www-form-urlencoded'
+                },
                 data:{
                   billId:id,
                   resultCode:res.resultCode,
@@ -100,9 +109,12 @@ Page({
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/integralLog/editIntegral.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:userId,
         integral:integral,

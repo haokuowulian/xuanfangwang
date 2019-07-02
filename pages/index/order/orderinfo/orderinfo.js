@@ -29,9 +29,12 @@ Page({
       type:option.type
     });
     console.log(id)
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/order/getOrderById.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         id:id,
       },
@@ -74,9 +77,12 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
             url:app.globalData.baseUrl_whj+'IF/order/cancelLocalOrder.do', // 目标服务器url
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data:{
               userId:this.data.userId,
               orderId:this.data.orderid,
@@ -113,9 +119,12 @@ Page({
       key: 'userId', // 用户id
     }).data;
     if(voucher_id!=null||voucher_id!=''){
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl_whj+'IF/coupon/editCouponState.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           id:couponId,
           userId:userId,
@@ -140,9 +149,12 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
           url:app.globalData.baseUrl_whj+'IF/order/refundApplication.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             userId:uid,
             orderId:id,
@@ -172,9 +184,12 @@ Page({
     var that = this;
     var orderId = that.data.orderid;
 
-    my.httpRequest({
+    my.request({
       url: app.globalData.base_whj+"IF/alipay/fundAuthOrderAppFreeze.do", // 目标服务器
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         // userId:uid,
         orderId:orderId,
@@ -219,11 +234,14 @@ Page({
   },
    //上传支付结果状态码
   uploadCode(orderId,payWay,resultCode,alipayOrderNo){
-    my.httpRequest({
+    my.request({
       // url: app.globalData.baseUrl_whj+'IF/order/payAlipayFreezeOrder.do', // 目标服务器url
       //  url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
       url:  app.globalData.base_whj+'IF/order/paySuccessAndSetAutoNo.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         orderId:orderId,
         payWay:payWay,
@@ -262,9 +280,12 @@ Page({
   //同意退款
   confirm(){
     var that=this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/order/refundAlipayOrder.do", // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:this.data.userId,
         orderId:this.data.orderid

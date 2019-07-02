@@ -86,7 +86,6 @@
 .info-content4{
   width: 216rpx;
   height: 140rpx;
-  margin-left: 80rpx;
   margin-top: 25rpx;
   background-color: #f7f7f7;
   position: relative;

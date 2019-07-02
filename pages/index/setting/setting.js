@@ -28,9 +28,12 @@ Page({
       });
     }
 
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/user/isPassword.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         userId:userId,
       },

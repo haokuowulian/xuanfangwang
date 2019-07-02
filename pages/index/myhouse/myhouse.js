@@ -47,10 +47,13 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
     var that=this;
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHousingListIFByLandlord.do",
       // url: "http://192.168.1.193:8080/LLGY/"+"IF/housing/getHousingListIFByLandlord.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         userId:userId,
         rentType:rentType,
@@ -122,9 +125,12 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl_whj+'IF/housing/cancelRelease.do', // 目标服务器url
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data: {
               userId:userId,
               housingType:e.target.dataset.type,
@@ -163,9 +169,12 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl_whj+'IF/housing/cancelRelease.do', // 目标服务器url
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data: {
               userId:userId,
               housingType:e.target.dataset.type,

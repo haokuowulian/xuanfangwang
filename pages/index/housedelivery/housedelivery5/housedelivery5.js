@@ -44,22 +44,22 @@ Page({
     smokeMask:false,
     flashlight:false,
     rope:false,
-    img2:'/image/fangdong/miehuoqi.png',
-    img3:'/image/fangdong/fangdumianju.png',
-    img4:'/image/fangdong/shoudiantong.png',
-    img5:'/image/fangdong/shengzi.png',
+    img2:'/image/zpbj.png',
+    // img3:'/image/fangdong/fangdumianju.png',
+    // img4:'/image/fangdong/shoudiantong.png',
+    // img5:'/image/fangdong/shengzi.png',
     img2url:'',
-    img3url:'',
-    img4url:'',
-    img5url:'',
+    // img3url:'',
+    // img4url:'',
+    // img5url:'',
     canAddImg2:true,
-    canAddImg3:true,
-    canAddImg4:true,
-    canAddImg5:true,
+    // canAddImg3:true,
+    // canAddImg4:true,
+    // canAddImg5:true,
     upload2:false,
-    upload3:false,
-    upload4:false,
-    upload5:false,
+    // upload3:false,
+    // upload4:false,
+    // upload5:false,
     show1:true,
     show2:false,
     show3:false,
@@ -89,6 +89,46 @@ Page({
       rentType:rentType,
       roomcount:roomcount,
     });
+    var page2 = my.getStorageSync({
+      key: 'page2', // 缓存数据的key
+    }).data;
+    if(page2!=null&&page2!=''){
+      my.confirm({
+        title: '温馨提示',
+        content: '是否加载上回未提交数据？',
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        success: (res) => {
+          if(res.confirm){
+            that.setData({
+              housename:page2.housename,
+              describe:page2.describe,
+              imgs:page2.imgs,
+              img2url:page2.extinguisher,
+              extinguisher:page2.extinguisher,
+              sexCondition:page2.sexCondition,
+              feature:page2.feature,
+              furniture:page2.furniture,
+              // furnitures:page2.furnitures,
+              // features:page2.features,
+              furniturelist:page2.furniturelist,
+              featurelist:page2.featurelist,
+              endDates:page2.endDates,
+              sex:page2.sex,
+              images:page2.images,
+              upload:page2.upload,
+              canAddImg:page2.canAddImg,
+              imgs:page2.imgs,
+              img2:page2.img2,
+              upload2:page2.upload2,
+              canAddImg2:page2.canAddImg2,
+              fireList:page2.fireList,
+            });
+          }
+        },
+      });
+    }
+    
   },
   onShow(){
     console.log(this.data.roomList)
@@ -260,36 +300,36 @@ Page({
             fireList:fireList,
           });
         }
-        if(e.target.dataset.t==3){
-          fireList[1].selected=true;
-          that.setData({
-            img3:tempFilePaths[0],
-            upload3:true,
-            canAddImg3:false,
-            smokeMask:true,
-            fireList:fireList,
-          });
-        }
-        if(e.target.dataset.t==4){
-          fireList[2].selected=true;
-          that.setData({
-            img4:tempFilePaths[0],
-            upload4:true,
-            canAddImg4:false,
-            flashlight:true,
-            fireList:fireList,
-          });
-        }
-        if(e.target.dataset.t==5){
-          fireList[3].selected=true;
-          that.setData({
-            img5:tempFilePaths[0],
-            upload5:true,
-            canAddImg5:false,
-            rope:true,
-            fireList:fireList,
-          });
-        }
+        // if(e.target.dataset.t==3){
+        //   fireList[1].selected=true;
+        //   that.setData({
+        //     img3:tempFilePaths[0],
+        //     upload3:true,
+        //     canAddImg3:false,
+        //     smokeMask:true,
+        //     fireList:fireList,
+        //   });
+        // }
+        // if(e.target.dataset.t==4){
+        //   fireList[2].selected=true;
+        //   that.setData({
+        //     img4:tempFilePaths[0],
+        //     upload4:true,
+        //     canAddImg4:false,
+        //     flashlight:true,
+        //     fireList:fireList,
+        //   });
+        // }
+        // if(e.target.dataset.t==5){
+        //   fireList[3].selected=true;
+        //   that.setData({
+        //     img5:tempFilePaths[0],
+        //     upload5:true,
+        //     canAddImg5:false,
+        //     rope:true,
+        //     fireList:fireList,
+        //   });
+        // }
         that.uploadImgs(image,e.target.dataset.t);
       },
       
@@ -315,21 +355,21 @@ Page({
                 img2url:newimgs,
               });
             }
-            if(t==3){
-              that.setData({
-                img3url:newimgs,
-              });
-            }
-            if(t==4){
-              that.setData({
-                img4url:newimgs,
-              });
-            }
-            if(t==5){
-              that.setData({
-                img5url:newimgs,
-              });
-            }
+            // if(t==3){
+            //   that.setData({
+            //     img3url:newimgs,
+            //   });
+            // }
+            // if(t==4){
+            //   that.setData({
+            //     img4url:newimgs,
+            //   });
+            // }
+            // if(t==5){
+            //   that.setData({
+            //     img5url:newimgs,
+            //   });
+            // }
           },
           fail: function(res) {
             console.log(res);
@@ -394,46 +434,46 @@ Page({
       fireList[0].selected=false;
         that.setData({
         img2url:'',
-        img2:'/image/fangdong/miehuoqi.png',
+        img2:'/image/zpbj.png',
         upload2:false,
         canAddImg2:true,
         extinguisher:false,
         fireList:fireList,
       });
     }
-    if(e.target.dataset.t==3){
-      fireList[1].selected=false;
-        that.setData({
-        img3url:'',
-        img3:'/image/fangdong/fangdumianju.png',
-        upload3:false,
-        canAddImg3:true,
-        smokeMask:false,
-        fireList:fireList,
-      });
-    }
-    if(e.target.dataset.t==4){
-      fireList[2].selected=false;
-        that.setData({
-        img4url:'',
-        img4:'/image/fangdong/shoudiantong.png',
-        upload4:false,
-        canAddImg4:true,
-        flashlight:false,
-        fireList:fireList,
-      });
-    }
-    if(e.target.dataset.t==5){
-      fireList[3].selected=false;
-        that.setData({
-        img5url:'',
-        img5:'/image/fangdong/shengzi.png',
-        upload5:false,
-        canAddImg5:true,
-        rope:false,
-        fireList:fireList,
-      });
-    }
+    // if(e.target.dataset.t==3){
+    //   fireList[1].selected=false;
+    //     that.setData({
+    //     img3url:'',
+    //     img3:'/image/fangdong/fangdumianju.png',
+    //     upload3:false,
+    //     canAddImg3:true,
+    //     smokeMask:false,
+    //     fireList:fireList,
+    //   });
+    // }
+    // if(e.target.dataset.t==4){
+    //   fireList[2].selected=false;
+    //     that.setData({
+    //     img4url:'',
+    //     img4:'/image/fangdong/shoudiantong.png',
+    //     upload4:false,
+    //     canAddImg4:true,
+    //     flashlight:false,
+    //     fireList:fireList,
+    //   });
+    // }
+    // if(e.target.dataset.t==5){
+    //   fireList[3].selected=false;
+    //     that.setData({
+    //     img5url:'',
+    //     img5:'/image/fangdong/shengzi.png',
+    //     upload5:false,
+    //     canAddImg5:true,
+    //     rope:false,
+    //     fireList:fireList,
+    //   });
+    // }
 
     
   },
@@ -564,9 +604,9 @@ Page({
     console.log(that.data.imgs)
 
     var extinguisher = that.data.img2url;
-    var smokeMask = that.data.img3url;
-    var flashlight = that.data.img4url;
-    var rope = that.data.img5url;
+    // var smokeMask = that.data.img3url;
+    // var flashlight = that.data.img4url;
+    // var rope = that.data.img5url;
     //测试---------------------------------------测试
     // my.navigateTo({
     //   url: '/pages/index/housedelivery/housedelivery6/housedelivery6',
@@ -585,9 +625,33 @@ Page({
       if(imgs.length>0){
         if(furnitures!=''){
           if(features!=''){
-            if(extinguisher!=''&&smokeMask!=''&&flashlight!=''&&rope!=''){
-              var furniture = furnitures.join(",");
-              var feature = features.join(",");
+            if(extinguisher!=''){
+              var page2 = {
+                housename:housename,
+                describe:describe,
+                imgs:imgs,
+                img2url:extinguisher,
+                extinguisher:that.data.extinguisher,
+                sexCondition:that.data.sexCondition,
+                feature:features,
+                furniture:furnitures,
+                // furnitures:furnitures,
+                // features:features,
+                furniturelist:that.data.furniturelist,
+                featurelist:that.data.featurelist,
+                endDates:endDates,
+                sex:that.data.sex,
+                images:that.data.images,
+                upload:that.data.upload,
+                canAddImg:that.data.canAddImg,
+                imgs:that.data.imgs,
+                img2:that.data.img2,
+                upload2:that.data.upload2,
+                canAddImg2:that.data.canAddImg2,
+                fireList:that.data.fireList,
+              }
+              var furniture = furnitures.join(',');
+              var feature = features.join(',');
               my.setStorageSync({
                 key: 'r_furniture', // 缓存数据的key
                 data: furniture, // 要缓存的数据
@@ -600,18 +664,18 @@ Page({
                 key: 'r_extinguisher', // 缓存数据的key
                 data: that.data.extinguisher, // 要缓存的数据
               });
-              my.setStorageSync({
-                key: 'r_smokeMask', // 缓存数据的key
-                data: that.data.smokeMask, // 要缓存的数据
-              });
-              my.setStorageSync({
-                key: 'r_flashlight', // 缓存数据的key
-                data: that.data.flashlight, // 要缓存的数据
-              });
-              my.setStorageSync({
-                key: 'r_rope', // 缓存数据的key
-                data: that.data.rope, // 要缓存的数据
-              });
+              // my.setStorageSync({
+              //   key: 'r_smokeMask', // 缓存数据的key
+              //   data: that.data.smokeMask, // 要缓存的数据
+              // });
+              // my.setStorageSync({
+              //   key: 'r_flashlight', // 缓存数据的key
+              //   data: that.data.flashlight, // 要缓存的数据
+              // });
+              // my.setStorageSync({
+              //   key: 'r_rope', // 缓存数据的key
+              //   data: that.data.rope, // 要缓存的数据
+              // });
               my.setStorageSync({
                 key: 'r_sexCondition', // 租客性别限制
                 data: that.data.sexCondition, // 要缓存的数据
@@ -623,18 +687,18 @@ Page({
                 key: 'r_extinguisherimg', // 缓存数据的key
                 data: extinguisher, // 要缓存的数据
               });
-              my.setStorageSync({
-                key: 'r_smokeMaskimg', // 缓存数据的key
-                data: smokeMask, // 要缓存的数据
-              });
-              my.setStorageSync({
-                key: 'r_flashlightimg', // 缓存数据的key
-                data: flashlight, // 要缓存的数据
-              });
-              my.setStorageSync({
-                key: 'r_ropeimg', // 缓存数据的key
-                data: rope, // 要缓存的数据
-              });
+              // my.setStorageSync({
+              //   key: 'r_smokeMaskimg', // 缓存数据的key
+              //   data: smokeMask, // 要缓存的数据
+              // });
+              // my.setStorageSync({
+              //   key: 'r_flashlightimg', // 缓存数据的key
+              //   data: flashlight, // 要缓存的数据
+              // });
+              // my.setStorageSync({
+              //   key: 'r_ropeimg', // 缓存数据的key
+              //   data: rope, // 要缓存的数据
+              // });
 
               my.setStorageSync({
                 key: 'r_housename', // 缓存数据的key
@@ -647,6 +711,12 @@ Page({
               my.setStorageSync({
                 key: 'r_houseimg', // 缓存数据的key
                 data: imgs, // 要缓存的数据
+              });
+
+              
+              my.setStorageSync({
+                key: 'page2', // 缓存数据的key
+                data: page2, // 要缓存的数据
               });
 
               my.navigateTo({
@@ -908,10 +978,10 @@ Page({
     console.log(room)
 
 
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid,
       headers:{
-        "Content-Type":'application/json'
+        'content-type': 'application/x-www-form-urlencoded'
       },
       method:'POST',
       dataType:'json',
@@ -972,11 +1042,13 @@ Page({
     // var apartmentId=houseInfo.apartment.id;
     // var houseId=houseInfo.id;
     
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+"IF/landlordCompanyServlet", // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
-        
         name:name,
         idNo:idNo,
         apartmentId:apartmentId,

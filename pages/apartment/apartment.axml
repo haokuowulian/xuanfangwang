@@ -122,14 +122,14 @@
 
   <view class="villageinfo" onTap="goToNearBy">
     <view class="houseinfo-title" style="margin-left:0">周边交通</view>
-    <image class="icon-size" src="/image/icon/right.png"   /> 
+    <image class="icon-size" src="/image/icon/right.png"/> 
    
   </view>
 </view>
 <view class="horiztalView" a:if="{{!isLandrord}}" ></view>
   <view class="operate" a:if="{{!isLandrord}}">
     <view class="operate-shoucang" ><view onTap="collectOrUncollect"><image src="{{collectUrl}}" class="aixin-img" /></view></view>
-    <view class="operate-shoucang1" onTap="toChat"><view onTap="collectOrUncollect"><image src="/image/icon/xiaoxi.png" class="lt-img" /></view></view>
+    <view class="operate-shoucang1" onTap="toChat"><view><image src="/image/icon/xiaoxi.png" class="lt-img" /></view></view>
     <view a:if="{{!isBespeak}}" class="operate-yuyue" onTap="toConfirmpage">预约看房</view>
     <view a:if="{{isBespeak}}" class="operate-yuyue" onTap="alertPromt">已预约</view>
     <view class="operate-qianyue" onTap="toSigning">立即签约</view>

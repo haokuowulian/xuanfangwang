@@ -23,10 +23,47 @@ Page({
     var roomcount = my.getStorageSync({
       key: 'r_roomcount', // 缓存数据的key
     }).data;
+    var page3 = my.getStorageSync({
+      key: 'page3', // 缓存数据的key
+    }).data;
+    
     that.setData({
       rentType:rentType,
       roomcount:roomcount,
     });
+    if(page3.roomcount==roomcount){
+      my.confirm({
+        title: '温馨提示',
+        content: '是否加载上回未提交数据？',
+        confirmButtonText: '是',
+        cancelButtonText: '否',
+        success: (res) => {
+          if(res.confirm){
+            that.setData({
+              rentType:rentType,
+              roomList:page3.roomList,
+              tempList:page3.tempList,
+              housename:page3.housename,
+              roomcount:page3.roomcount,
+              endDates:page3.endDates,
+              describe:page3.describe,
+              roomcount:page3.roomcount,
+            });
+          }else{
+            that.setData({
+              rentType:rentType,
+              roomcount:roomcount,
+            });
+          }
+        },
+      });
+      
+    }else{
+      that.setData({
+        rentType:rentType,
+        roomcount:roomcount,
+      });
+    }
   },
   onShow(){
     console.log(this.data.roomList)
@@ -55,17 +92,6 @@ Page({
   publish(){
     var that = this;
     var roomList = that.data.roomList;
-    // var furniture = that.data.furniture;
-    // var feature = that.data.feature;
-    // if(furniture!=''&&feature!=''){
-    //   my.setStorageSync({
-    //     key: 'r_furniture', // 缓存数据的key
-    //     data: furniture, // 要缓存的数据
-    //   });
-    //   my.setStorageSync({
-    //     key: 'r_feature', // 缓存数据的key
-    //     data: feature, // 要缓存的数据
-    //   });
       if(roomList.length>0){
         that.getHouseInfo(roomList);
       }else{
@@ -73,10 +99,6 @@ Page({
           title: '至少需要出租一间房间' 
         });
       }
-    // }else{
-    //   my.alert({ title: '请填写完整' });
-    // }
-    
   },
   toRoominfo(e){
     var tar = e.target.dataset.t;
@@ -179,12 +201,6 @@ Page({
     var nearby = my.getStorageSync({
       key: 'r_nearby', // 缓存数据的key
     }).data;
-    // var houseimg1 = my.getStorageSync({
-    //   key: 'r_houseimg', // 缓存数据的key
-    // }).data;
-    //  console.log(houseimg1);
-    // var houseimg = houseimg1.join(',');
-    // console.log(houseimg);
     var rentType = my.getStorageSync({
       key: 'r_rentType', // 缓存数据的key
     }).data;
@@ -260,12 +276,6 @@ Page({
       totalFloor:totalFloor,
       elevator:elevator,
 
-
-      // vrelation:vrelation,
-      // idcard_positive:img1url,
-      // idcard_reverse:img2url,
-      // licence:img3url,
-      //业主授权许可
       issuerRelation:vrelation,
       identityCardFront:img1url,
       identityCardReverse:img2url,
@@ -273,26 +283,11 @@ Page({
       contract:img4url,
       rentType:rentType,
       description:describe,
-      // images:houseimg,
       spell:0,
     };
 
     var template = tempList;
-    // {
-    //   // userId:uid,
-    //   templateName:templateName,
-    //   // area:varea,
-    //   // decorateType:decorateType,
-    //   tempList:tempList,
-    //   // furniture:furniture,
-    //   // feature:feature,
-    // };
-    // var tempList = 
-
     var room = roomList;
-
-
-
 
     console.log(apartment)
     console.log(house)
@@ -306,10 +301,10 @@ Page({
       cancelButtonText: '取消提交',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl_whj+ 'IF/housing/addHousingIF.do?userId='+uid,
             headers:{
-              "Content-Type":'application/json'
+              'content-type':'application/json'
             },
             method:'POST',
             dataType:'json',
@@ -318,7 +313,6 @@ Page({
               house:house,
               rooms:room,
               templates:template,
-            
             },
             success: (res) => {
               console.log(res)
@@ -326,6 +320,15 @@ Page({
               my.alert({
                 title: '提交成功！',
                 success: () => {
+                  my.removeStorageSync({
+                    key: 'page1', // 缓存数据的key
+                  });
+                  my.removeStorageSync({
+                    key: 'page2', // 缓存数据的key
+                  });
+                  my.removeStorageSync({
+                    key: 'page3', // 缓存数据的key
+                  });
                   my.navigateTo({
                     url:'/pages/index/housedelivery/page_result/page_result?type=1',
                   });
@@ -359,11 +362,13 @@ Page({
     // var apartmentId=houseInfo.apartment.id;
     // var houseId=houseInfo.id;
     
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+"IF/landlordCompanyServlet", // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
-        
         name:name,
         idNo:idNo,
         apartmentId:apartmentId,
@@ -392,7 +397,7 @@ Page({
     });
   },
 
-
+  
    chooseDate(){
     var startDate = app.getDate('yyyy-MM-dd',0);
     var currentDate = app.getFormateDate1('yyyy-MM-dd',1,0);
@@ -449,5 +454,21 @@ Page({
     }
 
     
+  },
+  onUnload() {
+    var that = this;
+    var page3 = {
+      roomList:that.data.roomList,
+      tempList:that.data.tempList,
+      housename:that.data.housename,
+      roomcount:that.data.roomcount,
+      endDates:that.data.endDates,
+      describe:that.data.describe,
+    }
+    my.setStorageSync({
+      key: 'page3', // 缓存数据的key
+      data: page3, // 要缓存的数据
+    });
+ 
   },
 });

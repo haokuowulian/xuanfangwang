@@ -69,9 +69,12 @@ Page({
     var nowTime = myDate.getTime();
     
    
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/getBespeakList.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         uid:that.data.uid,
         pageIndex:that.data.pageIndex,
@@ -155,9 +158,12 @@ Page({
   cancel(id){
     var that=this;
     my.showLoading();
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         uid:this.data.uid,
         id:id,
@@ -205,9 +211,12 @@ Page({
   delete(id){
     var that=this;
     my.showLoading();
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/delBespeakById.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         id:id
       },

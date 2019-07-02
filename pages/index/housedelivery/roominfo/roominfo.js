@@ -34,25 +34,14 @@ Page({
     // images:[],
     img1:'',
     img11:'/image/zpbj.png',
-    img2:'/image/fangdong/miehuoqi.png',
-    img3:'/image/fangdong/fangdumianju.png',
-    img4:'/image/fangdong/shoudiantong.png',
-    img5:'/image/fangdong/shengzi.png',
+    img2:'/image/zpbj.png',
+
     img1url:'',
     img2url:'',
-    img3url:'',
-    img4url:'',
-    img5url:'',
     canAddImg1:true,
     canAddImg2:true,
-    canAddImg3:true,
-    canAddImg4:true,
-    canAddImg5:true,
     upload1:false,
     upload2:false,
-    upload3:false,
-    upload4:false,
-    upload5:false,
     waterfree:false,
     watersave:false,
     waterdefault:true,
@@ -469,6 +458,10 @@ Page({
         watertext:'请添加水电费信息',
       });
     }
+    this.setData({
+      furniturelist:this.data.furniturelist,
+      featurelist:this.data.featurelist,
+    });
     
   },
   toInput(e){
@@ -975,26 +968,6 @@ Page({
       var roomrentNum = regNum.exec(roomrent*1);
       if(roomareaNum){
         that.toSaveData(water);
-        // if(roomrentNum){
-        //   that.toSaveData(water);
-        //   // if(img1url!=null&&img1url!=''&&canAddImg1==true){
-        //   //   that.toSaveData(img1url,water);
-        //   // }else{
-        //   //   console.log("上传房间照片")
-        //   //   that.uploadImg(img1,water);
-        //   // }
-
-        // }else{
-        //   my.alert({
-        //     title: '租金请输入数字',
-        //     success:() =>{
-        //       that.setData({
-        //         roomarea:'',
-        //       });
-        //     },
-        //   });
-        // }
-        
       }else{
         my.alert({
           title: '面积请输入数字',
@@ -1047,9 +1020,6 @@ Page({
   toSaveData(water){
     var that = this;
     console.log(that.data.extinguisher)
-    console.log(that.data.smokeMask)
-    console.log(that.data.flashlight)
-    console.log(that.data.rope)
       var sexCondition = that.data.sexCondition;
       // var imgs1=url;
       var property = that.data.property;
@@ -1058,14 +1028,8 @@ Page({
       var images = that.data.images;
       var imgs = that.data.imgs;
       var img2url = that.data.img2url;
-      var img3url = that.data.img3url;
-      var img4url = that.data.img4url;
-      var img5url = that.data.img5url;
       var fireid = that.data.selectId;
       var extinguisher = that.data.extinguisher;
-      var smokeMask = that.data.smokeMask;
-      var flashlight = that.data.flashlight;
-      var rope = that.data.rope;
       var payment = that.data.payment;
       var peopleNum = that.data.peopleNum;
       var tar = that.data.tar;
@@ -1093,20 +1057,12 @@ Page({
       var furnitures = that.data.furniture;
       var features = that.data.feature;
       if(imgs!=''){
-        if(img2url!=''&&img3url!=''&&img4url!=''&&img5url!=''){
+        if(img2url!=''){
           if(furnitures!=''){
             if(features !=''){
               var furniture = furnitures.join(",");
               var feature = features.join(",");
               console.log('templateName=-------------->'+templateName)
-              // var vaddress = my.getStorageSync({
-              //   key: 'r_vaddress', // 缓存数据的key
-              // }).data;
-              // var v_address = my.getStorageSync({
-              //   key: 'r_address', // 缓存数据的key
-              // }).data;
-              // var address = v_address+vaddress;
-              // var templateName = address+houseNo;
 
               //房间信息
               var obj1 = {
@@ -1147,15 +1103,9 @@ Page({
                 furniture:furniture,
                 feature:feature,
                 extinguisher:extinguisher,
-                smokeMask:smokeMask,
-                flashlight:flashlight,
-                rope:rope,
                 extinguisherImage:img2url,
-                smokeMaskImage:img3url,
-                flashlightImage:img4url,
-                ropeImage:img5url,
                 sexneed:sexCondition,
-                sex:that.data.bed,
+                sex:that.data.sex,
                 propertyFee:property,
               };
               

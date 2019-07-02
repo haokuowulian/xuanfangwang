@@ -42,9 +42,12 @@ Page({
       key: 'token', // 缓存数据的key
     }).data;
     console.log('token='+token)
-    my.httpRequest({
+    my.request({
       url: url, // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:uid,
         pageIndex:that.data.pageIndex,
@@ -133,9 +136,12 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
             url:app.globalData.base_whj+'IF/order/refundApplication.do', // 目标服务器url
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data:{
               userId:uid,
               orderId:orderid,
@@ -172,9 +178,12 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
 
-    my.httpRequest({
+    my.request({
       url: app.globalData.base_whj+"IF/alipay/fundAuthOrderAppFreeze.do", // 目标服务器
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         // userId:uid,
         orderId:orderId,
@@ -220,11 +229,14 @@ Page({
   },
    //上传支付结果状态码
   uploadCode(orderId,payWay,resultCode,alipayOrderNo){
-    my.httpRequest({
+    my.request({
       // url: app.globalData.baseUrl_whj+'IF/order/payAlipayFreezeOrder.do', // 目标服务器url
       //  url: app.globalData.baseUrl_whj+'IF/order/payAlipayOrder.do', // 目标服务器url
       url: app.globalData.base_whj+'IF/order/paySuccessAndSetAutoNo.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         orderId:orderId,
         payWay:payWay,
@@ -252,9 +264,12 @@ Page({
       success: (res) => {
         var myCode=res.authCode;
         console.log(myCode)
-        my.httpRequest({
+        my.request({
           url:app.globalData.base_whj+ 'IF/alipay/tradePay.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             orderId:orderId,
             autoCode:myCode,
@@ -280,9 +295,12 @@ Page({
     console.log(uid)
     console.log(orderId)
     console.log('-------------delete1-----------------')
-    my.httpRequest({
+    my.request({
       url: app.globalData.base_whj+'IF/order/disabledOrder.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         orderId:orderId,
         userId:uid,
@@ -313,9 +331,12 @@ Page({
     var userId = my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+'IF/integralLog/editIntegral.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:userId,
         integral:integral,

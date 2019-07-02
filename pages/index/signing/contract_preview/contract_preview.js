@@ -99,9 +99,12 @@ Page({
   getLandlordInfo(fd_id){
     console.log('--------fd--------');
     var that = this;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+'IF/user/getUserInfoById.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:fd_id,
       },

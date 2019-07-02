@@ -82,9 +82,12 @@ Page({
       roomId=this.data.houseDetail.id
     }
      var that=this;
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl+"IF/bespeak/saveBespeak.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         apartmentId: apartmentId,
         houseId: houseId,

@@ -163,6 +163,43 @@
   align-items: center;
   border-radius: 10rpx;
 }
+.classList{
+  /* height: 100%; */
+  width: 100%;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0%;
+}
+.showHeight{
+  top: 40%;
+}
+.showHeight1{
+
+}
+.class_content{
+  height: 185rpx;
+  width: 680rpx;
+  padding-left: 35rpx;
+  padding-right: 35rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 25rpx;
+  margin-bottom: 10rpx;
+}
+.content_img{
+  border-radius: 6rpx;
+  height: 185rpx;
+  width: 250rpx;
+  border: #666666 1rpx solid;
+}
+.content_info{
+  width: 410rpx;
+  height: 185rpx;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+
 .housecount{
   width: 280rpx;
   height: 65rpx;
@@ -299,4 +336,13 @@
   height: 100rpx;
   width: 100rpx;
   border-radius: 50rpx;
+}
+
+
+
+
+/* 以上为原页面样式 */
+.img_map{
+  width: 750rpx;
+  height: 100vh;
 }

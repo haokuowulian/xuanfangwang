@@ -57,12 +57,15 @@ Page({
   //获取房源详情
   getHouseDetail(rentType){
     var that=this;
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/housing/getHousingDetailIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
-        id: this.data.id,
-        rentType: this.data.rentType
+        id: that.data.id,
+        rentType: that.data.rentType
       },
       dataType: 'json',
       success: function(res) {
@@ -114,13 +117,16 @@ Page({
     }else{
       console.log(this.data.rentType);
       var that=this;
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/myFavorite/isCollect.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
-        userId:this.data.userId,
-        housingId: this.data.id,
-        housingType: this.data.rentType
+        userId:that.data.userId,
+        housingId: that.data.id,
+        housingType: that.data.rentType
       },
       dataType: 'json',
       success: function(res) {
@@ -155,16 +161,19 @@ Page({
  //获取是否预约
   getIsBespeak(){
     var that = this;
-    if(!this.data.userId||this.data.userId==''){
-      this.setData({
+    if(!that.data.userId||that.data.userId==''){
+      that.setData({
         collectUrl:'/image/houseicon/uncollect.png',
         isColect:false
       });
     }else{
      
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl+"IF/bespeak/isBespeak.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         userId:that.data.userId,
         housingId: that.data.id,
@@ -283,13 +292,16 @@ Page({
     });
      var that=this;
      my.showLoading();
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/myFavorite/addMyFavorite.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
-        userId:this.data.userId,
-        housingId: this.data.id,
-        housingType: this.data.rentType
+        userId:that.data.userId,
+        housingId: that.data.id,
+        housingType: that.data.rentType
       },
       dataType: 'json',
       success: function(res) {
@@ -322,12 +334,15 @@ Page({
     console.log(this.data.collectId);
     my.showLoading();
     var that=this;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/myFavorite/delMyFavorite.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
-        userId:this.data.userId,
-        id: this.data.collectId
+        userId:that.data.userId,
+        id: that.data.collectId
       },
       dataType: 'json',
       success: function(res) {
@@ -369,12 +384,15 @@ Page({
   cancel(){
     var that=this;
     my.showLoading();
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/bespeak/editBespeak.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
-        uid:this.data.userId,
-        id:this.data.bespeakId,
+        uid:that.data.userId,
+        id:that.data.bespeakId,
         state:3
       },
       dataType: 'json',
@@ -504,9 +522,12 @@ Page({
       console.log('2233')
       // var landlordId = housedetail.landlordId;
       // console.log(landlordId)
-      my.httpRequest({
+      my.request({
         url: app.globalData.baseUrl+'IF/user/getUserInfoById.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data: {
           userId:landlordId,
         },

@@ -23,9 +23,12 @@ Page({
   getMySuggest(userId){
     var that = this;
     var type = 0;
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'/IF/complaintSuggest/getComplaintSuggestList.do',
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         uid:userId,
         type:type,

@@ -51,9 +51,12 @@ Page({
      key: 'phone', // 缓存数据的key
     }).data;
 
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl_whj+'IF/user/getUserInfoById.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:userId,
       },

@@ -10,12 +10,13 @@ const includePoints = [{
 
 Page({
   data: {
-    scale: 11,
+    cityId:'',
+    scale: 10,
     lng: '',
     lat: '',
     nearByHouseList:[],
     circles:[],
-    markers: '',
+    markers: [],
     titleCss1: true,
     titleCss2: false,
     distance: 20000,
@@ -32,6 +33,12 @@ Page({
 
     show1:false,
     show2:false,
+
+    showList:false,
+    houseList:[],
+
+    map_width:'100%',
+    map_height:'100vh',
   },
   onReady() {
     // 使用 my.createMapContext 获取 map 上下文
@@ -39,60 +46,73 @@ Page({
     
   },
   onLoad(){
-    // this.getLocation();
+    this.getLocation();
+    // var map = new aMap.Map('container',{
+    //    center:[117.000923,36.675807],
+    //    zoom:11
+    // });
+    
   },
   onShow(){
-    this.getLocation();
+    // this.getLocation();
   },
   //获取当前位置
   getLocation(){
     var that=this;
-    my.getLocation({
-      type:2,
-      success(res) {
-        my.hideLoading();
-        that.setData({
-          lng:res.longitude,
-          lat:res.latitude,
-          circles: [ {
-              longitude: res.longitude,
-              latitude: res.latitude,
-              fillColor: '#0099FF33',
-              radius: that.data.distance,
-              strokeWidth: 3,
-            } ]
-        });
+    var cityId = my.getStorageSync({
+      key: 'cityAdcode', // 缓存数据的key
+    }).data;
+    var lng = my.getStorageSync({
+      key: 'local_longitude', // 缓存数据的key
+    }).data;
+    var lat = my.getStorageSync({
+      key: 'local_latitude', // 缓存数据的key
+    }).data;
+
+    that.getNearByHousing(cityId);
+    that.setData({
+      lng: lng,
+      lat: lat,
+      cityId:cityId,
+    });
+    // my.getLocation({
+    //   type:2,
+    //   success(res) {
+    //     my.hideLoading();
+    //     that.setData({
+    //       lng:res.longitude,
+    //       lat:res.latitude,
+    //     });
        
-        that.getNearByHousing();
+    //     that.getNearByHousing();
         
-      },
-      fail() {
-        my.hideLoading();
-        my.alert({ title: '定位失败' });
-      },
-    })
+    //   },
+    //   fail() {
+    //     my.hideLoading();
+    //     my.alert({ title: '定位失败' });
+    //   },
+    // })
  },
   //获取附近房源
-  getNearByHousing(){
+  getNearByHousing(cityId){
      var that=this;
-     my.httpRequest({
-      url: app.globalData.baseUrl_whj+"IF/homePage/getHomeHouseIF.do",
+     my.request({
+      url: app.globalData.baseUrl_whj+"IF/housing/getDistHousingCount.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
-        lng: this.data.lng,
-        lat: this.data.lat,
-        distance:this.data.distance
+        cityId:cityId,
       },
       dataType: 'json',
       success: function(res) {
-        console.log(res.data);
+        console.log(res);
         if(res.data.success){
-          that.setData({
-            // houseNum:res.data.count,
-            nearByHouseList:res.data.data,
-            housecount:res.data.data.length
-          });
-          that.setMarkers();
+          // that.setData({
+          //   scale:11,
+          // });
+          that.setMarkers(res.data.data,11);
         }
       },
       fail: function(res) {
@@ -103,42 +123,84 @@ Page({
       }
     });
   },
-  setMarkers(){
-     var houseMarkers=[];
-    for(var i=0;i<this.data.nearByHouseList.length;i++){
+
+  setMarkers(houseList,scale){
+    var that = this;
+    // that.data.markers=[];
+    var houseMarkers=[];
+    console.log(houseList.length)
+    for(var i=0;i<houseList.length;i++){
       var obj={
-        id:i+1,
-        latitude: this.data.nearByHouseList[i].latitude,
-        longitude: this.data.nearByHouseList[i].longitude,
+        id:houseList[i].id,
+        latitude: houseList[i].latitude,
+        longitude: houseList[i].longitude,
         width: 1,
         height: 1,
-        // iconPath: '/image/mark_bs.png',
         "label": {
-          content: this.data.nearByHouseList[i].apartment.apartmentName,
+          content: houseList[i].distName+' '+houseList[i].count+'套',
           color: "#ffffff",
           fontSize: 16,
           borderRadius: 5,
           bgColor: "#fd9f28",
           padding: 10,
-          display: 'ALWAYS',
+          // display: 'ALWAYS',
         },
         markerLevel: -1
       }
       houseMarkers.push(obj);
     }
-   
-    this.setData( {
+    that.onShow();
+    that.setData( {
       markers: houseMarkers,
-      distance:this.data.distance
+      distance:that.data.distance,
+      scale:scale,
+    } );
+  },
+setMarkers1(houseList,scale){
+    var that = this;
+    // that.data.markers=[];
+    var houseMarkers=[];
+    console.log(houseList.length)
+    for(var i=0;i<houseList.length;i++){
+      if(houseList[i].count>0){
+         var obj={
+          id:houseList[i].id,
+          latitude: houseList[i].latitude,
+          longitude: houseList[i].longitude,
+          width: 1,
+          height: 1,
+          "label": {
+            content: houseList[i].distName+' '+houseList[i].count+'套',
+            color: "#ffffff",
+            fontSize: 16,
+            borderRadius: 5,
+            bgColor: "#fd9f28",
+            padding: 10,
+            // display: 'ALWAYS',
+          },
+          markerLevel: -1
+        }
+        houseMarkers.push(obj);
+      }else{
+       
+      }
+    }
+    that.onShow();
+    that.setData( {
+      markers: houseMarkers,
+      distance:that.data.distance,
+      scale:scale,
     } );
   },
   regionchange ( e )
   {
+    var that = this;
     console.log( 'regionchange', e );
   },
   markertap ( e )
   {
     console.log( 'marker tap', e );
+    this.callouttap(e);
   },
   controltap ( e )
   {
@@ -147,21 +209,99 @@ Page({
   tap ()
   {
     console.log( 'tap' );
+    this.setData({
+      showList:false,
+    });
   },
   callouttap ( e )
   {
+    var that = this;
     console.log( 'callout tap', e );
+    var distId = e.markerId;
+    console.log(distId)
+    console.log(String(distId).length)
+    if(String(distId).length==6){
+      console.log( 'come in' );
+      that.setData( {
+        distance:that.data.distance,
+        // scale:13,
+        lng: e.longitude,
+        lat: e.latitude,
+      } );
+      my.request({
+        url: app.globalData.baseUrl_whj+"IF/housing/getStreetHousingCount.do",
+        method: 'POST',
+        headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+        data: {
+          distId:distId,
+        },
+        dataType: 'json',
+        success: function(res) {
+          console.log(res);
+          my.hideLoading();
+          if(res.data.success){
+            that.setMarkers1(res.data.data,13);
+          }
+        },
+        fail: function(res) {
+          console.log(res);
+          my.hideLoading();
+        },
+        complete: function(res) {
+          my.hideLoading();
+        }
+      });
+    }
+    if(String(distId).length==9){
+      console.log( 'come in' );
+      my.navigateTo({
+        url:'/pages/index/findhouse/house_street/house_street?streetId='+distId,
+      });
+      // that.setData( {
+      //   distance:that.data.distance,
+      //   scale:14,
+      //   lng: e.longitude,
+      //   lat: e.latitude,
+      //   showList:true,
+      //   map_width:'100%',
+      //   map_height:'40%',
+      // } );
+      // my.request({
+      //   url: app.globalData.baseUrl_whj+"IF/housing/getHousingByStreetId.do",
+      //   method: 'POST',
+      //   data: {
+      //     streetId:distId,
+      //   },
+      //   dataType: 'json',
+      //   success: function(res) {
+      //     console.log(res);
+      //     my.hideLoading();
+      //     that.setData({
+      //       houseList:res.data.data,
+      //     });
+      //   },
+      //   fail: function(res) {
+      //     console.log(res);
+      //     my.hideLoading();
+      //   },
+      //   complete: function(res) {
+      //     my.hideLoading();
+      //   }
+      // });
+    }
   },
   mapMoveToLocation ()
   {
-    this.mapCtx.moveToLocation();
+    // this.mapCtx.moveToLocation();
+    this.getLocation();
   },
 
   // 跳转房屋查找
   searchHouse(){
     console.log('222222222222')
      my.navigateTo({
-      // url: '/pages/index/renting/renting?type=1',
       url: '/pages/search/search',
     });
   },
@@ -177,136 +317,4 @@ Page({
     });
     }
   },
-  // titleClick1(e){
-  //   if(this.titleCss1){
-  //     this.setData({
-  //       titleCss1:false,
-  //       titleCss2:false,
-  //       tabdisplay1:true,
-  //       tabdisplay2:false,
-  //       circles,
-  //       markers:housemarkers1,
-  //       map1:true,
-  //       map2:false,
-  //     });
-  //   }else{
-  //     this.setData({
-  //       titleCss1:true,
-  //       titleCss2:false,
-  //       tabdisplay1:true,
-  //       tabdisplay2:false,
-  //       circles,
-  //       markers:housemarkers1,
-  //       map1:true,
-  //       map2:false,
-  //     });
-  //   }
-  // },
-  // titleClick2(e){
-  //   if(this.titleCss2){
-  //     this.setData({
-  //       titleCss1:false,
-  //       titleCss2:false,
-  //       tabdisplay1:true,
-  //       tabdisplay2:false,
-  //       circles:[],
-  //       markers:hotels,
-  //       map1:false,
-  //       map2:true,
-  //     });
-  //   }else{
-  //     this.setData({
-  //       titleCss1:false,
-  //       titleCss2:true,
-  //       tabdisplay1:false,
-  //       tabdisplay2:true,
-  //       circles:[],
-  //       markers:hotels,
-  //       map1:false,
-  //       map2:true,
-  //     });
-  //   }
-  // },
-
-  // distanceChange(e){
-  //   console.log(e.detail.value)
-    
-  //   if(e.detail.value>0&&e.detail.value<=410){
-  //     this.setData({
-  //       distance1:false,
-  //       distance2:false,
-  //       distance3:false,
-  //       distance4:false,
-  //       distance5:false,
-  //       distance:'1km',
-  //       scale: 14,
-  //       newradius:1000,
-  //       markers:housemarkers1,
-  //       // markers:housemarkers,
-  //     });
-  //   }
-  //   if(e.detail.value>410&&e.detail.value<=1550){
-  //     this.setData({
-  //       distance1:true,
-  //       distance2:false,
-  //       distance3:false,
-  //       distance4:false,
-  //       distance5:false,
-  //       distance:'1km',
-  //       scale: 14,
-  //       ['circles[0].radius']:1000,
-  //       markers:housemarkers1,
-  //     });
-  //   }
-  //   if(e.detail.value>1550&&e.detail.value<=2750){
-  //     this.setData({
-  //       distance1:true,
-  //       distance2:true,
-  //       distance3:false,
-  //       distance4:false,
-  //       distance5:false,
-  //       distance:'2km',
-  //       scale: 13,
-  //       ['circles[0].radius']:2000,
-  //       markers:housemarkers1,
-  //     });
-  //   }
-  //   if(e.detail.value>2750&&e.detail.value<=3920){
-  //     this.setData({
-  //       distance1:true,
-  //       distance2:true,
-  //       distance3:true,
-  //       distance4:false,
-  //       distance5:false,
-  //       distance:'3km',
-  //       scale: 13,
-  //       ['circles[0].radius']:3000,
-  //     });
-  //   }
-  //   if(e.detail.value>3920&&e.detail.value<=5120){
-  //     this.setData({
-  //       distance1:true,
-  //       distance2:true,
-  //       distance3:true,
-  //       distance4:true,
-  //       distance5:false,
-  //       distance:'4km',
-  //       scale: 12,
-  //       ['circles[0].radius']:4000,
-  //     });
-  //   }
-  //   if(e.detail.value>5120){
-  //     this.setData({
-  //       distance1:true,
-  //       distance2:true,
-  //       distance3:true,
-  //       distance4:true,
-  //       distance5:true,
-  //       distance:'5km',
-  //       scale: 12,
-  //       ['circles[0].radius']:5000,
-  //     });
-  //   }
-  // },
 });
-

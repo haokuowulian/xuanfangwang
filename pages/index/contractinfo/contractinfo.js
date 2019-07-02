@@ -22,8 +22,12 @@ Page({
     var uid= my.getStorageSync({
       key: 'userId', // 缓存数据的key
     }).data;
-    my.httpRequest({
+    my.request({
       url:app.globalData.baseUrl+ 'IF/contract/getContractInfo.do', // 目标服务器url
+      method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         // id:54,
         id:id,
@@ -81,9 +85,12 @@ Page({
       cancelButtonText: '取消',
       success: (res) => {
         if(res.confirm){
-          my.httpRequest({
+          my.request({
             url: app.globalData.baseUrl_whj+"IF/housing/getHousingDetailIF.do",
             method: 'POST',
+            headers:{
+              'content-type': 'application/x-www-form-urlencoded'
+            },
             data: {
               id: houseId,
               rentType: rentType

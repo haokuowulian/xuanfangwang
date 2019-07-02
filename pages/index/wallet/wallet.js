@@ -13,9 +13,12 @@ Page({
       key: 'userId', // 缓存数据的key
     }).data;
     if(userId!=''){
-      my.httpRequest({
+      my.request({
         url:app.globalData.baseUrl+ 'IF/wallet/getWalletByUserId.do', // 目标服务器url
         method: 'POST',
+        headers:{
+          'content-type': 'application/x-www-form-urlencoded'
+        },
         data:{
           userId:userId,
         },

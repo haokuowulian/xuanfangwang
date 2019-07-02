@@ -52,9 +52,12 @@ Page({
     }).data;
     console.log(money)
     console.log(password)
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl+'IF/wallet/aliPayApple.do', // 目标服务器url
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         userId:userId,
         changeMoney:money,

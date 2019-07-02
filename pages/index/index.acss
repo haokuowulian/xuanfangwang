@@ -291,9 +291,13 @@
   height: 250rpx;
 }
 .p2{
+  width: 330rpx;
   margin-top: 20rpx;
   font-size: 30rpx;
   color: #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 .p3{
   margin-top: 25rpx;

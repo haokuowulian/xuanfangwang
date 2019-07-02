@@ -93,7 +93,8 @@
     "pages/index/voucher/voucher",
     "pages/index/voucher_exchange/voucher_exchange",
     "pages/index/voucher_invalid/voucher_invalid",
-    "pages/index/voucher_choose/voucher_choose"
+    "pages/index/voucher_choose/voucher_choose",
+    "pages/index/findhouse/house_street/house_street"
   ],
   "window": {
     "defaultTitle": "My App"

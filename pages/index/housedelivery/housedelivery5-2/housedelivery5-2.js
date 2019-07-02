@@ -17,10 +17,13 @@ Page({
   //获取特色
   getFurnitureList(feature){
     var that=this;
-    var features=that.data.features;
-     my.httpRequest({
+    var features='';
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/selectData/getFeatureListIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       dataType: 'json',
       success: function(res) {
         console.log(res.data);
@@ -29,15 +32,15 @@ Page({
           for(var j=0;j<list.length;j++){
             if(list[j].id==feature[i]){
               list[j].deleted=true;
-              features=features+','+list[j].feature;
+              features=features+list[j].feature+',';
             }
           }
         }
+        var _features = features.substr(0,features.length-1)
         if(res.data.success){
-
           that.setData({
             featureList:list,
-            features:features,
+            features:_features,
           });
         }
       },
@@ -74,10 +77,16 @@ Page({
     
   },
   confirm(){
+    var sid = this.data.selectId;
+    if(typeof(sid)=='string'){
+      var selectId = sid.split(',');
+    }else{
+      var selectId=sid;
+    }
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
     prevPage.setData({
-      feature: this.data.selectId,
+      feature: selectId,
       featurelist:this.data.features,
     })
     my.navigateBack({

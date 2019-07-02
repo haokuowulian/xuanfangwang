@@ -40,9 +40,12 @@ Page({
       console.log('身份证号校验')
       console.log(res_id)
       if(res_id==1){
-        my.httpRequest({
+        my.request({
           url: app.globalData.baseUrl+'IF/wallet/isIdCard.do', // 目标服务器url
           method: 'POST',
+          headers:{
+            'content-type': 'application/x-www-form-urlencoded'
+          },
           data:{
             userId:userId,
             idCard:idNum,

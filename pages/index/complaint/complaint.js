@@ -36,6 +36,9 @@ Page({
      my.httpRequest({
       url: app.globalData.baseUrl_whj+"IF/housing/getHousingDetailIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         id: that.data.id,
         rentType: that.data.rentType
@@ -146,6 +149,10 @@ Page({
     console.log(content)
     my.httpRequest({
       url: app.globalData.baseUrl+'/IF/complaintSuggest/saveComplaintSuggest.do', // 目标服务器url
+      method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         uid:uid,
         fdid:landlordId,
@@ -154,6 +161,7 @@ Page({
         images:image,
         type:type,
       },
+      dataType: 'json',
       success: (res) => {
         console.log('success')
         my.hideLoading();
@@ -177,6 +185,10 @@ Page({
     console.log(content)
     my.httpRequest({
       url: app.globalData.baseUrl+'/IF/complaintSuggest/saveComplaintSuggest.do', // 目标服务器url
+      method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data:{
         uid:uid,
         fdid:landlordId,
@@ -184,6 +196,7 @@ Page({
         content:content,
         type:type,
       },
+      dataType: 'json',
       success: (res) => {
         console.log('success')
         my.hideLoading();

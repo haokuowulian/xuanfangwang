@@ -1,12 +1,10 @@
 <view class="backgroundClass" a:if="{{type==2}}">
-  <!-- <view class="titleClass">房源信息与认证</view> -->
-  <!-- <view class="lineClass"></view> -->
   <view class="page-content">
     <view class="content" onTap="openCity">地区<input class="inputClass1" type="text" placeholder="请选择房源所在地区信息"   onFocus="hideKeyboard" value="{{dist}}"/></view>
     <view class="content">街道
       <picker onChange="bindPickerChange3" value="{{index}}" range="{{streetNames}}">
         <view >
-          <input class="inputClass1" type="text" placeholder="请选择房源的朝向"  value="{{street}}" onFocus="hideKeyboard"/>
+          <input class="inputClass1" type="text" placeholder="请选择房源所在街道"  value="{{street}}" onFocus="hideKeyboard"/>
         </view>
       </picker>
     </view>
@@ -54,7 +52,7 @@
 
     <view class="content">装修
       <picker onChange="bindPickerChange2" value="{{index}}" range="{{decorationArray}}">
-        <view >
+        <view>
           <input class="inputClass1" type="text" placeholder="请选择装修类型"  value="{{zhuangxiu}}" onFocus="hideKeyboard"/>
         </view>
       </picker>
@@ -63,28 +61,8 @@
     <view class="content">业主姓名<input class="inputClass1" type="text" placeholder="请填写产权所有人姓名" onInput="toInput1" data-t='3' value="{{vowner}}"/></view>
     <view class="content">业主身份证号<input class="inputClass1" type="idcard" placeholder="请填写产权所有人身份证号码" onInput="toInputIdCard" data-t='4' value="{{vownerCard}}"/></view>
     <view class="content">业主手机号<input class="inputClass1" type="number" placeholder="请填写产权所有人手机号码" onInput="toInputTel" data-t='7' value="{{ownerTel}}"/></view>
-    <!-- <view class="content">面积<input class="inputClass1" type="text" placeholder="请选择期望看房时间"  disabled="true" value="{{expectTime}}" /></view> -->
-
-    <!-- <view class="content">
-      <view>房东类型：</view>
-    
-      <view class="type_choose">
-        <view class='icon_none' a:if="{{!show1}}" onTap="toChooseType1"></view>
-        <view class="icon-bkgd" a:if="{{show1}}">
-          <icon type="success" class="icon-check" color="#ff8800" />
-        </view><view class="type_name">一房东</view>
-      </view>
-    
-      <view class="type_choose">
-        <view class='icon_none' a:if="{{!show2}}"  onTap="toChooseType2"></view>
-        <view class="icon-bkgd" a:if="{{show2}}">
-          <icon type="success" class="icon-check" color="#ff8800" />
-        </view><view class="type_name">二房东</view>
-      </view>
-    </view> -->
+   
 </view>
-    <!-- <view class="lineClass"></view> -->
-    <!-- 本人 -->
     <block>
       <view class="subTitleClass">房产信息认证</view>
       <view class="box_img1">
@@ -135,29 +113,6 @@
     </view>
      
     </block>
-    
-    <!-- 二房东 -->
-    <!-- <block  a:if="{{show2}}">
-      <view class="subTitleClass">业主授权租赁合同</view>
-  
-      <view class="box_img">
-        <view a:if="{{!canAddImg4}}" class="addViewClass" style="margin-left:16rpx;"> 
-          <view class="contents">
-            <image class="addImageViewClass" src="{{img4}}" />
-            <view data-index="{{index}}" onTap="delImg" class="delImg" data-t="4">
-                <icon type="cancel" color="red" size="18" />
-            </view>
-          </view>
-          <text class="textClass">业主授权合同</text>
-        </view>
-
-        <view a:if="{{canAddImg4}}" class="addViewClass" style="margin-left:16rpx;"> 
-          <image class="addImageViewClass" src="/image/zpbj.png" onTap="addImg" data-t="4"/>
-          <text class="textClass">业主授权合同</text>
-        </view>
-      </view>
-
-    </block> -->
 
   <button class="page-btn" onTap="next">下一步</button>
   </view>

@@ -7,7 +7,8 @@ Page({
     longitude:'',
     latitude:'',
     scale:14,
-    value:''
+    value:'',
+    adname:'',
   },
   
   onLoad() {
@@ -37,9 +38,12 @@ search(){
     key: 'city', // 缓存数据的key
   }).data;
   var that=this;
-  my.httpRequest({
+  my.request({
       url: "https://restapi.amap.com/v3/place/text?parameters",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         key: '27ff363a4598f97538daaebf1d1f9c9f',
         keywords:this.data.keywords,
@@ -51,6 +55,7 @@ search(){
         that.setData({
           searchResults:res.data.pois
         });
+        console.log(res)
         console.log(that.data.searchResults[0].name);
       },
       fail: function(res) {
@@ -80,13 +85,14 @@ selectIt(event){
    this.setData({
       isShow:false
     });
-  console.log()
+  console.log(event)
   var location=event.target.dataset.item.location;
   this.setData({
     longitude:location.split(',')[0],
     latitude:location.split(',')[1],
     keywords:event.target.dataset.item.name,
     value:event.target.dataset.item.name,
+    adname:event.target.dataset.item.adname,
   });
 },
 confirm(){
@@ -97,6 +103,7 @@ confirm(){
     village: this.data.value,
     longitude:this.data.longitude,
     latitude:this.data.latitude,
+    adname:this.data.adname,
   })
   my.navigateBack({
     delta: 1,

@@ -24,8 +24,11 @@ Page({
       userId:userId
     });
     // this.getMyCollect();
-    my.httpRequest({
+    my.request({
       url: 'xxxxxxx?token='+app.globalData.token, // 目标服务器url
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       success: (res) => {
         var houses = res.house;
         this.setData({
@@ -37,11 +40,11 @@ Page({
   onShow(){
     this.getMyCollect();
   },
-  management(){
-    this.setData({
-      btnshow:true,
-    });
-  },
+  // management(){
+  //   this.setData({
+  //     btnshow:true,
+  //   });
+  // },
   management(){
     this.setData({
       management_house:true,
@@ -134,9 +137,12 @@ Page({
     }
     var that=this;
      my.showLoading();
-     my.httpRequest({
+     my.request({
       url: app.globalData.baseUrl_whj+"IF/myFavorite/delMyFavoriteByIds.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         userId:this.data.userId,
         ids: ids.join(','),
@@ -168,9 +174,12 @@ Page({
   getMyCollect(){
     var that=this;
    
-    my.httpRequest({
+    my.request({
       url: app.globalData.baseUrl_whj+"IF/myFavorite/getMyFavoriteListIF.do",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         userId:this.data.userId,
         pageIndex: this.data.pageIndex,

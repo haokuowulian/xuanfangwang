@@ -37,9 +37,12 @@ Page({
     var longitude;
     var latitude;
     
-     my.httpRequest({
+     my.request({
       url: "https://restapi.amap.com/v3/place/around",
       method: 'POST',
+      headers:{
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       data: {
         key: '27ff363a4598f97538daaebf1d1f9c9f',
         location:this.data.longitude+','+this.data.latitude ,

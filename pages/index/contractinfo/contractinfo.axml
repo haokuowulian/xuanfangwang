@@ -78,7 +78,7 @@
       <view class="users-title"></view>
       <view class="order-btn" onTap="onCancel">申请解约</view>
     </view>
-     <view class="users">
+    <view class="users">
       <view class="users-title"></view>
       <view class="order-btn" onTap="onContinue">申请续约</view>
     </view>
@@ -95,10 +95,10 @@
         <view class="users-title"></view>
         <view class="order-btn" onTap="onCancel">申请解约</view>
       </view>
-      <view class="users">
+      <!-- <view class="users">
         <view class="users-title"></view>
         <view class="order-btn" onTap="onContinue">申请续约</view>
-      </view>
+      </view> -->
     </view>
     <view  a:else>
       <textarea  style="margin-top:12rpx;padding:24rpx;background-color:#ffffff;font-size:32rpx;color:#999999" value="未生效合同"  disabled='true' maxlength='-1'>
